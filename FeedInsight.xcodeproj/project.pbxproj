@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
 		1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */; };
 		1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */; };
 		1A7F121A243CE34F0008CFC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1219243CE34F0008CFC0 /* ViewController.swift */; };
@@ -14,10 +15,12 @@
 		1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A7F121E243CE3500008CFC0 /* Assets.xcassets */; };
 		1A7F1222243CE3500008CFC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7F1220243CE3500008CFC0 /* LaunchScreen.storyboard */; };
 		1A7F122A243E12610008CFC0 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1229243E12610008CFC0 /* ThirdViewController.swift */; };
+		C3C5DD25E952937DFF8D3273 /* Pods_FeedInsight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A7F1212243CE34F0008CFC0 /* stack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1A7F1219243CE34F0008CFC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		1A7F1221243CE3500008CFC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A7F1223243CE3500008CFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A7F1229243E12610008CFC0 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		3C4FBA17D1F5CDE06596FA30 /* Pods-FeedInsight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.debug.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.debug.xcconfig"; sourceTree = "<group>"; };
+		90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.release.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.release.xcconfig"; sourceTree = "<group>"; };
+		D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedInsight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C5DD25E952937DFF8D3273 /* Pods_FeedInsight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,15 +49,18 @@
 		1A7F1209243CE34F0008CFC0 = {
 			isa = PBXGroup;
 			children = (
+				04973F9C243F51D2003CE2E6 /* Podfile */,
 				1A7F1214243CE34F0008CFC0 /* stack */,
 				1A7F1213243CE34F0008CFC0 /* Products */,
+				96996E73AC16B574FB66E8D2 /* Pods */,
+				588C6D38D030B34906F1E3F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		1A7F1213243CE34F0008CFC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A7F1212243CE34F0008CFC0 /* stack.app */,
+				1A7F1212243CE34F0008CFC0 /* FeedInsight.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,24 +80,43 @@
 			path = stack;
 			sourceTree = "<group>";
 		};
+		588C6D38D030B34906F1E3F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		96996E73AC16B574FB66E8D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C4FBA17D1F5CDE06596FA30 /* Pods-FeedInsight.debug.xcconfig */,
+				90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A7F1211243CE34F0008CFC0 /* stack */ = {
+		1A7F1211243CE34F0008CFC0 /* FeedInsight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A7F1226243CE3500008CFC0 /* Build configuration list for PBXNativeTarget "stack" */;
+			buildConfigurationList = 1A7F1226243CE3500008CFC0 /* Build configuration list for PBXNativeTarget "FeedInsight" */;
 			buildPhases = (
+				9642D59C8196CEAA39C123BF /* [CP] Check Pods Manifest.lock */,
 				1A7F120E243CE34F0008CFC0 /* Sources */,
 				1A7F120F243CE34F0008CFC0 /* Frameworks */,
 				1A7F1210243CE34F0008CFC0 /* Resources */,
+				9017D46D9A21DA8846503DF0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = stack;
+			name = FeedInsight;
 			productName = stack;
-			productReference = 1A7F1212243CE34F0008CFC0 /* stack.app */;
+			productReference = 1A7F1212243CE34F0008CFC0 /* FeedInsight.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -105,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1A7F120D243CE34F0008CFC0 /* Build configuration list for PBXProject "stack" */;
+			buildConfigurationList = 1A7F120D243CE34F0008CFC0 /* Build configuration list for PBXProject "FeedInsight" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -118,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A7F1211243CE34F0008CFC0 /* stack */,
+				1A7F1211243CE34F0008CFC0 /* FeedInsight */,
 			);
 		};
 /* End PBXProject section */
@@ -130,11 +159,54 @@
 			files = (
 				1A7F1222243CE3500008CFC0 /* LaunchScreen.storyboard in Resources */,
 				1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */,
+				04973F9D243F51D2003CE2E6 /* Podfile in Resources */,
 				1A7F121D243CE34F0008CFC0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9017D46D9A21DA8846503DF0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FeedInsight/Pods-FeedInsight-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FeedInsight/Pods-FeedInsight-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FeedInsight/Pods-FeedInsight-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9642D59C8196CEAA39C123BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FeedInsight-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A7F120E243CE34F0008CFC0 /* Sources */ = {
@@ -286,17 +358,19 @@
 		};
 		1A7F1227243CE3500008CFC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C4FBA17D1F5CDE06596FA30 /* Pods-FeedInsight.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78DQ39U2BK;
 				INFOPLIST_FILE = stack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = faisalusman.stack;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FeedInsight;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,17 +378,19 @@
 		};
 		1A7F1228243CE3500008CFC0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78DQ39U2BK;
 				INFOPLIST_FILE = stack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = faisalusman.stack;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FeedInsight;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -323,7 +399,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A7F120D243CE34F0008CFC0 /* Build configuration list for PBXProject "stack" */ = {
+		1A7F120D243CE34F0008CFC0 /* Build configuration list for PBXProject "FeedInsight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A7F1224243CE3500008CFC0 /* Debug */,
@@ -332,7 +408,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A7F1226243CE3500008CFC0 /* Build configuration list for PBXNativeTarget "stack" */ = {
+		1A7F1226243CE3500008CFC0 /* Build configuration list for PBXNativeTarget "FeedInsight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A7F1227243CE3500008CFC0 /* Debug */,
