@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func SigninGoogleTap(_ sender: UIButton) {
+    }
+    
+    @IBAction func CreateAccountTap(_ sender: UIButton) {
+    }
+    @IBOutlet weak var ForgetPassword: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
