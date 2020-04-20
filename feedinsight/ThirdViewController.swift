@@ -11,11 +11,14 @@ import UIKit
 class ThirdViewController: UIViewController {
     
     
-    @IBOutlet weak var rad: UIImageView!
+    @IBOutlet weak var cornorRad: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        rad.layer.cornerRadius = 15
+        
+        cornorRad.layer.cornerRadius = 15
+      
         
     }
     
