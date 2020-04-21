@@ -42,6 +42,10 @@ class ThirdViewController: UIViewController, UICollectionViewDataSource,UICollec
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 80)
+       }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionWidth = collectionView.frame.width
         return CGSize(width: collectionWidth/2, height: collectionWidth/2)
@@ -52,11 +56,10 @@ class ThirdViewController: UIViewController, UICollectionViewDataSource,UICollec
        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 20
     }
     
    
-    
     
     
 
