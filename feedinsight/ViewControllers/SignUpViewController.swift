@@ -9,7 +9,25 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
+    @IBOutlet weak var NameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var countryCodeField: UITextField!
+    @IBOutlet weak var dropDownLabel: UIImageView!
+    @IBOutlet weak var phoneField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionCell: UICollectionViewCell!
+    @IBOutlet weak var IndustryField: UITextField!
+    @IBOutlet weak var pickAnimalField: UITextField!
+    @IBOutlet weak var businessField: UITextField!
+    @IBOutlet weak var pickRoleField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var repasswordField: UITextField!
+    
+    @IBAction func signIntapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func signInBtntap(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
