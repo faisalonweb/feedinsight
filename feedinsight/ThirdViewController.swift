@@ -43,20 +43,20 @@ class ThirdViewController: UIViewController, UICollectionViewDataSource,UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 80)
+           return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 80)
        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionWidth = collectionView.frame.width
-        return CGSize(width: collectionWidth/2, height: collectionWidth/2)
+        return CGSize(width: collectionWidth/2, height: collectionWidth/3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-           return 0
+           return 5
        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 0
     }
     
    
