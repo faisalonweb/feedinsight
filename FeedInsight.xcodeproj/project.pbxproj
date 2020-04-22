@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0420CA9D244F69BD00090F37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420CA9C244F69BD00090F37 /* LoginViewController.swift */; };
+		0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420CA9E244F6B3A00090F37 /* SigninFscreenViewController.swift */; };
 		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
 		04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E69496244480F200E2CE1B /* RuminantsViewController.swift */; };
 		04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E694992444AB6F00E2CE1B /* SignUpViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0420CA9C244F69BD00090F37 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0420CA9E244F6B3A00090F37 /* SigninFscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninFscreenViewController.swift; sourceTree = "<group>"; };
 		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		04E69496244480F200E2CE1B /* RuminantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuminantsViewController.swift; sourceTree = "<group>"; };
 		04E694992444AB6F00E2CE1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +67,9 @@
 		04E694982444AB1500E2CE1B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0420CA9C244F69BD00090F37 /* LoginViewController.swift */,
 				04E694992444AB6F00E2CE1B /* SignUpViewController.swift */,
+				0420CA9E244F6B3A00090F37 /* SigninFscreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -241,7 +247,9 @@
 				04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */,
 				1A7F121A243CE34F0008CFC0 /* ViewController.swift in Sources */,
 				1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */,
+				0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */,
 				1AA82B48244DAD88000951ED /* CollectionViewCell.swift in Sources */,
+				0420CA9D244F69BD00090F37 /* LoginViewController.swift in Sources */,
 				1A7F122A243E12610008CFC0 /* ThirdViewController.swift in Sources */,
 				1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */,
 				04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */,

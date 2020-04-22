@@ -11,11 +11,19 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+var window:UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // this is testing testing 
+        // this is testing testing
+        let mainViewController = SigninFscreenViewController()
+               mainViewController.title = "Main"
+
+               let frame = UIScreen.main.bounds
+               window = UIWindow(frame: frame)
+
+               window!.rootViewController = mainViewController
+               window!.makeKeyAndVisible()
         return true
     }
 
