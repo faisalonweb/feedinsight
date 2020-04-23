@@ -8,21 +8,42 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return textArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! SignUpCollectionViewCell
+               
+               let cellIndex = indexPath.item
+               
+               cell.industryImage.image = imageArr[cellIndex]
+               cell.industryLabel.text = textArr[cellIndex]
+               
+               return cell
+    }
+    
     @IBOutlet weak var NameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var countryCodeField: UITextField!
     @IBOutlet weak var dropDownLabel: UIImageView!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionCell: UICollectionViewCell!
+//    @IBOutlet weak var collectionCell: UICollectionViewCell!
     @IBOutlet weak var IndustryField: UITextField!
     @IBOutlet weak var pickAnimalField: UITextField!
     @IBOutlet weak var businessField: UITextField!
     @IBOutlet weak var pickRoleField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var repasswordField: UITextField!
+    let textArr = ["Farming","Food Manufacturing","three","four","five","six"]
     
+       let imageArr = [UIImage (named: "iForming"), UIImage(named: "imanufacture"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+    
+    @IBAction func backBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func signIntapped(_ sender: UIButton) {
     }
     
@@ -30,6 +51,16 @@ class SignUpViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let itemSize = UIScreen.main.bounds.width/3 - 2
+                             
+                             let layout = UICollectionViewFlowLayout()
+                             layout.itemSize = CGSize(width: itemSize, height: itemSize)
+                             
+                             layout.minimumInteritemSpacing = 2
+                             layout.minimumLineSpacing = 2
+                             
+                             collectionView.collectionViewLayout = layout
         //NameField.text = "nat"
 //        NameField.layer.cornerRadius = NameField.frame.size.height/2
 //        NameField.clipsToBounds = true
