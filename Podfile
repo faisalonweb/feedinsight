@@ -8,6 +8,7 @@ target 'FeedInsight' do
   # Pods for FeedInsight
   pod 'RealmSwift'
   pod 'iOSDropDown'
+
 end
 
 
