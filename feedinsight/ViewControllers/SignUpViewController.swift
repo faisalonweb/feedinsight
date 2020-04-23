@@ -30,6 +30,9 @@ class SignUpViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //NameField.text = "nat"
+//        NameField.layer.cornerRadius = NameField.frame.size.height/2
+//        NameField.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }

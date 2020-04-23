@@ -10,11 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBAction func SigninGoogleTap(_ sender: UIButton) {
-    }
-    
-    @IBAction func CreateAccountTap(_ sender: UIButton) {
-    }
+//    @IBAction func SigninGoogleTap(_ sender: UIButton) {
+//        let Storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc:ViewController = Storyboard.instantiateViewController(withIdentifier: "Login") as! ViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        
+//    }
+//    
+//    @IBAction func CreateAccountTap(_ sender: UIButton) {
+//        let Storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc:ViewController = Storyboard.instantiateViewController(withIdentifier: "Login") as! ViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
+////                   vc.modalPresentationStyle = .fullScreen
+////                   self.present(vc, animated: true, completion: nil)
+//    }
     @IBOutlet weak var ForgetPassword: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,4 +32,6 @@ class ViewController: UIViewController {
 
 
 }
+
+
 
