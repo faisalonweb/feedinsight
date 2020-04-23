@@ -33,15 +33,7 @@ class SigninFscreenViewController: UIViewController {
     
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-       if segue.identifier == "SignInGoogle" {
-           if let nextViewController = segue.destination as? LoginViewController {
-            let backItem = UIBarButtonItem()
-            backItem.title = "Something Else"
-            navigationItem.backBarButtonItem = backItem 
-             // nextViewController.emailField.text = "XYZ" //Or pass any values
-       
-           }
-       }
+
    }
 
 }
