@@ -17,6 +17,7 @@ class StateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // The list of array to display. Can be changed dynamically
         dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]
         //Its Id Values and its optional
@@ -31,6 +32,11 @@ class StateViewController: UIViewController {
         
     }
     
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        //dropDown.resignFirstResponder();
+        // Addi//tional code here
+        return false
+    }
 
     
 }
