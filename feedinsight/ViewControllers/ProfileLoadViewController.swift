@@ -19,9 +19,16 @@ struct cellData {
 class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var userprofile: UIImageView!
+    @IBOutlet weak var notification: UIImageView!
+    
+    
     var tableViewData = [cellData]()
     let cellSpacingHeight: CGFloat = 20
     
+    @IBAction func backtapped(_ sender: UIButton) {
+     //  self.dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.backgroundColor = UIColor.white
@@ -34,6 +41,17 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             
         ]
         let devCousesImages = [UIImage(named: "ruminants"), UIImage(named: "aqua"), UIImage(named: "equines"), UIImage(named: "chicken")]
+        
+        
+        userprofile?.layer.cornerRadius = (userprofile?.frame.size.width ?? 0.0) / 2
+               userprofile?.clipsToBounds = true
+               userprofile?.layer.borderWidth = 3.0
+               userprofile?.layer.borderColor = UIColor.white.cgColor
+               
+               notification?.layer.cornerRadius = (notification?.frame.size.width ?? 0.0) / 2
+               notification?.clipsToBounds = true
+               notification?.layer.borderWidth = 3.0
+               notification?.layer.borderColor = UIColor.white.cgColor
         
         
     }

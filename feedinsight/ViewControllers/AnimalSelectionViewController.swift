@@ -33,6 +33,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         super.viewDidLoad()
         animalCollectionView.delegate = self
         animalCollectionView.dataSource = self
+        
         notificaitonViewA?.layer.cornerRadius = (notificaitonViewA?.frame.size.width ?? 0.0) / 2
         notificaitonViewA?.clipsToBounds = true
         notificaitonViewA?.layer.borderWidth = 3.0
