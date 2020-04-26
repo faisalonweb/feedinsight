@@ -18,17 +18,18 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     //    @IBOutlet weak var animalCollectionViewCell: AnimalCollectionViewCell!
     
     
-    let textArr = ["Ruminants","Poultry","Aqua","Equines","Goat","Cow"]
+    let textArr = ["Ruminants","Aqua","Equines","Poultry","Goat","Cow"]
     
     let imageArr: [UIImage] = [
-        UIImage(named: "brush")!,
-        UIImage(named: "brush")!,
-        UIImage(named: "brush")!,
-        UIImage(named: "brush")!,
-        UIImage(named: "brush")!,
-        UIImage(named: "brush")!,
+        UIImage(named: "ruminants")!,
+        UIImage(named: "aqua")!,
+        UIImage(named: "equines")!,
+        UIImage(named: "chicken")!,
+        UIImage(named: "equines")!,
+        UIImage(named: "ruminants")!,
     ]
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         animalCollectionView.delegate = self
