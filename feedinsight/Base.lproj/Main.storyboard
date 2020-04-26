@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O1b-ms-bVU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -988,7 +988,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" separatorInsetReference="fromAutomaticInsets" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FS3-6R-aCi">
-                                        <rect key="frame" x="20" y="244" width="374" height="518"/>
+                                        <rect key="frame" x="20" y="243.5" width="374" height="518.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                         <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1191,11 +1191,18 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78D-b1-YOr">
-                                <rect key="frame" x="117" y="1887" width="188" height="30"/>
+                                <rect key="frame" x="67" y="1887" width="288" height="50"/>
                                 <color key="backgroundColor" red="0.54901960780000003" green="0.035294117649999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="13"/>
                                 <state key="normal" title="Select another animal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="SelectAnimal:" destination="04Z-oi-chC" eventType="touchUpInside" id="ZgV-Ks-SRq"/>
                                 </connections>
@@ -1214,17 +1221,17 @@
                             <constraint firstItem="crQ-BR-LXp" firstAttribute="leading" secondItem="4ae-ug-Ui5" secondAttribute="leading" id="9AS-gU-GL8"/>
                             <constraint firstItem="crQ-BR-LXp" firstAttribute="height" secondItem="tH1-Rx-c7D" secondAttribute="height" multiplier="0.202009" id="AIj-ZN-7Yw"/>
                             <constraint firstItem="crQ-BR-LXp" firstAttribute="top" secondItem="hIN-1W-Dn1" secondAttribute="bottom" constant="51.5" id="LC2-sS-lcA"/>
-                            <constraint firstItem="4ae-ug-Ui5" firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="27" id="QIi-SJ-f5N"/>
+                            <constraint firstItem="4ae-ug-Ui5" firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="7" id="QIi-SJ-f5N"/>
                             <constraint firstItem="4ae-ug-Ui5" firstAttribute="trailing" secondItem="Dyi-4G-Oh4" secondAttribute="trailing" constant="223.5" id="UKB-7X-QRG"/>
                             <constraint firstItem="MUE-oa-YMx" firstAttribute="top" secondItem="Dyi-4G-Oh4" secondAttribute="bottom" constant="39" id="cDi-rt-clG"/>
                             <constraint firstItem="crQ-BR-LXp" firstAttribute="leading" secondItem="MUE-oa-YMx" secondAttribute="leading" constant="-20" id="grn-0l-hfJ"/>
                             <constraint firstItem="78D-b1-YOr" firstAttribute="top" secondItem="MUE-oa-YMx" secondAttribute="bottom" constant="52" id="iHZ-PW-2nM"/>
                             <constraint firstItem="crQ-BR-LXp" firstAttribute="trailing" secondItem="MUE-oa-YMx" secondAttribute="trailing" constant="24" id="mEh-WB-9Rf"/>
-                            <constraint firstItem="4ae-ug-Ui5" firstAttribute="trailing" secondItem="78D-b1-YOr" secondAttribute="trailing" constant="109" id="mPi-4x-IC5"/>
+                            <constraint firstItem="4ae-ug-Ui5" firstAttribute="trailing" secondItem="78D-b1-YOr" secondAttribute="trailing" constant="59" id="mPi-4x-IC5"/>
                             <constraint firstItem="Dyi-4G-Oh4" firstAttribute="leading" secondItem="4ae-ug-Ui5" secondAttribute="leading" constant="125" id="raI-ry-61r"/>
                             <constraint firstItem="4ae-ug-Ui5" firstAttribute="bottom" secondItem="MUE-oa-YMx" secondAttribute="bottom" constant="109" id="tjQ-te-tiH"/>
                             <constraint firstItem="crQ-BR-LXp" firstAttribute="trailing" secondItem="tH1-Rx-c7D" secondAttribute="trailingMargin" constant="20" id="x7z-ON-ZEk"/>
-                            <constraint firstItem="78D-b1-YOr" firstAttribute="leading" secondItem="4ae-ug-Ui5" secondAttribute="leading" constant="117" id="xoW-GL-QWa"/>
+                            <constraint firstItem="78D-b1-YOr" firstAttribute="leading" secondItem="4ae-ug-Ui5" secondAttribute="leading" constant="67" id="xoW-GL-QWa"/>
                             <constraint firstItem="hIN-1W-Dn1" firstAttribute="top" secondItem="4ae-ug-Ui5" secondAttribute="top" id="yxx-UQ-gkL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4ae-ug-Ui5"/>
@@ -1989,7 +1996,7 @@
         <image name="userimage" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n7c-zx-zxt"/>
-        <segue reference="YeX-mu-Xjy"/>
+        <segue reference="mms-Xo-G3f"/>
+        <segue reference="Qzi-7y-YU3"/>
     </inferredMetricsTieBreakers>
 </document>
