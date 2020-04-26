@@ -11,7 +11,7 @@ import iOSDropDown
 
 
 class StateViewController: UIViewController {
-
+    
     @IBOutlet weak var dropDown: DropDown!
     
     override func viewDidLoad() {
@@ -22,12 +22,12 @@ class StateViewController: UIViewController {
         dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]
         //Its Id Values and its optional
         dropDown.optionIds = [1,23,54,22]
-
+        
         // Image Array its optional
-//        dropDown.ImageArray = [👩🏻‍🦳,🙊,🥞]
+        //        dropDown.ImageArray = [👩🏻‍🦳,🙊,🥞]
         // The the Closure returns Selected Index and String
         dropDown.didSelect{(selectedText , index ,id) in
-//        self.valueLabel.text = "Selected String: \(selectedText) \n index: \(index)"
+            //        self.valueLabel.text = "Selected String: \(selectedText) \n index: \(index)"
         }
         
     }
@@ -37,6 +37,6 @@ class StateViewController: UIViewController {
         // Addi//tional code here
         return false
     }
-
+    
     
 }

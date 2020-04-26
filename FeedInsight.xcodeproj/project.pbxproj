@@ -16,6 +16,10 @@
 		045263FE2451BF23006D67AB /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 045263FB2451BF22006D67AB /* Rubik-Regular.ttf */; };
 		045263FF2451BF23006D67AB /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 045263FC2451BF23006D67AB /* Rubik-Medium.ttf */; };
 		045264002451BF23006D67AB /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 045263FD2451BF23006D67AB /* Rubik-Bold.ttf */; };
+		046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1B932455AAA00012F519 /* profileTitleTableViewCell.swift */; };
+		046A1B962455AAA00012F519 /* profileTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046A1B942455AAA00012F519 /* profileTitleTableViewCell.xib */; };
+		047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF042454C83A0067237A /* ProfileLoadViewController.swift */; };
+		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
 		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
 		04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */; };
 		04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E69496244480F200E2CE1B /* RuminantsViewController.swift */; };
@@ -47,6 +51,10 @@
 		045263FB2451BF22006D67AB /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		045263FC2451BF23006D67AB /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		045263FD2451BF23006D67AB /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		046A1B932455AAA00012F519 /* profileTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileTitleTableViewCell.swift; sourceTree = "<group>"; };
+		046A1B942455AAA00012F519 /* profileTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = profileTitleTableViewCell.xib; sourceTree = "<group>"; };
+		047ADF042454C83A0067237A /* ProfileLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadViewController.swift; sourceTree = "<group>"; };
+		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
 		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E69496244480F200E2CE1B /* RuminantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuminantsViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +130,10 @@
 				04236AE82450E1B500C66F66 /* AnimalSelectionViewController.swift */,
 				045263F624519176006D67AB /* LoginViewController.swift */,
 				044BE5012452A66C00551BF6 /* dropdownTableViewCell.swift */,
+				047ADF042454C83A0067237A /* ProfileLoadViewController.swift */,
+				047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */,
+				046A1B932455AAA00012F519 /* profileTitleTableViewCell.swift */,
+				046A1B942455AAA00012F519 /* profileTitleTableViewCell.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -250,6 +262,7 @@
 				1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */,
 				04973F9D243F51D2003CE2E6 /* Podfile in Resources */,
 				045263FF2451BF23006D67AB /* Rubik-Medium.ttf in Resources */,
+				046A1B962455AAA00012F519 /* profileTitleTableViewCell.xib in Resources */,
 				045264002451BF23006D67AB /* Rubik-Bold.ttf in Resources */,
 				045263FE2451BF23006D67AB /* Rubik-Regular.ttf in Resources */,
 				1A7F121D243CE34F0008CFC0 /* Main.storyboard in Resources */,
@@ -311,11 +324,14 @@
 				1A7F121A243CE34F0008CFC0 /* ViewController.swift in Sources */,
 				1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */,
 				0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */,
+				046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */,
 				044BE5022452A66C00551BF6 /* dropdownTableViewCell.swift in Sources */,
 				04236AE52450D68100C66F66 /* RuminantCollectionViewCell.swift in Sources */,
 				1A47C3822451F72200D28345 /* SignViewController.swift in Sources */,
+				047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */,
 				1AA82B48244DAD88000951ED /* CollectionViewCell.swift in Sources */,
 				04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */,
+				047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */,
 				04EC579624509E7100BAAF23 /* DropViewController.swift in Sources */,
 				1AC35CDC24509D5C001C7693 /* StateViewController.swift in Sources */,
 				1AA82B48244DAD88000951ED /* CollectionViewCell.swift in Sources */,

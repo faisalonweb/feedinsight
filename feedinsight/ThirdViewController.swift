@@ -13,29 +13,29 @@ class ThirdViewController: UIViewController, UICollectionViewDataSource,UICollec
     
     let textArr = ["one","two","three","four","five","six"]
     
-       let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
-       
+    let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-                                  let itemSize = UIScreen.main.bounds.width/3 - 2
-                                   
-                                   let layout = UICollectionViewFlowLayout()
-                                  layout.itemSize = CGSize(width: itemSize + 60, height: itemSize + 30)
-                                   
-                                   layout.minimumInteritemSpacing = 2
-                                   layout.minimumLineSpacing = 20
-                                   
-                                   collectionView.collectionViewLayout = layout
+        let itemSize = UIScreen.main.bounds.width/3 - 2
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: itemSize + 60, height: itemSize + 30)
+        
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 20
+        
+        collectionView.collectionViewLayout = layout
         
     }
     
-
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
+    
+    //    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    //        return 1
+    //    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
@@ -52,25 +52,25 @@ class ThirdViewController: UIViewController, UICollectionViewDataSource,UICollec
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//           return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 80)
-//       }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let collectionWidth = collectionView.frame.width
-//        return CGSize(width: collectionWidth/2, height: collectionWidth/3)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//           return 5
-//       }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-    
-   
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    //           return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 80)
+    //       }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //        let collectionWidth = collectionView.frame.width
+    //        return CGSize(width: collectionWidth/2, height: collectionWidth/3)
+    //    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    //           return 5
+    //       }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    //        return 0
+    //    }
     
     
-
+    
+    
+    
 }

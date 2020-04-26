@@ -10,19 +10,19 @@ import UIKit
 
 class RuminantsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return textArr.count
+        return textArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! RuminantCollectionViewCell
-                      
-                      let cellIndex = indexPath.item
-                      cell.ruminantLabel.text = textArr[cellIndex]
-                      
-                      return cell
+        
+        let cellIndex = indexPath.item
+        cell.ruminantLabel.text = textArr[cellIndex]
+        
+        return cell
     }
     
-
+    
     @IBOutlet weak var UserInfoView: UIView!
     @IBOutlet weak var notificationView: UIImageView!
     
@@ -35,7 +35,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var UserCompanyName: UILabel!
     @IBOutlet weak var UserProfilePicture: UIImageView!
     
-     let textArr = ["Dairy", "Cows","Beef","Sheep/Goat","Deer","Camel","Rabbit","Hen"]
+    let textArr = ["Dairy", "Cows","Beef","Sheep/Goat","Deer","Camel","Rabbit","Hen"]
     
     @IBAction func SelectAnimal(_ sender: Any) {
         
@@ -44,30 +44,30 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         super.viewDidLoad()
         
         notificationView?.layer.cornerRadius = (notificationView?.frame.size.width ?? 0.0) / 2
-                      notificationView?.clipsToBounds = true
-                      notificationView?.layer.borderWidth = 3.0
-                      notificationView?.layer.borderColor = UIColor.white.cgColor
+        notificationView?.clipsToBounds = true
+        notificationView?.layer.borderWidth = 3.0
+        notificationView?.layer.borderColor = UIColor.white.cgColor
         
         UserProfilePicture?.layer.cornerRadius = (UserProfilePicture?.frame.size.width ?? 0.0) / 2
-                      UserProfilePicture?.clipsToBounds = true
-                      UserProfilePicture?.layer.borderWidth = 3.0
-                      UserProfilePicture?.layer.borderColor = UIColor.white.cgColor
+        UserProfilePicture?.clipsToBounds = true
+        UserProfilePicture?.layer.borderWidth = 3.0
+        UserProfilePicture?.layer.borderColor = UIColor.white.cgColor
         
         let itemSize = UIScreen.main.bounds.width/3 - 2
-               
-               let layout = UICollectionViewFlowLayout()
-             layout.itemSize = CGSize(width: itemSize + 35, height: itemSize - 30)
-               
-               layout.minimumInteritemSpacing = 2
-               layout.minimumLineSpacing = 20
-               
-               animalTypeCollection.collectionViewLayout = layout
         
-
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: itemSize + 35, height: itemSize - 30)
+        
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 20
+        
+        animalTypeCollection.collectionViewLayout = layout
+        
+        
         // Do any additional setup after loading the view.
     }
     
-
-
-
+    
+    
+    
 }
