@@ -1122,7 +1122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imanufacture" translatesAutoresizingMaskIntoConstraints="NO" id="C2Z-8u-a10">
-                                        <rect key="frame" x="146" y="25" width="122" height="107.5"/>
+                                        <rect key="frame" x="146" y="25" width="122" height="108"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1300,8 +1300,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pac-i0-cmn" userLabel="ContentView">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1469"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="If other Industry, Please mention" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpX-IT-RNc">
-                                                        <rect key="frame" x="33" y="648" width="318" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If other Industry, Please mention" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpX-IT-RNc">
+                                                        <rect key="frame" x="33" y="672.5" width="318" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1357,8 +1357,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9i3-A0-ArV">
-                                                        <rect key="frame" x="33" y="452" width="348" height="176"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9i3-A0-ArV">
+                                                        <rect key="frame" x="33" y="448" width="348" height="204.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="5" minimumInteritemSpacing="10" id="Qg9-BL-4bq">
                                                             <size key="itemSize" width="158" height="160"/>
@@ -1368,7 +1368,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="epF-Ju-QFh" customClass="SignUpCollectionViewCell" customModule="FeedInsight" customModuleProvider="target">
-                                                                <rect key="frame" x="2" y="10" width="158" height="156"/>
+                                                                <rect key="frame" x="2" y="24.5" width="158" height="156"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FUU-ef-OQ8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="158" height="156"/>
@@ -1413,80 +1413,80 @@
                                                             <outlet property="delegate" destination="SZ3-W5-xIl" id="WLc-iU-1JP"/>
                                                         </connections>
                                                     </collectionView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="industry" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnP-dz-B2d">
-                                                        <rect key="frame" x="33" y="683" width="348" height="44"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="industry" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnP-dz-B2d">
+                                                        <rect key="frame" x="33" y="704" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Type of Animals" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-N9-JOw">
-                                                        <rect key="frame" x="33" y="747" width="220" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of Animals" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-N9-JOw">
+                                                        <rect key="frame" x="33" y="768" width="220" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick Animals" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tiP-Z9-c5z">
-                                                        <rect key="frame" x="33" y="781.5" width="348" height="44"/>
+                                                        <rect key="frame" x="33" y="799.5" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Business/Organization Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THK-1n-0nf">
-                                                        <rect key="frame" x="33" y="846" width="310" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business/Organization Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THK-1n-0nf">
+                                                        <rect key="frame" x="33" y="863.5" width="310" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="business" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-lF-OVb">
-                                                        <rect key="frame" x="33" y="881" width="348" height="44"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="business" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-lF-OVb">
+                                                        <rect key="frame" x="33" y="894" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your Role" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR7-od-5g2">
-                                                        <rect key="frame" x="33" y="945" width="287" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Role" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR7-od-5g2">
+                                                        <rect key="frame" x="33" y="958" width="287" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FA3-vq-JuC">
-                                                        <rect key="frame" x="33" y="980" width="348" height="44"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FA3-vq-JuC">
+                                                        <rect key="frame" x="33" y="989.5" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location (Scroll to change)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-lI-Xel">
-                                                        <rect key="frame" x="33" y="1044" width="304" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location (Scroll to change)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-lI-Xel">
+                                                        <rect key="frame" x="33" y="1053.5" width="304" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lahore" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbA-Dx-VuN">
-                                                        <rect key="frame" x="33" y="1079" width="348" height="44"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lahore" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbA-Dx-VuN">
+                                                        <rect key="frame" x="33" y="1085" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5v-TZ-Ht1">
-                                                        <rect key="frame" x="33" y="1143" width="220" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5v-TZ-Ht1">
+                                                        <rect key="frame" x="33" y="1149" width="220" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-Gz-NHi">
-                                                        <rect key="frame" x="33" y="1178" width="348" height="44"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-Gz-NHi">
+                                                        <rect key="frame" x="33" y="1180.5" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-ng-WAU">
-                                                        <rect key="frame" x="33" y="1242" width="206" height="25"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-ng-WAU">
+                                                        <rect key="frame" x="33" y="1244.5" width="206" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0oq-Pe-1c9">
-                                                        <rect key="frame" x="33" y="1277" width="348" height="44"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0oq-Pe-1c9">
+                                                        <rect key="frame" x="33" y="1276" width="348" height="44"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1503,24 +1503,39 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Have an Account?" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-oy-HIo">
-                                                        <rect key="frame" x="110" y="1402" width="116.5" height="17"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA2-ky-1FW">
-                                                        <rect key="frame" x="229" y="1402" width="91" height="17"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <state key="normal" title="Sign In">
-                                                            <color key="titleColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <segue destination="unx-Oc-mjJ" kind="presentation" identifier="Signinemailsegue" id="jbY-wq-LFE"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPr-dw-ke9">
-                                                        <rect key="frame" x="104" y="1357" width="177" height="23"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLw-0r-5nY">
+                                                        <rect key="frame" x="87" y="1414" width="240" height="40"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an Account?" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-oy-HIo">
+                                                                <rect key="frame" x="8" y="5" width="116.5" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA2-ky-1FW">
+                                                                <rect key="frame" x="125" y="6" width="91" height="27"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Sign In">
+                                                                    <color key="titleColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="unx-Oc-mjJ" kind="presentation" identifier="Signinemailsegue" id="jbY-wq-LFE"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="HA2-ky-1FW" firstAttribute="top" secondItem="PLw-0r-5nY" secondAttribute="top" constant="6" id="9ys-dy-X3P"/>
+                                                            <constraint firstAttribute="bottom" secondItem="9Gw-oy-HIo" secondAttribute="bottom" constant="5" id="OjB-Kf-xvA"/>
+                                                            <constraint firstAttribute="bottom" secondItem="HA2-ky-1FW" secondAttribute="bottom" constant="7" id="Ugn-7H-8Jn"/>
+                                                            <constraint firstItem="9Gw-oy-HIo" firstAttribute="top" secondItem="PLw-0r-5nY" secondAttribute="top" constant="5" id="a9K-Ls-inS"/>
+                                                            <constraint firstAttribute="trailing" secondItem="HA2-ky-1FW" secondAttribute="trailing" constant="24" id="kJK-xm-cbH"/>
+                                                            <constraint firstItem="HA2-ky-1FW" firstAttribute="leading" secondItem="9Gw-oy-HIo" secondAttribute="trailing" constant="0.5" id="mdu-41-G19"/>
+                                                            <constraint firstItem="9Gw-oy-HIo" firstAttribute="leading" secondItem="PLw-0r-5nY" secondAttribute="leading" constant="8" id="qZN-gb-nDG"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPr-dw-ke9">
+                                                        <rect key="frame" x="33" y="1356" width="348" height="32"/>
                                                         <color key="backgroundColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <state key="normal" title="Sign In">
@@ -1545,22 +1560,22 @@
                                                     <constraint firstItem="HzM-FU-pgy" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="3ex-mF-yAI"/>
                                                     <constraint firstAttribute="trailing" secondItem="wuZ-Ce-5MN" secondAttribute="trailing" constant="161" id="4Ef-bS-RIC"/>
                                                     <constraint firstAttribute="trailing" secondItem="pc5-N9-JOw" secondAttribute="trailing" constant="161" id="4JT-u8-cCf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PLw-0r-5nY" secondAttribute="trailing" constant="87" id="4gB-OG-lKr"/>
                                                     <constraint firstItem="3Lw-VO-64x" firstAttribute="top" secondItem="FOh-CX-Bqd" secondAttribute="bottom" constant="38" id="6wm-dw-f6F"/>
-                                                    <constraint firstItem="9Gw-oy-HIo" firstAttribute="top" secondItem="DPr-dw-ke9" secondAttribute="bottom" constant="22" id="7Ld-US-T0k"/>
-                                                    <constraint firstAttribute="trailing" secondItem="DPr-dw-ke9" secondAttribute="trailing" constant="133" id="8Y8-iA-20a"/>
+                                                    <constraint firstAttribute="trailing" secondItem="DPr-dw-ke9" secondAttribute="trailing" constant="33" id="8Y8-iA-20a"/>
                                                     <constraint firstItem="pc5-N9-JOw" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="99l-OR-eYg"/>
                                                     <constraint firstAttribute="trailing" secondItem="HzM-FU-pgy" secondAttribute="trailing" constant="33" id="9UJ-OF-pHA"/>
-                                                    <constraint firstItem="HzM-FU-pgy" firstAttribute="top" secondItem="3Lw-VO-64x" secondAttribute="bottom" constant="10" id="AJs-W3-Dl9"/>
+                                                    <constraint firstItem="HzM-FU-pgy" firstAttribute="top" secondItem="3Lw-VO-64x" secondAttribute="bottom" priority="250" constant="10" id="AJs-W3-Dl9"/>
                                                     <constraint firstAttribute="trailing" secondItem="3Lw-VO-64x" secondAttribute="trailing" constant="132" id="Au1-vg-ZK8"/>
                                                     <constraint firstItem="C70-D6-rDX" firstAttribute="top" secondItem="wuZ-Ce-5MN" secondAttribute="bottom" constant="10" id="BF0-4p-y6E"/>
                                                     <constraint firstItem="0oq-Pe-1c9" firstAttribute="top" secondItem="aXA-ng-WAU" secondAttribute="bottom" constant="10" id="C6a-Yi-c0A"/>
                                                     <constraint firstItem="Af2-M3-jgJ" firstAttribute="top" secondItem="171-Dx-oFi" secondAttribute="bottom" constant="15" id="CPN-oQ-zoo"/>
-                                                    <constraint firstItem="DPr-dw-ke9" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="104" id="CZr-m8-GlB"/>
+                                                    <constraint firstItem="DPr-dw-ke9" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="CZr-m8-GlB"/>
                                                     <constraint firstAttribute="trailing" secondItem="EnP-dz-B2d" secondAttribute="trailing" constant="33" id="Cje-WC-ZhX"/>
-                                                    <constraint firstAttribute="bottom" secondItem="HA2-ky-1FW" secondAttribute="bottom" constant="50" id="CxA-vX-g63"/>
                                                     <constraint firstAttribute="trailing" secondItem="JpX-IT-RNc" secondAttribute="trailing" constant="63" id="D4m-oq-1ST"/>
                                                     <constraint firstAttribute="trailing" secondItem="171-Dx-oFi" secondAttribute="trailing" constant="32" id="DFs-tE-bEc"/>
-                                                    <constraint firstItem="f0O-nH-yqb" firstAttribute="top" secondItem="C70-D6-rDX" secondAttribute="bottom" constant="20" id="Fig-Qq-gPo"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="15" id="Egi-GD-d1T"/>
+                                                    <constraint firstItem="f0O-nH-yqb" firstAttribute="top" secondItem="C70-D6-rDX" secondAttribute="bottom" priority="250" constant="20" id="Fig-Qq-gPo"/>
                                                     <constraint firstAttribute="trailing" secondItem="gbA-Dx-VuN" secondAttribute="trailing" constant="33" id="GTa-hL-Jqh"/>
                                                     <constraint firstItem="DPr-dw-ke9" firstAttribute="top" secondItem="0oq-Pe-1c9" secondAttribute="bottom" constant="36" id="Gee-tw-Kq7"/>
                                                     <constraint firstItem="aXA-ng-WAU" firstAttribute="top" secondItem="Qf5-Gz-NHi" secondAttribute="bottom" constant="20" id="IDw-cC-8JX"/>
@@ -1570,8 +1585,8 @@
                                                     <constraint firstItem="FOh-CX-Bqd" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="K4F-eP-Bw2"/>
                                                     <constraint firstItem="171-Dx-oFi" firstAttribute="leading" secondItem="U07-XG-4Yd" secondAttribute="trailing" constant="8" id="KT6-qc-rBX"/>
                                                     <constraint firstItem="U07-XG-4Yd" firstAttribute="bottom" secondItem="171-Dx-oFi" secondAttribute="bottom" id="Kdh-c8-9yx"/>
+                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="87" id="N0q-yV-Id3"/>
                                                     <constraint firstItem="THK-1n-0nf" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="Nmu-A6-wDO"/>
-                                                    <constraint firstItem="HA2-ky-1FW" firstAttribute="leading" secondItem="9Gw-oy-HIo" secondAttribute="trailing" constant="2.5" id="ONq-ES-OqA"/>
                                                     <constraint firstItem="wuZ-Ce-5MN" firstAttribute="top" secondItem="HzM-FU-pgy" secondAttribute="bottom" constant="20" id="OwU-gy-wdf"/>
                                                     <constraint firstAttribute="trailing" secondItem="9i3-A0-ArV" secondAttribute="trailing" constant="33" id="PA1-JB-IND"/>
                                                     <constraint firstItem="9i3-A0-ArV" firstAttribute="top" secondItem="Af2-M3-jgJ" secondAttribute="bottom" constant="10" id="Pbd-MW-eeI"/>
@@ -1586,11 +1601,9 @@
                                                     <constraint firstItem="C70-D6-rDX" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="WOf-0q-aSu"/>
                                                     <constraint firstItem="ysB-lF-OVb" firstAttribute="top" secondItem="THK-1n-0nf" secondAttribute="bottom" constant="10" id="Wmc-YY-svQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="FA3-vq-JuC" secondAttribute="trailing" constant="33" id="XTS-wb-m2J"/>
-                                                    <constraint firstItem="HA2-ky-1FW" firstAttribute="top" secondItem="DPr-dw-ke9" secondAttribute="bottom" constant="22" id="Xzj-ti-fuF"/>
                                                     <constraint firstItem="3g5-Gc-E3Q" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="YIb-aY-vTU"/>
                                                     <constraint firstItem="tiP-Z9-c5z" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="ZOH-Af-zy3"/>
                                                     <constraint firstItem="FA3-vq-JuC" firstAttribute="top" secondItem="RR7-od-5g2" secondAttribute="bottom" constant="10" id="a1Q-BH-BM7"/>
-                                                    <constraint firstItem="9Gw-oy-HIo" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="110" id="b3t-Jf-bYH"/>
                                                     <constraint firstItem="RR7-od-5g2" firstAttribute="top" secondItem="ysB-lF-OVb" secondAttribute="bottom" constant="20" id="bHR-Iz-hnS"/>
                                                     <constraint firstAttribute="trailing" secondItem="tiP-Z9-c5z" secondAttribute="trailing" constant="33" id="cdq-Yk-UMh"/>
                                                     <constraint firstItem="3g5-Gc-E3Q" firstAttribute="top" secondItem="pac-i0-cmn" secondAttribute="top" constant="27" id="cji-ox-g3o"/>
@@ -1612,12 +1625,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="Qf5-Gz-NHi" secondAttribute="trailing" constant="33" id="jr5-zX-nux"/>
                                                     <constraint firstAttribute="trailing" secondItem="C70-D6-rDX" secondAttribute="trailing" constant="33" id="lU2-2h-3xk"/>
                                                     <constraint firstItem="9i3-A0-ArV" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="pnd-Wf-e3c"/>
+                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="top" secondItem="DPr-dw-ke9" secondAttribute="bottom" constant="26" id="pto-Vm-ffn"/>
                                                     <constraint firstItem="U07-XG-4Yd" firstAttribute="top" secondItem="171-Dx-oFi" secondAttribute="top" id="q5G-jZ-MWL"/>
                                                     <constraint firstItem="Af2-M3-jgJ" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="qvO-KY-pRI"/>
                                                     <constraint firstItem="U07-XG-4Yd" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="36" id="rrW-uX-vQI"/>
-                                                    <constraint firstAttribute="trailing" secondItem="HA2-ky-1FW" secondAttribute="trailing" constant="94" id="tUF-SY-iWE"/>
                                                     <constraint firstAttribute="trailing" secondItem="RR7-od-5g2" secondAttribute="trailing" constant="94" id="tlc-XJ-xOa"/>
-                                                    <constraint firstAttribute="bottom" secondItem="9Gw-oy-HIo" secondAttribute="bottom" constant="50" id="tmc-qS-wnR"/>
                                                     <constraint firstAttribute="trailing" secondItem="f0O-nH-yqb" secondAttribute="trailing" constant="175" id="ucr-L2-vU8"/>
                                                     <constraint firstItem="aXA-ng-WAU" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="xPO-ZY-gTj"/>
                                                     <constraint firstItem="u5v-TZ-Ht1" firstAttribute="top" secondItem="gbA-Dx-VuN" secondAttribute="bottom" constant="20" id="yzr-24-aER"/>
