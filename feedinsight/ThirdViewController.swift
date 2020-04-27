@@ -16,7 +16,7 @@ class ThirdViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let textArr = ["Premix Checker","Unit Converter","Premix Checker","Unit Conveter","Premix Checker","Unit Conveter"]
 
-    let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+    let imageArr = [UIImage (named: "premix"), UIImage(named: "calculator"),UIImage (named: "premix"), UIImage(named: "calculator"),UIImage(named: "premix"),UIImage(named: "calculator")]
 
     
    
