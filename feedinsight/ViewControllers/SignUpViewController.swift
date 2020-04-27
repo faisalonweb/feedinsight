@@ -8,21 +8,8 @@
     
     import UIKit
     
-    class SignUpViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return textArr.count
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! SignUpCollectionViewCell
-            
-            let cellIndex = indexPath.item
-            
-            cell.industryImage.image = imageArr[cellIndex]
-            cell.industryLabel.text = textArr[cellIndex]
-            
-            return cell
-        }
+    class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+       
         
         @IBOutlet weak var NameField: UITextField!
         @IBOutlet weak var emailField: UITextField!
@@ -37,9 +24,18 @@
         @IBOutlet weak var pickRoleField: UITextField!
         @IBOutlet weak var passwordField: UITextField!
         @IBOutlet weak var repasswordField: UITextField!
-        let textArr = ["Farming","Food Manufacturing","three","four","five","six"]
+        let textArr = ["Farming","FoodManufacturing","three","four","five","six"]
         
-        let imageArr = [UIImage (named: "iForming"), UIImage(named: "imanufacture"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+//        let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+        
+        let imageArr: [UIImage] = [
+            UIImage(named: "ruminants")!,
+            UIImage(named: "aqua")!,
+            UIImage(named: "equines")!,
+            UIImage(named: "chicken")!,
+            UIImage(named: "equines")!,
+            UIImage(named: "ruminants")!,
+        ]
         
         @IBAction func backBtn(_ sender: UIButton) {
             self.dismiss(animated: true, completion: nil)
@@ -51,7 +47,8 @@
         }
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+            collectionView.delegate = self
+            collectionView.dataSource = self
             let itemSize = UIScreen.main.bounds.width/3 - 2
             
             let layout = UICollectionViewFlowLayout()
@@ -69,7 +66,22 @@
         }
         
         
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+                   return textArr.count
+               }
+               
+               func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! SignUpCollectionViewCell
+                   
+                   let cellIndex = indexPath.item
+                   
+                   cell.industryImage.image = imageArr[cellIndex]
+                   cell.industryLabel.text = textArr[cellIndex]
+                   
+                   return cell
+               }
         /*
+         
          // MARK: - Navigation
          
          // In a storyboard-based application, you will often want to do a little preparation before navigation
