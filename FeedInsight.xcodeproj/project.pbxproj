@@ -488,7 +488,7 @@
 			baseConfigurationReference = 3C4FBA17D1F5CDE06596FA30 /* Pods-FeedInsight.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bilal Haye (Z7QFBRSB6J)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Z7QFBRSB6J;
 				INFOPLIST_FILE = feedinsight/Info.plist;
@@ -497,9 +497,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
-				PROVISIONING_PROFILE_SPECIFIER = feedproduction;
+				PROVISIONING_PROFILE_SPECIFIER = disinsight;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -510,7 +511,7 @@
 			baseConfigurationReference = 90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bilal Haye (Z7QFBRSB6J)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Z7QFBRSB6J;
 				INFOPLIST_FILE = feedinsight/Info.plist;
@@ -519,9 +520,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
-				PROVISIONING_PROFILE_SPECIFIER = feedproduction;
+				PROVISIONING_PROFILE_SPECIFIER = disinsight;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
