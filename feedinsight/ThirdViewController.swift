@@ -8,66 +8,57 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate {
+class ThirdViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
-    let textArr = ["one","two","three","four","five","six"]
-    
-    let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
-    
+    @IBOutlet weak var corRad: UIImageView!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    let textArr = ["Premix Checker","Unit Converter","Premix Checker","Unit Conveter","Premix Checker","Unit Conveter"]
+
+    let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        corRad.layer.cornerRadius = 15
         
         let itemSize = UIScreen.main.bounds.width/3 - 2
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 60, height: itemSize + 30)
+        layout.itemSize = CGSize(width: itemSize + 40, height: itemSize + 30)
         
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 20
         
         collectionView.collectionViewLayout = layout
-        
+     
     }
     
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        <#code#>
+//    }
     
-    //    func numberOfSections(in collectionView: UICollectionView) -> Int {
-    //        return 1
-    //    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return textArr.count
+         return textArr.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        
-        let cellIndex = indexPath.item
-        
-        cell.imageView.image = imageArr[cellIndex]
-        cell.textView.text = textArr[cellIndex]
-        
-        return cell
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdviewcell", for: indexPath) as! premixCollectionViewCell
+                              
+                              let cellIndex = indexPath.item
+                              
+                          
+                              cell.txtView.text = textArr[cellIndex]
+        cell.imgView.image = imageArr[cellIndex]
+                              
+                              return cell
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    //           return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 80)
-    //       }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        let collectionWidth = collectionView.frame.width
-    //        return CGSize(width: collectionWidth/2, height: collectionWidth/3)
-    //    }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    //           return 5
-    //       }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    //        return 0
-    //    }
+    
+   
     
     
     
