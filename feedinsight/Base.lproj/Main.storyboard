@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O6v-Kk-Wkl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -399,44 +399,43 @@
                                                 <rect key="frame" x="20" y="20" width="374" height="364.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="agZ-L0-BAW">
-                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="itemSize" width="132" height="183"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="thirdviewcell" id="U8T-QD-WMd" customClass="premixCollectionViewCell" customModule="FeedInsight" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="118.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132" height="183"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ic3-Dh-ibc">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="118.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="132" height="183"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W9S-1i-qLv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="98"/>
+                                                                    <rect key="frame" x="37.5" y="42.5" width="57" height="98"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="128" id="9s4-yv-JqA"/>
-                                                                        <constraint firstAttribute="height" constant="98" id="G7d-BX-6TX"/>
+                                                                        <constraint firstAttribute="width" constant="57" id="BTS-oi-JQK"/>
+                                                                        <constraint firstAttribute="height" constant="98" id="aE6-FD-UMf"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premix " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDG-86-CjG">
-                                                                    <rect key="frame" x="0.0" y="98" width="128" height="20.5"/>
+                                                                    <rect key="frame" x="37.5" y="150.5" width="57" height="22.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="W9S-1i-qLv" firstAttribute="leading" secondItem="ic3-Dh-ibc" secondAttribute="leading" id="GMl-GL-hCb"/>
-                                                                <constraint firstItem="GDG-86-CjG" firstAttribute="top" secondItem="W9S-1i-qLv" secondAttribute="bottom" id="IQO-x5-ixC"/>
-                                                                <constraint firstAttribute="bottom" secondItem="GDG-86-CjG" secondAttribute="bottom" id="UKO-sc-cMF"/>
-                                                                <constraint firstAttribute="trailing" secondItem="W9S-1i-qLv" secondAttribute="trailing" id="az0-SA-Ij6"/>
-                                                                <constraint firstItem="W9S-1i-qLv" firstAttribute="top" secondItem="ic3-Dh-ibc" secondAttribute="top" id="cPf-f7-2FD"/>
-                                                                <constraint firstAttribute="trailing" secondItem="GDG-86-CjG" secondAttribute="trailing" id="vca-mA-bbI"/>
-                                                                <constraint firstItem="GDG-86-CjG" firstAttribute="leading" secondItem="ic3-Dh-ibc" secondAttribute="leading" id="xgU-KV-nvG"/>
+                                                                <constraint firstItem="W9S-1i-qLv" firstAttribute="centerY" secondItem="ic3-Dh-ibc" secondAttribute="centerY" id="2Vo-V7-dg8"/>
+                                                                <constraint firstItem="GDG-86-CjG" firstAttribute="top" secondItem="W9S-1i-qLv" secondAttribute="bottom" constant="10" id="5qg-qL-zI0"/>
+                                                                <constraint firstAttribute="bottom" secondItem="GDG-86-CjG" secondAttribute="bottom" constant="10" id="Kzp-Qg-Geg"/>
+                                                                <constraint firstItem="W9S-1i-qLv" firstAttribute="centerX" secondItem="ic3-Dh-ibc" secondAttribute="centerX" id="n1R-WS-C2Y"/>
+                                                                <constraint firstItem="GDG-86-CjG" firstAttribute="centerX" secondItem="ic3-Dh-ibc" secondAttribute="centerX" id="vpy-ZQ-TcA"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <color key="backgroundColor" red="0.91956037658187706" green="0.92209672508709128" blue="0.96080106099792739" alpha="0.93999999999999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <size key="customSize" width="132" height="183"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -2025,6 +2024,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="n7c-zx-zxt"/>
         <segue reference="YeX-mu-Xjy"/>
     </inferredMetricsTieBreakers>
     <resources>
