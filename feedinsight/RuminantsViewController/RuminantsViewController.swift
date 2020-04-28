@@ -56,7 +56,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         let itemSize = UIScreen.main.bounds.width/3 - 2
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 35, height: itemSize - 30)
+        layout.itemSize = CGSize(width: itemSize + 25, height: itemSize - 30)
         
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 20

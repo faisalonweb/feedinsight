@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SZ3-W5-xIl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O1b-ms-bVU">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -25,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="70y-7f-YQa">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBack" translatesAutoresizingMaskIntoConstraints="NO" id="70y-7f-YQa">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="bIm-vu-MEG">
@@ -802,7 +802,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lW-ZD-PCU">
-                                        <rect key="frame" x="28.000000000000007" y="27" width="75.666666666666686" height="20"/>
+                                        <rect key="frame" x="28" y="27" width="69" height="20"/>
                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -835,8 +835,8 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="zMT-IM-fmG"/>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ro4-oJ-6eG">
-                                <rect key="frame" x="20" y="221" width="374" height="524"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ro4-oJ-6eG">
+                                <rect key="frame" x="20" y="211" width="374" height="440"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="64f-7E-6ss">
                                     <size key="itemSize" width="121" height="119"/>
@@ -895,8 +895,8 @@
                                     <outlet property="delegate" destination="O1b-ms-bVU" id="71L-GJ-OC1"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your Animal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-51-4MI">
-                                <rect key="frame" x="38" y="165" width="338" height="206"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your Animal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-51-4MI">
+                                <rect key="frame" x="38" y="145" width="338" height="26"/>
                                 <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -904,14 +904,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Pht-51-4MI" firstAttribute="top" secondItem="pbc-zN-DFZ" secondAttribute="bottom" constant="8" id="1M5-Ra-gLF"/>
+                            <constraint firstItem="Pht-51-4MI" firstAttribute="top" secondItem="pbc-zN-DFZ" secondAttribute="bottom" constant="-12" id="1M5-Ra-gLF"/>
                             <constraint firstItem="ro4-oJ-6eG" firstAttribute="leading" secondItem="qmy-BQ-t82" secondAttribute="leading" constant="20" id="IuZ-uS-Au9"/>
                             <constraint firstItem="Pht-51-4MI" firstAttribute="leading" secondItem="qmy-BQ-t82" secondAttribute="leading" constant="38" id="UOF-7O-oLG"/>
                             <constraint firstItem="qmy-BQ-t82" firstAttribute="trailing" secondItem="ro4-oJ-6eG" secondAttribute="trailing" constant="20" id="arr-wy-Byp"/>
                             <constraint firstItem="qmy-BQ-t82" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pht-51-4MI" secondAttribute="trailing" constant="-4" id="hhy-U0-6dS"/>
-                            <constraint firstItem="qmy-BQ-t82" firstAttribute="bottom" secondItem="ro4-oJ-6eG" secondAttribute="bottom" constant="14" id="j7t-QA-Y1x"/>
-                            <constraint firstItem="Pht-51-4MI" firstAttribute="centerY" secondItem="qmy-BQ-t82" secondAttribute="centerY" constant="-97.5" id="kKO-II-DTr"/>
-                            <constraint firstItem="ro4-oJ-6eG" firstAttribute="top" secondItem="Pht-51-4MI" secondAttribute="bottom" constant="18" id="kKf-J0-Yvp"/>
+                            <constraint firstItem="qmy-BQ-t82" firstAttribute="bottom" secondItem="ro4-oJ-6eG" secondAttribute="bottom" constant="36" id="j7t-QA-Y1x"/>
+                            <constraint firstItem="Pht-51-4MI" firstAttribute="centerY" secondItem="qmy-BQ-t82" secondAttribute="centerY" constant="-207.5" id="kKO-II-DTr"/>
+                            <constraint firstItem="ro4-oJ-6eG" firstAttribute="top" secondItem="Pht-51-4MI" secondAttribute="bottom" constant="40" id="kKf-J0-Yvp"/>
                             <constraint firstItem="Pht-51-4MI" firstAttribute="centerX" secondItem="qmy-BQ-t82" secondAttribute="centerX" id="rvT-Zy-vJY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qmy-BQ-t82"/>
@@ -989,16 +989,16 @@
                                         <viewLayoutGuide key="safeArea" id="6Rh-5c-1gC"/>
                                     </view>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="GVP-wY-jFo">
-                                        <rect key="frame" x="0.0" y="138" width="414" height="97.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="138" width="414" height="97"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Laod Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgV-gj-sOQ">
-                                                <rect key="frame" x="195" y="38" width="102" height="20.666666666666671"/>
+                                                <rect key="frame" x="206" y="38" width="91" height="20.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99X-4p-PQb">
-                                                <rect key="frame" x="41" y="31.000000000000004" width="42" height="34.333333333333343"/>
+                                                <rect key="frame" x="41" y="31" width="42" height="34"/>
                                                 <state key="normal" backgroundImage="blackArrow"/>
                                                 <connections>
                                                     <action selector="backtapped:" destination="f8U-uT-Xm7" eventType="touchUpInside" id="qvR-q3-6NR"/>
@@ -2156,6 +2156,7 @@
         <image name="userimage" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YeX-mu-Xjy"/>
+        <segue reference="mms-Xo-G3f"/>
+        <segue reference="Qzi-7y-YU3"/>
     </inferredMetricsTieBreakers>
 </document>
