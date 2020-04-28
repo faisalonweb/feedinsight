@@ -28,7 +28,7 @@ class ThirdViewController: UIViewController, UICollectionViewDelegate, UICollect
         let itemSize = UIScreen.main.bounds.width/3 - 2
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 40, height: itemSize + 30)
+        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
         
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 20

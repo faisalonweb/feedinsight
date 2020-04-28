@@ -52,17 +52,15 @@
             let itemSize = UIScreen.main.bounds.width/3 - 2
             
             let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
             layout.itemSize = CGSize(width: itemSize, height: itemSize)
             
             layout.minimumInteritemSpacing = 2
-            layout.minimumLineSpacing = 2
+            layout.minimumLineSpacing = 16
             
             collectionView.collectionViewLayout = layout
-            //NameField.text = "nat"
-            //        NameField.layer.cornerRadius = NameField.frame.size.height/2
-            //        NameField.clipsToBounds = true
             
-            // Do any additional setup after loading the view.
+            ////
         }
         
         
@@ -77,7 +75,18 @@
                    
                    cell.industryImage.image = imageArr[cellIndex]
                    cell.industryLabel.text = textArr[cellIndex]
-                   
+                 
+                if(indexPath.row % 2 == 0)
+                {
+                    cell.industryLabel.textColor = UIColor.black
+                    //cell.backgroundColor = UIColor.white
+                }
+                else{
+                    cell.backgroundColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+                }
+              //  UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+                  // cell.backgroundColor = indexPath.row % 2 == 0 ? .white : .UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+             
                    return cell
                }
         /*
