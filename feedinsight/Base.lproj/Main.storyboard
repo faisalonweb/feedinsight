@@ -1244,7 +1244,7 @@
                                 <rect key="frame" x="0.0" y="644" width="414" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78D-b1-YOr">
-                                        <rect key="frame" x="48" y="5" width="330" height="65"/>
+                                        <rect key="frame" x="48" y="5" width="330" height="45"/>
                                         <color key="backgroundColor" red="0.54901960780000003" green="0.035294117649999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="16"/>
                                         <state key="normal" title="Select another animal">
@@ -1262,10 +1262,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="78D-b1-YOr" firstAttribute="height" secondItem="cyt-U9-sHz" secondAttribute="height" multiplier="0.5" id="I0W-D0-6Il"/>
                                     <constraint firstAttribute="trailing" secondItem="78D-b1-YOr" secondAttribute="trailing" constant="36" id="rUq-st-i7A"/>
                                     <constraint firstItem="78D-b1-YOr" firstAttribute="top" secondItem="cyt-U9-sHz" secondAttribute="top" constant="5" id="yRn-kY-YeG"/>
                                     <constraint firstItem="78D-b1-YOr" firstAttribute="leading" secondItem="cyt-U9-sHz" secondAttribute="leading" constant="48" id="yk4-3V-BPp"/>
-                                    <constraint firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="20" id="zQS-31-eFA"/>
+                                    <constraint firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="40" id="zQS-31-eFA"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axg-vb-eav">
