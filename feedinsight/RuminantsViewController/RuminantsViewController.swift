@@ -62,7 +62,9 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         layout.minimumLineSpacing = 20
         
         animalTypeCollection.collectionViewLayout = layout
-        
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
+
         
         // Do any additional setup after loading the view.
     }
