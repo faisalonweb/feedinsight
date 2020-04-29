@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VYm-IL-FTt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SZ3-W5-xIl">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -1298,7 +1298,7 @@
                                 <rect key="frame" x="0.0" y="490" width="375" height="193"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78D-b1-YOr">
-                                        <rect key="frame" x="96" y="68" width="183" height="40"/>
+                                        <rect key="frame" x="96" y="51" width="183" height="40"/>
                                         <color key="backgroundColor" red="0.54901960780000003" green="0.035294117649999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                         <state key="normal" title="Select another animal">
@@ -1318,9 +1318,9 @@
                                 <constraints>
                                     <constraint firstItem="78D-b1-YOr" firstAttribute="height" secondItem="cyt-U9-sHz" secondAttribute="height" multiplier="0.25" constant="-8.25" id="I0W-D0-6Il"/>
                                     <constraint firstAttribute="trailing" secondItem="78D-b1-YOr" secondAttribute="trailing" constant="96" id="rUq-st-i7A"/>
-                                    <constraint firstItem="78D-b1-YOr" firstAttribute="top" secondItem="cyt-U9-sHz" secondAttribute="top" constant="68" id="yRn-kY-YeG"/>
+                                    <constraint firstItem="78D-b1-YOr" firstAttribute="top" secondItem="cyt-U9-sHz" secondAttribute="top" constant="51" id="yRn-kY-YeG"/>
                                     <constraint firstItem="78D-b1-YOr" firstAttribute="leading" secondItem="cyt-U9-sHz" secondAttribute="leading" constant="96" id="yk4-3V-BPp"/>
-                                    <constraint firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="85" id="zQS-31-eFA"/>
+                                    <constraint firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="102" id="zQS-31-eFA"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axg-vb-eav">
@@ -1471,13 +1471,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9CZ-En-nwo">
-                                <rect key="frame" x="0.0" y="160" width="377" height="1297"/>
+                                <rect key="frame" x="0.0" y="160" width="377" height="1444"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwN-QK-HHX">
                                         <rect key="frame" x="0.0" y="0.0" width="377" height="1444"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pac-i0-cmn" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="377" height="1456.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="377" height="1444"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3g5-Gc-E3Q">
                                                         <rect key="frame" x="33" y="27" width="212" height="28"/>
@@ -1851,7 +1851,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="EnP-dz-B2d" secondAttribute="trailing" constant="33" id="Cje-WC-ZhX"/>
                                                     <constraint firstAttribute="trailing" secondItem="JpX-IT-RNc" secondAttribute="trailing" constant="30" id="D4m-oq-1ST"/>
                                                     <constraint firstAttribute="trailing" secondItem="171-Dx-oFi" secondAttribute="trailing" constant="32" id="DFs-tE-bEc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="60.000000000000227" id="Egi-GD-d1T"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="47.5" id="Egi-GD-d1T"/>
                                                     <constraint firstItem="wuZ-Ce-5MN" firstAttribute="height" secondItem="C70-D6-rDX" secondAttribute="height" multiplier="0.496124" constant="7.8010335917312617" id="Esd-mC-EUX"/>
                                                     <constraint firstItem="f0O-nH-yqb" firstAttribute="top" secondItem="C70-D6-rDX" secondAttribute="bottom" priority="250" constant="29.333333333333371" id="Fig-Qq-gPo"/>
                                                     <constraint firstAttribute="trailing" secondItem="gbA-Dx-VuN" secondAttribute="trailing" constant="33" id="GTa-hL-Jqh"/>
@@ -1952,7 +1952,7 @@
                                     <constraint firstItem="SwN-QK-HHX" firstAttribute="leading" secondItem="e4O-zb-bXs" secondAttribute="leading" id="RXT-Wo-7at"/>
                                     <constraint firstItem="e4O-zb-bXs" firstAttribute="trailing" secondItem="SwN-QK-HHX" secondAttribute="trailing" id="ZXu-y0-hlb"/>
                                     <constraint firstItem="SwN-QK-HHX" firstAttribute="top" secondItem="e4O-zb-bXs" secondAttribute="top" id="cNN-4t-Rof"/>
-                                    <constraint firstAttribute="bottom" secondItem="SwN-QK-HHX" secondAttribute="bottom" constant="-147" id="fBh-p7-PKd"/>
+                                    <constraint firstAttribute="bottom" secondItem="SwN-QK-HHX" secondAttribute="bottom" id="fBh-p7-PKd"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="e4O-zb-bXs"/>
                             </view>
@@ -1961,7 +1961,7 @@
                         <constraints>
                             <constraint firstItem="9CZ-En-nwo" firstAttribute="top" secondItem="IyR-bm-1iY" secondAttribute="bottom" id="1e7-pW-qoe"/>
                             <constraint firstItem="9CZ-En-nwo" firstAttribute="centerX" secondItem="eGs-Gt-Wbc" secondAttribute="centerX" id="5Tp-IY-HMu"/>
-                            <constraint firstItem="9CZ-En-nwo" firstAttribute="bottom" secondItem="eGs-Gt-Wbc" secondAttribute="bottom" constant="-147" id="6Lf-WL-WpG"/>
+                            <constraint firstItem="9CZ-En-nwo" firstAttribute="bottom" secondItem="eGs-Gt-Wbc" secondAttribute="bottom" id="6Lf-WL-WpG"/>
                             <constraint firstItem="IyR-bm-1iY" firstAttribute="top" secondItem="eGs-Gt-Wbc" secondAttribute="top" id="Rza-ia-WhI"/>
                             <constraint firstItem="IyR-bm-1iY" firstAttribute="centerX" secondItem="eGs-Gt-Wbc" secondAttribute="centerX" id="YZs-sn-daG"/>
                             <constraint firstItem="IyR-bm-1iY" firstAttribute="leading" secondItem="eGs-Gt-Wbc" secondAttribute="leading" id="h21-Ei-4L5"/>
