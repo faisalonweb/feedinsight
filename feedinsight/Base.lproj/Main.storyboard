@@ -1618,11 +1618,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="SZ3-W5-xIl" customClass="SignUpViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ij-Tb-Fwa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1604"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1644"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-bm-1iY">
-                                <rect key="frame" x="0.0" y="44" width="325" height="160"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="160"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cob-EN-T1P">
                                         <rect key="frame" x="226.33333333333331" y="32" width="68.666666666666657" height="44"/>
@@ -1648,34 +1648,34 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9CZ-En-nwo">
-                                <rect key="frame" x="0.0" y="204" width="325" height="1366"/>
+                                <rect key="frame" x="0.0" y="204" width="414" height="1440"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwN-QK-HHX">
-                                        <rect key="frame" x="0.0" y="0.0" width="325" height="1366"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pac-i0-cmn" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="325" height="1432.3333333333333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3g5-Gc-E3Q">
-                                                        <rect key="frame" x="33" y="27" width="160" height="28"/>
+                                                        <rect key="frame" x="33" y="27" width="249" height="28"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="23"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue to sign up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="FOh-CX-Bqd">
-                                                        <rect key="frame" x="33" y="56.333333333333314" width="149" height="24"/>
+                                                        <rect key="frame" x="33" y="56.333333333333314" width="238" height="24"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME(First and Last) " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="3Lw-VO-64x">
-                                                        <rect key="frame" x="33" y="130" width="160" height="24.666666666666657"/>
+                                                        <rect key="frame" x="33" y="130" width="249" height="24.666666666666657"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HzM-FU-pgy">
-                                                        <rect key="frame" x="33" y="158.33333333333331" width="259" height="33.666666666666657"/>
+                                                        <rect key="frame" x="33" y="158.33333333333331" width="348" height="33.666666666666657"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1687,7 +1687,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="wuZ-Ce-5MN">
-                                                        <rect key="frame" x="33" y="219" width="131" height="25"/>
+                                                        <rect key="frame" x="33" y="219" width="220" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="FGr-dQ-14K"/>
                                                         </constraints>
@@ -1696,7 +1696,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C70-D6-rDX">
-                                                        <rect key="frame" x="33" y="246.33333333333329" width="259" height="34.666666666666657"/>
+                                                        <rect key="frame" x="33" y="246.33333333333329" width="348" height="34.666666666666657"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1708,7 +1708,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="f0O-nH-yqb">
-                                                        <rect key="frame" x="33" y="310.33333333333337" width="117" height="25.666666666666686"/>
+                                                        <rect key="frame" x="33" y="310.33333333333337" width="206" height="25.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1729,7 +1729,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="171-Dx-oFi">
-                                                        <rect key="frame" x="130" y="338" width="163" height="36"/>
+                                                        <rect key="frame" x="130" y="338" width="252" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1741,13 +1741,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Industry" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Af2-M3-jgJ">
-                                                        <rect key="frame" x="33" y="402" width="131" height="25.666666666666686"/>
+                                                        <rect key="frame" x="33" y="402" width="220" height="25.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9i3-A0-ArV">
-                                                        <rect key="frame" x="33" y="429.66666666666663" width="259" height="164"/>
+                                                        <rect key="frame" x="33" y="429.66666666666663" width="348" height="164"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="5" minimumInteritemSpacing="10" id="Qg9-BL-4bq">
                                                             <size key="itemSize" width="158" height="160"/>
@@ -1821,7 +1821,7 @@
                                                         </connections>
                                                     </collectionView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnP-dz-B2d">
-                                                        <rect key="frame" x="33" y="649.33333333333337" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="649.33333333333337" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1833,19 +1833,19 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If other Industry, Please mention" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="JpX-IT-RNc">
-                                                        <rect key="frame" x="36" y="622.66666666666663" width="259" height="25.666666666666629"/>
+                                                        <rect key="frame" x="36" y="622.66666666666663" width="348" height="25.666666666666629"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of Animals" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-N9-JOw">
-                                                        <rect key="frame" x="33" y="713.33333333333337" width="252" height="25.333333333333371"/>
+                                                        <rect key="frame" x="33" y="713.33333333333337" width="341" height="25.333333333333371"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Pick Animals" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tiP-Z9-c5z" customClass="DropDown" customModule="iOSDropDown">
-                                                        <rect key="frame" x="33" y="740.66666666666663" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="740.66666666666663" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1857,13 +1857,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business/Organization Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="THK-1n-0nf">
-                                                        <rect key="frame" x="33" y="804.66666666666663" width="259" height="25.666666666666629"/>
+                                                        <rect key="frame" x="33" y="804.66666666666663" width="348" height="25.666666666666629"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-lF-OVb">
-                                                        <rect key="frame" x="33" y="832.33333333333326" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="832.33333333333326" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1875,13 +1875,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Role" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="RR7-od-5g2">
-                                                        <rect key="frame" x="33" y="896.33333333333326" width="198" height="25.666666666666629"/>
+                                                        <rect key="frame" x="33" y="896.33333333333326" width="287" height="25.666666666666629"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Pick Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FA3-vq-JuC" customClass="DropDown" customModule="iOSDropDown">
-                                                        <rect key="frame" x="33" y="924" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="924" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1893,13 +1893,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location (Scroll to change)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-lI-Xel">
-                                                        <rect key="frame" x="33" y="988" width="259" height="25.666666666666629"/>
+                                                        <rect key="frame" x="33" y="988" width="348" height="25.666666666666629"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Lahore" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbA-Dx-VuN">
-                                                        <rect key="frame" x="33" y="1015.6666666666667" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="1015.6666666666667" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1911,13 +1911,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="u5v-TZ-Ht1">
-                                                        <rect key="frame" x="33" y="1079.6666666666667" width="205" height="25.666666666666742"/>
+                                                        <rect key="frame" x="33" y="1079.6666666666667" width="294" height="25.666666666666742"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-Gz-NHi">
-                                                        <rect key="frame" x="33" y="1107.3333333333333" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="1107.3333333333333" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1929,13 +1929,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-ng-WAU">
-                                                        <rect key="frame" x="33" y="1171.3333333333333" width="117" height="25.333333333333258"/>
+                                                        <rect key="frame" x="33" y="1171.3333333333333" width="206" height="25.333333333333258"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0oq-Pe-1c9">
-                                                        <rect key="frame" x="33" y="1198.6666666666667" width="259" height="36"/>
+                                                        <rect key="frame" x="33" y="1198.6666666666667" width="348" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="30"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1947,10 +1947,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLw-0r-5nY">
-                                                        <rect key="frame" x="61.666666666666657" y="1359" width="199.99999999999997" height="25.666666666666742"/>
+                                                        <rect key="frame" x="33" y="1345" width="348" height="25"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Have an Account? Signin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-oy-HIo">
-                                                                <rect key="frame" x="2" y="5" width="196" height="18"/>
+                                                                <rect key="frame" x="0.0" y="5" width="348" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1959,11 +1959,11 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstItem="9Gw-oy-HIo" firstAttribute="centerY" secondItem="PLw-0r-5nY" secondAttribute="centerY" constant="1.1666666666666679" id="pBo-es-sig"/>
-                                                            <constraint firstItem="9Gw-oy-HIo" firstAttribute="centerX" secondItem="PLw-0r-5nY" secondAttribute="centerX" constant="1" id="wMV-g2-Kdr"/>
+                                                            <constraint firstItem="9Gw-oy-HIo" firstAttribute="centerX" secondItem="PLw-0r-5nY" secondAttribute="centerX" id="rR7-r0-aCg"/>
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPr-dw-ke9">
-                                                        <rect key="frame" x="33" y="1276" width="259" height="41"/>
+                                                        <rect key="frame" x="33" y="1276" width="348" height="41"/>
                                                         <color key="backgroundColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <state key="normal" title="Sign In">
@@ -1989,7 +1989,6 @@
                                                     <constraint firstItem="HzM-FU-pgy" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="3ex-mF-yAI"/>
                                                     <constraint firstAttribute="trailing" secondItem="wuZ-Ce-5MN" secondAttribute="trailing" constant="161" id="4Ef-bS-RIC"/>
                                                     <constraint firstAttribute="trailing" secondItem="pc5-N9-JOw" secondAttribute="trailing" constant="40" id="4JT-u8-cCf"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PLw-0r-5nY" secondAttribute="trailing" constant="63.333333333333371" id="4gB-OG-lKr"/>
                                                     <constraint firstItem="pc5-N9-JOw" firstAttribute="height" secondItem="tiP-Z9-c5z" secondAttribute="height" multiplier="0.6" constant="4" id="516-pw-mpV"/>
                                                     <constraint firstItem="FA3-vq-JuC" firstAttribute="height" secondItem="0dh-lI-Xel" secondAttribute="height" multiplier="1.66667" constant="-6.6666666666666714" id="5lg-v9-ghe"/>
                                                     <constraint firstItem="ysB-lF-OVb" firstAttribute="height" secondItem="RR7-od-5g2" secondAttribute="height" multiplier="1.66667" constant="-6.6666666666666714" id="6Mq-Of-ZwC"/>
@@ -2007,7 +2006,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="EnP-dz-B2d" secondAttribute="trailing" constant="33" id="Cje-WC-ZhX"/>
                                                     <constraint firstAttribute="trailing" secondItem="JpX-IT-RNc" secondAttribute="trailing" constant="30" id="D4m-oq-1ST"/>
                                                     <constraint firstAttribute="trailing" secondItem="171-Dx-oFi" secondAttribute="trailing" constant="32" id="DFs-tE-bEc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="47.5" id="Egi-GD-d1T"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="70" id="Egi-GD-d1T"/>
                                                     <constraint firstItem="wuZ-Ce-5MN" firstAttribute="height" secondItem="C70-D6-rDX" secondAttribute="height" multiplier="0.496124" constant="7.8010335917312617" id="Esd-mC-EUX"/>
                                                     <constraint firstItem="f0O-nH-yqb" firstAttribute="top" secondItem="C70-D6-rDX" secondAttribute="bottom" priority="250" constant="29.333333333333371" id="Fig-Qq-gPo"/>
                                                     <constraint firstAttribute="trailing" secondItem="gbA-Dx-VuN" secondAttribute="trailing" constant="33" id="GTa-hL-Jqh"/>
@@ -2031,6 +2030,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="3g5-Gc-E3Q" secondAttribute="trailing" constant="132" id="SQz-5h-39U"/>
                                                     <constraint firstAttribute="trailing" secondItem="0dh-lI-Xel" secondAttribute="trailing" constant="33" id="SXZ-1w-r3g"/>
                                                     <constraint firstItem="JpX-IT-RNc" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="36" id="Sw4-PW-z93"/>
+                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="trailing" secondItem="DPr-dw-ke9" secondAttribute="trailing" id="THe-N6-i6m"/>
                                                     <constraint firstItem="0dh-lI-Xel" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="TmK-xe-OjL"/>
                                                     <constraint firstAttribute="trailing" secondItem="THK-1n-0nf" secondAttribute="trailing" constant="33" id="UlY-ye-aCT"/>
                                                     <constraint firstItem="3Lw-VO-64x" firstAttribute="top" secondItem="FOh-CX-Bqd" secondAttribute="bottom" constant="49.666666666666686" id="V8H-EE-CPq"/>
@@ -2046,7 +2046,6 @@
                                                     <constraint firstItem="tiP-Z9-c5z" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="ZOH-Af-zy3"/>
                                                     <constraint firstItem="FA3-vq-JuC" firstAttribute="top" secondItem="RR7-od-5g2" secondAttribute="bottom" constant="2.0000000000001137" id="a1Q-BH-BM7"/>
                                                     <constraint firstItem="RR7-od-5g2" firstAttribute="top" secondItem="ysB-lF-OVb" secondAttribute="bottom" constant="27.999999999999886" id="bHR-Iz-hnS"/>
-                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="width" secondItem="pac-i0-cmn" secondAttribute="width" multiplier="0.502415" constant="36.715125000000029" id="bbE-Xm-mmo"/>
                                                     <constraint firstAttribute="trailing" secondItem="tiP-Z9-c5z" secondAttribute="trailing" constant="33" id="cdq-Yk-UMh"/>
                                                     <constraint firstItem="Qf5-Gz-NHi" firstAttribute="top" secondItem="u5v-TZ-Ht1" secondAttribute="bottom" constant="2.0000000000002274" id="cuX-EZ-Fe9"/>
                                                     <constraint firstItem="pc5-N9-JOw" firstAttribute="top" secondItem="EnP-dz-B2d" secondAttribute="bottom" constant="28" id="d7t-QY-ehR"/>
@@ -2071,9 +2070,9 @@
                                                     <constraint firstAttribute="trailing" secondItem="C70-D6-rDX" secondAttribute="trailing" constant="33" id="lU2-2h-3xk"/>
                                                     <constraint firstItem="tiP-Z9-c5z" firstAttribute="height" secondItem="THK-1n-0nf" secondAttribute="height" multiplier="1.75" constant="-8.75" id="ltU-Rb-tkj"/>
                                                     <constraint firstItem="FOh-CX-Bqd" firstAttribute="top" secondItem="3g5-Gc-E3Q" secondAttribute="bottom" constant="1.3333333333333286" id="mY8-Of-UAY"/>
-                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="61.666666666666664" id="pHK-3c-gnX"/>
+                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="leading" secondItem="DPr-dw-ke9" secondAttribute="leading" id="mi5-K2-Lh5"/>
                                                     <constraint firstItem="9i3-A0-ArV" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="pnd-Wf-e3c"/>
-                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="top" secondItem="DPr-dw-ke9" secondAttribute="bottom" constant="42" id="pto-Vm-ffn"/>
+                                                    <constraint firstItem="PLw-0r-5nY" firstAttribute="top" secondItem="DPr-dw-ke9" secondAttribute="bottom" constant="28" id="pto-Vm-ffn"/>
                                                     <constraint firstItem="U07-XG-4Yd" firstAttribute="top" secondItem="171-Dx-oFi" secondAttribute="top" id="q5G-jZ-MWL"/>
                                                     <constraint firstItem="Af2-M3-jgJ" firstAttribute="height" secondItem="9i3-A0-ArV" secondAttribute="height" multiplier="0.0648789" constant="15.073529411764705" id="qrp-tJ-VV7"/>
                                                     <constraint firstItem="Af2-M3-jgJ" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="qvO-KY-pRI"/>
@@ -2083,7 +2082,6 @@
                                                     <constraint firstItem="f0O-nH-yqb" firstAttribute="top" secondItem="C70-D6-rDX" secondAttribute="bottom" constant="29.333333333333371" id="u9P-QU-7mb"/>
                                                     <constraint firstItem="3g5-Gc-E3Q" firstAttribute="height" secondItem="FOh-CX-Bqd" secondAttribute="height" multiplier="1.32" constant="-3.6699999999999999" id="uXy-jU-jRk"/>
                                                     <constraint firstAttribute="trailing" secondItem="f0O-nH-yqb" secondAttribute="trailing" constant="175" id="ucr-L2-vU8"/>
-                                                    <constraint firstItem="DPr-dw-ke9" firstAttribute="height" secondItem="PLw-0r-5nY" secondAttribute="height" multiplier="1.28" constant="8" id="wQG-HN-RRq"/>
                                                     <constraint firstItem="aXA-ng-WAU" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="xPO-ZY-gTj"/>
                                                     <constraint firstItem="u5v-TZ-Ht1" firstAttribute="top" secondItem="gbA-Dx-VuN" secondAttribute="bottom" constant="27.999999999999773" id="yzr-24-aER"/>
                                                     <constraint firstItem="FA3-vq-JuC" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="z4l-Aw-U2b"/>
@@ -2096,8 +2094,8 @@
                                             <constraint firstItem="pac-i0-cmn" firstAttribute="leading" secondItem="SwN-QK-HHX" secondAttribute="leading" id="ImC-Bs-xXF"/>
                                             <constraint firstAttribute="trailing" secondItem="pac-i0-cmn" secondAttribute="trailing" id="JlI-zV-jUD"/>
                                             <constraint firstItem="pac-i0-cmn" firstAttribute="width" secondItem="SwN-QK-HHX" secondAttribute="width" id="MgM-xA-SO7"/>
-                                            <constraint firstAttribute="bottom" secondItem="pac-i0-cmn" secondAttribute="bottom" constant="-66.333333333333258" id="OUk-7x-LUw"/>
-                                            <constraint firstItem="pac-i0-cmn" firstAttribute="height" secondItem="SwN-QK-HHX" secondAttribute="height" priority="250" constant="66.333333333333258" id="TSi-LW-94b"/>
+                                            <constraint firstAttribute="bottom" secondItem="pac-i0-cmn" secondAttribute="bottom" id="OUk-7x-LUw"/>
+                                            <constraint firstItem="pac-i0-cmn" firstAttribute="height" secondItem="SwN-QK-HHX" secondAttribute="height" priority="250" id="TSi-LW-94b"/>
                                             <constraint firstItem="pac-i0-cmn" firstAttribute="top" secondItem="SwN-QK-HHX" secondAttribute="top" id="XSs-RK-wLe"/>
                                         </constraints>
                                         <viewLayoutGuide key="contentLayoutGuide" id="ZcM-KN-HqO"/>
@@ -2117,7 +2115,7 @@
                         <constraints>
                             <constraint firstItem="9CZ-En-nwo" firstAttribute="top" secondItem="IyR-bm-1iY" secondAttribute="bottom" id="1e7-pW-qoe"/>
                             <constraint firstItem="9CZ-En-nwo" firstAttribute="centerX" secondItem="eGs-Gt-Wbc" secondAttribute="centerX" id="5Tp-IY-HMu"/>
-                            <constraint firstItem="9CZ-En-nwo" firstAttribute="bottom" secondItem="eGs-Gt-Wbc" secondAttribute="bottom" id="6Lf-WL-WpG"/>
+                            <constraint firstItem="9CZ-En-nwo" firstAttribute="bottom" secondItem="eGs-Gt-Wbc" secondAttribute="bottom" constant="34" id="6Lf-WL-WpG"/>
                             <constraint firstItem="IyR-bm-1iY" firstAttribute="top" secondItem="eGs-Gt-Wbc" secondAttribute="top" id="Rza-ia-WhI"/>
                             <constraint firstItem="IyR-bm-1iY" firstAttribute="centerX" secondItem="eGs-Gt-Wbc" secondAttribute="centerX" id="YZs-sn-daG"/>
                             <constraint firstItem="IyR-bm-1iY" firstAttribute="leading" secondItem="eGs-Gt-Wbc" secondAttribute="leading" id="h21-Ei-4L5"/>
@@ -2128,7 +2126,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eGs-Gt-Wbc"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1604"/>
+                    <size key="freeformSize" width="414" height="1644"/>
                     <connections>
                         <outlet property="collectionView" destination="9i3-A0-ArV" id="GC8-TT-feN"/>
                     </connections>
