@@ -55,8 +55,8 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         
         animalCollectionView.collectionViewLayout = layout
         
-      //  self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        //self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
     

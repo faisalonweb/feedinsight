@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YKO-M6-kfF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -1624,14 +1624,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-bm-1iY">
                                 <rect key="frame" x="0.0" y="44" width="325" height="160"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cob-EN-T1P">
-                                        <rect key="frame" x="218" y="32" width="77" height="44"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cob-EN-T1P">
+                                        <rect key="frame" x="226.33333333333331" y="32" width="68.666666666666657" height="44"/>
                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLo-9f-s7X">
-                                        <rect key="frame" x="40" y="32" width="61" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLo-9f-s7X">
+                                        <rect key="frame" x="40" y="32" width="80" height="44"/>
                                         <state key="normal" backgroundImage="ibackrrow"/>
                                         <connections>
                                             <action selector="backBtn:" destination="SZ3-W5-xIl" eventType="touchUpInside" id="dKd-pb-Frn"/>
@@ -1641,13 +1641,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.54901960780000003" green="0.035294117649999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="cob-EN-T1P" secondAttribute="bottom" constant="84" id="0lt-Dh-RSq"/>
                                     <constraint firstItem="kLo-9f-s7X" firstAttribute="top" secondItem="IyR-bm-1iY" secondAttribute="top" constant="32" id="29n-d4-Chc"/>
-                                    <constraint firstAttribute="bottom" secondItem="kLo-9f-s7X" secondAttribute="bottom" constant="84" id="BTp-Mm-0DI"/>
                                     <constraint firstItem="kLo-9f-s7X" firstAttribute="leading" secondItem="IyR-bm-1iY" secondAttribute="leading" constant="40" id="E9D-OP-cXX"/>
                                     <constraint firstItem="cob-EN-T1P" firstAttribute="top" secondItem="IyR-bm-1iY" secondAttribute="top" constant="32" id="acG-g6-r2t"/>
-                                    <constraint firstItem="cob-EN-T1P" firstAttribute="leading" secondItem="kLo-9f-s7X" secondAttribute="trailing" constant="117" id="dyg-7t-ghh"/>
-                                    <constraint firstItem="cob-EN-T1P" firstAttribute="leading" secondItem="IyR-bm-1iY" secondAttribute="leading" constant="218" id="qpW-OB-Se1"/>
                                     <constraint firstAttribute="trailing" secondItem="cob-EN-T1P" secondAttribute="trailing" constant="30" id="seV-L0-B9p"/>
                                 </constraints>
                             </view>
@@ -1848,7 +1844,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick Animals" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tiP-Z9-c5z" customClass="DropDown" customModule="iOSDropDown">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Pick Animals" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tiP-Z9-c5z" customClass="DropDown" customModule="iOSDropDown">
                                                         <rect key="frame" x="33" y="740.66666666666663" width="259" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
@@ -1884,7 +1880,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FA3-vq-JuC" customClass="DropDown" customModule="iOSDropDown">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Pick Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FA3-vq-JuC" customClass="DropDown" customModule="iOSDropDown">
                                                         <rect key="frame" x="33" y="924" width="259" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
@@ -1902,7 +1898,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lahore" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbA-Dx-VuN">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Lahore" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbA-Dx-VuN">
                                                         <rect key="frame" x="33" y="1015.6666666666667" width="259" height="36"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
@@ -1993,7 +1989,7 @@
                                                     <constraint firstItem="HzM-FU-pgy" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="3ex-mF-yAI"/>
                                                     <constraint firstAttribute="trailing" secondItem="wuZ-Ce-5MN" secondAttribute="trailing" constant="161" id="4Ef-bS-RIC"/>
                                                     <constraint firstAttribute="trailing" secondItem="pc5-N9-JOw" secondAttribute="trailing" constant="40" id="4JT-u8-cCf"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PLw-0r-5nY" secondAttribute="trailing" constant="61.333333333333314" id="4gB-OG-lKr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PLw-0r-5nY" secondAttribute="trailing" constant="63.333333333333371" id="4gB-OG-lKr"/>
                                                     <constraint firstItem="pc5-N9-JOw" firstAttribute="height" secondItem="tiP-Z9-c5z" secondAttribute="height" multiplier="0.6" constant="4" id="516-pw-mpV"/>
                                                     <constraint firstItem="FA3-vq-JuC" firstAttribute="height" secondItem="0dh-lI-Xel" secondAttribute="height" multiplier="1.66667" constant="-6.6666666666666714" id="5lg-v9-ghe"/>
                                                     <constraint firstItem="ysB-lF-OVb" firstAttribute="height" secondItem="RR7-od-5g2" secondAttribute="height" multiplier="1.66667" constant="-6.6666666666666714" id="6Mq-Of-ZwC"/>
@@ -2100,8 +2096,8 @@
                                             <constraint firstItem="pac-i0-cmn" firstAttribute="leading" secondItem="SwN-QK-HHX" secondAttribute="leading" id="ImC-Bs-xXF"/>
                                             <constraint firstAttribute="trailing" secondItem="pac-i0-cmn" secondAttribute="trailing" id="JlI-zV-jUD"/>
                                             <constraint firstItem="pac-i0-cmn" firstAttribute="width" secondItem="SwN-QK-HHX" secondAttribute="width" id="MgM-xA-SO7"/>
-                                            <constraint firstAttribute="bottom" secondItem="pac-i0-cmn" secondAttribute="bottom" id="OUk-7x-LUw"/>
-                                            <constraint firstItem="pac-i0-cmn" firstAttribute="height" secondItem="SwN-QK-HHX" secondAttribute="height" priority="250" id="TSi-LW-94b"/>
+                                            <constraint firstAttribute="bottom" secondItem="pac-i0-cmn" secondAttribute="bottom" constant="-66.333333333333258" id="OUk-7x-LUw"/>
+                                            <constraint firstItem="pac-i0-cmn" firstAttribute="height" secondItem="SwN-QK-HHX" secondAttribute="height" priority="250" constant="66.333333333333258" id="TSi-LW-94b"/>
                                             <constraint firstItem="pac-i0-cmn" firstAttribute="top" secondItem="SwN-QK-HHX" secondAttribute="top" id="XSs-RK-wLe"/>
                                         </constraints>
                                         <viewLayoutGuide key="contentLayoutGuide" id="ZcM-KN-HqO"/>
@@ -2228,7 +2224,6 @@
         <image name="userimage" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n7c-zx-zxt"/>
-        <segue reference="Uxs-CJ-pbQ"/>
+        <segue reference="YeX-mu-Xjy"/>
     </inferredMetricsTieBreakers>
 </document>
