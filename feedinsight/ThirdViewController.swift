@@ -34,6 +34,8 @@ class ThirdViewController: UIViewController, UICollectionViewDelegate, UICollect
         layout.minimumLineSpacing = 20
         
         collectionView.collectionViewLayout = layout
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+               self.navigationController?.navigationBar.shadowImage = UIImage()
      
     }
     
