@@ -1928,8 +1928,8 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-ng-WAU">
-                                                        <rect key="frame" x="33" y="1171.3333333333333" width="206" height="25.333333333333258"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONFIRM PASSWORD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-ng-WAU">
+                                                        <rect key="frame" x="33" y="1171.3333333333333" width="294" height="25.333333333333258"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1983,7 +1983,7 @@
                                                 <constraints>
                                                     <constraint firstItem="JpX-IT-RNc" firstAttribute="top" secondItem="9i3-A0-ArV" secondAttribute="bottom" constant="29" id="00z-Xd-Pz6"/>
                                                     <constraint firstItem="171-Dx-oFi" firstAttribute="top" secondItem="f0O-nH-yqb" secondAttribute="bottom" constant="2" id="0Ut-lf-g9k"/>
-                                                    <constraint firstAttribute="trailing" secondItem="aXA-ng-WAU" secondAttribute="trailing" constant="175" id="1Vm-aI-mpN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aXA-ng-WAU" secondAttribute="trailing" constant="87" id="1Vm-aI-mpN"/>
                                                     <constraint firstAttribute="trailing" secondItem="FOh-CX-Bqd" secondAttribute="trailing" constant="143" id="2PK-Bl-uca"/>
                                                     <constraint firstItem="0dh-lI-Xel" firstAttribute="height" secondItem="gbA-Dx-VuN" secondAttribute="height" multiplier="0.6" constant="4" id="3dl-Op-hOj"/>
                                                     <constraint firstItem="HzM-FU-pgy" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="3ex-mF-yAI"/>
@@ -2088,6 +2088,12 @@
                                                     <constraint firstAttribute="trailing" secondItem="u5v-TZ-Ht1" secondAttribute="trailing" constant="87" id="z5E-8W-uQY"/>
                                                     <constraint firstItem="ysB-lF-OVb" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="zMj-62-9Ig"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -2100,6 +2106,12 @@
                                         </constraints>
                                         <viewLayoutGuide key="contentLayoutGuide" id="ZcM-KN-HqO"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="kfm-yo-GmI"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </scrollView>
                                 </subviews>
                                 <constraints>
@@ -2109,6 +2121,12 @@
                                     <constraint firstAttribute="bottom" secondItem="SwN-QK-HHX" secondAttribute="bottom" id="fBh-p7-PKd"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="e4O-zb-bXs"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
