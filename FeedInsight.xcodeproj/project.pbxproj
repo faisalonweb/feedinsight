@@ -21,6 +21,8 @@
 		047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF042454C83A0067237A /* ProfileLoadViewController.swift */; };
 		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
 		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
+		04AE3576245BDE6B0075043A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04AE3575245BDE6B0075043A /* GoogleService-Info.plist */; };
+		04AE3578245BE41D0075043A /* realmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE3577245BE41D0075043A /* realmObjects.swift */; };
 		04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */; };
 		04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E69496244480F200E2CE1B /* RuminantsViewController.swift */; };
 		04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E694992444AB6F00E2CE1B /* SignUpViewController.swift */; };
@@ -57,6 +59,8 @@
 		047ADF042454C83A0067237A /* ProfileLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadViewController.swift; sourceTree = "<group>"; };
 		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
 		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		04AE3575245BDE6B0075043A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04AE3577245BE41D0075043A /* realmObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realmObjects.swift; sourceTree = "<group>"; };
 		04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E69496244480F200E2CE1B /* RuminantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuminantsViewController.swift; sourceTree = "<group>"; };
 		04E694992444AB6F00E2CE1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				04973F9C243F51D2003CE2E6 /* Podfile */,
+				04AE3575245BDE6B0075043A /* GoogleService-Info.plist */,
 				1A7F1214243CE34F0008CFC0 /* feedinsight */,
 				1A7F1213243CE34F0008CFC0 /* Products */,
 				96996E73AC16B574FB66E8D2 /* Pods */,
@@ -179,6 +184,7 @@
 				1AC35CDB24509D5C001C7693 /* StateViewController.swift */,
 				1A47C3812451F72200D28345 /* SignViewController.swift */,
 				1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */,
+				04AE3577245BE41D0075043A /* realmObjects.swift */,
 			);
 			path = feedinsight;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			files = (
 				1A7F1222243CE3500008CFC0 /* LaunchScreen.storyboard in Resources */,
 				1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */,
+				04AE3576245BDE6B0075043A /* GoogleService-Info.plist in Resources */,
 				04973F9D243F51D2003CE2E6 /* Podfile in Resources */,
 				045263FF2451BF23006D67AB /* Rubik-Medium.ttf in Resources */,
 				046A1B962455AAA00012F519 /* profileTitleTableViewCell.xib in Resources */,
@@ -321,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AE3578245BE41D0075043A /* realmObjects.swift in Sources */,
 				045263F724519177006D67AB /* LoginViewController.swift in Sources */,
 				04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */,
 				04236AE72450E19900C66F66 /* AnimalCollectionViewCell.swift in Sources */,
