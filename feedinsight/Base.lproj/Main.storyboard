@@ -157,7 +157,7 @@
         <!--SignInone-->
         <scene sceneID="viE-8Z-hZl">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="YKO-M6-kfF" userLabel="SignInone" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="YKO-M6-kfF" userLabel="SignInone" customClass="LoginViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nzU-d2-T64">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,7 +231,7 @@
                                                         <rect key="frame" x="0.0" y="63.333333333333314" width="350" height="63"/>
                                                         <color key="backgroundColor" red="0.98345748964368984" green="0.98345748964368984" blue="0.98345748964368984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                 <integer key="value" value="8"/>
@@ -266,7 +266,7 @@
                                                         <rect key="frame" x="0.0" y="63.333333333333371" width="350" height="63"/>
                                                         <color key="backgroundColor" red="0.98948890156078828" green="0.98948890156078828" blue="0.98948890156078828" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                 <integer key="value" value="8"/>
@@ -353,6 +353,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uLo-6n-eAA"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="Lto-sU-biz" id="2Md-Gq-f2h"/>
+                        <outlet property="paswordField" destination="mhb-7z-qdH" id="LQh-2w-YTW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1P-FH-VRu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
