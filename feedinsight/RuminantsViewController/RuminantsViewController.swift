@@ -56,10 +56,10 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         let itemSize = UIScreen.main.bounds.width/3 - 2
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 25, height: itemSize - 30)
+        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
         
         layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 20
+        layout.minimumLineSpacing = 15
         
         animalTypeCollection.collectionViewLayout = layout
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)

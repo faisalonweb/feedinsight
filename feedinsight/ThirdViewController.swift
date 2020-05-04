@@ -14,7 +14,7 @@ class ThirdViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let textArr = ["Premix Checker","Unit Converter","Premix Checker","Unit Conveter","Premix Checker","Unit Conveter"]
+    let textArr = ["Premix Check","Unit Converter","Premix Check","Unit Conveter","Premix Check","Unit Conveter"]
 
     let imageArr = [UIImage (named: "premix"), UIImage(named: "calculator"),UIImage (named: "premix"), UIImage(named: "calculator"),UIImage(named: "premix"),UIImage(named: "calculator")]
 
