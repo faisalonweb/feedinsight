@@ -8,9 +8,13 @@
     
     import UIKit
     import iOSDropDown
+   import ActiveLabel
+   
     class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
        
         
+        
+        @IBOutlet weak var haveAccountLabel: ActiveLabel!
         @IBOutlet weak var NameField: UITextField!
         @IBOutlet weak var emailField: UITextField!
         @IBOutlet weak var countryCodeField: UITextField!
@@ -70,13 +74,43 @@
             pickroleField.optionArray = ["Admin","user","manager"]
             pickroleField.didSelect{(selectedText , index ,id) in
             }
-            // color
-//            let color = ""
-//            let encoding = color.data(using: String.Encoding.utf8, allowLossyConversion:true)
-            //let options = [NSDocu]
+            //
+            
+             let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
+            haveAccountLabel.enabledTypes.append(customType)
+            haveAccountLabel.urlMaximumLength = 61
+            
+            haveAccountLabel.customize { label in
+            haveAccountLabel.text = "Have an Account? Sign In"
+                label.numberOfLines = 1
+                label.lineSpacing = 4
+                label.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
+                label.customSelectedColor[customType] = UIColor.black
+        
+                //
+                label.configureLinkAttribute = { (type, attributes, isSelected) in
+                    var atts = attributes
+                    switch type {
+                    case customType:
+                        atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
+                    default: ()
+                    }
+                    
+                    return atts
+                }
+                //
+                
+                label.handleCustomTap(for: customType) { self.alert("Custom type", message: $0) }
+            }
+            
         }
         
-        
+        func alert(_ title: String, message: String) {
+            let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+            vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            present(vc, animated: true, completion: nil)
+        }
+
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
                    return textArr.count
                }
