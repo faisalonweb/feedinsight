@@ -1,4 +1,4 @@
-    //
+   //
     //  SignUpViewController.swift
     //  FeedInsight
     //
@@ -24,18 +24,20 @@
         @IBOutlet weak var repasswordField: UITextField!
         @IBOutlet weak var pickanimalfield: DropDown!
         @IBOutlet weak var pickroleField: DropDown!
-        let textArr = ["Farming","FoodManufacturing","three","four","five","six"]
+        let textArr = ["Research","Farming","FoodManufacturing"]
         
-//        let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
+//        let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]   // research-selected , farm-selected , feedmanufacturing-selected  ,
         
         let imageArr: [UIImage] = [
-            UIImage(named: "ruminants")!,
-            UIImage(named: "aqua")!,
-            UIImage(named: "equines")!,
-            UIImage(named: "chicken")!,
-            UIImage(named: "equines")!,
-            UIImage(named: "ruminants")!,
+            UIImage(named: "research-unselected")!,
+            UIImage(named: "farm-unselected")!,
+            UIImage(named: "feedmanufacturing-unselected")!,
         ]
+        let imageArr1: [UIImage] = [
+                   UIImage(named: "research-selected")!,
+                   UIImage(named: "farm-selected")!,
+                   UIImage(named: "feedmanufacturing-selected")!,
+               ]
         
         @IBAction func backBtn(_ sender: UIButton) {
             self.dismiss(animated: true, completion: nil)
@@ -75,27 +77,28 @@
                    return textArr.count
                }
                
-               func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! SignUpCollectionViewCell
-                   
                    let cellIndex = indexPath.item
-                   
                    cell.industryImage.image = imageArr[cellIndex]
                    cell.industryLabel.text = textArr[cellIndex]
-                 
-                if(indexPath.row % 2 == 0)
-                {
-                    cell.industryLabel.textColor = UIColor.black
-                    //cell.backgroundColor = UIColor.white
-                }
-                else{
-                    cell.backgroundColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-                }
-              //  UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
-                  // cell.backgroundColor = indexPath.row % 2 == 0 ? .white : .UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
-             
                    return cell
                }
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let cell = collectionView.cellForItem(at: indexPath) as! SignUpCollectionViewCell
+             let cellIndex = indexPath.item
+            cell.industryImage.image = imageArr1[cellIndex]
+            
+        
+        }
+        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+            let cell = collectionView.cellForItem(at: indexPath) as! SignUpCollectionViewCell
+                    let cellIndex = indexPath.item
+                    cell.industryImage.image = imageArr[cellIndex]
+        }
+        
+        
         /*
          
          // MARK: - Navigation
@@ -108,3 +111,4 @@
          */
         
     }
+
