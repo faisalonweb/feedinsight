@@ -7,7 +7,7 @@
     //
     
     import UIKit
-    
+    import iOSDropDown
     class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
        
         
@@ -19,11 +19,11 @@
         @IBOutlet weak var collectionView: UICollectionView!
         //    @IBOutlet weak var collectionCell: UICollectionViewCell!
         @IBOutlet weak var IndustryField: UITextField!
-        @IBOutlet weak var pickAnimalField: UITextField!
         @IBOutlet weak var businessField: UITextField!
-        @IBOutlet weak var pickRoleField: UITextField!
         @IBOutlet weak var passwordField: UITextField!
         @IBOutlet weak var repasswordField: UITextField!
+        @IBOutlet weak var pickanimalfield: DropDown!
+        @IBOutlet weak var pickroleField: DropDown!
         let textArr = ["Farming","FoodManufacturing","three","four","five","six"]
         
 //        let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]
@@ -60,7 +60,14 @@
             
             collectionView.collectionViewLayout = layout
             
-            ////
+            pickanimalfield.optionArray = ["Option 1", "Option 2", "Option 3"]
+                   pickanimalfield.optionIds = [1,23,54,22]
+                   pickanimalfield.didSelect{(selectedText , index ,id) in
+                   }
+            pickroleField.optionArray = ["Option 1", "Option 2", "Option 3"]
+            pickroleField.optionArray = ["Admin","user","manager"]
+                              pickroleField.didSelect{(selectedText , index ,id) in
+                              }
         }
         
         
