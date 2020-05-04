@@ -63,13 +63,17 @@
             collectionView.collectionViewLayout = layout
             
             pickanimalfield.optionArray = ["Option 1", "Option 2", "Option 3"]
-                   pickanimalfield.optionIds = [1,23,54,22]
-                   pickanimalfield.didSelect{(selectedText , index ,id) in
-                   }
+            pickanimalfield.optionIds = [1,23,54,22]
+            pickanimalfield.didSelect{(selectedText , index ,id) in
+            }
             pickroleField.optionArray = ["Option 1", "Option 2", "Option 3"]
             pickroleField.optionArray = ["Admin","user","manager"]
-                              pickroleField.didSelect{(selectedText , index ,id) in
-                              }
+            pickroleField.didSelect{(selectedText , index ,id) in
+            }
+            // color
+//            let color = ""
+//            let encoding = color.data(using: String.Encoding.utf8, allowLossyConversion:true)
+            //let options = [NSDocu]
         }
         
         

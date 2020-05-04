@@ -11,6 +11,7 @@ target 'FeedInsight' do
  pod 'Firebase/Analytics'
  pod 'Firebase/Database'
   pod 'Firebase'
+  pod 'ActiveLabel'
 end
 
 
