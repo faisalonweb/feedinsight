@@ -833,26 +833,26 @@
                                                 <rect key="frame" x="0.0" y="650" width="414" height="350"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heat Stress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-5w-YSC">
-                                                        <rect key="frame" x="20" y="40" width="101" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
+                                                        <rect key="frame" x="20" y="40" width="89" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Metabolic Disorders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZp-YO-Ts6">
-                                                        <rect key="frame" x="20" y="90.333333333333371" width="170.33333333333334" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
+                                                        <rect key="frame" x="20" y="88" width="150.33333333333334" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Formulate Anionic Diet?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83h-PH-9Pj">
-                                                        <rect key="frame" x="20" y="140.66666666666663" width="205.33333333333334" height="20.333333333333343"/>
-                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
+                                                        <rect key="frame" x="20" y="136" width="181.33333333333334" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wool/Hair Production (Sheep/Goat)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMG-d8-ZiW">
-                                                        <rect key="frame" x="20" y="191" width="302.66666666666669" height="20.333333333333343"/>
-                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
+                                                        <rect key="frame" x="20" y="184" width="267" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -914,21 +914,21 @@
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toggle-Yes" translatesAutoresizingMaskIntoConstraints="NO" id="pWR-Zu-S7Q">
-                                                        <rect key="frame" x="311" y="79" width="83" height="44"/>
+                                                        <rect key="frame" x="311" y="76" width="83" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="XNf-jO-pQy"/>
                                                             <constraint firstAttribute="width" constant="83" id="ykA-FN-jX9"/>
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toggle-Yes" translatesAutoresizingMaskIntoConstraints="NO" id="kgg-0S-t0J">
-                                                        <rect key="frame" x="311" y="131" width="83" height="44"/>
+                                                        <rect key="frame" x="311" y="125" width="83" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="83" id="4V1-qp-b6E"/>
                                                             <constraint firstAttribute="height" constant="44" id="tMY-OB-3a6"/>
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Toggle-no" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-2B-Us4">
-                                                        <rect key="frame" x="311" y="183" width="83" height="44"/>
+                                                        <rect key="frame" x="311" y="174" width="83" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="342-03-dK9"/>
                                                             <constraint firstAttribute="width" constant="83" id="ooJ-0J-VYR"/>
@@ -939,9 +939,9 @@
                                                 <constraints>
                                                     <constraint firstItem="6fn-5w-YSC" firstAttribute="top" secondItem="m9D-Xf-OVV" secondAttribute="top" constant="40" id="38K-RG-RnJ"/>
                                                     <constraint firstItem="kgg-0S-t0J" firstAttribute="trailing" secondItem="pWR-Zu-S7Q" secondAttribute="trailing" id="3nS-1I-6Wy"/>
-                                                    <constraint firstItem="pWR-Zu-S7Q" firstAttribute="top" secondItem="gCc-Vm-EAl" secondAttribute="bottom" constant="8" id="4ba-p1-Win"/>
+                                                    <constraint firstItem="pWR-Zu-S7Q" firstAttribute="top" secondItem="gCc-Vm-EAl" secondAttribute="bottom" constant="5" id="4ba-p1-Win"/>
                                                     <constraint firstItem="EZp-YO-Ts6" firstAttribute="top" secondItem="6fn-5w-YSC" secondAttribute="bottom" constant="30" id="7mE-pf-riH"/>
-                                                    <constraint firstItem="kgg-0S-t0J" firstAttribute="top" secondItem="pWR-Zu-S7Q" secondAttribute="bottom" constant="8" id="92W-Kn-0DD"/>
+                                                    <constraint firstItem="kgg-0S-t0J" firstAttribute="top" secondItem="pWR-Zu-S7Q" secondAttribute="bottom" constant="5" id="92W-Kn-0DD"/>
                                                     <constraint firstItem="eKh-2B-Us4" firstAttribute="trailing" secondItem="kgg-0S-t0J" secondAttribute="trailing" id="H9N-DU-S4e"/>
                                                     <constraint firstItem="83h-PH-9Pj" firstAttribute="leading" secondItem="EZp-YO-Ts6" secondAttribute="leading" id="HfH-gR-ONS"/>
                                                     <constraint firstItem="EZp-YO-Ts6" firstAttribute="leading" secondItem="6fn-5w-YSC" secondAttribute="leading" id="Hgm-gH-FeL"/>
@@ -949,7 +949,7 @@
                                                     <constraint firstAttribute="height" constant="350" id="Soo-on-ECI"/>
                                                     <constraint firstAttribute="bottom" secondItem="VQu-d3-zXQ" secondAttribute="bottom" constant="30" id="TfH-Ya-n6c"/>
                                                     <constraint firstItem="pMG-d8-ZiW" firstAttribute="leading" secondItem="83h-PH-9Pj" secondAttribute="leading" id="X5s-H0-Zd8"/>
-                                                    <constraint firstItem="eKh-2B-Us4" firstAttribute="top" secondItem="kgg-0S-t0J" secondAttribute="bottom" constant="8" id="aFH-8X-BlC"/>
+                                                    <constraint firstItem="eKh-2B-Us4" firstAttribute="top" secondItem="kgg-0S-t0J" secondAttribute="bottom" constant="5" id="aFH-8X-BlC"/>
                                                     <constraint firstItem="pMG-d8-ZiW" firstAttribute="top" secondItem="83h-PH-9Pj" secondAttribute="bottom" constant="30" id="duS-jq-QM7"/>
                                                     <constraint firstItem="VQu-d3-zXQ" firstAttribute="leading" secondItem="m9D-Xf-OVV" secondAttribute="leading" constant="20" id="rtw-Kl-H8I"/>
                                                     <constraint firstItem="83h-PH-9Pj" firstAttribute="top" secondItem="EZp-YO-Ts6" secondAttribute="bottom" constant="30" id="s7z-JH-pYs"/>
