@@ -8,10 +8,12 @@ target 'FeedInsight' do
   # Pods for FeedInsight
   pod 'RealmSwift'
   pod 'iOSDropDown'
- pod 'Firebase/Analytics'
- pod 'Firebase/Database'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
   pod 'Firebase'
   pod 'ActiveLabel'
+  pod 'Firebase/Core' 
+  pod 'Firebase/Firestore'
 end
 
 
