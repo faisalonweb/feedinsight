@@ -17,9 +17,13 @@
             @IBOutlet weak var haveAccountLabel: ActiveLabel!
             @IBOutlet weak var NameField: UITextField!
             @IBOutlet weak var emailField: UITextField!
-            @IBOutlet weak var countryCodeField: UITextField!
+            @IBOutlet weak var countryCodeField: UITextField! {
+                didSet { countryCodeField?.addDoneCancelToolbar() }
+            }
 //            @IBOutlet weak var dropDownLabel: UIImageView!
-            @IBOutlet weak var phoneField: UITextField!
+            @IBOutlet weak var phoneField: UITextField! {
+                didSet { phoneField?.addDoneCancelToolbar() }
+            }
             @IBOutlet weak var collectionView: UICollectionView!
             //    @IBOutlet weak var collectionCell: UICollectionViewCell!
             @IBOutlet weak var IndustryField: UITextField!
