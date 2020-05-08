@@ -20,12 +20,10 @@
             @IBOutlet weak var countryCodeField: UITextField! {
                 didSet { countryCodeField?.addDoneCancelToolbar() }
             }
-//            @IBOutlet weak var dropDownLabel: UIImageView!
             @IBOutlet weak var phoneField: UITextField! {
                 didSet { phoneField?.addDoneCancelToolbar() }
             }
             @IBOutlet weak var collectionView: UICollectionView!
-            //    @IBOutlet weak var collectionCell: UICollectionViewCell!
             @IBOutlet weak var IndustryField: UITextField!
             @IBOutlet weak var businessField: UITextField!
             @IBOutlet weak var passwordField: UITextField!
@@ -53,6 +51,12 @@
             
             @IBAction func signInBtntap(_ sender: Any) {
             }
+            func SignupSelection(){
+                   print("yesss i cameeee")
+                   let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                   let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
+                   self.present(signUpViewController, animated: true, completion: nil)
+               }
             
             func btnSelection(){
                 print("yesss i cameeee1")
@@ -74,14 +78,11 @@
                 self.repasswordField.delegate = self
                 
                 let itemSize = UIScreen.main.bounds.width/3 - 2
-                
                 let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = .horizontal
                 layout.itemSize = CGSize(width: itemSize, height: itemSize)
-                
                 layout.minimumInteritemSpacing = 2
                 layout.minimumLineSpacing = 16
-                
                 collectionView.collectionViewLayout = layout
                 
                 pickanimalfield.optionArray = ["Option 1", "Option 2", "Option 3"]
@@ -92,8 +93,7 @@
                 pickroleField.optionArray = ["Admin","user","manager"]
                 pickroleField.didSelect{(selectedText , index ,id) in
                 }
-                //
-                
+
                  let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
                 haveAccountLabel.enabledTypes.append(customType)
                 haveAccountLabel.urlMaximumLength = 61
@@ -104,8 +104,6 @@
                     haveAccountLabel.lineSpacing = 4
                     haveAccountLabel.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
                     haveAccountLabel.customSelectedColor[customType] = UIColor.black
-            
-                    //
                     haveAccountLabel.configureLinkAttribute = { (type, attributes, isSelected) in
                         var atts = attributes
                         switch type {
@@ -116,7 +114,7 @@
                         
                         return atts
                     }
-                    haveAccountLabel.handleCustomTap(for: customType) { _ in self.btnSelection() }
+                    label.handleCustomTap(for: customType) { _ in self.btnSelection() }
                 }
                 
             }

@@ -62,10 +62,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                    present(vc, animated: true, completion: nil)
                }
 
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
     /*
     // MARK: - Navigation
 
