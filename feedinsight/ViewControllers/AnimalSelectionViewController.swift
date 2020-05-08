@@ -48,7 +48,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         let itemSize = UIScreen.main.bounds.width/3 - 2
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+        layout.itemSize = CGSize(width: itemSize + 15, height: itemSize + 15)
         
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 20
