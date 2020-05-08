@@ -35,7 +35,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var UserCompanyName: UILabel!
     @IBOutlet weak var UserProfilePicture: UIImageView!
     
-    let textArr = ["Dairy", "Cows","Beef","Sheep/Goat","Deer","Camel","Rabbit","Hen"]
+    let textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Deer","Camel"]
     
     @IBAction func SelectAnimal(_ sender: Any) {
         
