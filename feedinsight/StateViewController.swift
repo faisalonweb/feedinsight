@@ -10,7 +10,7 @@ import UIKit
 import iOSDropDown
 
 
-class StateViewController: UIViewController {
+class StateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var proimage: UIImageView!
     
     @IBOutlet weak var notificationimage: UIImageView!
@@ -45,11 +45,15 @@ class StateViewController: UIViewController {
         
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        //dropDown.resignFirstResponder();
-        // Addi//tional code here
-        return false
-    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           self.view.endEditing(true)
+           return false
+       }
+//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+//        //dropDown.resignFirstResponder();
+//        // Addi//tional code here
+//        return false
+//    }
     
     
 }

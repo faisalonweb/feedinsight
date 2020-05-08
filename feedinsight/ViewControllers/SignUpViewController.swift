@@ -10,7 +10,7 @@
         import iOSDropDown
         import ActiveLabel
        
-        class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+        class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
            
             
             
@@ -18,7 +18,7 @@
             @IBOutlet weak var NameField: UITextField!
             @IBOutlet weak var emailField: UITextField!
             @IBOutlet weak var countryCodeField: UITextField!
-            @IBOutlet weak var dropDownLabel: UIImageView!
+//            @IBOutlet weak var dropDownLabel: UIImageView!
             @IBOutlet weak var phoneField: UITextField!
             @IBOutlet weak var collectionView: UICollectionView!
             //    @IBOutlet weak var collectionCell: UICollectionViewCell!
@@ -29,8 +29,6 @@
             @IBOutlet weak var pickanimalfield: DropDown!
             @IBOutlet weak var pickroleField: DropDown!
             let textArr = ["Research","Farming","FoodManufacturing"]
-            
-    //        let imageArr = [UIImage (named: "brush"), UIImage(named: "brush"),UIImage (named: "brush"), UIImage(named: "brush"),UIImage(named: "brush"),UIImage(named: "brush")]   // research-selected , farm-selected , feedmanufacturing-selected  ,
             
             let imageArr: [UIImage] = [
                 UIImage(named: "research-unselected")!,
@@ -62,6 +60,15 @@
                 super.viewDidLoad()
                 collectionView.delegate = self
                 collectionView.dataSource = self
+                self.NameField.delegate = self
+                self.emailField.delegate = self
+                self.countryCodeField.delegate = self
+                self.phoneField.delegate = self
+                self.IndustryField.delegate = self
+                self.businessField.delegate = self
+                self.passwordField.delegate = self
+                self.repasswordField.delegate = self
+                
                 let itemSize = UIScreen.main.bounds.width/3 - 2
                 
                 let layout = UICollectionViewFlowLayout()
@@ -114,6 +121,10 @@
                 let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
                 vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 present(vc, animated: true, completion: nil)
+            }
+            func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                self.view.endEditing(true)
+                return false
             }
 
             func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
