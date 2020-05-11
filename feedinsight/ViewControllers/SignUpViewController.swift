@@ -9,10 +9,12 @@
         import UIKit
         import iOSDropDown
         import ActiveLabel
+        import FirebaseFirestore
+    
        
         class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
            
-            
+            var db: Firestore!
             
             @IBOutlet weak var haveAccountLabel: ActiveLabel!
             @IBOutlet weak var NameField: UITextField!
@@ -66,6 +68,8 @@
             }
             override func viewDidLoad() {
                 super.viewDidLoad()
+                db = Firestore.firestore()
+                
                 collectionView.delegate = self
                 collectionView.dataSource = self
                 self.NameField.delegate = self
