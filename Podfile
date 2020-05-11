@@ -14,6 +14,7 @@ target 'FeedInsight' do
   pod 'ActiveLabel'
   pod 'Firebase/Core' 
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 end
 
 

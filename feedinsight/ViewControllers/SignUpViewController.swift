@@ -48,11 +48,40 @@
             @IBAction func backBtn(_ sender: UIButton) {
                 self.dismiss(animated: true, completion: nil)
             }
-            @IBAction func signIntapped(_ sender: UIButton) {
+         
+            @IBAction func SignupTap(_ sender: UIButton) {
+                let nameEnter = NameField.text!
+                       self.saveText(theText: nameEnter)
+                // it will get all useers data save in user collection
+                db.collection("users").getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+                        }
+                    }
+                }
             }
             
-            @IBAction func signInBtntap(_ sender: Any) {
-            }
+            func saveText(theText: String) {
+                //
+                let dict : [String : Any] = ["name" : theText, "PASSWORD" : self.passwordField.text!]
+
+                //
+                  let db = Firestore.firestore()
+                  //let dict : [String : Any] = ["name": theText, "]
+                  db.collection("users").addDocument(data: dict)
+                    
+                { err in
+                                    if let err = err {
+                                        print("Error adding document: \(err)")
+                                    } else {
+                                        print("Document added")
+                                    }
+                                }
+              }
+           
             func SignupSelection(){
                    print("yesss i cameeee")
                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -69,7 +98,42 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 db = Firestore.firestore()
+//                db.collection("users").whereField("name", isEqualTo: "nat").getDocuments { (SnapshotMetadata, Error) in
+//                    if (Error != nil) {
+//                        print(Error)
+//                    }
+//                    else
+//                    {
+//                        for document in (SnapshotMetadata?.documents)! {
+//                            let name = document.data()["name"] as? String
+//                            print(name!)
+//                        }
+//                    }
+//
+//                }
+//
+//                let name = " saima"
+//                let age = "19"
+//                let dict : [String : Any] = ["name" : name, "age" : age]
+//                let db = Firestore.firestore()
+//                db.collection("users").document("nat").setData(dict)
+                //
                 
+                // Add a new document with a generated ID
+//                var ref: DocumentReference? = nil
+//                ref = db.collection("users").addDocument(data: [
+//                    "first": "Ada",
+//                    "last": "lace",
+//                    "born": 1815
+//                ]) { err in
+//                    if let err = err {
+//                        print("Error adding document: \(err)")
+//                    } else {
+//                        print("Document added with ID: \(ref!.documentID)")
+//                    }
+//                }
+                
+                ///
                 collectionView.delegate = self
                 collectionView.dataSource = self
                 self.NameField.delegate = self
