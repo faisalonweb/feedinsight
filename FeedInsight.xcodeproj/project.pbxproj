@@ -11,7 +11,6 @@
 		04236AE52450D68100C66F66 /* RuminantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04236AE42450D68100C66F66 /* RuminantCollectionViewCell.swift */; };
 		04236AE72450E19900C66F66 /* AnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04236AE62450E19900C66F66 /* AnimalCollectionViewCell.swift */; };
 		04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04236AE82450E1B500C66F66 /* AnimalSelectionViewController.swift */; };
-		0448B9942469DA7500200724 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0448B9932469DA7500200724 /* GoogleService-Info.plist */; };
 		044BE5022452A66C00551BF6 /* dropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BE5012452A66C00551BF6 /* dropdownTableViewCell.swift */; };
 		045263F724519177006D67AB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045263F624519176006D67AB /* LoginViewController.swift */; };
 		045263FE2451BF23006D67AB /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 045263FB2451BF22006D67AB /* Rubik-Regular.ttf */; };
@@ -23,6 +22,7 @@
 		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
 		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
 		04AE3578245BE41D0075043A /* realmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE3577245BE41D0075043A /* realmObjects.swift */; };
+		04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D11E6F246A7638002D5612 /* GoogleService-Info.plist */; };
 		04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */; };
 		04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E69496244480F200E2CE1B /* RuminantsViewController.swift */; };
 		04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E694992444AB6F00E2CE1B /* SignUpViewController.swift */; };
@@ -50,7 +50,6 @@
 		04236AE42450D68100C66F66 /* RuminantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuminantCollectionViewCell.swift; sourceTree = "<group>"; };
 		04236AE62450E19900C66F66 /* AnimalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCollectionViewCell.swift; sourceTree = "<group>"; };
 		04236AE82450E1B500C66F66 /* AnimalSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionViewController.swift; sourceTree = "<group>"; };
-		0448B9932469DA7500200724 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		044BE5012452A66C00551BF6 /* dropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropdownTableViewCell.swift; sourceTree = "<group>"; };
 		045263F624519176006D67AB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		045263FB2451BF22006D67AB /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
 		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		04AE3577245BE41D0075043A /* realmObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realmObjects.swift; sourceTree = "<group>"; };
+		04D11E6F246A7638002D5612 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E69496244480F200E2CE1B /* RuminantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuminantsViewController.swift; sourceTree = "<group>"; };
 		04E694992444AB6F00E2CE1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		1A7F1209243CE34F0008CFC0 = {
 			isa = PBXGroup;
 			children = (
-				0448B9932469DA7500200724 /* GoogleService-Info.plist */,
+				04D11E6F246A7638002D5612 /* GoogleService-Info.plist */,
 				04973F9C243F51D2003CE2E6 /* Podfile */,
 				1A7F1214243CE34F0008CFC0 /* feedinsight */,
 				1A7F1213243CE34F0008CFC0 /* Products */,
@@ -272,7 +272,7 @@
 			files = (
 				1A7F1222243CE3500008CFC0 /* LaunchScreen.storyboard in Resources */,
 				1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */,
-				0448B9942469DA7500200724 /* GoogleService-Info.plist in Resources */,
+				04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */,
 				04973F9D243F51D2003CE2E6 /* Podfile in Resources */,
 				045263FF2451BF23006D67AB /* Rubik-Medium.ttf in Resources */,
 				046A1B962455AAA00012F519 /* profileTitleTableViewCell.xib in Resources */,
