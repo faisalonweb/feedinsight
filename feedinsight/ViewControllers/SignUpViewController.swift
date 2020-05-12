@@ -16,6 +16,8 @@
            
             var db: Firestore!
             
+           
+            @IBOutlet weak var locationField: DropDown!
             @IBOutlet weak var haveAccountLabel: ActiveLabel!
             @IBOutlet weak var NameField: UITextField!
             @IBOutlet weak var emailField: UITextField!
@@ -51,6 +53,17 @@
          
             @IBAction func SignupTap(_ sender: UIButton) {
                 let nameEnter = NameField.text!
+//                let passwordEnter = passwordField.text!
+//                let industryEnter =    IndustryField.text!
+//                let busindessEnter =   businessField.text!
+//                let repasswordEnter =  repasswordField.text!
+//                let pickanimalEnter =    pickanimalfield.text!
+//                let pickrolEnter =    pickroleField.text!
+//                let emailEnter = emailField.text!
+//                let phoneEnter = phoneField.text!
+//                let PhCodeenter = countryCodeField.text!
+//                let locationEnter = locationField.text!
+                
                        self.saveText(theText: nameEnter)
                 // it will get all useers data save in user collection
                 db.collection("users").getDocuments() { (querySnapshot, err) in
@@ -65,15 +78,22 @@
             }
             
             func saveText(theText: String) {
+                                let passwordEnter = passwordField.text!
+                               let industryEnter =    IndustryField.text!
+                               let busindessEnter =   businessField.text!
+                               let repasswordEnter =  repasswordField.text!
+                               let pickanimalEnter =    pickanimalfield.text!
+                               let pickrolEnter =    pickroleField.text!
+                               let emailEnter = emailField.text!
+                               let phoneEnter = phoneField.text!
+                               let PhCodeenter = countryCodeField.text!
+                               let locationEnter = locationField.text!
                 //
-                let dict : [String : Any] = ["name" : theText, "PASSWORD" : self.passwordField.text!]
+                let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "contrycode" : PhCodeenter, "location" : locationEnter]
 
                 //
                   let db = Firestore.firestore()
-                  //let dict : [String : Any] = ["name": theText, "]
-                  db.collection("users").addDocument(data: dict)
-                    
-                { err in
+                  db.collection("users").addDocument(data: dict){ err in
                                     if let err = err {
                                         print("Error adding document: \(err)")
                                     } else {

@@ -1,0 +1,84 @@
+[debug] [2020-05-11T11:15:09.418Z] ----------------------------------------------------------------------
+[debug] [2020-05-11T11:15:09.420Z] Command:       /usr/local/Cellar/node/12.10.0/bin/node /usr/local/bin/firebase init functions
+[debug] [2020-05-11T11:15:09.421Z] CLI Version:   8.2.0
+[debug] [2020-05-11T11:15:09.421Z] Platform:      darwin
+[debug] [2020-05-11T11:15:09.421Z] Node Version:  v12.10.0
+[debug] [2020-05-11T11:15:09.421Z] Time:          Mon May 11 2020 16:15:09 GMT+0500 (Pakistan Standard Time)
+[debug] [2020-05-11T11:15:09.422Z] ----------------------------------------------------------------------
+[debug] [2020-05-11T11:15:09.422Z] 
+[debug] [2020-05-11T11:15:09.429Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-11T11:15:09.429Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/mac/Desktop/foodInsight
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2020-05-11T11:39:47.760Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-05-11T11:39:47.761Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-05-11T11:39:48.231Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 11 May 2020 11:39:48 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-11T11:39:48.278Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects?pageSize=100  
+ 
+[debug] [2020-05-11T11:39:49.075Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 11 May 2020 11:39:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  Using project feedinsight-3b617 (FeedInsight)
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with a Node.js
+[info] package pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2020-05-11T11:39:54.714Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-11T11:39:54.714Z] > authorizing via signed-in user
+[debug] [2020-05-11T11:39:54.714Z] [iam] checking project feedinsight-3b617 for permissions ["firebase.projects.get"]
+[debug] [2020-05-11T11:39:54.715Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/feedinsight-3b617:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-05-11T11:39:56.551Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 11 May 2020 11:39:56 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1369","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-11T11:39:56.560Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/feedinsight-3b617/services/cloudfunctions.googleapis.com:enable  
+ 
+[debug] [2020-05-11T11:39:56.561Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/feedinsight-3b617/services/runtimeconfig.googleapis.com:enable  
+ 
+[debug] [2020-05-11T11:39:58.599Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 11 May 2020 11:39:58 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-11T11:39:58.600Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 11 May 2020 11:39:58 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  Wrote functions/package.json
+[info] ✔  Wrote functions/.eslintrc.json
+[info] ✔  Wrote functions/index.js
+[info] ✔  Wrote functions/.gitignore
+[info] 
+[error] NPM install failed, continuing with Firebase initialization...
+[info] 
+[info] i  Writing configuration info to firebase.json...
+[debug] [2020-05-11T11:43:28.218Z] Error: ENOSPC: no space left on device, write
+    at Object.writeSync (fs.js:592:3)
+    at Object.writeFileSync (fs.js:1286:26)
+    at Config.writeProjectFile (/usr/local/lib/node_modules/firebase-tools/lib/config.js:155:8)
+    at /usr/local/lib/node_modules/firebase-tools/lib/commands/init.js:135:16
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-05-11T11:43:28.499Z] Error: ENOSPC: no space left on device, write
+    at Object.writeSync (fs.js:592:3)
+    at Function.writeFileSync [as sync] (/usr/local/lib/node_modules/firebase-tools/node_modules/write-file-atomic/index.js:215:10)
+    at Configstore.set all [as all] (/usr/local/lib/node_modules/firebase-tools/node_modules/configstore/index.js:61:20)
+    at Configstore.set (/usr/local/lib/node_modules/firebase-tools/node_modules/configstore/index.js:91:12)
+    at process.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/bin/firebase.js:80:21)
+    at process.emit (events.js:214:15)
+    at processEmit [as emit] (/usr/local/lib/node_modules/firebase-tools/node_modules/signal-exit/index.js:155:35)
+    at process.exit (internal/process/per_thread.js:158:15)
+    at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/errorOut.js:19:17)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+[error] 
+[error] Error: An unexpected error has occurred.
