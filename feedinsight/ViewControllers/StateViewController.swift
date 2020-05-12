@@ -8,13 +8,13 @@
 
 import UIKit
 import iOSDropDown
+ import FirebaseFirestore
 
 
 class StateViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var proimage: UIImageView!
     
+    @IBOutlet weak var proimage: UIImageView!
     @IBOutlet weak var notificationimage: UIImageView!
-    @IBOutlet weak var dropDown: DropDown!
     @IBOutlet weak var PsychField: DropDown!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var animalField: UITextField!
@@ -36,12 +36,14 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var daysPregnantF: UITextField! {
         didSet { daysPregnantF?.addDoneCancelToolbar() }
     }
-    //let numberToolbar: UIToolbar = UIToolbar()
+
+     var db: Firestore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameField.delegate = self
         self.animalField.delegate = self
-        
+         db = Firestore.firestore()
         notificationimage?.layer.cornerRadius = (notificationimage?.frame.size.width ?? 0.0) / 2
               notificationimage?.clipsToBounds = true
               notificationimage?.layer.borderWidth = 3.0
@@ -52,14 +54,44 @@ class StateViewController: UIViewController, UITextFieldDelegate {
               proimage?.layer.borderWidth = 3.0
               proimage?.layer.borderColor = UIColor.white.cgColor
         
-        dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]
+        PsychField.optionArray = ["Option 1", "Option 2", "Option 3"]
         //Its Id Values and its optional
-        dropDown.optionIds = [1,23,54,22]
-        dropDown.didSelect{(selectedText , index ,id) in
+        PsychField.optionIds = [1,23,54,22]
+        PsychField.didSelect{(selectedText , index ,id) in
         }
         
     }
 
+    @IBAction func saveProfileTapped(_ sender: UIButton) {
+        let psychEnter = PsychField.text!
+               self.saveText(theText: psychEnter)
+    }
+    
+    func saveText(theText: String) {
+                                      let daysPregnantEnter = daysPregnantF.text!
+                                     let daysinMilkEnter = daysinMilkF.text!
+                                     let milkInProducitonEnter = milkInProducitonF.text!
+                                     let daystoAchiveEnter = daystoAchiveF.text!
+                                     let TargetBodyWeightEnter = TargetBodyWeightF.text!
+                                     let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
+                                     let animalEnter = animalField.text!
+                                     let companynameEnter = nameField.text!
+                                   
+                                    
+                      //
+                      let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter]
+
+                      //
+                        let db = Firestore.firestore()
+                        db.collection("premixReport").addDocument(data: dict){ err in
+                                          if let err = err {
+                                              print("Error adding document: \(err)")
+                                          } else {
+                                              print("Document added")
+                                          }
+                                      }
+                    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
            self.view.endEditing(true)
            return false

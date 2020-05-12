@@ -876,6 +876,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="saveProfileTapped:" destination="tMY-Ri-kdE" eventType="touchUpInside" id="sGy-gJ-fHa"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ah-La-AIH">
                                                                 <rect key="frame" x="114.5" y="0.0" width="106" height="45"/>
@@ -994,7 +997,6 @@
                         <outlet property="daysPregnantF" destination="8CC-eH-cRr" id="vnK-qj-mwQ"/>
                         <outlet property="daysinMilkF" destination="hYa-r0-DR8" id="Dcf-fe-kXy"/>
                         <outlet property="daystoAchiveF" destination="e6E-7m-Xop" id="eIp-D4-sDd"/>
-                        <outlet property="dropDown" destination="7Fb-Q4-cMc" id="Txg-f9-Esc"/>
                         <outlet property="milkInProducitonF" destination="7U2-s0-rQm" id="7WL-AT-EmK"/>
                         <outlet property="nameField" destination="kCE-IS-EKg" id="riZ-52-3w1"/>
                         <outlet property="notificationimage" destination="R2W-RK-3il" id="ivH-g9-DdS"/>

@@ -7,8 +7,9 @@
 //
 
 import UIKit
- import ActiveLabel
- import Firebase
+import ActiveLabel
+import Firebase
+import FirebaseAuth
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var signupBtn: ActiveLabel!
