@@ -22,7 +22,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var userprofile: UIImageView!
     @IBOutlet weak var notification: UIImageView!
     
-    
+    var check = false
     var tableViewData = [cellData]()
     let cellSpacingHeight: CGFloat = 20
     
@@ -76,6 +76,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dataIndex = indexPath.row - 1
+        let selectedIndexPaths: IndexPath = IndexPath(row:0, section:0)
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
                 else { return ProfileloadTableViewCell()}
@@ -84,8 +85,27 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
-            
-            
+            if(check == false)
+            {
+                cell.imageView?.image = UIImage(named: "right-arrow")      // right-arrow
+            }
+            else{
+               // cell.accessoryType = .disclosureIndicator
+                cell.imageView?.image = UIImage(named: "downArrow")
+            }
+                   // if(check == false)
+            //            {
+            //                let sentImage = UIImage(named: "ibackrrow")
+            //                cell.imageView?.image = UIImage(named: "ibackrrow")
+            //            }
+                        
+                       // cell.accessoryView = sentImage
+                        
+            //           let sentImage = UIImage(named: "ibackrrow")
+            //            let sentImageView = UIImageView(image: sentImage)
+            //            sentImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            //            sentImageView.tintColor = .lightGray
+            //            cell.accessoryView = sentImageView
             
             
             return cell 
@@ -111,15 +131,20 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             
             if tableViewData[indexPath.section].opened == true
             {
+                  check = false
                 tableViewData[indexPath.section].opened = false
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
+              
             }
             else
             {
+                 check = true
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
+               
+                
             }
         }
         

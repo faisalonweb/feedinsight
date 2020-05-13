@@ -22,6 +22,7 @@
 		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
 		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
 		04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D11E6F246A7638002D5612 /* GoogleService-Info.plist */; };
+		04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6A906246BFE3100B37859 /* MakeDropDown.swift */; };
 		04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */; };
 		04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E69496244480F200E2CE1B /* RuminantsViewController.swift */; };
 		04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E694992444AB6F00E2CE1B /* SignUpViewController.swift */; };
@@ -56,6 +57,7 @@
 		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
 		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		04D11E6F246A7638002D5612 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04D6A906246BFE3100B37859 /* MakeDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDropDown.swift; sourceTree = "<group>"; };
 		04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E69496244480F200E2CE1B /* RuminantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuminantsViewController.swift; sourceTree = "<group>"; };
 		04E694992444AB6F00E2CE1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				1A7F121E243CE3500008CFC0 /* Assets.xcassets */,
 				1A7F1220243CE3500008CFC0 /* LaunchScreen.storyboard */,
 				1A7F1223243CE3500008CFC0 /* Info.plist */,
+				04D6A906246BFE3100B37859 /* MakeDropDown.swift */,
 			);
 			path = feedinsight;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				045263F724519177006D67AB /* LoginViewController.swift in Sources */,
 				04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */,
 				04236AE72450E19900C66F66 /* AnimalCollectionViewCell.swift in Sources */,

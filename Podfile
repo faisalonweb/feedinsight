@@ -6,7 +6,6 @@ platform :ios, '12.0'
 target 'FeedInsight' do
 
   # Pods for FeedInsight
-  pod 'RealmSwift'
   pod 'iOSDropDown'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
