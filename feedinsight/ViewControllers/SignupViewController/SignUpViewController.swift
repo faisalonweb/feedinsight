@@ -12,8 +12,22 @@
             import FirebaseFirestore
         
            
-            class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
+//        class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+             class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
+//            func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//                return 1
+//            }
+//
+//            func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//                return pickerData1.count
+//            }
+//            func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//
+//                 return pickerData1[row]
+//            }
+           
             
+              //  @IBOutlet weak var picker: UIPickerView!
                 @IBOutlet weak var locationField: DropDown!
                 @IBOutlet weak var haveAccountLabel: ActiveLabel!
                 @IBOutlet weak var NameField: UITextField!
@@ -33,7 +47,9 @@
                 @IBOutlet weak var pickroleField: DropDown!
                 let textArr = ["Research","Farming","FoodManufacturing"]
                  var db: Firestore!
-                
+                // var pickerData: [String] = [String]()
+               var pickerData1: [String] = [String]()
+            var workarray: [String] = [String]()
                 let imageArr: [UIImage] = [
                     UIImage(named: "research-unselected")!,
                     UIImage(named: "farm-unselected")!,
@@ -142,6 +158,8 @@
     //                }
                     
                     ///
+//                    self.picker.delegate = self
+//                    self.picker.dataSource = self
                     collectionView.delegate = self
                     collectionView.dataSource = self
                     self.NameField.delegate = self
@@ -153,6 +171,17 @@
                     self.passwordField.delegate = self
                     self.repasswordField.delegate = self
                     
+                   // pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+                let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
+                                    let lineArray = text.components(separatedBy: "\n")
+                                   for eachLA in lineArray
+                                   {
+                                        workarray = eachLA.components(separatedBy: ",")
+                                        pickerData1.append(workarray[0])
+                                        //print("its array:", workarray[0])
+                                   }
+                    print("its array:",pickerData1)
+                    
                     let itemSize = UIScreen.main.bounds.width/3 - 2
                     let layout = UICollectionViewFlowLayout()
                     layout.scrollDirection = .horizontal
@@ -161,15 +190,19 @@
                     layout.minimumLineSpacing = 16
                     collectionView.collectionViewLayout = layout
                     
-                    pickanimalfield.optionArray = ["Option 1", "Option 2", "Option 3"]
+                   pickanimalfield.optionArray = ["Option 1", "Option 2", "Option 3"]
                     pickanimalfield.optionIds = [1,23,54,22]
                     pickanimalfield.didSelect{(selectedText , index ,id) in
                     }
-                    pickroleField.optionArray = ["Option 1", "Option 2", "Option 3"]
+                    locationField.optionArray = pickerData1
+                    locationField.didSelect{(selectedText , index ,id) in
+                    }
+                     pickroleField.optionArray = ["Option 1", "Option 2", "Option 3"]
                     pickroleField.optionArray = ["Admin","user","manager"]
                     pickroleField.didSelect{(selectedText , index ,id) in
                     }
 
+                
                      let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
                     haveAccountLabel.enabledTypes.append(customType)
                     haveAccountLabel.urlMaximumLength = 61
