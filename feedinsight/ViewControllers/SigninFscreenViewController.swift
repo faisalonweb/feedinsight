@@ -8,10 +8,16 @@
     
     import UIKit
     import FirebaseDatabase
-    class SigninFscreenViewController: UIViewController {
+   
+    
+    class SigninFscreenViewController: UIViewController{
         
+        @IBOutlet weak var forgetpasswordLabel: UILabel!
+      
         override func viewDidLoad() {
             super.viewDidLoad()
+          
+               
             
             
         }

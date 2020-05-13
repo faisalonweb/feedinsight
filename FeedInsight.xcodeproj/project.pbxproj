@@ -21,6 +21,7 @@
 		047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF042454C83A0067237A /* ProfileLoadViewController.swift */; };
 		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
 		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
+		04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBE55A246C3BED00B04F4A /* LocationManager.swift */; };
 		04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D11E6F246A7638002D5612 /* GoogleService-Info.plist */; };
 		04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6A906246BFE3100B37859 /* MakeDropDown.swift */; };
 		04D6A909246C164700B37859 /* world-cities.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04D6A908246C164600B37859 /* world-cities.txt */; };
@@ -57,6 +58,7 @@
 		047ADF042454C83A0067237A /* ProfileLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadViewController.swift; sourceTree = "<group>"; };
 		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
 		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		04BBE55A246C3BED00B04F4A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		04D11E6F246A7638002D5612 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D6A906246BFE3100B37859 /* MakeDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDropDown.swift; sourceTree = "<group>"; };
 		04D6A908246C164600B37859 /* world-cities.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "world-cities.txt"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				1A7F1220243CE3500008CFC0 /* LaunchScreen.storyboard */,
 				1A7F1223243CE3500008CFC0 /* Info.plist */,
 				04D6A906246BFE3100B37859 /* MakeDropDown.swift */,
+				04BBE55A246C3BED00B04F4A /* LocationManager.swift */,
 			);
 			path = feedinsight;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				1AC35CDC24509D5C001C7693 /* StateViewController.swift in Sources */,
 				1AC88FC92466D4AF00694903 /* PaddingTextField.swift in Sources */,
 				1A7F122A243E12610008CFC0 /* HomeViewController.swift in Sources */,
+				04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */,
 				1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */,
 				04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */,
 				04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */,
@@ -536,7 +540,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = disinsight;
@@ -559,7 +563,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = disinsight;

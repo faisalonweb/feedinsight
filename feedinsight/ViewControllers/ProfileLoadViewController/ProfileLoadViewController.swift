@@ -85,15 +85,16 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
-            if(check == false)
-            {
-                cell.imageView?.image = UIImage(named: "right-arrow")      // right-arrow
-            }
-            else{
-               // cell.accessoryType = .disclosureIndicator
-                cell.imageView?.image = UIImage(named: "downArrow")
-            }
-                   // if(check == false)
+//            if(check == false)
+//            {
+//                cell.imageView?.image = UIImage(named: "right-arrow")      // right-arrow
+//            }
+//            else{
+//               // cell.accessoryType = .disclosureIndicator
+//                cell.imageView?.image = UIImage(named: "downArrow")
+//            }
+            //
+            // if(check == false)
             //            {
             //                let sentImage = UIImage(named: "ibackrrow")
             //                cell.imageView?.image = UIImage(named: "ibackrrow")
