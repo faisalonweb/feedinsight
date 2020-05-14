@@ -15,6 +15,7 @@ target 'FeedInsight' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
+  pod 'CountryPickerView'
 end
 
 

@@ -10,6 +10,7 @@
                     import iOSDropDown
                     import ActiveLabel
                     import FirebaseFirestore
+                    
                 
         class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
 
@@ -20,9 +21,8 @@
                         @IBOutlet weak var haveAccountLabel: ActiveLabel!
                         @IBOutlet weak var NameField: UITextField!
                         @IBOutlet weak var emailField: UITextField!
-                        @IBOutlet weak var countryCodeField: UITextField! {
-                            didSet { countryCodeField?.addDoneCancelToolbar() }
-                        }
+                        
+            
                         @IBOutlet weak var phoneField: UITextField! {
                             didSet { phoneField?.addDoneCancelToolbar() }
                         }
@@ -77,10 +77,10 @@
                                            let pickrolEnter =    pickroleField.text!
                                            let emailEnter = emailField.text!
                                            let phoneEnter = phoneField.text!
-                                           let PhCodeenter = countryCodeField.text!
+                                         
                                            let locationEnter = locationField.text!
                             //
-                            let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "contrycode" : PhCodeenter, "location" : locationEnter]
+                            let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "location" : locationEnter]
 
                             //
                               let db = Firestore.firestore()
@@ -109,46 +109,13 @@
                         override func viewDidLoad() {
                             super.viewDidLoad()
                             db = Firestore.firestore()
-            //                db.collection("users").whereField("name", isEqualTo: "nat").getDocuments { (SnapshotMetadata, Error) in
-            //                    if (Error != nil) {
-            //                        print(Error)
-            //                    }
-            //                    else
-            //                    {
-            //                        for document in (SnapshotMetadata?.documents)! {
-            //                            let name = document.data()["name"] as? String
-            //                            print(name!)
-            //                        }
-            //                    }
-            //
-            //                }
-            //
-            //                let name = " saima"
-            //                let age = "19"
-            //                let dict : [String : Any] = ["name" : name, "age" : age]
-            //                let db = Firestore.firestore()
-            //                db.collection("users").document("nat").setData(dict)
-                            //
-                            
-                            // Add a new document with a generated ID
-            //                var ref: DocumentReference? = nil
-            //                ref = db.collection("users").addDocument(data: [
-            //                    "first": "Ada",
-            //                    "last": "lace",
-            //                    "born": 1815
-            //                ]) { err in
-            //                    if let err = err {
-            //                        print("Error adding document: \(err)")
-            //                    } else {
-            //                        print("Document added with ID: \(ref!.documentID)")
-            //                    }
-            //                }
+           
                             
                             collectionView.delegate = self
                             collectionView.dataSource = self
                             self.NameField.delegate = self
                             self.emailField.delegate = self
-                            self.countryCodeField.delegate = self
+                         
                             self.phoneField.delegate = self
                             self.IndustryField.delegate = self
                             self.businessField.delegate = self
@@ -177,6 +144,10 @@
                             pickanimalfield.optionIds = [1,23,54,22]
                             pickanimalfield.didSelect{(selectedText , index ,id) in
                             }
+          
+                            
+                            
+                            
                             locationField.optionArray = pickerData1
                             locationField.didSelect{(selectedText , index ,id) in
                             }
@@ -247,16 +218,7 @@
                         }
                         
                         
-                        /*
-                         
-                         // MARK: - Navigation
-                         
-                         // In a storyboard-based application, you will often want to do a little preparation before navigation
-                         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                         // Get the new view controller using segue.destination.
-                         // Pass the selected object to the new view controller.
-                         }
-                         */
+                      
                         
                     }
 
