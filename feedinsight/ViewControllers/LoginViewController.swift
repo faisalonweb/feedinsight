@@ -12,7 +12,6 @@ import Firebase
 import FirebaseAuth
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -27,7 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.paswordField.delegate = self
         self.emailField.delegate = self
-         self.errorLabel.alpha = 0
 
         let customType = ActiveType.custom(pattern: "\\sSign\\sUp") //Looks for "are"
                        signupBtn.enabledTypes.append(customType)
@@ -78,8 +76,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
          Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 // Couldn't sign in
-                self.errorLabel.text = error!.localizedDescription
-                self.errorLabel.alpha = 1
+                  self.showError(error!.localizedDescription)
             }
             else {
 
@@ -96,18 +93,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
         }
         
-//
-//        if let email = emailField.text , let password = paswordField.text {
-//        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-//            if let e = error {
-//                print(e)
-//            }
-//            else {
-//                self.performSegue(withIdentifier: "signintapsegue", sender: self)
-//            }
-//          // ...
-//        }
-//        }
     }
     
     func validateFields() -> String? {
@@ -130,8 +115,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return nil
     }
     func showError(_ message:String) {
-        
-        errorLabel.text = message
-        errorLabel.alpha = 1
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
     }
+//    func showError(_ message:String) {
+//
+//        errorLabel.text = message
+//        errorLabel.alpha = 1
+//    }
 }

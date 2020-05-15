@@ -16,17 +16,11 @@
                     
     class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, CLLocationManagerDelegate {
 
-                       
-                        
-        @IBOutlet weak var errorLabel: UILabel!  
-        var currentLocation:CLLocation?
+                            var currentLocation:CLLocation?
                             @IBOutlet weak var locationField: DropDown!
                             @IBOutlet weak var haveAccountLabel: ActiveLabel!
                             @IBOutlet weak var NameField: UITextField!
                             @IBOutlet weak var emailField: UITextField!
-                            @IBOutlet weak var countryCodeField: UITextField! {
-                                didSet { countryCodeField?.addDoneCancelToolbar() }
-                            }
                             @IBOutlet weak var phoneField: UITextField! {
                                 didSet { phoneField?.addDoneCancelToolbar() }
                             }
@@ -135,10 +129,9 @@
                                                let pickrolEnter =    pickroleField.text!
                                                let emailEnter = emailField.text!
                                                let phoneEnter = phoneField.text!
-                                               let PhCodeenter = countryCodeField.text!
                                                let locationEnter = locationField.text!
                                 //
-                                let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "contrycode" : PhCodeenter, "location" : locationEnter]
+                                let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "location" : locationEnter]
 
                                 //
                                   let db = Firestore.firestore()
@@ -191,49 +184,14 @@
                 
     override func viewDidLoad() {
                                 super.viewDidLoad()
-         errorLabel.alpha = 0
+      
                                 db = Firestore.firestore()
                                // self.setCurrentLocation()
-                //                db.collection("users").whereField("name", isEqualTo: "nat").getDocuments { (SnapshotMetadata, Error) in
-                //                    if (Error != nil) {
-                //                        print(Error)
-                //                    }
-                //                    else
-                //                    {
-                //                        for document in (SnapshotMetadata?.documents)! {
-                //                            let name = document.data()["name"] as? String
-                //                            print(name!)
-                //                        }
-                //                    }
-                //
-                //                }
-                //
-                //                let name = " saima"
-                //                let age = "19"
-                //                let dict : [String : Any] = ["name" : name, "age" : age]
-                //                let db = Firestore.firestore()
-                //                db.collection("users").document("nat").setData(dict)
-                                //
-                                
-                                // Add a new document with a generated ID
-                //                var ref: DocumentReference? = nil
-                //                ref = db.collection("users").addDocument(data: [
-                //                    "first": "Ada",
-                //                    "last": "lace",
-                //                    "born": 1815
-                //                ]) { err in
-                //                    if let err = err {
-                //                        print("Error adding document: \(err)")
-                //                    } else {
-                //                        print("Document added with ID: \(ref!.documentID)")
-                //                    }
-                //                }
                                 
                                 collectionView.delegate = self
                                 collectionView.dataSource = self
                                 self.NameField.delegate = self
                                 self.emailField.delegate = self
-                                self.countryCodeField.delegate = self
                                 self.phoneField.delegate = self
                                 self.IndustryField.delegate = self
                                 self.businessField.delegate = self
@@ -312,19 +270,12 @@
                }
             if passwordField.text != repasswordField.text {
                 return "Passwords don't Match"
-//                let alertController = UIAlertController(title: "Error", message: "Passwords don't Match", preferredStyle: .alert)
-//                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//                alertController.addAction(defaultAction)
-//                self.present(alertController, animated: true, completion: nil)
             }
             
                
                return nil
            }
         func showError(_ message:String) {
-            
-            errorLabel.text = message
-            errorLabel.alpha = 1
             let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
@@ -366,17 +317,6 @@
                                         cell.industryImage.image = imageArr[cellIndex]
                             }
                             
-                            
-                            /*
-                             
-                             // MARK: - Navigation
-                             
-                             // In a storyboard-based application, you will often want to do a little preparation before navigation
-                             override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                             // Get the new view controller using segue.destination.
-                             // Pass the selected object to the new view controller.
-                             }
-                             */
                             
                         }
 
