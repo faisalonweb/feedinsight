@@ -78,27 +78,21 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
         let dataIndex = indexPath.row - 1
         let selectedIndexPaths: IndexPath = IndexPath(row:0, section:0)
         if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-                else { return ProfileloadTableViewCell()}
-            // cell.textLabel?.text = tableViewData[indexPath.section].title
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+//                else { return ProfileloadTableViewCell()}
+              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileloadTableViewCell
             cell.layer.borderColor = UIColor.white.cgColor
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
-//            if(check == false)
-//            {
-//                cell.imageView?.image = UIImage(named: "right-arrow")      // right-arrow
-//            }
-//            else{
-//               // cell.accessoryType = .disclosureIndicator
-//                cell.imageView?.image = UIImage(named: "downArrow")
-//            }
-            //
-            // if(check == false)
-            //            {
-            //                let sentImage = UIImage(named: "ibackrrow")
-            //                cell.imageView?.image = UIImage(named: "ibackrrow")
-            //            }
+            if(check == false)
+            {
+                cell.arrowView?.image = UIImage(named: "right-arrow")      // right-arrow
+            }
+            else{
+                cell.arrowView?.image = UIImage(named: "downNew")
+            }
+            
                         
                        // cell.accessoryView = sentImage
                         
