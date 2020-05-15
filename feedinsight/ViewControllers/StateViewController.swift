@@ -13,6 +13,8 @@ import iOSDropDown
 
 class StateViewController: UIViewController, UITextFieldDelegate {
     
+//    @IBOutlet weak var heatStressToggle: UIImageView!
+    @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var proimage: UIImageView!
     @IBOutlet weak var notificationimage: UIImageView!
     @IBOutlet weak var PsychField: DropDown!
@@ -38,9 +40,10 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
 
      var db: Firestore!
-    
+    var detail: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.headLabel.text = detail
         self.nameField.delegate = self
         self.animalField.delegate = self
          db = Firestore.firestore()
@@ -61,12 +64,16 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-
+    @IBAction func nextTapped(_ sender: UIButton) {
+    }
+    
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let psychEnter = PsychField.text!
                self.saveText(theText: psychEnter)
     }
     
+    @IBAction func loadProfileTapped(_ sender: UIButton) {
+    }
     func saveText(theText: String) {
                                       let daysPregnantEnter = daysPregnantF.text!
                                      let daysinMilkEnter = daysinMilkF.text!

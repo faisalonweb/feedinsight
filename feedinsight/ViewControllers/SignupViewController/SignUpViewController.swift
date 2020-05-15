@@ -13,10 +13,11 @@
     import CoreLocation
     import FirebaseAuth
     import Firebase
-                    
-    class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, CLLocationManagerDelegate {
+//                    class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, CLLocationManagerDelegate {
 
-                            var currentLocation:CLLocation?
+    class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
+
+                           // var currentLocation:CLLocation?
                             @IBOutlet weak var locationField: DropDown!
                             @IBOutlet weak var haveAccountLabel: ActiveLabel!
                             @IBOutlet weak var NameField: UITextField!

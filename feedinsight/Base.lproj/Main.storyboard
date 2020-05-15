@@ -892,6 +892,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="loadProfileTapped:" destination="tMY-Ri-kdE" eventType="touchUpInside" id="K4c-jn-8to"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-1l-sAG">
                                                                 <rect key="frame" x="254.66666666666671" y="0.0" width="119.33333333333334" height="45"/>
@@ -906,6 +909,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="nextTapped:" destination="tMY-Ri-kdE" eventType="touchUpInside" id="YEM-oq-Gj4"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -996,6 +1002,7 @@
                         <outlet property="daysPregnantF" destination="8CC-eH-cRr" id="vnK-qj-mwQ"/>
                         <outlet property="daysinMilkF" destination="hYa-r0-DR8" id="Dcf-fe-kXy"/>
                         <outlet property="daystoAchiveF" destination="e6E-7m-Xop" id="eIp-D4-sDd"/>
+                        <outlet property="headLabel" destination="doH-R7-gKj" id="OyM-Bu-Lb4"/>
                         <outlet property="milkInProducitonF" destination="7U2-s0-rQm" id="7WL-AT-EmK"/>
                         <outlet property="nameField" destination="kCE-IS-EKg" id="riZ-52-3w1"/>
                         <outlet property="notificationimage" destination="R2W-RK-3il" id="ivH-g9-DdS"/>
@@ -1607,7 +1614,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="ruminantLabel" destination="weY-aR-M8P" id="CPy-Xe-fIp"/>
-                                                    <segue destination="tMY-Ri-kdE" kind="show" id="1jd-8u-8mi"/>
+                                                    <segue destination="tMY-Ri-kdE" kind="show" identifier="showDetailSegue" id="pA1-Kf-N8S"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -2318,7 +2325,4 @@
         <image name="toggle-Yes" width="2168" height="872"/>
         <image name="userimage" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="mms-Xo-G3f"/>
-    </inferredMetricsTieBreakers>
 </document>

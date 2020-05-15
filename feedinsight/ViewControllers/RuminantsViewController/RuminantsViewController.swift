@@ -15,13 +15,18 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! RuminantCollectionViewCell
-        
+          slectedValue = ""
         let cellIndex = indexPath.item
         cell.ruminantLabel.text = textArr[cellIndex]
+        slectedValue = cell.ruminantLabel.text!
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
+        performSegue(withIdentifier: "showDetailSegue", sender: self)
+    }
+
     
     @IBOutlet weak var UserInfoView: UIView!
     @IBOutlet weak var notificationView: UIImageView!
@@ -35,8 +40,8 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var UserCompanyName: UILabel!
     @IBOutlet weak var UserProfilePicture: UIImageView!
     
-    let textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Deer","Camel"]
-    
+    let textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer"]
+    var slectedValue = ""
     @IBAction func SelectAnimal(_ sender: Any) {
         
     }
@@ -69,7 +74,15 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         // Do any additional setup after loading the view.
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let vc = segue.destination as? StateViewController, let detailToSend = sender as? String {
+//                        vc.detail = detailToSend
+//                    }
+        if(segue.identifier == "showDetailSegue"){
+                let displayVC = segue.destination as! StateViewController
+            displayVC.detail = slectedValue
+        }
+    }
     
     
 }
