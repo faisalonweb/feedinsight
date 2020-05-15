@@ -28,6 +28,8 @@
 		04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */; };
 		04E69497244480F200E2CE1B /* RuminantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E69496244480F200E2CE1B /* RuminantsViewController.swift */; };
 		04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E694992444AB6F00E2CE1B /* SignUpViewController.swift */; };
+		04E98D57246E3F8600D7AB67 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E98D56246E3F8600D7AB67 /* Utilities.swift */; };
+		04E98D59246E3FBB00D7AB67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E98D58246E3FBB00D7AB67 /* Constants.swift */; };
 		04EC579624509E7100BAAF23 /* DropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC579524509E7100BAAF23 /* DropViewController.swift */; };
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */; };
@@ -65,6 +67,8 @@
 		04E3F2AD2450C33B00A7364F /* SignUpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E69496244480F200E2CE1B /* RuminantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuminantsViewController.swift; sourceTree = "<group>"; };
 		04E694992444AB6F00E2CE1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		04E98D56246E3F8600D7AB67 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		04E98D58246E3FBB00D7AB67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04EC579524509E7100BAAF23 /* DropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewController.swift; sourceTree = "<group>"; };
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +191,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		04E98D55246E3F6700D7AB67 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				04E98D56246E3F8600D7AB67 /* Utilities.swift */,
+				04E98D58246E3FBB00D7AB67 /* Constants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		1A7F1209243CE34F0008CFC0 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +225,7 @@
 		1A7F1214243CE34F0008CFC0 /* feedinsight */ = {
 			isa = PBXGroup;
 			children = (
+				04E98D55246E3F6700D7AB67 /* Helper */,
 				045263FA2451BEB9006D67AB /* Font */,
 				04E694982444AB1500E2CE1B /* ViewControllers */,
 				1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */,
@@ -368,9 +382,11 @@
 			files = (
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				045263F724519177006D67AB /* LoginViewController.swift in Sources */,
+				04E98D57246E3F8600D7AB67 /* Utilities.swift in Sources */,
 				04E6949A2444AB6F00E2CE1B /* SignUpViewController.swift in Sources */,
 				04236AE72450E19900C66F66 /* AnimalCollectionViewCell.swift in Sources */,
 				1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */,
+				04E98D59246E3FBB00D7AB67 /* Constants.swift in Sources */,
 				0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */,
 				046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */,
 				044BE5022452A66C00551BF6 /* dropdownTableViewCell.swift in Sources */,

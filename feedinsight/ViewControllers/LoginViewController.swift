@@ -12,6 +12,7 @@ import Firebase
 import FirebaseAuth
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.paswordField.delegate = self
         self.emailField.delegate = self
+         self.errorLabel.alpha = 0
 
         let customType = ActiveType.custom(pattern: "\\sSign\\sUp") //Looks for "are"
                        signupBtn.enabledTypes.append(customType)
@@ -65,18 +67,71 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                }
 
     @IBAction func signinPressed(_ sender: Any) {
-        
-        if let email = emailField.text , let password = paswordField.text {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let e = error {
-                print(e)
+           let error = validateFields()
+        if error != nil {
+            showError(error!)
+        }
+          else {
+        let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+               let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+       
+         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {
+                // Couldn't sign in
+                self.errorLabel.text = error!.localizedDescription
+                self.errorLabel.alpha = 1
             }
             else {
-                self.performSegue(withIdentifier: "signintapsegue", sender: self)
+
+                if #available(iOS 13.0, *) {
+                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+                } else {
+                    // Fallback on earlier versions
+                }
+
+                
             }
-          // ...
+    }
         }
-        }
+        
+//
+//        if let email = emailField.text , let password = paswordField.text {
+//        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+//            if let e = error {
+//                print(e)
+//            }
+//            else {
+//                self.performSegue(withIdentifier: "signintapsegue", sender: self)
+//            }
+//          // ...
+//        }
+//        }
     }
     
+    func validateFields() -> String? {
+        
+        // Check that all fields are filled in
+        if emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""  ||
+            paswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            
+            return "Please fill in all fields."
+        }
+        
+        // Check if the password is secure
+        let cleanedPassword = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if Utilities.isPasswordValid(cleanedPassword) == false {
+            // Password isn't secure enough
+            return "Please make sure your password is at least 8 characters, contains a special character and a number."
+        }
+        
+        return nil
+    }
+    func showError(_ message:String) {
+        
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
 }

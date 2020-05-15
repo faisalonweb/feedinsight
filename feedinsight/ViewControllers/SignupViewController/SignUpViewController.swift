@@ -11,12 +11,15 @@
     import ActiveLabel
     import FirebaseFirestore
     import CoreLocation
+    import FirebaseAuth
+    import Firebase
                     
     class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, CLLocationManagerDelegate {
 
                        
                         
-                            var currentLocation:CLLocation?
+        @IBOutlet weak var errorLabel: UILabel!  
+        var currentLocation:CLLocation?
                             @IBOutlet weak var locationField: DropDown!
                             @IBOutlet weak var haveAccountLabel: ActiveLabel!
                             @IBOutlet weak var NameField: UITextField!
@@ -56,9 +59,52 @@
                             }
                          
                             @IBAction func SignupTap(_ sender: UIButton) {
+                                //
+                                let error = validateFields()
+                                if error != nil {
+                                    
+                                    // There's something wrong with the fields, show error message
+                                    showError(error!)
+                                }
+                                else {
+                                           
+                                           // Create cleaned versions of the data
+                                           let firstName = NameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let repassword = repasswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let password = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                    // Create the user
+                                               Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                                                   // Check for errors
+                                                   if err != nil {
+                                                       
+                                                       // There was an error creating the user
+                                                       self.showError(err!.localizedDescription)
+                                                   }
+                                                else {
+                                                    
+                                                                   let db = Firestore.firestore()
+                                                                   
+                                                                   db.collection("users").addDocument(data: ["firstname":firstName, "repassword":repassword, "uid": result!.user.uid ]) { (error) in
+                                                                       
+                                                                       if error != nil {
+                                                                           // Show error message
+                                                                           self.showError(error!.localizedDescription)
+                                                                       }
+                                                                   }
+                                                    // Transition to the home screen
+                                                    if #available(iOS 13.0, *) {
+                                                        self.transitionToHome()
+                                                    } else {
+                                                        // Fallback on earlier versions
+                                                    }
+                                                                  }
+                                                    }
+            
+                                                }
+                                //
                                 let nameEnter = NameField.text!
-                                
-                                       self.saveText(theText: nameEnter)
+                                self.saveText(theText: nameEnter)
                                 // it will get all useers data save in user collection
                                 db.collection("users").getDocuments() { (querySnapshot, err) in
                                     if let err = err {
@@ -71,6 +117,15 @@
                                 }
                             }
                             
+        @available(iOS 13.0, *)
+        func transitionToHome() {
+            
+            let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+            
+            view.window?.rootViewController = homeViewController
+            view.window?.makeKeyAndVisible()
+            
+        }
                             func saveText(theText: String) {
                                                 let passwordEnter = passwordField.text!
                                                let industryEnter =    IndustryField.text!
@@ -136,8 +191,9 @@
                 
     override func viewDidLoad() {
                                 super.viewDidLoad()
+         errorLabel.alpha = 0
                                 db = Firestore.firestore()
-                                self.setCurrentLocation()
+                               // self.setCurrentLocation()
                 //                db.collection("users").whereField("name", isEqualTo: "nat").getDocuments { (SnapshotMetadata, Error) in
                 //                    if (Error != nil) {
                 //                        print(Error)
@@ -239,6 +295,41 @@
                                 }
                                 
                             }
+        func validateFields() -> String? {
+             //  var a = false
+               if NameField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   repasswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+                   
+                   return "Please fill in all fields."
+               }
+               let cleanedPassword = repasswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+               
+               if Utilities.isPasswordValid(cleanedPassword) == false {
+
+                   return "Please make sure your password is at least 8 characters, contains a special character and a number."
+               }
+            if passwordField.text != repasswordField.text {
+                return "Passwords don't Match"
+//                let alertController = UIAlertController(title: "Error", message: "Passwords don't Match", preferredStyle: .alert)
+//                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//                alertController.addAction(defaultAction)
+//                self.present(alertController, animated: true, completion: nil)
+            }
+            
+               
+               return nil
+           }
+        func showError(_ message:String) {
+            
+            errorLabel.text = message
+            errorLabel.alpha = 1
+            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
                             
                             func alert(_ title: String, message: String) {
                                 let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

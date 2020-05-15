@@ -18,7 +18,7 @@ var window:UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        let db = Firestore.firestore()
+//        let db = Firestore.firestore()
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }

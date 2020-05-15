@@ -222,6 +222,13 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCx-nv-vQv">
+                                                <rect key="frame" x="60" y="76" width="218" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.61187341370000004" green="0.10804236220000001" blue="0.004698244614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -336,7 +343,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="signinPressed:" destination="YKO-M6-kfF" eventType="touchUpInside" id="X9T-34-ir7"/>
-                                                            <segue destination="VYm-IL-FTt" kind="presentation" identifier="signintapsegue" id="Uxs-CJ-pbQ"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an Account? Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJe-0w-iSI" customClass="ActiveLabel" customModule="ActiveLabel">
@@ -370,13 +376,14 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Lto-sU-biz" id="2Md-Gq-f2h"/>
+                        <outlet property="errorLabel" destination="tCx-nv-vQv" id="RVa-4J-rqE"/>
                         <outlet property="paswordField" destination="mhb-7z-qdH" id="LQh-2w-YTW"/>
                         <outlet property="signupBtn" destination="FJe-0w-iSI" id="tp9-Fu-u2O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1P-FH-VRu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3137.68115942029" y="272.54464285714283"/>
+            <point key="canvasLocation" x="3136.8000000000002" y="272.11394302848578"/>
         </scene>
         <!--Signintwo-->
         <scene sceneID="mJb-rQ-daI">
@@ -1693,28 +1700,28 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1678"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ImageBack" translatesAutoresizingMaskIntoConstraints="NO" id="6pu-FB-Vl1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3g5-Gc-E3Q">
-                                                        <rect key="frame" x="33" y="186.5" width="249" height="27.5"/>
+                                                        <rect key="frame" x="33" y="188.5" width="249" height="27"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="23"/>
                                                         <color key="textColor" red="0.31764705879999999" green="0.090196078430000007" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue to sign up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="FOh-CX-Bqd">
-                                                        <rect key="frame" x="33" y="218" width="238" height="24"/>
+                                                        <rect key="frame" x="33" y="219.5" width="238" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <color key="textColor" red="0.52156862745098043" green="0.51372549019607838" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME(First and Last) " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="3Lw-VO-64x">
-                                                        <rect key="frame" x="33" y="293" width="249" height="24"/>
+                                                        <rect key="frame" x="33" y="294" width="249" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <color key="textColor" red="0.31764705879999999" green="0.090196078430000007" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HzM-FU-pgy">
-                                                        <rect key="frame" x="33" y="322" width="348" height="35.5"/>
+                                                        <rect key="frame" x="33" y="322.5" width="348" height="35"/>
                                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -2013,10 +2020,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLw-0r-5nY">
-                                                        <rect key="frame" x="33" y="1506" width="348" height="113"/>
+                                                        <rect key="frame" x="33" y="1505" width="348" height="114"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an Account? Signin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-oy-HIo" customClass="ActiveLabel" customModule="ActiveLabel">
-                                                                <rect key="frame" x="94" y="39.5" width="160" height="17"/>
+                                                                <rect key="frame" x="94" y="40" width="160" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.52156862749999999" green="0.51372549020000002" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2029,7 +2036,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPr-dw-ke9">
-                                                        <rect key="frame" x="33" y="1434" width="348" height="33"/>
+                                                        <rect key="frame" x="33" y="1434" width="348" height="32"/>
                                                         <color key="backgroundColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="17"/>
                                                         <state key="normal" title="Sign Up">
@@ -2058,6 +2065,13 @@
                                                             <action selector="backBtn:" destination="SZ3-W5-xIl" eventType="touchUpInside" id="1Kb-VU-Xbh"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8u-bp-Sgu">
+                                                        <rect key="frame" x="88" y="264" width="194" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.61187341370000004" green="0.10804236220000001" blue="0.004698244614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="wuZ-Ce-5MN" firstAttribute="top" secondItem="HzM-FU-pgy" secondAttribute="bottom" constant="27.5" id="1Gg-in-nx2"/>
@@ -2221,6 +2235,7 @@
                         <outlet property="collectionView" destination="9i3-A0-ArV" id="GC8-TT-feN"/>
                         <outlet property="countryCodeField" destination="U07-XG-4Yd" id="Tpn-RY-vCd"/>
                         <outlet property="emailField" destination="C70-D6-rDX" id="eA7-y8-4iY"/>
+                        <outlet property="errorLabel" destination="p8u-bp-Sgu" id="q0I-zf-fZY"/>
                         <outlet property="haveAccountLabel" destination="9Gw-oy-HIo" id="YuL-bo-yKx"/>
                         <outlet property="locationField" destination="gbA-Dx-VuN" id="MyB-s8-8pJ"/>
                         <outlet property="passwordField" destination="Qf5-Gz-NHi" id="cWK-VT-Jbj"/>
@@ -2333,7 +2348,4 @@
         <image name="toggle-Yes" width="2168" height="872"/>
         <image name="userimage" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Qzi-7y-YU3"/>
-    </inferredMetricsTieBreakers>
 </document>
