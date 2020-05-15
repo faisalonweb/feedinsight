@@ -64,9 +64,14 @@
                                            
                                            // Create cleaned versions of the data
                                            let firstName = NameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-                                           let repassword = repasswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let industryEnter = IndustryField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                                            let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                                            let password = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let busindessEnter = businessField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let pickrolEnter = pickroleField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let pickanimalEnter = pickanimalfield.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let phoneEnter = phoneField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                           let locationEnter = locationField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                                     // Create the user
                                                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                                                    // Check for errors
@@ -78,8 +83,8 @@
                                                 else {
                                                     
                                                                    let db = Firestore.firestore()
-                                                                   
-                                                                   db.collection("users").addDocument(data: ["firstname":firstName, "repassword":repassword, "uid": result!.user.uid ]) { (error) in
+                                                                  
+                                                                   db.collection("users").addDocument(data: ["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter ]) { (error) in
                                                                        
                                                                        if error != nil {
                                                                            // Show error message
@@ -258,7 +263,13 @@
                if NameField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                    repasswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                    emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-                   passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+                   passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   pickroleField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   pickanimalfield.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   businessField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   IndustryField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   phoneField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                   locationField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
                    
                    return "Please fill in all fields."
                }
