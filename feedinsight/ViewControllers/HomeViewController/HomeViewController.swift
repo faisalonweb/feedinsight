@@ -14,9 +14,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let textArr = ["Premix Check","Unit Converter","Premix Check","Unit Conveter","Premix Check","Unit Conveter"]
+    let textArr = ["Premix Check","Unit Conveter"]
 
-    let imageArr = [UIImage (named: "premix"), UIImage(named: "calculator"),UIImage (named: "premix"), UIImage(named: "calculator"),UIImage(named: "premix"),UIImage(named: "calculator")]
+    let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
 
     
    
