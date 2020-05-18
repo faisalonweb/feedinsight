@@ -46,8 +46,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var name = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.headLabel.text = detail
-        // print("its detials", detail)
         print("tishahaha", name)
         self.headLabel.text = name
         self.nameField.delegate = self
@@ -79,6 +77,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loadProfileTapped(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     func saveText(theText: String) {
                                       let daysPregnantEnter = daysPregnantF.text!
@@ -93,7 +93,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
                                      let categoryEnter = headLabel.text!
                                     
                       //
-        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID, "category" : categoryEnter]
+        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID, "categorySelected" : categoryEnter]
 
                       //
                         let db = Firestore.firestore()

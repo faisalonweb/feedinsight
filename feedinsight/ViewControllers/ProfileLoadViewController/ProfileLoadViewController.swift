@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 struct cellData {
     var opened = Bool()
@@ -25,12 +27,16 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     var check = false
     var tableViewData = [cellData]()
     let cellSpacingHeight: CGFloat = 20
-    
+     var db: Firestore!
+    var pickerData1: [String] = [String]()
+    var workarray: [String] = [String]()
+    let test = ["haha","hhabs"]
     @IBAction func backtapped(_ sender: UIButton) {
      //  self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        // let db = Firestore.firestore()
         tableview.backgroundColor = UIColor.white
         tableview.register(UINib(nibName: "profileTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titlecell")
         
@@ -41,7 +47,27 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             
         ]
         let devCousesImages = [UIImage(named: "ruminants"), UIImage(named: "aqua"), UIImage(named: "equines"), UIImage(named: "chicken")]
-        
+        //
+        let db = Firestore.firestore()
+//        db.collection("premixReport").whereField("userID", isEqualTo: Auth.auth().currentUser!.uid).getDocuments { (SnapshotMetadata, Error) in
+//           if (Error != nil) {
+//                 print(Error)
+//                     }
+//                 else
+//                 {
+//                   for document in (SnapshotMetadata?.documents)! {
+//                    let name = (document.data()["category"]) as! String
+//
+////                    for item in self.workarray
+////                                    {
+////                                        self.pickerData1.append(item)
+////                                    }
+//                     }
+//                }
+//                      
+//        }
+print("its hhhah", pickerData1)
+        //
         
         userprofile?.layer.cornerRadius = (userprofile?.frame.size.width ?? 0.0) / 2
                userprofile?.clipsToBounds = true
@@ -85,6 +111,8 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
+            //let index = test.indexOf()
+           // cell.imageView?.image = devCousesImages[0]
             if(check == false)
             {
                 cell.arrowView?.image = UIImage(named: "right-arrow")      // right-arrow
