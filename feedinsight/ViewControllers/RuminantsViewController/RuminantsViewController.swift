@@ -22,10 +22,14 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        performSegue(withIdentifier: "showDetailSegue", sender: self)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StateView") as? StateViewController
+        vc?.name = textArr[indexPath.row]
+        self.navigationController?.pushViewController(vc!, animated: true)
+//        performSegue(withIdentifier: "showDetailSegue", sender: self)
     }
+    
 
     
     @IBOutlet weak var UserInfoView: UIView!
@@ -74,15 +78,12 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.destination as? StateViewController, let detailToSend = sender as? String {
-//                        vc.detail = detailToSend
-//                    }
-        if(segue.identifier == "showDetailSegue"){
-                let displayVC = segue.destination as! StateViewController
-            displayVC.detail = slectedValue
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if(segue.identifier == "showDetailSegue"){
+//                let displayVC = segue.destination as! StateViewController
+//            displayVC.detail = slectedValue
+//        }
+//    }
     
     
 }

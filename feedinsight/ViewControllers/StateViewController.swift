@@ -8,7 +8,9 @@
 
 import UIKit
 import iOSDropDown
- import FirebaseFirestore
+import FirebaseAuth
+import FirebaseFirestore
+
 
 
 class StateViewController: UIViewController, UITextFieldDelegate {
@@ -41,9 +43,13 @@ class StateViewController: UIViewController, UITextFieldDelegate {
 
      var db: Firestore!
     var detail: String?
+    var name = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.headLabel.text = detail
+       // self.headLabel.text = detail
+        // print("its detials", detail)
+        print("tishahaha", name)
+        self.headLabel.text = name
         self.nameField.delegate = self
         self.animalField.delegate = self
          db = Firestore.firestore()
@@ -83,10 +89,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
                                      let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
                                      let animalEnter = animalField.text!
                                      let companynameEnter = nameField.text!
-                                   
+                                     let userID = Auth.auth().currentUser!.uid
+                                     let categoryEnter = headLabel.text!
                                     
                       //
-                      let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter]
+        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID, "category" : categoryEnter]
 
                       //
                         let db = Firestore.firestore()

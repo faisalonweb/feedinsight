@@ -681,13 +681,13 @@
         <!--State View Controller-->
         <scene sceneID="C5M-Uk-Qc4">
             <objects>
-                <viewController storyboardIdentifier="StateViewController" modalPresentationStyle="fullScreen" id="tMY-Ri-kdE" customClass="StateViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StateView" modalPresentationStyle="fullScreen" id="tMY-Ri-kdE" customClass="StateViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cdW-VM-8kD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwi-lD-QQ1">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XYd-EV-yMP">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -1614,7 +1614,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="ruminantLabel" destination="weY-aR-M8P" id="CPy-Xe-fIp"/>
-                                                    <segue destination="tMY-Ri-kdE" kind="show" identifier="showDetailSegue" id="pA1-Kf-N8S"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -2294,7 +2293,7 @@
         <!--Navigation Controller-->
         <scene sceneID="NAq-IH-v4e">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qhH-x6-Lhu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="qhH-x6-Lhu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="home" id="bKe-C3-0kv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g6D-sX-6Fn">
