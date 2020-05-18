@@ -535,13 +535,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE5-5i-4OV">
-                                                        <rect key="frame" x="0.0" y="54.999999999999986" width="374" height="245.66666666666663"/>
+                                                        <rect key="frame" x="0.0" y="55.000000000000014" width="374" height="245.33333333333337"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBack" translatesAutoresizingMaskIntoConstraints="NO" id="nDH-33-oO6">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="245.66666666666666"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="245.33333333333334"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advertisement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ws-Wu-5wB">
-                                                                <rect key="frame" x="8" y="14" width="109.66666666666667" height="20"/>
+                                                                <rect key="frame" x="8" y="13.999999999999998" width="128.33333333333334" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                                 <color key="textColor" red="0.96291425779999995" green="0.96291425779999995" blue="0.96291425779999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -558,16 +558,16 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="MRG-D4-Bpm">
-                                                        <rect key="frame" x="0.0" y="315.66666666666669" width="374" height="16.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="315.33333333333331" width="374" height="16.666666666666686"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tools" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3R-jR-h3z">
-                                                                <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="16.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="16.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See All" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-3p-pQc">
-                                                                <rect key="frame" x="207.66666666666663" y="0.0" width="166.33333333333337" height="16.333333333333332"/>
+                                                                <rect key="frame" x="207.66666666666663" y="0.0" width="166.33333333333337" height="16.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="14"/>
                                                                 <color key="textColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -657,15 +657,6 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nkF-ch-DN7">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem systemItem="favorites" id="SKh-st-zlj"/>
-                                    <tabBarItem systemItem="more" id="LnO-1K-Azp"/>
-                                </items>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -2014,8 +2005,14 @@
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLw-0r-5nY">
                                                         <rect key="frame" x="33" y="1506" width="348" height="35"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an Account? Signin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-oy-HIo" customClass="ActiveLabel" customModule="ActiveLabel">
-                                                                <rect key="frame" x="94" y="14.666666666666742" width="160" height="17"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAc-wj-Vln">
+                                                                <rect key="frame" x="93" y="14" width="162" height="17"/>
+                                                                <connections>
+                                                                    <action selector="accountBtn:" destination="SZ3-W5-xIl" eventType="touchUpInside" id="YBy-On-5kz"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an Account? sign in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="9Gw-oy-HIo" customClass="ActiveLabel" customModule="ActiveLabel">
+                                                                <rect key="frame" x="93" y="14.666666666666742" width="162" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.52156862749999999" green="0.51372549020000002" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2023,6 +2020,8 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
+                                                            <constraint firstItem="wAc-wj-Vln" firstAttribute="centerX" secondItem="PLw-0r-5nY" secondAttribute="centerX" id="F5x-lo-Tph"/>
+                                                            <constraint firstItem="wAc-wj-Vln" firstAttribute="centerY" secondItem="PLw-0r-5nY" secondAttribute="centerY" constant="5.6666666666666643" id="b1M-uu-iaY"/>
                                                             <constraint firstItem="9Gw-oy-HIo" firstAttribute="centerY" secondItem="PLw-0r-5nY" secondAttribute="centerY" constant="3.6666666666667425" id="pBo-es-sig"/>
                                                             <constraint firstItem="9Gw-oy-HIo" firstAttribute="centerX" secondItem="PLw-0r-5nY" secondAttribute="centerX" id="rR7-r0-aCg"/>
                                                         </constraints>
@@ -2042,6 +2041,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="SignupTap:" destination="SZ3-W5-xIl" eventType="touchUpInside" id="zjn-Nd-S5x"/>
+                                                            <segue destination="VYm-IL-FTt" kind="presentation" identifier="showDetailSegue" id="sAN-aD-9Nb"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJg-4i-KJQ">
@@ -2353,4 +2353,7 @@
         <image name="toggle-Yes" width="2168" height="872"/>
         <image name="userimage" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sAN-aD-9Nb"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -6,13 +6,13 @@
                         //  Copyright © 2020 faisal. All rights reserved.
                         //
                         
-    import UIKit
-    import iOSDropDown
-    import ActiveLabel
-    import FirebaseFirestore
-    import CoreLocation
-    import FirebaseAuth
-    import Firebase
+import UIKit
+import iOSDropDown
+import ActiveLabel
+import FirebaseFirestore
+import CoreLocation
+import FirebaseAuth
+import Firebase
 //                    class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, CLLocationManagerDelegate {
 
     class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
@@ -61,8 +61,6 @@
                                 //
                                 let error = validateFields()
                                 if error != nil {
-                                    
-                                    // There's something wrong with the fields, show error message
                                     showError(error!)
                                 }
                                 else {
@@ -124,13 +122,21 @@
         @available(iOS 13.0, *)
         func transitionToHome() {
             
-            let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+//            let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+//
+//            view.window?.rootViewController = homeViewController
+//            view.window?.makeKeyAndVisible()
             
-            view.window?.rootViewController = homeViewController
-            view.window?.makeKeyAndVisible()
+             performSegue(withIdentifier: "showDetailSegue", sender: self)
             
         }
-                            func saveText(theText: String) {
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                if(segue.identifier == "showDetailSegue"){
+                        let displayVC = segue.destination as! UITabBarController
+                }
+            }
+            
+        func saveText(theText: String) {
                                                 let passwordEnter = passwordField.text!
                                                let industryEnter =    IndustryField.text!
                                                let busindessEnter =   businessField.text!
@@ -227,8 +233,6 @@
                                                     pickerData1.append(workarray[0])
                                                    
                                                }
-                                //print("its array:",pickerData1)
-                                
                                 let itemSize = UIScreen.main.bounds.width/3 - 2
                                 let layout = UICollectionViewFlowLayout()
                                 layout.scrollDirection = .horizontal
@@ -250,12 +254,12 @@
                                 }
 
                             
-                                 let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
+                                 let customType = ActiveType.custom(pattern: "\\ssign\\sin") //Looks for "are"
                                 haveAccountLabel.enabledTypes.append(customType)
                                 haveAccountLabel.urlMaximumLength = 61
                                 
                                 haveAccountLabel.customize { label in
-                                haveAccountLabel.text = "Have an Account? Sign In"
+                                haveAccountLabel.text = "Have an Account? sign in"
                                     haveAccountLabel.numberOfLines = 1
                                     haveAccountLabel.lineSpacing = 4
                                     haveAccountLabel.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
@@ -270,7 +274,8 @@
                                         
                                         return atts
                                     }
-                                    label.handleCustomTap(for: customType) { _ in self.btnSelection() }
+                                    label.handleCustomTap(for: customType) {_ in self.btnSelection() }
+                                   
                                 }
                                 
                             }
@@ -302,6 +307,13 @@
                
                return nil
            }
+        
+        @IBAction func accountBtn(_ sender: Any) {
+            print("came came")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? SignUpViewController
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        
         func showError(_ message:String) {
             let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
