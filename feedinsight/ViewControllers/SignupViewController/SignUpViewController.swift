@@ -54,6 +54,7 @@
                                 if let navController = self.navigationController {
                                     navController.popViewController(animated: true)
                                 }
+                                
                             }
                          
                             @IBAction func SignupTap(_ sender: UIButton) {
@@ -200,6 +201,7 @@
                 
     override func viewDidLoad() {
                                 super.viewDidLoad()
+         self.navigationController?.isNavigationBarHidden = true
       self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
       self.navigationController?.navigationBar.shadowImage = UIImage()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)

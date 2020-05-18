@@ -31,8 +31,13 @@
         
         
         @IBAction func createAccounttAP(_ sender: UIButton) {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignUpViewController
+let vc = storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignUpViewController
             self.navigationController?.pushViewController(vc!, animated: true)
+            
+//            let detailVC = SignUpViewController()
+//                let navigationController = UINavigationController(rootViewController: detailVC)
+//                            navigationController.modalPresentationStyle = .fullScreen
+//                                        present(navigationController, animated: true)
         }
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
