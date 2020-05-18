@@ -46,6 +46,13 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var name = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        //
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+                    self.navigationController?.navigationBar.shadowImage = UIImage()
+                      let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+                            navigationItem.leftBarButtonItem = backButton
+        
+        //
         print("tishahaha", name)
         self.headLabel.text = name
         self.nameField.delegate = self
@@ -67,6 +74,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         PsychField.didSelect{(selectedText , index ,id) in
         }
         
+    }
+    @IBAction func backBtnTap(_ sender: UIButton) {
+        if let navController = self.navigationController {
+                   navController.popViewController(animated: true)
+               }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
     }

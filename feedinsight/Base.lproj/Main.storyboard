@@ -743,11 +743,21 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpi-jA-wQD">
+                                                        <rect key="frame" x="20" y="41" width="24" height="20"/>
+                                                        <state key="normal" backgroundImage="BackArrowImage"/>
+                                                        <connections>
+                                                            <action selector="backBtnTap:" destination="tMY-Ri-kdE" eventType="touchUpInside" id="oXf-R4-aSE"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="kpi-jA-wQD" firstAttribute="top" secondItem="fHG-1l-2aW" secondAttribute="top" constant="41" id="DXq-po-H3d"/>
                                                     <constraint firstItem="doH-R7-gKj" firstAttribute="centerX" secondItem="fHG-1l-2aW" secondAttribute="centerX" id="FxZ-0y-IDP"/>
                                                     <constraint firstAttribute="height" constant="100" id="HIT-2y-cSR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kpi-jA-wQD" secondAttribute="bottom" constant="39" id="KJ3-Nh-beV"/>
+                                                    <constraint firstItem="kpi-jA-wQD" firstAttribute="leading" secondItem="fHG-1l-2aW" secondAttribute="leading" constant="20" id="aui-xk-9hX"/>
                                                     <constraint firstItem="doH-R7-gKj" firstAttribute="centerY" secondItem="fHG-1l-2aW" secondAttribute="centerY" id="znE-ld-ycS"/>
                                                 </constraints>
                                             </view>

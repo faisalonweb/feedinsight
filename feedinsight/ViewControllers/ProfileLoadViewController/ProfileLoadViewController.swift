@@ -32,11 +32,23 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     var workarray: [String] = [String]()
     let test = ["haha","hhabs"]
     @IBAction func backtapped(_ sender: UIButton) {
-     //  self.dismiss(animated: true, completion: nil)
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "StateView") as? StateViewController
+//        self.navigationController?.pushViewController(vc!, animated: true)
+        
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // let db = Firestore.firestore()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+             self.navigationController?.navigationBar.shadowImage = UIImage()
+               let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+                     navigationItem.leftBarButtonItem = backButton
+        
+        
+        
         tableview.backgroundColor = UIColor.white
         tableview.register(UINib(nibName: "profileTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titlecell")
         
