@@ -50,7 +50,10 @@
                                    ]
                             
                             @IBAction func backBtn(_ sender: UIButton) {
-                                self.dismiss(animated: true, completion: nil)
+                               // self.dismiss(animated: true, completion: nil)
+                                if let navController = self.navigationController {
+                                    navController.popViewController(animated: true)
+                                }
                             }
                          
                             @IBAction func SignupTap(_ sender: UIButton) {
@@ -187,10 +190,20 @@
                         self.locationField.text = output
                     }
                 }
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            let height: CGFloat = 0 //whatever height you want
+            let bounds = self.navigationController!.navigationBar.bounds
+            self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
+
+        }
                 
     override func viewDidLoad() {
                                 super.viewDidLoad()
-      
+      self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+      self.navigationController?.navigationBar.shadowImage = UIImage()
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+              navigationItem.leftBarButtonItem = backButton
                                 db = Firestore.firestore()
                                // self.setCurrentLocation()
                                 

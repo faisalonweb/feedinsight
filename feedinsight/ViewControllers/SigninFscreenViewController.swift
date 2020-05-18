@@ -17,7 +17,8 @@
         override func viewDidLoad() {
             super.viewDidLoad()
           
-               
+               self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+               self.navigationController?.navigationBar.shadowImage = UIImage()
             
             
         }
@@ -30,6 +31,8 @@
         
         
         @IBAction func createAccounttAP(_ sender: UIButton) {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignUpViewController
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
