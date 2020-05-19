@@ -40,12 +40,23 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var daysPregnantF: UITextField! {
         didSet { daysPregnantF?.addDoneCancelToolbar() }
     }
-
-     var db: Firestore!
+    @IBOutlet weak var heatStreesOutlet: UIButton!
+    @IBOutlet weak var dietOutlet: UIButton!
+    @IBOutlet weak var producitonOutlet: UIButton!
+    
+    @IBOutlet weak var disorderOutlet: UIButton!
+    var db: Firestore!
     var detail: String?
     var name = ""
+
+    var toggleState = 1
+    let toggleNo = UIImage(named:"Toggle-no")
+    let toggleYes = UIImage(named:"toggle-Yes")
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        heatStreesOutlet.setImage(toggleYes, for: .normal)
+        heatStreesOutlet.setImage(toggleNo, for: .selected)
         //
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                     self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -92,6 +103,56 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    @IBAction func productionToggleTap(_ sender: UIButton) {
+        producitonOutlet.isSelected = !producitonOutlet.isSelected
+               if producitonOutlet.isSelected {
+                   print("I am selected.")
+                   producitonOutlet.setImage(toggleNo, for: .selected)
+               }
+               else {
+                   print("I am not selected.")
+                   producitonOutlet.setImage(toggleYes, for: .normal)
+               }
+
+    }
+   
+    @IBAction func dietToggleTap(_ sender: UIButton) {
+        dietOutlet.isSelected = !dietOutlet.isSelected
+               if dietOutlet.isSelected {
+                   print("I am selected.")
+                   dietOutlet.setImage(toggleNo, for: .selected)
+               }
+               else {
+                   print("I am not selected.")
+                   dietOutlet.setImage(toggleYes, for: .normal)
+               }
+
+    }
+    @IBAction func disorderToggleTap(_ sender: UIButton) {
+        disorderOutlet.isSelected = !disorderOutlet.isSelected
+               if disorderOutlet.isSelected {
+                   print("I am selected.")
+                   disorderOutlet.setImage(toggleNo, for: .selected)
+               }
+               else {
+                   print("I am not selected.")
+                   disorderOutlet.setImage(toggleYes, for: .normal)
+               }
+    }
+    @IBAction func heatStressToggleTap(_ sender: UIButton) {
+        heatStreesOutlet.isSelected = !heatStreesOutlet.isSelected
+        if heatStreesOutlet.isSelected {
+            print("I am selected.")
+            heatStreesOutlet.setImage(toggleNo, for: .selected)
+        }
+        else {
+            print("I am not selected.")
+            heatStreesOutlet.setImage(toggleYes, for: .normal)
+        }
+        
+    }
+    
+    
     func saveText(theText: String) {
                                       let daysPregnantEnter = daysPregnantF.text!
                                      let daysinMilkEnter = daysinMilkF.text!

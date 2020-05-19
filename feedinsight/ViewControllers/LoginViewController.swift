@@ -79,21 +79,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                   self.showError(error!.localizedDescription)
             }
             else {
-
                 if #available(iOS 13.0, *) {
-                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-                    self.view.window?.rootViewController = homeViewController
-                    self.view.window?.makeKeyAndVisible()
+                    self.transitionToHome()
                 } else {
                     // Fallback on earlier versions
                 }
 
+//                if #available(iOS 13.0, *) {
+//                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+//                    self.view.window?.rootViewController = homeViewController
+//                    self.view.window?.makeKeyAndVisible()
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+
                 
+                }
             }
-    }
         }
         
     }
+     func transitionToHome() {
+                
+                 performSegue(withIdentifier: "homeSegue", sender: self)
+                /// homeSegue
+            }
+            override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                    if(segue.identifier == "homeSegue"){
+                            let displayVC = segue.destination as! UITabBarController
+                    }
+                }
     
     func validateFields() -> String? {
         

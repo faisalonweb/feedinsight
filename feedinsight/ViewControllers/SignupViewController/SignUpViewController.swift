@@ -128,11 +128,11 @@ import Firebase
 //            view.window?.makeKeyAndVisible()
             
              performSegue(withIdentifier: "showDetailSegue", sender: self)
-            
+            /// homeSegue
         }
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 if(segue.identifier == "showDetailSegue"){
-                        let displayVC = segue.destination as! UITabBarController
+                        let displayVC = segue.destination as! LoginViewController
                 }
             }
             
@@ -242,7 +242,7 @@ import Firebase
                                 collectionView.collectionViewLayout = layout
                                 
                                pickanimalfield.optionArray = ["Option 1", "Option 2", "Option 3"]
-                                pickanimalfield.optionIds = [1,23,54,22]
+                               pickanimalfield.optionArray = ["Cow","Deer","Camel"]
                                 pickanimalfield.didSelect{(selectedText , index ,id) in
                                 }
                                 locationField.optionArray = pickerData1
