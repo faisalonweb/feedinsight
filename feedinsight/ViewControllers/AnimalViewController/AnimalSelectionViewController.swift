@@ -32,6 +32,10 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+               self.navigationController?.navigationBar.shadowImage = UIImage()
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         animalCollectionView.delegate = self
         animalCollectionView.dataSource = self
         
@@ -54,9 +58,6 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         layout.minimumLineSpacing = 20
         
         animalCollectionView.collectionViewLayout = layout
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
     

@@ -639,7 +639,7 @@
                                                         <connections>
                                                             <outlet property="imgView" destination="W9S-1i-qLv" id="jn1-OV-RPv"/>
                                                             <outlet property="txtView" destination="GDG-86-CjG" id="6FL-Ij-UN0"/>
-                                                            <segue destination="04Z-oi-chC" kind="show" id="vVP-9B-foh"/>
+                                                            <segue destination="O1b-ms-bVU" kind="show" id="Gzp-NR-xTU"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -1185,6 +1185,7 @@
                                                         <connections>
                                                             <outlet property="animalImage" destination="Txx-MI-w7t" id="d2O-E9-awL"/>
                                                             <outlet property="animalLabel" destination="Caw-0M-rZz" id="MfG-XG-VHP"/>
+                                                            <segue destination="04Z-oi-chC" kind="show" id="Vo5-cr-LVN"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -1275,7 +1276,7 @@
                     <viewLayoutGuide key="safeArea" id="4o7-2l-7fc"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3347.826086956522" y="2362.5"/>
+            <point key="canvasLocation" x="3283" y="2392"/>
         </scene>
         <!--Profile Load View Controller-->
         <scene sceneID="KfG-vx-B38">
@@ -2398,5 +2399,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Igr-wB-eVs"/>
+        <segue reference="Gzp-NR-xTU"/>
     </inferredMetricsTieBreakers>
 </document>
