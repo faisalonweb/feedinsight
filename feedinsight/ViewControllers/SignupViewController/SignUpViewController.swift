@@ -13,6 +13,8 @@ import FirebaseFirestore
 import CoreLocation
 import FirebaseAuth
 import Firebase
+                    
+import CountryPickerView
 //                    class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate, CLLocationManagerDelegate {
 
     class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
@@ -59,7 +61,9 @@ import Firebase
                             }
                          
                             @IBAction func SignupTap(_ sender: UIButton) {
-                                //
+                                let cpv = CountryPickerView()
+                                let country = cpv.selectedCountry
+                                print(country)
                                 let error = validateFields()
                                 if error != nil {
                                     showError(error!)
