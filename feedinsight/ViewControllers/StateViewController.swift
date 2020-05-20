@@ -104,15 +104,13 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
-        producitonOutlet.isSelected = !producitonOutlet.isSelected
-               if producitonOutlet.isSelected {
-                   print("I am selected.")
-                   producitonOutlet.setImage(toggleNo, for: .selected)
-               }
-               else {
-                   print("I am not selected.")
-                   producitonOutlet.setImage(toggleYes, for: .normal)
-               }
+        if producitonOutlet.currentBackgroundImage == UIImage(named:"Toggle-no")
+        {
+            producitonOutlet.setBackgroundImage(UIImage(named:"toggle-Yes"), for: .normal)
+        }
+        else {
+            producitonOutlet.setBackgroundImage(UIImage(named:"Toggle-no"), for: .normal)
+        }
 
     }
    
