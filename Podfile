@@ -16,6 +16,7 @@ target 'FeedInsight' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
   pod 'CountryPickerView'
+  pod 'IQKeyboardManagerSwift'
 end
 
 

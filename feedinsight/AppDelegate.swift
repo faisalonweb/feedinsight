@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import IQKeyboardManagerSwift
 
 
 @UIApplicationMain
@@ -18,7 +18,7 @@ var window:UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-//        let db = Firestore.firestore()
+       IQKeyboardManager.shared.enable = true
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }
