@@ -165,7 +165,8 @@ import Firebase
                                    print("yesss i cameeee")
                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                    let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
-                                   self.present(signUpViewController, animated: true, completion: nil)
+                                 //  self.present(signUpViewController, animated: true, completion: nil)
+                                self.navigationController?.pushViewController(signUpViewController, animated: true)
                                }
         
                 private func setCurrentLocation() {
@@ -257,13 +258,11 @@ import Firebase
                                  signinOutlet.lineSpacing = 4
                                  signinOutlet.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
                                  signinOutlet.customSelectedColor[customType] = UIColor.black
-                         
-                                 //
                                  signinOutlet.configureLinkAttribute = { (type, attributes, isSelected) in
                                      var atts = attributes
                                      switch type {
                                      case customType:
-                                         atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 10) : UIFont.boldSystemFont(ofSize: 10)
+                                         atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
                                      default: ()
                                      }
                                      
@@ -271,9 +270,6 @@ import Firebase
                                  }
                               label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
                              }
-        //
-                            
-                                  //  label.handleCustomTap(for: customType) {_ in self.btnSelection() }
                                 
                             }
         func validateFields() -> String? {

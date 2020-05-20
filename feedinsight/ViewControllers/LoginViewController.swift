@@ -17,11 +17,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     func SignupSelection(){
         print("yesss i cameeee")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignupVC") as! SignUpViewController
-        self.present(signUpViewController, animated: true, completion: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignupVC") as! SignUpViewController
+//        self.present(signUpViewController, animated: true, completion: nil)
+        if let navController = self.navigationController {
+                                           navController.popViewController(animated: true)
+                                       }
     }
     
+    @IBAction func backBtn(_ sender: UIButton) {
+        if let navController = self.navigationController {
+                                           navController.popViewController(animated: true)
+                                       }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.paswordField.delegate = self
@@ -100,10 +108,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
      func transitionToHome() {
-                
-                 performSegue(withIdentifier: "homeSegue", sender: self)
-                /// homeSegue
+               // performSegue(withIdentifier: "homeSegue", sender: self)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+             let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
+               self.navigationController?.pushViewController(signUpViewController, animated: true)
             }
+    
+    
             override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                     if(segue.identifier == "homeSegue"){
                             let displayVC = segue.destination as! UITabBarController
