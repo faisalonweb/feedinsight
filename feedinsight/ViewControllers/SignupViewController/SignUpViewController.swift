@@ -19,7 +19,8 @@ import Firebase
 
                            // var currentLocation:CLLocation?
                             @IBOutlet weak var locationField: DropDown!
-                            @IBOutlet weak var haveAccountLabel: ActiveLabel!
+        @IBOutlet weak var signinOutlet: ActiveLabel!
+        
                             @IBOutlet weak var NameField: UITextField!
                             @IBOutlet weak var emailField: UITextField!
                             @IBOutlet weak var phoneField: UITextField! {
@@ -166,14 +167,7 @@ import Firebase
                                    let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
                                    self.present(signUpViewController, animated: true, completion: nil)
                                }
-                            
-                            func btnSelection(){
-                                print("yesss i cameeee1")
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let loginViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
-                                self.present(loginViewController, animated: true, completion: nil)
-                            }
-                
+        
                 private func setCurrentLocation() {
                     
                     guard let exposedLocation = self.locationManager.exposedLocation else {
@@ -252,31 +246,34 @@ import Firebase
                                 pickroleField.optionArray = ["Admin","user","manager"]
                                 pickroleField.didSelect{(selectedText , index ,id) in
                                 }
-
+//
+        let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
+                             signinOutlet.enabledTypes.append(customType)
+                             signinOutlet.urlMaximumLength = 61
+                             
+                             signinOutlet.customize { label in
+                             signinOutlet.text = "Have an Account? Sign In"
+                                 signinOutlet.numberOfLines = 1
+                                 signinOutlet.lineSpacing = 4
+                                 signinOutlet.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
+                                 signinOutlet.customSelectedColor[customType] = UIColor.black
+                         
+                                 //
+                                 signinOutlet.configureLinkAttribute = { (type, attributes, isSelected) in
+                                     var atts = attributes
+                                     switch type {
+                                     case customType:
+                                         atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 10) : UIFont.boldSystemFont(ofSize: 10)
+                                     default: ()
+                                     }
+                                     
+                                     return atts
+                                 }
+                              label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
+                             }
+        //
                             
-                                 let customType = ActiveType.custom(pattern: "\\ssign\\sin") //Looks for "are"
-                                haveAccountLabel.enabledTypes.append(customType)
-                                haveAccountLabel.urlMaximumLength = 61
-                                
-                                haveAccountLabel.customize { label in
-                                haveAccountLabel.text = "Have an Account? sign in"
-                                    haveAccountLabel.numberOfLines = 1
-                                    haveAccountLabel.lineSpacing = 4
-                                    haveAccountLabel.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
-                                    haveAccountLabel.customSelectedColor[customType] = UIColor.black
-                                    haveAccountLabel.configureLinkAttribute = { (type, attributes, isSelected) in
-                                        var atts = attributes
-                                        switch type {
-                                        case customType:
-                                            atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
-                                        default: ()
-                                        }
-                                        
-                                        return atts
-                                    }
-                                    label.handleCustomTap(for: customType) {_ in self.btnSelection() }
-                                   
-                                }
+                                  //  label.handleCustomTap(for: customType) {_ in self.btnSelection() }
                                 
                             }
         func validateFields() -> String? {
@@ -308,11 +305,11 @@ import Firebase
                return nil
            }
         
-        @IBAction func accountBtn(_ sender: Any) {
-            print("came came")
-            let vc = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? SignUpViewController
-            self.navigationController?.pushViewController(vc!, animated: true)
-        }
+//        @IBAction func accountBtn(_ sender: Any) {
+//            print("came came")
+//            let vc = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? SignUpViewController
+//            self.navigationController?.pushViewController(vc!, animated: true)
+//        }
         
         func showError(_ message:String) {
             let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

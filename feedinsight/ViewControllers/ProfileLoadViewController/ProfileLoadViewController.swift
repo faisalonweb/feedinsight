@@ -32,9 +32,6 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     var workarray: [String] = [String]()
     let test = ["haha","hhabs"]
     @IBAction func backtapped(_ sender: UIButton) {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "StateView") as? StateViewController
-//        self.navigationController?.pushViewController(vc!, animated: true)
-        
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
@@ -93,6 +90,9 @@ print("its hhhah", pickerData1)
         
         
     }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return
+//    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
@@ -133,22 +133,15 @@ print("its hhhah", pickerData1)
                 cell.arrowView?.image = UIImage(named: "downNew")
             }
             
-                        
-                       // cell.accessoryView = sentImage
-                        
-            //           let sentImage = UIImage(named: "ibackrrow")
-            //            let sentImageView = UIImageView(image: sentImage)
-            //            sentImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            //            sentImageView.tintColor = .lightGray
-            //            cell.accessoryView = sentImageView
-            
-            
             return cell 
             
             
         } else
         {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "titlecell") else { return profileTitleTableViewCell()}
+//             cell.layer.borderColor = UIColor.clear.cgColor
+//                       cell.layer.borderWidth = 4
+                      
             // cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
             
             return cell
@@ -181,6 +174,11 @@ print("its hhhah", pickerData1)
                
                 
             }
+        }
+        else
+        {
+            
+             let cellSpacingHeight: CGFloat = 20
         }
         
     }
