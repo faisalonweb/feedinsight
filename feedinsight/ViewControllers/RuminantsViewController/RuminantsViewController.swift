@@ -44,14 +44,29 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var UserCompanyName: UILabel!
     @IBOutlet weak var UserProfilePicture: UIImageView!
     
-    let textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer"]
+    var textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer"]
+   
+    
     var slectedValue = ""
+    var titlename = ""
+    var titleImage = UIImage(named:"")
     @IBAction func SelectAnimal(_ sender: Any) {
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("titlename")
+        if(titlename == "Poultry")
+           {
+             textArr = ["Broiler","Layer","Breeders"]
+           }
+        if(titlename == "Aqua")
+        {
+          textArr = ["Fish","Shrimps"]
+        }
         
+        headAnimalLabel.text = titlename
+        headImageview.image = titleImage
         notificationView?.layer.cornerRadius = (notificationView?.frame.size.width ?? 0.0) / 2
         notificationView?.clipsToBounds = true
         notificationView?.layer.borderWidth = 3.0

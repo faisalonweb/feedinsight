@@ -76,8 +76,14 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         cell.layer.borderWidth = 0.5
         return cell
     }
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ruminantsID") as? RuminantsViewController
+        vc?.titlename = textArr[indexPath.row]
+        vc?.titleImage = imageArr[indexPath.row]
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+
+//
     // MARK: - Navigation
     
     
