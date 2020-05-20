@@ -66,6 +66,10 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         //
         print("tishahaha", name)
         self.headLabel.text = name
+        if(self.headLabel.text == "")
+        {
+            self.headLabel.text = "Premix Check"
+        }
         self.nameField.delegate = self
         self.animalField.delegate = self
          db = Firestore.firestore()
@@ -87,9 +91,27 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
-        if let navController = self.navigationController {
-                   navController.popViewController(animated: true)
-               }
+        //
+        if let stack = self.navigationController?.viewControllers {
+          for vc in stack where vc.isKind(of: StateViewController.self) {
+            print("exists")
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+                          }
+          }
+        }
+        else
+        {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "profileLoadID") as! ProfileLoadViewController
+           self.present(vc, animated: true, completion: nil)
+            print("does not exists")
+        }
+        
+        //
+//        if let navController = self.navigationController {
+//                   navController.popViewController(animated: true)
+//               }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
     }
