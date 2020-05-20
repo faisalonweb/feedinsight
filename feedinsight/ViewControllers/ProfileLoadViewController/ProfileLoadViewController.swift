@@ -177,7 +177,22 @@ print("its hhhah", pickerData1)
         }
         else
         {
-            
+            if let stack = self.navigationController?.viewControllers {
+              for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
+                print("exists")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+              }
+            }
+            else
+            {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+               self.present(vc, animated: true, completion: nil)
+                print("does not exists")
+            }
+           
              let cellSpacingHeight: CGFloat = 20
         }
         
