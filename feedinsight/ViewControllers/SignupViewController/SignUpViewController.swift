@@ -250,7 +250,7 @@ import Firebase
 //
         let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
                              signinOutlet.enabledTypes.append(customType)
-                             signinOutlet.urlMaximumLength = 61
+                             signinOutlet.urlMaximumLength = 91
                              
                              signinOutlet.customize { label in
                              signinOutlet.text = "Have an Account? Sign In"

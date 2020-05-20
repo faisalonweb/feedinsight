@@ -31,7 +31,7 @@
         
         
         @IBAction func createAccounttAP(_ sender: UIButton) {
-let vc = storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignUpViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignUpViewController
             self.navigationController?.pushViewController(vc!, animated: true)
             
 //            let detailVC = SignUpViewController()
