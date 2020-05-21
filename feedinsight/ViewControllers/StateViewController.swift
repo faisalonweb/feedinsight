@@ -52,9 +52,21 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var toggleState = 1
     let toggleNo = UIImage(named:"Toggle-no")
     let toggleYes = UIImage(named:"toggle-Yes")
+//   let mainVC = UITabBarController()
+//   let searchVC = AnimalSelectionViewController()
+//   let profileVC = ProfileLoadViewController()
+    
+    override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
+        super.viewWillAppear(true)
+//        self.tabBarController?.tabBar.isHidden = false
+//         let tabBarController = UITabBarController()
+//            tabBarController.viewControllers = [mainVC, searchVC, profileVC]
+//        tabBarController.selectedIndex = 2
+//        tabBarController.viewControllers = controllers
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.tabBarController?.tabBar.isHidden = false
         heatStreesOutlet.setImage(toggleYes, for: .normal)
         heatStreesOutlet.setImage(toggleNo, for: .selected)
         //

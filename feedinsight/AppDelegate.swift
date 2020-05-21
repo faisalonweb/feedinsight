@@ -15,10 +15,15 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 var window:UIWindow?
-
+    let mainVC = HomeViewController()
+    let searchVC = AnimalSelectionViewController()
+    let profileVC = ProfileLoadViewController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
        IQKeyboardManager.shared.enable = true
+//        let tabBarController = UITabBarController()
+//        tabBarController.viewControllers = [mainVC, searchVC, profileVC]
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }

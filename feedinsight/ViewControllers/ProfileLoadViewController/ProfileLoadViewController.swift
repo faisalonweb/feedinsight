@@ -149,7 +149,10 @@ print("its hhhah", pickerData1)
         }
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
+        super.viewWillAppear(true)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableViewData.count
         
@@ -187,9 +190,11 @@ print("its hhhah", pickerData1)
             }
             else
             {
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
                self.present(vc, animated: true, completion: nil)
+               
                 print("does not exists")
             }
            
