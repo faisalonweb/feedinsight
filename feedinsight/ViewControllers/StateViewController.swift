@@ -95,7 +95,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
               proimage?.layer.borderWidth = 3.0
               proimage?.layer.borderColor = UIColor.white.cgColor
         
-        PsychField.optionArray = ["Option 1", "Option 2", "Option 3"]
+        PsychField.optionArray = ["COW", "GOAT", "FISH"]
         //Its Id Values and its optional
         PsychField.optionIds = [1,23,54,22]
         PsychField.didSelect{(selectedText , index ,id) in
