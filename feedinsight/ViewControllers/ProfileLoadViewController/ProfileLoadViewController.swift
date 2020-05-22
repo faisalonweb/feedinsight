@@ -36,6 +36,10 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             navController.popViewController(animated: true)
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // let db = Firestore.firestore()
@@ -149,10 +153,7 @@ print("its hhhah", pickerData1)
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
-        super.viewWillAppear(true)
-        self.tabBarController?.tabBar.isHidden = false
-    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableViewData.count
         
