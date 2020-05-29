@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YKO-M6-kfF">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -182,7 +182,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-2w-hVw">
-                                                <rect key="frame" x="32" y="30" width="30" height="30"/>
+                                                <rect key="frame" x="32" y="30" width="26" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="26" id="5vl-kd-MVw"/>
+                                                    <constraint firstAttribute="height" constant="23" id="dcq-2i-ae5"/>
+                                                </constraints>
                                                 <state key="normal" image="ibackrrow"/>
                                                 <connections>
                                                     <action selector="backBtn:" destination="YKO-M6-kfF" eventType="touchUpInside" id="KeH-fq-ERK"/>
