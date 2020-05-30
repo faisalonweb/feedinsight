@@ -23,6 +23,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var userprofile: UIImageView!
     @IBOutlet weak var notification: UIImageView!
+    @IBOutlet weak var backBtn: UIButton!
     
     var check = false
     var tableViewData = [cellData]()
@@ -42,6 +43,20 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let stack = self.navigationController?.viewControllers {
+          for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
+            print("exists in didload view")
+            self.backBtn.isHidden = false
+        }
+        }
+        else
+        {
+            self.backBtn.isHidden = true
+            print("does not exists in didload view")
+        }
+        
+        
         // let db = Firestore.firestore()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
              self.navigationController?.navigationBar.shadowImage = UIImage()
