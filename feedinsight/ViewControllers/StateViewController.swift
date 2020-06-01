@@ -48,6 +48,10 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var db: Firestore!
     var detail: String?
     var name = ""
+    var disorderbole = false
+    var productionbole = false
+    var dietbole = false
+    var heatbole = false
 
     var toggleState = 1
     let toggleNo = UIImage(named:"Toggle-no")
@@ -157,13 +161,27 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
-        if producitonOutlet.currentBackgroundImage == UIImage(named:"Toggle-no")
-        {
-            producitonOutlet.setBackgroundImage(UIImage(named:"toggle-Yes"), for: .normal)
-        }
-        else {
-            producitonOutlet.setBackgroundImage(UIImage(named:"Toggle-no"), for: .normal)
-        }
+//        if producitonOutlet.currentBackgroundImage == UIImage(named:"Toggle-no")
+//        {
+//            producitonOutlet.setBackgroundImage(UIImage(named:"toggle-Yes"), for: .normal)
+//
+//        }
+//        else {
+//            producitonOutlet.setBackgroundImage(UIImage(named:"Toggle-no"), for: .normal)
+//        }
+        
+        producitonOutlet.isSelected = !producitonOutlet.isSelected
+                     if producitonOutlet.isSelected {
+                         print("I am selected.")
+                         producitonOutlet.setImage(toggleNo, for: .selected)
+                         productionbole = true
+                     }
+                     else {
+                         print("I am not selected.")
+                         producitonOutlet.setImage(toggleYes, for: .normal)
+                        productionbole = false
+                     }
+
 
     }
    
@@ -172,10 +190,12 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
                if dietOutlet.isSelected {
                    print("I am selected.")
                    dietOutlet.setImage(toggleNo, for: .selected)
+                   dietbole = true
                }
                else {
                    print("I am not selected.")
                    dietOutlet.setImage(toggleYes, for: .normal)
+                   dietbole = false
                }
 
     }
@@ -184,10 +204,14 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
                if disorderOutlet.isSelected {
                    print("I am selected.")
                    disorderOutlet.setImage(toggleNo, for: .selected)
+                   disorderbole = true
+                
+                   
                }
                else {
                    print("I am not selected.")
                    disorderOutlet.setImage(toggleYes, for: .normal)
+                    disorderbole = false
                }
     }
     @IBAction func heatStressToggleTap(_ sender: UIButton) {
@@ -195,10 +219,12 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
         if heatStreesOutlet.isSelected {
             print("I am selected.")
             heatStreesOutlet.setImage(toggleNo, for: .selected)
+            heatbole = true
         }
         else {
             print("I am not selected.")
             heatStreesOutlet.setImage(toggleYes, for: .normal)
+            heatbole = false
         }
         
     }
@@ -213,11 +239,11 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
                                      let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
                                      let animalEnter = animalField.text!
                                      let companynameEnter = nameField.text!
-                                     let userID = Auth.auth().currentUser!.uid
+                                     let userID = Auth.auth().currentUser?.uid
                                      let categoryEnter = headLabel.text!
                                     
                       //
-        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID, "categorySelected" : categoryEnter]
+        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole]
 
                       //
                         let db = Firestore.firestore()
