@@ -53,7 +53,25 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBAction func SelectAnimal(_ sender: Any) {
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     override func viewDidLoad() {
+      //  self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+                                    self.navigationController?.navigationBar.shadowImage = UIImage()
+               let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+               navigationItem.leftBarButtonItem = backButton
         super.viewDidLoad()
         print("titlename")
         if(titlename == "Poultry")
@@ -86,10 +104,10 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         layout.minimumLineSpacing = 15
         
         animalTypeCollection.collectionViewLayout = layout
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-        navigationItem.leftBarButtonItem = backButton
+       
 
-        
+       
+              
         // Do any additional setup after loading the view.
     }
     

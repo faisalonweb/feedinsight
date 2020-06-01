@@ -65,6 +65,25 @@ class StateViewController: UIViewController, UITextFieldDelegate {
 //        tabBarController.viewControllers = controllers
     }
     override func viewDidLoad() {
+      let currentDateTime = Date()
+        let userCalendar = Calendar.current
+        let requestedComponents: Set<Calendar.Component> = [
+            .year,
+            .month,
+            .day,
+            .hour,
+            .minute,
+            .second
+        ]
+let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+       let year =  dateTimeComponents.year!   // 2016
+       let month =  dateTimeComponents.month!  // 10
+      let day =   dateTimeComponents.day!
+        print("its", year)
+         print("its", month)
+         print("its", day)
+         print("its", currentDateTime)
+       
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
         heatStreesOutlet.setImage(toggleYes, for: .normal)
