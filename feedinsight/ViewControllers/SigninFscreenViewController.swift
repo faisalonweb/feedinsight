@@ -16,7 +16,7 @@
       
         override func viewDidLoad() {
             super.viewDidLoad()
-          
+               self.navigationController?.isNavigationBarHidden = true
                self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                self.navigationController?.navigationBar.shadowImage = UIImage()
             
@@ -24,9 +24,8 @@
         }
         
         @IBAction func SigninGoogletap(_ sender: UIButton) {
-            //        let Storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            //               let vc:ViewController = Storyboard.instantiateViewController(withIdentifier: "Login") as! ViewController
-            //               self.navigationController?.pushViewController(vc, animated: true)
+           
+            let vclogin = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vclogin!, animated: true)
         }
         
         
