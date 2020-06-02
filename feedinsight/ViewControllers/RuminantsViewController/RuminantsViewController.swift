@@ -51,6 +51,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     var titlename = ""
     var titleImage = UIImage(named:"")
     @IBAction func SelectAnimal(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
         
     }
     override func viewWillAppear(_ animated: Bool) {
