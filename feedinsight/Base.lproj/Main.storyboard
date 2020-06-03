@@ -1554,11 +1554,11 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBack" translatesAutoresizingMaskIntoConstraints="NO" id="2jV-5k-g42">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="179"/>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ruminants" translatesAutoresizingMaskIntoConstraints="NO" id="hBA-lA-M47">
-                                                        <rect key="frame" x="155.66666666666666" y="19" width="104" height="104"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ruminants" translatesAutoresizingMaskIntoConstraints="NO" id="hBA-lA-M47">
+                                                        <rect key="frame" x="155" y="19" width="104" height="104"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Riminants" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="m8G-NT-xhy">
-                                                        <rect key="frame" x="155.66666666666666" y="131" width="104" height="27"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Riminants" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="m8G-NT-xhy">
+                                                        <rect key="frame" x="155" y="131" width="104" height="27"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -1566,17 +1566,18 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="m8G-NT-xhy" secondAttribute="trailing" constant="154.33333333333337" id="2oo-Fv-R4A"/>
                                                     <constraint firstItem="hBA-lA-M47" firstAttribute="top" secondItem="crQ-BR-LXp" secondAttribute="top" constant="19" id="39b-Jh-jue"/>
+                                                    <constraint firstItem="hBA-lA-M47" firstAttribute="centerX" secondItem="crQ-BR-LXp" secondAttribute="centerX" id="GPA-4v-zlo"/>
                                                     <constraint firstAttribute="trailing" secondItem="2jV-5k-g42" secondAttribute="trailing" id="JRS-hp-Hq2"/>
                                                     <constraint firstItem="2jV-5k-g42" firstAttribute="top" secondItem="crQ-BR-LXp" secondAttribute="top" id="Khs-II-cpB"/>
                                                     <constraint firstItem="m8G-NT-xhy" firstAttribute="centerY" secondItem="crQ-BR-LXp" secondAttribute="centerY" constant="55" id="Ogu-vs-pZ2"/>
+                                                    <constraint firstItem="m8G-NT-xhy" firstAttribute="trailing" secondItem="hBA-lA-M47" secondAttribute="trailing" id="UuD-un-z9Z"/>
                                                     <constraint firstItem="hBA-lA-M47" firstAttribute="width" secondItem="crQ-BR-LXp" secondAttribute="width" multiplier="0.251208" id="Wnr-Ie-RvD"/>
                                                     <constraint firstItem="m8G-NT-xhy" firstAttribute="top" secondItem="hBA-lA-M47" secondAttribute="bottom" constant="8" id="cqE-rx-NIL"/>
                                                     <constraint firstItem="hBA-lA-M47" firstAttribute="height" secondItem="crQ-BR-LXp" secondAttribute="height" multiplier="0.581006" id="d7n-BP-8ae"/>
                                                     <constraint firstItem="2jV-5k-g42" firstAttribute="leading" secondItem="crQ-BR-LXp" secondAttribute="leading" id="dkm-JM-kwS"/>
                                                     <constraint firstAttribute="bottom" secondItem="2jV-5k-g42" secondAttribute="bottom" id="noF-LK-IaM"/>
-                                                    <constraint firstItem="hBA-lA-M47" firstAttribute="centerX" secondItem="m8G-NT-xhy" secondAttribute="centerX" constant="-0.33333333333328596" id="r4A-dH-hL7"/>
+                                                    <constraint firstItem="m8G-NT-xhy" firstAttribute="leading" secondItem="hBA-lA-M47" secondAttribute="leading" id="xGD-p0-wmN"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
