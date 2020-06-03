@@ -43,20 +43,6 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let stack = self.navigationController?.viewControllers {
-          for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
-            print("exists in didload view")
-            self.backBtn.isHidden = false
-        }
-        }
-        else
-        {
-            self.backBtn.isHidden = true
-            print("does not exists in didload view")
-        }
-        
-        
         // let db = Firestore.firestore()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
              self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -109,9 +95,6 @@ print("its hhhah", pickerData1)
         
         
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return
-//    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
@@ -196,23 +179,32 @@ print("its hhhah", pickerData1)
         }
         else
         {
-            if let stack = self.navigationController?.viewControllers {
-              for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
-                print("exists")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-              }
-            }
-            else
-            {
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-               self.present(vc, animated: true, completion: nil)
-               
-                print("does not exists")
-            }
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//             let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+//            self.present(vc, animated: true, completion: nil)
+            
+             print("does not exists")
+            if let navController = self.navigationController {
+                           navController.popViewController(animated: true)
+                                     }
+                     
+//            if let stack = self.navigationController?.viewControllers {
+//              for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
+//                print("exists")
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+//                self.navigationController?.pushViewController(vc, animated: true)
+//              }
+//            }
+//            else
+//            {
+//
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+//               self.present(vc, animated: true, completion: nil)
+//
+//                print("does not exists")
+//            }
            
              let cellSpacingHeight: CGFloat = 20
         }
