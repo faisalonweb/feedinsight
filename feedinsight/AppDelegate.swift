@@ -15,28 +15,59 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 var window:UIWindow?
-    let mainVC = HomeViewController()
-    let searchVC = AnimalSelectionViewController()
-    let profileVC = ProfileLoadViewController()
+    
+    var activeController: UIViewController!
+
+    var navigationController: UINavigationController!
+    
+//    let mainVC = HomeViewController()
+//    let searchVC = AnimalSelectionViewController()
+//    let profileVC = ProfileLoadViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
        IQKeyboardManager.shared.enable = true
-//        let tabBarController = UITabBarController()
-//        tabBarController.viewControllers = [mainVC, searchVC, profileVC]
+
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }
-        // Override point for customization after application launch.
-        // this is testing testing
-//        let mainViewController = SigninFscreenViewController()
-//               mainViewController.title = "Main"
-
-//               let frame = UIScreen.main.bounds
-//               window = UIWindow(frame: frame)
-//
-//               window!.rootViewController = mainViewController
-//               window!.makeKeyAndVisible()
+        let sb = UIStoryboard.init(name: "Main", bundle: Bundle.main)
+                    
+                    Auth.auth().addStateDidChangeListener { (_, user) in
+                       print("auth state did change \(String(describing: user))")
+                        switch user {
+                        case nil:
+                            guard self.activeController! is HomeViewController else { return }
+                            let publicController = sb.instantiateViewController(withIdentifier: "SignInID") as! SigninFscreenViewController
+                            self.navigationController.setViewControllers([publicController], animated: false)
+                            self.navigationController.popToViewController(publicController, animated: true)
+                            self.activeController = publicController
+                        default:
+                            /// secret view should be shown
+                            guard self.activeController! is SigninFscreenViewController else { return }
+                            let secretViewController = sb.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                            self.navigationController.setViewControllers([secretViewController], animated: false)
+                            self.navigationController.popToViewController(secretViewController, animated: true)
+                            self.activeController = secretViewController
+                        }
+                        
+                    }
+               let publicController = sb.instantiateViewController(withIdentifier: "SignInID") as! SigninFscreenViewController
+                      let secretController = sb.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                      
+                      activeController = publicController
+                      
+                      switch Auth.auth().currentUser != nil {
+                      case true:
+                          activeController = secretController
+                          print("user was logged on start up")
+                      default: break
+                      }
+                      
+                      navigationController = UINavigationController.init(rootViewController: activeController)
+                      self.window?.rootViewController = navigationController
+                      self.window?.makeKeyAndVisible()
+ 
         return true
     }
 
