@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IBj-5h-2kd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SZ3-W5-xIl">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,25 +38,25 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="430.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7MH-WU-ezg">
-                                                <rect key="frame" x="131.33333333333331" y="175.66666666666666" width="151.33333333333331" height="79"/>
+                                                <rect key="frame" x="133" y="176.33333333333334" width="148.33333333333337" height="77.666666666666657"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yV1-xy-BHM">
-                                                        <rect key="frame" x="29.999999999999993" y="0.0" width="91.333333333333314" height="26.333333333333332"/>
+                                                        <rect key="frame" x="28.666666666666657" y="0.0" width="91" height="25.666666666666668"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="22"/>
                                                         <color key="textColor" red="0.98948890160000003" green="0.98948890160000003" blue="0.98948890160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Hsg-qd-Pj4">
-                                                        <rect key="frame" x="0.0" y="34.333333333333343" width="151.33333333333334" height="44.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="33.666666666666657" width="148.33333333333334" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dummy Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWn-3l-JB1">
-                                                                <rect key="frame" x="27.000000000000007" y="0.0" width="97.666666666666686" height="20.333333333333332"/>
+                                                                <rect key="frame" x="26.666666666666657" y="0.0" width="95" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                                 <color key="textColor" red="0.98948890160000003" green="0.98948890160000003" blue="0.98948890160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Dummy Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8l-z4-Qz2">
-                                                                <rect key="frame" x="0.0" y="24.333333333333343" width="151.33333333333334" height="20.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="24" width="148.33333333333334" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                                 <color key="textColor" red="0.98948890160000003" green="0.98948890160000003" blue="0.98948890160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -121,7 +121,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxI-lR-TQI">
-                                                <rect key="frame" x="20" y="227.33333333333331" width="141.66666666666666" height="20.333333333333343"/>
+                                                <rect key="frame" x="20" y="227.33333333333331" width="139" height="20"/>
                                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                 <color key="textColor" red="0.98948890160000003" green="0.98948890160000003" blue="0.98948890160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1759,17 +1759,17 @@
             <objects>
                 <viewController storyboardIdentifier="SignupVC" modalPresentationStyle="fullScreen" id="SZ3-W5-xIl" customClass="SignUpViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ij-Tb-Fwa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1569"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1613"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9CZ-En-nwo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1569"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1569"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwN-QK-HHX">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1561"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1569"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pac-i0-cmn" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1561"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1569"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Vn-Fc-6Ma">
                                                         <rect key="frame" x="-1" y="0.0" width="415" height="161"/>
@@ -1812,7 +1812,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue to sign up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="FOh-CX-Bqd">
-                                                        <rect key="frame" x="33" y="218.66666666666666" width="238" height="23.333333333333343"/>
+                                                        <rect key="frame" x="33" y="218.66666666666669" width="238" height="23.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <color key="textColor" red="0.52156862745098043" green="0.51372549019607838" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1857,7 +1857,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="f0O-nH-yqb">
-                                                        <rect key="frame" x="33" y="476.33333333333331" width="206" height="19"/>
+                                                        <rect key="frame" x="33" y="476.33333333333337" width="206" height="19"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                                         <color key="textColor" red="0.31764705879999999" green="0.090196078430000007" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -2109,7 +2109,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLw-0r-5nY">
-                                                        <rect key="frame" x="33" y="1556" width="348" height="0.0"/>
+                                                        <rect key="frame" x="33" y="1556" width="348" height="88"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPr-dw-ke9">
@@ -2166,7 +2166,7 @@
                                                     <constraint firstItem="9i3-A0-ArV" firstAttribute="top" secondItem="Af2-M3-jgJ" secondAttribute="bottom" constant="1" id="CnO-gz-Vph"/>
                                                     <constraint firstAttribute="trailing" secondItem="JpX-IT-RNc" secondAttribute="trailing" constant="30" id="D4m-oq-1ST"/>
                                                     <constraint firstAttribute="trailing" secondItem="171-Dx-oFi" secondAttribute="trailing" constant="32" id="DFs-tE-bEc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="5" id="Egi-GD-d1T"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PLw-0r-5nY" secondAttribute="bottom" constant="-75" id="Egi-GD-d1T"/>
                                                     <constraint firstItem="wuZ-Ce-5MN" firstAttribute="height" secondItem="C70-D6-rDX" secondAttribute="height" multiplier="0.496124" constant="7.8010335917312617" id="Esd-mC-EUX"/>
                                                     <constraint firstAttribute="trailing" secondItem="gbA-Dx-VuN" secondAttribute="trailing" constant="33" id="GTa-hL-Jqh"/>
                                                     <constraint firstItem="1Vn-Fc-6Ma" firstAttribute="top" secondItem="pac-i0-cmn" secondAttribute="top" id="GfC-YZ-BfC"/>
@@ -2274,8 +2274,8 @@
                                 <constraints>
                                     <constraint firstItem="SwN-QK-HHX" firstAttribute="leading" secondItem="e4O-zb-bXs" secondAttribute="leading" id="RXT-Wo-7at"/>
                                     <constraint firstItem="e4O-zb-bXs" firstAttribute="trailing" secondItem="SwN-QK-HHX" secondAttribute="trailing" id="ZXu-y0-hlb"/>
-                                    <constraint firstItem="SwN-QK-HHX" firstAttribute="top" secondItem="e4O-zb-bXs" secondAttribute="top" constant="-44" id="cNN-4t-Rof"/>
-                                    <constraint firstAttribute="bottom" secondItem="SwN-QK-HHX" secondAttribute="bottom" constant="8" id="fBh-p7-PKd"/>
+                                    <constraint firstItem="SwN-QK-HHX" firstAttribute="top" secondItem="e4O-zb-bXs" secondAttribute="top" id="cNN-4t-Rof"/>
+                                    <constraint firstAttribute="bottom" secondItem="SwN-QK-HHX" secondAttribute="bottom" id="fBh-p7-PKd"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="e4O-zb-bXs"/>
                                 <userDefinedRuntimeAttributes>
@@ -2292,11 +2292,11 @@
                             <constraint firstItem="9CZ-En-nwo" firstAttribute="bottom" secondItem="eGs-Gt-Wbc" secondAttribute="bottom" constant="34" id="6Lf-WL-WpG"/>
                             <constraint firstItem="9CZ-En-nwo" firstAttribute="leading" secondItem="eGs-Gt-Wbc" secondAttribute="leading" id="i1a-Lb-GuG"/>
                             <constraint firstItem="eGs-Gt-Wbc" firstAttribute="trailing" secondItem="9CZ-En-nwo" secondAttribute="trailing" id="o1N-lS-wR6"/>
-                            <constraint firstItem="9CZ-En-nwo" firstAttribute="top" secondItem="eGs-Gt-Wbc" secondAttribute="top" constant="-44" id="rNE-KH-1Ne"/>
+                            <constraint firstItem="9CZ-En-nwo" firstAttribute="top" secondItem="eGs-Gt-Wbc" secondAttribute="top" id="rNE-KH-1Ne"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eGs-Gt-Wbc"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1569"/>
+                    <size key="freeformSize" width="414" height="1613"/>
                     <connections>
                         <outlet property="IndustryField" destination="EnP-dz-B2d" id="ZUM-9u-PEe"/>
                         <outlet property="NameField" destination="HzM-FU-pgy" id="55p-Si-NFc"/>
@@ -2328,7 +2328,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLo-9f-s7X">
-                            <rect key="frame" x="33" y="32" width="30" height="30"/>
+                            <rect key="frame" x="33" y="32" width="60" height="60"/>
                             <state key="normal" image="ibackrrow"/>
                         </button>
                     </subviews>
@@ -2419,9 +2419,6 @@
             <point key="canvasLocation" x="755" y="169"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Gzp-NR-xTU"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="BackArrowImage" width="30" height="30"/>
         <image name="Image" width="225" height="225"/>
@@ -2436,4 +2433,7 @@
         <image name="toggle-Yes" width="2168" height="872"/>
         <image name="userimage" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gzp-NR-xTU"/>
+    </inferredMetricsTieBreakers>
 </document>
