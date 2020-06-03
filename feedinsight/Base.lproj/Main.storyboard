@@ -1778,13 +1778,17 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJg-4i-KJQ">
-                                                                <rect key="frame" x="275" y="79" width="109" height="43"/>
+                                                                <rect key="frame" x="275" y="24" width="109" height="43"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="25"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oq-BG-OS4">
-                                                                <rect key="frame" x="33" y="87" width="26" height="20"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oq-BG-OS4">
+                                                                <rect key="frame" x="33" y="37" width="26" height="23"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="26" id="iUW-5w-9EC"/>
+                                                                    <constraint firstAttribute="height" constant="23" id="nlD-2v-sVQ"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <state key="normal" image="ibackrrow"/>
                                                                 <connections>
@@ -1794,15 +1798,15 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstItem="3oq-BG-OS4" firstAttribute="centerX" secondItem="1Vn-Fc-6Ma" secondAttribute="centerX" constant="-161.5" id="0d3-ev-pvn"/>
                                                             <constraint firstItem="6pu-FB-Vl1" firstAttribute="leading" secondItem="1Vn-Fc-6Ma" secondAttribute="leading" id="DPg-HU-T9n"/>
                                                             <constraint firstAttribute="trailing" secondItem="6pu-FB-Vl1" secondAttribute="trailing" constant="1" id="N5i-jv-GFD"/>
                                                             <constraint firstItem="6pu-FB-Vl1" firstAttribute="top" secondItem="1Vn-Fc-6Ma" secondAttribute="top" id="UuP-ak-sD1"/>
+                                                            <constraint firstItem="3oq-BG-OS4" firstAttribute="leading" secondItem="1Vn-Fc-6Ma" secondAttribute="leading" constant="33" id="Zw2-bT-ODj"/>
                                                             <constraint firstItem="IJg-4i-KJQ" firstAttribute="height" secondItem="1Vn-Fc-6Ma" secondAttribute="height" multiplier="0.267081" id="gcQ-BV-AYZ"/>
-                                                            <constraint firstItem="3oq-BG-OS4" firstAttribute="centerY" secondItem="1Vn-Fc-6Ma" secondAttribute="centerY" constant="16.5" id="glz-yN-om4"/>
                                                             <constraint firstAttribute="trailing" secondItem="IJg-4i-KJQ" secondAttribute="trailing" constant="31" id="i4X-Jt-PWW"/>
-                                                            <constraint firstItem="IJg-4i-KJQ" firstAttribute="centerY" secondItem="1Vn-Fc-6Ma" secondAttribute="centerY" constant="20" id="nha-6K-pzp"/>
+                                                            <constraint firstItem="IJg-4i-KJQ" firstAttribute="centerY" secondItem="1Vn-Fc-6Ma" secondAttribute="centerY" constant="-35" id="nha-6K-pzp"/>
                                                             <constraint firstAttribute="bottom" secondItem="6pu-FB-Vl1" secondAttribute="bottom" constant="1" id="rT9-2M-Usp"/>
+                                                            <constraint firstItem="3oq-BG-OS4" firstAttribute="top" secondItem="1Vn-Fc-6Ma" secondAttribute="top" constant="37" id="v20-yq-z0n"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3g5-Gc-E3Q">
