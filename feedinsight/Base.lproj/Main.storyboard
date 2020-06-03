@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SZ3-W5-xIl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IBj-5h-2kd">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -1772,7 +1772,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1561"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Vn-Fc-6Ma">
-                                                        <rect key="frame" x="-1" y="0.0" width="415" height="161"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="415" height="161"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ImageBack" translatesAutoresizingMaskIntoConstraints="NO" id="6pu-FB-Vl1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
@@ -2170,7 +2170,7 @@
                                                     <constraint firstItem="wuZ-Ce-5MN" firstAttribute="height" secondItem="C70-D6-rDX" secondAttribute="height" multiplier="0.496124" constant="7.8010335917312617" id="Esd-mC-EUX"/>
                                                     <constraint firstAttribute="trailing" secondItem="gbA-Dx-VuN" secondAttribute="trailing" constant="33" id="GTa-hL-Jqh"/>
                                                     <constraint firstItem="1Vn-Fc-6Ma" firstAttribute="top" secondItem="pac-i0-cmn" secondAttribute="top" id="GfC-YZ-BfC"/>
-                                                    <constraint firstAttribute="trailing" secondItem="1Vn-Fc-6Ma" secondAttribute="trailing" id="IQe-oH-Ndg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1Vn-Fc-6Ma" secondAttribute="trailing" constant="-1" id="IQe-oH-Ndg"/>
                                                     <constraint firstItem="171-Dx-oFi" firstAttribute="leading" secondItem="eTj-Lz-g8o" secondAttribute="trailing" constant="8" id="Ixa-eZ-neb"/>
                                                     <constraint firstItem="RR7-od-5g2" firstAttribute="leading" secondItem="ysB-lF-OVb" secondAttribute="leading" id="J9T-LK-u1G"/>
                                                     <constraint firstItem="gbA-Dx-VuN" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="JBD-vT-wvd"/>
@@ -2240,7 +2240,7 @@
                                                     <constraint firstItem="3g5-Gc-E3Q" firstAttribute="height" secondItem="FOh-CX-Bqd" secondAttribute="height" multiplier="1.32" constant="-3.6699999999999999" id="uXy-jU-jRk"/>
                                                     <constraint firstAttribute="trailing" secondItem="f0O-nH-yqb" secondAttribute="trailing" constant="175" id="ucr-L2-vU8"/>
                                                     <constraint firstItem="JpX-IT-RNc" firstAttribute="top" secondItem="9i3-A0-ArV" secondAttribute="bottom" constant="29" id="udW-r2-7YT"/>
-                                                    <constraint firstItem="1Vn-Fc-6Ma" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="-1" id="v3Y-Ir-cbT"/>
+                                                    <constraint firstItem="1Vn-Fc-6Ma" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" id="v3Y-Ir-cbT"/>
                                                     <constraint firstItem="aXA-ng-WAU" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="xPO-ZY-gTj"/>
                                                     <constraint firstItem="Af2-M3-jgJ" firstAttribute="top" secondItem="eTj-Lz-g8o" secondAttribute="bottom" constant="31.670000000000002" id="yzb-Lm-H9F"/>
                                                     <constraint firstItem="ysB-lF-OVb" firstAttribute="leading" secondItem="pac-i0-cmn" secondAttribute="leading" constant="33" id="zMj-62-9Ig"/>
