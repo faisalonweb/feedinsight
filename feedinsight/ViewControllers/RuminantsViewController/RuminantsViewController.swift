@@ -59,6 +59,30 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
 
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        if(UIScreen.main.bounds.width < 415)
+              {
+                  print("zise is : ", UIScreen.main.bounds.width)
+                         let itemSize = UIScreen.main.bounds.width/3 - 2
+                         let layout = UICollectionViewFlowLayout()
+                         layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                         
+                         layout.minimumInteritemSpacing = 2
+                         layout.minimumLineSpacing = 15
+                  animalTypeCollection.collectionViewLayout = layout
+                         
+              }
+              else
+              {
+                   print("zise is : ", UIScreen.main.bounds.width)
+                  let itemSize = UIScreen.main.bounds.width/4 - 2
+                  let layout = UICollectionViewFlowLayout()
+                  layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                  
+                  layout.minimumInteritemSpacing = 2
+                  layout.minimumLineSpacing = 15
+                  
+                  animalTypeCollection.collectionViewLayout = layout
+              }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,19 +120,41 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         UserProfilePicture?.layer.borderWidth = 3.0
         UserProfilePicture?.layer.borderColor = UIColor.white.cgColor
         
-        let itemSize = UIScreen.main.bounds.width/3 - 2
+//        let itemSize = UIScreen.main.bounds.width/3 - 2
+//
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+//
+//        layout.minimumInteritemSpacing = 2
+//        layout.minimumLineSpacing = 15
         
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
         
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 15
         
-        animalTypeCollection.collectionViewLayout = layout
-       
+//        if(UIScreen.main.bounds.width < 415)
+//        {
+//            print("zise is : ", UIScreen.main.bounds.width)
+//                   let itemSize = UIScreen.main.bounds.width/3 - 2
+//                   let layout = UICollectionViewFlowLayout()
+//                   layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+//
+//                   layout.minimumInteritemSpacing = 2
+//                   layout.minimumLineSpacing = 15
+//            animalTypeCollection.collectionViewLayout = layout
+//
+//        }
+//        else
+//        {
+//             print("zise is : ", UIScreen.main.bounds.width)
+//            let itemSize = UIScreen.main.bounds.width/4 - 2
+//            let layout = UICollectionViewFlowLayout()
+//            layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+//
+//            layout.minimumInteritemSpacing = 2
+//            layout.minimumLineSpacing = 15
+//
+//            animalTypeCollection.collectionViewLayout = layout
+//        }
 
-       
-              
         // Do any additional setup after loading the view.
     }
     
