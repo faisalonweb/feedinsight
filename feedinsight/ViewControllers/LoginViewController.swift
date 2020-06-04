@@ -10,6 +10,7 @@ import UIKit
 import ActiveLabel
 import Firebase
 import FirebaseAuth
+import SVProgressHUD
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var signupBtn: ActiveLabel!
@@ -31,6 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                        }
     }
     override func viewDidLoad() {
+     
         super.viewDidLoad()
         self.paswordField.delegate = self
         self.emailField.delegate = self
@@ -73,6 +75,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                }
 
     @IBAction func signinPressed(_ sender: Any) {
+        SVProgressHUD.show()
            let error = validateFields()
         if error != nil {
             showError(error!)
@@ -87,6 +90,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                   self.showError(error!.localizedDescription)
             }
             else {
+                SVProgressHUD.dismiss()
                 if #available(iOS 13.0, *) {
                     self.transitionToHome()
                 } else {
