@@ -12,6 +12,9 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    let userDefault = UserDefaults.standard
+    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
 
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
@@ -64,6 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -91,6 +95,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             else {
                 SVProgressHUD.dismiss()
+                self.userDefault.set(true, forKey: "usersignedin")
+                self.userDefault.synchronize()
+                print(result?.user.email)
                 if #available(iOS 13.0, *) {
                     self.transitionToHome()
                 } else {

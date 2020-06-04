@@ -12,6 +12,9 @@
     
     class SigninFscreenViewController: UIViewController{
         
+        let userDefault = UserDefaults.standard
+           let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
+        
         @IBOutlet weak var forgetpasswordLabel: UILabel!
       
         override func viewDidLoad() {
@@ -22,6 +25,12 @@
             
             
         }
+        override func viewDidAppear(_ animated: Bool) {
+                if userDefault.bool(forKey: "usersignedin") {
+        //            performSegue(withIdentifier: "Verified", sender: self)
+                     let vcone = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController; self.navigationController?.pushViewController(vcone!, animated: true)
+                }
+            }
         
         @IBAction func SigninGoogletap(_ sender: UIButton) {
            
