@@ -50,6 +50,8 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     var slectedValue = ""
     var titlename = ""
     var titleImage = UIImage(named:"")
+      var sizee1:CGFloat=0
+    var sizee2:CGFloat=0
     @IBAction func SelectAnimal(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         
@@ -61,6 +63,9 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         if(UIScreen.main.bounds.width < 415)
               {
+                  getScreenSize()
+                sizee2 = sizee1
+                 print("h11")
                   print("zise is : ", UIScreen.main.bounds.width)
                          let itemSize = UIScreen.main.bounds.width/3 - 2
                          let layout = UICollectionViewFlowLayout()
@@ -73,6 +78,9 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
               }
               else
               {
+                  getScreenSize()
+                  sizee2 = sizee1
+                 print("h12")
                    print("zise is : ", UIScreen.main.bounds.width)
                   let itemSize = UIScreen.main.bounds.width/4 - 2
                   let layout = UICollectionViewFlowLayout()
@@ -84,11 +92,74 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
                   animalTypeCollection.collectionViewLayout = layout
               }
     }
+    var screenWidth:CGFloat=0
+       var screenHeight:CGFloat=0
+    var sizee:CGFloat=0
+    func getScreenSize(){
+        screenWidth=UIScreen.main.bounds.width
+        screenHeight=UIScreen.main.bounds.height
+        print("SCREEN RESOLUTION: "+screenWidth.description+" x "+screenHeight.description)
+        sizee = screenWidth
+        sizee1 = sizee
+    }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+           super.viewWillTransition(to: size, with: coordinator)
+           if UIDevice.current.orientation.isLandscape {
+                            print("Landscape")
+                            getScreenSize()
+            if(sizee1 == sizee2)
+            {
+                 print("h11111")
+                  print("zise did not changed : ", UIScreen.main.bounds.width)
+            }
+            else
+            {
+                getScreenSize()
+                sizee2 = sizee1
+                print("h1")
+                print("zise is changed : ", UIScreen.main.bounds.width)
+                 let itemSize = UIScreen.main.bounds.width/4 - 2
+                 let layout = UICollectionViewFlowLayout()
+                 layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                 
+                 layout.minimumInteritemSpacing = 2
+                 layout.minimumLineSpacing = 15
+                 
+                 animalTypeCollection.collectionViewLayout = layout
+            }
+                            
+              
+           } else {
+            getScreenSize()     ///yeh galta hota h
+            if(sizee1 == sizee2)
+            {
+                 print("h111")
+                  print("zise did not changed : ", UIScreen.main.bounds.width)
+                
+            }
+            else
+            {
+                print("Portrait")
+                 getScreenSize()
+                 sizee2 = sizee1
+                                 
+                                  print("h2")
+                                  print("zise is changed : ", UIScreen.main.bounds.width)
+                                 let itemSize = UIScreen.main.bounds.width/3 - 2
+                                 let layout = UICollectionViewFlowLayout()
+                                 layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                                 
+                                 layout.minimumInteritemSpacing = 2
+                                 layout.minimumLineSpacing = 15
+                          animalTypeCollection.collectionViewLayout = layout
+            }
+                  
+              
+           }
+       }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        // Show the navigation bar on other view controllers
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     override func viewDidLoad() {
