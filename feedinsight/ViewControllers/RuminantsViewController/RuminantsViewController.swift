@@ -52,6 +52,8 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     var titleImage = UIImage(named:"")
       var sizee1:CGFloat=0
     var sizee2:CGFloat=0
+    var portait:CGFloat=0
+       var landscap:CGFloat=0
     @IBAction func SelectAnimal(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         
@@ -70,11 +72,11 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
                          let itemSize = UIScreen.main.bounds.width/3 - 2
                          let layout = UICollectionViewFlowLayout()
                          layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
-                         
                          layout.minimumInteritemSpacing = 2
                          layout.minimumLineSpacing = 15
                   animalTypeCollection.collectionViewLayout = layout
-                         
+                    portait = UIScreen.main.bounds.width
+                 landscap = UIScreen.main.bounds.height
               }
               else
               {
@@ -85,11 +87,11 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
                   let itemSize = UIScreen.main.bounds.width/4 - 2
                   let layout = UICollectionViewFlowLayout()
                   layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
-                  
                   layout.minimumInteritemSpacing = 2
                   layout.minimumLineSpacing = 15
-                  
                   animalTypeCollection.collectionViewLayout = layout
+                 landscap = UIScreen.main.bounds.width
+                portait = UIScreen.main.bounds.height
               }
     }
     var screenWidth:CGFloat=0
@@ -108,12 +110,21 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
            if UIDevice.current.orientation.isLandscape {
                             print("Landscape")
                             getScreenSize()
-            if(sizee1 == sizee2)
+             var screenHeight1:CGFloat=0
+             screenHeight1 = UIScreen.main.bounds.width
+            if(screenHeight1 == portait)
             {
                  print("h11111")
                   print("zise did not changed : ", UIScreen.main.bounds.width)
+                let itemSize = UIScreen.main.bounds.width/3 - 2
+                                               let layout = UICollectionViewFlowLayout()
+                                               layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                                               
+                                               layout.minimumInteritemSpacing = 2
+                                               layout.minimumLineSpacing = 15
+                                        animalTypeCollection.collectionViewLayout = layout
             }
-            else
+            if(screenHeight1 == landscap)
             {
                 getScreenSize()
                 sizee2 = sizee1
@@ -122,37 +133,53 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
                  let itemSize = UIScreen.main.bounds.width/4 - 2
                  let layout = UICollectionViewFlowLayout()
                  layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
-                 
                  layout.minimumInteritemSpacing = 2
                  layout.minimumLineSpacing = 15
-                 
                  animalTypeCollection.collectionViewLayout = layout
+                 getScreenSize()
             }
                             
               
            } else {
+             var screenHeight2:CGFloat=0
+            screenHeight2 = UIScreen.main.bounds.width
+                       
             getScreenSize()     ///yeh galta hota h
-            if(sizee1 == sizee2)
+            if(screenHeight2 == portait)
             {
                  print("h111")
                   print("zise did not changed : ", UIScreen.main.bounds.width)
+              let itemSize = UIScreen.main.bounds.width/4 - 2
+                                                                          let layout = UICollectionViewFlowLayout()
+                                                                          layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                                                                          layout.minimumInteritemSpacing = 2
+                                                                          layout.minimumLineSpacing = 15
+                                                                          animalTypeCollection.collectionViewLayout = layout
+                                                                          getScreenSize()
+                
+              
                 
             }
-            else
+            if(screenHeight2 == landscap)
             {
                 print("Portrait")
+                  print("screenHeight2 : ", screenHeight2)
                  getScreenSize()
                  sizee2 = sizee1
-                                 
+                               var screenHeight12:CGFloat=0
+                 var screenwidth13:CGFloat=0
+                screenHeight12 = UIScreen.main.bounds.width
+                screenwidth13 = UIScreen.main.bounds.height
+                
                                   print("h2")
                                   print("zise is changed : ", UIScreen.main.bounds.width)
-                                 let itemSize = UIScreen.main.bounds.width/3 - 2
-                                 let layout = UICollectionViewFlowLayout()
-                                 layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
-                                 
-                                 layout.minimumInteritemSpacing = 2
-                                 layout.minimumLineSpacing = 15
-                          animalTypeCollection.collectionViewLayout = layout
+                                    let itemSize = UIScreen.main.bounds.height/3 - 2
+                                                                                let layout = UICollectionViewFlowLayout()
+                                                                                layout.itemSize = CGSize(width: itemSize + 30, height: itemSize - 40)
+                                                                                
+                                                                                layout.minimumInteritemSpacing = 2
+                                                                                layout.minimumLineSpacing = 15
+                                                                         animalTypeCollection.collectionViewLayout = layout
             }
                   
               
