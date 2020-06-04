@@ -25,24 +25,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         corRad.layer.cornerRadius = 15
         
-        let itemSize = UIScreen.main.bounds.width/3 - 2
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
-        
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 20
-        
-        collectionView.collectionViewLayout = layout
+//        let itemSize = UIScreen.main.bounds.width/3 - 2
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+//        layout.minimumInteritemSpacing = 2
+//        layout.minimumLineSpacing = 20
+//        collectionView.collectionViewLayout = layout
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                self.navigationController?.navigationBar.shadowImage = UIImage()
      
     }
-    
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        <#code#>
-//    }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          return textArr.count
@@ -59,7 +51,132 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                               return cell
     }
     
-    
+    var portait:CGFloat=0
+        var landscap:CGFloat=0
+      
+
+
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            if(UIScreen.main.bounds.width < 415)
+                  {
+                      getScreenSize()
+                  
+                     print("h11")
+                      print("zise is : ", UIScreen.main.bounds.width)
+                            let itemSize = UIScreen.main.bounds.width/3 - 2
+                             let layout = UICollectionViewFlowLayout()
+                             layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+                             layout.minimumInteritemSpacing = 2
+                             layout.minimumLineSpacing = 20
+                             collectionView.collectionViewLayout = layout
+                        portait = UIScreen.main.bounds.width
+                     landscap = UIScreen.main.bounds.height
+                  }
+                  else
+                  {
+                      getScreenSize()
+     1
+                     print("h12")
+                       print("zise is : ", UIScreen.main.bounds.width)
+                      let itemSize = UIScreen.main.bounds.width/4 - 2
+                      let layout = UICollectionViewFlowLayout()
+                      layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+                                                             layout.minimumInteritemSpacing = 2
+                                                             layout.minimumLineSpacing = 20
+                                                             collectionView.collectionViewLayout = layout
+                     landscap = UIScreen.main.bounds.width
+                    portait = UIScreen.main.bounds.height
+                  }
+        }
+    var screenWidth:CGFloat=0
+           var screenHeight:CGFloat=0
+        var sizee:CGFloat=0
+        func getScreenSize(){
+            screenWidth=UIScreen.main.bounds.width
+            screenHeight=UIScreen.main.bounds.height
+            print("SCREEN RESOLUTION: "+screenWidth.description+" x "+screenHeight.description)
+            sizee = screenWidth
+
+        }
+
+     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+               super.viewWillTransition(to: size, with: coordinator)
+               if UIDevice.current.orientation.isLandscape {
+                                print("Landscape")
+                                getScreenSize()
+                 var screenHeight1:CGFloat=0
+                 screenHeight1 = UIScreen.main.bounds.width
+                if(screenHeight1 == portait)
+                {
+                     print("h11111")
+                      print("zise did not changed : ", UIScreen.main.bounds.width)
+                  let itemSize = UIScreen.main.bounds.width/3 - 2
+                    let layout = UICollectionViewFlowLayout()
+                    layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+                    layout.minimumInteritemSpacing = 2
+                    layout.minimumLineSpacing = 20
+                    collectionView.collectionViewLayout = layout
+                }
+                if(screenHeight1 == landscap)
+                {
+                    getScreenSize()
+
+                    print("h1")
+                    print("zise is changed : ", UIScreen.main.bounds.width)
+                     let itemSize = UIScreen.main.bounds.width/4 - 2
+                     let layout = UICollectionViewFlowLayout()
+                   layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+                                                            layout.minimumInteritemSpacing = 2
+                                                            layout.minimumLineSpacing = 20
+                                                            collectionView.collectionViewLayout = layout
+                     getScreenSize()
+                }
+                                
+                  
+               } else {
+                 var screenHeight2:CGFloat=0
+                screenHeight2 = UIScreen.main.bounds.width
+                           
+                getScreenSize()     ///yeh galta hota h
+                if(screenHeight2 == portait)
+                {
+                     print("h111")
+                      print("zise did not changed : ", UIScreen.main.bounds.width)
+                  let itemSize = UIScreen.main.bounds.width/4 - 2
+                                                                              let layout = UICollectionViewFlowLayout()
+                                                                              layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+                                                                                                                     layout.minimumInteritemSpacing = 2
+                                                                                                                     layout.minimumLineSpacing = 20
+                                                                                                                     collectionView.collectionViewLayout = layout
+                                                                              getScreenSize()
+                    
+                  
+                    
+                }
+                if(screenHeight2 == landscap)
+                {
+                    print("Portrait")
+                      print("screenHeight2 : ", screenHeight2)
+                     getScreenSize()
+                                   var screenHeight12:CGFloat=0
+                     var screenwidth13:CGFloat=0
+                    screenHeight12 = UIScreen.main.bounds.width
+                    screenwidth13 = UIScreen.main.bounds.height
+                    
+                                      print("h2")
+                                      print("zise is changed : ", UIScreen.main.bounds.width)
+                                       let itemSize = UIScreen.main.bounds.height/3 - 2
+                                        let layout = UICollectionViewFlowLayout()
+                                        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
+                                        layout.minimumInteritemSpacing = 2
+                                        layout.minimumLineSpacing = 20
+                                        collectionView.collectionViewLayout = layout
+                }
+                      
+                  
+               }
+           }
    
     
     
