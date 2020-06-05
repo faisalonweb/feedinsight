@@ -69,24 +69,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
 //        tabBarController.viewControllers = controllers
     }
     override func viewDidLoad() {
-      let currentDateTime = Date()
-        let userCalendar = Calendar.current
-        let requestedComponents: Set<Calendar.Component> = [
-            .year,
-            .month,
-            .day,
-            .hour,
-            .minute,
-            .second
-        ]
-let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
-       let year =  dateTimeComponents.year!   // 2016
-       let month =  dateTimeComponents.month!  // 10
-      let day =   dateTimeComponents.day!
-        print("its", year)
-         print("its", month)
-         print("its", day)
-         print("its", currentDateTime)
+     
        
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
@@ -231,6 +214,26 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
     
     
     func saveText(theText: String) {
+         let currentDateTime = Date()
+                let userCalendar = Calendar.current
+                let requestedComponents: Set<Calendar.Component> = [
+                    .year,
+                    .month,
+                    .day,
+                    .hour,
+                    .minute,
+                    .second
+                ]
+        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+               let year =  dateTimeComponents.year!   // 2016
+               let month =  dateTimeComponents.month!  // 10
+              let day =   dateTimeComponents.day!
+                print("its", year)
+                 print("its", month)
+                 print("its", day)
+                 print("its", currentDateTime)
+        
+                                        let currentDate = currentDateTime
                                       let daysPregnantEnter = daysPregnantF.text!
                                      let daysinMilkEnter = daysinMilkF.text!
                                      let milkInProducitonEnter = milkInProducitonF.text!
@@ -243,7 +246,7 @@ let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: 
                                      let categoryEnter = headLabel.text!
                                     
                       //
-        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole]
+        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : currentDate]
 
                       //
                         let db = Firestore.firestore()
