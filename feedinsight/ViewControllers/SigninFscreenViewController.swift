@@ -12,8 +12,7 @@
     
     class SigninFscreenViewController: UIViewController{
         
-        let userDefault = UserDefaults.standard
-           let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
+       
         
         @IBOutlet weak var forgetpasswordLabel: UILabel!
       
@@ -23,10 +22,7 @@
                self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                self.navigationController?.navigationBar.shadowImage = UIImage()
             
-            if userDefault.bool(forKey: "usersignedin") {
-            //            performSegue(withIdentifier: "Verified", sender: self)
-                         let vcone = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-                    }
+         
             
             
         }
