@@ -749,8 +749,12 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpi-jA-wQD">
-                                                        <rect key="frame" x="20" y="40" width="20" height="26"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpi-jA-wQD">
+                                                        <rect key="frame" x="20" y="40" width="22" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="22" id="53r-o3-Hs4"/>
+                                                            <constraint firstAttribute="height" constant="22" id="CeG-cy-nx5"/>
+                                                        </constraints>
                                                         <state key="normal" backgroundImage="BackArrowImage"/>
                                                         <connections>
                                                             <action selector="backBtnTap:" destination="tMY-Ri-kdE" eventType="touchUpInside" id="oXf-R4-aSE"/>
@@ -759,11 +763,9 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="kpi-jA-wQD" firstAttribute="top" secondItem="fHG-1l-2aW" secondAttribute="top" constant="40" id="DXq-po-H3d"/>
                                                     <constraint firstItem="doH-R7-gKj" firstAttribute="centerX" secondItem="fHG-1l-2aW" secondAttribute="centerX" id="FxZ-0y-IDP"/>
                                                     <constraint firstAttribute="height" constant="100" id="HIT-2y-cSR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="kpi-jA-wQD" secondAttribute="bottom" constant="34" id="KJ3-Nh-beV"/>
-                                                    <constraint firstItem="kpi-jA-wQD" firstAttribute="leading" secondItem="fHG-1l-2aW" secondAttribute="leading" constant="20" id="aui-xk-9hX"/>
+                                                    <constraint firstItem="kpi-jA-wQD" firstAttribute="top" secondItem="fHG-1l-2aW" secondAttribute="top" constant="40" id="wc1-D5-sEw"/>
                                                     <constraint firstItem="doH-R7-gKj" firstAttribute="centerY" secondItem="fHG-1l-2aW" secondAttribute="centerY" id="znE-ld-ycS"/>
                                                 </constraints>
                                             </view>
@@ -1014,6 +1016,7 @@
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="kpi-jA-wQD" firstAttribute="leading" secondItem="kCE-IS-EKg" secondAttribute="leading" id="GJX-tN-rd8"/>
                                             <constraint firstItem="Ty4-50-jFU" firstAttribute="trailing" secondItem="7U2-s0-rQm" secondAttribute="trailing" id="NbB-0D-LrH"/>
                                             <constraint firstItem="Ty4-50-jFU" firstAttribute="top" secondItem="7U2-s0-rQm" secondAttribute="bottom" constant="42" id="YjF-LM-ypd"/>
                                             <constraint firstItem="6fn-5w-YSC" firstAttribute="leading" secondItem="bDB-vT-EeG" secondAttribute="leading" id="g2m-4y-P5p"/>
