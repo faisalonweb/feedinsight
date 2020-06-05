@@ -12,6 +12,8 @@
     
     class SigninFscreenViewController: UIViewController{
         
+       
+        
         @IBOutlet weak var forgetpasswordLabel: UILabel!
       
         override func viewDidLoad() {
@@ -20,8 +22,16 @@
                self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                self.navigationController?.navigationBar.shadowImage = UIImage()
             
+         
+            
             
         }
+//        override func viewDidAppear(_ animated: Bool) {
+//                if userDefault.bool(forKey: "usersignedin") {
+//       
+//                     let vcone = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController; self.navigationController?.pushViewController(vcone!, animated: true)
+//                }
+//            }
         
         @IBAction func SigninGoogletap(_ sender: UIButton) {
            

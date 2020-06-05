@@ -17,6 +17,7 @@ target 'FeedInsight' do
   pod 'Firebase/Auth'
   pod 'CountryPickerView'
   pod 'IQKeyboardManagerSwift'
+  pod 'SVProgressHUD'
 end
 
 

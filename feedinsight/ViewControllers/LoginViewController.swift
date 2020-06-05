@@ -10,7 +10,11 @@ import UIKit
 import ActiveLabel
 import Firebase
 import FirebaseAuth
+import SVProgressHUD
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    let userDefault = UserDefaults.standard
+    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
 
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
@@ -31,6 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                        }
     }
     override func viewDidLoad() {
+     
         super.viewDidLoad()
         self.paswordField.delegate = self
         self.emailField.delegate = self
@@ -62,6 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -73,6 +79,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                }
 
     @IBAction func signinPressed(_ sender: Any) {
+        SVProgressHUD.show()
            let error = validateFields()
         if error != nil {
             showError(error!)
@@ -84,9 +91,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
          Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 // Couldn't sign in
+                   SVProgressHUD.dismiss()
                   self.showError(error!.localizedDescription)
+               
             }
             else {
+                SVProgressHUD.dismiss()
+                self.userDefault.set(true, forKey: "usersignedin")
+                self.userDefault.synchronize()
+                print(result?.user.email ?? 0)
                 if #available(iOS 13.0, *) {
                     self.transitionToHome()
                 } else {
@@ -142,6 +155,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return nil
     }
     func showError(_ message:String) {
+        SVProgressHUD.dismiss()
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)

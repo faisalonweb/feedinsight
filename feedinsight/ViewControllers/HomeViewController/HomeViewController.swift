@@ -76,7 +76,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                   else
                   {
                       getScreenSize()
-     1
+     
                      print("h12")
                        print("zise is : ", UIScreen.main.bounds.width)
                       let itemSize = UIScreen.main.bounds.width/4 - 2
