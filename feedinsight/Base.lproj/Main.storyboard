@@ -1640,7 +1640,7 @@
                                                 <rect key="frame" x="0.0" y="451" width="414" height="400"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MUE-oa-YMx">
-                                                        <rect key="frame" x="20" y="0.0" width="374" height="400"/>
+                                                        <rect key="frame" x="20" y="0.0" width="374" height="320"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CLO-ai-EVJ">
                                                             <size key="itemSize" width="158" height="71"/>
@@ -1688,20 +1688,13 @@
                                                             <outlet property="delegate" destination="04Z-oi-chC" id="qYz-RR-EDI"/>
                                                         </connections>
                                                     </collectionView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="MUE-oa-YMx" firstAttribute="leading" secondItem="axg-vb-eav" secondAttribute="leading" constant="20" id="0gV-Fk-IOh"/>
-                                                    <constraint firstAttribute="bottom" secondItem="MUE-oa-YMx" secondAttribute="bottom" id="2yT-Kw-8zI"/>
-                                                    <constraint firstAttribute="trailing" secondItem="MUE-oa-YMx" secondAttribute="trailing" constant="20" id="Vvn-s3-edt"/>
-                                                    <constraint firstItem="MUE-oa-YMx" firstAttribute="top" secondItem="axg-vb-eav" secondAttribute="top" id="jgU-Tr-bLu"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-U9-sHz">
-                                                <rect key="frame" x="0.0" y="851" width="414" height="106"/>
-                                                <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78D-b1-YOr">
-                                                        <rect key="frame" x="115" y="8" width="184" height="47"/>
+                                                        <rect key="frame" x="127" y="345" width="160" height="47"/>
                                                         <color key="backgroundColor" red="0.54901960780000003" green="0.035294117649999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="47" id="2nq-t3-jXd"/>
+                                                            <constraint firstAttribute="width" constant="160" id="Xg1-fg-Bmy"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                         <state key="normal" title="Select another animal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1718,11 +1711,16 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="78D-b1-YOr" secondAttribute="bottom" constant="51" id="0wM-e7-eNq"/>
-                                                    <constraint firstItem="78D-b1-YOr" firstAttribute="width" secondItem="cyt-U9-sHz" secondAttribute="width" multiplier="0.376812" constant="28" id="HL9-58-VHX"/>
-                                                    <constraint firstItem="78D-b1-YOr" firstAttribute="top" secondItem="cyt-U9-sHz" secondAttribute="top" constant="8" id="O8J-si-R2H"/>
-                                                    <constraint firstItem="78D-b1-YOr" firstAttribute="centerX" secondItem="cyt-U9-sHz" secondAttribute="centerX" id="eTY-3o-9Bg"/>
+                                                    <constraint firstItem="MUE-oa-YMx" firstAttribute="top" secondItem="axg-vb-eav" secondAttribute="top" id="8qh-mP-T5n"/>
+                                                    <constraint firstItem="MUE-oa-YMx" firstAttribute="leading" secondItem="axg-vb-eav" secondAttribute="leading" constant="20" id="Bkt-ii-b2n"/>
+                                                    <constraint firstItem="78D-b1-YOr" firstAttribute="bottom" secondItem="axg-vb-eav" secondAttribute="bottomMargin" id="CQ0-B5-rcf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MUE-oa-YMx" secondAttribute="trailing" constant="20" id="TZX-wh-p1T"/>
+                                                    <constraint firstItem="78D-b1-YOr" firstAttribute="centerX" secondItem="axg-vb-eav" secondAttribute="centerX" id="drB-QA-tDk"/>
+                                                    <constraint firstItem="78D-b1-YOr" firstAttribute="top" secondItem="MUE-oa-YMx" secondAttribute="bottom" constant="25" id="ps2-M9-Ge5"/>
                                                 </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-U9-sHz">
+                                                <rect key="frame" x="0.0" y="851" width="414" height="106"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
