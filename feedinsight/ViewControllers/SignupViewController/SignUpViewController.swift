@@ -110,18 +110,18 @@ class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollec
             
         }
         //
-        let nameEnter = NameField.text!
-        self.saveText(theText: nameEnter)
+//        let nameEnter = NameField.text!
+//        self.saveText(theText: nameEnter)
         // it will get all useers data save in user collection
-        db.collection("users").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
+//        db.collection("users").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                }
+//            }
+//        }
     }
     
     @available(iOS 13.0, *)

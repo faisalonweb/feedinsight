@@ -8,6 +8,7 @@
 
 import UIKit
 import iOSDropDown
+import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -132,6 +133,32 @@ class StateViewController: UIViewController, UITextFieldDelegate {
 //               }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
+        
+        db.collection("premixReport").getDocuments { (snapshot, error) in
+            if error == nil && snapshot != nil{
+
+                for document in snapshot!.documents {
+
+                    let documentData = document.data()
+                    print(documentData)
+                }
+            }
+            else {
+
+            }
+        }
+//        db.collection("wine").whereField("animalGroup", isEqualTo: "Fish").getDocuments { (snapshot, error) in
+//            if error == nil {
+//                 for document in snapshot!.documents {
+//
+//                                    let documentData = document.data()
+//                                    print(documentData)
+//                                }
+//            }
+//            else {
+//
+//            }
+//               }
     }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {

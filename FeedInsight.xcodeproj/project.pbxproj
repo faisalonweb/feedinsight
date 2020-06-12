@@ -32,6 +32,8 @@
 		04E98D57246E3F8600D7AB67 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E98D56246E3F8600D7AB67 /* Utilities.swift */; };
 		04E98D59246E3FBB00D7AB67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E98D58246E3FBB00D7AB67 /* Constants.swift */; };
 		04EC579624509E7100BAAF23 /* DropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC579524509E7100BAAF23 /* DropViewController.swift */; };
+		1A1FD8602490D80500F9A6AC /* userdataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FD85F2490D80500F9A6AC /* userdataViewController.swift */; };
+		1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */; };
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */; };
 		1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */; };
@@ -73,6 +75,8 @@
 		04E98D56246E3F8600D7AB67 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		04E98D58246E3FBB00D7AB67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04EC579524509E7100BAAF23 /* DropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewController.swift; sourceTree = "<group>"; };
+		1A1FD85F2490D80500F9A6AC /* userdataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userdataViewController.swift; sourceTree = "<group>"; };
+		1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				1A7F1223243CE3500008CFC0 /* Info.plist */,
 				04D6A906246BFE3100B37859 /* MakeDropDown.swift */,
 				04BBE55A246C3BED00B04F4A /* LocationManager.swift */,
+				1A1FD85F2490D80500F9A6AC /* userdataViewController.swift */,
+				1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */,
 			);
 			path = feedinsight;
 			sourceTree = "<group>";
@@ -397,12 +403,14 @@
 				046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */,
 				044BE5022452A66C00551BF6 /* dropdownTableViewCell.swift in Sources */,
 				04236AE52450D68100C66F66 /* RuminantCollectionViewCell.swift in Sources */,
+				1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */,
 				047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */,
 				0442AD1D248EA9A300A53BA1 /* Task.swift in Sources */,
 				1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */,
 				04E3F2AE2450C33B00A7364F /* SignUpCollectionViewCell.swift in Sources */,
 				047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */,
 				04EC579624509E7100BAAF23 /* DropViewController.swift in Sources */,
+				1A1FD8602490D80500F9A6AC /* userdataViewController.swift in Sources */,
 				1AC35CDC24509D5C001C7693 /* StateViewController.swift in Sources */,
 				1AC88FC92466D4AF00694903 /* PaddingTextField.swift in Sources */,
 				1A7F122A243E12610008CFC0 /* HomeViewController.swift in Sources */,
@@ -564,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16;
+				MARKETING_VERSION = 1.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "Feed Insight";
@@ -587,7 +595,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16;
+				MARKETING_VERSION = 1.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "Feed Insight";

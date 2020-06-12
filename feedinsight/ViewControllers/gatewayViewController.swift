@@ -18,16 +18,17 @@ class gatewayViewController: UIViewController {
         super.viewDidLoad()
 
            if userDefault.bool(forKey: "usersignedin") {
-                 //            performSegue(withIdentifier: "Verified", sender: self)
+
                               let vcone = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController; self.navigationController?.pushViewController(vcone!, animated: true)
                          }
            else {
-            
+
             let vctwo = storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController; self.navigationController?.pushViewController(vctwo!, animated: true)
-            
+
         }
     }
     
+
 
     
 
