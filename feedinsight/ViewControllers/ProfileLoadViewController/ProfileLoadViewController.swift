@@ -32,6 +32,35 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     let test = ["haha","hhabs"]
+    
+    
+    
+    private var documents: [DocumentSnapshot] = []
+    public var tasks: [Task] = []
+    private var listener : ListenerRegistration!
+    
+    fileprivate func baseQuery() -> Query {
+        return Firestore.firestore().collection("premixReport").limit(to: 50)
+    }
+     
+    fileprivate var query: Query? {
+        didSet {
+            if let listener = listener {
+                listener.remove()
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @IBAction func backtapped(_ sender: UIButton) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
@@ -40,16 +69,55 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        
+        self.listener =  query?.addSnapshotListener { (documents, error) in
+            guard let snapshot = documents else {
+                print("Error fetching documents results: \(error!)")
+                return
+            }
+             
+            let results = snapshot.documents.map { (document) -> Task in
+                if let task = Task(dictionary: document.data(), id: document.documentID) {
+                    return task
+                } else {
+                    fatalError("Unable to initialize type \(Task.self) with dictionary \(document.data())")
+                }
+            }
+             
+            self.tasks = results
+            self.documents = snapshot.documents
+            print("taskss issss:", self.tasks)
+            print("docmnts issss:", self.documents)
+            //self.tableView.reloadData()
+             
+        }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.listener.remove()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         self.query = baseQuery()
         // let db = Firestore.firestore()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
              self.navigationController?.navigationBar.shadowImage = UIImage()
                let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
                      navigationItem.leftBarButtonItem = backButton
         
-        
+        userprofile?.layer.cornerRadius = (userprofile?.frame.size.width ?? 0.0) / 2
+                      userprofile?.clipsToBounds = true
+                      userprofile?.layer.borderWidth = 3.0
+                      userprofile?.layer.borderColor = UIColor.white.cgColor
+                      
+                      notification?.layer.cornerRadius = (notification?.frame.size.width ?? 0.0) / 2
+                      notification?.clipsToBounds = true
+                      notification?.layer.borderWidth = 3.0
+                      notification?.layer.borderColor = UIColor.white.cgColor
         
         tableview.backgroundColor = UIColor.white
         tableview.register(UINib(nibName: "profileTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titlecell")
@@ -63,12 +131,16 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
         let devCousesImages = [UIImage(named: "ruminants"), UIImage(named: "aqua"), UIImage(named: "equines"), UIImage(named: "chicken")]
         //
         let db = Firestore.firestore()
-//        db.collection("premixReport").whereField("userID", isEqualTo: Auth.auth().currentUser!.uid).getDocuments { (SnapshotMetadata, Error) in
-//           if (Error != nil) {
-//                 print(Error)
-//                     }
-//                 else
-//                 {
+        db.collection("premixReport").whereField("userID", isEqualTo: Auth.auth().currentUser!.uid).getDocuments { (querySnapshot, Error) in
+           if (Error != nil) {
+                 print(Error)
+                     }
+                 else
+                 {
+                    for document in querySnapshot!.documents{
+                           print(document.data())
+                       }
+                    
 //                   for document in (SnapshotMetadata?.documents)! {
 //                    let name = (document.data()["category"]) as! String
 //
@@ -77,21 +149,13 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
 ////                                        self.pickerData1.append(item)
 ////                                    }
 //                     }
-//                }
-//                      
-//        }
+                }
+                      
+        }
 print("its hhhah", pickerData1)
         //
         
-        userprofile?.layer.cornerRadius = (userprofile?.frame.size.width ?? 0.0) / 2
-               userprofile?.clipsToBounds = true
-               userprofile?.layer.borderWidth = 3.0
-               userprofile?.layer.borderColor = UIColor.white.cgColor
-               
-               notification?.layer.cornerRadius = (notification?.frame.size.width ?? 0.0) / 2
-               notification?.clipsToBounds = true
-               notification?.layer.borderWidth = 3.0
-               notification?.layer.borderColor = UIColor.white.cgColor
+       
         
         
     }
