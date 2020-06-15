@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let launchedBefore = UserDefaults.standard.bool(forKey: "userssignedin")
 
 var window:UIWindow?
-    
+    let currencyCode = "Pkr"
    
     
 //    let mainVC = HomeViewController()
@@ -51,6 +51,25 @@ var window:UIWindow?
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    class func getAppDelegate() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    
+    func getStringValueFormattedAsCurrency(value: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.currency
+        numberFormatter.currencyCode = currencyCode
+        numberFormatter.maximumFractionDigits = 2
+        
+        let formattedValue = numberFormatter.string(from: NumberFormatter().number(from: value)!)
+        return formattedValue!
+    }
+    
+    
+    func getDocDir() -> String {
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     }
 
 
