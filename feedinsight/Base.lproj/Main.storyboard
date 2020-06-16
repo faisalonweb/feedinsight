@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UmA-wz-8OQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Wt-Xh-6eg">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1869,8 +1869,23 @@
                                             <action selector="PlusTap:" destination="6Wt-Xh-6eg" eventType="touchUpInside" id="Zbm-xv-OLC"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9v-BM-I1g">
+                                        <rect key="frame" x="157" y="430.66666666666669" width="100" height="35"/>
+                                        <color key="backgroundColor" red="0.60392156860000001" green="0.035294117649999998" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="bxS-8f-Ohe"/>
+                                            <constraint firstAttribute="width" constant="100" id="xc9-Lj-XkX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="t9v-BM-I1g" firstAttribute="centerX" secondItem="lat-X9-TEv" secondAttribute="centerX" id="Rqa-Go-gCB"/>
+                                    <constraint firstItem="t9v-BM-I1g" firstAttribute="centerY" secondItem="lat-X9-TEv" secondAttribute="centerY" id="S5t-t2-517"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1884,6 +1899,7 @@
                     </view>
                     <connections>
                         <outlet property="ValueField" destination="6nq-NZ-KPA" id="dRk-Eh-eCp"/>
+                        <outlet property="textlbl" destination="t9v-BM-I1g" id="9J4-Ch-i2g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npf-cM-Iiu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2814,14 +2830,14 @@
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="usercell" id="eif-Rc-neu" customClass="userCollectionViewCell" customModule="FeedInsight" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KLC-Qg-JuR">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="50"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MbP-QB-Bte">
-                                                                                    <rect key="frame" x="29" y="-22.666666666666664" width="70" height="95.333333333333329"/>
+                                                                                    <rect key="frame" x="29" y="16.333333333333336" width="70" height="95.333333333333314"/>
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oYz-8k-BVn">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -3239,6 +3255,9 @@
             <point key="canvasLocation" x="-2352.1739130434785" y="2369.1964285714284"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gzp-NR-xTU"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="BackArrowImage" width="30" height="30"/>
         <image name="Image" width="225" height="225"/>
@@ -3250,12 +3269,9 @@
         <image name="home" width="30" height="30"/>
         <image name="ibackrrow" width="30" height="30"/>
         <image name="isplash" width="375" height="812"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="ruminants" width="2134" height="2134"/>
         <image name="toggle-Yes" width="2168" height="872"/>
         <image name="userimage" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Gzp-NR-xTU"/>
-    </inferredMetricsTieBreakers>
 </document>

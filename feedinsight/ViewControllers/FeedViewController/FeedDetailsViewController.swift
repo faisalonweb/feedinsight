@@ -11,6 +11,7 @@ import iOSDropDown
 
 class FeedDetailsViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var ValueField: DropDown!
+    @IBOutlet weak var textlbl: UILabel!
     
      let arrayColor : NSMutableArray = ["NaCl","CaCl","Mg" ]
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class FeedDetailsViewController: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func PlusTap(_ sender: UIButton) {
+        
+        textlbl.text = ValueField.text
     }
     
     /*
