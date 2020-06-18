@@ -18,6 +18,7 @@ target 'FeedInsight' do
   pod 'CountryPickerView'
   pod 'IQKeyboardManagerSwift'
   pod 'SVProgressHUD'
+  pod 'Charts'
 end
 
 

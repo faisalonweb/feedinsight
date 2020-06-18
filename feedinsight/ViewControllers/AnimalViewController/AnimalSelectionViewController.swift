@@ -174,8 +174,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
 //        layout.itemSize = CGSize(width: itemSize + 15, height: itemSize + 15)
 //        layout.minimumInteritemSpacing = 2
 //        layout.minimumLineSpacing = 20
-//        animalCollectionView.collectionViewLayout = layout
-        
+//        animalCollectionView.collectionViewLayout = layout   
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -184,9 +183,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnimalcollectionCell", for: indexPath) as! AnimalCollectionViewCell
-        
         //let cellIndex = indexPath.item
-        
         cell.animalImage.image = imageArr[indexPath.item]
         cell.animalLabel.text = textArr[indexPath.item]
         cell.layer.borderColor = UIColor.lightGray.cgColor
