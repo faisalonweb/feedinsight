@@ -112,6 +112,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cellIndex = indexPath.item
                cell.imageusr.image = imageArr[cellIndex]
                cell.labelusr.text = textArr[cellIndex]
+        cell.layer.cornerRadius = 10
                return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

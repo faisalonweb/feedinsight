@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,17 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="isplash" translatesAutoresizingMaskIntoConstraints="NO" id="fot-KM-ywT">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zOx-at-DrZ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="isplash" translatesAutoresizingMaskIntoConstraints="NO" id="CBr-j0-QKc">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fot-KM-ywT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Q8L-N9-sKO"/>
-                            <constraint firstItem="fot-KM-ywT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YmG-OJ-VW7"/>
-                            <constraint firstItem="fot-KM-ywT" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-44" id="eNh-aO-zVe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fot-KM-ywT" secondAttribute="trailing" id="hK0-SE-BNB"/>
-                            <constraint firstItem="fot-KM-ywT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vvu-4q-1Ts"/>
+                            <constraint firstAttribute="bottom" secondItem="zOx-at-DrZ" secondAttribute="bottom" id="8P9-cH-oNK"/>
+                            <constraint firstItem="zOx-at-DrZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9Z5-aP-srg"/>
+                            <constraint firstAttribute="trailing" secondItem="zOx-at-DrZ" secondAttribute="trailing" id="CRS-YO-08w"/>
+                            <constraint firstItem="zOx-at-DrZ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="b10-9J-cXD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
