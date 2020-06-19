@@ -8,14 +8,26 @@
 
 import UIKit
 import MessageUI
+import Charts
 
-
-class PreviewViewController: UIViewController {
+class PreviewViewController: UIViewController, UICollectionViewLayout,UICollectionViewDelegate, UICollectionViewDataSource
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tableCollection", for: indexPath) as! PreviewViewController
+        return cell
+    }
+    
 
     @IBOutlet weak var webPreview: UIWebView!
     
     var invoiceInfo: [String: AnyObject]!
-    
+   let players = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
+    let goals = [6, 8, 26, 30, 8, 10]
+    @IBOutlet weak var barchart: BarChartView!
     var invoiceComposer: InvoiceComposer!
     
     var HTMLContent: String!
@@ -23,15 +35,36 @@ class PreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+barchart.animate(yAxisDuration: 2.0)
+   barchart.pinchZoomEnabled = false
+   barchart.drawBarShadowEnabled = false
+   barchart.drawBordersEnabled = false
+   barchart.doubleTapToZoomEnabled = false
+   barchart.drawGridBackgroundEnabled = true
+   barchart.chartDescription?.text = "Bar Chart View"
+   
+   setChart(dataPoints: players, values: goals.map { Double($0) })
         // Do any additional setup after loading the view.
     }
-
+    func setChart(dataPoints: [String], values: [Double]) {
+      barchart.noDataText = "You need to provide data for the chart."
+      
+      var dataEntries: [BarChartDataEntry] = []
+      
+      for i in 0..<dataPoints.count {
+        let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
+        dataEntries.append(dataEntry)
+      }
+      
+      let chartDataSet = BarChartDataSet(values: dataEntries, label: "Bar Chart View")
+      let chartData = BarChartData(dataSet: chartDataSet)
+      barchart.data = chartData
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        createInvoiceAsHTML()
+       // createInvoiceAsHTML()
     }
     
     
