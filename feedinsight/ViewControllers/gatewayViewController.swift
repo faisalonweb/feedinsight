@@ -19,7 +19,7 @@ class gatewayViewController: UIViewController {
 
            if userDefault.bool(forKey: "usersignedin") {
 
-                              let vcone = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController; self.navigationController?.pushViewController(vcone!, animated: true)
+                              let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
                          }
            else {
 
