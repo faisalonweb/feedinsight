@@ -167,6 +167,64 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loadProfileTapped(_ sender: UIButton) {
+        
+        // weeks of gestation
+        
+        let weekofgestationval = Int(daysPregnantF.text ?? "") ?? 0
+        
+        let weekofgestation = weekofgestationval / 7
+        
+        print("weeks of gestation : \(weekofgestation)")
+        
+        // gestation progress
+        
+        let value = animalField.text
+        switch value {
+        case "Goat" :
+           let mid = weekofgestation / 10
+           let final = mid * 100
+           print("goat gestation progress result : \(final)")
+          
+        case "Cow" :
+              let mid = weekofgestation/5
+              let final = mid * 100
+              print("cow gestation progress result : \(final)")
+            
+            
+        case "Fish" :
+           let mid = weekofgestation/8
+           let final = mid * 100
+           print("fish gestation progress result : \(final)")
+       
+        
+        default:
+            print("animal group not found")
+        }
+        
+        // weeks before calving
+        
+      let valueone = animalField.text
+       switch valueone {
+       case "Goat" :
+          let result = 10 - weekofgestation
+          
+          print("goat weeks before calving result : \(result)")
+         
+       case "Cow" :
+             let result = 20 - weekofgestation
+           
+             print("cow weeks before calving result : \(result)")
+           
+           
+       case "Fish" :
+          let result = 30 - weekofgestation
+          
+          print("fish before calving result : \(result)")
+      
+       
+       default:
+           print("animal group not found")
+       }
         let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
