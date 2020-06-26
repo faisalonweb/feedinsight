@@ -26,6 +26,7 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
     @IBOutlet weak var webPreview: UIWebView!
     @IBOutlet weak var contentview: UIView!
     @IBOutlet weak var scrollview: UIScrollView!
+    @IBOutlet weak var GrandView: UIView!
     
     var invoiceInfo: [String: AnyObject]!
    let players = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
