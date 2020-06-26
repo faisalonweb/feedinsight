@@ -77,18 +77,18 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
                 return
             }
              
-            let results = snapshot.documents.map { (document) -> Task in
-                if let task = Task(dictionary: document.data(), id: document.documentID) {
-                    return task
-                } else {
-                    fatalError("Unable to initialize type \(Task.self) with dictionary \(document.data())")
-                }
-            }
+//            let results = snapshot.documents.map { (document) -> Task in
+//                if let task = Task(dictionary: document.data(), id: document.documentID) {
+//                    return task
+//                } else {
+//                    fatalError("Unable to initialize type \(Task.self) with dictionary \(document.data())")
+//                }
+//            }
              
-            self.tasks = results
-            self.documents = snapshot.documents
-            print("taskss issss:", self.tasks)
-            print("docmnts issss:", self.documents)
+//            self.tasks = results
+//            self.documents = snapshot.documents
+//            print("taskss issss:", self.tasks)
+//            print("docmnts issss:", self.documents)
             //self.tableView.reloadData()
              
         }
