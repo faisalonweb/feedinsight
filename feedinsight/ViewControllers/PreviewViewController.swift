@@ -21,10 +21,12 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
         return cell
     }
 
-
+ var pdfFilename: String!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var webPreview: UIWebView!
-
+    @IBOutlet weak var contentview: UIView!
+    @IBOutlet weak var scrollview: UIScrollView!
+    
     var invoiceInfo: [String: AnyObject]!
    let players = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
     let goals = [6, 8, 26, 30, 8, 10]
@@ -35,6 +37,8 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
 
 
     override func viewDidLoad() {
+        
+       
         super.viewDidLoad()
 barchart.animate(yAxisDuration: 2.0)
    barchart.pinchZoomEnabled = false
@@ -87,10 +91,78 @@ barchart.animate(yAxisDuration: 2.0)
 
     // MARK: IBAction Methods
 
+    func generatePDFdata(withView contentview: UIView) -> NSData {
+//        let pageDimensions = scrollview.bounds
+//                     let pageSize = pageDimensions.size
+//                     let totalSize = scrollview.contentSize
+//
+//                     let numberOfPagesThatFitHorizontally = Int(ceil(totalSize.width / pageSize.width))
+//                     let numberOfPagesThatFitVertically = Int(ceil(totalSize.height / pageSize.height))
+//               let outputData = NSMutableData()
+//////
+//
+//        ////
+//               UIGraphicsBeginPDFContextToData(outputData, pageDimensions, nil)
+//               let savedContentOffset = scrollview.contentOffset
+//               let savedContentInset = scrollview.contentInset
+//
+//               scrollview.contentInset = UIEdgeInsets.zero
+//               if let context = UIGraphicsGetCurrentContext()
+//               {
+//                   for indexHorizontal in 0 ..< numberOfPagesThatFitHorizontally
+//                   {
+//                       for indexVertical in 0 ..< numberOfPagesThatFitVertically
+//                       {
+//
+//                           UIGraphicsBeginPDFPage()
+//
+//                           let offsetHorizontal = CGFloat(indexHorizontal) * pageSize.width
+//                           let offsetVertical = CGFloat(indexVertical) * pageSize.height
+//
+//                        scrollview.contentOffset = CGPoint(x: offsetHorizontal, y: offsetVertical)
+//                           context.translateBy(x: -offsetHorizontal, y: -offsetVertical)
+//
+//                           view.layer.render(in: context)
+//                       }
+//                   }
+//               }
+//               UIGraphicsEndPDFContext()
+//        let pdfData = outputData
+//                         pdfFilename = "\(AppDelegate.getAppDelegate().getDocDir())/Invoice.pdf"
+//                         pdfData.write(toFile: pdfFilename, atomically: true)
+//                          print(pdfFilename)
+//                         return outputData
+//               scrollview.contentInset = savedContentInset
+//               scrollview.contentOffset = savedContentOffset
+               
+        
+        
+        
+        
+        
+        
+        
+
+           let pageDimensions = contentview.bounds
+           let outputData = NSMutableData()
+
+           UIGraphicsBeginPDFContextToData(outputData, pageDimensions, nil)
+           if let context = UIGraphicsGetCurrentContext() {
+               UIGraphicsBeginPDFPage()
+               view.layer.render(in: context)
+           }
+           UIGraphicsEndPDFContext()
+     let pdfData = outputData
+           pdfFilename = "\(AppDelegate.getAppDelegate().getDocDir())/Invoice.pdf"
+           pdfData.write(toFile: pdfFilename, atomically: true)
+            print(pdfFilename)
+           return outputData
+       }
 
     @IBAction func exportToPDF(_ sender: AnyObject) {
-        invoiceComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent)
-        showOptionsAlert()
+//        invoiceComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent)
+//        showOptionsAlert()
+         generatePDFdata(withView: contentview)
     }
 
 

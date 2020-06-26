@@ -133,20 +133,22 @@ class StateViewController: UIViewController, UITextFieldDelegate {
 //               }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
         
-        db.collection("premixReport").getDocuments { (snapshot, error) in
-            if error == nil && snapshot != nil{
-
-                for document in snapshot!.documents {
-
-                    let documentData = document.data()
-                    print(documentData)
-                }
-            }
-            else {
-
-            }
-        }
+//        db.collection("premixReport").getDocuments { (snapshot, error) in
+//            if error == nil && snapshot != nil{
+//
+//                for document in snapshot!.documents {
+//
+//                    let documentData = document.data()
+//                    print(documentData)
+//                }
+//            }
+//            else {
+//
+//            }
+//        }
 //        db.collection("wine").whereField("animalGroup", isEqualTo: "Fish").getDocuments { (snapshot, error) in
 //            if error == nil {
 //                 for document in snapshot!.documents {
