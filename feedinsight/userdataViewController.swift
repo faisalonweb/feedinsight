@@ -101,7 +101,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                       
     }
     
-   
+    @IBAction func backbutton(_ sender: Any) {
+        let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
