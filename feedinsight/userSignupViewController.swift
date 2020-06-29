@@ -41,7 +41,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     private let locationManager = LocationManager()
-    
+    var industrycellValue = ""
     
     let textArr = ["Research","Farming","FoodManufacturing"]
     let imageArr: [UIImage] = [
@@ -210,6 +210,14 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
        }
     func validateFields() -> String? {
            //  var a = false
+        if ( industrycellValue == "")
+               {
+                if (self.userindustry.text == "")
+                {
+                     return "please select your Industry!"
+                }
+                  
+               }
            if username.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -229,6 +237,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                
                return "Please make sure your password is at least 8 characters, contains a special character and a number."
            }
+       
            if userpassword.text != usercnfpassword.text {
                return "Passwords don't Match"
            }
@@ -263,7 +272,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let cellIndex = indexPath.item
         cell.signupimage.image = imageArr[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
-        
+        industrycellValue =  cell.signuplabel.text!
         cell.layer.cornerRadius = 10
         return cell
     }

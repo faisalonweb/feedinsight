@@ -173,47 +173,47 @@ barchart.animate(yAxisDuration: 2.0)
 
     // MARK: Custom Methods
 
-    func createInvoiceAsHTML() {
-        invoiceComposer = InvoiceComposer()
-        if let invoiceHTML = invoiceComposer.renderInvoice(invoiceNumber: invoiceInfo["invoiceNumber"] as! String,
-                                                           invoiceDate: invoiceInfo["invoiceDate"] as! String,
-                                                           recipientInfo: invoiceInfo["recipientInfo"] as! String,
-                                                           items: invoiceInfo["items"] as! [[String: String]],
-                                                           totalAmount: invoiceInfo["totalAmount"] as! String) {
+//    func createInvoiceAsHTML() {
+//        invoiceComposer = InvoiceComposer()
+//        if let invoiceHTML = invoiceComposer.renderInvoice(invoiceNumber: invoiceInfo["invoiceNumber"] as! String,
+//                                                           invoiceDate: invoiceInfo["invoiceDate"] as! String,
+//                                                           recipientInfo: invoiceInfo["recipientInfo"] as! String,
+//                                                           items: invoiceInfo["items"] as! [[String: String]],
+//                                                           totalAmount: invoiceInfo["totalAmount"] as! String) {
+//
+//            webPreview.loadHTMLString(invoiceHTML, baseURL: NSURL(string: invoiceComposer.pathToInvoiceHTMLTemplate!)! as URL)
+//            HTMLContent = invoiceHTML
+//        }
+//    }
 
-            webPreview.loadHTMLString(invoiceHTML, baseURL: NSURL(string: invoiceComposer.pathToInvoiceHTMLTemplate!)! as URL)
-            HTMLContent = invoiceHTML
-        }
-    }
 
 
-
-    func showOptionsAlert() {
-        let alertController = UIAlertController(title: "Yeah!", message: "Your invoice has been successfully printed to a PDF file.\n\nWhat do you want to do now?", preferredStyle: UIAlertController.Style.alert)
-
-        let actionPreview = UIAlertAction(title: "Preview it", style: UIAlertAction.Style.default) { (action) in
-            if let filename = self.invoiceComposer.pdfFilename, let url = URL(string: filename) {
-                let request = URLRequest(url: url)
-                self.webPreview.loadRequest(request)
-            }
-        }
-
-        let actionEmail = UIAlertAction(title: "Send by Email", style: UIAlertAction.Style.default) { (action) in
-            DispatchQueue.main.async {
-                self.sendEmail()
-            }
-        }
-
-        let actionNothing = UIAlertAction(title: "Nothing", style: UIAlertAction.Style.default) { (action) in
-
-        }
-
-        alertController.addAction(actionPreview)
-        alertController.addAction(actionEmail)
-        alertController.addAction(actionNothing)
-
-        present(alertController, animated: true, completion: nil)
-    }
+//    func showOptionsAlert() {
+//        let alertController = UIAlertController(title: "Yeah!", message: "Your invoice has been successfully printed to a PDF file.\n\nWhat do you want to do now?", preferredStyle: UIAlertController.Style.alert)
+//
+//        let actionPreview = UIAlertAction(title: "Preview it", style: UIAlertAction.Style.default) { (action) in
+//            if let filename = self.invoiceComposer.pdfFilename, let url = URL(string: filename) {
+//                let request = URLRequest(url: url)
+//                self.webPreview.loadRequest(request)
+//            }
+//        }
+//
+//        let actionEmail = UIAlertAction(title: "Send by Email", style: UIAlertAction.Style.default) { (action) in
+//            DispatchQueue.main.async {
+//                self.sendEmail()
+//            }
+//        }
+//
+//        let actionNothing = UIAlertAction(title: "Nothing", style: UIAlertAction.Style.default) { (action) in
+//
+//        }
+//
+//        alertController.addAction(actionPreview)
+//        alertController.addAction(actionEmail)
+//        alertController.addAction(actionNothing)
+//
+//        present(alertController, animated: true, completion: nil)
+//    }
 
 
 
