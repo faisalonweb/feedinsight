@@ -23,7 +23,6 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
 
  var pdfFilename: String!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var webPreview: UIWebView!
     @IBOutlet weak var contentview: UIView!
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var GrandView: UIView!
@@ -43,7 +42,7 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
         
        
         super.viewDidLoad()
-        scrollview.isDirectionalLockEnabled = false
+        //scrollview.isDirectionalLockEnabled = false
         
         scrollview.delegate = self
 barchart.animate(yAxisDuration: 2.0)
