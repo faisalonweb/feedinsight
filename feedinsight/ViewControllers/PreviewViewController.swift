@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 import Charts
 
-class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource
+class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
@@ -36,11 +36,16 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
 
     var HTMLContent: String!
 
-
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        scrollView.contentOffset.x != 0
+    }
     override func viewDidLoad() {
         
        
         super.viewDidLoad()
+        scrollview.isDirectionalLockEnabled = false
+        
+        scrollview.delegate = self
 barchart.animate(yAxisDuration: 2.0)
    barchart.pinchZoomEnabled = false
    barchart.drawBarShadowEnabled = false
