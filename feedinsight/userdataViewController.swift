@@ -9,6 +9,7 @@
 import UIKit
 import iOSDropDown
 import Firebase
+import FirebaseAuth
 
 
 class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate{
@@ -19,6 +20,18 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var locationField: DropDown!
     @IBOutlet weak var userpic: UIImageView!
+    
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var useremail: UITextField!
+    @IBOutlet weak var userphone: UITextField!
+    @IBOutlet weak var userotherindus: UITextField!
+    
+    @IBOutlet weak var userbuss: UITextField!
+    @IBOutlet weak var userpassword: UITextField!
+    @IBOutlet weak var userconfirmpassword: UITextField!
+    
+    
+    
     var db: Firestore!
     
     var pickerData1: [String] = [String]()
@@ -60,7 +73,45 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
            }
        }
     override func viewDidLoad() {
+       
+       let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
 
+        // Get data
+        docRef.getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            } else if querySnapshot!.documents.count != 1 {
+                print("More than one documents or none")
+            } else {
+                let document = querySnapshot!.documents.first
+                let dataDescription = document?.data()
+                let currentusername = dataDescription?["name"]
+                let currentuseremail = dataDescription?["email"]
+                let currentuserphone = dataDescription?["phone"]
+                let currentuserindustry = dataDescription?["industry"]
+                let currentuserbusiness = dataDescription?["business"]
+                let currentuserpass = dataDescription?["password"]
+                let currentuserpickanimal = dataDescription?["pickanimal"]
+                let currentuserlocation = dataDescription?["location"]
+                let currentuserrole = dataDescription?["pickrole"]
+               
+//                else { return }
+                self.username.text = currentusername as? String
+                self.useremail.text = currentuseremail as? String
+                self.userphone.text = currentuserphone as? String
+                self.userotherindus.text = currentuserindustry as? String
+                self.userbuss.text = currentuserbusiness as? String
+                self.userpassword.text = currentuserpass as? String
+                self.userconfirmpassword.text = currentuserpass as? String
+                self.userdropdown.text = currentuserpickanimal as? String
+                self.locationField.text = currentuserlocation as? String
+                self.roledropdown.text = currentuserrole as? String
+                
+                print("user email is : \(currentuseremail ?? 0)")
+                print("user name is : \(currentusername ?? 0)")
+            }
+        }
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
