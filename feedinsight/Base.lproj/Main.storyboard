@@ -1648,11 +1648,17 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="O1b-ms-bVU" customClass="AnimalSelectionViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AQE-iG-Jxb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmz-9g-qsR">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jm7-MS-62D">
+                                <rect key="frame" x="0.0" y="44" width="414" height="900"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Qby-TC-aSA"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="8ww-wA-b6r"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmz-9g-qsR" userLabel="ContentView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhQ-Z9-dsZ">
                                         <rect key="frame" x="0.0" y="57" width="414" height="86"/>
@@ -1718,10 +1724,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7YI-UL-YkQ">
-                                        <rect key="frame" x="0.0" y="205" width="414" height="682"/>
+                                        <rect key="frame" x="0.0" y="205" width="414" height="686"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ro4-oJ-6eG">
-                                                <rect key="frame" x="35" y="-6" width="344" height="661"/>
+                                                <rect key="frame" x="35" y="-6" width="344" height="665"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="64f-7E-6ss">
                                                     <size key="itemSize" width="121" height="119"/>
@@ -1815,6 +1821,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="barchat" id="asw-7n-EYO"/>
                     <navigationItem key="navigationItem" id="4Re-yL-E1c"/>
+                    <size key="freeformSize" width="414" height="900"/>
                     <connections>
                         <outlet property="animalCollectionView" destination="ro4-oJ-6eG" id="TeJ-pk-CZc"/>
                         <outlet property="companynameLabel" destination="BrX-Ny-7Ah" id="wcq-04-YoI"/>
