@@ -133,8 +133,13 @@ class StateViewController: UIViewController, UITextFieldDelegate {
 //               }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+//        self.navigationController?.pushViewController(vc!, animated: true)
+        
+        
+        ///here above is for report
+        let vc = storyboard?.instantiateViewController(withIdentifier: "feedanalysisViewController") as? feedanalysis3ViewController
+               self.navigationController?.pushViewController(vc!, animated: true)
         
 //        db.collection("premixReport").getDocuments { (snapshot, error) in
 //            if error == nil && snapshot != nil{

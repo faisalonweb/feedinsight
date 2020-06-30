@@ -4215,7 +4215,6 @@
                                             <constraint firstItem="nkl-Jn-xRy" firstAttribute="centerX" secondItem="Z6W-G2-MJv" secondAttribute="centerX" id="WrP-ZM-QUM"/>
                                             <constraint firstItem="nkl-Jn-xRy" firstAttribute="leading" secondItem="Z6W-G2-MJv" secondAttribute="leading" id="ZPt-wB-M23"/>
                                             <constraint firstItem="nkl-Jn-xRy" firstAttribute="height" secondItem="Z6W-G2-MJv" secondAttribute="height" priority="250" constant="-22" id="rJm-rn-82d"/>
-                                            <constraint firstItem="nkl-Jn-xRy" firstAttribute="width" secondItem="Z6W-G2-MJv" secondAttribute="width" id="rWv-9b-cS6"/>
                                         </constraints>
                                         <viewLayoutGuide key="contentLayoutGuide" id="o7X-5t-I7N"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="nse-1q-Ngz"/>
@@ -5624,7 +5623,7 @@
         <!--Feedanalysis3 View Controller-->
         <scene sceneID="yUN-us-LOj">
             <objects>
-                <viewController storyboardIdentifier="feedanalysis3ViewController" modalPresentationStyle="fullScreen" id="nMb-Jz-wmv" customClass="feedanalysis3ViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feedanalysisViewController" modalPresentationStyle="fullScreen" id="nMb-Jz-wmv" customClass="feedanalysis3ViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UbV-nC-SaC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5646,13 +5645,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premix Check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uac-Z0-Z9J">
-                                                        <rect key="frame" x="20" y="7.9999999999999982" width="87.666666666666671" height="16.333333333333329"/>
+                                                        <rect key="frame" x="19.999999999999993" y="8.0000000000000018" width="89.333333333333314" height="16.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLi-AF-L5I">
-                                                        <rect key="frame" x="20.000000000000004" y="26" width="60.333333333333343" height="16.333333333333329"/>
+                                                        <rect key="frame" x="20" y="26" width="66.333333333333329" height="16.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -5682,7 +5681,7 @@
                                                 <rect key="frame" x="0.0" y="100" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dairy Cow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDc-xO-9hp">
-                                                        <rect key="frame" x="160.66666666666666" y="38.333333333333343" width="92.666666666666657" height="23.333333333333329"/>
+                                                        <rect key="frame" x="157" y="38" width="100" height="24"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -5715,13 +5714,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="47.333333333333336"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Stuff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khy-cr-pvl">
-                                                                        <rect key="frame" x="0.0" y="13.666666666666686" width="78.666666666666671" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="13.666666666666684" width="89.333333333333329" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KG" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mm0-NA-UbU">
-                                                                        <rect key="frame" x="279.66666666666669" y="13.666666666666686" width="24.333333333333314" height="20"/>
+                                                                        <rect key="frame" x="280.66666666666669" y="13.666666666666684" width="23.333333333333314" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -5794,6 +5793,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="saveTap:" destination="nMb-Jz-wmv" eventType="touchUpInside" id="STR-aL-0YG"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hE-Gg-cbV">
                                                                 <rect key="frame" x="127.33333333333334" y="0.0" width="119.33333333333334" height="45"/>
@@ -5808,6 +5810,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="loadTap:" destination="nMb-Jz-wmv" eventType="touchUpInside" id="YLr-K5-HBe"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oa1-Ox-0iV">
                                                                 <rect key="frame" x="254.66666666666671" y="0.0" width="119.33333333333334" height="45"/>
@@ -5822,6 +5827,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="NextTap:" destination="nMb-Jz-wmv" eventType="touchUpInside" id="0H0-uU-kky"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -5867,12 +5875,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yzf-rH-FhC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7297" y="3223"/>
+            <point key="canvasLocation" x="7254" y="3456"/>
         </scene>
         <!--Waterone View Controller-->
         <scene sceneID="dOC-T1-NBn">
             <objects>
-                <viewController storyboardIdentifier="wateroneViewController" modalPresentationStyle="fullScreen" id="VGs-BW-Ucl" customClass="wateroneViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="waterViewController" modalPresentationStyle="fullScreen" id="VGs-BW-Ucl" customClass="wateroneViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4fz-aQ-6M9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5894,13 +5902,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premix Check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VjU-kZ-3T5">
-                                                        <rect key="frame" x="20" y="7.9999999999999982" width="87.666666666666671" height="16.333333333333329"/>
+                                                        <rect key="frame" x="19.999999999999993" y="8.0000000000000018" width="89.333333333333314" height="16.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awi-dT-3S9">
-                                                        <rect key="frame" x="20.000000000000004" y="26" width="60.333333333333343" height="16.333333333333329"/>
+                                                        <rect key="frame" x="20" y="26" width="66.333333333333329" height="16.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -5930,7 +5938,7 @@
                                                 <rect key="frame" x="0.0" y="100" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dairy Cow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCC-jf-7QP">
-                                                        <rect key="frame" x="160.66666666666666" y="38.333333333333343" width="92.666666666666657" height="23.333333333333329"/>
+                                                        <rect key="frame" x="157" y="38" width="100" height="24"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -5963,13 +5971,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="59.333333333333336"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Water Analysis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-St-n6N">
-                                                                        <rect key="frame" x="0.0" y="19.666666666666686" width="112" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="19.333333333333314" width="125" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skip" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUz-OL-dC0">
-                                                                        <rect key="frame" x="320" y="19.666666666666686" width="34" height="20"/>
+                                                                        <rect key="frame" x="316.66666666666669" y="19.333333333333314" width="37.333333333333314" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                                         <color key="textColor" red="0.60392156860000001" green="0.035294117649999998" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -6008,7 +6016,7 @@
                                                                 <rect key="frame" x="0.0" y="138.33333333333331" width="374" height="59.333333333333343"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analysis Type (mg/lit)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHd-xp-z0K">
-                                                                        <rect key="frame" x="10" y="21" width="140.66666666666666" height="17.666666666666671"/>
+                                                                        <rect key="frame" x="10" y="20.666666666666686" width="157" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -6173,6 +6181,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="saveTap:" destination="VGs-BW-Ucl" eventType="touchUpInside" id="gp7-LM-Xlw"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTg-Dh-dgx">
                                                                 <rect key="frame" x="127.33333333333334" y="0.0" width="119.33333333333334" height="55"/>
@@ -6187,6 +6198,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="loadTap:" destination="VGs-BW-Ucl" eventType="touchUpInside" id="XgN-yT-F1L"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWN-gR-7Z4">
                                                                 <rect key="frame" x="254.66666666666671" y="0.0" width="119.33333333333334" height="55"/>
@@ -6201,6 +6215,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="nextTap:" destination="VGs-BW-Ucl" eventType="touchUpInside" id="Twg-iO-RNU"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -6252,7 +6269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dqp-zg-zYw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8180" y="3398"/>
+            <point key="canvasLocation" x="8170" y="3500"/>
         </scene>
     </scenes>
     <resources>

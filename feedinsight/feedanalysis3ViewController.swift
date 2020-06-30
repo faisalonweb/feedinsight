@@ -36,5 +36,14 @@ class feedanalysis3ViewController: UIViewController {
    
 
 }
-
+    @IBAction func NextTap(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
+                      self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    @IBAction func loadTap(_ sender: UIButton) {
+    }
+    @IBAction func saveTap(_ sender: UIButton) {
+    }
+    
 }

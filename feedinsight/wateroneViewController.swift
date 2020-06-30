@@ -39,6 +39,14 @@ class wateroneViewController: UIViewController {
        
     }
     
-
-   
+    @IBAction func saveTap(_ sender: UIButton) {
+    }
+    @IBAction func loadTap(_ sender: UIButton) {
+    }
+    
+    @IBAction func nextTap(_ sender: UIButton) {
+          let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+               self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
 }
