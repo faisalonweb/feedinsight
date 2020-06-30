@@ -173,7 +173,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                       
                       let db = Firestore.firestore()
                       
-                      db.collection("users").addDocument(data: ["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter, "countrycode": country.phoneCode]) { (error) in
+                    db.collection("users").addDocument(data: ["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
                           
                           if error != nil {
                               // Show error message
@@ -225,7 +225,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                pickrole.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                pickanimal.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               userindustry.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
                
@@ -273,6 +272,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signupimage.image = imageArr[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
+         industrycellValue = ""
         cell.layer.cornerRadius = 10
         return cell
     }
@@ -281,13 +281,15 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
         cell.signupimage.image = imageArr1[cellIndex]
-        
+        cell.signuplabel.text = textArr[cellIndex]
+         industrycellValue =  cell.signuplabel.text!
         
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
         cell.signupimage.image = imageArr[cellIndex]
+          cell.signuplabel.text = textArr[cellIndex]
     }
     
 
