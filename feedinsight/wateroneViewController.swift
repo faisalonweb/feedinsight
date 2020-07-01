@@ -13,13 +13,12 @@ class wateroneViewController: UIViewController {
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var standardbtn: UIButton!
     @IBOutlet weak var custombtn: UIButton!
-    @IBOutlet weak var palabel: UILabel!
-    @IBOutlet weak var calabel: UILabel!
-    @IBOutlet weak var mglabel: UILabel!
-    @IBOutlet weak var klabel: UILabel!
-    @IBOutlet weak var nalabel: UILabel!
-    @IBOutlet weak var cllabel: UILabel!
-    @IBOutlet weak var slabel: UILabel!
+    
+    
+    @IBOutlet weak var firstview: UIView!
+    @IBOutlet weak var secondview: UIView!
+    @IBOutlet var buttonOutlets: [UIButton]!
+    
     
     
     override func viewDidLoad() {
@@ -27,17 +26,35 @@ class wateroneViewController: UIViewController {
         profileimage.layer.cornerRadius = 17
         standardbtn.layer.cornerRadius = 8
         custombtn.layer.cornerRadius = 8
-        palabel.layer.cornerRadius = 15
-        calabel.layer.cornerRadius = 15
-        mglabel.layer.cornerRadius = 15
-        klabel.layer.cornerRadius = 15
-        nalabel.layer.cornerRadius = 15
-        calabel.layer.cornerRadius = 15
-        slabel.layer.cornerRadius = 15
+
         super.viewDidLoad()
 
        
     }
+    @IBAction func buttonspress(_ sender: UIButton) {
+        
+        self.buttonOutlets.forEach { (button) in
+            if (button === sender && sender.tag == 1) {
+                 button.backgroundColor = (button === sender && sender.tag == 1) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                 button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                 firstview.alpha = 1
+                 secondview.alpha = 0
+            }
+            else if (button === sender && sender.tag == 2) {
+                button.backgroundColor = (button === sender && sender.tag == 2) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                firstview.alpha = 0
+                secondview.alpha = 1
+            }
+            else {
+                button.backgroundColor = (button === sender && sender.tag == 1) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                firstview.alpha = 1
+                secondview.alpha = 0
+            }
+        }
+    }
+    
     
     @IBAction func saveTap(_ sender: UIButton) {
     }
