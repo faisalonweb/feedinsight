@@ -33,6 +33,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     
     var db: Firestore!
+    var collectionselectedcell = ""
     
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
@@ -95,6 +96,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let currentuserpickanimal = dataDescription?["pickanimal"]
                 let currentuserlocation = dataDescription?["location"]
                 let currentuserrole = dataDescription?["pickrole"]
+                let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
                
 //                else { return }
                 self.username.text = currentusername as? String
@@ -107,9 +109,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.userdropdown.text = currentuserpickanimal as? String
                 self.locationField.text = currentuserlocation as? String
                 self.roledropdown.text = currentuserrole as? String
+                self.collectionselectedcell = currentusercollectionindustry as! String
                 
                 print("user email is : \(currentuseremail ?? 0)")
                 print("user name is : \(currentusername ?? 0)")
+                print("collection cell name is : \(self.collectionselectedcell)")
             }
         }
         super.viewDidLoad()
@@ -166,6 +170,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cellIndex = indexPath.item
                cell.imageusr.image = imageArr[cellIndex]
                cell.labelusr.text = textArr[cellIndex]
+        print(cell.labelusr.text!)
+        if(self.collectionselectedcell == cell.labelusr.text!) {
+          cell.backgroundColor = UIColor.green
+          print("match is done")
+        }
         cell.layer.cornerRadius = 10
                return cell
     }

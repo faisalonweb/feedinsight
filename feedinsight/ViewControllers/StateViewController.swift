@@ -236,16 +236,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
-//        if producitonOutlet.currentBackgroundImage == UIImage(named:"Toggle-no")
-//        {
-//            producitonOutlet.setBackgroundImage(UIImage(named:"toggle-Yes"), for: .normal)
-//
-//        }
-//        else {
-//            producitonOutlet.setBackgroundImage(UIImage(named:"Toggle-no"), for: .normal)
-//        }
+       
         
-        producitonOutlet.isSelected = !producitonOutlet.isSelected
+        print(animalField.text!)
+        if (animalField.text == "Sheep") {
+             producitonOutlet.isSelected = !producitonOutlet.isSelected
                      if producitonOutlet.isSelected {
                          print("I am selected.")
                          producitonOutlet.setImage(toggleNo, for: .selected)
@@ -255,7 +250,13 @@ class StateViewController: UIViewController, UITextFieldDelegate {
                          print("I am not selected.")
                          producitonOutlet.setImage(toggleYes, for: .normal)
                         productionbole = false
-                     }
+            }
+            
+        }
+        else {
+             producitonOutlet.setImage(toggleNo, for: .selected)
+                                  
+        }
 
 
     }

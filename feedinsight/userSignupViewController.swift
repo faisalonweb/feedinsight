@@ -209,6 +209,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
            present(vc, animated: true, completion: nil)
        }
     func validateFields() -> String? {
+        
            //  var a = false
         if ( industrycellValue == "")
                {
@@ -271,8 +272,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let cellIndex = indexPath.item
         cell.signupimage.image = imageArr[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
-        industrycellValue =  cell.signuplabel.text!
-         industrycellValue = ""
+//        industrycellValue =  cell.signuplabel.text!
+//         industrycellValue = ""
         cell.layer.cornerRadius = 10
         return cell
     }

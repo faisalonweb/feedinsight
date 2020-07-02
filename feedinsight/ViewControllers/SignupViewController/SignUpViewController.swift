@@ -153,7 +153,7 @@ class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollec
         let locationEnter = locationField.text!
         //
         let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "location" : locationEnter]
-        
+
         //
         let db = Firestore.firestore()
         db.collection("users").addDocument(data: dict){ err in
