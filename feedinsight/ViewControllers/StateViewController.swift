@@ -16,7 +16,7 @@ import FirebaseFirestore
 
 class StateViewController: UIViewController, UITextFieldDelegate {
     
-//    @IBOutlet weak var heatStressToggle: UIImageView!
+    //    @IBOutlet weak var heatStressToggle: UIImageView!
     @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var proimage: UIImageView!
     @IBOutlet weak var notificationimage: UIImageView!
@@ -53,11 +53,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var productionbole = false
     var dietbole = false
     var heatbole = false
-
+    
     var toggleState = 1
     let toggleNo = UIImage(named:"Toggle-no")
     let toggleYes = UIImage(named:"toggle-Yes")
-
+    
     var nameanimal = ""
     var groupcompany = ""
     var statepsychlogical = ""
@@ -76,7 +76,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
         super.viewWillAppear(true)
-
+        
     }
     override func viewDidLoad() {
         nameField.text = groupcompany
@@ -89,27 +89,24 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         daysPregnantF.text = pregnantdays
         milkInProducitonF.text = productionmilk
         
-        if (diettoggle == true) {
-            print("yes we are inside \(diettoggle ?? false)")
-           
-          dietOutlet.setImage(toggleYes,for: .normal)
-  
+        if (dietbole == true) {
+            dietOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
         }
         else {
-            dietOutlet.setImage(toggleNo, for: .selected)
+            dietOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
         print("diet name is \(diettoggle ?? false)")
         print("animal name is \(nameanimal)")
-       
+        
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
         heatStreesOutlet.setImage(toggleYes, for: .normal)
         heatStreesOutlet.setImage(toggleNo, for: .selected)
         //
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-                    self.navigationController?.navigationBar.shadowImage = UIImage()
-                      let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-                            navigationItem.leftBarButtonItem = backButton
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         
         //
         print("tishahaha", name)
@@ -120,16 +117,16 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
         self.nameField.delegate = self
         self.animalField.delegate = self
-         db = Firestore.firestore()
+        db = Firestore.firestore()
         notificationimage?.layer.cornerRadius = (notificationimage?.frame.size.width ?? 0.0) / 2
-              notificationimage?.clipsToBounds = true
-              notificationimage?.layer.borderWidth = 3.0
-              notificationimage?.layer.borderColor = UIColor.white.cgColor
+        notificationimage?.clipsToBounds = true
+        notificationimage?.layer.borderWidth = 3.0
+        notificationimage?.layer.borderColor = UIColor.white.cgColor
         
         proimage?.layer.cornerRadius = (proimage?.frame.size.width ?? 0.0) / 2
-              proimage?.clipsToBounds = true
-              proimage?.layer.borderWidth = 3.0
-              proimage?.layer.borderColor = UIColor.white.cgColor
+        proimage?.clipsToBounds = true
+        proimage?.layer.borderWidth = 3.0
+        proimage?.layer.borderColor = UIColor.white.cgColor
         
         PsychField.optionArray = ["COW", "GOAT", "FISH"]
         //Its Id Values and its optional
@@ -141,65 +138,65 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBAction func backBtnTap(_ sender: UIButton) {
         //
         if let stack = self.navigationController?.viewControllers {
-          for vc in stack where vc.isKind(of: StateViewController.self) {
-            print("exists")
-            if let navController = self.navigationController {
-                navController.popViewController(animated: true)
-                          }
-          }
+            for vc in stack where vc.isKind(of: StateViewController.self) {
+                print("exists")
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
+            }
         }
         else
         {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "profileLoadID") as! ProfileLoadViewController
-           self.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil)
             print("does not exists")
         }
         
         //
-//        if let navController = self.navigationController {
-//                   navController.popViewController(animated: true)
-//               }
+        //        if let navController = self.navigationController {
+        //                   navController.popViewController(animated: true)
+        //               }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
-//        self.navigationController?.pushViewController(vc!, animated: true)
+        //        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+        //        self.navigationController?.pushViewController(vc!, animated: true)
         
         
         ///here above is for report
         let vc = storyboard?.instantiateViewController(withIdentifier: "feedanalysisViewController") as? feedanalysis3ViewController
-               self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
         
-//        db.collection("premixReport").getDocuments { (snapshot, error) in
-//            if error == nil && snapshot != nil{
-//
-//                for document in snapshot!.documents {
-//
-//                    let documentData = document.data()
-//                    print(documentData)
-//                }
-//            }
-//            else {
-//
-//            }
-//        }
-//        db.collection("wine").whereField("animalGroup", isEqualTo: "Fish").getDocuments { (snapshot, error) in
-//            if error == nil {
-//                 for document in snapshot!.documents {
-//
-//                                    let documentData = document.data()
-//                                    print(documentData)
-//                                }
-//            }
-//            else {
-//
-//            }
-//               }
+        //        db.collection("premixReport").getDocuments { (snapshot, error) in
+        //            if error == nil && snapshot != nil{
+        //
+        //                for document in snapshot!.documents {
+        //
+        //                    let documentData = document.data()
+        //                    print(documentData)
+        //                }
+        //            }
+        //            else {
+        //
+        //            }
+        //        }
+        //        db.collection("wine").whereField("animalGroup", isEqualTo: "Fish").getDocuments { (snapshot, error) in
+        //            if error == nil {
+        //                 for document in snapshot!.documents {
+        //
+        //                                    let documentData = document.data()
+        //                                    print(documentData)
+        //                                }
+        //            }
+        //            else {
+        //
+        //            }
+        //               }
     }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let psychEnter = PsychField.text!
-               self.saveText(theText: psychEnter)
+        self.saveText(theText: psychEnter)
     }
     
     @IBAction func loadProfileTapped(_ sender: UIButton) {
@@ -217,107 +214,115 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let value = animalField.text
         switch value {
         case "Goat" :
-           let mid = weekofgestation / 10
-           let final = mid * 100
-           print("goat gestation progress result : \(final)")
-          
+            let mid = weekofgestation / 10
+            let final = mid * 100
+            print("goat gestation progress result : \(final)")
+            
         case "Cow" :
-              let mid = weekofgestation/5
-              let final = mid * 100
-              print("cow gestation progress result : \(final)")
+            let mid = weekofgestation/5
+            let final = mid * 100
+            print("cow gestation progress result : \(final)")
             
             
         case "Fish" :
-           let mid = weekofgestation/8
-           let final = mid * 100
-           print("fish gestation progress result : \(final)")
-       
-        
+            let mid = weekofgestation/8
+            let final = mid * 100
+            print("fish gestation progress result : \(final)")
+            
+            
         default:
             print("animal group not found")
         }
         
         // weeks before calving
         
-      let valueone = animalField.text
-       switch valueone {
-       case "Goat" :
-          let result = 10 - weekofgestation
-          
-          print("goat weeks before calving result : \(result)")
-         
-       case "Cow" :
-             let result = 20 - weekofgestation
-           
-             print("cow weeks before calving result : \(result)")
-           
-           
-       case "Fish" :
-          let result = 30 - weekofgestation
-          
-          print("fish before calving result : \(result)")
-      
-       
-       default:
-           print("animal group not found")
-       }
+        let valueone = animalField.text
+        switch valueone {
+        case "Goat" :
+            let result = 10 - weekofgestation
+            
+            print("goat weeks before calving result : \(result)")
+            
+        case "Cow" :
+            let result = 20 - weekofgestation
+            
+            print("cow weeks before calving result : \(result)")
+            
+            
+        case "Fish" :
+            let result = 30 - weekofgestation
+            
+            print("fish before calving result : \(result)")
+            
+            
+        default:
+            print("animal group not found")
+        }
         let vc = storyboard?.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as? loadProfileAnimalsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
-       
+        
         
         print(animalField.text!)
         if (animalField.text == "Sheep") {
-             producitonOutlet.isSelected = !producitonOutlet.isSelected
-                     if producitonOutlet.isSelected {
-                         print("I am selected.")
-                         producitonOutlet.setImage(toggleNo, for: .selected)
-                         productionbole = true
-                     }
-                     else {
-                         print("I am not selected.")
-                         producitonOutlet.setImage(toggleYes, for: .normal)
-                        productionbole = false
+            producitonOutlet.isSelected = !producitonOutlet.isSelected
+            if producitonOutlet.isSelected {
+                print("I am selected.")
+                producitonOutlet.setImage(toggleNo, for: .selected)
+                productionbole = true
+            }
+            else {
+                print("I am not selected.")
+                producitonOutlet.setImage(toggleYes, for: .normal)
+                productionbole = false
             }
             
         }
         else {
-             producitonOutlet.setImage(toggleNo, for: .selected)
-                                  
+            producitonOutlet.setImage(toggleNo, for: .selected)
+            
         }
-
-
+        
+        
     }
-   
+    
     @IBAction func dietToggleTap(_ sender: UIButton) {
-        dietOutlet.isSelected = !dietOutlet.isSelected
-               if dietOutlet.isSelected {
-                   print("I am selected.")
-                   dietOutlet.setImage(toggleNo, for: .selected)
-                   dietbole = true
-               }
-               else {
-                   print("I am not selected.")
-                   dietOutlet.setImage(toggleYes, for: .normal)
-                   dietbole = false
-               }
-
+        if (dietbole == false) {
+            dietOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+            dietbole = true
+        }
+        else {
+            dietbole = false
+            dietOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+        }
+        //        dietOutlet.isSelected = !dietOutlet.isSelected
+        //               if dietOutlet.isSelected {
+        //                   print("I am selected.")
+        //
+        //                   dietOutlet.setBackgroundImage(toggleNo, for: UIControl.State.selected)
+        //                   dietbole = true
+        //               }
+        //               else {
+        //                   print("I am not selected.")
+        //                   dietOutlet.setBackgroundImage(toggleYes, for: UIControl.State.selected)
+        //                   dietbole = false
+        //               }
+        
     }
     @IBAction func disorderToggleTap(_ sender: UIButton) {
-        disorderOutlet.isSelected = !disorderOutlet.isSelected
-               if disorderOutlet.isSelected {
-                   print("I am selected.")
-                   disorderOutlet.setImage(toggleNo, for: .selected)
-                   disorderbole = true
-                
-                   
-               }
-               else {
-                   print("I am not selected.")
-                   disorderOutlet.setImage(toggleYes, for: .normal)
-                    disorderbole = false
-               }
+        if diettoggle {
+            print("I am selected.")
+            disorderOutlet.setImage(toggleNo, for: .selected)
+            disorderbole = true
+            
+            
+        }
+        else {
+            print("I am not selected.")
+            disorderOutlet.setImage(toggleYes, for: .normal)
+            disorderbole = false
+        }
     }
     @IBAction func heatStressToggleTap(_ sender: UIButton) {
         heatStreesOutlet.isSelected = !heatStreesOutlet.isSelected
@@ -342,55 +347,55 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         formatter.dateStyle = .long
         
         let datetimestamp = formatter.string(from: currentDateTime)
-       
-                let userCalendar = Calendar.current
-                let requestedComponents: Set<Calendar.Component> = [
-                    .year,
-                    .month,
-                    .day,
-                    .hour,
-                    .minute,
-                    .second
-                ]
-        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
-               let year =  dateTimeComponents.year!   // 2016
-               let month =  dateTimeComponents.month!  // 10
-              let day =   dateTimeComponents.day!
-                print("its", year)
-                 print("its", month)
-                 print("its", day)
-                 print("its", currentDateTime)
         
-                                     //let currentDate = currentDateTime
-                                     let daysPregnantEnter = daysPregnantF.text!
-                                     let daysinMilkEnter = daysinMilkF.text!
-                                     let milkInProducitonEnter = milkInProducitonF.text!
-                                     let daystoAchiveEnter = daystoAchiveF.text!
-                                     let TargetBodyWeightEnter = TargetBodyWeightF.text!
-                                     let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
-                                     let animalEnter = animalField.text!
-                                     let companynameEnter = nameField.text!
-                                     let userID = Auth.auth().currentUser?.uid
-                                     let categoryEnter = headLabel.text!
-                                    
-                      //
+        let userCalendar = Calendar.current
+        let requestedComponents: Set<Calendar.Component> = [
+            .year,
+            .month,
+            .day,
+            .hour,
+            .minute,
+            .second
+        ]
+        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+        let year =  dateTimeComponents.year!   // 2016
+        let month =  dateTimeComponents.month!  // 10
+        let day =   dateTimeComponents.day!
+        print("its", year)
+        print("its", month)
+        print("its", day)
+        print("its", currentDateTime)
+        
+        //let currentDate = currentDateTime
+        let daysPregnantEnter = daysPregnantF.text!
+        let daysinMilkEnter = daysinMilkF.text!
+        let milkInProducitonEnter = milkInProducitonF.text!
+        let daystoAchiveEnter = daystoAchiveF.text!
+        let TargetBodyWeightEnter = TargetBodyWeightF.text!
+        let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
+        let animalEnter = animalField.text!
+        let companynameEnter = nameField.text!
+        let userID = Auth.auth().currentUser?.uid
+        let categoryEnter = headLabel.text!
+        
+        //
         let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp]
-
-                      //
-                        let db = Firestore.firestore()
-                        db.collection("premixReport").addDocument(data: dict){ err in
-                                          if let err = err {
-                                              print("Error adding document: \(err)")
-                                          } else {
-                                              print("Document added")
-                                          }
-                                      }
-                    }
+        
+        //
+        let db = Firestore.firestore()
+        db.collection("premixReport").addDocument(data: dict){ err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added")
+            }
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           self.view.endEditing(true)
-           return false
-       }
+        self.view.endEditing(true)
+        return false
+    }
     
     
 }
@@ -399,7 +404,7 @@ extension UITextField {
     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
         let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
         let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
-
+        
         let toolbar: UIToolbar = UIToolbar()
         toolbar.barStyle = .default
         toolbar.items = [
@@ -408,10 +413,10 @@ extension UITextField {
             UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
         ]
         toolbar.sizeToFit()
-
+        
         self.inputAccessoryView = toolbar
     }
-
+    
     // Default actions:
     @objc func doneButtonTapped() { self.resignFirstResponder() }
     @objc func cancelButtonTapped() { self.resignFirstResponder() }
