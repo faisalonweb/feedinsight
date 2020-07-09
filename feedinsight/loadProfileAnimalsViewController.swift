@@ -190,9 +190,9 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
            vcone?.pregnantdays =  dayspregnantList[indexPath.section]
            vcone?.productionmilk =  milkproductionList[indexPath.section]
            vcone?.dietbole =  dietstate[indexPath.section]
-           vcone?.disordertoggle =  disorderstate[indexPath.section]
-           vcone?.heattoggle =  heatstate[indexPath.section]
-           vcone?.productiontoggle =  productionstate[indexPath.section]
+           vcone?.disorderbole =  disorderstate[indexPath.section]
+           vcone?.heatbole =  heatstate[indexPath.section]
+           vcone?.productionbole =  productionstate[indexPath.section]
           
            
            
