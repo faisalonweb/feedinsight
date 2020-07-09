@@ -67,6 +67,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var milkindays = ""
     var pregnantdays = ""
     var productionmilk = ""
+    var diettoggle : Bool!
+    var disordertoggle : Bool!
+    var heattoggle : Bool!
+    var productiontoggle : Bool!
+    
     
     
     override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
@@ -83,7 +88,17 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         daysinMilkF.text = milkindays
         daysPregnantF.text = pregnantdays
         milkInProducitonF.text = productionmilk
-        print("company name is \(groupcompany)")
+        
+        if (diettoggle == true) {
+            print("yes we are inside \(diettoggle ?? false)")
+           
+          dietOutlet.setImage(toggleYes,for: .normal)
+  
+        }
+        else {
+            dietOutlet.setImage(toggleNo, for: .selected)
+        }
+        print("diet name is \(diettoggle ?? false)")
         print("animal name is \(nameanimal)")
        
         super.viewDidLoad()

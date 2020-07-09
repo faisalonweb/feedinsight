@@ -31,6 +31,10 @@ class loadProfileAnimalsViewController: UIViewController {
      var daysachieveList = [String]()
      var milkproductionList = [String]()
      var psystateList = [String]()
+     var dietstate = [Bool]()
+     var disorderstate = [Bool]()
+     var heatstate = [Bool]()
+     var productionstate = [Bool]()
      
     
     private var datastation = [String]()
@@ -44,6 +48,11 @@ class loadProfileAnimalsViewController: UIViewController {
     private var dataninestation = [String]()
     private var datatenstation = [String]()
     private var dataelevenstation = [String]()
+    private var datatwelvestation = [Bool]()
+    private var datathirteenstation = [Bool]()
+    private var datafourteenstation = [Bool]()
+    private var datafifteenstation = [Bool]()
+    
     override func viewDidLoad() {
         profileimage.layer.cornerRadius = 17
         tblView.isHidden = true
@@ -69,6 +78,11 @@ class loadProfileAnimalsViewController: UIViewController {
                     let daysachive = documentData["daystoAchive"] as? String ?? "Anonymous"
                     let milkproductiontype = documentData["milkInProduciton"] as? String ?? "Anonymous"
                     let psyostate = documentData["psychologicalState"] as? String ?? "Anonymous"
+                    let dietbolestate = documentData["dietbole"] as? Bool ?? false
+                    let disorderbolestate = documentData["disorderbole"] as? Bool ?? false
+                    let heatbolestate = documentData["heatbole"] as? Bool ?? false
+                    let productionbolestate = documentData["productionbole"] as? Bool ?? false
+                    
                     
                     self.datastation.insert(animaltype, at: 0)
                     self.dataonestation.insert(timestamp, at: 0)
@@ -81,6 +95,10 @@ class loadProfileAnimalsViewController: UIViewController {
                     self.dataninestation.insert(daysachive, at: 0)
                     self.datatenstation.insert(milkproductiontype, at: 0)
                     self.dataelevenstation.insert(psyostate, at: 0)
+                    self.datatwelvestation.insert(dietbolestate, at: 0)
+                    self.datathirteenstation.insert(disorderbolestate, at: 0)
+                    self.datafourteenstation.insert(heatbolestate, at: 0)
+                    self.datafifteenstation.insert(productionbolestate, at: 0)
                         }
 
                    self.animalList.append(contentsOf: self.datastation)
@@ -94,8 +112,12 @@ class loadProfileAnimalsViewController: UIViewController {
                    self.daysachieveList.append(contentsOf: self.dataninestation)
                    self.milkproductionList.append(contentsOf: self.datatenstation)
                    self.psystateList.append(contentsOf: self.dataelevenstation)
+                   self.dietstate.append(contentsOf: self.datatwelvestation)
+                   self.disorderstate.append(contentsOf: self.datathirteenstation)
+                   self.heatstate.append(contentsOf: self.datafourteenstation)
+                   self.productionstate.append(contentsOf: self.datafifteenstation)
                    self.tblView.reloadData()
-                    print(self.psystateList)
+                    print(self.productionstate)
 
                            }
                     else {
@@ -167,6 +189,10 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
            vcone?.milkindays =  daysmilkList[indexPath.section]
            vcone?.pregnantdays =  dayspregnantList[indexPath.section]
            vcone?.productionmilk =  milkproductionList[indexPath.section]
+           vcone?.diettoggle =  dietstate[indexPath.section]
+           vcone?.disordertoggle =  disorderstate[indexPath.section]
+           vcone?.heattoggle =  heatstate[indexPath.section]
+           vcone?.productiontoggle =  productionstate[indexPath.section]
           
            
            
