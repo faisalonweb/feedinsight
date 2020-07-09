@@ -57,20 +57,34 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var toggleState = 1
     let toggleNo = UIImage(named:"Toggle-no")
     let toggleYes = UIImage(named:"toggle-Yes")
-//   let mainVC = UITabBarController()
-//   let searchVC = AnimalSelectionViewController()
-//   let profileVC = ProfileLoadViewController()
+
+    var nameanimal = ""
+    var groupcompany = ""
+    var statepsychlogical = ""
+    var bodycurrentweigth = ""
+    var bodytargetweight = ""
+    var achievedays = ""
+    var milkindays = ""
+    var pregnantdays = ""
+    var productionmilk = ""
+    
     
     override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
         super.viewWillAppear(true)
-//        self.tabBarController?.tabBar.isHidden = false
-//         let tabBarController = UITabBarController()
-//            tabBarController.viewControllers = [mainVC, searchVC, profileVC]
-//        tabBarController.selectedIndex = 2
-//        tabBarController.viewControllers = controllers
+
     }
     override func viewDidLoad() {
-     
+        nameField.text = groupcompany
+        animalField.text = nameanimal
+        PsychField.text = statepsychlogical
+        CurrentBodyWeightF.text = bodycurrentweigth
+        TargetBodyWeightF.text = bodytargetweight
+        daystoAchiveF.text = achievedays
+        daysinMilkF.text = milkindays
+        daysPregnantF.text = pregnantdays
+        milkInProducitonF.text = productionmilk
+        print("company name is \(groupcompany)")
+        print("animal name is \(nameanimal)")
        
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
@@ -232,7 +246,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
        default:
            print("animal group not found")
        }
-        let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as? loadProfileAnimalsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
@@ -332,8 +346,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
                  print("its", day)
                  print("its", currentDateTime)
         
-                                        let currentDate = currentDateTime
-                                      let daysPregnantEnter = daysPregnantF.text!
+                                     //let currentDate = currentDateTime
+                                     let daysPregnantEnter = daysPregnantF.text!
                                      let daysinMilkEnter = daysinMilkF.text!
                                      let milkInProducitonEnter = milkInProducitonF.text!
                                      let daystoAchiveEnter = daystoAchiveF.text!
