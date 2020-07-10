@@ -10,9 +10,12 @@ import UIKit
 import iOSDropDown
 import Firebase
 import FirebaseAuth
+import CountryPickerView
 
 
-class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate{
+class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate  {
+    
+    
     
     @IBOutlet weak var changebutton: UIButton!
     @IBOutlet weak var userdropdown: DropDown!
@@ -30,10 +33,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBOutlet weak var userpassword: UITextField!
     @IBOutlet weak var userconfirmpassword: UITextField!
     
+    @IBOutlet weak var countryCode: CountryPickerView!
     
     
     var db: Firestore!
     var collectionselectedcell : String = "pak"
+    var nmr : Int = 0
     
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
@@ -73,8 +78,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                self.locationField.text = output
            }
        }
+    
     override func viewDidLoad() {
        
+       
+        
        let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
 
         // Get data
@@ -96,8 +104,9 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let currentuserpickanimal = dataDescription?["pickanimal"]
                 let currentuserlocation = dataDescription?["location"]
                 let currentuserrole = dataDescription?["pickrole"]
+                let currentusercountrycode = dataDescription?["countrycode"]
                 let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-               
+                print("countrycode is \(currentusercountrycode ?? 0 )")
 //                else { return }
                 self.username.text = currentusername as? String
                 self.useremail.text = currentuseremail as? String
@@ -109,8 +118,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.userdropdown.text = currentuserpickanimal as? String
                 self.locationField.text = currentuserlocation as? String
                 self.roledropdown.text = currentuserrole as? String
+                self.nmr = currentusercountrycode as? Int ?? 0
                 self.collectionselectedcell = currentusercollectionindustry as! String
+                self.countryCode.setCountryByPhoneCode(currentusercountrycode as! String)
                 self.collectionView.reloadData()
+                
 //                print("user email is : \(currentuseremail ?? 0)")
 //                print("user name is : \(currentusername ?? 0)")
 //                  print("collection cell name is : \(self.collectionselectedcell)")
@@ -155,7 +167,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
          changebutton.layer.cornerRadius = 8
                       
     }
-    
+//    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+//        countryCode.setCountryByPhoneCode("+92")
+//    }
+//
     
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
@@ -172,10 +187,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                cell.imageusr.image = imageArr[cellIndex]
                cell.labelusr.text = textArr[cellIndex]
 //        print(cell.labelusr.text!)
-        print("collection cell name is : \(self.collectionselectedcell)")
+//        print("collection cell name is : \(self.collectionselectedcell)")
         if(self.collectionselectedcell == cell.labelusr.text!) {
-          cell.backgroundColor = UIColor.green
-          print("match is done")
+          cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+          cell.imageusr.image = imageArr1[cellIndex]
+          cell.labelusr.textColor = UIColor.white
+//          print("match is done")
         }
         cell.layer.cornerRadius = 10
                return cell
