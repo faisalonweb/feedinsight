@@ -110,7 +110,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.locationField.text = currentuserlocation as? String
                 self.roledropdown.text = currentuserrole as? String
                 self.collectionselectedcell = currentusercollectionindustry as! String
-                
+                self.collectionView.reloadData()
 //                print("user email is : \(currentuseremail ?? 0)")
 //                print("user name is : \(currentusername ?? 0)")
 //                  print("collection cell name is : \(self.collectionselectedcell)")
