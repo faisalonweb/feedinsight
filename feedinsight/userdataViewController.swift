@@ -33,7 +33,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     
     var db: Firestore!
-    var collectionselectedcell = ""
+    var collectionselectedcell : String = "pak"
     
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
@@ -111,9 +111,9 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.roledropdown.text = currentuserrole as? String
                 self.collectionselectedcell = currentusercollectionindustry as! String
                 
-                print("user email is : \(currentuseremail ?? 0)")
-                print("user name is : \(currentusername ?? 0)")
-                print("collection cell name is : \(self.collectionselectedcell)")
+//                print("user email is : \(currentuseremail ?? 0)")
+//                print("user name is : \(currentusername ?? 0)")
+//                  print("collection cell name is : \(self.collectionselectedcell)")
             }
         }
         super.viewDidLoad()
@@ -156,6 +156,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                       
     }
     
+    
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
     }
@@ -170,7 +171,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cellIndex = indexPath.item
                cell.imageusr.image = imageArr[cellIndex]
                cell.labelusr.text = textArr[cellIndex]
-        print(cell.labelusr.text!)
+//        print(cell.labelusr.text!)
+        print("collection cell name is : \(self.collectionselectedcell)")
         if(self.collectionselectedcell == cell.labelusr.text!) {
           cell.backgroundColor = UIColor.green
           print("match is done")
