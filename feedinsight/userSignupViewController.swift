@@ -34,7 +34,20 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var signinoutlet: ActiveLabel!
     
     
-    
+    struct dKeys {
+        static let keyAnimal = "animalStringKey"
+        static let keyRole = "roleStringKey"
+        static let keyLocation = "locationStringKey"
+        static let keyusername = "usernameStringKey"
+        static let keyuseremail = "useremailStringKey"
+        static let keyuserphoneno = "userphonenoStringKey"
+        static let keyuserindustry = "userindustryStringKey"
+        static let keyuserbussiness = "userbussinessStringKey"
+        static let keyuserpassowrd = "userpasswordStringKey"
+        static let keyusercnfpassword = "usercnfpasswordStringKey"
+        static let keycountrycode = "countrycodeStringKey"
+    }
+    let defaults = UserDefaults.standard
     
     
     
@@ -170,9 +183,10 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                       self.showError(err!.localizedDescription)
                   }
                   else {
+                    
+                   
                       
                       let db = Firestore.firestore()
-                      
                     db.collection("users").addDocument(data: ["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
                           
                           if error != nil {
@@ -180,11 +194,25 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                               SVProgressHUD.dismiss()
                               self.showError(error!.localizedDescription)
                           }
+//                          else {
+//                            self.defaults.set(pickanimalEnter, forKey: dKeys.keyAnimal)
+//                            self.defaults.set(pickrolEnter, forKey: dKeys.keyRole)
+//                                                     self.defaults.set(locationEnter, forKey: dKeys.keyLocation)
+//                                                     self.defaults.set(firstName, forKey: dKeys.keyuseremail)
+//                                                     self.defaults.set(email, forKey: dKeys.keyAnimal)
+//                                                     self.defaults.set(phoneEnter, forKey: dKeys.keyuserphoneno)
+//                                                     self.defaults.set(industryEnter, forKey: dKeys.keyuserindustry)
+//                                                     self.defaults.set(busindessEnter, forKey: dKeys.keyuserbussiness)
+//                                                     self.defaults.set(password, forKey: dKeys.keyuserpassowrd)
+//                                                     self.defaults.set(country.phoneCode, forKey: dKeys.keycountrycode)
+//                                                  
+//                        }
                         
                       }
                       // Transition to the home screen
                       if #available(iOS 13.0, *) {
                             SVProgressHUD.dismiss()
+                         
                           self.transitionToHome()
                       } else {
                           // Fallback on earlier versions

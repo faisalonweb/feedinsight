@@ -39,7 +39,21 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     var db: Firestore!
     var collectionselectedcell : String = "pak"
     var nmr : Int = 0
-    
+    let defaults = UserDefaults.standard
+    struct dKeys {
+        static let keyAnimal = "animalStringKey"
+        static let keyRole = "roleStringKey"
+        static let keyLocation = "locationStringKey"
+        static let keyusername = "usernameStringKey"
+        static let keyuseremail = "useremailStringKey"
+        static let keyuserphoneno = "userphonenoStringKey"
+        static let keyuserindustry = "userindustryStringKey"
+        static let keyuserbussiness = "userbussinessStringKey"
+        static let keyuserpassowrd = "userpasswordStringKey"
+        static let keyusercnfpassword = "usercnfpasswordStringKey"
+        static let keycountrycode = "countrycodeStringKey"
+        static let keycollectionview = "collectionviewStringKey"
+    }
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     private let locationManager = LocationManager()
@@ -81,11 +95,85 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     override func viewDidLoad() {
        
-       
+        if let userName = defaults.value(forKey: dKeys.keyusername){
+            
+            self.username.text = userName as? String
+            print(userName)
+        }
+        if let userEmail = defaults.value(forKey: dKeys.keyuseremail){
+                   
+            self.useremail.text = userEmail as? String
+                   print(userEmail)
+               }
+        if let animal = defaults.value(forKey: dKeys.keyAnimal){
+                          
+            self.userdropdown.text = animal as? String
+                          print(animal)
+                      }
+        if let countrycode = defaults.value(forKey: dKeys.keycountrycode){
+                          
+           self.countryCode.setCountryByPhoneCode(countrycode as! String)
+                          print(countrycode)
+                      }
+        if let location = defaults.value(forKey: dKeys.keyLocation){
+                                 
+            self.locationField.text = location as? String
+                                     print(location)
+                             }
+        if let role = defaults.value(forKey: dKeys.keyRole){
+                                        
+                   self.roledropdown.text = role as? String
+                                            print(role)
+                                    }
+        if let busines = defaults.value(forKey: dKeys.keyuserbussiness){
+                                               
+            self.userbuss.text = busines as? String
+                                                   print(busines)
+                                           }
+        if let indus = defaults.value(forKey: dKeys.keyuserindustry){
+                                                     
+                  self.userotherindus.text = indus as? String
+                                                         print(indus)
+                                                 }
+        if let pass = defaults.value(forKey: dKeys.keyuserpassowrd){
+                                                     
+                  self.userpassword.text = pass as? String
+                                                         print(pass)
+                                                 }
+        if let passcnf = defaults.value(forKey: dKeys.keyuserpassowrd){
+                                                     
+                  self.userconfirmpassword.text = passcnf as? String
+                                                         print(passcnf)
+                                                 }
+        if let phone = defaults.value(forKey: dKeys.keyuserphoneno){
+                                                           
+            self.userphone.text = phone as? String
+                                                               print(phone)
+                                                       }
+        if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
+                                                                  
+                  
+            self.collectionselectedcell = collectioncell as! String
+                                                                      print(collectioncell)
+                                                              }
+               
+        
+                      
+        
+//        else{
+//            print("Doen't get animal name.")
+//        }
+//
+//        if let currentuser = defaults.value(forKey: dKeys.keyusername) {
+//            self.username.text = currentuser as? String
+//        }
+//        else {
+//            print("key does not set in user defaults ")
+//        }
         
        let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
 
-        // Get data
+
         docRef.getDocuments { (querySnapshot, err) in
             if let err = err {
                 print(err.localizedDescription)
@@ -107,7 +195,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let currentusercountrycode = dataDescription?["countrycode"]
                 let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
                 print("countrycode is \(currentusercountrycode ?? 0 )")
-//                else { return }
+
                 self.username.text = currentusername as? String
                 self.useremail.text = currentuseremail as? String
                 self.userphone.text = currentuserphone as? String
@@ -122,10 +210,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.collectionselectedcell = currentusercollectionindustry as! String
                 self.countryCode.setCountryByPhoneCode(currentusercountrycode as! String)
                 self.collectionView.reloadData()
-                
-//                print("user email is : \(currentuseremail ?? 0)")
-//                print("user name is : \(currentusername ?? 0)")
-//                  print("collection cell name is : \(self.collectionselectedcell)")
+
+
             }
         }
         super.viewDidLoad()
