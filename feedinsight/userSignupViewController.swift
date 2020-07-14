@@ -194,19 +194,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                               SVProgressHUD.dismiss()
                               self.showError(error!.localizedDescription)
                           }
-//                          else {
-//                            self.defaults.set(pickanimalEnter, forKey: dKeys.keyAnimal)
-//                            self.defaults.set(pickrolEnter, forKey: dKeys.keyRole)
-//                                                     self.defaults.set(locationEnter, forKey: dKeys.keyLocation)
-//                                                     self.defaults.set(firstName, forKey: dKeys.keyuseremail)
-//                                                     self.defaults.set(email, forKey: dKeys.keyAnimal)
-//                                                     self.defaults.set(phoneEnter, forKey: dKeys.keyuserphoneno)
-//                                                     self.defaults.set(industryEnter, forKey: dKeys.keyuserindustry)
-//                                                     self.defaults.set(busindessEnter, forKey: dKeys.keyuserbussiness)
-//                                                     self.defaults.set(password, forKey: dKeys.keyuserpassowrd)
-//                                                     self.defaults.set(country.phoneCode, forKey: dKeys.keycountrycode)
-//                                                  
-//                        }
+
                         
                       }
                       // Transition to the home screen

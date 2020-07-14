@@ -1709,8 +1709,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vef-zc-yVb">
                                         <rect key="frame" x="0.0" y="143" width="414" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your Animals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-51-4MI">
-                                                <rect key="frame" x="123" y="6.6666666666666554" width="168" height="20.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select your Animals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-51-4MI">
+                                                <rect key="frame" x="123" y="0.0" width="168" height="27"/>
                                                 <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1718,7 +1718,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Pht-51-4MI" firstAttribute="centerX" secondItem="Vef-zc-yVb" secondAttribute="centerX" id="7V6-da-4Bo"/>
-                                            <constraint firstAttribute="bottom" secondItem="Pht-51-4MI" secondAttribute="bottom" constant="23" id="hCo-4z-Sd9"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7YI-UL-YkQ">

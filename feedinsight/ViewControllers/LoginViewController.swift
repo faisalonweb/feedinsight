@@ -34,13 +34,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         static let keycollectionview = "collectionviewStringKey"
     }
     func SignupSelection(){
-        print("yesss i cameeee")
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignupVC") as! SignUpViewController
-//        self.present(signUpViewController, animated: true, completion: nil)
-        if let navController = self.navigationController {
-                                           navController.popViewController(animated: true)
-                                       }
+     
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  let signUpViewController = storyboard.instantiateViewController(withIdentifier: "userSignupViewController") as! userSignupViewController
+                  //  self.present(signUpViewController, animated: true, completion: nil)
+                  self.navigationController?.pushViewController(signUpViewController, animated: true)
+        
+
     }
     
     @IBAction func backBtn(_ sender: UIButton) {
