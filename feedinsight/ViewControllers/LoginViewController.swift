@@ -93,10 +93,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                }
 
     @IBAction func signinPressed(_ sender: Any) {
+        
+//        emailField.isUserInteractionEnabled = false
+//        paswordField.isUserInteractionEnabled = false
         SVProgressHUD.show()
+        emailField.isUserInteractionEnabled = false
+        paswordField.isUserInteractionEnabled = false
            let error = validateFields()
         if error != nil {
             showError(error!)
+              print("error")
+            self.emailField.isUserInteractionEnabled = true
+            self.paswordField.isUserInteractionEnabled = true
+           
         }
           else {
         let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -106,11 +115,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 // Couldn't sign in
                    SVProgressHUD.dismiss()
+                self.emailField.isUserInteractionEnabled = true
+                self.paswordField.isUserInteractionEnabled = true
                   self.showError(error!.localizedDescription)
                
             }
             else {
+               
                 SVProgressHUD.dismiss()
+                self.emailField.isUserInteractionEnabled = true
+                self.paswordField.isUserInteractionEnabled = true
                 self.userDefault.set(true, forKey: "usersignedin")
                 self.userDefault.synchronize()
                 
