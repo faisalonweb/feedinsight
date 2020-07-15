@@ -54,6 +54,7 @@ class loadProfileAnimalsViewController: UIViewController {
     private var datafifteenstation = [Bool]()
     
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = true
         profileimage.layer.cornerRadius = 17
         tblView.isHidden = true
         super.viewDidLoad()
@@ -133,6 +134,12 @@ class loadProfileAnimalsViewController: UIViewController {
                } else {
                    animate(toggle: false)
                }
+    }
+    
+    @IBAction func backBtn(_ sender: Any) {
+        if let navController = self.navigationController {
+        navController.popViewController(animated: true)
+                                              }
     }
     
     func animate (toggle: Bool) {

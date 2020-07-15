@@ -155,21 +155,25 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
         //
-        if let stack = self.navigationController?.viewControllers {
-            for vc in stack where vc.isKind(of: StateViewController.self) {
-                print("exists")
-                if let navController = self.navigationController {
-                    navController.popViewController(animated: true)
-                }
-            }
-        }
-        else
-        {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "profileLoadID") as! ProfileLoadViewController
-            self.present(vc, animated: true, completion: nil)
-            print("does not exists")
-        }
+//        if let stack = self.navigationController?.viewControllers {
+//            for vc in stack where vc.isKind(of: StateViewController.self) {
+//                print("exists")
+//                if let navController = self.navigationController {
+//                    navController.popViewController(animated: true)
+//                }
+//            }
+//        }
+//        else
+//        {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as! loadProfileAnimalsViewController
+//            self.present(vc, animated: true, completion: nil)
+//            print("does not exists")
+//        }
+        if let navController = self.navigationController {
+       navController.popViewController(animated: true)
+                                              }
+        
         
        
     }
