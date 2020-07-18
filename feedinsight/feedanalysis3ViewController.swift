@@ -20,7 +20,7 @@ class feedanalysis3ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+       self.navigationController?.isNavigationBarHidden = true
         profileimage.layer.cornerRadius = 17
         plusbutton.layer.cornerRadius = 10
         feedstuff.optionArray = ["Cow","Deer","Camel"]
@@ -46,4 +46,9 @@ class feedanalysis3ViewController: UIViewController {
     @IBAction func saveTap(_ sender: UIButton) {
     }
     
+    @IBAction func backBtn(_ sender: Any) {
+        if let navController = self.navigationController {
+        navController.popViewController(animated: true)
+                                               }
+    }
 }

@@ -23,6 +23,8 @@ class wateroneViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        self.navigationController?.isNavigationBarHidden = true
+        
         profileimage.layer.cornerRadius = 17
         standardbtn.layer.cornerRadius = 8
         custombtn.layer.cornerRadius = 8
@@ -62,8 +64,17 @@ class wateroneViewController: UIViewController {
     }
     
     @IBAction func nextTap(_ sender: UIButton) {
-          let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
-               self.navigationController?.pushViewController(vc!, animated: true)
+//          let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+//               self.navigationController?.pushViewController(vc!, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
+                      self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    @IBAction func backBtn(_ sender: Any) {
+        if let navController = self.navigationController {
+              navController.popViewController(animated: true)
+                                                     }
+    }
+    
     
 }
