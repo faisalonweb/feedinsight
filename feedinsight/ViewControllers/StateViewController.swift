@@ -180,7 +180,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextTapped(_ sender: UIButton) {
       
         ///here above is for report
-        let vc = storyboard?.instantiateViewController(withIdentifier: "feedanalysisViewController") as? feedanalysis3ViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
         self.navigationController?.pushViewController(vc!, animated: true)
         
       
