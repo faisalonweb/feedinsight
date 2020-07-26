@@ -42,6 +42,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
            }
            
     
+    @IBAction func nextTap(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
     
     
     @IBAction func touchaddbtn(_ sender: Any) {

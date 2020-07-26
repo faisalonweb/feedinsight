@@ -11,7 +11,6 @@ import UIKit
 class userCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageusr: UIImageView!
-    
     @IBOutlet weak var labelusr: UILabel!
     
     override var isSelected: Bool{

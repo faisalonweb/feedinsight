@@ -10,4 +10,14 @@ import UIKit
 
 class RuminantCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ruminantLabel: UILabel!
+    
+    var pickanimalData : pickAnimal? {
+
+               didSet {
+
+                
+                ruminantLabel.text = pickanimalData?.pickAnimalStr
+    //               txtView.text = pickpremixData?.titleStr
+               }
+           }
 }

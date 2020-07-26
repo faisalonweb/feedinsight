@@ -29,6 +29,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         UIImage(named: "ruminants")!,
     ]
     //
+    var animalData = [AnimalCollectionCell]()
     var portait:CGFloat=0
           var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
@@ -151,6 +152,8 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     //
   
     override func viewDidLoad() {
+        
+        animalData = DataAppend.getAllAnimalData()
         super.viewDidLoad()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -184,11 +187,17 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnimalcollectionCell", for: indexPath) as! AnimalCollectionViewCell
         //let cellIndex = indexPath.item
-        cell.animalImage.image = imageArr[indexPath.item]
-        cell.animalLabel.text = textArr[indexPath.item]
+//        cell.animalImage.image = imageArr[indexPath.item]
+//        cell.animalLabel.text = textArr[indexPath.item]
+        cell.animalData = animalData[indexPath.row]
+//        cell.animalImage.image = animalData[indexPath.row].animalImg
+//        cell.animalLabel.text = animalData[indexPath.row].animalStr
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
         return cell
+//        cell.layer.borderColor = UIColor.lightGray.cgColor
+//        cell.layer.borderWidth = 0.5
+//        return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ruminantsID") as? RuminantsViewController
