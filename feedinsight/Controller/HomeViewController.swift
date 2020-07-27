@@ -14,6 +14,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    var arrData = [PremixCollectionCell]()
     let textArr = ["Premix Check","Unit Conveter"]
 
     let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
@@ -21,6 +23,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
    
     override func viewDidLoad() {
+        
+        arrData = DataAppend.getAllPremixData()
         super.viewDidLoad()
         
         corRad.layer.cornerRadius = 15
@@ -37,18 +41,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return textArr.count
+//         return textArr.count
+        return arrData.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdviewcell", for: indexPath) as! premixCollectionViewCell
                               
-                              let cellIndex = indexPath.item
-                              
-                          
-                              cell.txtView.text = textArr[cellIndex]
-        cell.imgView.image = imageArr[cellIndex]
-                              
-                              return cell
+//                              let cellIndex = indexPath.item
+//
+//
+//                              cell.txtView.text = textArr[cellIndex]
+//        cell.imgView.image = imageArr[cellIndex]
+//
+//                              return cell
+        
+//        cell.imgView.image = arrData[indexPath.row].img
+//        cell.txtView.text = arrData[indexPath.row].titleStr
+          
+        cell.premixData = arrData[indexPath.row]
+        return cell
     }
     
     var portait:CGFloat=0
@@ -142,9 +153,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 if(screenHeight2 == portait)
                 {
                      print("h111")
-                      print("zise did not changed : ", UIScreen.main.bounds.width)
-                  let itemSize = UIScreen.main.bounds.width/4 - 2
-                                                                              let layout = UICollectionViewFlowLayout()
+                     print("zise did not changed : ", UIScreen.main.bounds.width)
+                     let itemSize = UIScreen.main.bounds.width/4 - 2
+                     let layout = UICollectionViewFlowLayout()
                                                                               layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
                                                                                                                      layout.minimumInteritemSpacing = 2
                                                                                                                      layout.minimumLineSpacing = 20
@@ -157,10 +168,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 if(screenHeight2 == landscap)
                 {
                     print("Portrait")
-                      print("screenHeight2 : ", screenHeight2)
-                     getScreenSize()
-                                   var screenHeight12:CGFloat=0
-                     var screenwidth13:CGFloat=0
+                    print("screenHeight2 : ", screenHeight2)
+                    getScreenSize()
+                    var screenHeight12:CGFloat=0
+                    var screenwidth13:CGFloat=0
                     screenHeight12 = UIScreen.main.bounds.width
                     screenwidth13 = UIScreen.main.bounds.height
                     

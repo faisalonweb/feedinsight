@@ -17,7 +17,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! RuminantCollectionViewCell
           slectedValue = ""
         let cellIndex = indexPath.item
-        cell.ruminantLabel.text = textArr[cellIndex]
+        cell.pickanimalData = pickAnimalArr[cellIndex]
         slectedValue = cell.ruminantLabel.text!
         
         return cell
@@ -46,7 +46,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     
     var textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer"]
    
-    
+    var pickAnimalArr = [pickAnimal]()
     var slectedValue = ""
     var titlename = ""
     var titleImage = UIImage(named:"")
@@ -191,6 +191,7 @@ class RuminantsViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     override func viewDidLoad() {
       //  self.navigationController?.isNavigationBarHidden = true
+        pickAnimalArr = DataAppend.getAllPickAnimalData()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                                     self.navigationController?.navigationBar.shadowImage = UIImage()
                let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)

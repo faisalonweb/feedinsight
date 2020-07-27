@@ -49,6 +49,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     let defaults = UserDefaults.standard
     
+    var SignupCollectionData = [SignupModel]()
+    
     
     
     var pickerData1: [String] = [String]()
@@ -91,6 +93,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
            }
        }
     override func viewDidLoad() {
+        
+        SignupCollectionData = DataAppend.getAllSignupData()
         super.viewDidLoad()
         
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
@@ -286,8 +290,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "usersignup", for: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
-        cell.signupimage.image = imageArr[cellIndex]
-        cell.signuplabel.text = textArr[cellIndex]
+        cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
+        cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
 //        industrycellValue =  cell.signuplabel.text!
 //         industrycellValue = ""
         cell.layer.cornerRadius = 10
@@ -305,8 +309,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
-        cell.signupimage.image = imageArr[cellIndex]
-          cell.signuplabel.text = textArr[cellIndex]
+        
+        cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
+        cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
     }
     
 
