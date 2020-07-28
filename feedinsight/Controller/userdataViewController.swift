@@ -13,7 +13,7 @@ import FirebaseAuth
 import CountryPickerView
 
 
-class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate  {
+class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate  {
     
     
     
@@ -261,6 +261,20 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
     }
+    
+    @IBAction func selectPhoto(_ sender: UIButton) {
+        
+        let imagecontroller = UIImagePickerController()
+        imagecontroller.delegate = self
+        imagecontroller.sourceType = .photoLibrary
+        self.present(imagecontroller, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        userpic.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+   
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
