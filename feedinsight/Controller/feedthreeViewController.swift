@@ -11,10 +11,14 @@ import iOSDropDown
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource {
     @IBOutlet weak var addfeed: DropDown!
-    @IBOutlet weak var addeditbtn: UIButton!
+   
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var addbtn: UIButton!
     @IBOutlet weak var tblView: UITableView!
+    
+    @IBOutlet weak var editBtn: UIButton!
+    
+    @IBOutlet weak var plusbutton: UIButton!
     
     
     var dropdownvalues = [String]()
@@ -26,7 +30,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         profileimage.layer.cornerRadius = 15
        
         addbtn.layer.cornerRadius = 8
-        addeditbtn.layer.cornerRadius = 5
+        editBtn.layer.cornerRadius = 8
+        plusbutton.layer.cornerRadius = 28
+      
         addfeed.optionArray = ["Cow","Deer","Camel"]
         addfeed.didSelect{(selectedText , index ,id) in
         }
