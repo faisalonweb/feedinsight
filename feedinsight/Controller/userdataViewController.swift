@@ -298,9 +298,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
         cell.imageusr.image = imageArr1[cellIndex]
+    
         
         
     }

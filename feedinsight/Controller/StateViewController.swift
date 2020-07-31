@@ -79,6 +79,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         
     }
     override func viewDidLoad() {
+//        self.navigationController?.isNavigationBarHidden = true
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical

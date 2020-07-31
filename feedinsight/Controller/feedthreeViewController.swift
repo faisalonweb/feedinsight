@@ -27,8 +27,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     override func viewDidLoad() {
          self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
-        profileimage.layer.cornerRadius = 15
-       
+        profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
@@ -56,17 +55,27 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     
     
     @IBAction func touchaddbtn(_ sender: Any) {
-         print(addfeed.text ?? "none")
-        dropdownvalues.append(addfeed.text ?? "none")
-        print("paki")
-        print("array values is \(dropdownvalues)")
-        tblView.reloadData()
+        
+        if addfeed.text == "" {
+            self.showError("Select dropdown value")
+        }
+            else {
+            print(addfeed.text ?? "none")
+            dropdownvalues.append(addfeed.text ?? "none")
+            print("paki")
+            print("array values is \(dropdownvalues)")
+            tblView.reloadData()
+        }
+       
     }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            dropdownvalues.count
-//        }
-//
+    func showError(_ message:String) {
+        
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! feedthreeTableViewCell
