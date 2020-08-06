@@ -7,24 +7,35 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+import FirebaseAuth
+import FirebaseFirestore
 
 class premixViewController: UIViewController {
-
+    
     @IBOutlet weak var profileimage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        profileimage.layer.cornerRadius = 15
+        self.navigationController?.isNavigationBarHidden = true
+        let storage = Storage.storage()
+        let storageRef =  storage.reference()
+        let ref = storageRef.child("uploadphotoone")
+        profileimage.sd_setImage(with: ref)
+        self.navigationController?.isNavigationBarHidden = true
+        profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
+        
+        
     }
     
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
-              navController.popViewController(animated: true)
-                                                     }
-               
+            navController.popViewController(animated: true)
+        }
+        
     }
     
-   
-
+    
+    
 }

@@ -79,7 +79,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         
     }
     override func viewDidLoad() {
-//        self.navigationController?.isNavigationBarHidden = true
+        let storage = Storage.storage()
+        let storageRef =  storage.reference()
+        let ref = storageRef.child("uploadphotoone")
+        proimage.sd_setImage(with: ref)
+        
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical
@@ -97,23 +101,23 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             dietOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
         if (productionbole == true) {
-                   producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-               }
-               else {
-                   producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-               }
+            producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+        }
+        else {
+            producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+        }
         if (disorderbole == true) {
-                   disorderOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-               }
-               else {
-                   disorderOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-               }
+            disorderOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+        }
+        else {
+            disorderOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+        }
         if (heatbole == true) {
-                   heatStreesOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-               }
-               else {
-                   heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-               }
+            heatStreesOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+        }
+        else {
+            heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+        }
         print("diet name is \(diettoggle ?? false)")
         print("animal name is \(nameanimal)")
         
@@ -156,35 +160,35 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
         //
-//        if let stack = self.navigationController?.viewControllers {
-//            for vc in stack where vc.isKind(of: StateViewController.self) {
-//                print("exists")
-//                if let navController = self.navigationController {
-//                    navController.popViewController(animated: true)
-//                }
-//            }
-//        }
-//        else
-//        {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as! loadProfileAnimalsViewController
-//            self.present(vc, animated: true, completion: nil)
-//            print("does not exists")
-//        }
+        //        if let stack = self.navigationController?.viewControllers {
+        //            for vc in stack where vc.isKind(of: StateViewController.self) {
+        //                print("exists")
+        //                if let navController = self.navigationController {
+        //                    navController.popViewController(animated: true)
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //            let vc = storyboard.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as! loadProfileAnimalsViewController
+        //            self.present(vc, animated: true, completion: nil)
+        //            print("does not exists")
+        //        }
         if let navController = self.navigationController {
-       navController.popViewController(animated: true)
-                                              }
+            navController.popViewController(animated: true)
+        }
         
         
-       
+        
     }
     @IBAction func nextTapped(_ sender: UIButton) {
-      
+        
         ///here above is for report
         let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
         self.navigationController?.pushViewController(vc!, animated: true)
         
-      
+        
     }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {
@@ -256,14 +260,14 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
         if (animalField.text == "Sheep"){
-        if (productionbole == false) {
-                   producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-                   productionbole = true
-               }
-               else {
-                   productionbole = false
-                   producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-               }
+            if (productionbole == false) {
+                producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+                productionbole = true
+            }
+            else {
+                productionbole = false
+                producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+            }
         }
         else {
             productionbole = false
@@ -284,25 +288,25 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBAction func disorderToggleTap(_ sender: UIButton) {
         
         if (disorderbole == false) {
-                   disorderOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-                   disorderbole = true
-               }
-               else {
-                   disorderbole = false
-                   disorderOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-               }
-
+            disorderOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+            disorderbole = true
+        }
+        else {
+            disorderbole = false
+            disorderOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+        }
+        
     }
     @IBAction func heatStressToggleTap(_ sender: UIButton) {
         if (heatbole == false) {
-                   heatStreesOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-                   heatbole = true
-               }
-               else {
-                   heatbole = false
-                   heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-               }
-
+            heatStreesOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+            heatbole = true
+        }
+        else {
+            heatbole = false
+            heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
+        }
+        
     }
     
     

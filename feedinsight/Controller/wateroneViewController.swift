@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+import FirebaseAuth
+import FirebaseFirestore
 
 class wateroneViewController: UIViewController {
-
+    
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var standardbtn: UIButton!
     @IBOutlet weak var custombtn: UIButton!
@@ -24,23 +28,29 @@ class wateroneViewController: UIViewController {
     override func viewDidLoad() {
         
         self.navigationController?.isNavigationBarHidden = true
+        let storage = Storage.storage()
+        let storageRef =  storage.reference()
+        let ref = storageRef.child("uploadphotoone")
+        profileimage.sd_setImage(with: ref)
         
-        profileimage.layer.cornerRadius = 17
+        profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
+        
+        
         standardbtn.layer.cornerRadius = 8
         custombtn.layer.cornerRadius = 8
-
+        
         super.viewDidLoad()
-
-       
+        
+        
     }
     @IBAction func buttonspress(_ sender: UIButton) {
         
         self.buttonOutlets.forEach { (button) in
             if (button === sender && sender.tag == 1) {
-                 button.backgroundColor = (button === sender && sender.tag == 1) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
-                 button.setTitleColor((button === sender) ? .white : .black, for: .normal)
-                 firstview.alpha = 1
-                 secondview.alpha = 0
+                button.backgroundColor = (button === sender && sender.tag == 1) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                firstview.alpha = 1
+                secondview.alpha = 0
             }
             else if (button === sender && sender.tag == 2) {
                 button.backgroundColor = (button === sender && sender.tag == 2) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -64,16 +74,16 @@ class wateroneViewController: UIViewController {
     }
     
     @IBAction func nextTap(_ sender: UIButton) {
-//          let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
-//               self.navigationController?.pushViewController(vc!, animated: true)
+        //          let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+        //               self.navigationController?.pushViewController(vc!, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
-                      self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
-              navController.popViewController(animated: true)
-                                                     }
+            navController.popViewController(animated: true)
+        }
     }
     
     

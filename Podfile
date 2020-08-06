@@ -19,6 +19,8 @@ target 'FeedInsight' do
   pod 'IQKeyboardManagerSwift'
   pod 'SVProgressHUD'
   pod 'Charts'
+  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
 end
 
 

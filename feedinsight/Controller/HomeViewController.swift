@@ -14,7 +14,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var arrData = [PremixCollectionCell]()
     let textArr = ["Premix Check","Unit Conveter"]
     let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
-
+    
     override func viewDidLoad() {
         arrData = DataAppend.getAllPremixData()
         super.viewDidLoad()
@@ -48,6 +48,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         cell.premixData = arrData[indexPath.row]
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
+        self.navigationController?.pushViewController(animalViewController, animated: true)
     }
     
     var portait:CGFloat=0

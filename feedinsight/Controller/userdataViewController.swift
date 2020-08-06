@@ -61,120 +61,123 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     let textArr = ["Research","Farming","FoodManufacturing"]
     let imageArr: [UIImage] = [
-           UIImage(named: "research-unselected")!,
-           UIImage(named: "farm-unselected")!,
-           UIImage(named: "feedmanufacturing-unselected")!,
-       ]
-       let imageArr1: [UIImage] = [
-           UIImage(named: "research-selected")!,
-           UIImage(named: "farm-selected")!,
-           UIImage(named: "feedmanufacturing-selected")!,
-       ]
+        UIImage(named: "research-unselected")!,
+        UIImage(named: "farm-unselected")!,
+        UIImage(named: "feedmanufacturing-unselected")!,
+    ]
+    let imageArr1: [UIImage] = [
+        UIImage(named: "research-selected")!,
+        UIImage(named: "farm-selected")!,
+        UIImage(named: "feedmanufacturing-selected")!,
+    ]
     private func setCurrentLocation() {
-           
-           guard let exposedLocation = self.locationManager.exposedLocation else {
-               print("*** Error in \(#function): exposedLocation is nil")
-               return
-           }
-           
-           self.locationManager.getPlace(for: exposedLocation) { placemark in
-               guard let placemark = placemark else { return }
-               
-               var output = "Our location is:"
-               if let country = placemark.country {
-                   output = output + "\n\(country)"
-               }
-               if let state = placemark.administrativeArea {
-                   output = output + "\n\(state)"
-               }
-               if let town = placemark.locality {
-                   output = output + "\n\(town)"
-               }
-               self.locationField.text = output
-           }
-       }
+        guard let exposedLocation = self.locationManager.exposedLocation else {
+            print("*** Error in \(#function): exposedLocation is nil")
+            return
+        }
+        
+        self.locationManager.getPlace(for: exposedLocation) { placemark in
+            guard let placemark = placemark else { return }
+            
+            var output = "Our location is:"
+            if let country = placemark.country {
+                output = output + "\n\(country)"
+            }
+            if let state = placemark.administrativeArea {
+                output = output + "\n\(state)"
+            }
+            if let town = placemark.locality {
+                output = output + "\n\(town)"
+            }
+            self.locationField.text = output
+        }
+    }
     
     override func viewDidLoad() {
-       
+        let storage = Storage.storage()
+        let storageRef =  storage.reference()
+        let ref = storageRef.child("uploadphotoone")
+        userpic.sd_setImage(with: ref)
+        
         if let userName = defaults.value(forKey: dKeys.keyusername){
             
             self.username.text = userName as? String
             print(userName)
         }
         if let userEmail = defaults.value(forKey: dKeys.keyuseremail){
-                   
+            
             self.useremail.text = userEmail as? String
-                   print(userEmail)
-               }
+            print(userEmail)
+        }
         if let animal = defaults.value(forKey: dKeys.keyAnimal){
-                          
+            
             self.userdropdown.text = animal as? String
-                          print(animal)
-                      }
+            print(animal)
+        }
         if let countrycode = defaults.value(forKey: dKeys.keycountrycode){
-                          
-           self.countryCode.setCountryByPhoneCode(countrycode as! String)
-                          print(countrycode)
-                      }
+            
+            self.countryCode.setCountryByPhoneCode(countrycode as! String)
+            print(countrycode)
+        }
         if let location = defaults.value(forKey: dKeys.keyLocation){
-                                 
+            
             self.locationField.text = location as? String
-                                     print(location)
-                             }
+            print(location)
+        }
         if let role = defaults.value(forKey: dKeys.keyRole){
-                                        
-                   self.roledropdown.text = role as? String
-                                            print(role)
-                                    }
+            
+            self.roledropdown.text = role as? String
+            print(role)
+        }
         if let busines = defaults.value(forKey: dKeys.keyuserbussiness){
-                                               
+            
             self.userbuss.text = busines as? String
-                                                   print(busines)
-                                           }
+            print(busines)
+        }
         if let indus = defaults.value(forKey: dKeys.keyuserindustry){
-                                                     
-                  self.userotherindus.text = indus as? String
-                                                         print(indus)
-                                                 }
+            
+            self.userotherindus.text = indus as? String
+            print(indus)
+        }
         if let pass = defaults.value(forKey: dKeys.keyuserpassowrd){
-                                                     
-                  self.userpassword.text = pass as? String
-                                                         print(pass)
-                                                 }
+            
+            self.userpassword.text = pass as? String
+            print(pass)
+        }
         if let passcnf = defaults.value(forKey: dKeys.keyuserpassowrd){
-                                                     
-                  self.userconfirmpassword.text = passcnf as? String
-                                                         print(passcnf)
-                                                 }
+            
+            self.userconfirmpassword.text = passcnf as? String
+            print(passcnf)
+        }
         if let phone = defaults.value(forKey: dKeys.keyuserphoneno){
-                                                           
+            
             self.userphone.text = phone as? String
-                                                               print(phone)
-                                                       }
+            print(phone)
+        }
         if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
-                                                                  
-                  
+            
+            
             self.collectionselectedcell = collectioncell as! String
-                                                                      print(collectioncell)
-                                                              }
-               
+            print(collectioncell)
+        }
         
-                      
         
-//        else{
-//            print("Doen't get animal name.")
-//        }
-//
-//        if let currentuser = defaults.value(forKey: dKeys.keyusername) {
-//            self.username.text = currentuser as? String
-//        }
-//        else {
-//            print("key does not set in user defaults ")
-//        }
         
-       let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-
-
+        
+        //        else{
+        //            print("Doen't get animal name.")
+        //        }
+        //
+        //        if let currentuser = defaults.value(forKey: dKeys.keyusername) {
+        //            self.username.text = currentuser as? String
+        //        }
+        //        else {
+        //            print("key does not set in user defaults ")
+        //        }
+        
+        let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
+        
+        
         docRef.getDocuments { (querySnapshot, err) in
             if let err = err {
                 print(err.localizedDescription)
@@ -196,7 +199,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let currentusercountrycode = dataDescription?["countrycode"]
                 let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
                 print("countrycode is \(currentusercountrycode ?? 0 )")
-
+                
                 self.username.text = currentusername as? String
                 self.useremail.text = currentuseremail as? String
                 self.userphone.text = currentuserphone as? String
@@ -211,8 +214,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.collectionselectedcell = currentusercollectionindustry as! String
                 self.countryCode.setCountryByPhoneCode(currentusercountrycode as! String)
                 self.collectionView.reloadData()
-
-
+                
+                
             }
         }
         super.viewDidLoad()
@@ -220,44 +223,44 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         collectionView.dataSource = self
         
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
-               let lineArray = text.components(separatedBy: "\n")
-               for eachLA in lineArray
-               {
-                   workarray = eachLA.components(separatedBy: ",")
-                   pickerData1.append(workarray[0])
-                   
-               }
+        let lineArray = text.components(separatedBy: "\n")
+        for eachLA in lineArray
+        {
+            workarray = eachLA.components(separatedBy: ",")
+            pickerData1.append(workarray[0])
+            
+        }
         locationField.optionArray = pickerData1
-               locationField.didSelect{(selectedText , index ,id) in
-               }
+        locationField.didSelect{(selectedText , index ,id) in
+        }
         
         userdropdown.optionArray = ["Cow","Deer","Camel"]
-               userdropdown.didSelect{(selectedText , index ,id) in
-               }
+        userdropdown.didSelect{(selectedText , index ,id) in
+        }
         roledropdown.optionArray = ["Admin","Client","Lender"]
-                      roledropdown.didSelect{(selectedText , index ,id) in
-                      }
+        roledropdown.didSelect{(selectedText , index ,id) in
+        }
         
         let itemSize = UIScreen.main.bounds.width/3 - 2
-               let layout = UICollectionViewFlowLayout()
-               layout.scrollDirection = .horizontal
-               layout.itemSize = CGSize(width: itemSize, height: itemSize)
-               layout.minimumInteritemSpacing = 2
-               layout.minimumLineSpacing = 16
-               collectionView.collectionViewLayout = layout
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 16
+        collectionView.collectionViewLayout = layout
         
-      
+        
         userpic.layer.cornerRadius = userpic.frame.size.width/2
-                      userpic.clipsToBounds = true
-                      userpic.layer.borderWidth = 2.0
-                      userpic.layer.borderColor = UIColor.white.cgColor
-         changebutton.layer.cornerRadius = 8
-                      
+        userpic.clipsToBounds = true
+        userpic.layer.borderWidth = 2.0
+        userpic.layer.borderColor = UIColor.white.cgColor
+        changebutton.layer.cornerRadius = 8
+        
     }
-//    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
-//        countryCode.setCountryByPhoneCode("+92")
-//    }
-//
+    //    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+    //        countryCode.setCountryByPhoneCode("+92")
+    //    }
+    //
     
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
@@ -298,12 +301,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 }
             }
             
-        
+            
+        }
     }
-    }
-
     
-
+    
+    
     @IBAction func selectPhoto(_ sender: UIButton) {
         
         let imagecontroller = UIImagePickerController()
@@ -314,9 +317,34 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         userpic.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
+        
+        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            print(url)
+            uploadToCloud(fileURL: url)
+        }
+        
+    }
+    func uploadToCloud(fileURL:URL) {
+        let storage = Storage.storage()
+        
+        let data = Data()
+        
+        let storageRef =  storage.reference()
+        
+        let localFile = fileURL
+        
+        let photoRef = storageRef.child("uploadphotoone")
+        
+        let uploadTask = photoRef.putFile(from: localFile, metadata: nil) { (metadata, err) in
+            guard let metadata = metadata else {
+                print(err?.localizedDescription ?? "none")
+                return
+            }
+            print("photo uploaded")
+        }
     }
     
-   
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -326,26 +354,26 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "usercell", for: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
-               cell.imageusr.image = imageArr[cellIndex]
-               cell.labelusr.text = textArr[cellIndex]
+        cell.imageusr.image = imageArr[cellIndex]
+        cell.labelusr.text = textArr[cellIndex]
         industrycellValue = cell.labelusr.text!
-//        print(cell.labelusr.text!)
-//        print("collection cell name is : \(self.collectionselectedcell)")
+        //        print(cell.labelusr.text!)
+        //        print("collection cell name is : \(self.collectionselectedcell)")
         if(self.collectionselectedcell == cell.labelusr.text!) {
-          cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-          cell.imageusr.image = imageArr1[cellIndex]
-          cell.labelusr.textColor = UIColor.white
-//          print("match is done")
+            cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+            cell.imageusr.image = imageArr1[cellIndex]
+            cell.labelusr.textColor = UIColor.white
+            //          print("match is done")
         }
         cell.layer.cornerRadius = 10
-               return cell
+        return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
         cell.imageusr.image = imageArr1[cellIndex]
-    
+        
         
         
     }
@@ -355,10 +383,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         cell.imageusr.image = imageArr[cellIndex]
     }
     
-   
     
-
-   
-  
-
+    
+    
+    
+    
+    
 }

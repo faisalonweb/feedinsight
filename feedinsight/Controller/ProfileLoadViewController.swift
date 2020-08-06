@@ -28,7 +28,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     var check = false
     var tableViewData = [cellData]()
     let cellSpacingHeight: CGFloat = 20
-     var db: Firestore!
+    var db: Firestore!
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     let test = ["haha","hhabs"]
@@ -42,7 +42,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     fileprivate func baseQuery() -> Query {
         return Firestore.firestore().collection("premixReport").limit(to: 50)
     }
-     
+    
     fileprivate var query: Query? {
         didSet {
             if let listener = listener {
@@ -76,21 +76,21 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
                 print("Error fetching documents results: \(error!)")
                 return
             }
-             
-//            let results = snapshot.documents.map { (document) -> Task in
-//                if let task = Task(dictionary: document.data(), id: document.documentID) {
-//                    return task
-//                } else {
-//                    fatalError("Unable to initialize type \(Task.self) with dictionary \(document.data())")
-//                }
-//            }
-             
-//            self.tasks = results
-//            self.documents = snapshot.documents
-//            print("taskss issss:", self.tasks)
-//            print("docmnts issss:", self.documents)
+            
+            //            let results = snapshot.documents.map { (document) -> Task in
+            //                if let task = Task(dictionary: document.data(), id: document.documentID) {
+            //                    return task
+            //                } else {
+            //                    fatalError("Unable to initialize type \(Task.self) with dictionary \(document.data())")
+            //                }
+            //            }
+            
+            //            self.tasks = results
+            //            self.documents = snapshot.documents
+            //            print("taskss issss:", self.tasks)
+            //            print("docmnts issss:", self.documents)
             //self.tableView.reloadData()
-             
+            
         }
     }
     
@@ -102,22 +102,22 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.query = baseQuery()
+        self.query = baseQuery()
         // let db = Firestore.firestore()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-             self.navigationController?.navigationBar.shadowImage = UIImage()
-               let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-                     navigationItem.leftBarButtonItem = backButton
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         
         userprofile?.layer.cornerRadius = (userprofile?.frame.size.width ?? 0.0) / 2
-                      userprofile?.clipsToBounds = true
-                      userprofile?.layer.borderWidth = 3.0
-                      userprofile?.layer.borderColor = UIColor.white.cgColor
-                      
-                      notification?.layer.cornerRadius = (notification?.frame.size.width ?? 0.0) / 2
-                      notification?.clipsToBounds = true
-                      notification?.layer.borderWidth = 3.0
-                      notification?.layer.borderColor = UIColor.white.cgColor
+        userprofile?.clipsToBounds = true
+        userprofile?.layer.borderWidth = 3.0
+        userprofile?.layer.borderColor = UIColor.white.cgColor
+        
+        notification?.layer.cornerRadius = (notification?.frame.size.width ?? 0.0) / 2
+        notification?.clipsToBounds = true
+        notification?.layer.borderWidth = 3.0
+        notification?.layer.borderColor = UIColor.white.cgColor
         
         tableview.backgroundColor = UIColor.white
         tableview.register(UINib(nibName: "profileTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titlecell")
@@ -132,30 +132,30 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
         //
         let db = Firestore.firestore()
         db.collection("premixReport").whereField("userID", isEqualTo: Auth.auth().currentUser!.uid).getDocuments { (querySnapshot, Error) in
-           if (Error != nil) {
-                 print(Error)
-                     }
-                 else
-                 {
-                    for document in querySnapshot!.documents{
-                           print(document.data())
-                       }
-                    
-//                   for document in (SnapshotMetadata?.documents)! {
-//                    let name = (document.data()["category"]) as! String
-//
-////                    for item in self.workarray
-////                                    {
-////                                        self.pickerData1.append(item)
-////                                    }
-//                     }
+            if (Error != nil) {
+                print(Error)
+            }
+            else
+            {
+                for document in querySnapshot!.documents{
+                    print(document.data())
                 }
-                      
+                
+                //                   for document in (SnapshotMetadata?.documents)! {
+                //                    let name = (document.data()["category"]) as! String
+                //
+                ////                    for item in self.workarray
+                ////                                    {
+                ////                                        self.pickerData1.append(item)
+                ////                                    }
+                //                     }
+            }
+            
         }
-print("its hhhah", pickerData1)
+        print("its hhhah", pickerData1)
         //
         
-       
+        
         
         
     }
@@ -182,15 +182,15 @@ print("its hhhah", pickerData1)
         let dataIndex = indexPath.row - 1
         let selectedIndexPaths: IndexPath = IndexPath(row:0, section:0)
         if indexPath.row == 0 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-//                else { return ProfileloadTableViewCell()}
-              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileloadTableViewCell
+            //            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            //                else { return ProfileloadTableViewCell()}
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileloadTableViewCell
             cell.layer.borderColor = UIColor.white.cgColor
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
             //let index = test.indexOf()
-           // cell.imageView?.image = devCousesImages[0]
+            // cell.imageView?.image = devCousesImages[0]
             if(check == false)
             {
                 cell.arrowView?.image = UIImage(named: "right-arrow")      // right-arrow
@@ -205,9 +205,9 @@ print("its hhhah", pickerData1)
         } else
         {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "titlecell") else { return profileTitleTableViewCell()}
-//             cell.layer.borderColor = UIColor.clear.cgColor
-//                       cell.layer.borderWidth = 4
-                      
+            //             cell.layer.borderColor = UIColor.clear.cgColor
+            //                       cell.layer.borderWidth = 4
+            
             // cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
             
             return cell
@@ -225,51 +225,51 @@ print("its hhhah", pickerData1)
             
             if tableViewData[indexPath.section].opened == true
             {
-                  check = false
+                check = false
                 tableViewData[indexPath.section].opened = false
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-              
+                
             }
             else
             {
-                 check = true
+                check = true
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-               
+                
                 
             }
         }
         else
         {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//             let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-//            self.present(vc, animated: true, completion: nil)
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //             let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+            //            self.present(vc, animated: true, completion: nil)
             
-             print("does not exists")
+            print("does not exists")
             if let navController = self.navigationController {
-                           navController.popViewController(animated: true)
-                                     }
-                     
-//            if let stack = self.navigationController?.viewControllers {
-//              for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
-//                print("exists")
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-//                self.navigationController?.pushViewController(vc, animated: true)
-//              }
-//            }
-//            else
-//            {
-//
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-//               self.present(vc, animated: true, completion: nil)
-//                print("does not exists")
-//            }
-           
-             let cellSpacingHeight: CGFloat = 20
+                navController.popViewController(animated: true)
+            }
+            
+            //            if let stack = self.navigationController?.viewControllers {
+            //              for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
+            //                print("exists")
+            //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+            //                self.navigationController?.pushViewController(vc, animated: true)
+            //              }
+            //            }
+            //            else
+            //            {
+            //
+            //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
+            //               self.present(vc, animated: true, completion: nil)
+            //                print("does not exists")
+            //            }
+            
+            let cellSpacingHeight: CGFloat = 20
         }
         
     }

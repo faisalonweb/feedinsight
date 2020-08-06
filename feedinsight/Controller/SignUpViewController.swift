@@ -110,18 +110,18 @@ class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollec
             
         }
         //
-//        let nameEnter = NameField.text!
-//        self.saveText(theText: nameEnter)
+        //        let nameEnter = NameField.text!
+        //        self.saveText(theText: nameEnter)
         // it will get all useers data save in user collection
-//        db.collection("users").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-//        }
+        //        db.collection("users").getDocuments() { (querySnapshot, err) in
+        //            if let err = err {
+        //                print("Error getting documents: \(err)")
+        //            } else {
+        //                for document in querySnapshot!.documents {
+        //                    print("\(document.documentID) => \(document.data())")
+        //                }
+        //            }
+        //        }
     }
     
     @available(iOS 13.0, *)
@@ -153,7 +153,7 @@ class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollec
         let locationEnter = locationField.text!
         //
         let dict : [String : Any] = ["name" : theText, "PASSWORD" : passwordEnter, "REPASSWORD" : repasswordEnter, "industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : emailEnter, "phone" : phoneEnter, "location" : locationEnter]
-
+        
         //
         let db = Firestore.firestore()
         db.collection("users").addDocument(data: dict){ err in
@@ -196,13 +196,13 @@ class SignUpViewController: UIViewController,UICollectionViewDataSource,UICollec
             self.locationField.text = output
         }
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        let height: CGFloat = 0 //whatever height you want
-//        let bounds = self.navigationController!.navigationBar.bounds
-//        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
-//        
-//    }
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        super.viewDidAppear(animated)
+    //        let height: CGFloat = 0 //whatever height you want
+    //        let bounds = self.navigationController!.navigationBar.bounds
+    //        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
+    //        
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

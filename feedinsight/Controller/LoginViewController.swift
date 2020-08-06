@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let userDefault = UserDefaults.standard
     let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
-
+    
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -34,50 +34,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         static let keycollectionview = "collectionviewStringKey"
     }
     func SignupSelection(){
-     
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                  let signUpViewController = storyboard.instantiateViewController(withIdentifier: "userSignupViewController") as! userSignupViewController
-                  //  self.present(signUpViewController, animated: true, completion: nil)
-                  self.navigationController?.pushViewController(signUpViewController, animated: true)
         
-
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "userSignupViewController") as! userSignupViewController
+        //  self.present(signUpViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
+        
+        
     }
     
     @IBAction func backBtn(_ sender: UIButton) {
         if let navController = self.navigationController {
-                                           navController.popViewController(animated: true)
-                                       }
+            navController.popViewController(animated: true)
+        }
     }
     override func viewDidLoad() {
-     
+        
         super.viewDidLoad()
         self.paswordField.delegate = self
         self.emailField.delegate = self
-
+        
         let customType = ActiveType.custom(pattern: "\\sSign\\sUp") //Looks for "are"
-                       signupBtn.enabledTypes.append(customType)
-                       signupBtn.urlMaximumLength = 61
-                       
-                       signupBtn.customize { label in
-                       signupBtn.text = "Don't have an Account? Sign Up"
-                           signupBtn.numberOfLines = 1
-                           signupBtn.lineSpacing = 4
-                           signupBtn.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
-                           signupBtn.customSelectedColor[customType] = UIColor.black
-                   
-                           //
-                           signupBtn.configureLinkAttribute = { (type, attributes, isSelected) in
-                               var atts = attributes
-                               switch type {
-                               case customType:
-                                   atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
-                               default: ()
-                               }
-                               
-                               return atts
-                           }
-                        label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
-                       }
+        signupBtn.enabledTypes.append(customType)
+        signupBtn.urlMaximumLength = 61
+        
+        signupBtn.customize { label in
+            signupBtn.text = "Don't have an Account? Sign Up"
+            signupBtn.numberOfLines = 1
+            signupBtn.lineSpacing = 4
+            signupBtn.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
+            signupBtn.customSelectedColor[customType] = UIColor.black
+            
+            //
+            signupBtn.configureLinkAttribute = { (type, attributes, isSelected) in
+                var atts = attributes
+                switch type {
+                case customType:
+                    atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
+                default: ()
+                }
+                
+                return atts
+            }
+            label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -87,130 +87,130 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     func alert(_ title: String, message: String) {
-                   let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-                   vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                   present(vc, animated: true, completion: nil)
-               }
-
+        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func signinPressed(_ sender: Any) {
         
-//        emailField.isUserInteractionEnabled = false
-//        paswordField.isUserInteractionEnabled = false
+        //        emailField.isUserInteractionEnabled = false
+        //        paswordField.isUserInteractionEnabled = false
         SVProgressHUD.show()
         emailField.isUserInteractionEnabled = false
         paswordField.isUserInteractionEnabled = false
-           let error = validateFields()
+        let error = validateFields()
         if error != nil {
             showError(error!)
-              print("error")
+            print("error")
             self.emailField.isUserInteractionEnabled = true
             self.paswordField.isUserInteractionEnabled = true
-           
+            
         }
-          else {
-        let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-               let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-       
-         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if error != nil {
-                // Couldn't sign in
-                   SVProgressHUD.dismiss()
-                self.emailField.isUserInteractionEnabled = true
-                self.paswordField.isUserInteractionEnabled = true
-                  self.showError(error!.localizedDescription)
-               
-            }
-            else {
-               
-                SVProgressHUD.dismiss()
-                self.emailField.isUserInteractionEnabled = true
-                self.paswordField.isUserInteractionEnabled = true
-                self.userDefault.set(true, forKey: "usersignedin")
-                self.userDefault.synchronize()
-                
-                       let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-                
-                
-                        docRef.getDocuments { (querySnapshot, err) in
-                            if let err = err {
-                                print(err.localizedDescription)
-                                return
-                            } else if querySnapshot!.documents.count != 1 {
-                                print("More than one documents or none")
-                            } else {
-                                let document = querySnapshot!.documents.first
-                                let dataDescription = document?.data()
-                                let currentusername = dataDescription?["name"]
-                                let currentuseremail = dataDescription?["email"]
-                                let currentuserphone = dataDescription?["phone"]
-                                let currentuserindustry = dataDescription?["industry"]
-                                let currentuserbusiness = dataDescription?["business"]
-                                let currentuserpass = dataDescription?["password"]
-                                let currentuserpickanimal = dataDescription?["pickanimal"]
-                                let currentuserlocation = dataDescription?["location"]
-                                let currentuserrole = dataDescription?["pickrole"]
-                                let currentusercountrycode = dataDescription?["countrycode"]
-                                let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-//                                print("countryusernaem is \(currentuseremail ?? 0 )")
-                
-              
-                        self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                                
-                        self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
-                        self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
-                                self.userDefault.set(currentusername, forKey: dKeys.keyusername)
-                                self.userDefault.set(currentuseremail, forKey: dKeys.keyuseremail)
-                        self.userDefault.set(currentuserphone, forKey: dKeys.keyuserphoneno)
-                        self.userDefault.set(currentuserindustry, forKey: dKeys.keyuserindustry)
-                        self.userDefault.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                        self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
-                        self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
-                        self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                        
-//                                if let currentuser = self.userDefault.value(forKey: dKeys.keyusername) {
-//                                         print("current name is \(currentuser)")
-//                                       }
-//
-                
-                
-                            }
-                        }
-                
-                print(result?.user.uid ?? 0)
-                if #available(iOS 13.0, *) {
-                    self.transitionToHome()
-                } else {
-                    // Fallback on earlier versions
+        else {
+            let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if error != nil {
+                    // Couldn't sign in
+                    SVProgressHUD.dismiss()
+                    self.emailField.isUserInteractionEnabled = true
+                    self.paswordField.isUserInteractionEnabled = true
+                    self.showError(error!.localizedDescription)
+                    
                 }
-
-//                if #available(iOS 13.0, *) {
-//                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-//                    self.view.window?.rootViewController = homeViewController
-//                    self.view.window?.makeKeyAndVisible()
-//                } else {
-//                    // Fallback on earlier versions
-//                }
-
-                
+                else {
+                    
+                    SVProgressHUD.dismiss()
+                    self.emailField.isUserInteractionEnabled = true
+                    self.paswordField.isUserInteractionEnabled = true
+                    self.userDefault.set(true, forKey: "usersignedin")
+                    self.userDefault.synchronize()
+                    
+                    let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
+                    
+                    
+                    docRef.getDocuments { (querySnapshot, err) in
+                        if let err = err {
+                            print(err.localizedDescription)
+                            return
+                        } else if querySnapshot!.documents.count != 1 {
+                            print("More than one documents or none")
+                        } else {
+                            let document = querySnapshot!.documents.first
+                            let dataDescription = document?.data()
+                            let currentusername = dataDescription?["name"]
+                            let currentuseremail = dataDescription?["email"]
+                            let currentuserphone = dataDescription?["phone"]
+                            let currentuserindustry = dataDescription?["industry"]
+                            let currentuserbusiness = dataDescription?["business"]
+                            let currentuserpass = dataDescription?["password"]
+                            let currentuserpickanimal = dataDescription?["pickanimal"]
+                            let currentuserlocation = dataDescription?["location"]
+                            let currentuserrole = dataDescription?["pickrole"]
+                            let currentusercountrycode = dataDescription?["countrycode"]
+                            let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
+                            //                                print("countryusernaem is \(currentuseremail ?? 0 )")
+                            
+                            
+                            self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                            
+                            self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
+                            self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
+                            self.userDefault.set(currentusername, forKey: dKeys.keyusername)
+                            self.userDefault.set(currentuseremail, forKey: dKeys.keyuseremail)
+                            self.userDefault.set(currentuserphone, forKey: dKeys.keyuserphoneno)
+                            self.userDefault.set(currentuserindustry, forKey: dKeys.keyuserindustry)
+                            self.userDefault.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
+                            self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
+                            self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
+                            self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                            
+                            //                                if let currentuser = self.userDefault.value(forKey: dKeys.keyusername) {
+                            //                                         print("current name is \(currentuser)")
+                            //                                       }
+                            //
+                            
+                            
+                        }
+                    }
+                    
+                    print(result?.user.uid ?? 0)
+                    if #available(iOS 13.0, *) {
+                        self.transitionToHome()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
+                    //                if #available(iOS 13.0, *) {
+                    //                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                    //                    self.view.window?.rootViewController = homeViewController
+                    //                    self.view.window?.makeKeyAndVisible()
+                    //                } else {
+                    //                    // Fallback on earlier versions
+                    //                }
+                    
+                    
                 }
             }
         }
         
     }
-     func transitionToHome() {
-               // performSegue(withIdentifier: "homeSegue", sender: self)
+    func transitionToHome() {
+        // performSegue(withIdentifier: "homeSegue", sender: self)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-             let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
-               self.navigationController?.pushViewController(signUpViewController, animated: true)
-            }
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
+    }
     
     
-            override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                    if(segue.identifier == "homeSegue"){
-                            let displayVC = segue.destination as! UITabBarController
-                    }
-                }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "homeSegue"){
+            let displayVC = segue.destination as! UITabBarController
+        }
+    }
     
     func validateFields() -> String? {
         
@@ -238,9 +238,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
-//    func showError(_ message:String) {
-//
-//        errorLabel.text = message
-//        errorLabel.alpha = 1
-//    }
+    //    func showError(_ message:String) {
+    //
+    //        errorLabel.text = message
+    //        errorLabel.alpha = 1
+    //    }
 }

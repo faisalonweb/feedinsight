@@ -11,29 +11,29 @@ import UIKit
 class reportViewController: UIViewController {
     
     var names = ["Report Cow","Report Fish","Report Camel","Report Buffalo","Report Ruminants","Report Animal"]
-   
+    
     let imageArr: [UIImage] = [
-             UIImage(named: "ruminants")!,
-             UIImage(named: "aqua")!,
-             UIImage(named: "equines")!,
-             UIImage(named: "chicken")!,
-             UIImage(named: "equines")!,
-             UIImage(named: "ruminants")!,
-         ]
+        UIImage(named: "ruminants")!,
+        UIImage(named: "aqua")!,
+        UIImage(named: "equines")!,
+        UIImage(named: "chicken")!,
+        UIImage(named: "equines")!,
+        UIImage(named: "ruminants")!,
+    ]
     
     @IBOutlet weak var tableView: UITableView!
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
         if let indexPath = self.tableView.indexPathForSelectedRow{ self.tableView.deselectRow(at: indexPath, animated: animated)} 
     }
     
-
-   
+    
+    
 }
 
 extension reportViewController : UITableViewDelegate , UITableViewDataSource {
@@ -42,7 +42,7 @@ extension reportViewController : UITableViewDelegate , UITableViewDataSource {
         return 80
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-         return names.count
+        return names.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -71,12 +71,12 @@ extension reportViewController : UITableViewDelegate , UITableViewDataSource {
         self.navigationController?.pushViewController(vcone!, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-           return 20
-       }
+        return 20
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       let headerView = UIView()
-       headerView.backgroundColor = UIColor.clear
-       return headerView
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     

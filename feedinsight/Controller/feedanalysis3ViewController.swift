@@ -20,7 +20,7 @@ class feedanalysis3ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         profileimage.layer.cornerRadius = 17
         plusbutton.layer.cornerRadius = 10
         feedstuff.optionArray = ["Cow","Deer","Camel"]
@@ -30,15 +30,15 @@ class feedanalysis3ViewController: UIViewController {
         }
         kgstuff.optionArray = ["1","2","3"]
         kgstuff.didSelect{(selectedText , index ,id) in
+        }
+        
+        
+        
+        
     }
-    
-
-   
-
-}
     @IBAction func NextTap(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
-                      self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func loadTap(_ sender: UIButton) {
@@ -48,7 +48,7 @@ class feedanalysis3ViewController: UIViewController {
     
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
-        navController.popViewController(animated: true)
-                                               }
+            navController.popViewController(animated: true)
+        }
     }
 }

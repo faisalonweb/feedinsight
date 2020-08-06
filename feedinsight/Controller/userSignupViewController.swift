@@ -17,7 +17,7 @@ import CountryPickerView
 import SVProgressHUD
 
 class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource {
-
+    
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var pickanimal: DropDown!
     @IBOutlet weak var pickrole: DropDown!
@@ -60,61 +60,61 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     
     let textArr = ["Research","Farming","FoodManufacturing"]
     let imageArr: [UIImage] = [
-           UIImage(named: "research-unselected")!,
-           UIImage(named: "farm-unselected")!,
-           UIImage(named: "feedmanufacturing-unselected")!,
-       ]
-       let imageArr1: [UIImage] = [
-           UIImage(named: "research-selected")!,
-           UIImage(named: "farm-selected")!,
-           UIImage(named: "feedmanufacturing-selected")!,
-       ]
+        UIImage(named: "research-unselected")!,
+        UIImage(named: "farm-unselected")!,
+        UIImage(named: "feedmanufacturing-unselected")!,
+    ]
+    let imageArr1: [UIImage] = [
+        UIImage(named: "research-selected")!,
+        UIImage(named: "farm-selected")!,
+        UIImage(named: "feedmanufacturing-selected")!,
+    ]
     private func setCurrentLocation() {
-           
-           guard let exposedLocation = self.locationManager.exposedLocation else {
-               print("*** Error in \(#function): exposedLocation is nil")
-               return
-           }
-           
-           self.locationManager.getPlace(for: exposedLocation) { placemark in
-               guard let placemark = placemark else { return }
-               
-               var output = "Our location is:"
-               if let country = placemark.country {
-                   output = output + "\n\(country)"
-               }
-               if let state = placemark.administrativeArea {
-                   output = output + "\n\(state)"
-               }
-               if let town = placemark.locality {
-                   output = output + "\n\(town)"
-               }
-               self.picklocation.text = output
-           }
-       }
+        
+        guard let exposedLocation = self.locationManager.exposedLocation else {
+            print("*** Error in \(#function): exposedLocation is nil")
+            return
+        }
+        
+        self.locationManager.getPlace(for: exposedLocation) { placemark in
+            guard let placemark = placemark else { return }
+            
+            var output = "Our location is:"
+            if let country = placemark.country {
+                output = output + "\n\(country)"
+            }
+            if let state = placemark.administrativeArea {
+                output = output + "\n\(state)"
+            }
+            if let town = placemark.locality {
+                output = output + "\n\(town)"
+            }
+            self.picklocation.text = output
+        }
+    }
     override func viewDidLoad() {
         
         SignupCollectionData = DataAppend.getAllSignupData()
         super.viewDidLoad()
         
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
-               let lineArray = text.components(separatedBy: "\n")
-               for eachLA in lineArray
-               {
-                   workarray = eachLA.components(separatedBy: ",")
-                   pickerData1.append(workarray[0])
-                   
-               }
+        let lineArray = text.components(separatedBy: "\n")
+        for eachLA in lineArray
+        {
+            workarray = eachLA.components(separatedBy: ",")
+            pickerData1.append(workarray[0])
+            
+        }
         pickanimal.optionArray = ["Cow","Deer","Camel"]
         pickanimal.didSelect{(selectedText , index ,id) in
-               }
+        }
         pickrole.optionArray = ["Option 1", "Option 2", "Option 3"]
-               pickrole.optionArray = ["Admin","user","manager"]
-               pickrole.didSelect{(selectedText , index ,id) in
-               }
+        pickrole.optionArray = ["Admin","user","manager"]
+        pickrole.didSelect{(selectedText , index ,id) in
+        }
         picklocation.optionArray = pickerData1
-               picklocation.didSelect{(selectedText , index ,id) in
-               }
+        picklocation.didSelect{(selectedText , index ,id) in
+        }
         let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -148,139 +148,139 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         
     }
     func SignupSelection(){
-           
-           let storyboard = UIStoryboard(name: "Main", bundle: nil)
-           let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
-           //  self.present(signUpViewController, animated: true, completion: nil)
-           self.navigationController?.pushViewController(signUpViewController, animated: true)
-       }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
+        //  self.present(signUpViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
+    }
     
     @IBAction func singuponclick(_ sender: Any) {
         SVProgressHUD.show()
         
-      let country = self.countrycode.selectedCountry
-          print(country)
-          let error = validateFields()
-          if error != nil {
-              SVProgressHUD.dismiss()
-              showError(error!)
-          }
-          else {
-              
-              // Create cleaned versions of the data
-              let firstName = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let industryEnter = userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let email = useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let password = userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let busindessEnter = userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let pickrolEnter = pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let pickanimalEnter = pickanimal.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-              // Create the user
-              Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                  // Check for errors
-                  if err != nil {
-                      SVProgressHUD.dismiss()
-                      
-                      // There was an error creating the user
-                      self.showError(err!.localizedDescription)
-                  }
-                  else {
+        let country = self.countrycode.selectedCountry
+        print(country)
+        let error = validateFields()
+        if error != nil {
+            SVProgressHUD.dismiss()
+            showError(error!)
+        }
+        else {
+            
+            // Create cleaned versions of the data
+            let firstName = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let industryEnter = userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let busindessEnter = userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pickrolEnter = pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pickanimalEnter = pickanimal.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Create the user
+            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                // Check for errors
+                if err != nil {
+                    SVProgressHUD.dismiss()
                     
-                   
-                      
-                      let db = Firestore.firestore()
+                    // There was an error creating the user
+                    self.showError(err!.localizedDescription)
+                }
+                else {
+                    
+                    
+                    
+                    let db = Firestore.firestore()
                     db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
-                          
-                          if error != nil {
-                              // Show error message
-                              SVProgressHUD.dismiss()
-                              self.showError(error!.localizedDescription)
-                          }
-
                         
-                      }
-                      // Transition to the home screen
-                      if #available(iOS 13.0, *) {
+                        if error != nil {
+                            // Show error message
                             SVProgressHUD.dismiss()
-                         
-                          self.transitionToHome()
-                      } else {
-                          // Fallback on earlier versions
-                      }
-                  }
-              }
-              
-          }
-               
-             
+                            self.showError(error!.localizedDescription)
+                        }
+                        
+                        
+                    }
+                    // Transition to the home screen
+                    if #available(iOS 13.0, *) {
+                        SVProgressHUD.dismiss()
+                        
+                        self.transitionToHome()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
+            }
+            
+        }
+        
+        
     }
     func showError(_ message:String) {
-           let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-           let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-           alertController.addAction(defaultAction)
-           self.present(alertController, animated: true, completion: nil)
-       }
-       
-       func alert(_ title: String, message: String) {
-           let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-           vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-           present(vc, animated: true, completion: nil)
-       }
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func alert(_ title: String, message: String) {
+        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(vc, animated: true, completion: nil)
+    }
     func validateFields() -> String? {
         
-           //  var a = false
+        //  var a = false
         if ( industrycellValue == "")
-               {
-                if (self.userindustry.text == "")
-                {
-                     return "please select your Industry!"
-                }
-                  
-               }
-           if username.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               pickrole.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               pickanimal.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-               picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-               
-               return "Please fill in all fields."
-           }
-           let cleanedPassword = usercnfpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-           
-           if Utilities.isPasswordValid(cleanedPassword) == false {
-               
-               return "Please make sure your password is at least 8 characters, contains a special character and a number."
-           }
-       
-           if userpassword.text != usercnfpassword.text {
-               return "Passwords don't Match"
-           }
-           
-           
-           return nil
-       }
+        {
+            if (self.userindustry.text == "")
+            {
+                return "please select your Industry!"
+            }
+            
+        }
+        if username.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            pickrole.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            pickanimal.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            
+            return "Please fill in all fields."
+        }
+        let cleanedPassword = usercnfpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if Utilities.isPasswordValid(cleanedPassword) == false {
+            
+            return "Please make sure your password is at least 8 characters, contains a special character and a number."
+        }
+        
+        if userpassword.text != usercnfpassword.text {
+            return "Passwords don't Match"
+        }
+        
+        
+        return nil
+    }
     
     func transitionToHome() {
-           
-           //            let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-           //
-           //            view.window?.rootViewController = homeViewController
-           //            view.window?.makeKeyAndVisible()
-           
-            let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-           /// homeSegue
-       }
+        
+        //            let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        //
+        //            view.window?.rootViewController = homeViewController
+        //            view.window?.makeKeyAndVisible()
+        
+        let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
+        /// homeSegue
+    }
     
     @IBAction func backbtn(_ sender: Any) {
         if let navController = self.navigationController {
-                navController.popViewController(animated: true)
-            }
+            navController.popViewController(animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -292,8 +292,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let cellIndex = indexPath.item
         cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
         cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
-//        industrycellValue =  cell.signuplabel.text!
-//         industrycellValue = ""
+        //        industrycellValue =  cell.signuplabel.text!
+        //         industrycellValue = ""
         cell.layer.cornerRadius = 10
         return cell
     }
@@ -303,7 +303,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let cellIndex = indexPath.item
         cell.signupimage.image = imageArr1[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
-         industrycellValue =  cell.signuplabel.text!
+        industrycellValue =  cell.signuplabel.text!
         
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -314,8 +314,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
     }
     
-
-   
+    
+    
 }
 
 

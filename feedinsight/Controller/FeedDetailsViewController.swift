@@ -13,16 +13,16 @@ class FeedDetailsViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var ValueField: DropDown!
     @IBOutlet weak var textlbl: UILabel!
     
-     let arrayColor : NSMutableArray = ["NaCl","CaCl","Mg" ]
+    let arrayColor : NSMutableArray = ["NaCl","CaCl","Mg" ]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ValueField.delegate = self
         
         
         ValueField.optionArray = ["Option 1", "Option 2", "Option 3"]
-               ValueField.optionArray = ["NaCl","CaCl","Mg" ]
-               ValueField.didSelect{(selectedText , index ,id) in
-               }
+        ValueField.optionArray = ["NaCl","CaCl","Mg" ]
+        ValueField.didSelect{(selectedText , index ,id) in
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -32,13 +32,13 @@ class FeedDetailsViewController: UIViewController ,UITextFieldDelegate{
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

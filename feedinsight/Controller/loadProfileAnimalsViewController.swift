@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -54,8 +55,12 @@ class loadProfileAnimalsViewController: UIViewController {
     private var datafifteenstation = [Bool]()
     
     override func viewDidLoad() {
+        let storage = Storage.storage()
+        let storageRef =  storage.reference()
+        let ref = storageRef.child("uploadphotoone")
+        profileimage.sd_setImage(with: ref)
         self.navigationController?.isNavigationBarHidden = true
-        profileimage.layer.cornerRadius = 17
+        profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         tblView.isHidden = true
         super.viewDidLoad()
         mainBtn.layer.cornerRadius = 10
