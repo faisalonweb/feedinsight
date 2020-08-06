@@ -56,6 +56,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
+    var industrycellValue = ""
     private let locationManager = LocationManager()
     
     let textArr = ["Research","Farming","FoodManufacturing"]
@@ -262,6 +263,47 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
     }
     
+    
+    @IBAction func changeData(_ sender: Any) {
+        
+        let country = self.countryCode.selectedCountry
+        
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.uid
+        let userEmail =  Auth.auth().currentUser?.email
+        let currentUser =  Auth.auth().currentUser
+        
+        
+        
+        if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && userdropdown.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
+            
+            Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
+                if  let error = error {
+                    
+                    print(error)
+                }
+            }
+            
+            db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!, "pickanimal": userdropdown.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!])
+            
+            if useremail.text != userEmail {
+                
+                currentUser?.updateEmail(to: useremail.text!){ error in
+                    
+                    if  let error = error {
+                        
+                        print(error)
+                    }
+                    
+                }
+            }
+            
+        
+    }
+    }
+
+    
+
     @IBAction func selectPhoto(_ sender: UIButton) {
         
         let imagecontroller = UIImagePickerController()
@@ -286,6 +328,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cellIndex = indexPath.item
                cell.imageusr.image = imageArr[cellIndex]
                cell.labelusr.text = textArr[cellIndex]
+        industrycellValue = cell.labelusr.text!
 //        print(cell.labelusr.text!)
 //        print("collection cell name is : \(self.collectionselectedcell)")
         if(self.collectionselectedcell == cell.labelusr.text!) {
