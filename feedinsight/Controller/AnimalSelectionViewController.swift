@@ -153,7 +153,8 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         }
     }
     
-    //
+
+    
     
     override func viewDidLoad() {
         
