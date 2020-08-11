@@ -73,6 +73,11 @@ class wateroneViewController: UIViewController {
     @IBAction func loadTap(_ sender: UIButton) {
     }
     
+    @IBAction func skipbutton(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
+               self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     @IBAction func nextTap(_ sender: UIButton) {
         //          let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
         //               self.navigationController?.pushViewController(vc!, animated: true)

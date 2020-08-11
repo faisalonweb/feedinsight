@@ -70,6 +70,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var milkindays = ""
     var pregnantdays = ""
     var productionmilk = ""
+    var hdLabel = ""
+    
     var diettoggle : Bool!
     var disordertoggle : Bool!
     var heattoggle : Bool!
@@ -77,8 +79,17 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    override func viewWillAppear(_ animated: Bool) { // As soon as vc appears
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // As soon as vc appears
+        
         super.viewWillAppear(true)
+        if hdLabel != "" {
+            headLabel.text = hdLabel
+        } else {
+            headLabel.text = name
+        }
+        
         
     }
     override func viewDidLoad() {
@@ -144,10 +155,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         //
         print("tishahaha", name)
         self.headLabel.text = name
-        if(self.headLabel.text == "")
-        {
-            self.headLabel.text = "Premix Check"
-        }
         self.nameField.delegate = self
         self.animalField.delegate = self
         db = Firestore.firestore()
