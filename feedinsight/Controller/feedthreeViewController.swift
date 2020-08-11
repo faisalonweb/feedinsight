@@ -13,7 +13,12 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 
-class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource {
+class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
+    func minusTapped(cellIndex: Int) {
+        dropdownvalues.remove(at: cellIndex)
+        tblView.reloadData()
+    }
+    
     @IBOutlet weak var addfeed: DropDown!
     
     @IBOutlet weak var profileimage: UIImageView!
@@ -89,9 +94,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! feedthreeTableViewCell
-        
         cell.labeltxt?.text = dropdownvalues[indexPath.section]
-        
+        cell.delegate = self
+        cell.cellIndex = indexPath.section
         return cell
         
     }

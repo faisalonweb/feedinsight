@@ -8,9 +8,14 @@
 
 import UIKit
 
-class feedthreeTableViewCell: UITableViewCell {
+protocol feedthreeTableViewCellDelegate: class {
+  func minusTapped(cellIndex: Int)
+}
 
+class feedthreeTableViewCell: UITableViewCell {
     @IBOutlet weak var labeltxt: UILabel!
+    var cellIndex = -1
+    weak var delegate: feedthreeTableViewCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,4 +27,7 @@ class feedthreeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func deleteBtn(_ sender: Any) {
+        delegate?.minusTapped(cellIndex: cellIndex)
+    }
 }
