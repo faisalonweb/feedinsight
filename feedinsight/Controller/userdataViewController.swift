@@ -11,6 +11,7 @@ import iOSDropDown
 import Firebase
 import FirebaseAuth
 import CountryPickerView
+import SVProgressHUD
 
 
 class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate  {
@@ -37,6 +38,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     
     var db: Firestore!
+    var urllink : URL!
+    var urlbool : Bool = false
     var collectionselectedcell : String = "pak"
     var nmr : Int = 0
     let defaults = UserDefaults.standard
@@ -268,6 +271,28 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     
     @IBAction func changeData(_ sender: Any) {
+        SVProgressHUD.show(withStatus: "it's working ...")
+        if urlbool == true {
+            
+            let storage = Storage.storage()
+            
+            //let data = Data()
+            
+            let storageRef =  storage.reference()
+            
+            let localFile = urllink
+            
+            let photoRef = storageRef.child("uploadphotoone")
+            
+            let uploadTask = photoRef.putFile(from: localFile!, metadata: nil) { (metadata, err) in
+                guard let metadata = metadata else {
+                    print(err?.localizedDescription ?? "none")
+                    return
+                }
+                print("photo uploaded")
+            }
+        }
+        
         
         let country = self.countryCode.selectedCountry
         
@@ -287,19 +312,34 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 }
             }
             
-            db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!, "pickanimal": userdropdown.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!])
-            
-            if useremail.text != userEmail {
+            db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!, "pickanimal": userdropdown.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
                 
-                currentUser?.updateEmail(to: useremail.text!){ error in
-                    
-                    if  let error = error {
-                        
-                        print(error)
-                    }
-                    
+                if let error = error {
+                    print("error while updating the reord \(error)")
                 }
+                else {
+                     SVProgressHUD.dismiss()
+                    if self.useremail.text != userEmail {
+                        
+                        currentUser?.updateEmail(to: self.useremail.text!){ error in
+                            
+                            if  let error = error {
+                                
+                                print(error)
+                            }
+                            else {
+//                                SVProgressHUD.dismiss()
+                                print("No error while updating the email")
+                            }
+                            
+                        }
+                    }
+                }
+                
+                
             }
+            
+            
             
             
         }
@@ -316,25 +356,28 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         userpic.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        // Bool true
         self.dismiss(animated: true, completion: nil)
         
         if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
-            print(url)
-            uploadToCloud(fileURL: url)
+            self.urlbool = true
+            print("pic url is \(url)")
+            //            uploadToCloud(fileURL: url)
+            self.urllink = url
         }
         
     }
     func uploadToCloud(fileURL:URL) {
         let storage = Storage.storage()
         
-        let data = Data()
+        //let data = Data()
         
         let storageRef =  storage.reference()
         
         let localFile = fileURL
         
         let photoRef = storageRef.child("uploadphotoone")
-        
+        // if bool == true
         let uploadTask = photoRef.putFile(from: localFile, metadata: nil) { (metadata, err) in
             guard let metadata = metadata else {
                 print(err?.localizedDescription ?? "none")
@@ -374,19 +417,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cellIndex = indexPath.item
         cell.imageusr.image = imageArr1[cellIndex]
         
-        
-        
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
         cell.imageusr.image = imageArr[cellIndex]
     }
-    
-    
-    
-    
-    
-    
-    
 }
