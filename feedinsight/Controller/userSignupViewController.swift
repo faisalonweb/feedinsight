@@ -181,10 +181,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 // Check for errors
                 if err != nil {
-                    SVProgressHUD.dismiss()
+                   SVProgressHUD.showError(withStatus:"user creation failed")
                     
                     // There was an error creating the user
                     self.showError(err!.localizedDescription)
+                    SVProgressHUD.dismiss()
                 }
                 else {
                     
@@ -195,17 +196,18 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                         
                         if error != nil {
                             // Show error message
-                            SVProgressHUD.dismiss()
+                            SVProgressHUD.showError(withStatus:"Data insertion failed")
                             self.showError(error!.localizedDescription)
+                            SVProgressHUD.dismiss()
                         }
                         
                         
                     }
                     // Transition to the home screen
                     if #available(iOS 13.0, *) {
-                        SVProgressHUD.dismiss()
-                        
+                        SVProgressHUD.showSuccess(withStatus: "Success")
                         self.transitionToHome()
+                        SVProgressHUD.dismiss()
                     } else {
                         // Fallback on earlier versions
                     }
@@ -251,12 +253,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             
             return "Please fill in all fields."
         }
-        let cleanedPassword = usercnfpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+       
         
-        if Utilities.isPasswordValid(cleanedPassword) == false {
-            
-            return "Please make sure your password is at least 8 characters, contains a special character and a number."
-        }
+    
         
         if userpassword.text != usercnfpassword.text {
             return "Passwords don't Match"
