@@ -20,7 +20,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     @IBOutlet weak var backFunc: UIButton!
     
     @IBOutlet weak var userpic: UIImageView!
-    var textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer"]
+    var textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer","Buffalo"]
     var titlename = ""
     var titleImage = UIImage(named:"")
     

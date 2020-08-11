@@ -12,12 +12,15 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import SVProgressHUD
 
 
 class StateViewController: UIViewController, UITextFieldDelegate {
     
     //    @IBOutlet weak var heatStressToggle: UIImageView!
+     let defaults = UserDefaults.standard
     @IBOutlet weak var headLabel: UILabel!
+    @IBOutlet weak var woolHairLabel: UILabel!
     @IBOutlet weak var proimage: UIImageView!
     @IBOutlet weak var notificationimage: UIImageView!
     @IBOutlet weak var PsychField: DropDown!
@@ -83,7 +86,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let storageRef =  storage.reference()
         let ref = storageRef.child("uploadphotoone")
         proimage.sd_setImage(with: ref)
-        
+        producitonOutlet.isHidden = true
+        woolHairLabel.isHidden = true
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical
@@ -118,6 +122,12 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         else {
             heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
+        
+        if let busines = defaults.value(forKey: "userbussinessStringKey"){
+            
+            self.nameField.text = busines as? String
+            print(busines)
+        }
         print("diet name is \(diettoggle ?? false)")
         print("animal name is \(nameanimal)")
         
@@ -151,7 +161,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         proimage?.layer.borderWidth = 3.0
         proimage?.layer.borderColor = UIColor.white.cgColor
         
-        PsychField.optionArray = ["COW", "GOAT", "FISH"]
+        PsychField.optionArray = ["Lactating", "Growing", "Dry-Gestating"]
         //Its Id Values and its optional
         PsychField.optionIds = [1,23,54,22]
         PsychField.didSelect{(selectedText , index ,id) in
@@ -185,11 +195,29 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextTapped(_ sender: UIButton) {
         
         ///here above is for report
-        let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        
+        if  nameField.text == "" || PsychField.text == "" || animalField.text == "" || CurrentBodyWeightF.text == "" || TargetBodyWeightF.text ==  "" || daystoAchiveF.text == "" || daysinMilkF.text == "" || daysPregnantF.text == "" || milkInProducitonF.text == "" {
+            
+            
+            self.showError("Fill all the text fields")
+            
+        }
+        else {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        
+        
         
         
     }
+    func showError(_ message:String) {
+          
+          let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+          let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+          alertController.addAction(defaultAction)
+          self.present(alertController, animated: true, completion: nil)
+      }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let psychEnter = PsychField.text!
@@ -311,6 +339,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     
     
     func saveText(theText: String) {
+        SVProgressHUD.show(withStatus: "it's working ...")
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
@@ -355,8 +384,10 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let db = Firestore.firestore()
         db.collection("premixReport").addDocument(data: dict){ err in
             if let err = err {
+                SVProgressHUD.dismiss()
                 print("Error adding document: \(err)")
             } else {
+                SVProgressHUD.dismiss()
                 print("Document added")
             }
         }
@@ -367,6 +398,19 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        // convert into string
+        // Comparison
+        // if sheep = hide else show
+        if (textField.text == "Sheep"){
+            producitonOutlet.isHidden = false
+            woolHairLabel.isHidden = false
+        }
+        else {
+            producitonOutlet.isHidden = true
+            woolHairLabel.isHidden = true
+        }
+    }
     
 }
 
