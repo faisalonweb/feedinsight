@@ -227,8 +227,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
       }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {
-        let psychEnter = PsychField.text!
-        self.saveText(theText: psychEnter)
+        let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
+        self.saveText(theText: combinedString)
     }
     
     @IBAction func loadProfileTapped(_ sender: UIButton) {
