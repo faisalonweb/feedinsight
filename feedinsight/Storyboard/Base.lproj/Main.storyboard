@@ -574,7 +574,7 @@
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KyJ-AL-xDf">
                                                                 <rect key="frame" x="0.0" y="27" width="374" height="138"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yJS-DM-prC">
+                                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yJS-DM-prC">
                                                                     <size key="itemSize" width="90" height="128"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -582,14 +582,14 @@
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="userSignupCollectionViewCell" reuseIdentifier="usersignup" id="vn1-OC-NRz" customClass="userSignupCollectionViewCell" customModule="FeedInsight" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="5" width="70" height="128"/>
+                                                                        <rect key="frame" x="0.0" y="5" width="90" height="128"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8AM-q4-qye">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="128"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="128"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-Md-fDH">
-                                                                                    <rect key="frame" x="0.0" y="16.333333333333336" width="70" height="95.333333333333314"/>
+                                                                                    <rect key="frame" x="10" y="16.333333333333336" width="70" height="95.333333333333314"/>
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q2O-gz-vwn">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -613,7 +613,6 @@
                                                                             </constraints>
                                                                         </collectionViewCellContentView>
                                                                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <size key="customSize" width="70" height="128"/>
                                                                         <connections>
                                                                             <outlet property="signupimage" destination="q2O-gz-vwn" id="S0j-4Q-Yu2"/>
                                                                             <outlet property="signuplabel" destination="fH3-tX-pwd" id="49h-Z6-kp5"/>
@@ -4341,23 +4340,23 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="epF-Ju-QFh" customClass="SignUpCollectionViewCell" customModule="FeedInsight" customModuleProvider="target">
-                                                                <rect key="frame" x="5" y="15.666666666666666" width="158" height="133"/>
+                                                                <rect key="frame" x="5" y="15.666666666666666" width="90" height="133"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FUU-ef-OQ8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="133"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="133"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GS-Va-wyw">
-                                                                            <rect key="frame" x="0.0" y="5" width="158" height="125"/>
+                                                                            <rect key="frame" x="0.0" y="5" width="90" height="125"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Manufacturing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-j2-aDo">
-                                                                                    <rect key="frame" x="0.0" y="92" width="158" height="26"/>
+                                                                                    <rect key="frame" x="0.0" y="92" width="90" height="26"/>
                                                                                     <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="14"/>
                                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="farm-unselected" translatesAutoresizingMaskIntoConstraints="NO" id="E8r-f2-zAx">
-                                                                                    <rect key="frame" x="43" y="29" width="72" height="61"/>
+                                                                                    <rect key="frame" x="43" y="29" width="4" height="61"/>
                                                                                 </imageView>
                                                                             </subviews>
                                                                             <constraints>
@@ -4387,7 +4386,7 @@
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <size key="customSize" width="158" height="133"/>
+                                                                <size key="customSize" width="90" height="133"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="8"/>
