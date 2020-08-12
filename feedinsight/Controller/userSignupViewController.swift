@@ -286,7 +286,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         return textArr.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: 70, height: 128)
+         return CGSize(width: 50, height: 128)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -391,7 +391,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         
         //
         let db = Firestore.firestore()
-        db.collection("premixReport").addDocument(data: dict){ err in
+        db.collection("premixReport").document(userID!).collection("PremixReports").addDocument(data: dict){ err in
             if let err = err {
                 SVProgressHUD.dismiss()
                 print("Error adding document: \(err)")
