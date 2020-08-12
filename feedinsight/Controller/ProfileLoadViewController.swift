@@ -121,44 +121,30 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableview.backgroundColor = UIColor.white
         tableview.register(UINib(nibName: "profileTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titlecell")
-        
-        tableViewData = [cellData(opened: false, title: "Ruminants", sectionData: ["cell1", "cell2", "cell3"]),
-                         cellData(opened: false, title: "Poultry", sectionData: ["cell1", "cell2", "cell3"]),
-                         cellData(opened: false, title: "aqua", sectionData: ["cell1", "cell2", "cell3"]),
-                         cellData(opened: false, title: "Goat", sectionData: ["cell1", "cell2", "cell3"])
-            
-        ]
-        let devCousesImages = [UIImage(named: "ruminants"), UIImage(named: "aqua"), UIImage(named: "equines"), UIImage(named: "chicken")]
-        //
+        // lactating 10
+        tableViewData = [cellData(opened: false, title: "Lactaing", sectionData: ["cell1", "cell2", "cell3"]),
+                         cellData(opened: false, title: "Growing", sectionData: ["cell1", "cell2", "cell3"]),
+                         cellData(opened: false, title: "Dry-Gestating", sectionData: ["cell1", "cell2", "cell3"])]
         let db = Firestore.firestore()
         db.collection("premixReport").whereField("userID", isEqualTo: Auth.auth().currentUser!.uid).getDocuments { (querySnapshot, Error) in
             if (Error != nil) {
-                print(Error)
-            }
-            else
-            {
+                print(Error!)
+            } else {
                 for document in querySnapshot!.documents{
                     print(document.data())
                 }
                 
-                //                   for document in (SnapshotMetadata?.documents)! {
-                //                    let name = (document.data()["category"]) as! String
-                //
-                ////                    for item in self.workarray
-                ////                                    {
-                ////                                        self.pickerData1.append(item)
-                ////                                    }
-                //                     }
+//                for document in (SnapshotMetadata?.documents)! {
+//                    let name = (document.data()["category"]) as! String
+//                    for item in self.workarray {
+//                        self.pickerData1.append(item)
+//                    }
+//                }
             }
-            
         }
         print("its hhhah", pickerData1)
-        //
-        
-        
-        
-        
     }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
@@ -198,17 +184,12 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             else{
                 cell.arrowView?.image = UIImage(named: "downNew")
             }
-            
+            cell.textlabel?.text = tableViewData[indexPath.section].title
             return cell 
             
             
-        } else
-        {
+        } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "titlecell") else { return profileTitleTableViewCell()}
-            //             cell.layer.borderColor = UIColor.clear.cgColor
-            //                       cell.layer.borderWidth = 4
-            
-            // cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
             
             return cell
             

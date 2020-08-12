@@ -69,13 +69,30 @@ class wateroneViewController: UIViewController {
     
     
     @IBAction func saveTap(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
+        let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+            let text = alertController.textFields!.first!.text!
+            print(text)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Report Name"
+        }
+        
+        alertController.addAction(withdrawAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     @IBAction func loadTap(_ sender: UIButton) {
     }
     
     @IBAction func skipbutton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
-               self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func nextTap(_ sender: UIButton) {

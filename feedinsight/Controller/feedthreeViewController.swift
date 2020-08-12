@@ -68,6 +68,25 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         
     }
     
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
+        let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+            let text = alertController.textFields!.first!.text!
+            print(text)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Report Name"
+        }
+        
+        alertController.addAction(withdrawAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func touchaddbtn(_ sender: Any) {
         
