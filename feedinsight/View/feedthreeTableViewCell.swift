@@ -14,6 +14,8 @@ protocol feedthreeTableViewCellDelegate: class {
 
 class feedthreeTableViewCell: UITableViewCell {
     @IBOutlet weak var labeltxt: UILabel!
+    @IBOutlet weak var productValue: UITextField!
+    
     var cellIndex = -1
     weak var delegate: feedthreeTableViewCellDelegate?
     override func awakeFromNib() {

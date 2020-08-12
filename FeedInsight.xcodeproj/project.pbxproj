@@ -43,6 +43,8 @@
 		1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */; };
 		1A277B9D24C6FC4700FDA1DD /* feedthreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A277B9C24C6FC4700FDA1DD /* feedthreeViewController.swift */; };
 		1A277B9F24C769E300FDA1DD /* feedthreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A277B9E24C769E300FDA1DD /* feedthreeTableViewCell.swift */; };
+		1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */; };
+		1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */; };
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */; };
 		1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */; };
@@ -109,6 +111,8 @@
 		1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A277B9C24C6FC4700FDA1DD /* feedthreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = feedthreeViewController.swift; sourceTree = "<group>"; };
 		1A277B9E24C769E300FDA1DD /* feedthreeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = feedthreeTableViewCell.swift; sourceTree = "<group>"; };
+		1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterCustomViewController.swift; sourceTree = "<group>"; };
+		1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterStandardViewController.swift; sourceTree = "<group>"; };
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				04EC579524509E7100BAAF23 /* DropViewController.swift */,
 				042F04C2249894F000F40EC9 /* FeedDetailsViewController.swift */,
 				1ABC8BA224D0C62E00BE7628 /* RuminantspickViewController.swift */,
+				1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */,
+				1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */,
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */,
 				1AFE70DE24C2CDD800C4E08F /* premixViewController.swift in Sources */,
@@ -471,6 +478,7 @@
 				046D6A672497412000F7E494 /* CustomPrintPageRenderer.swift in Sources */,
 				047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */,
 				0442AD1D248EA9A300A53BA1 /* Task.swift in Sources */,
+				1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */,
 				1AAAF51324B433350010F945 /* loadProfileAnimalsViewController.swift in Sources */,
 				1AC9E4842497BF1F00821726 /* reportViewController.swift in Sources */,
 				1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */,

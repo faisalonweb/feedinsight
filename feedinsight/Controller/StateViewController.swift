@@ -201,18 +201,22 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func nextTapped(_ sender: UIButton) {
         
+        
+             let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
+                   self.navigationController?.pushViewController(vc!, animated: true)
+        
         ///here above is for report
         
-        if  nameField.text == "" || PsychField.text == "" || animalField.text == "" || CurrentBodyWeightF.text == "" || TargetBodyWeightF.text ==  "" || daystoAchiveF.text == "" || daysinMilkF.text == "" || daysPregnantF.text == "" || milkInProducitonF.text == "" {
-            
-            
-            self.showError("Fill all the text fields")
-            
-        }
-        else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
-            self.navigationController?.pushViewController(vc!, animated: true)
-        }
+//        if  nameField.text == "" || PsychField.text == "" || animalField.text == "" || CurrentBodyWeightF.text == "" || TargetBodyWeightF.text ==  "" || daystoAchiveF.text == "" || daysinMilkF.text == "" || daysPregnantF.text == "" || milkInProducitonF.text == "" {
+//
+//
+//            self.showError("Fill all the text fields")
+//
+//        }
+//        else {
+//            let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
+//            self.navigationController?.pushViewController(vc!, animated: true)
+//        }
         
         
         

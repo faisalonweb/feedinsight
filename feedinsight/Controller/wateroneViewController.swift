@@ -22,6 +22,7 @@ class wateroneViewController: UIViewController {
     @IBOutlet weak var firstview: UIView!
     @IBOutlet weak var secondview: UIView!
     @IBOutlet var buttonOutlets: [UIButton]!
+    let userID = Auth.auth().currentUser?.uid
     
     
     

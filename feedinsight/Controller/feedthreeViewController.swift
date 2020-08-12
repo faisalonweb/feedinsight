@@ -24,6 +24,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var addbtn: UIButton!
     @IBOutlet weak var tblView: UITableView!
+     let userID = Auth.auth().currentUser?.uid
     
     @IBOutlet weak var editBtn: UIButton!
     
@@ -31,6 +32,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     
     
     var dropdownvalues = [String]()
+    var dropdownfloatValue = [String]()
     //    var dropdownvalues = ["one","tow","three"]
     
     override func viewDidLoad() {
@@ -69,23 +71,37 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        for i in 0..<dropdownvalues.count {
+            let indexPath = IndexPath(row: 0, section: i)
+            if let cell = tblView.cellForRow(at: indexPath) as? feedthreeTableViewCell {
+                dropdownfloatValue.append(cell.productValue.text ?? "0")
+            }
+        }
+        let db = Firestore.firestore()
         let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-            let text = alertController.textFields!.first!.text!
-            print(text)
+        let text = alertController.textFields!.first!.text!
+            let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text]
+            
+            db.collection("RationReports").document(self.userID!).collection("RationReports").addDocument(data: dict){ err in
+                if let err = err {
+                    //                       SVProgressHUD.dismiss()
+                    print("Error adding document: \(err)")
+                } else {
+                    //                       SVProgressHUD.dismiss()
+                    print("Document added")
+                }
+            }
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
         }
-        
         alertController.addTextField { (textField) in
-            textField.placeholder = "Report Name"
+        textField.placeholder = "Report Name"
         }
-        
         alertController.addAction(withdrawAction)
         alertController.addAction(cancelAction)
-        
         self.present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func touchaddbtn(_ sender: Any) {
