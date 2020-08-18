@@ -102,6 +102,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical
+        //print("syci state is \(String(describing: PsychField.text))")
         CurrentBodyWeightF.text = bodycurrentweigth
         TargetBodyWeightF.text = bodytargetweight
         daystoAchiveF.text = achievedays
@@ -231,8 +232,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
       }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {
-        let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
-        self.saveText(theText: combinedString)
+        let psychEnter = PsychField.text!
+        self.saveText(theText: psychEnter)
     }
     
     @IBAction func loadProfileTapped(_ sender: UIButton) {
@@ -385,13 +386,15 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let daystoAchiveEnter = daystoAchiveF.text!
         let TargetBodyWeightEnter = TargetBodyWeightF.text!
         let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
-        let animalEnter = animalField.text!
+        //let animalEnter = animalField.text!
         let companynameEnter = nameField.text!
         let userID = Auth.auth().currentUser?.uid
         let categoryEnter = headLabel.text!
+        let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
+        
         
         //
-        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalEnter, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp]
+        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : combinedString, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp]
         
         //
         let db = Firestore.firestore()

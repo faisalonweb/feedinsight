@@ -65,7 +65,7 @@ class loadProfileAnimalsViewController: UIViewController {
         super.viewDidLoad()
         mainBtn.layer.cornerRadius = 10
         
-        Firestore.firestore().collection("premixReport").getDocuments{(snapshot,error) in
+        Firestore.firestore().collection("premixReport").document(Auth.auth().currentUser?.uid ?? "").collection("PremixReports").getDocuments{(snapshot,error) in
             
             if error == nil && snapshot != nil {
                 guard let snap = snapshot else {return}
