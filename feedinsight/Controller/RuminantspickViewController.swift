@@ -32,10 +32,10 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     
     
     override func viewDidLoad() {
-        let storage = Storage.storage()
-        let storageRef =  storage.reference()
-        let ref = storageRef.child("uploadphotoone")
-        userpic.sd_setImage(with: ref)
+//        let storage = Storage.storage()
+//        let storageRef =  storage.reference()
+//        let ref = storageRef.child("uploadphotoone")
+//        userpic.sd_setImage(with: ref)
         userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
         
         super.viewDidLoad()

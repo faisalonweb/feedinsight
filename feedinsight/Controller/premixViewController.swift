@@ -19,10 +19,7 @@ class premixViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        let storage = Storage.storage()
-        let storageRef =  storage.reference()
-        let ref = storageRef.child("uploadphotoone")
-        profileimage.sd_setImage(with: ref)
+      
         self.navigationController?.isNavigationBarHidden = true
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         

@@ -95,13 +95,26 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.locationField.text = output
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+    }
     
     override func viewDidLoad() {
-        let storage = Storage.storage()
-        let storageRef =  storage.reference()
-        let ref = storageRef.child("uploadphotoone")
-        userpic.sd_setImage(with: ref)
         
+        //
+        DispatchQueue.main.async { [weak self] in
+            if let Link = self!.defaults.value(forKey: "Link"){
+                if(Link as! String == "") {
+                    
+                } else {
+                    let fileUrl = URL(string: Link as! String)
+                    let data = try? Data(contentsOf:fileUrl!)
+                    self!.userpic.image = UIImage(data: data!)
+                }
+                
+            }
+        }
         if let userName = defaults.value(forKey: dKeys.keyusername){
             
             self.username.text = userName as? String
@@ -271,77 +284,104 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     
     @IBAction func changeData(_ sender: Any) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
         SVProgressHUD.show(withStatus: "it's working ...")
         if urlbool == true {
-            
             let storage = Storage.storage()
-            
-            //let data = Data()
-            
-            let storageRef =  storage.reference()
-            
+            let storageRef =  storage.reference().child("user/\(uid)")
             let localFile = urllink
-            
-            let photoRef = storageRef.child("uploadphotoone")
-            
-            let uploadTask = photoRef.putFile(from: localFile!, metadata: nil) { (metadata, err) in
-                guard let metadata = metadata else {
+            _ = storageRef.putFile(from: localFile!, metadata: nil) { (metadata, err) in
+                guard metadata != nil else {
                     print(err?.localizedDescription ?? "none")
                     return
                 }
-                print("photo uploaded")
-            }
-        }
-        
-        
-        let country = self.countryCode.selectedCountry
-        
-        let db = Firestore.firestore()
-        let userID = Auth.auth().currentUser?.uid
-        let userEmail =  Auth.auth().currentUser?.email
-        let currentUser =  Auth.auth().currentUser
-        
-        
-        
-        if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && userdropdown.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
-            
-            Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
-                if  let error = error {
-                    
-                    print(error)
-                }
-            }
-            
-            db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!, "pickanimal": userdropdown.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
-                
-                if let error = error {
-                    print("error while updating the reord \(error)")
-                }
-                else {
-                     SVProgressHUD.dismiss()
-                    if self.useremail.text != userEmail {
-                        
-                        currentUser?.updateEmail(to: self.useremail.text!){ error in
-                            
-                            if  let error = error {
+                storageRef.downloadURL(completion: { (url, error) in
+                    if let err = error{
+                        print(err)
+                    } else {
+                        let localFile = url?.absoluteString
+                        self.defaults.set(localFile, forKey: "Link")
+                        let country = self.countryCode.selectedCountry
+                        let db = Firestore.firestore()
+                        let userID = Auth.auth().currentUser?.uid
+                        let userEmail =  Auth.auth().currentUser?.email
+                        let currentUser =  Auth.auth().currentUser
+                        if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.userdropdown.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
+                            Auth.auth().currentUser?.updatePassword(to: self.userpassword.text!) { (error) in
+                                if  let error = error {
+                                    print(error)
+                                }
+                            }
+                            db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!, "pickanimal": self.userdropdown.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
                                 
-                                print(error)
+                                if let error = error {
+                                    print("error while updating the reord \(error)")
+                                }
+                                else {
+                                    SVProgressHUD.dismiss()
+                                    if self.useremail.text != userEmail {
+                                        
+                                        currentUser?.updateEmail(to: self.useremail.text!){ error in
+                                            
+                                            if  let error = error {
+                                                
+                                                print(error)
+                                            }
+                                            else {
+                                                //                                SVProgressHUD.dismiss()
+                                                print("No error while updating the email")
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                
+                                
                             }
-                            else {
-//                                SVProgressHUD.dismiss()
-                                print("No error while updating the email")
-                            }
+                            
+                            
+                            
                             
                         }
                     }
-                }
-                
-                
+                })
             }
-            
-            
-            
-            
+        } else {
+            let country = self.countryCode.selectedCountry
+            let db = Firestore.firestore()
+            let userID = Auth.auth().currentUser?.uid
+            let userEmail =  Auth.auth().currentUser?.email
+            let currentUser =  Auth.auth().currentUser
+            if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && userdropdown.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
+                Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
+                    if  let error = error {
+                        print(error)
+                    }
+                }
+                db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!, "pickanimal": userdropdown.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
+                    if let error = error {
+                        print("error while updating the reord \(error)")
+                    }
+                    else {
+                        SVProgressHUD.dismiss()
+                        if self.useremail.text != userEmail {
+                            
+                            currentUser?.updateEmail(to: self.useremail.text!){ error in
+                                
+                                if  let error = error {
+                                    
+                                    print(error)
+                                }
+                                else {
+                                    //                                SVProgressHUD.dismiss()
+                                    print("No error while updating the email")
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -362,30 +402,13 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
             self.urlbool = true
             print("pic url is \(url)")
-            //            uploadToCloud(fileURL: url)
+            
+            
             self.urllink = url
         }
         
     }
-    func uploadToCloud(fileURL:URL) {
-        let storage = Storage.storage()
-        
-        //let data = Data()
-        
-        let storageRef =  storage.reference()
-        
-        let localFile = fileURL
-        
-        let photoRef = storageRef.child("uploadphotoone")
-        // if bool == true
-        let uploadTask = photoRef.putFile(from: localFile, metadata: nil) { (metadata, err) in
-            guard let metadata = metadata else {
-                print(err?.localizedDescription ?? "none")
-                return
-            }
-            print("photo uploaded")
-        }
-    }
+    
     
     
     

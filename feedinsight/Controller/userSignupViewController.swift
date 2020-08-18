@@ -192,7 +192,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                     
                     
                     let db = Firestore.firestore()
-                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
+                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
                         
                         if error != nil {
                             // Show error message
@@ -200,8 +200,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             self.showError(error!.localizedDescription)
                             SVProgressHUD.dismiss()
                         }
-                        
-                        
                     }
                     // Transition to the home screen
                     if #available(iOS 13.0, *) {

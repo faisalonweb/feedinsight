@@ -24,6 +24,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var addbtn: UIButton!
     @IBOutlet weak var tblView: UITableView!
+   
+    
      let userID = Auth.auth().currentUser?.uid
     
     @IBOutlet weak var editBtn: UIButton!
@@ -38,10 +40,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
-        let storage = Storage.storage()
-        let storageRef =  storage.reference()
-        let ref = storageRef.child("uploadphotoone")
-        profileimage.sd_setImage(with: ref)
+//        let storage = Storage.storage()
+//        let storageRef =  storage.reference()
+//        let ref = storageRef.child("uploadphotoone")
+//        profileimage.sd_setImage(with: ref)
         
         
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
@@ -63,6 +65,13 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     
+    @IBAction func onClickLoad(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
+              self.navigationController?.pushViewController(vc!, animated: true)
+              
+        
+    }
+    
     
     @IBAction func nextTap(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
@@ -71,6 +80,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .long
+        
+        let datetimestamp = formatter.string(from: currentDateTime)
         for i in 0..<dropdownvalues.count {
             let indexPath = IndexPath(row: 0, section: i)
             if let cell = tblView.cellForRow(at: indexPath) as? feedthreeTableViewCell {
@@ -81,7 +96,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
         let text = alertController.textFields!.first!.text!
-            let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text]
+            let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
             
             db.collection("RationReports").document(self.userID!).collection("RationReports").addDocument(data: dict){ err in
                 if let err = err {

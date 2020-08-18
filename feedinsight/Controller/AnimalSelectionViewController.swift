@@ -158,10 +158,10 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     
     override func viewDidLoad() {
         
-        let storage = Storage.storage()
-        let storageRef =  storage.reference()
-        let ref = storageRef.child("uploadphotoone")
-        userProfileView.sd_setImage(with: ref)
+//        let storage = Storage.storage()
+//        let storageRef =  storage.reference()
+//        let ref = storageRef.child("uploadphotoone")
+//        userProfileView.sd_setImage(with: ref)
         
         
         self.navigationController?.isNavigationBarHidden = true

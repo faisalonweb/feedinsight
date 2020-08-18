@@ -93,10 +93,10 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         
     }
     override func viewDidLoad() {
-        let storage = Storage.storage()
-        let storageRef =  storage.reference()
-        let ref = storageRef.child("uploadphotoone")
-        proimage.sd_setImage(with: ref)
+//        let storage = Storage.storage()
+//        let storageRef =  storage.reference()
+//        let ref = storageRef.child("uploadphotoone")
+//        proimage.sd_setImage(with: ref)
         producitonOutlet.isHidden = true
         woolHairLabel.isHidden = true
         nameField.text = groupcompany
