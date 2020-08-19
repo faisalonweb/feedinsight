@@ -11,7 +11,6 @@ import UIKit
 
 
 struct PremixCollectionCell {
-    
     let img : UIImage
     let titleStr: String
 }

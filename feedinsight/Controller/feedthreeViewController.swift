@@ -14,69 +14,49 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
-    func minusTapped(cellIndex: Int) {
-        dropdownvalues.remove(at: cellIndex)
-        tblView.reloadData()
-    }
-    
+    var dropdownvalues = [String]()
+    var dropdownfloatValue = [String]()
+    var getNameData = [String]()
+    var getValueData = [String]()
+    let userID = Auth.auth().currentUser?.uid
+
     @IBOutlet weak var addfeed: DropDown!
-    
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var addbtn: UIButton!
     @IBOutlet weak var tblView: UITableView!
-   
-    
-     let userID = Auth.auth().currentUser?.uid
-    
     @IBOutlet weak var editBtn: UIButton!
-    
     @IBOutlet weak var plusbutton: UIButton!
-    
-    
-    var dropdownvalues = [String]()
-    var dropdownfloatValue = [String]()
-    //    var dropdownvalues = ["one","tow","three"]
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
-//        let storage = Storage.storage()
-//        let storageRef =  storage.reference()
-//        let ref = storageRef.child("uploadphotoone")
-//        profileimage.sd_setImage(with: ref)
-        
-        
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
-        
         addfeed.optionArray = ["Cow","Deer","Camel"]
         addfeed.didSelect{(selectedText , index ,id) in
         }
-        
-        //        print(addfeed.text ?? "none")
-        
     }
     
+    func minusTapped(cellIndex: Int) {
+        dropdownvalues.remove(at: cellIndex)
+        tblView.reloadData()
+    }
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
     }
-    
     @IBAction func onClickLoad(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
-              self.navigationController?.pushViewController(vc!, animated: true)
-              
+        vc?.screenNAME = "ration"
         
+              self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    
     @IBAction func nextTap(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
         self.navigationController?.pushViewController(vc!, animated: true)
-        
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -84,7 +64,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
-        
         let datetimestamp = formatter.string(from: currentDateTime)
         for i in 0..<dropdownvalues.count {
             let indexPath = IndexPath(row: 0, section: i)
@@ -97,13 +76,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
         let text = alertController.textFields!.first!.text!
             let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
-            
             db.collection("RationReports").document(self.userID!).collection("RationReports").addDocument(data: dict){ err in
                 if let err = err {
-                    //                       SVProgressHUD.dismiss()
                     print("Error adding document: \(err)")
                 } else {
-                    //                       SVProgressHUD.dismiss()
                     print("Document added")
                 }
             }
@@ -120,22 +96,18 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     
     @IBAction func touchaddbtn(_ sender: Any) {
-        
         if addfeed.text == "" {
             self.showError("Select dropdown value")
-        }
-        else {
+        } else {
             print(addfeed.text ?? "none")
             dropdownvalues.append(addfeed.text ?? "none")
             print("paki")
             print("array values is \(dropdownvalues)")
             tblView.reloadData()
         }
-        
     }
     
     func showError(_ message:String) {
-        
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
@@ -146,6 +118,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! feedthreeTableViewCell
         cell.labeltxt?.text = dropdownvalues[indexPath.section]
         cell.delegate = self
+        cell.productValue?.text = dropdownfloatValue[indexPath.section]
         cell.cellIndex = indexPath.section
         return cell
         
