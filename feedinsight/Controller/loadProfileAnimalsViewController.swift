@@ -19,7 +19,7 @@ class loadProfileAnimalsViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     
     @IBOutlet weak var profileimage: UIImageView!
-    
+     let defaults = UserDefaults.standard
     
     var animalList = [String]()
     var dateList = [String]()
@@ -65,7 +65,7 @@ class loadProfileAnimalsViewController: UIViewController {
         super.viewDidLoad()
         mainBtn.layer.cornerRadius = 10
         
-        Firestore.firestore().collection("premixReport").document(Auth.auth().currentUser?.uid ?? "").collection("PremixReports").getDocuments{(snapshot,error) in
+        Firestore.firestore().collection("animalState").document(Auth.auth().currentUser?.uid ?? "").collection("animalState").getDocuments{(snapshot,error) in
             
             if error == nil && snapshot != nil {
                 guard let snap = snapshot else {return}
@@ -130,71 +130,15 @@ class loadProfileAnimalsViewController: UIViewController {
         }
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //         Firestore.firestore().collection("premixReport").getDocuments{(snapshot,error) in
-    //
-    //                if error == nil && snapshot != nil {
-    //                guard let snap = snapshot else {return}
-    //                 for document in snap.documents {
-    //                   let documentData = document.data()
-    //                    let animaltype = documentData["animalGroup"] as? String ?? "Anonymous"
-    //                    let timestamp = documentData["currentdate"] as? String ?? "20/20/20"
-    //                    let companytype = documentData["companyName"] as? String ?? "Anonymous"
-    //                    let categortype = documentData["categorySelected"] as? String ?? "Anonymous"
-    //                    let currentweighttype = documentData["CurrentBodyWeight"] as? String ?? "Anonymous"
-    //                    let targetweighttype = documentData["TargetBodyWeight"] as? String ?? "Anonymous"
-    //                    let pregnanttype = documentData["daysPregnant"] as? String ?? "Anonymous"
-    //                    let milktype = documentData["daysinMilk"] as? String ?? "Anonymous"
-    //                    let daysachive = documentData["daystoAchive"] as? String ?? "Anonymous"
-    //                    let milkproductiontype = documentData["milkInProduciton"] as? String ?? "Anonymous"
-    //                    let psyostate = documentData["psychologicalState"] as? String ?? "Anonymous"
-    //                    let dietbolestate = documentData["dietbole"] as? Bool ?? false
-    //                    let disorderbolestate = documentData["disorderbole"] as? Bool ?? false
-    //                    let heatbolestate = documentData["heatbole"] as? Bool ?? false
-    //                    let productionbolestate = documentData["productionbole"] as? Bool ?? false
-    //
-    //
-    //                    self.datastation.insert(animaltype, at: 0)
-    //                    self.dataonestation.insert(timestamp, at: 0)
-    //                    self.datathreestation.insert(companytype, at: 0)
-    //                    self.datafourstation.insert(categortype, at: 0)
-    //                    self.datafivestation.insert(currentweighttype, at: 0)
-    //                    self.datasixstation.insert(targetweighttype, at: 0)
-    //                    self.datasevenstation.insert(pregnanttype, at: 0)
-    //                    self.dataeightstation.insert(milktype, at: 0)
-    //                    self.dataninestation.insert(daysachive, at: 0)
-    //                    self.datatenstation.insert(milkproductiontype, at: 0)
-    //                    self.dataelevenstation.insert(psyostate, at: 0)
-    //                    self.datatwelvestation.insert(dietbolestate, at: 0)
-    //                    self.datathirteenstation.insert(disorderbolestate, at: 0)
-    //                    self.datafourteenstation.insert(heatbolestate, at: 0)
-    //                    self.datafifteenstation.insert(productionbolestate, at: 0)
-    //                        }
-    //
-    //                   self.animalList.append(contentsOf: self.datastation)
-    //                   self.dateList.append(contentsOf: self.dataonestation)
-    //                   self.companynameList.append(contentsOf: self.datathreestation)
-    //                   self.categoryList.append(contentsOf: self.datafourstation)
-    //                   self.currentweightList.append(contentsOf: self.datafivestation)
-    //                   self.targetweightList.append(contentsOf: self.datasixstation)
-    //                   self.dayspregnantList.append(contentsOf: self.datasevenstation)
-    //                   self.daysmilkList.append(contentsOf: self.dataeightstation)
-    //                   self.daysachieveList.append(contentsOf: self.dataninestation)
-    //                   self.milkproductionList.append(contentsOf: self.datatenstation)
-    //                   self.psystateList.append(contentsOf: self.dataelevenstation)
-    //                   self.dietstate.append(contentsOf: self.datatwelvestation)
-    //                   self.disorderstate.append(contentsOf: self.datathirteenstation)
-    //                   self.heatstate.append(contentsOf: self.datafourteenstation)
-    //                   self.productionstate.append(contentsOf: self.datafifteenstation)
-    //                   self.tblView.reloadData()
-    //                    print(self.productionstate)
-    //
-    //                           }
-    //                    else {
-    //                     print("pakis")
-    //                    }
-    //                       }
-    //    }
+        override func viewWillAppear(_ animated: Bool) {
+            DispatchQueue.main.async { [weak self] in
+
+                let data = self?.defaults.value(forKey: "imageData") as? Data
+                if(data != nil) {
+                    self?.profileimage.image = UIImage(data: data!)
+                }
+            }
+        }
     
     @IBAction func mainBtnAction(_ sender: Any) {
         

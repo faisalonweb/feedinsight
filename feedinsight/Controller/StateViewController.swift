@@ -18,7 +18,7 @@ import SVProgressHUD
 class StateViewController: UIViewController, UITextFieldDelegate {
     
     //    @IBOutlet weak var heatStressToggle: UIImageView!
-     let defaults = UserDefaults.standard
+    let defaults = UserDefaults.standard
     @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var woolHairLabel: UILabel!
     @IBOutlet weak var proimage: UIImageView!
@@ -71,34 +71,28 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var pregnantdays = ""
     var productionmilk = ""
     var hdLabel = ""
-    
     var diettoggle : Bool!
     var disordertoggle : Bool!
     var heattoggle : Bool!
     var productiontoggle : Bool!
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-        
-        // As soon as vc appears
-        
         super.viewWillAppear(true)
+        DispatchQueue.main.async { [weak self] in
+
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.proimage.image = UIImage(data: data!)
+            }
+        }
         if hdLabel != "" {
             headLabel.text = hdLabel
         } else {
             headLabel.text = name
         }
-        
-        
     }
     override func viewDidLoad() {
-//        let storage = Storage.storage()
-//        let storageRef =  storage.reference()
-//        let ref = storageRef.child("uploadphotoone")
-//        proimage.sd_setImage(with: ref)
-        producitonOutlet.isHidden = true
-        woolHairLabel.isHidden = true
+ 
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical
@@ -109,6 +103,15 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         daysinMilkF.text = milkindays
         daysPregnantF.text = pregnantdays
         milkInProducitonF.text = productionmilk
+        
+        if (name == "Deer" || name == "Sheep/Goat") {
+            producitonOutlet.isHidden = false
+            woolHairLabel.isHidden = false
+        }
+        else {
+            producitonOutlet.isHidden = true
+            woolHairLabel.isHidden = true
+        }
         
         if (dietbole == true) {
             dietOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
@@ -196,40 +199,26 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
-        
-        
-        
     }
+    
+    
+    
     @IBAction func nextTapped(_ sender: UIButton) {
         
+        let requirments = Requirments()
+        requirments.setStateValue(companyName: nameField.text!, animalGroup: animalField.text!, physiologicalState: PsychField.text!, currentBodyWeight: CurrentBodyWeightF.text!, targetBodyWeight: TargetBodyWeightF.text!, achieveTargerWeight: daystoAchiveF.text!, daysInMilk: daysinMilkF.text!, daysPregnant: daysPregnantF.text!, milkProduction: milkInProducitonF.text! , animalKind: name , heatStress: heatbole , metaBolic: disorderbole ,  anionic : dietbole , woolProduction : productionbole)
         
-             let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
-                   self.navigationController?.pushViewController(vc!, animated: true)
-        
-        ///here above is for report
-        
-//        if  nameField.text == "" || PsychField.text == "" || animalField.text == "" || CurrentBodyWeightF.text == "" || TargetBodyWeightF.text ==  "" || daystoAchiveF.text == "" || daysinMilkF.text == "" || daysPregnantF.text == "" || milkInProducitonF.text == "" {
-//
-//
-//            self.showError("Fill all the text fields")
-//
-//        }
-//        else {
-//            let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
-//            self.navigationController?.pushViewController(vc!, animated: true)
-//        }
-        
-        
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
         
     }
     func showError(_ message:String) {
-          
-          let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-          let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-          alertController.addAction(defaultAction)
-          self.present(alertController, animated: true, completion: nil)
-      }
+        
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let psychEnter = PsychField.text!
@@ -290,31 +279,26 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             let result = 30 - weekofgestation
             
             print("fish before calving result : \(result)")
-            
-            
         default:
             print("animal group not found")
         }
         let vc = storyboard?.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as? loadProfileAnimalsViewController
         
-//                let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
+        //                let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
-        if (animalField.text == "Sheep"){
-            if (productionbole == false) {
-                producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-                productionbole = true
-            }
-            else {
-                productionbole = false
-                producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
-            }
+        
+        if (productionbole == false) {
+            producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
+            productionbole = true
         }
         else {
             productionbole = false
             producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
+        
+        
     }
     
     @IBAction func dietToggleTap(_ sender: UIButton) {
@@ -350,8 +334,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
-    
     func saveText(theText: String) {
         SVProgressHUD.show(withStatus: "it's working ...")
         let currentDateTime = Date()
@@ -392,13 +374,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let categoryEnter = headLabel.text!
         let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
         
-        
-        //
         let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : combinedString, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp]
         
         //
         let db = Firestore.firestore()
-        db.collection("premixReport").document(userID!).collection("PremixReports").addDocument(data: dict){ err in
+        db.collection("animalState").document(userID!).collection("animalState").addDocument(data: dict){ err in
             if let err = err {
                 SVProgressHUD.dismiss()
                 print("Error adding document: \(err)")
@@ -414,19 +394,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        // convert into string
-        // Comparison
-        // if sheep = hide else show
-        if (textField.text == "Sheep"){
-            producitonOutlet.isHidden = false
-            woolHairLabel.isHidden = false
-        }
-        else {
-            producitonOutlet.isHidden = true
-            woolHairLabel.isHidden = true
-        }
-    }
+    
     
 }
 

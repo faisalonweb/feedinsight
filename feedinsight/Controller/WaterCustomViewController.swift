@@ -66,7 +66,7 @@ class WaterCustomViewController: UIViewController {
             let text = alertController.textFields!.first!.text!
             let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
             
-            db.collection("WaterReports").document(self.userID!).collection("WaterReports").addDocument(data: dict){ err in
+            db.collection("waterReports").document(self.userID!).collection("waterReports").addDocument(data: dict){ err in
                 if let err = err {
                     //                       SVProgressHUD.dismiss()
                     print("Error adding document: \(err)")

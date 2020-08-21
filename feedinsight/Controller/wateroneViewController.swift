@@ -18,7 +18,7 @@ class wateroneViewController: UIViewController {
     @IBOutlet weak var standardbtn: UIButton!
     @IBOutlet weak var custombtn: UIButton!
     
-    
+     let defaults = UserDefaults.standard
     @IBOutlet weak var firstview: UIView!
     @IBOutlet weak var secondview: UIView!
     @IBOutlet var buttonOutlets: [UIButton]!
@@ -44,6 +44,16 @@ class wateroneViewController: UIViewController {
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+              super.viewWillAppear(true)
+              DispatchQueue.main.async { [weak self] in
+
+                  let data = self?.defaults.value(forKey: "imageData") as? Data
+                  if(data != nil) {
+                   self?.profileimage.image = UIImage(data: data!)
+                  }
+              }
+       }
     @IBAction func buttonspress(_ sender: UIButton) {
         
         self.buttonOutlets.forEach { (button) in

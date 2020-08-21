@@ -30,3 +30,5 @@ struct SignupModel {
     let singupImg : UIImage
     
 }
+
+

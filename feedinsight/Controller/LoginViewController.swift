@@ -150,8 +150,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             let currentuserrole = dataDescription?["pickrole"]
                             let currentusercountrycode = dataDescription?["countrycode"]
                             let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-                            let imageURL = dataDescription?["imageURL"]
                             self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                            let imageURL = dataDescription?["imageURL"]
+                            let fileUrl = URL(string: imageURL as! String)
+                            let data = try? Data(contentsOf:fileUrl!)
+                            UserDefaults().set(data, forKey: "imageData")
                             self.userDefault.set(imageURL, forKey: "Link")
                             self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
                             self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
@@ -219,8 +222,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Check if the password is secure
-        let cleanedPassword = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+//        let cleanedPassword = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        
 //        if Utilities.isPasswordValid(cleanedPassword) == false {
 //            // Password isn't secure enough
 //            return "Please make sure your password is at least 8 characters, contains a special character and a number."

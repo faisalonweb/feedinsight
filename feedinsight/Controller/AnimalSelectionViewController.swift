@@ -21,7 +21,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     @IBOutlet weak var userNameLabel: UILabel!
     //    @IBOutlet weak var animalCollectionViewCell: AnimalCollectionViewCell!
     
-    
+    let defaults = UserDefaults.standard
     let textArr = ["Ruminants","Aqua","Equines","Poultry","Goat","Cow"]
     
     let imageArr: [UIImage] = [
@@ -38,6 +38,14 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        DispatchQueue.main.async { [weak self] in
+
+                   let data = self?.defaults.value(forKey: "imageData") as? Data
+                   if(data != nil) {
+                    self?.userProfileView.image = UIImage(data: data!)
+                   }
+               }
         if(UIScreen.main.bounds.width < 415)
         {
             getScreenSize()

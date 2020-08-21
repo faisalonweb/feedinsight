@@ -102,17 +102,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     override func viewDidLoad() {
         
-        //
+        
         DispatchQueue.main.async { [weak self] in
-            if let Link = self!.defaults.value(forKey: "Link"){
-                if(Link as! String == "") {
-                    
-                } else {
-                    let fileUrl = URL(string: Link as! String)
-                    let data = try? Data(contentsOf:fileUrl!)
-                    self!.userpic.image = UIImage(data: data!)
-                }
-                
+
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.userpic.image = UIImage(data: data!)
             }
         }
         if let userName = defaults.value(forKey: dKeys.keyusername){
@@ -176,24 +171,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.collectionselectedcell = collectioncell as! String
             print(collectioncell)
         }
-        
-        
-        
-        
-        //        else{
-        //            print("Doen't get animal name.")
-        //        }
-        //
-        //        if let currentuser = defaults.value(forKey: dKeys.keyusername) {
-        //            self.username.text = currentuser as? String
-        //        }
-        //        else {
-        //            print("key does not set in user defaults ")
-        //        }
-        
         let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-        
-        
         docRef.getDocuments { (querySnapshot, err) in
             if let err = err {
                 print(err.localizedDescription)
@@ -300,7 +278,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         print(err)
                     } else {
                         let localFile = url?.absoluteString
-                        self.defaults.set(localFile, forKey: "Link")
+                        
+                        let fileUrl = URL(string: url!.absoluteString)
+                        let data = try? Data(contentsOf:fileUrl!)
+                        self.userpic.image = UIImage(data: data!)
+                        UserDefaults().set(data, forKey: "imageData")
                         let country = self.countryCode.selectedCountry
                         let db = Firestore.firestore()
                         let userID = Auth.auth().currentUser?.uid
