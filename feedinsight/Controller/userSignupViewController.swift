@@ -30,9 +30,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var userpassword: UITextField!
     @IBOutlet weak var usercnfpassword: UITextField!
     @IBOutlet weak var countrycode: CountryPickerView!
-    
     @IBOutlet weak var signinoutlet: ActiveLabel!
-    
     
     struct dKeys {
         static let keyAnimal = "animalStringKey"
@@ -48,16 +46,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         static let keycountrycode = "countrycodeStringKey"
     }
     let defaults = UserDefaults.standard
-    
     var SignupCollectionData = [SignupModel]()
-    
-    
-    
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     private let locationManager = LocationManager()
     var industrycellValue = ""
-    
     let textArr = ["Research","Farming","FoodManufacturing"]
     let imageArr: [UIImage] = [
         UIImage(named: "research-unselected")!,
@@ -75,10 +68,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             print("*** Error in \(#function): exposedLocation is nil")
             return
         }
-        
         self.locationManager.getPlace(for: exposedLocation) { placemark in
             guard let placemark = placemark else { return }
-            
             var output = "Our location is:"
             if let country = placemark.country {
                 output = output + "\n\(country)"
@@ -96,14 +87,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         
         SignupCollectionData = DataAppend.getAllSignupData()
         super.viewDidLoad()
-        
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
         let lineArray = text.components(separatedBy: "\n")
         for eachLA in lineArray
         {
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
-            
         }
         pickanimal.optionArray = ["Cow","Deer","Camel"]
         pickanimal.didSelect{(selectedText , index ,id) in
@@ -122,11 +111,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 16
         collectionview.collectionViewLayout = layout
-        
         let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
         signinoutlet.enabledTypes.append(customType)
         signinoutlet.urlMaximumLength = 91
-        
         signinoutlet.customize { label in
             signinoutlet.text = "Have an Account? Sign In"
             signinoutlet.numberOfLines = 1
@@ -140,12 +127,10 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                     atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
                 default: ()
                 }
-                
                 return atts
             }
             label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
         }
-        
     }
     func SignupSelection(){
         
@@ -157,7 +142,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     
     @IBAction func singuponclick(_ sender: Any) {
         SVProgressHUD.show()
-        
         let country = self.countrycode.selectedCountry
         print(country)
         let error = validateFields()
@@ -166,8 +150,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             showError(error!)
         }
         else {
-            
-            // Create cleaned versions of the data
             let firstName = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let industryEnter = userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -177,31 +159,21 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             let pickanimalEnter = pickanimal.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            // Create the user
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                // Check for errors
                 if err != nil {
-                   SVProgressHUD.showError(withStatus:"user creation failed")
-                    
-                    // There was an error creating the user
+                    SVProgressHUD.showError(withStatus:"user creation failed")
                     self.showError(err!.localizedDescription)
                     SVProgressHUD.dismiss()
                 }
                 else {
-                    
-                    
-                    
                     let db = Firestore.firestore()
                     db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
-                        
                         if error != nil {
-                            // Show error message
                             SVProgressHUD.showError(withStatus:"Data insertion failed")
                             self.showError(error!.localizedDescription)
                             SVProgressHUD.dismiss()
                         }
                     }
-                    // Transition to the home screen
                     if #available(iOS 13.0, *) {
                         SVProgressHUD.showSuccess(withStatus: "Success")
                         self.transitionToHome()
@@ -211,10 +183,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                     }
                 }
             }
-            
         }
-        
-        
     }
     func showError(_ message:String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -222,22 +191,18 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
     func alert(_ title: String, message: String) {
         let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(vc, animated: true, completion: nil)
     }
     func validateFields() -> String? {
-        
-        //  var a = false
         if ( industrycellValue == "")
         {
             if (self.userindustry.text == "")
             {
                 return "please select your Industry!"
             }
-            
         }
         if username.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -248,74 +213,49 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            
             return "Please fill in all fields."
         }
-       
-        
-    
-        
         if userpassword.text != usercnfpassword.text {
             return "Passwords don't Match"
         }
-        
-        
         return nil
     }
     
     func transitionToHome() {
-        
-        //            let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-        //
-        //            view.window?.rootViewController = homeViewController
-        //            view.window?.makeKeyAndVisible()
-        
         let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-        /// homeSegue
     }
-    
     @IBAction func backbtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: 50, height: 128)
+        return CGSize(width: 50, height: 128)
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "usersignup", for: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
         cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
         cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
-        //        industrycellValue =  cell.signuplabel.text!
-        //         industrycellValue = ""
         cell.layer.cornerRadius = 10
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
         cell.signupimage.image = imageArr1[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
-        
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
-        
         cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
         cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
     }
-    
-    
-    
 }
 
 

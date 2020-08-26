@@ -9,26 +9,22 @@
 import UIKit
 
 protocol feedthreeTableViewCellDelegate: class {
-  func minusTapped(cellIndex: Int)
+    func minusTapped(cellIndex: Int)
 }
-
 class feedthreeTableViewCell: UITableViewCell {
     @IBOutlet weak var labeltxt: UILabel!
     @IBOutlet weak var productValue: UITextField!
-    
     var cellIndex = -1
     weak var delegate: feedthreeTableViewCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
     @IBAction func deleteBtn(_ sender: Any) {
         delegate?.minusTapped(cellIndex: cellIndex)
     }

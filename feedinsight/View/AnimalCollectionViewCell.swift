@@ -10,15 +10,11 @@ import UIKit
 
 class AnimalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var animalImage: UIImageView!
-       @IBOutlet weak var animalLabel: UILabel!
-    
+    @IBOutlet weak var animalLabel: UILabel!
     var animalData : AnimalCollectionCell? {
-
-           didSet {
-
+        didSet {
             animalImage.image = animalData?.animalImg
             animalLabel.text = animalData?.animalStr
-//               txtView.text = premixData?.titleStr
-           }
-       }
+        }
+    }
 }

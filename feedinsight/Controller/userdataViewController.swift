@@ -16,27 +16,20 @@ import SVProgressHUD
 
 class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate  {
     
-    
-    
     @IBOutlet weak var changebutton: UIButton!
     @IBOutlet weak var userdropdown: DropDown!
     @IBOutlet weak var roledropdown: DropDown!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var locationField: DropDown!
     @IBOutlet weak var userpic: UIImageView!
-    
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var useremail: UITextField!
     @IBOutlet weak var userphone: UITextField!
     @IBOutlet weak var userotherindus: UITextField!
-    
     @IBOutlet weak var userbuss: UITextField!
     @IBOutlet weak var userpassword: UITextField!
     @IBOutlet weak var userconfirmpassword: UITextField!
-    
     @IBOutlet weak var countryCode: CountryPickerView!
-    
-    
     var db: Firestore!
     var urllink : URL!
     var urlbool : Bool = false
@@ -78,7 +71,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             print("*** Error in \(#function): exposedLocation is nil")
             return
         }
-        
         self.locationManager.getPlace(for: exposedLocation) { placemark in
             guard let placemark = placemark else { return }
             
@@ -96,15 +88,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        
-        
     }
     
     override func viewDidLoad() {
-        
-        
         DispatchQueue.main.async { [weak self] in
-
+            
             let data = self?.defaults.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.userpic.image = UIImage(data: data!)
@@ -166,8 +154,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             print(phone)
         }
         if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
-            
-            
             self.collectionselectedcell = collectioncell as! String
             print(collectioncell)
         }
@@ -192,8 +178,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let currentuserrole = dataDescription?["pickrole"]
                 let currentusercountrycode = dataDescription?["countrycode"]
                 let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-                print("countrycode is \(currentusercountrycode ?? 0 )")
-                
                 self.username.text = currentusername as? String
                 self.useremail.text = currentuseremail as? String
                 self.userphone.text = currentuserphone as? String
@@ -208,33 +192,27 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 self.collectionselectedcell = currentusercollectionindustry as! String
                 self.countryCode.setCountryByPhoneCode(currentusercountrycode as! String)
                 self.collectionView.reloadData()
-                
-                
             }
         }
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
         let lineArray = text.components(separatedBy: "\n")
         for eachLA in lineArray
         {
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
-            
         }
         locationField.optionArray = pickerData1
         locationField.didSelect{(selectedText , index ,id) in
         }
-        
         userdropdown.optionArray = ["Cow","Deer","Camel"]
         userdropdown.didSelect{(selectedText , index ,id) in
         }
         roledropdown.optionArray = ["Admin","Client","Lender"]
         roledropdown.didSelect{(selectedText , index ,id) in
         }
-        
         let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -242,8 +220,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 16
         collectionView.collectionViewLayout = layout
-        
-        
         userpic.layer.cornerRadius = userpic.frame.size.width/2
         userpic.clipsToBounds = true
         userpic.layer.borderWidth = 2.0
@@ -251,16 +227,9 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         changebutton.layer.cornerRadius = 8
         
     }
-    //    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
-    //        countryCode.setCountryByPhoneCode("+92")
-    //    }
-    //
-    
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
     }
-    
-    
     @IBAction func changeData(_ sender: Any) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         SVProgressHUD.show(withStatus: "it's working ...")
@@ -278,7 +247,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         print(err)
                     } else {
                         let localFile = url?.absoluteString
-                        
                         let fileUrl = URL(string: url!.absoluteString)
                         let data = try? Data(contentsOf:fileUrl!)
                         self.userpic.image = UIImage(data: data!)
@@ -295,35 +263,24 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                 }
                             }
                             db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!, "pickanimal": self.userdropdown.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
-                                
                                 if let error = error {
                                     print("error while updating the reord \(error)")
                                 }
                                 else {
                                     SVProgressHUD.dismiss()
                                     if self.useremail.text != userEmail {
-                                        
                                         currentUser?.updateEmail(to: self.useremail.text!){ error in
-                                            
                                             if  let error = error {
-                                                
                                                 print(error)
                                             }
                                             else {
                                                 //                                SVProgressHUD.dismiss()
                                                 print("No error while updating the email")
                                             }
-                                            
                                         }
                                     }
                                 }
-                                
-                                
                             }
-                            
-                            
-                            
-                            
                         }
                     }
                 })
@@ -358,7 +315,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                     //                                SVProgressHUD.dismiss()
                                     print("No error while updating the email")
                                 }
-                                
                             }
                         }
                     }
@@ -366,8 +322,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             }
         }
     }
-    
-    
     
     @IBAction func selectPhoto(_ sender: UIButton) {
         
@@ -388,13 +342,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             
             self.urllink = url
         }
-        
     }
-    
-    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }
@@ -405,23 +353,18 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         cell.imageusr.image = imageArr[cellIndex]
         cell.labelusr.text = textArr[cellIndex]
         industrycellValue = cell.labelusr.text!
-        //        print(cell.labelusr.text!)
-        //        print("collection cell name is : \(self.collectionselectedcell)")
         if(self.collectionselectedcell == cell.labelusr.text!) {
             cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
             cell.imageusr.image = imageArr1[cellIndex]
             cell.labelusr.textColor = UIColor.white
-            //          print("match is done")
         }
         cell.layer.cornerRadius = 10
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
         cell.imageusr.image = imageArr1[cellIndex]
-        
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell

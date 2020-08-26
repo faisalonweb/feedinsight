@@ -9,21 +9,15 @@
 import UIKit
 
 class ProfileloadTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var arrowView: UIImageView!
     @IBOutlet weak var textlabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
-    
+

@@ -13,23 +13,14 @@ class DropViewController: UIViewController,UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayColor.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableOutlet.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! dropdownTableViewCell
-        
         cell.textLabel?.text = arrayColor[indexPath.row] as? String
-        
         return cell
     }
-    
-    
-    
     @IBOutlet weak var BtnOutlet: UIButton!
     @IBOutlet weak var tableOutlet: UITableView!
-    
     let arrayColor : NSMutableArray = ["red color", "red color", "red color", "red color", "red color", "red color" ]
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         BtnOutlet.backgroundColor = UIColor.white
@@ -43,11 +34,8 @@ class DropViewController: UIViewController,UITableViewDataSource, UITableViewDel
         tableOutlet.layer.borderWidth = 1
         tableOutlet.layer.borderColor = UIColor.black.cgColor
         tableOutlet.isHidden = true
-        
     }
-    
     @IBAction func btnTapped(_ sender: UIButton) {
-        
         if tableOutlet.isHidden == true {
             tableOutlet.isHidden = false
         }
@@ -56,15 +44,4 @@ class DropViewController: UIViewController,UITableViewDataSource, UITableViewDel
             tableOutlet.isHidden = true
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

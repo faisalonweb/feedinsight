@@ -30,26 +30,16 @@ class WaterStandardViewController: UIViewController {
     @IBOutlet weak var ClText: UITextField!
     @IBOutlet weak var SText: UITextField!
     let userID = Auth.auth().currentUser?.uid
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-    
     @IBAction func saveOnClick(_ sender: Any) {
         
     }
-    
     @IBAction func loadOnClick(_ sender: Any) {
     }
-    
     @IBAction func nextOnClick(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    
-    
 }

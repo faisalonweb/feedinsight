@@ -36,8 +36,7 @@ class premixViewController: UIViewController {
     @IBOutlet weak var niacinVitamin: UITextField!
     @IBOutlet weak var biotinVitamin: UITextField!
     let userID = Auth.auth().currentUser?.uid
-     let defaults = UserDefaults.standard
-    
+    let defaults = UserDefaults.standard
     // Macro Mineral
     var productNameData = ""
     var productDoseData = ""
@@ -56,24 +55,18 @@ class premixViewController: UIViewController {
     var seOrganicMicroMineralData = ""
     var znMicroMineralData = ""
     var znOrganicMicroMineralData = ""
-    
     // Vitamin
-    
     var aiuVitaminData = ""
     var diuVitaminData = ""
     var eiuVitaminData = ""
     var niacinVitaminData = ""
     var biotinVitaminData = ""
-    
-    
-
     @IBOutlet weak var profileimage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = true
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
-        
         // Macro Data
         productName.text = productNameData
         productDose.text = productDoseData
@@ -92,7 +85,6 @@ class premixViewController: UIViewController {
         seOrganicMicroText.text = seMicroMineralData
         znMicroText.text = znMicroMineralData
         znOrganicMicroText.text = znOrganicMicroMineralData
-        
         //Vitamins
         aiuVitamin.text = aiuVitaminData
         diuVitamin.text = diuVitaminData
@@ -101,30 +93,26 @@ class premixViewController: UIViewController {
         biotinVitamin.text = biotinVitaminData
         
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(true)
-           DispatchQueue.main.async { [weak self] in
-
-               let data = self?.defaults.value(forKey: "imageData") as? Data
-               if(data != nil) {
+        super.viewWillAppear(true)
+        DispatchQueue.main.async { [weak self] in
+            
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)
-               }
-           }
+            }
+        }
     }
-    
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
-        
     }
     @IBAction func saveOnClick(_ sender: Any) {
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
-        
         let datetimestamp = formatter.string(from: currentDateTime)
         let db = Firestore.firestore()
         let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
@@ -151,16 +139,9 @@ class premixViewController: UIViewController {
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
     @IBAction func loadOnClick(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
-         vc?.screenNAME = "premix"
-        
-         self.navigationController?.pushViewController(vc!, animated: true)
-        
+        vc?.screenNAME = "premix"
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    
-    
-    
 }

@@ -12,10 +12,8 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    
     let userDefault = UserDefaults.standard
     let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
-    
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -34,38 +32,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         static let keycollectionview = "collectionviewStringKey"
     }
     func SignupSelection(){
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "userSignupViewController") as! userSignupViewController
         //  self.present(signUpViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(signUpViewController, animated: true)
-        
-        
     }
-    
     @IBAction func backBtn(_ sender: UIButton) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
     }
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.paswordField.delegate = self
         self.emailField.delegate = self
-        
         let customType = ActiveType.custom(pattern: "\\sSign\\sUp") //Looks for "are"
         signupBtn.enabledTypes.append(customType)
         signupBtn.urlMaximumLength = 61
-        
         signupBtn.customize { label in
             signupBtn.text = "Don't have an Account? Sign Up"
             signupBtn.numberOfLines = 1
             signupBtn.lineSpacing = 4
             signupBtn.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
             signupBtn.customSelectedColor[customType] = UIColor.black
-            
-            //
             signupBtn.configureLinkAttribute = { (type, attributes, isSelected) in
                 var atts = attributes
                 switch type {
@@ -73,15 +62,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
                 default: ()
                 }
-                
                 return atts
             }
             label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
         }
-        // Do any additional setup after loading the view.
     }
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -91,11 +76,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(vc, animated: true, completion: nil)
     }
-    
     @IBAction func signinPressed(_ sender: Any) {
-        
-        //        emailField.isUserInteractionEnabled = false
-        //        paswordField.isUserInteractionEnabled = false
         SVProgressHUD.show()
         emailField.isUserInteractionEnabled = false
         paswordField.isUserInteractionEnabled = false
@@ -117,10 +98,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.emailField.isUserInteractionEnabled = true
                     self.paswordField.isUserInteractionEnabled = true
                     self.showError(error!.localizedDescription)
-                    
                 }
                 else {
-                    
                     SVProgressHUD.dismiss()
                     self.emailField.isUserInteractionEnabled = true
                     self.paswordField.isUserInteractionEnabled = true
@@ -128,8 +107,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.userDefault.synchronize()
                     
                     let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-                    
-                    
                     docRef.getDocuments { (querySnapshot, err) in
                         if let err = err {
                             print(err.localizedDescription)
@@ -166,68 +143,42 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
                             self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                             self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                            
-                            //                                if let currentuser = self.userDefault.value(forKey: dKeys.keyusername) {
-                            //                                         print("current name is \(currentuser)")
-                            //                                       }
-                            //
-                            
-                            
                         }
                     }
-                    
                     print(result?.user.uid ?? 0)
                     if #available(iOS 13.0, *) {
                         self.transitionToHome()
                     } else {
                         // Fallback on earlier versions
                     }
-                    
-                    //                if #available(iOS 13.0, *) {
-                    //                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-                    //                    self.view.window?.rootViewController = homeViewController
-                    //                    self.view.window?.makeKeyAndVisible()
-                    //                } else {
-                    //                    // Fallback on earlier versions
-                    //                }
-                    
-                    
                 }
             }
         }
-        
     }
     func transitionToHome() {
-        // performSegue(withIdentifier: "homeSegue", sender: self)
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "homeSegue"){
             let displayVC = segue.destination as! UITabBarController
         }
     }
-    
     func validateFields() -> String? {
         
         // Check that all fields are filled in
         if emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""  ||
             paswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            
             return "Please fill in all fields."
         }
-        
         // Check if the password is secure
-//        let cleanedPassword = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-//        
-//        if Utilities.isPasswordValid(cleanedPassword) == false {
-//            // Password isn't secure enough
-//            return "Please make sure your password is at least 8 characters, contains a special character and a number."
-//        }
+        //        let cleanedPassword = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        //
+        //        if Utilities.isPasswordValid(cleanedPassword) == false {
+        //            // Password isn't secure enough
+        //            return "Please make sure your password is at least 8 characters, contains a special character and a number."
+        //        }
         
         return nil
     }
@@ -238,9 +189,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    //    func showError(_ message:String) {
-    //
-    //        errorLabel.text = message
-    //        errorLabel.alpha = 1
-    //    }
 }

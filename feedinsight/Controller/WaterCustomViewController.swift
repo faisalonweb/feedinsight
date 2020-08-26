@@ -36,10 +36,7 @@ class WaterCustomViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: "myNotificationKey"),
                                                object: nil)
         super.viewDidLoad()
-        
-        
     }
-    
     @objc func doThisWhenNotify(notification: NSNotification) {
         print(notification.userInfo ?? "")
         if let dict = notification.userInfo as NSDictionary? {
@@ -52,13 +49,11 @@ class WaterCustomViewController: UIViewController {
             SText.text = dict["S"] as? String
         }
     }
-    
     @IBAction func saveOnClick(_ sender: Any) {
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
-        
         let datetimestamp = formatter.string(from: currentDateTime)
         let db = Firestore.firestore()
         let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
@@ -84,20 +79,14 @@ class WaterCustomViewController: UIViewController {
         alertController.addAction(withdrawAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-        
     }
-    
     @IBAction func loadOnClick(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
         vc?.screenNAME = "water"
-       
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
     @IBAction func nextOnClick(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    
 }

@@ -19,33 +19,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         arrData = DataAppend.getAllPremixData()
         super.viewDidLoad()
         corRad.layer.cornerRadius = 15
-        //        let itemSize = UIScreen.main.bounds.width/3 - 2
-        //        let layout = UICollectionViewFlowLayout()
-        //        layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
-        //        layout.minimumInteritemSpacing = 2
-        //        layout.minimumLineSpacing = 20
-        //        collectionView.collectionViewLayout = layout
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrData.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdviewcell", for: indexPath) as! premixCollectionViewCell
-        
-        //                              let cellIndex = indexPath.item
-        //
-        //
-        //                              cell.txtView.text = textArr[cellIndex]
-        //        cell.imgView.image = imageArr[cellIndex]
-        //
-        //                              return cell
-        
-        //        cell.imgView.image = arrData[indexPath.row].img
-        //        cell.txtView.text = arrData[indexPath.row].titleStr
-        
         cell.premixData = arrData[indexPath.row]
         return cell
     }
@@ -54,18 +35,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
         self.navigationController?.pushViewController(animalViewController, animated: true)
     }
-    
     var portait:CGFloat=0
     var landscap:CGFloat=0
-    
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(UIScreen.main.bounds.width < 415)
         {
             getScreenSize()
-            
             print("h11")
             print("zise is : ", UIScreen.main.bounds.width)
             let itemSize = UIScreen.main.bounds.width/3 - 2
@@ -80,7 +56,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         else
         {
             getScreenSize()
-            
             print("h12")
             print("zise is : ", UIScreen.main.bounds.width)
             let itemSize = UIScreen.main.bounds.width/4 - 2
@@ -101,9 +76,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         screenHeight=UIScreen.main.bounds.height
         print("SCREEN RESOLUTION: "+screenWidth.description+" x "+screenHeight.description)
         sizee = screenWidth
-        
     }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if UIDevice.current.orientation.isLandscape {

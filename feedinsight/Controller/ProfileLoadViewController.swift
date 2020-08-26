@@ -16,15 +16,12 @@ struct cellData {
     var sectionData = [String]()
     
 }
-
-
 class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var userprofile: UIImageView!
     @IBOutlet weak var notification: UIImageView!
     @IBOutlet weak var backBtn: UIButton!
-    
     var check = false
     var tableViewData = [cellData]()
     let cellSpacingHeight: CGFloat = 20
@@ -32,9 +29,6 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     let test = ["haha","hhabs"]
-    
-    
-    
     private var documents: [DocumentSnapshot] = []
     public var tasks: [Task] = []
     private var listener : ListenerRegistration!
@@ -50,17 +44,6 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @IBAction func backtapped(_ sender: UIButton) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
@@ -69,41 +52,20 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-        
         self.listener =  query?.addSnapshotListener { (documents, error) in
-            guard let snapshot = documents else {
+            guard documents != nil else {
                 print("Error fetching documents results: \(error!)")
                 return
             }
-            
-            //            let results = snapshot.documents.map { (document) -> Task in
-            //                if let task = Task(dictionary: document.data(), id: document.documentID) {
-            //                    return task
-            //                } else {
-            //                    fatalError("Unable to initialize type \(Task.self) with dictionary \(document.data())")
-            //                }
-            //            }
-            
-            //            self.tasks = results
-            //            self.documents = snapshot.documents
-            //            print("taskss issss:", self.tasks)
-            //            print("docmnts issss:", self.documents)
-            //self.tableView.reloadData()
-            
         }
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.listener.remove()
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.query = baseQuery()
-        // let db = Firestore.firestore()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
@@ -133,28 +95,18 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
                 for document in querySnapshot!.documents{
                     print(document.data())
                 }
-                
-//                for document in (SnapshotMetadata?.documents)! {
-//                    let name = (document.data()["category"]) as! String
-//                    for item in self.workarray {
-//                        self.pickerData1.append(item)
-//                    }
-//                }
             }
         }
         print("its hhhah", pickerData1)
     }
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableViewData[section].opened == true {
             return tableViewData[section].sectionData.count + 1
@@ -163,20 +115,15 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
             return 1
         }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dataIndex = indexPath.row - 1
-        let selectedIndexPaths: IndexPath = IndexPath(row:0, section:0)
+        _ = indexPath.row - 1
+        let _: IndexPath = IndexPath(row:0, section:0)
         if indexPath.row == 0 {
-            //            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-            //                else { return ProfileloadTableViewCell()}
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileloadTableViewCell
             cell.layer.borderColor = UIColor.white.cgColor
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
-            //let index = test.indexOf()
-            // cell.imageView?.image = devCousesImages[0]
             if(check == false)
             {
                 cell.arrowView?.image = UIImage(named: "right-arrow")      // right-arrow
@@ -185,18 +132,12 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowView?.image = UIImage(named: "downNew")
             }
             cell.textlabel?.text = tableViewData[indexPath.section].title
-            return cell 
-            
-            
+            return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "titlecell") else { return profileTitleTableViewCell()}
-            
             return cell
-            
         }
     }
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableViewData.count
         
@@ -210,7 +151,6 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
                 tableViewData[indexPath.section].opened = false
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-                
             }
             else
             {
@@ -218,52 +158,16 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-                
-                
             }
         }
         else
         {
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //             let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-            //            self.present(vc, animated: true, completion: nil)
-            
             print("does not exists")
             if let navController = self.navigationController {
                 navController.popViewController(animated: true)
             }
-            
-            //            if let stack = self.navigationController?.viewControllers {
-            //              for vc in stack where vc.isKind(of: ProfileLoadViewController.self) {
-            //                print("exists")
-            //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-            //                self.navigationController?.pushViewController(vc, animated: true)
-            //              }
-            //            }
-            //            else
-            //            {
-            //
-            //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //                let vc = storyboard.instantiateViewController(withIdentifier: "StateView") as! StateViewController
-            //               self.present(vc, animated: true, completion: nil)
-            //                print("does not exists")
-            //            }
-            
-            let cellSpacingHeight: CGFloat = 20
+            let _: CGFloat = 20
         }
         
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

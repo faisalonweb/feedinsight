@@ -17,10 +17,8 @@ class loadProfileAnimalsViewController: UIViewController {
     @IBOutlet weak var mainBtn: UIButton!
     var db: Firestore!
     @IBOutlet weak var tblView: UITableView!
-    
     @IBOutlet weak var profileimage: UIImageView!
-     let defaults = UserDefaults.standard
-    
+    let defaults = UserDefaults.standard
     var animalList = [String]()
     var dateList = [String]()
     var companynameList = [String]()
@@ -36,8 +34,6 @@ class loadProfileAnimalsViewController: UIViewController {
     var disorderstate = [Bool]()
     var heatstate = [Bool]()
     var productionstate = [Bool]()
-    
-    
     private var datastation = [String]()
     private var dataonestation = [String]()
     private var datathreestation = [String]()
@@ -55,16 +51,11 @@ class loadProfileAnimalsViewController: UIViewController {
     private var datafifteenstation = [Bool]()
     
     override func viewDidLoad() {
-//        let storage = Storage.storage()
-//        let storageRef =  storage.reference()
-//        let ref = storageRef.child("uploadphotoone")
-//        profileimage.sd_setImage(with: ref)
         self.navigationController?.isNavigationBarHidden = true
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         tblView.isHidden = true
         super.viewDidLoad()
         mainBtn.layer.cornerRadius = 10
-        
         Firestore.firestore().collection("animalState").document(Auth.auth().currentUser?.uid ?? "").collection("animalState").getDocuments{(snapshot,error) in
             
             if error == nil && snapshot != nil {
@@ -87,7 +78,6 @@ class loadProfileAnimalsViewController: UIViewController {
                     let heatbolestate = documentData["heatbole"] as? Bool ?? false
                     let productionbolestate = documentData["productionbole"] as? Bool ?? false
                     
-                    
                     self.datastation.insert(animaltype, at: 0)
                     self.dataonestation.insert(timestamp, at: 0)
                     self.datathreestation.insert(companytype, at: 0)
@@ -104,7 +94,6 @@ class loadProfileAnimalsViewController: UIViewController {
                     self.datafourteenstation.insert(heatbolestate, at: 0)
                     self.datafifteenstation.insert(productionbolestate, at: 0)
                 }
-                
                 self.animalList.append(contentsOf: self.datastation)
                 self.dateList.append(contentsOf: self.dataonestation)
                 self.companynameList.append(contentsOf: self.datathreestation)
@@ -122,24 +111,21 @@ class loadProfileAnimalsViewController: UIViewController {
                 self.productionstate.append(contentsOf: self.datafifteenstation)
                 self.tblView.reloadData()
                 print(self.productionstate)
-                
             }
             else {
                 print("pakis")
             }
         }
     }
-    
-        override func viewWillAppear(_ animated: Bool) {
-            DispatchQueue.main.async { [weak self] in
-
-                let data = self?.defaults.value(forKey: "imageData") as? Data
-                if(data != nil) {
-                    self?.profileimage.image = UIImage(data: data!)
-                }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.profileimage.image = UIImage(data: data!)
             }
         }
-    
+    }
     @IBAction func mainBtnAction(_ sender: Any) {
         
         if tblView.isHidden {
@@ -148,13 +134,11 @@ class loadProfileAnimalsViewController: UIViewController {
             animate(toggle: false)
         }
     }
-    
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
     }
-    
     func animate (toggle: Bool) {
         if toggle {
             UIView.animate(withDuration: 0.3) {
@@ -166,10 +150,7 @@ class loadProfileAnimalsViewController: UIViewController {
             }
         }
     }
-    
-    
 }
-
 extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -198,7 +179,6 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
         return 58
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let vcone = storyboard?.instantiateViewController(withIdentifier: "StateView") as? StateViewController;
         vcone?.nameanimal = animalList[indexPath.section]
         vcone?.groupcompany =  companynameList[indexPath.section]
@@ -214,12 +194,6 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
         vcone?.heatbole =  heatstate[indexPath.section]
         vcone?.productionbole =  productionstate[indexPath.section]
         vcone?.hdLabel = categoryList[indexPath.section]
-        
-        
-        
-        
         self.navigationController?.pushViewController(vcone!, animated: true)
     }
-    
-    
 }

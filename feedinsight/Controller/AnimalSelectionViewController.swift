@@ -19,11 +19,8 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     @IBOutlet weak var userProfileView: UIImageView!
     @IBOutlet weak var notificaitonViewA: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    //    @IBOutlet weak var animalCollectionViewCell: AnimalCollectionViewCell!
-    
     let defaults = UserDefaults.standard
     let textArr = ["Ruminants","Aqua","Equines","Poultry","Goat","Cow"]
-    
     let imageArr: [UIImage] = [
         UIImage(named: "ruminants")!,
         UIImage(named: "aqua")!,
@@ -32,24 +29,21 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         UIImage(named: "equines")!,
         UIImage(named: "ruminants")!,
     ]
-    //
     var animalData = [AnimalCollectionCell]()
     var portait:CGFloat=0
     var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         DispatchQueue.main.async { [weak self] in
-
-                   let data = self?.defaults.value(forKey: "imageData") as? Data
-                   if(data != nil) {
-                    self?.userProfileView.image = UIImage(data: data!)
-                   }
-               }
+            
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.userProfileView.image = UIImage(data: data!)
+            }
+        }
         if(UIScreen.main.bounds.width < 415)
         {
             getScreenSize()
-            
             print("h11")
             print("zise is : ", UIScreen.main.bounds.width)
             let itemSize = UIScreen.main.bounds.width/3 - 2
@@ -64,7 +58,6 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         else
         {
             getScreenSize()
-            
             print("h12")
             print("zise is : ", UIScreen.main.bounds.width)
             let itemSize = UIScreen.main.bounds.width/4 - 2
@@ -87,7 +80,6 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         sizee = screenWidth
         
     }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if UIDevice.current.orientation.isLandscape {
@@ -109,7 +101,6 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
             if(screenHeight1 == landscap)
             {
                 getScreenSize()
-                
                 print("h1")
                 print("zise is changed : ", UIScreen.main.bounds.width)
                 let itemSize = UIScreen.main.bounds.width/4 - 2
@@ -120,12 +111,9 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
                 animalCollectionView.collectionViewLayout = layout
                 getScreenSize()
             }
-            
-            
         } else {
             var screenHeight2:CGFloat=0
             screenHeight2 = UIScreen.main.bounds.width
-            
             getScreenSize()     ///yeh galta hota h
             if(screenHeight2 == portait)
             {
@@ -138,9 +126,6 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
                 layout.minimumLineSpacing = 20
                 animalCollectionView.collectionViewLayout = layout
                 getScreenSize()
-                
-                
-                
             }
             if(screenHeight2 == landscap)
             {
@@ -156,22 +141,9 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
                 layout.minimumLineSpacing = 20
                 animalCollectionView.collectionViewLayout = layout
             }
-            
-            
         }
     }
-    
-
-    
-    
     override func viewDidLoad() {
-        
-//        let storage = Storage.storage()
-//        let storageRef =  storage.reference()
-//        let ref = storageRef.child("uploadphotoone")
-//        userProfileView.sd_setImage(with: ref)
-        
-        
         self.navigationController?.isNavigationBarHidden = true
         animalData = DataAppend.getAllAnimalData()
         super.viewDidLoad()
@@ -191,33 +163,18 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         userProfileView?.clipsToBounds = true
         userProfileView?.layer.borderWidth = 3.0
         userProfileView?.layer.borderColor = UIColor.white.cgColor
-        
-        //        let itemSize = UIScreen.main.bounds.width/3 - 2
-        //        let layout = UICollectionViewFlowLayout()
-        //        layout.itemSize = CGSize(width: itemSize + 15, height: itemSize + 15)
-        //        layout.minimumInteritemSpacing = 2
-        //        layout.minimumLineSpacing = 20
-        //        animalCollectionView.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnimalcollectionCell", for: indexPath) as! AnimalCollectionViewCell
-        //let cellIndex = indexPath.item
-        //        cell.animalImage.image = imageArr[indexPath.item]
-        //        cell.animalLabel.text = textArr[indexPath.item]
+        
         cell.animalData = animalData[indexPath.row]
-        //        cell.animalImage.image = animalData[indexPath.row].animalImg
-        //        cell.animalLabel.text = animalData[indexPath.row].animalStr
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
         return cell
-        //        cell.layer.borderColor = UIColor.lightGray.cgColor
-        //        cell.layer.borderWidth = 0.5
-        //        return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "RuminantspickViewController") as? RuminantspickViewController
@@ -225,15 +182,4 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         vc?.titleImage = imageArr[indexPath.row]
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    //
-    // MARK: - Navigation
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
-    
 }

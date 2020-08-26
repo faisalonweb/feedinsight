@@ -13,12 +13,8 @@ class premixCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var txtView: UILabel!
-    
-    
     var premixData : PremixCollectionCell? {
-        
         didSet {
-            
             imgView.image = premixData?.img
             txtView.text = premixData?.titleStr
         }

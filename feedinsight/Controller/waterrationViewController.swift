@@ -13,12 +13,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class waterrationViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
-    
-    
     @IBOutlet weak var tblView: UITableView!
-    //var reportDateList =  ["one","two","three","three","three","three", "three"]
     @IBOutlet weak var profileimage: UIImageView!
-    
     var reportNameList = [String]()
     var reportDateList = [String]()
     var reportProductList = [String]()
@@ -55,7 +51,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     var eiuVitaminList = [String]()
     var niacinVitaminList = [String]()
     var biotinVitaminList = [String]()
-    
+    var copyArray = [NSDictionary]()
     private var datastation = [String]()
     private var dataonestation = [String]()
     private var datatwostation = [String]()
@@ -97,8 +93,6 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.tblView.refreshControl = UIRefreshControl()
         self.tblView.refreshControl?.beginRefreshing()
         if(self.screenNAME == "water") {
@@ -156,19 +150,17 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 
                 if error == nil && snapshot != nil {
                     guard let snap = snapshot else {return}
+                    var i = 0
                     for document in snap.documents {
                         let documentData = document.data()
-                        //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currenttimedate"] as? String ?? "20/20/20"
-                        var nameArray = [String]()
-                        nameArray = documentData["ProductNameArray"] as! [String]
-                        var valueArray = [String]()
-                        valueArray = documentData["ProductValueArray"] as! [String]
-                        self.datastation.insert(ReportName, at: 0)
-                        self.dataonestation.insert(timestamp, at: 0)
-                        self.datatwostation.insert(contentsOf: nameArray, at: 0) // Name array
-                        self.datathreestation.insert(contentsOf: valueArray, at: 0) // Value array
+                        self.datastation.insert(ReportName, at: i)
+                        self.dataonestation.insert(timestamp, at: i)
+                        i = i + 1
+                        self.copyArray.append(documentData as NSDictionary)
+                        
+                       // let userRef = self.myRootRef.childByAppend
                         
                     }
                     self.reportNameList.append(contentsOf: self.datastation)
@@ -178,14 +170,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.tblView.reloadData()
                     print("report name is \(self.reportProductList)")
                     print("report Data is \(self.reportValueList)")
-                    
-                    
                     self.tblView.refreshControl?.endRefreshing()
-                    
-                    
-                    
-                }
-                else {
+                } else {
                     print("pakis")
                 }
             }
@@ -282,11 +268,11 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     
                     
                     // Vitamin
-                     self.aiuVitaminList.append(contentsOf: self.aiuVitaminStation)
-                     self.diuVitaminList.append(contentsOf: self.diuVitaminStation)
-                     self.eiuVitaminList.append(contentsOf: self.eiuVitaminStation)
-                     self.niacinVitaminList.append(contentsOf: self.niacinVitaminStation)
-                     self.biotinVitaminList.append(contentsOf: self.biotinVitaminStation)
+                    self.aiuVitaminList.append(contentsOf: self.aiuVitaminStation)
+                    self.diuVitaminList.append(contentsOf: self.diuVitaminStation)
+                    self.eiuVitaminList.append(contentsOf: self.eiuVitaminStation)
+                    self.niacinVitaminList.append(contentsOf: self.niacinVitaminStation)
+                    self.biotinVitaminList.append(contentsOf: self.biotinVitaminStation)
                     self.tblView.reloadData()
                     print("product name is \(self.productNameList)")
                     print("zn inorganic  Data is \(self.znOrganicMicroList)")
@@ -310,25 +296,6 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         }
     }
     
-    //    @IBAction func tableviewClick(_ sender: Any) {
-    //        if tblView.isHidden {
-    //            animate(toggle: true)
-    //        } else {
-    //            animate(toggle: false)
-    //        }
-    //
-    //    }
-    //    func animate (toggle: Bool) {
-    //        if toggle {
-    //            UIView.animate(withDuration: 0.3) {
-    //                self.tblView.isHidden = false
-    //            }
-    //        } else {
-    //            UIView.animate(withDuration: 0.3) {
-    //                self.tblView.isHidden = true
-    //            }
-    //        }
-    //    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return reportDateList.count
     }
@@ -357,8 +324,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (screenNAME == "ration") {
             let vcone = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController;
-            vcone?.dropdownvalues = reportProductList
-            vcone?.dropdownfloatValue = reportValueList
+            vcone?.dropdownvalues = copyArray[indexPath.section]["ProductNameArray"] as! [String]
+            vcone?.dropdownfloatValue = copyArray[indexPath.section]["ProductValueArray"] as! [String]
             self.navigationController?.pushViewController(vcone!, animated: true)
         }
         else if (screenNAME == "water") {

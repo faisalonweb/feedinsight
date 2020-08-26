@@ -14,10 +14,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
 
-
 class StateViewController: UIViewController, UITextFieldDelegate {
-    
-    //    @IBOutlet weak var heatStressToggle: UIImageView!
     let defaults = UserDefaults.standard
     @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var woolHairLabel: UILabel!
@@ -47,7 +44,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var heatStreesOutlet: UIButton!
     @IBOutlet weak var dietOutlet: UIButton!
     @IBOutlet weak var producitonOutlet: UIButton!
-    
     @IBOutlet weak var disorderOutlet: UIButton!
     var db: Firestore!
     var detail: String?
@@ -56,11 +52,9 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     var productionbole = false
     var dietbole = false
     var heatbole = false
-    
     var toggleState = 1
     let toggleNo = UIImage(named:"Toggle-no")
     let toggleYes = UIImage(named:"toggle-Yes")
-    
     var nameanimal = ""
     var groupcompany = ""
     var statepsychlogical = ""
@@ -79,7 +73,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         DispatchQueue.main.async { [weak self] in
-
             let data = self?.defaults.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.proimage.image = UIImage(data: data!)
@@ -92,18 +85,15 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
     }
     override func viewDidLoad() {
- 
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical
-        //print("syci state is \(String(describing: PsychField.text))")
         CurrentBodyWeightF.text = bodycurrentweigth
         TargetBodyWeightF.text = bodytargetweight
         daystoAchiveF.text = achievedays
         daysinMilkF.text = milkindays
         daysPregnantF.text = pregnantdays
         milkInProducitonF.text = productionmilk
-        
         if (name == "Deer" || name == "Sheep/Goat") {
             producitonOutlet.isHidden = false
             woolHairLabel.isHidden = false
@@ -112,7 +102,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             producitonOutlet.isHidden = true
             woolHairLabel.isHidden = true
         }
-        
         if (dietbole == true) {
             dietOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
         }
@@ -137,7 +126,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         else {
             heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
-        
         if let busines = defaults.value(forKey: "userbussinessStringKey"){
             
             self.nameField.text = busines as? String
@@ -145,18 +133,14 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
         print("diet name is \(diettoggle ?? false)")
         print("animal name is \(nameanimal)")
-        
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
         heatStreesOutlet.setImage(toggleYes, for: .normal)
         heatStreesOutlet.setImage(toggleNo, for: .selected)
-        //
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
-        
-        //
         print("tishahaha", name)
         self.headLabel.text = name
         self.nameField.delegate = self
@@ -166,125 +150,75 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         notificationimage?.clipsToBounds = true
         notificationimage?.layer.borderWidth = 3.0
         notificationimage?.layer.borderColor = UIColor.white.cgColor
-        
         proimage?.layer.cornerRadius = (proimage?.frame.size.width ?? 0.0) / 2
         proimage?.clipsToBounds = true
         proimage?.layer.borderWidth = 3.0
         proimage?.layer.borderColor = UIColor.white.cgColor
-        
         PsychField.optionArray = ["Lactating", "Growing", "Dry-Gestating"]
-        //Its Id Values and its optional
         PsychField.optionIds = [1,23,54,22]
         PsychField.didSelect{(selectedText , index ,id) in
         }
-        
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
-        //
-        //        if let stack = self.navigationController?.viewControllers {
-        //            for vc in stack where vc.isKind(of: StateViewController.self) {
-        //                print("exists")
-        //                if let navController = self.navigationController {
-        //                    navController.popViewController(animated: true)
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //            let vc = storyboard.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as! loadProfileAnimalsViewController
-        //            self.present(vc, animated: true, completion: nil)
-        //            print("does not exists")
-        //        }
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
     }
-    
-    
-    
     @IBAction func nextTapped(_ sender: UIButton) {
-        
         let requirments = Requirments()
         requirments.setStateValue(companyName: nameField.text!, animalGroup: animalField.text!, physiologicalState: PsychField.text!, currentBodyWeight: CurrentBodyWeightF.text!, targetBodyWeight: TargetBodyWeightF.text!, achieveTargerWeight: daystoAchiveF.text!, daysInMilk: daysinMilkF.text!, daysPregnant: daysPregnantF.text!, milkProduction: milkInProducitonF.text! , animalKind: name , heatStress: heatbole , metaBolic: disorderbole ,  anionic : dietbole , woolProduction : productionbole)
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
         self.navigationController?.pushViewController(vc!, animated: true)
-        
     }
     func showError(_ message:String) {
-        
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let psychEnter = PsychField.text!
         self.saveText(theText: psychEnter)
     }
-    
     @IBAction func loadProfileTapped(_ sender: UIButton) {
-        
         // weeks of gestation
-        
         let weekofgestationval = Int(daysPregnantF.text ?? "") ?? 0
-        
         let weekofgestation = weekofgestationval / 7
-        
         print("weeks of gestation : \(weekofgestation)")
-        
         // gestation progress
-        
         let value = animalField.text
         switch value {
         case "Goat" :
             let mid = weekofgestation / 10
             let final = mid * 100
             print("goat gestation progress result : \(final)")
-            
         case "Cow" :
             let mid = weekofgestation/5
             let final = mid * 100
             print("cow gestation progress result : \(final)")
-            
-            
         case "Fish" :
             let mid = weekofgestation/8
             let final = mid * 100
             print("fish gestation progress result : \(final)")
-            
-            
         default:
             print("animal group not found")
         }
-        
         // weeks before calving
-        
         let valueone = animalField.text
         switch valueone {
         case "Goat" :
             let result = 10 - weekofgestation
-            
             print("goat weeks before calving result : \(result)")
-            
         case "Cow" :
             let result = 20 - weekofgestation
-            
             print("cow weeks before calving result : \(result)")
-            
-            
         case "Fish" :
             let result = 30 - weekofgestation
-            
             print("fish before calving result : \(result)")
         default:
             print("animal group not found")
         }
         let vc = storyboard?.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as? loadProfileAnimalsViewController
-        
-        //                let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
@@ -297,8 +231,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             productionbole = false
             producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
-        
-        
     }
     
     @IBAction func dietToggleTap(_ sender: UIButton) {
@@ -321,7 +253,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             disorderbole = false
             disorderOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
-        
     }
     @IBAction func heatStressToggleTap(_ sender: UIButton) {
         if (heatbole == false) {
@@ -332,7 +263,6 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             heatbole = false
             heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
-        
     }
     func saveText(theText: String) {
         SVProgressHUD.show(withStatus: "it's working ...")
@@ -340,43 +270,18 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
-        
         let datetimestamp = formatter.string(from: currentDateTime)
-        
-        let userCalendar = Calendar.current
-        let requestedComponents: Set<Calendar.Component> = [
-            .year,
-            .month,
-            .day,
-            .hour,
-            .minute,
-            .second
-        ]
-        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
-        let year =  dateTimeComponents.year!   // 2016
-        let month =  dateTimeComponents.month!  // 10
-        let day =   dateTimeComponents.day!
-        print("its", year)
-        print("its", month)
-        print("its", day)
-        print("its", currentDateTime)
-        
-        //let currentDate = currentDateTime
         let daysPregnantEnter = daysPregnantF.text!
         let daysinMilkEnter = daysinMilkF.text!
         let milkInProducitonEnter = milkInProducitonF.text!
         let daystoAchiveEnter = daystoAchiveF.text!
         let TargetBodyWeightEnter = TargetBodyWeightF.text!
         let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
-        //let animalEnter = animalField.text!
         let companynameEnter = nameField.text!
         let userID = Auth.auth().currentUser?.uid
         let categoryEnter = headLabel.text!
         let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
-        
         let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : combinedString, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp]
-        
-        //
         let db = Firestore.firestore()
         db.collection("animalState").document(userID!).collection("animalState").addDocument(data: dict){ err in
             if let err = err {
@@ -388,21 +293,15 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
-    
-    
-    
 }
-
 extension UITextField {
     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
         let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
         let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
-        
         let toolbar: UIToolbar = UIToolbar()
         toolbar.barStyle = .default
         toolbar.items = [
@@ -411,10 +310,8 @@ extension UITextField {
             UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
         ]
         toolbar.sizeToFit()
-        
         self.inputAccessoryView = toolbar
     }
-    
     // Default actions:
     @objc func doneButtonTapped() { self.resignFirstResponder() }
     @objc func cancelButtonTapped() { self.resignFirstResponder() }
