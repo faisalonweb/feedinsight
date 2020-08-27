@@ -199,8 +199,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         collectionView.dataSource = self
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
         let lineArray = text.components(separatedBy: "\n")
-        for eachLA in lineArray
-        {
+        for eachLA in lineArray {
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }

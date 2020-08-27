@@ -21,6 +21,7 @@ target 'FeedInsight' do
   pod 'Charts'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
+  pod 'CoreXLSX'
 end
 
 
