@@ -33,7 +33,13 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
-        addfeed.optionArray = ["Cow","Deer","Camel"]
+        let url = Bundle.main.url(forResource: "csvjson", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let json = try! JSONSerialization.jsonObject(with: data) as! [[String : Any]]
+        for item in json {
+            let name = item["Feed Name"] as! String
+            addfeed.optionArray.append(name)
+        }
         addfeed.didSelect{(selectedText , index ,id) in
         }
     }
@@ -46,7 +52,19 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             }
         }
     }
+    func calculateFloatArray () {
+        dropdownfloatValue.removeAll()
+        for i in 0..<dropdownvalues.count {
+            let indexPath = IndexPath(row: 0, section: i)
+            if let cell = tblView.cellForRow(at: indexPath) as? feedthreeTableViewCell {
+                dropdownfloatValue.append(cell.productValue.text ?? "0")
+            } else {
+                dropdownfloatValue.append("none")
+            }
+        }
+    }
     func minusTapped(cellIndex: Int) {
+        calculateFloatArray()
         dropdownvalues.remove(at: cellIndex)
         dropdownfloatValue.remove(at: cellIndex)
         tblView.reloadData()
@@ -70,13 +88,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
+        calculateFloatArray()
         let datetimestamp = formatter.string(from: currentDateTime)
-        for i in 0..<dropdownvalues.count {
-            let indexPath = IndexPath(row: 0, section: i)
-            if let cell = tblView.cellForRow(at: indexPath) as? feedthreeTableViewCell {
-                dropdownfloatValue.append(cell.productValue.text ?? "0")
-            }
-        }
         let db = Firestore.firestore()
         let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
@@ -106,6 +119,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         } else {
             print(addfeed.text ?? "none")
             dropdownvalues.append(addfeed.text ?? "none")
+            calculateFloatArray()
             print("paki")
             print("array values is \(dropdownvalues)")
             tblView.reloadData()
@@ -120,10 +134,13 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! feedthreeTableViewCell
         cell.labeltxt?.text = dropdownvalues[indexPath.section]
-        cell.delegate = self
-        if(dropdownfloatValue.count > 0) {
-            cell.productValue?.text = dropdownfloatValue[indexPath.section]
+        let stringValue = dropdownfloatValue[indexPath.section]
+        if( stringValue == "none") {
+            cell.productValue?.text = ""
+        } else {
+            cell.productValue?.text = stringValue
         }
+        cell.delegate = self
         cell.cellIndex = indexPath.section
         return cell
     }

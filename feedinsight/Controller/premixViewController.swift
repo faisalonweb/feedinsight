@@ -144,4 +144,17 @@ class premixViewController: UIViewController {
         vc?.screenNAME = "premix"
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+//    @IBAction func skipButton(_ sender: Any) {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+//        
+//        self.navigationController?.pushViewController(vc!, animated: true)
+//    }
+//    
+//    @IBAction func nextButton(_ sender: Any) {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
+//       
+//        self.navigationController?.pushViewController(vc!, animated: true)
+//    }
+    
 }

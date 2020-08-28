@@ -128,11 +128,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             let currentusercountrycode = dataDescription?["countrycode"]
                             let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
                             self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                            let imageURL = dataDescription?["imageURL"]
-                            let fileUrl = URL(string: imageURL as! String)
-                            let data = try? Data(contentsOf:fileUrl!)
-                            UserDefaults().set(data, forKey: "imageData")
-                            self.userDefault.set(imageURL, forKey: "Link")
+                            
+                            let imageURL = dataDescription?["imageURL"] as? String
+                            if (imageURL != "") {
+                                let fileUrl = URL(string: imageURL!)
+                                let data = try? Data(contentsOf:fileUrl!)
+                                UserDefaults().set(data, forKey: "imageData")
+                                self.userDefault.set(imageURL, forKey: "Link")
+                            }
                             self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
                             self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
                             self.userDefault.set(currentusername, forKey: dKeys.keyusername)

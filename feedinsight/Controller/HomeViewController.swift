@@ -17,24 +17,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
     
     override func viewDidLoad() {
-        let filepath = Bundle.main.path(forResource: "Feed_Database", ofType: "xlsx")
-        guard let file = XLSXFile(filepath: filepath!) else {
-            fatalError("XLSX file at \(filepath ?? "nil") is corrupted or does not exist")
-        }
-        for wbk in try! file.parseWorkbooks() {
-          for (name, path) in try! file.parseWorksheetPathsAndNames(workbook: wbk) {
-            if let worksheetName = name {
-              print("This worksheet has a name: \(worksheetName)")
-            }
-
-            let worksheet = try! file.parseWorksheet(at: path)
-            for row in worksheet.data?.rows ?? [] {
-              for c in row.cells {
-                print(c.value as Any)
-              }
-            }
-          }
-        }
         arrData = DataAppend.getAllPremixData()
         super.viewDidLoad()
         corRad.layer.cornerRadius = 15
