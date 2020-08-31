@@ -44,6 +44,7 @@
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50F0E624EE6455007EC60C /* Requirments.swift */; };
 		1A63AA1924F7B7F200ADCAB0 /* csvjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A63AA1824F7B7F200ADCAB0 /* csvjson.json */; };
+		1A63AA1B24F8E97400ADCAB0 /* EditPremixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */; };
 		1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */; };
 		1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */; };
 		1A7F121D243CE34F0008CFC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7F121B243CE34F0008CFC0 /* Main.storyboard */; };
@@ -108,6 +109,7 @@
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A50F0E624EE6455007EC60C /* Requirments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirments.swift; sourceTree = "<group>"; };
 		1A63AA1824F7B7F200ADCAB0 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
+		1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPremixViewController.swift; sourceTree = "<group>"; };
 		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */,
 				1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */,
 				1AE3587724EA78A600A7E0AA /* waterrationViewController.swift */,
+				1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -216,8 +219,8 @@
 		1A7F1209243CE34F0008CFC0 = {
 			isa = PBXGroup;
 			children = (
-				1A63AA1824F7B7F200ADCAB0 /* csvjson.json */,
 				04D6A908246C164600B37859 /* world-cities.txt */,
+				1A63AA1824F7B7F200ADCAB0 /* csvjson.json */,
 				04D11E6F246A7638002D5612 /* GoogleService-Info.plist */,
 				04973F9C243F51D2003CE2E6 /* Podfile */,
 				1A7F1214243CE34F0008CFC0 /* feedinsight */,
@@ -471,6 +474,7 @@
 				1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */,
 				1A277B9F24C769E300FDA1DD /* feedthreeTableViewCell.swift in Sources */,
 				047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */,
+				1A63AA1B24F8E97400ADCAB0 /* EditPremixViewController.swift in Sources */,
 				04EC579624509E7100BAAF23 /* DropViewController.swift in Sources */,
 				1ADBC1A1249AA08D00D061B5 /* userSignupCollectionViewCell.swift in Sources */,
 				1AEEA0F924CB580B0077324A /* DataModel.swift in Sources */,

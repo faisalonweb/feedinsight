@@ -10,6 +10,7 @@ import UIKit
 import iOSDropDown
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import CountryPickerView
 import SVProgressHUD
 

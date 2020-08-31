@@ -37,8 +37,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let data = try! Data(contentsOf: url)
         let json = try! JSONSerialization.jsonObject(with: data) as! [[String : Any]]
         for item in json {
-            let name = item["Feed Name"] as! String
-            addfeed.optionArray.append(name)
+            let name = item["Feed Name"]
+            addfeed.optionArray.append(name as! String)
         }
         addfeed.didSelect{(selectedText , index ,id) in
         }
@@ -113,6 +113,62 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         self.present(alertController, animated: true, completion: nil)
         
     }
+    
+ 
+    @IBAction func editFeed(_ sender: Any) {
+        if addfeed.text == "" {
+            self.showError("Select Feed value")
+        } else {
+            let url = Bundle.main.url(forResource: "csvjson", withExtension: "json")!
+            let data = try! Data(contentsOf: url)
+            let json = try! JSONSerialization.jsonObject(with: data) as! [[String : Any]]
+            for item in json {
+                let name = item["Feed Name"] as! String
+                if(addfeed.text == name) {
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+                    vc?.screenName = "Edit Feed"
+                    vc?.itemDetailArray.append(item["Feed Name"] as! String )
+                    vc?.itemDetailArray.append(item["Type"] as! String )
+                    vc?.itemDetailArray.append(String(describing: item["Dry Matter %"]!))
+                    vc?.itemDetailArray.append(String(describing: item["Ca"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Ca (Abs)"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["P"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["P (Abs)"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Mg"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Mg (Abs)"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["K"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["S"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Na"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Cl"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Fe"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Zn"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Cu"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Mn"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Se"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Co"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["I"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Vitamin A"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Vitamin E"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Vitamin D3"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Niacin"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Biotin"]! ))
+                    vc?.itemDetailArray.append(String(describing: item["Reference"]! ))
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                    
+                }
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func addFeedButton(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+        vc?.screenName = "Add Feed"
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    
     @IBAction func touchaddbtn(_ sender: Any) {
         if addfeed.text == "" {
             self.showError("Select dropdown value")
