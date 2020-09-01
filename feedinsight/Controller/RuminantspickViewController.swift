@@ -14,6 +14,7 @@ import FirebaseUI
 class RuminantspickViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource {
     
     @IBOutlet weak var collectionview: UICollectionView!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var animalName: UILabel!
     @IBOutlet weak var animalPic: UIImageView!
     @IBOutlet weak var backFunc: UIButton!
@@ -39,6 +40,10 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
         DispatchQueue.main.async { [weak self] in
             
             let data = self?.defaults.value(forKey: "imageData") as? Data

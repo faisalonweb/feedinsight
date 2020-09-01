@@ -35,6 +35,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var milkInProducitonF: UITextField!{
         didSet { milkInProducitonF?.addDoneCancelToolbar() }
     }
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var daysinMilkF: UITextField!{
         didSet { daysinMilkF?.addDoneCancelToolbar() }
     }
@@ -72,17 +73,34 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
         DispatchQueue.main.async { [weak self] in
             let data = self?.defaults.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.proimage.image = UIImage(data: data!)
             }
         }
+        
         if hdLabel != "" {
             headLabel.text = hdLabel
         } else {
             headLabel.text = name
         }
+    }
+    func setBorderRed(_ textField : UITextField) {
+        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
+    }
+    func setBorderDarkGray(_ textField : UITextField) {
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
     }
     override func viewDidLoad() {
         nameField.text = groupcompany
@@ -94,40 +112,43 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         daysinMilkF.text = milkindays
         daysPregnantF.text = pregnantdays
         milkInProducitonF.text = productionmilk
+        setBorderDarkGray(nameField)
+        setBorderDarkGray(animalField)
+        setBorderDarkGray(PsychField)
+        setBorderDarkGray(CurrentBodyWeightF)
+        setBorderDarkGray(TargetBodyWeightF)
+        setBorderDarkGray(daystoAchiveF)
+        setBorderDarkGray(daysinMilkF)
+        setBorderDarkGray(milkInProducitonF)
+        setBorderDarkGray(daysPregnantF)
         if (name == "Deer" || name == "Sheep/Goat") {
             producitonOutlet.isHidden = false
             woolHairLabel.isHidden = false
-        }
-        else {
+        } else {
             producitonOutlet.isHidden = true
             woolHairLabel.isHidden = true
         }
         if (dietbole == true) {
             dietOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-        }
-        else {
+        } else {
             dietOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
         if (productionbole == true) {
             producitonOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-        }
-        else {
+        } else {
             producitonOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
         if (disorderbole == true) {
             disorderOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-        }
-        else {
+        } else {
             disorderOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
         if (heatbole == true) {
             heatStreesOutlet.setBackgroundImage(toggleYes, for: UIControl.State.normal)
-        }
-        else {
+        } else {
             heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
         if let busines = defaults.value(forKey: "userbussinessStringKey"){
-            
             self.nameField.text = busines as? String
             print(busines)
         }
@@ -165,10 +186,17 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
-        let requirments = Requirments()
-        requirments.setStateValue(companyName: nameField.text!, animalGroup: animalField.text!, physiologicalState: PsychField.text!, currentBodyWeight: CurrentBodyWeightF.text!, targetBodyWeight: TargetBodyWeightF.text!, achieveTargerWeight: daystoAchiveF.text!, daysInMilk: daysinMilkF.text!, daysPregnant: daysPregnantF.text!, milkProduction: milkInProducitonF.text! , animalKind: name , heatStress: heatbole , metaBolic: disorderbole ,  anionic : dietbole , woolProduction : productionbole)
-        let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if ((nameField.text?.isEmpty != true) && (animalField.text?.isEmpty != true) && (PsychField.text?.isEmpty != true) && (CurrentBodyWeightF.text?.isEmpty != true) && (TargetBodyWeightF.text?.isEmpty != true) && (daystoAchiveF.text?.isEmpty != true) && (daysinMilkF.text?.isEmpty != true) && (daysPregnantF.text?.isEmpty != true) && (milkInProducitonF.text?.isEmpty != true)){
+            let requirments = Requirments()
+            requirments.setStateValue(companyName: nameField.text!, animalGroup: animalField.text!, physiologicalState: PsychField.text!, currentBodyWeight: CurrentBodyWeightF.text!, targetBodyWeight: TargetBodyWeightF.text!, achieveTargerWeight: daystoAchiveF.text!, daysInMilk: daysinMilkF.text!, daysPregnant: daysPregnantF.text!, milkProduction: milkInProducitonF.text! , animalKind: name , heatStress: heatbole , metaBolic: disorderbole ,  anionic : dietbole , woolProduction : productionbole)
+            let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }else{
+            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     func showError(_ message:String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -293,6 +321,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false

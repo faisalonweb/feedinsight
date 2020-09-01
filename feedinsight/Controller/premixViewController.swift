@@ -26,6 +26,7 @@ class premixViewController: UIViewController {
     @IBOutlet weak var coMicroText: UITextField!
     @IBOutlet weak var cuMicroText: UITextField!
     @IBOutlet weak var cuOrganicMicroText: UITextField!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var seMicroText: UITextField!
     @IBOutlet weak var seOrganicMicroText: UITextField!
     @IBOutlet weak var znMicroText: UITextField!
@@ -95,8 +96,11 @@ class premixViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
         DispatchQueue.main.async { [weak self] in
-            
             let data = self?.defaults.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)

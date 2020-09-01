@@ -34,6 +34,10 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
         DispatchQueue.main.async { [weak self] in
             
             let data = self?.defaults.value(forKey: "imageData") as? Data

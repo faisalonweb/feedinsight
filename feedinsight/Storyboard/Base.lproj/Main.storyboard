@@ -1504,6 +1504,7 @@
                         <outlet property="notificationimage" destination="R2W-RK-3il" id="ivH-g9-DdS"/>
                         <outlet property="producitonOutlet" destination="syY-pJ-Ack" id="Q0f-Ui-pxy"/>
                         <outlet property="proimage" destination="N7m-RT-82O" id="OFn-5S-rRK"/>
+                        <outlet property="userNameLabel" destination="FFm-Z5-OGa" id="sKi-pX-BuX"/>
                         <outlet property="woolHairLabel" destination="pMG-d8-ZiW" id="cpo-fH-Sxm"/>
                     </connections>
                 </viewController>
@@ -1938,6 +1939,7 @@
                         <outlet property="backBtn" destination="99X-4p-PQb" id="fzY-mG-dKt"/>
                         <outlet property="notification" destination="6z5-We-FNO" id="Xl4-Jp-LGa"/>
                         <outlet property="tableview" destination="FS3-6R-aCi" id="3R5-6g-Yr5"/>
+                        <outlet property="userNameLabel" destination="dgl-Zw-kn5" id="BEy-Dm-d3Q"/>
                         <outlet property="userprofile" destination="gLu-xR-aki" id="aMW-lr-Akf"/>
                     </connections>
                 </viewController>
@@ -4650,6 +4652,7 @@
                         <outlet property="profileimage" destination="DF5-oc-Myn" id="wLZ-Qg-bxc"/>
                         <outlet property="secondview" destination="af8-HP-jel" id="RzR-mD-f8N"/>
                         <outlet property="standardbtn" destination="VG4-CQ-U9A" id="QbO-xI-DvV"/>
+                        <outlet property="userNameLabel" destination="Awi-dT-3S9" id="NKt-DE-m8j"/>
                         <outletCollection property="buttonOutlets" destination="VG4-CQ-U9A" collectionClass="NSMutableArray" id="RTP-cN-DIo"/>
                         <outletCollection property="buttonOutlets" destination="Piq-RO-DsE" collectionClass="NSMutableArray" id="zkQ-Be-w2d"/>
                     </connections>
@@ -5353,6 +5356,7 @@
                         <outlet property="mainBtn" destination="c0B-0w-XNt" id="a8M-Nd-PBr"/>
                         <outlet property="profileimage" destination="FFt-SF-txl" id="jWh-CG-vuE"/>
                         <outlet property="tblView" destination="mzV-wj-ejs" id="NvV-LN-54d"/>
+                        <outlet property="userNameLabel" destination="Q7I-9Z-62p" id="tU2-wy-Abi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iqc-x5-bVs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -6048,6 +6052,7 @@
                         <outlet property="sMacroText" destination="qKC-Sc-kPn" id="KzQ-2N-L7a"/>
                         <outlet property="seMicroText" destination="3xN-Dl-2Vd" id="8Kj-2d-BPU"/>
                         <outlet property="seOrganicMicroText" destination="Kku-bO-t7Q" id="eI3-n2-vcE"/>
+                        <outlet property="userNameLabel" destination="mbz-fK-Suq" id="TiM-SP-YeA"/>
                         <outlet property="znMicroText" destination="dsH-EP-2b3" id="b2p-bU-7t3"/>
                         <outlet property="znOrganicMicroText" destination="sgB-63-gXU" id="Awf-46-wNS"/>
                     </connections>
@@ -6440,6 +6445,7 @@
                         <outlet property="plusbutton" destination="jD6-fa-TNV" id="fkL-j6-GQt"/>
                         <outlet property="profileimage" destination="S6m-NZ-dmr" id="dXK-i8-yRY"/>
                         <outlet property="tblView" destination="Pcr-2E-5bv" id="4hn-wY-yeK"/>
+                        <outlet property="userNameLabel" destination="Kpe-CG-pba" id="auW-UW-eTP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3CG-t0-F9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -6712,6 +6718,7 @@
                         <outlet property="animalName" destination="qCq-UK-qm3" id="6qi-w4-2Ff"/>
                         <outlet property="animalPic" destination="SNk-Qa-g65" id="BQ4-ri-bHL"/>
                         <outlet property="collectionview" destination="xnJ-8k-Ob5" id="5Cf-s1-73F"/>
+                        <outlet property="userNameLabel" destination="9TR-1w-H0m" id="ft6-8e-LsM"/>
                         <outlet property="userpic" destination="6I0-o8-5XZ" id="lFn-jh-NA7"/>
                     </connections>
                 </viewController>
@@ -6915,6 +6922,7 @@
                         <outlet property="changeableLabel" destination="yLR-W9-gM1" id="NE9-nK-tCM"/>
                         <outlet property="profileimage" destination="2bi-pA-w52" id="3qp-Si-Jaw"/>
                         <outlet property="tblView" destination="V1f-Vh-9y5" id="eq2-O9-Sl4"/>
+                        <outlet property="userNameLabel" destination="b2B-NE-LeZ" id="rWi-7G-ecA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GYe-B9-5Gt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7046,7 +7054,7 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Feed Type" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4SB-99-vuR">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Feed Type" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4SB-99-vuR">
                                                                         <rect key="frame" x="306.66666666666669" y="58" width="67.333333333333314" height="25"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
@@ -7599,6 +7607,7 @@
                         <outlet property="referTextField" destination="syO-Rq-dqE" id="Ted-47-Und"/>
                         <outlet property="sTextField" destination="sjP-xC-asM" id="7FM-dl-W1G"/>
                         <outlet property="seTextField" destination="LHB-gZ-xeX" id="f8A-ml-uTC"/>
+                        <outlet property="userNameLabel" destination="gek-Hf-P3c" id="WAw-zL-U82"/>
                         <outlet property="vitaminATextField" destination="eMz-aM-mwa" id="Jb0-jJ-z0h"/>
                         <outlet property="vitaminD3TextField" destination="bUe-hj-w3N" id="yPq-IE-1P7"/>
                         <outlet property="vitaminETextField" destination="fEM-Av-Dob" id="iXJ-ru-5OE"/>

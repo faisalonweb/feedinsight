@@ -14,7 +14,9 @@ import FirebaseFirestore
 
 class waterrationViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileimage: UIImageView!
+    let defaults = UserDefaults.standard
     var reportNameList = [String]()
     var reportDateList = [String]()
     var reportProductList = [String]()
@@ -93,6 +95,10 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
         self.tblView.refreshControl = UIRefreshControl()
         self.tblView.refreshControl?.beginRefreshing()
         if(self.screenNAME == "water") {

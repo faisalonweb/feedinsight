@@ -10,6 +10,7 @@ import UIKit
 
 class EditPremixViewController: UIViewController {
     
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var EditLabel: UILabel!
     @IBOutlet weak var FeedName: UITextField!
@@ -38,12 +39,26 @@ class EditPremixViewController: UIViewController {
     @IBOutlet weak var NiacinTextField: UITextField!
     @IBOutlet weak var biotinTextField: UITextField!
     @IBOutlet weak var referTextField: UITextField!
-    
+    let defaults = UserDefaults.standard
     var screenName : String = ""
     var itemDetailArray = [String]()
     var saveName : String = ""
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.ProfileImage.image = UIImage(data: data!)
+            }
+        }
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
+        super.viewWillAppear(animated)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ProfileImage?.layer.cornerRadius = (ProfileImage?.frame.size.width ?? 0.0) / 2
         EditLabel.text! =  screenName
         if(screenName == "Edit Feed") {

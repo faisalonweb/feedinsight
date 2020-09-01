@@ -16,6 +16,7 @@ import FirebaseFirestore
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
     var dropdownvalues = [String]()
     var dropdownfloatValue = [String]()
+    @IBOutlet weak var userNameLabel: UILabel!
     var getNameData = [String]()
     var getValueData = [String]()
     let userID = Auth.auth().currentUser?.uid
@@ -45,6 +46,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.userNameLabel.text = userName as? String
+            print(userName)
+        }
         DispatchQueue.main.async { [weak self] in
             let data = self?.defaults.value(forKey: "imageData") as? Data
             if(data != nil) {
@@ -89,28 +94,36 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         formatter.timeStyle = .medium
         formatter.dateStyle = .long
         calculateFloatArray()
-        let datetimestamp = formatter.string(from: currentDateTime)
-        let db = Firestore.firestore()
-        let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
-        let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-            let text = alertController.textFields!.first!.text!
-            let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
-            db.collection("rationReports").document(self.userID!).collection("rationReports").addDocument(data: dict){ err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added")
+        if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
+            let datetimestamp = formatter.string(from: currentDateTime)
+            let db = Firestore.firestore()
+            let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
+            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                let text = alertController.textFields!.first!.text!
+                let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                db.collection("rationReports").document(self.userID!).collection("rationReports").addDocument(data: dict){ err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added")
+                    }
                 }
             }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            }
+            alertController.addTextField { (textField) in
+                textField.placeholder = "Report Name"
+            }
+            alertController.addAction(withdrawAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Report Name"
-        }
-        alertController.addAction(withdrawAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+        
         
     }
     
