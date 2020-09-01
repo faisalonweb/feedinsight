@@ -1138,26 +1138,26 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="N7m-RT-82O">
-                                                        <rect key="frame" x="348" y="8" width="36" height="36.666666666666664"/>
+                                                        <rect key="frame" x="348" y="10" width="36" height="36.666666666666664"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="36.5" id="uWh-Lr-aJQ"/>
                                                             <constraint firstAttribute="width" constant="36" id="wh9-gk-tTT"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premix Check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwT-pF-ZMq">
-                                                        <rect key="frame" x="34.999999999999993" y="8.0000000000000018" width="89.333333333333314" height="16.666666666666671"/>
+                                                        <rect key="frame" x="34.999999999999993" y="10.000000000000002" width="89.333333333333314" height="16.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFm-Z5-OGa">
-                                                        <rect key="frame" x="34.999999999999993" y="26" width="66.333333333333314" height="16.666666666666671"/>
+                                                        <rect key="frame" x="34.999999999999993" y="28" width="66.333333333333314" height="16.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell-circle" translatesAutoresizingMaskIntoConstraints="NO" id="R2W-RK-3il">
-                                                        <rect key="frame" x="312" y="8" width="33" height="33.666666666666664"/>
+                                                        <rect key="frame" x="312" y="10" width="33" height="33.666666666666664"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33.5" id="kxp-29-f4X"/>
                                                             <constraint firstAttribute="width" constant="33" id="oEe-mH-fDB"/>
@@ -1166,12 +1166,12 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="DwT-pF-ZMq" firstAttribute="top" secondItem="418-hG-c0j" secondAttribute="top" constant="8" id="5BG-nh-g5v"/>
-                                                    <constraint firstItem="R2W-RK-3il" firstAttribute="top" secondItem="418-hG-c0j" secondAttribute="top" constant="8" id="APG-qb-6Cf"/>
+                                                    <constraint firstItem="DwT-pF-ZMq" firstAttribute="top" secondItem="418-hG-c0j" secondAttribute="top" constant="10" id="5BG-nh-g5v"/>
+                                                    <constraint firstItem="R2W-RK-3il" firstAttribute="top" secondItem="418-hG-c0j" secondAttribute="top" constant="10" id="APG-qb-6Cf"/>
                                                     <constraint firstItem="R2W-RK-3il" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DwT-pF-ZMq" secondAttribute="trailing" constant="8" symbolic="YES" id="NU7-MD-KLJ"/>
                                                     <constraint firstItem="FFm-Z5-OGa" firstAttribute="top" secondItem="DwT-pF-ZMq" secondAttribute="top" constant="18" id="OSQ-eW-wwu"/>
                                                     <constraint firstItem="R2W-RK-3il" firstAttribute="trailing" secondItem="N7m-RT-82O" secondAttribute="trailing" constant="-39" id="RpV-CK-h5J"/>
-                                                    <constraint firstItem="N7m-RT-82O" firstAttribute="top" secondItem="418-hG-c0j" secondAttribute="top" constant="8" id="cf3-Sm-fMz"/>
+                                                    <constraint firstItem="N7m-RT-82O" firstAttribute="top" secondItem="418-hG-c0j" secondAttribute="top" constant="10" id="cf3-Sm-fMz"/>
                                                     <constraint firstItem="FFm-Z5-OGa" firstAttribute="leading" secondItem="DwT-pF-ZMq" secondAttribute="leading" constant="7.1054273576010019e-15" id="n4b-0P-OyW"/>
                                                     <constraint firstItem="R2W-RK-3il" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FFm-Z5-OGa" secondAttribute="trailing" constant="8" symbolic="YES" id="nme-Wm-zjS"/>
                                                     <constraint firstAttribute="trailing" secondItem="N7m-RT-82O" secondAttribute="trailing" constant="30" id="o3y-No-sKT"/>

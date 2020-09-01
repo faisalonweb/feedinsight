@@ -13,6 +13,11 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 
+var subUrl: URL?
+var fm = FileManager.default
+var fresult: Bool = false
+var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
+
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
     var dropdownvalues = [String]()
     var dropdownfloatValue = [String]()
@@ -27,20 +32,51 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var plusbutton: UIButton!
     let defaults = UserDefaults.standard
+    
+    var athleteList: [Person] = []
+    
+    func getData() {
+        do {
+            let documentDirectory = try fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            subUrl = documentDirectory.appendingPathComponent("Athletes.json")
+            loadFile(mainPath: mainUrl!, subPath: subUrl!)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadFile(mainPath: URL, subPath: URL){
+        if fm.fileExists(atPath: subPath.path){
+            decodeData(pathName: subPath)
+            if addfeed.optionArray.isEmpty{
+                decodeData(pathName: mainPath)
+            }
+        }else{
+            decodeData(pathName: mainPath)
+        }
+    }
+    
+    func decodeData(pathName: URL){
+        do{
+            let jsonData = try Data(contentsOf: pathName)
+            let decoder = JSONDecoder()
+            athleteList = try decoder.decode([Person].self, from: jsonData)
+            let count = athleteList.count
+            for i in 0...count - 1 {
+                let name = athleteList[i].FeedName
+                addfeed.optionArray.append(name)
+            }
+        } catch {}
+    }
+    
     override func viewDidLoad() {
+        getData()
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
-        let url = Bundle.main.url(forResource: "csvjson", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        let json = try! JSONSerialization.jsonObject(with: data) as! [[String : Any]]
-        for item in json {
-            let name = item["Feed Name"]
-            addfeed.optionArray.append(name as! String)
-        }
         addfeed.didSelect{(selectedText , index ,id) in
         }
     }
@@ -127,50 +163,21 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         
     }
     
- 
+    
     @IBAction func editFeed(_ sender: Any) {
         if addfeed.text == "" {
             self.showError("Select Feed value")
         } else {
-            let url = Bundle.main.url(forResource: "csvjson", withExtension: "json")!
-            let data = try! Data(contentsOf: url)
-            let json = try! JSONSerialization.jsonObject(with: data) as! [[String : Any]]
-            for item in json {
-                let name = item["Feed Name"] as! String
+            for item in athleteList {
+                let name = item.FeedName
                 if(addfeed.text == name) {
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+                    vc?.editList = [item]
                     vc?.screenName = "Edit Feed"
-                    vc?.itemDetailArray.append(item["Feed Name"] as! String )
-                    vc?.itemDetailArray.append(item["Type"] as! String )
-                    vc?.itemDetailArray.append(String(describing: item["Dry Matter %"]!))
-                    vc?.itemDetailArray.append(String(describing: item["Ca"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Ca (Abs)"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["P"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["P (Abs)"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Mg"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Mg (Abs)"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["K"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["S"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Na"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Cl"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Fe"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Zn"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Cu"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Mn"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Se"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Co"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["I"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Vitamin A"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Vitamin E"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Vitamin D3"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Niacin"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Biotin"]! ))
-                    vc?.itemDetailArray.append(String(describing: item["Reference"]! ))
                     self.navigationController?.pushViewController(vc!, animated: true)
                     
                 }
             }
-            
         }
         
     }

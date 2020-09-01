@@ -41,7 +41,8 @@ class EditPremixViewController: UIViewController {
     @IBOutlet weak var referTextField: UITextField!
     let defaults = UserDefaults.standard
     var screenName : String = ""
-    var itemDetailArray = [String]()
+    var editList: [Person] = []
+    var itemDictionary : [String : Any] = [:]
     var saveName : String = ""
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
@@ -62,33 +63,33 @@ class EditPremixViewController: UIViewController {
         ProfileImage?.layer.cornerRadius = (ProfileImage?.frame.size.width ?? 0.0) / 2
         EditLabel.text! =  screenName
         if(screenName == "Edit Feed") {
-        FeedName.text! = itemDetailArray[0]
-        saveName = itemDetailArray[0]
-        FeedType.text! = itemDetailArray[1]
-        self.dryMatter.text! = itemDetailArray[2]
-        self.caTextField.text! = itemDetailArray[3]
-        self.caAbsTextField.text! = itemDetailArray[4]
-        self.pTextField.text! = itemDetailArray[5]
-        self.pAbsTextField.text! = itemDetailArray[6]
-        self.mgTextField.text! = itemDetailArray[7]
-        self.mgAbsTextField.text! = itemDetailArray[8]
-        self.kTextField.text! = itemDetailArray[9]
-        self.sTextField.text! = itemDetailArray[10]
-        self.naTextField.text! = itemDetailArray[11]
-        self.clTextField.text! = itemDetailArray[12]
-        self.feTextField.text! = itemDetailArray[13]
-        self.znTextField.text! = itemDetailArray[14]
-        self.cuTextField.text! = itemDetailArray[15]
-        self.mnTextField.text! = itemDetailArray[16]
-        self.seTextField.text! = itemDetailArray[17]
-        self.coTextField.text! = itemDetailArray[18]
-        self.iTextField.text! = itemDetailArray[19]
-        self.vitaminATextField.text! = itemDetailArray[20]
-        self.vitaminETextField.text! = itemDetailArray[21]
-        self.vitaminD3TextField.text! = itemDetailArray[22]
-        self.NiacinTextField.text! = itemDetailArray[23]
-        self.biotinTextField.text! = itemDetailArray[24]
-        self.referTextField.text! = itemDetailArray[25]
+            self.FeedName.text! = editList[0].FeedName
+            saveName = editList[0].FeedName
+            self.FeedType.text! = editList[0].Type1
+            self.dryMatter.text! = String(format: "%f", editList[0].DryMatter)
+            self.caTextField.text! = String(format: "%f", editList[0].Ca)
+            self.caAbsTextField.text! = String(format: "%f", editList[0].CaAbs)
+            self.pTextField.text! = String(format: "%f", editList[0].P)
+            self.pAbsTextField.text! = String(format: "%f", editList[0].PAbs)
+            self.mgTextField.text! = String(format: "%f", editList[0].Mg)
+            self.mgAbsTextField.text! = String(format: "%f", editList[0].MgAbs)
+            self.kTextField.text! = String(format: "%f", editList[0].K)
+            self.sTextField.text! = String(format: "%f", editList[0].S)
+            self.naTextField.text! = String(format: "%f", editList[0].Na)
+            self.clTextField.text! = String(format: "%f", editList[0].Cl)
+            self.feTextField.text! = String(format: "%f", editList[0].Fe)
+            self.znTextField.text! = String(format: "%f", editList[0].Zn)
+            self.cuTextField.text! = String(format: "%f", editList[0].Cu)
+            self.mnTextField.text! = String(format: "%f", editList[0].Mn)
+            self.seTextField.text! = String(format: "%f", editList[0].Se)
+            self.coTextField.text! = editList[0].Co
+            self.iTextField.text! = editList[0].I
+            self.vitaminATextField.text! = editList[0].VitaminA
+            self.vitaminETextField.text! = editList[0].VitaminE
+            self.vitaminD3TextField.text! = editList[0].VitaminD3
+            self.NiacinTextField.text! = editList[0].Niacin
+            self.biotinTextField.text! = editList[0].Biotin
+            self.referTextField.text! = editList[0].Reference
         }
         else {
             
@@ -96,46 +97,60 @@ class EditPremixViewController: UIViewController {
     }
     
     func changeValues() {
-        let url = Bundle.main.url(forResource: "csvjson", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        let json = try! JSONSerialization.jsonObject(with: data) as! [[String : Any]]
-        for item in json {
-            let name = item["Feed Name"] as! String
-            if(saveName == name) {
-                print(name)
-                itemDetailArray[0] = FeedName.text!
-                itemDetailArray[1] = FeedType.text!
-                itemDetailArray[2] = self.dryMatter.text!
-                itemDetailArray[3] = self.caTextField.text!
-                itemDetailArray[4] = self.caAbsTextField.text!
-                itemDetailArray[5] = self.pTextField.text!
-                itemDetailArray[6] = self.pAbsTextField.text!
-                itemDetailArray[7] = self.mgTextField.text!
-                itemDetailArray[8] = self.mgAbsTextField.text!
-                itemDetailArray[9] = self.kTextField.text!
-                itemDetailArray[10] = self.sTextField.text!
-                itemDetailArray[11] = self.naTextField.text!
-                itemDetailArray[12] = self.clTextField.text!
-                itemDetailArray[13] = self.feTextField.text!
-                itemDetailArray[14] = self.znTextField.text!
-                itemDetailArray[15] = self.cuTextField.text!
-                itemDetailArray[16] = self.mnTextField.text!
-                itemDetailArray[17] = self.seTextField.text!
-                itemDetailArray[18] = self.coTextField.text!
-                itemDetailArray[19] = self.iTextField.text!
-                itemDetailArray[20] = self.vitaminATextField.text!
-                itemDetailArray[21] = self.vitaminETextField.text!
-                itemDetailArray[22] = self.vitaminD3TextField.text!
-                itemDetailArray[23] = self.NiacinTextField.text!
-                itemDetailArray[24] = self.biotinTextField.text!
-                itemDetailArray[25] = self.referTextField.text!
-                let encoder = JSONEncoder()
-                encoder.outputFormatting = .prettyPrinted
-                let JSONData = try! encoder.encode(itemDetailArray)
-                try! JSONData.write(to: url)
-            }
-        }
+        editList[0].FeedName = FeedName.text!
+        editList[0].Type1 = FeedType.text!
+        let DryMatter = Double(self.dryMatter.text!)
+        editList[0].DryMatter = DryMatter ?? 0.0
+        let ca = Double(self.caTextField.text!)
+        editList[0].Ca = ca ?? 0.0
+        let caAbs = Double(self.caTextField.text!)
+        editList[0].CaAbs = caAbs ?? 0.0
+        let p = Double(self.pTextField.text!)
+        editList[0].P = p ?? 0.0
+        let pAbs = Double(self.pAbsTextField.text!)
+        editList[0].PAbs = pAbs ?? 0.0
+        let mg = Double(self.mgTextField.text!)
+        editList[0].Mg = mg ?? 0.0
+        let mgAbs = Double(self.mgAbsTextField.text!)
+        editList[0].MgAbs = mgAbs ?? 0.0
+        let k = Double(self.kTextField.text!)
+        editList[0].K = k ?? 0.0
+        let s = Double(self.sTextField.text!)
+        editList[0].S = s ?? 0.0
+        let na = Double(self.naTextField.text!)
+        editList[0].Na = na ?? 0.0
+        let cl = Double(self.clTextField.text!)
+        editList[0].Cl = cl ?? 0.0
+        let fe = Double(self.feTextField.text!)
+        editList[0].Fe = fe ?? 0.0
+        let zn = Double(self.znTextField.text!)
+        editList[0].Zn = zn ?? 0.0
+        let cu = Double(self.cuTextField.text!)
+        editList[0].Cu = cu ?? 0.0
+        let mn = Double(self.mnTextField.text!)
+        editList[0].Mn = mn ?? 0.0
+        let se = Double(self.seTextField.text!)
+        editList[0].Se = se ?? 0.0
+        editList[0].Co = self.coTextField.text!
+        editList[0].I = self.iTextField.text!
+        editList[0].VitaminA = self.vitaminATextField.text!
+        editList[0].VitaminE = self.vitaminETextField.text!
+        editList[0].VitaminD3 = self.vitaminD3TextField.text!
+        editList[0].Niacin = self.NiacinTextField.text!
+        editList[0].Biotin = self.biotinTextField.text!
+        editList[0].Reference = self.referTextField.text!
+        writeToFile(location: subUrl!)
     }
+    
+    func writeToFile(location: URL) {
+        do{
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let JsonData = try encoder.encode(editList)
+            try JsonData.write(to: location)
+        }catch{}
+    }
+    
     @IBAction func backButton(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
@@ -143,7 +158,7 @@ class EditPremixViewController: UIViewController {
     }
     
     @IBAction func saveFeedAction(_ sender: Any) {
-        changeValues() 
+//        changeValues()
     }
     
     
