@@ -154,25 +154,47 @@ class premixViewController: UIViewController {
         requirments.productDose = Double(productDose.text!) ?? 0.0
         var doseinKG : Double = Double(productDose.text!) ?? 0.0
         doseinKG = doseinKG / 1000
-        requirments.pMacroText = Double(pMacroText.text!) ?? 0.0 * doseinKG
-        requirments.caMacroText = Double(caMacroText.text!) ?? 0.0 * doseinKG
-        requirments.mgMacroText = Double(mgMacroText.text!) ?? 0.0 * doseinKG
-        requirments.kMacroText = Double(kMacroText.text!) ?? 0.0 * doseinKG
-        requirments.naMacroText = Double(naMacroText.text!) ?? 0.0 * doseinKG
-        requirments.clMacroText = Double(clMacroText.text!) ?? 0.0 * doseinKG
-        requirments.sMacroText = Double(sMacroText.text!) ?? 0.0 * doseinKG
-        requirments.coMicroText = Double(coMicroText.text!) ?? 0.0 * doseinKG
-        requirments.cuMicroText = Double(cuMicroText.text!) ?? 0.0 * doseinKG
-        requirments.cuOrganicMicroText = Double(cuOrganicMicroText.text!) ?? 0.0 * doseinKG
-        requirments.seMicroText = Double(seMicroText.text!) ?? 0.0 * doseinKG
-        requirments.seOrganicMicroText = Double(seOrganicMicroText.text!) ?? 0.0  * doseinKG
-        requirments.znMicroText = Double(znMicroText.text!) ?? 0.0 * doseinKG
-        requirments.znOrganicMicroText = Double(znOrganicMicroText.text!) ?? 0.0 * doseinKG
-        requirments.aiuVitamin = Double(aiuVitamin.text!) ?? 0.0 * doseinKG
-        requirments.diuVitamin = Double(diuVitamin.text!) ?? 0.0 * doseinKG
-        requirments.eiuVitamin = Double(eiuVitamin.text!) ?? 0.0 * doseinKG
-        requirments.niacinVitamin = Double(niacinVitamin.text!) ?? 0.0 * doseinKG
-        requirments.biotinVitamin = Double(biotinVitamin.text!) ?? 0.0 * doseinKG
+        let pMacroText1 = Double(pMacroText.text!) ?? 0.0
+        let pMacroText2 = Double(caMacroText.text!) ?? 0.0
+        let pMacroText3 = Double(mgMacroText.text!) ?? 0.0
+        let pMacroText4 = Double(kMacroText.text!) ?? 0.0
+        let pMacroText5 = Double(naMacroText.text!) ?? 0.0
+        let pMacroText6 = Double(clMacroText.text!) ?? 0.0
+        let pMacroText7 = Double(sMacroText.text!) ?? 0.0
+        let pMacroText8 = Double(coMicroText.text!) ?? 0.0
+        let pMacroText9 = Double(cuMicroText.text!) ?? 0.0
+        let pMacroText10 = Double(cuOrganicMicroText.text!) ?? 0.0
+        let pMacroText11 = Double(seMicroText.text!) ?? 0.0
+        let pMacroText12 = Double(seOrganicMicroText.text!) ?? 0.0
+        let pMacroText13 = Double(znMicroText.text!) ?? 0.0
+        let pMacroText14 = Double(znOrganicMicroText.text!) ?? 0.0
+        let pMacroText15 = Double(aiuVitamin.text!) ?? 0.0
+        let pMacroText16 = Double(diuVitamin.text!) ?? 0.0
+        let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
+        let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
+        let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
+        
+        requirments.pMacroText = pMacroText1 * doseinKG
+        requirments.caMacroText = pMacroText2 * doseinKG
+        requirments.mgMacroText = pMacroText3 * doseinKG
+        requirments.kMacroText = pMacroText4 * doseinKG
+        requirments.naMacroText = pMacroText5 * doseinKG
+        requirments.clMacroText = pMacroText6 * doseinKG
+        requirments.sMacroText = pMacroText7 * doseinKG
+        requirments.coMicroText = pMacroText8 * doseinKG
+        requirments.cuMicroText = pMacroText9 * doseinKG
+        requirments.cuOrganicMicroText = pMacroText10 * doseinKG
+        requirments.seMicroText = pMacroText11 * doseinKG
+        requirments.seOrganicMicroText = pMacroText12 * doseinKG
+        requirments.znMicroText = pMacroText13 * doseinKG
+        requirments.znOrganicMicroText = pMacroText14 * doseinKG
+        requirments.aiuVitamin = pMacroText15 * doseinKG
+        requirments.diuVitamin = pMacroText16 * doseinKG
+        requirments.eiuVitamin = pMacroText17 * doseinKG
+        requirments.niacinVitamin = pMacroText18 * doseinKG
+        requirments.biotinVitamin = pMacroText19 * doseinKG
+        let vc = storyboard?.instantiateViewController(withIdentifier: "showRecordVC") as? ShowResultViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func nextButton(_ sender: Any) {
@@ -219,6 +241,8 @@ class premixViewController: UIViewController {
         requirments.eiuVitamin = pMacroText17 * doseinKG
         requirments.niacinVitamin = pMacroText18 * doseinKG
         requirments.biotinVitamin = pMacroText19 * doseinKG
+        let vc = storyboard?.instantiateViewController(withIdentifier: "showRecordVC") as? ShowResultViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
 }
