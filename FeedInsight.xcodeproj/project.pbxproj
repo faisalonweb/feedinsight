@@ -62,6 +62,7 @@
 		1ADBC1A1249AA08D00D061B5 /* userSignupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADBC1A0249AA08D00D061B5 /* userSignupCollectionViewCell.swift */; };
 		1AE3587824EA78A600A7E0AA /* waterrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3587724EA78A600A7E0AA /* waterrationViewController.swift */; };
 		1AE3587C24EA872300A7E0AA /* waterrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3587B24EA872300A7E0AA /* waterrationTableViewCell.swift */; };
+		1AE39C762500F7EA00C2E67E /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE39C752500F7EA00C2E67E /* ResultsViewController.swift */; };
 		1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED4024248A751300BE5108 /* gatewayViewController.swift */; };
 		1AEEA0F924CB580B0077324A /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEEA0F824CB580B0077324A /* DataModel.swift */; };
 		1AEEA0FB24CB590C0077324A /* DataAppend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEEA0FA24CB590C0077324A /* DataAppend.swift */; };
@@ -70,8 +71,6 @@
 		1AFE81D924FD25C800DFECC7 /* Athletes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFE81D824FD25C800DFECC7 /* Athletes.json */; };
 		1AFE81DB24FD260B00DFECC7 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE81DA24FD260B00DFECC7 /* Person.swift */; };
 		C3C5DD25E952937DFF8D3273 /* Pods_FeedInsight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */; };
-		C60248F925012D9F008E1C7A /* NALLabelsMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60248F825012D9F008E1C7A /* NALLabelsMatrix.swift */; };
-		C60248FB25012E0C008E1C7A /* ShowResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60248FA25012E0C008E1C7A /* ShowResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +132,7 @@
 		1ADBC1A0249AA08D00D061B5 /* userSignupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSignupCollectionViewCell.swift; sourceTree = "<group>"; };
 		1AE3587724EA78A600A7E0AA /* waterrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waterrationViewController.swift; sourceTree = "<group>"; };
 		1AE3587B24EA872300A7E0AA /* waterrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waterrationTableViewCell.swift; sourceTree = "<group>"; };
+		1AE39C752500F7EA00C2E67E /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		1AED4024248A751300BE5108 /* gatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gatewayViewController.swift; sourceTree = "<group>"; };
 		1AEEA0F824CB580B0077324A /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		1AEEA0FA24CB590C0077324A /* DataAppend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAppend.swift; sourceTree = "<group>"; };
@@ -142,8 +142,6 @@
 		1AFE81DA24FD260B00DFECC7 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3C4FBA17D1F5CDE06596FA30 /* Pods-FeedInsight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.debug.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.debug.xcconfig"; sourceTree = "<group>"; };
 		90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.release.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.release.xcconfig"; sourceTree = "<group>"; };
-		C60248F825012D9F008E1C7A /* NALLabelsMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NALLabelsMatrix.swift; sourceTree = "<group>"; };
-		C60248FA25012E0C008E1C7A /* ShowResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultViewController.swift; sourceTree = "<group>"; };
 		D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedInsight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -203,7 +201,7 @@
 				1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */,
 				1AE3587724EA78A600A7E0AA /* waterrationViewController.swift */,
 				1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */,
-				C60248FA25012E0C008E1C7A /* ShowResultViewController.swift */,
+				1AE39C752500F7EA00C2E67E /* ResultsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,7 +250,6 @@
 		1A7F1214243CE34F0008CFC0 /* feedinsight */ = {
 			isa = PBXGroup;
 			children = (
-				C60248F725012D9F008E1C7A /* NALLabelsMatrix */,
 				04E98D55246E3F6700D7AB67 /* Helper */,
 				045263FA2451BEB9006D67AB /* Font */,
 				1AEEA0F724CB26070077324A /* Data */,
@@ -330,14 +327,6 @@
 				90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C60248F725012D9F008E1C7A /* NALLabelsMatrix */ = {
-			isa = PBXGroup;
-			children = (
-				C60248F825012D9F008E1C7A /* NALLabelsMatrix.swift */,
-			);
-			path = NALLabelsMatrix;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,12 +459,12 @@
 				1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */,
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */,
+				1AE39C762500F7EA00C2E67E /* ResultsViewController.swift in Sources */,
 				1AE3587C24EA872300A7E0AA /* waterrationTableViewCell.swift in Sources */,
 				1AFE70DE24C2CDD800C4E08F /* premixViewController.swift in Sources */,
 				1ADBC19F249A9DE800D061B5 /* userSignupViewController.swift in Sources */,
 				045263F724519177006D67AB /* LoginViewController.swift in Sources */,
 				04E98D57246E3F8600D7AB67 /* Utilities.swift in Sources */,
-				C60248FB25012E0C008E1C7A /* ShowResultViewController.swift in Sources */,
 				04236AE72450E19900C66F66 /* AnimalCollectionViewCell.swift in Sources */,
 				1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */,
 				042F04C3249894F000F40EC9 /* FeedDetailsViewController.swift in Sources */,
@@ -512,7 +501,6 @@
 				1A277B9D24C6FC4700FDA1DD /* feedthreeViewController.swift in Sources */,
 				1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */,
 				04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */,
-				C60248F925012D9F008E1C7A /* NALLabelsMatrix.swift in Sources */,
 				1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */,
 				1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */,
 			);
