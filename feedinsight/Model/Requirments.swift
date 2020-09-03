@@ -26,6 +26,7 @@ class Requirments {
     var anionic : Bool!
     var woolProduction : Bool!
     var DMI : Double!
+    var reqArrayFinal = [Double]()
     // Ration Data Array
     var finalProductList: [Person] = []
     var finalDropdownfloatValue = [String]()
@@ -53,6 +54,7 @@ class Requirments {
     var rationVitaminE: Double = 0
     var rationNiacin: Double = 0
     var rationBiotin : Double = 0
+    var rationArrayFinal = [Double]()
     // Water Values
     var waterPVal : Double = 0
     var waterCaVal : Double = 0
@@ -61,6 +63,7 @@ class Requirments {
     var waterNaVal : Double = 0
     var waterClVal : Double = 0
     var waterSVal : Double = 0
+    var waterArrayFinal = [Double]()
     // Premix Values
     var productName: String?
     var productDose: Double = 0
@@ -83,7 +86,28 @@ class Requirments {
     var eiuVitamin: Double = 0
     var niacinVitamin: Double = 0
     var biotinVitamin: Double = 0
+    var primexArrayFinal = [Double]()
     
+    func calculateRequirmentsData() {
+        self.phosphorusCalculate()
+        self.Calcium()
+        self.Magnesium()
+        self.Potassium()
+        self.Sodium()
+        self.Chloride()
+        self.Sulphur()
+        self.Cobalt()
+        self.Copper()
+        self.Iodine()
+        self.Manganese()
+        self.Zinc()
+        self.Selenium()
+        self.VitaminA()
+        self.VitaminD3()
+        self.VitaminE()
+        self.NiacinB3()
+        self.BiotinB7()
+    }
     func calculateRationData () {
         for i in 0..<finalDropdownfloatValue.count {
             var value = Double(finalDropdownfloatValue[i])! * finalProductList[i].DryMatter
@@ -134,9 +158,53 @@ class Requirments {
         rationS = rationS * 10.0
         rationNa = rationNa * 10.0
         rationCl = rationCl * 10.0
+        rationArrayFinal.append(rationCa)
+        rationArrayFinal.append(rationCaAbs)
+        rationArrayFinal.append(rationP)
+        rationArrayFinal.append(rationPAbs)
+        rationArrayFinal.append(rationMg)
+        rationArrayFinal.append(rationMgAbs)
+        rationArrayFinal.append(rationK)
+        rationArrayFinal.append(rationS)
+        rationArrayFinal.append(rationNa)
+        rationArrayFinal.append(rationCl)
+        rationArrayFinal.append(rationFe)
+        rationArrayFinal.append(rationZn)
+        rationArrayFinal.append(rationCu)
+        rationArrayFinal.append(rationMn)
+        rationArrayFinal.append(rationSe)
+        rationArrayFinal.append(rationCo)
+        rationArrayFinal.append(rationI)
+        rationArrayFinal.append(rationVitaminA)
+        rationArrayFinal.append(rationVitaminD3)
+        rationArrayFinal.append(rationVitaminE)
+        rationArrayFinal.append(rationNiacin)
+        rationArrayFinal.append(rationBiotin)
+        
         print("done")
     }
     
+    func appendPremixValues () {
+        primexArrayFinal.append(pMacroText)
+        primexArrayFinal.append(caMacroText)
+        primexArrayFinal.append(mgMacroText)
+        primexArrayFinal.append(kMacroText)
+        primexArrayFinal.append(naMacroText)
+        primexArrayFinal.append(clMacroText)
+        primexArrayFinal.append(sMacroText)
+        primexArrayFinal.append(coMicroText)
+        primexArrayFinal.append(cuMicroText)
+        primexArrayFinal.append(cuOrganicMicroText)
+        primexArrayFinal.append(seMicroText)
+        primexArrayFinal.append(seOrganicMicroText)
+        primexArrayFinal.append(znMicroText)
+        primexArrayFinal.append(znOrganicMicroText)
+        primexArrayFinal.append(aiuVitamin)
+        primexArrayFinal.append(diuVitamin)
+        primexArrayFinal.append(eiuVitamin)
+        primexArrayFinal.append(niacinVitamin)
+        primexArrayFinal.append(biotinVitamin)
+    }
     func waterCalculations () {
         let animalType = self.animalKind
         switch animalType {
@@ -342,6 +410,14 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        waterArrayFinal.append(waterPVal)
+        waterArrayFinal.append(waterCaVal)
+        waterArrayFinal.append(waterMgVal)
+        waterArrayFinal.append(waterKVal)
+        waterArrayFinal.append(waterSVal)
+        waterArrayFinal.append(waterNaVal)
+        waterArrayFinal.append(waterClVal)
+        
     }
     
     func setStateValue (companyName : String , animalGroup : String , physiologicalState : String , currentBodyWeight : String , targetBodyWeight : String , achieveTargerWeight : String , daysInMilk : String , daysPregnant : String , milkProduction :String , animalKind : String , heatStress : Bool , metaBolic : Bool , anionic : Bool , woolProduction : Bool) {
@@ -366,73 +442,76 @@ class Requirments {
     }
     func phosphorusCalculate () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * DMI + 0.002 * mycurrentweight
+            final = 0.83 * DMI + 0.002 * mycurrentweight
             print("goat phosphorus result : \(final)")
             
         case "Sheep/Goat" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
+            final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
             print("Sheep phosphorus result : \(final)")
             
         case "Beef cow" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * DMI + 0.002 * mycurrentweight
+            final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Beef phosphorus result : \(final)")
             
         case "Buffalo" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * DMI + 0.002 * mycurrentweight
+            final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Buffalo phosphorus result \(final)")
             
         case "Deer" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
+            final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
             print("Deer phosphorus result \(final)")
             
         case "Camel" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * DMI + 0.002 * mycurrentweight
+            final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Camel phosphorus result \(final)")
             
             
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     func Calcium () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -445,19 +524,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * DMI + 0.01 * mycurrentweight
+                final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * DMI + 0.01 * mycurrentweight
+                final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -470,19 +549,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -494,19 +573,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -518,19 +597,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * DMI + 0.01 * mycurrentweight
+                final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * DMI + 0.01 * mycurrentweight
+                final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -541,19 +620,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * DMI + 0.008 * mycurrentweight
+                final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -564,71 +643,75 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Magnesium() {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.011 * mycurrentweight
+            final = 0.011 * mycurrentweight
             print("goat result : \(final)")
             
         case "Sheep/Goat" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.014 * mycurrentweight
+            final = 0.014 * mycurrentweight
             print("Sheep result : \(final)")
             
         case "Beef cow" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.011 * mycurrentweight
+            final = 0.011 * mycurrentweight
             print("Beef result : \(final)")
             
         case "Buffalo" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.011 * mycurrentweight
+            final = 0.011 * mycurrentweight
             print("Buffalo result \(final)")
             
         case "Deer" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.011 * mycurrentweight
+            final = 0.011 * mycurrentweight
             print("Deer result \(final)")
             
         case "Camel" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.011 * mycurrentweight
+            final = 0.011 * mycurrentweight
             print("Camel result \(final)")
             
             
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     func Potassium () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.115 * mycurrentweight
+                final = 0.115 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.07 * mycurrentweight
+                final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -638,13 +721,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.115 * mycurrentweight
+                final = 0.115 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.07 * mycurrentweight
+                final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -654,13 +737,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.115 * mycurrentweight
+                final = 0.115 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.07 * mycurrentweight
+                final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -670,13 +753,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.115 * mycurrentweight
+                final = 0.115 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.07 * mycurrentweight
+                final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -685,13 +768,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.115 * mycurrentweight
+                final = 0.115 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.07 * mycurrentweight
+                final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -700,13 +783,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.115 * mycurrentweight
+                final = 0.115 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.07 * mycurrentweight
+                final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -715,22 +798,24 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Sodium () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -740,13 +825,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -756,13 +841,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -772,13 +857,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -787,13 +872,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -802,13 +887,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.015 * mycurrentweight
+                final = 0.015 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -817,22 +902,24 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Chloride() {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.035 * mycurrentweight
+                final = 0.035 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -842,13 +929,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.035 * mycurrentweight
+                final = 0.035 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -858,13 +945,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.035 * mycurrentweight
+                final = 0.035 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -874,13 +961,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.035 * mycurrentweight
+                final = 0.035 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -889,13 +976,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.035 * mycurrentweight
+                final = 0.035 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -904,13 +991,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.035 * mycurrentweight
+                final = 0.035 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else {
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.023 * mycurrentweight
+                final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             
@@ -919,51 +1006,53 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Sulphur () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
-            let final = 2 * DMI // DMI is dry matter intake
+            final = 2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Sheep/Goat" :
             
             if (self.woolProduction == true){
-                let final = 2.7 * DMI // DMI is dry matter intake
+                final = 2.7 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
-                let final = 2 * DMI // DMI is dry matter intake
+                final = 2 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
         case "Beef Cows" :
             
-            let final = 2 * DMI // DMI is dry matter intake
+            final = 2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Buffalo" :
             
-            let final = 2 * DMI // DMI is dry matter intake
+            final = 2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Deer" :
             
             if (self.woolProduction == true){
-                let final = 2.7 * DMI // DMI is dry matter intake
+                final = 2.7 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
-                let final = 2.2 * DMI // DMI is dry matter intake
+                final = 2.2 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
         case "Camel" :
             
-            let final = 2.7 * DMI // DMI is dry matter intake
+            final = 2.7 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
             
@@ -971,38 +1060,40 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     func Cobalt () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
-            let final = 0.3 * DMI // DMI is dry matter intake
+            final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Sheep/Goat" :
             
-            let final = 0.3 * DMI // DMI is dry matter intake
+            final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Beef Cows" :
             
-            let final = 0.3 * DMI // DMI is dry matter intake
+            final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Buffalo" :
             
-            let final = 0.3 * DMI // DMI is dry matter intake
+            final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Deer" :
             
-            let final = 0.3 * DMI // DMI is dry matter intake
+            final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Camel" :
             
-            let final = 0.3 * DMI // DMI is dry matter intake
+            final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
             
@@ -1010,48 +1101,50 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Copper () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
-            let final = 10 * DMI // DMI is dry matter intake
+            final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Sheep/Goat" :
             
-            let final = 10 * DMI // DMI is dry matter intake
+            final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Beef Cows" :
             
-            let final = 10 * DMI // DMI is dry matter intake
+            final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Buffalo" :
             
-            let final = 10 * DMI // DMI is dry matter intake
+            final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Deer" :
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 15 * DMI     // DMI is dry matter intake
+                final = 15 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 25 * DMI    // DMI is dry matter intake
+                final = 25 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
             
         case "Camel" :
             
-            let final = 10 * DMI // DMI is dry matter intake
+            final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
             
@@ -1059,21 +1152,23 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Iodine () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 0.8 * DMI     // DMI is dry matter intake
+                final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 0.5 * DMI    // DMI is dry matter intake
+                final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
@@ -1081,12 +1176,12 @@ class Requirments {
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 0.8 * DMI     // DMI is dry matter intake
+                final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 0.5 * DMI    // DMI is dry matter intake
+                final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
@@ -1094,12 +1189,12 @@ class Requirments {
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 0.8 * DMI     // DMI is dry matter intake
+                final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 0.5 * DMI    // DMI is dry matter intake
+                final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
@@ -1107,12 +1202,12 @@ class Requirments {
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 0.8 * DMI     // DMI is dry matter intake
+                final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 0.5 * DMI    // DMI is dry matter intake
+                final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
@@ -1120,12 +1215,12 @@ class Requirments {
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 0.8 * DMI     // DMI is dry matter intake
+                final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 0.5 * DMI    // DMI is dry matter intake
+                final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
@@ -1134,12 +1229,12 @@ class Requirments {
             
             if (self.physiologicalState == "Lactating"){
                 
-                let final = 0.8 * DMI     // DMI is dry matter intake
+                final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
                 
-                let final = 0.5 * DMI    // DMI is dry matter intake
+                final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             
@@ -1148,39 +1243,41 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Manganese () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Sheep/Goat" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Beef Cows" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Buffalo" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Deer" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Camel" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
             
@@ -1188,39 +1285,41 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Zinc () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Sheep/Goat" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Beef Cows" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Buffalo" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Deer" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Camel" :
             
-            let final = 50 * DMI // DMI is dry matter intake
+            final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
             
@@ -1228,39 +1327,41 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func Selenium () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             
-            let final = 0.2 * DMI // DMI is dry matter intake
+            final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Sheep/Goat" :
             
-            let final = 0.2 * DMI // DMI is dry matter intake
+            final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Beef Cows" :
             
-            let final = 0.2 * DMI // DMI is dry matter intake
+            final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Buffalo" :
             
-            let final = 0.2 * DMI // DMI is dry matter intake
+            final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Deer" :
             
-            let final = 0.2 * DMI // DMI is dry matter intake
+            final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
         case "Camel" :
             
-            let final = 0.2 * DMI // DMI is dry matter intake
+            final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
             
             
@@ -1268,27 +1369,29 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     func VitaminA () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 110 * mycurrentweight
+                final = 110 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 80 * mycurrentweight
+                final = 80 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 110 * mycurrentweight
+                final = 110 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1301,19 +1404,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 178 * mycurrentweight
+                final = 178 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 333 * mycurrentweight
+                final = 333 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 152 * mycurrentweight
+                final = 152 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1326,19 +1429,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 84 * mycurrentweight
+                final = 84 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 47 * mycurrentweight
+                final = 47 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 60 * mycurrentweight
+                final = 60 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1350,19 +1453,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 110 * mycurrentweight
+                final = 110 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 80 * mycurrentweight
+                final = 80 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 110 * mycurrentweight
+                final = 110 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1374,19 +1477,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 178 * mycurrentweight
+                final = 178 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 333 * mycurrentweight
+                final = 333 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 152 * mycurrentweight
+                final = 152 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1397,19 +1500,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 110 * mycurrentweight
+                final = 110 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 80 * mycurrentweight
+                final = 80 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 110 * mycurrentweight
+                final = 110 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1420,28 +1523,30 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func VitaminD3 () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1454,19 +1559,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1479,19 +1584,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 5.7 * mycurrentweight
+                final = 5.7 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 5.7 * mycurrentweight
+                final = 5.7 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 5.7 * mycurrentweight
+                final = 5.7 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1503,19 +1608,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1527,19 +1632,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1550,19 +1655,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 30 * mycurrentweight
+                final = 30 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1573,28 +1678,30 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func VitaminE () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.6 * mycurrentweight
+                final = 1.6 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1607,19 +1714,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 6 * mycurrentweight
+                final = 6 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 10 * mycurrentweight
+                final = 10 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 6 * mycurrentweight
+                final = 6 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1632,19 +1739,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.8 * mycurrentweight
+                final = 0.8 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.8 * mycurrentweight
+                final = 0.8 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1656,19 +1763,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.6 * mycurrentweight
+                final = 1.6 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1680,19 +1787,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 6 * mycurrentweight
+                final = 6 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 10 * mycurrentweight
+                final = 10 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 6 * mycurrentweight
+                final = 6 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1703,19 +1810,19 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.25 * mycurrentweight
+                final = 1.25 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 1.6 * mycurrentweight
+                final = 1.6 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
             else {
@@ -1726,106 +1833,111 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func NiacinB3 () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 10 * mycurrentweight
+            final = 10 * mycurrentweight
             print("goat result : \(final)")
             
         case "Sheep/Goat" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 9 * mycurrentweight
+            final = 9 * mycurrentweight
             print("Sheep result : \(final)")
             
         case "Beef cow" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 10 * mycurrentweight
+            final = 10 * mycurrentweight
             print("Beef result : \(final)")
             
         case "Buffalo" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 10 * mycurrentweight
+            final = 10 * mycurrentweight
             print("Buffalo result \(final)")
             
         case "Deer" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 9 * mycurrentweight
+            final = 9 * mycurrentweight
             print("Deer result \(final)")
             
         case "Camel" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 10 * mycurrentweight
+            final = 10 * mycurrentweight
             print("Camel result \(final)")
             
             
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
     func BiotinB7 () {
         let animalType = self.animalKind
+        var final : Double = 0
         switch animalType {
         case "Dairy Cows" :
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.03 * mycurrentweight
+            final = 0.03 * mycurrentweight
             print("goat result : \(final)")
             
         case "Sheep/Goat" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.03 * mycurrentweight
+            final = 0.03 * mycurrentweight
             print("Sheep result : \(final)")
             
         case "Beef cow" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.03 * mycurrentweight
+            final = 0.03 * mycurrentweight
             print("Beef result : \(final)")
             
         case "Buffalo" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.03 * mycurrentweight
+            final = 0.03 * mycurrentweight
             print("Buffalo result \(final)")
             
         case "Deer" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.03 * mycurrentweight
+            final = 0.03 * mycurrentweight
             print("Deer result \(final)")
             
         case "Camel" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.03 * mycurrentweight
+            final = 0.03 * mycurrentweight
             print("Camel result \(final)")
             
             
         default:
             print("animal group not found")
         }
+        self.reqArrayFinal.append(final)
     }
     
 }

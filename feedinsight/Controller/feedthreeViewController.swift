@@ -161,6 +161,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 requirments.finalProductList = selectedProductList
                 requirments.finalDropdownfloatValue = dropdownfloatValue
                 requirments.calculateRationData()
+                requirments.calculateRequirmentsData()
                 let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
