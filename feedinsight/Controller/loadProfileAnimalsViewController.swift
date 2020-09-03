@@ -21,6 +21,7 @@ class loadProfileAnimalsViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     let defaults = UserDefaults.standard
     var animalList = [String]()
+    var reportNameList = [String]()
     var dateList = [String]()
     var companynameList = [String]()
     var categoryList = [String]()
@@ -50,6 +51,7 @@ class loadProfileAnimalsViewController: UIViewController {
     private var datathirteenstation = [Bool]()
     private var datafourteenstation = [Bool]()
     private var datafifteenstation = [Bool]()
+    private var datasixteenstation = [String]()
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
@@ -64,6 +66,7 @@ class loadProfileAnimalsViewController: UIViewController {
                 for document in snap.documents {
                     let documentData = document.data()
                     let animaltype = documentData["animalGroup"] as? String ?? "Anonymous"
+                    let reportName = documentData["reportName"] as? String ?? "Anonymous"
                     let timestamp = documentData["currentdate"] as? String ?? "20/20/20"
                     let companytype = documentData["companyName"] as? String ?? "Anonymous"
                     let categortype = documentData["categorySelected"] as? String ?? "Anonymous"
@@ -79,7 +82,7 @@ class loadProfileAnimalsViewController: UIViewController {
                     let heatbolestate = documentData["heatbole"] as? Bool ?? false
                     let productionbolestate = documentData["productionbole"] as? Bool ?? false
                     
-                    self.datastation.insert(animaltype, at: 0)
+                    self.datastation.insert(reportName, at: 0)
                     self.dataonestation.insert(timestamp, at: 0)
                     self.datathreestation.insert(companytype, at: 0)
                     self.datafourstation.insert(categortype, at: 0)
@@ -94,8 +97,10 @@ class loadProfileAnimalsViewController: UIViewController {
                     self.datathirteenstation.insert(disorderbolestate, at: 0)
                     self.datafourteenstation.insert(heatbolestate, at: 0)
                     self.datafifteenstation.insert(productionbolestate, at: 0)
+                    self.datasixteenstation.insert(animaltype, at: 0)
                 }
-                self.animalList.append(contentsOf: self.datastation)
+                self.reportNameList.append(contentsOf: self.datastation)
+                self.animalList.append(contentsOf: self.datasixteenstation)
                 self.dateList.append(contentsOf: self.dataonestation)
                 self.companynameList.append(contentsOf: self.datathreestation)
                 self.categoryList.append(contentsOf: self.datafourstation)
@@ -174,7 +179,7 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! loadAnimalsTableViewCell
         
-        cell.animaltypelabel?.text = animalList[indexPath.section]
+        cell.animaltypelabel?.text = reportNameList[indexPath.section]
         cell.datetypelabel?.text = dateList[indexPath.section]
         cell.layer.cornerRadius = 10
         return cell

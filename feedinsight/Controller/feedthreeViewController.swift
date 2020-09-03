@@ -33,7 +33,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var plusbutton: UIButton!
     let defaults = UserDefaults.standard
     
-    var athleteList: [Person] = []
+    var productList: [Person] = []
+    var selectedProductList: [Person] = []
     
     func getData() {
         do {
@@ -60,10 +61,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         do{
             let jsonData = try Data(contentsOf: pathName)
             let decoder = JSONDecoder()
-            athleteList = try decoder.decode([Person].self, from: jsonData)
-            let count = athleteList.count
+            productList = try decoder.decode([Person].self, from: jsonData)
+            let count = productList.count
             for i in 0...count - 1 {
-                let name = athleteList[i].FeedName
+                let name = productList[i].FeedName
                 addfeed.optionArray.append(name)
             }
         } catch {}
@@ -121,8 +122,27 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func nextTap(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        calculateFloatArray()
+        if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
+            var dmi : Double = 0
+            for i in 0..<dropdownvalues.count {
+                // get values to set DMI
+                // Formula = (sum of all value of ration product * sum of dry matter) / 100
+                dmi = Double(dropdownfloatValue[i])! * selectedProductList[i].DryMatter
+                print(dmi)
+            }
+            dmi = dmi / 100.0
+            let requirments = Requirments()
+            requirments.DMI = dmi
+            let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
+            self.navigationController?.pushViewController(vc!, animated: true)
+        } else {
+            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     @IBAction func saveButtonPressed(_ sender: Any) {
         let currentDateTime = Date()
@@ -168,7 +188,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         if addfeed.text == "" {
             self.showError("Select Feed value")
         } else {
-            for item in athleteList {
+            for item in productList {
                 let name = item.FeedName
                 if(addfeed.text == name) {
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
@@ -195,6 +215,13 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         } else {
             print(addfeed.text ?? "none")
             dropdownvalues.append(addfeed.text ?? "none")
+            for item in productList {
+                let name = item.FeedName
+                if(addfeed.text == name) {
+                    selectedProductList.append(item)
+                    break
+                }
+            }
             calculateFloatArray()
             print("paki")
             print("array values is \(dropdownvalues)")

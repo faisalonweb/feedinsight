@@ -25,6 +25,7 @@ class Requirments {
     var metaBolic : Bool!
     var anionic : Bool!
     var woolProduction : Bool!
+    var DMI : Double!
     
     
     func setStateValue (companyName : String , animalGroup : String , physiologicalState : String , currentBodyWeight : String , targetBodyWeight : String , achieveTargerWeight : String , daysInMilk : String , daysPregnant : String , milkProduction :String , animalKind : String , heatStress : Bool , metaBolic : Bool , anionic : Bool , woolProduction : Bool) {
@@ -53,42 +54,42 @@ class Requirments {
         case "Dairy Cows" :
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * 0.1 + 0.002 * mycurrentweight
+            let final = 0.83 * DMI + 0.002 * mycurrentweight
             print("goat phosphorus result : \(final)")
 
         case "Sheep/Goat" :
 
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.905 * 0.1 + 0.3 + 0.002 * mycurrentweight
+            let final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
             print("Sheep phosphorus result : \(final)")
 
         case "Beef cow" :
 
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * 0.1 + 0.002 * mycurrentweight
+            let final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Beef phosphorus result : \(final)")
 
         case "Buffalo" :
 
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * 0.1 + 0.002 * mycurrentweight
+            let final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Buffalo phosphorus result \(final)")
 
         case "Deer" :
 
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.905 * 0.1 + 0.3 + 0.002 * mycurrentweight
+            let final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
             print("Deer phosphorus result \(final)")
 
         case "Camel" :
 
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
-            let final = 0.83 * 0.1 + 0.002 * mycurrentweight
+            let final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Camel phosphorus result \(final)")
 
 
@@ -103,13 +104,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
@@ -128,13 +129,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * 0.1 + 0.01 * mycurrentweight
+                let final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * 0.1 + 0.01 * mycurrentweight
+                let final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
@@ -153,13 +154,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
@@ -177,13 +178,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
@@ -201,13 +202,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * 0.1 + 0.01 * mycurrentweight
+                let final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.67 * 0.1 + 0.01 * mycurrentweight
+                let final = 0.67 * DMI + 0.01 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
@@ -224,13 +225,13 @@ class Requirments {
             if (self.physiologicalState == "Lactating"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Lactation result : \(final)")
             }
             else if (self.physiologicalState == "Growing"){
                 let currentweight = self.currentBodyWeight
                 let mycurrentweight = Double(currentweight!) ?? 0
-                let final = 0.663 * 0.1 + 0.008 * mycurrentweight
+                let final = 0.663 * DMI + 0.008 * mycurrentweight
                 print("Growing result : \(final)")
             }
             else if (self.physiologicalState == "Dry-Gestating"){
@@ -609,44 +610,44 @@ class Requirments {
         switch animalType {
         case "Dairy Cows" :
 
-            let final = 2 * 0.1 // 0.1 is dry matter intake
+            let final = 2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Sheep/Goat" :
 
             if (self.woolProduction == true){
-                let final = 2.7 * 0.1 // 0.1 is dry matter intake
+                let final = 2.7 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
-                let final = 2 * 0.1 // 0.1 is dry matter intake
+                let final = 2 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
         case "Beef Cows" :
 
-            let final = 2 * 0.1 // 0.1 is dry matter intake
+            let final = 2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Buffalo" :
 
-            let final = 2 * 0.1 // 0.1 is dry matter intake
+            let final = 2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Deer" :
 
             if (self.woolProduction == true){
-                let final = 2.7 * 0.1 // 0.1 is dry matter intake
+                let final = 2.7 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
-                let final = 2.2 * 0.1 // 0.1 is dry matter intake
+                let final = 2.2 * DMI // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
         case "Camel" :
 
-            let final = 2.7 * 0.1 // 0.1 is dry matter intake
+            let final = 2.7 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
 
@@ -660,32 +661,32 @@ class Requirments {
         switch animalType {
         case "Dairy Cows" :
 
-            let final = 0.3 * 0.1 // 0.1 is dry matter intake
+            let final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Sheep/Goat" :
 
-            let final = 0.3 * 0.1 // 0.1 is dry matter intake
+            let final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Beef Cows" :
 
-            let final = 0.3 * 0.1 // 0.1 is dry matter intake
+            let final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Buffalo" :
 
-            let final = 0.3 * 0.1 // 0.1 is dry matter intake
+            let final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Deer" :
 
-            let final = 0.3 * 0.1 // 0.1 is dry matter intake
+            let final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Camel" :
 
-            let final = 0.3 * 0.1 // 0.1 is dry matter intake
+            let final = 0.3 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
 
@@ -700,41 +701,41 @@ class Requirments {
         switch animalType {
         case "Dairy Cows" :
 
-            let final = 10 * 0.1 // 0.1 is dry matter intake
+            let final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Sheep/Goat" :
 
-            let final = 10 * 0.1 // 0.1 is dry matter intake
+            let final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Beef Cows" :
 
-            let final = 10 * 0.1 // 0.1 is dry matter intake
+            let final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Buffalo" :
 
-            let final = 10 * 0.1 // 0.1 is dry matter intake
+            let final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Deer" :
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 15 * 0.1     // 0.1 is dry matter intake
+                let final = 15 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 25 * 0.1    // 0.1 is dry matter intake
+                let final = 25 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
 
         case "Camel" :
 
-            let final = 10 * 0.1 // 0.1 is dry matter intake
+            let final = 10 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
 
@@ -751,12 +752,12 @@ class Requirments {
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 0.8 * 0.1     // 0.1 is dry matter intake
+                let final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 0.5 * 0.1    // 0.1 is dry matter intake
+                let final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
@@ -764,12 +765,12 @@ class Requirments {
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 0.8 * 0.1     // 0.1 is dry matter intake
+                let final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 0.5 * 0.1    // 0.1 is dry matter intake
+                let final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
@@ -777,12 +778,12 @@ class Requirments {
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 0.8 * 0.1     // 0.1 is dry matter intake
+                let final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 0.5 * 0.1    // 0.1 is dry matter intake
+                let final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
@@ -790,12 +791,12 @@ class Requirments {
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 0.8 * 0.1     // 0.1 is dry matter intake
+                let final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 0.5 * 0.1    // 0.1 is dry matter intake
+                let final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
@@ -803,12 +804,12 @@ class Requirments {
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 0.8 * 0.1     // 0.1 is dry matter intake
+                let final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 0.5 * 0.1    // 0.1 is dry matter intake
+                let final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
@@ -817,12 +818,12 @@ class Requirments {
 
             if (self.physiologicalState == "Lactating"){
 
-                let final = 0.8 * 0.1     // 0.1 is dry matter intake
+                let final = 0.8 * DMI     // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
             else {
 
-                let final = 0.5 * 0.1    // 0.1 is dry matter intake
+                let final = 0.5 * DMI    // DMI is dry matter intake
                 print("Lactation result : \(final)")
             }
 
@@ -838,32 +839,32 @@ class Requirments {
         switch animalType {
         case "Dairy Cows" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Sheep/Goat" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Beef Cows" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Buffalo" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Deer" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Camel" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
 
@@ -878,32 +879,32 @@ class Requirments {
         switch animalType {
         case "Dairy Cows" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Sheep/Goat" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Beef Cows" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Buffalo" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Deer" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Camel" :
 
-            let final = 50 * 0.1 // 0.1 is dry matter intake
+            let final = 50 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
 
@@ -918,32 +919,32 @@ class Requirments {
         switch animalType {
         case "Dairy Cows" :
 
-            let final = 0.2 * 0.1 // 0.1 is dry matter intake
+            let final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Sheep/Goat" :
 
-            let final = 0.2 * 0.1 // 0.1 is dry matter intake
+            let final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Beef Cows" :
 
-            let final = 0.2 * 0.1 // 0.1 is dry matter intake
+            let final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Buffalo" :
 
-            let final = 0.2 * 0.1 // 0.1 is dry matter intake
+            let final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Deer" :
 
-            let final = 0.2 * 0.1 // 0.1 is dry matter intake
+            let final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
         case "Camel" :
 
-            let final = 0.2 * 0.1 // 0.1 is dry matter intake
+            let final = 0.2 * DMI // DMI is dry matter intake
             print("Lactation result : \(final)")
 
 
