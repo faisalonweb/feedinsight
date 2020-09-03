@@ -69,6 +69,15 @@ class wateroneViewController: UIViewController {
     }
     
     @IBAction func skipbutton(_ sender: Any) {
+        //let requirments = Requirments()
+        requirments.waterPVal = 0
+        requirments.waterKVal = 0
+        requirments.waterSVal = 0
+        requirments.waterCaVal = 0
+        requirments.waterClVal = 0
+        requirments.waterMgVal = 0
+        requirments.waterNaVal = 0
+        requirments.waterCalculations()
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }

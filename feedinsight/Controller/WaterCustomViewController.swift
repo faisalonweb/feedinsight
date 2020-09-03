@@ -86,6 +86,16 @@ class WaterCustomViewController: UIViewController {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func nextOnClick(_ sender: Any) {
+        //let requirments = Requirments()
+        requirments.waterPVal = Double(PText.text!) ?? 0.0
+        requirments.waterKVal = Double(KText.text!) ?? 0.0
+        requirments.waterSVal = Double(SText.text!) ?? 0.0
+        requirments.waterCaVal = Double(CaText.text!) ?? 0.0
+        requirments.waterClVal = Double(ClText.text!) ?? 0.0
+        requirments.waterMgVal = Double(MgText.text!) ?? 0.0
+        requirments.waterNaVal = Double(NaText.text!) ?? 0.0
+        requirments.waterCalculations()
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }

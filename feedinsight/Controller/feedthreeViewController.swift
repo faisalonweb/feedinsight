@@ -99,7 +99,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         for i in 0..<dropdownvalues.count {
             let indexPath = IndexPath(row: 0, section: i)
             if let cell = tblView.cellForRow(at: indexPath) as? feedthreeTableViewCell {
-                dropdownfloatValue.append(cell.productValue.text ?? "0")
+                if(cell.productValue.text != "") {
+                    dropdownfloatValue.append(cell.productValue.text ?? "0")
+                } else {
+                    dropdownfloatValue.append("none")
+                }
             } else {
                 dropdownfloatValue.append("none")
             }
@@ -125,17 +129,41 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         calculateFloatArray()
         if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
             var dmi : Double = 0
+            var boolValue : Bool = false
             for i in 0..<dropdownvalues.count {
-                // get values to set DMI
-                // Formula = (sum of all value of ration product * sum of dry matter) / 100
-                dmi = Double(dropdownfloatValue[i])! * selectedProductList[i].DryMatter
-                print(dmi)
+                if(dropdownfloatValue[i] == "none") {
+                    boolValue = true
+                    let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    break
+                }
             }
-            dmi = dmi / 100.0
-            let requirments = Requirments()
-            requirments.DMI = dmi
-            let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
-            self.navigationController?.pushViewController(vc!, animated: true)
+            if(boolValue == false) {
+                for i in 0..<dropdownvalues.count {
+                    var productDM : Double = 0
+                    if(dropdownfloatValue[i] != "none") {
+                        productDM = Double(dropdownfloatValue[i])! * selectedProductList[i].DryMatter
+                        dmi = dmi + productDM
+                        print(dmi)
+                    } else {
+                        let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(defaultAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    
+                }
+                dmi = dmi / 100.0
+                //let requirments = Requirments()
+                requirments.DMI = dmi
+                requirments.finalProductList = selectedProductList
+                requirments.finalDropdownfloatValue = dropdownfloatValue
+                requirments.calculateRationData()
+                let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
         } else {
             let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -213,19 +241,24 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         if addfeed.text == "" {
             self.showError("Select dropdown value")
         } else {
-            print(addfeed.text ?? "none")
-            dropdownvalues.append(addfeed.text ?? "none")
-            for item in productList {
-                let name = item.FeedName
-                if(addfeed.text == name) {
-                    selectedProductList.append(item)
-                    break
+            if dropdownvalues.contains(addfeed.text!) {
+                self.showError("Already added.")
+            } else {
+                print(addfeed.text ?? "none")
+                dropdownvalues.append(addfeed.text ?? "none")
+                for item in productList {
+                    let name = item.FeedName
+                    if(addfeed.text == name) {
+                        selectedProductList.append(item)
+                        break
+                    }
                 }
+                calculateFloatArray()
+                print("paki")
+                print("array values is \(dropdownvalues)")
+                tblView.reloadData()
             }
-            calculateFloatArray()
-            print("paki")
-            print("array values is \(dropdownvalues)")
-            tblView.reloadData()
+            
         }
     }
     func showError(_ message:String) {
