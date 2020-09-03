@@ -193,7 +193,7 @@ class premixViewController: UIViewController {
         requirments.eiuVitamin = pMacroText17 * doseinKG
         requirments.niacinVitamin = pMacroText18 * doseinKG
         requirments.biotinVitamin = pMacroText19 * doseinKG
-        let vc = storyboard?.instantiateViewController(withIdentifier: "showRecordVC") as? ShowResultViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -241,7 +241,7 @@ class premixViewController: UIViewController {
         requirments.eiuVitamin = pMacroText17 * doseinKG
         requirments.niacinVitamin = pMacroText18 * doseinKG
         requirments.biotinVitamin = pMacroText19 * doseinKG
-        let vc = storyboard?.instantiateViewController(withIdentifier: "showRecordVC") as? ShowResultViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

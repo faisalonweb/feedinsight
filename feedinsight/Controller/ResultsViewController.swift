@@ -11,9 +11,6 @@ import UIKit
 class ResultsViewController: UIViewController {
     
     @IBOutlet weak var secView: UIView!
-    @IBOutlet weak var thirdView: UIView!
-    @IBOutlet weak var fifthView: UIView!
-    @IBOutlet weak var fourthView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     
     var RationArr = ["Dry Matter%","Ca","P","P (Abs)" ,"Mg", "Mg(Abs)" , "K","S","Na","Cl","Fe","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
@@ -24,79 +21,79 @@ class ResultsViewController: UIViewController {
         
         super.viewDidLoad()
          profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
-        var yvalue = 35
-        for n in 0...17 {
-            let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
-            label.textAlignment = NSTextAlignment.center
-            label.text = requirmentsArr[n]
-            self.secView.addSubview(label)
-            yvalue = yvalue + 16
-            print(n)
-        }
-        yvalue = 35
-        for n in 0...17 {
-            let label = UILabel(frame: CGRect(x: 220, y: yvalue, width: 200, height: 15))
-            label.textAlignment = NSTextAlignment.center
-            label.text = "Value"
-            self.secView.addSubview(label)
-            yvalue = yvalue + 16
-            print(n)
-        }
-        yvalue = 35
-        for n in 0...21 {
-            let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
-            label.textAlignment = NSTextAlignment.center
-            label.text = RationArr[n]
-            self.thirdView.addSubview(label)
-            yvalue = yvalue + 16
-            print(n)
-        }
-        yvalue = 35
-        for n in 0...21 {
-            let label = UILabel(frame: CGRect(x: 210, y: yvalue, width: 200, height: 15))
-            label.textAlignment = NSTextAlignment.center
-            label.text = "Value"
-            self.thirdView.addSubview(label)
-            yvalue = yvalue + 16
-            print(n)
-        }
-        yvalue = 35
-               for n in 0...6 {
-                   let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
-                   label.textAlignment = NSTextAlignment.center
-                   label.text = WaterRationArr[n]
-                   self.fourthView.addSubview(label)
-                   yvalue = yvalue + 16
-                   print(n)
-               }
-               yvalue = 35
-               for n in 0...6 {
-                   let label = UILabel(frame: CGRect(x: 210, y: yvalue, width: 200, height: 15))
-                   label.textAlignment = NSTextAlignment.center
-                   label.text = "Value"
-                   self.fourthView.addSubview(label)
-                   yvalue = yvalue + 16
-                   print(n)
-               }
-        yvalue = 35
-               for n in 0...20 {
-                   let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
-                   label.textAlignment = NSTextAlignment.center
-                   label.text = PremixArr[n]
-                   self.fifthView.addSubview(label)
-                   yvalue = yvalue + 16
-                   print(n)
-               }
-               yvalue = 35
-               for n in 0...20 {
-                   let label = UILabel(frame: CGRect(x: 210, y: yvalue, width: 200, height: 15))
-                   label.textAlignment = NSTextAlignment.center
-                   label.text = "Value"
-                   self.fifthView.addSubview(label)
-                   yvalue = yvalue + 16
-                   print(n)
-               }
-               
+       // var yvalue = 35
+//        for n in 0...17 {
+//            let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
+//            label.textAlignment = NSTextAlignment.center
+//            label.text = requirmentsArr[n]
+//            self.secView.addSubview(label)
+//            yvalue = yvalue + 16
+//            print(n)
+//        }
+//        yvalue = 35
+//        for n in 0...17 {
+//            let label = UILabel(frame: CGRect(x: 220, y: yvalue, width: 200, height: 15))
+//            label.textAlignment = NSTextAlignment.center
+//            label.text = "Value"
+//            self.secView.addSubview(label)
+//            yvalue = yvalue + 16
+//            print(n)
+//        }
+//        yvalue = 35
+//        for n in 0...21 {
+//            let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
+//            label.textAlignment = NSTextAlignment.center
+//            label.text = RationArr[n]
+//            self.thirdView.addSubview(label)
+//            yvalue = yvalue + 16
+//            print(n)
+//        }
+//        yvalue = 35
+//        for n in 0...21 {
+//            let label = UILabel(frame: CGRect(x: 210, y: yvalue, width: 200, height: 15))
+//            label.textAlignment = NSTextAlignment.center
+//            label.text = "Value"
+//            self.thirdView.addSubview(label)
+//            yvalue = yvalue + 16
+//            print(n)
+//        }
+//        yvalue = 35
+//               for n in 0...6 {
+//                   let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
+//                   label.textAlignment = NSTextAlignment.center
+//                   label.text = WaterRationArr[n]
+//                   self.fourthView.addSubview(label)
+//                   yvalue = yvalue + 16
+//                   print(n)
+//               }
+//               yvalue = 35
+//               for n in 0...6 {
+//                   let label = UILabel(frame: CGRect(x: 210, y: yvalue, width: 200, height: 15))
+//                   label.textAlignment = NSTextAlignment.center
+//                   label.text = "Value"
+//                   self.fourthView.addSubview(label)
+//                   yvalue = yvalue + 16
+//                   print(n)
+//               }
+//        yvalue = 35
+//               for n in 0...20 {
+//                   let label = UILabel(frame: CGRect(x: 0, y: yvalue, width: 200, height: 15))
+//                   label.textAlignment = NSTextAlignment.center
+//                   label.text = PremixArr[n]
+//                   self.fifthView.addSubview(label)
+//                   yvalue = yvalue + 16
+//                   print(n)
+//               }
+//               yvalue = 35
+//               for n in 0...20 {
+//                   let label = UILabel(frame: CGRect(x: 210, y: yvalue, width: 200, height: 15))
+//                   label.textAlignment = NSTextAlignment.center
+//                   label.text = "Value"
+//                   self.fifthView.addSubview(label)
+//                   yvalue = yvalue + 16
+//                   print(n)
+//               }
+//
                
         
         
