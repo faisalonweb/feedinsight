@@ -112,6 +112,8 @@ class premixViewController: UIViewController {
             navController.popViewController(animated: true)
         }
     }
+    
+    
     @IBAction func saveOnClick(_ sender: Any) {
         let currentDateTime = Date()
         let formatter = DateFormatter()
@@ -155,10 +157,12 @@ class premixViewController: UIViewController {
 //        self.navigationController?.pushViewController(vc!, animated: true)
 //    }
 //    
-//    @IBAction func nextButton(_ sender: Any) {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "report") as? PreviewViewController
-//       
-//        self.navigationController?.pushViewController(vc!, animated: true)
-//    }
+  
+    
+    @IBAction func next(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
+              
+               self.navigationController?.pushViewController(vc!, animated: true)
+    }
     
 }

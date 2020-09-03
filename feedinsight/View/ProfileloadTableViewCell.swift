@@ -13,6 +13,7 @@ class ProfileloadTableViewCell: UITableViewCell {
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var arrowView: UIImageView!
     @IBOutlet weak var textlabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
