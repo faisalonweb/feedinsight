@@ -210,7 +210,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         let seMicro = documentData["se(inorganic)MicroMineral"] as? String ?? "Anonymous"
                         let seOrganicMicro = documentData["se(organic)MicroMineral"] as? String ?? "Anonymous"
                         let znMicro = documentData["zn(inorganic)MicroMineral"] as? String ?? "Anonymous"
-                        let znOrganicMicro = documentData["cu(organic)MicroMineral"] as? String ?? "Anonymous"
+                        let znOrganicMicro = documentData["zn(organic)MicroMineral"] as? String ?? "Anonymous"
                         // Vitamins
                         
                         let aiuVitamin = documentData["aiuVitamin"] as? String ?? "Anonymous"

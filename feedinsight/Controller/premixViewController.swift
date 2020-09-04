@@ -83,7 +83,7 @@ class premixViewController: UIViewController {
         cuMicroText.text = cuMicroMineralData
         cuOrganicMicroText.text = cuOrganicMicroMineralData
         seMicroText.text = seMicroMineralData
-        seOrganicMicroText.text = seMicroMineralData
+        seOrganicMicroText.text = seOrganicMicroMineralData
         znMicroText.text = znMicroMineralData
         znOrganicMicroText.text = znOrganicMicroMineralData
         //Vitamins

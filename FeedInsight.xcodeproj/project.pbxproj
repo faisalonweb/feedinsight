@@ -114,6 +114,7 @@
 		1A50F0E624EE6455007EC60C /* Requirments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirments.swift; sourceTree = "<group>"; };
 		1A63AA1824F7B7F200ADCAB0 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
 		1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPremixViewController.swift; sourceTree = "<group>"; };
+		1A766DF025024C8200F5C152 /* FeedInsightRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FeedInsightRelease.entitlements; path = FeedInsight/FeedInsightRelease.entitlements; sourceTree = "<group>"; };
 		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +229,7 @@
 		1A7F1209243CE34F0008CFC0 = {
 			isa = PBXGroup;
 			children = (
+				1A766DF025024C8200F5C152 /* FeedInsightRelease.entitlements */,
 				1AFE81D824FD25C800DFECC7 /* Athletes.json */,
 				04D6A908246C164600B37859 /* world-cities.txt */,
 				1A63AA1824F7B7F200ADCAB0 /* csvjson.json */,
@@ -668,7 +670,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -682,6 +684,7 @@
 			baseConfigurationReference = 90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FeedInsight/FeedInsightRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z7QFBRSB6J;
@@ -691,7 +694,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -80,6 +80,15 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         plusbutton.layer.cornerRadius = 28
         addfeed.didSelect{(selectedText , index ,id) in
         }
+        for i in 0..<dropdownvalues.count {
+            for item in productList {
+                let name = item.FeedName
+                if(dropdownvalues[i] == name) {
+                    selectedProductList.append(item)
+                }
+            }
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
