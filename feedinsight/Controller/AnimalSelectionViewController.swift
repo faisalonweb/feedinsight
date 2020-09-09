@@ -20,7 +20,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     @IBOutlet weak var notificaitonViewA: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     let defaults = UserDefaults.standard
-    let textArr = ["Ruminants","Aqua","Equines","Poultry","Goat","Cow"]
+    let textArr = ["Ruminants","Poultry","Aqua","Equines"]
     let imageArr: [UIImage] = [
         UIImage(named: "ruminants")!,
         UIImage(named: "aqua")!,
@@ -176,6 +176,10 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnimalcollectionCell", for: indexPath) as! AnimalCollectionViewCell
         
         cell.animalData = animalData[indexPath.row]
+        if(indexPath.row > 0) {
+            cell.contentView.layer.opacity = 0.3;
+            cell.isUserInteractionEnabled = false
+        }
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
         return cell

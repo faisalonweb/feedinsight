@@ -21,6 +21,7 @@ class FeedDetailsViewController: UIViewController ,UITextFieldDelegate{
         ValueField.optionArray = ["NaCl","CaCl","Mg" ]
         ValueField.didSelect{(selectedText , index ,id) in
         }
+        ValueField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
     }
     
     @IBAction func PlusTap(_ sender: UIButton) {

@@ -12,6 +12,8 @@ class userSignupCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var signupimage: UIImageView!
     @IBOutlet weak var signuplabel: UILabel!
+    
+    
     override var isSelected: Bool{
         didSet{
             if self.isSelected

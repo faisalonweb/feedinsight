@@ -207,12 +207,15 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         locationField.optionArray = pickerData1
         locationField.didSelect{(selectedText , index ,id) in
         }
+        locationField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         userdropdown.optionArray = ["Cow","Deer","Camel"]
         userdropdown.didSelect{(selectedText , index ,id) in
         }
+        userdropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         roledropdown.optionArray = ["Admin","Client","Lender"]
         roledropdown.didSelect{(selectedText , index ,id) in
         }
+        roledropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

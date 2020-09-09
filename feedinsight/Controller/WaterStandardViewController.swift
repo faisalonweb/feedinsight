@@ -31,6 +31,7 @@ class WaterStandardViewController: UIViewController {
     @IBOutlet weak var SText: UITextField!
     let userID = Auth.auth().currentUser?.uid
     override func viewDidLoad() {
+        self.dismissKey() 
         super.viewDidLoad()
     }
     @IBAction func saveOnClick(_ sender: Any) {

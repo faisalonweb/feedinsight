@@ -46,7 +46,7 @@ class ResultsViewController: UIViewController {
         self.secView.addSubview(self.labelsMatrixView1)
         labelsMatrixView1.addRecord(record: ["No", "Requirments Results", "Value"])
         for i in 0...requirmentsArr.count - 1 {
-            labelsMatrixView1.addRecord(record: [String(i + 1), requirmentsArr[i], String(requirments.reqArrayFinal[i])])
+            labelsMatrixView1.addRecord(record: [String(i + 1), requirmentsArr[i], String(format: "%.2f", requirments.reqArrayFinal[i])])
         }
         
         // second ration
@@ -54,7 +54,7 @@ class ResultsViewController: UIViewController {
         self.thirdView.addSubview(self.labelsMatrixView2)
         labelsMatrixView2.addRecord(record: ["No", "Ration Results", "Value"])
         for i in 0...RationArr.count - 1 {
-            labelsMatrixView2.addRecord(record: [String(i + 1), RationArr[i],String(requirments.rationArrayFinal[i])])
+            labelsMatrixView2.addRecord(record: [String(i + 1), RationArr[i],String(format: "%.2f", requirments.rationArrayFinal[i])])
         }
         
         // second ration
@@ -62,7 +62,7 @@ class ResultsViewController: UIViewController {
         self.fourthView.addSubview(self.labelsMatrixView3)
         labelsMatrixView3.addRecord(record: ["No", "Water Results", "Value"])
         for i in 0...WaterRationArr.count - 1 {
-            labelsMatrixView3.addRecord(record: [String(i + 1), WaterRationArr[i], String(requirments.waterArrayFinal[i])])
+            labelsMatrixView3.addRecord(record: [String(i + 1), WaterRationArr[i], String(format: "%.2f", requirments.waterArrayFinal[i])])
         }
         
         // second ration
@@ -70,7 +70,7 @@ class ResultsViewController: UIViewController {
         self.fifthView.addSubview(self.labelsMatrixView4)
         labelsMatrixView4.addRecord(record: ["No", "Premix Results", "Value"])
         for i in 0...PremixArr.count - 1 {
-            labelsMatrixView4.addRecord(record: [String(i + 1), PremixArr[i], String(requirments.primexArrayFinal[i])])
+            labelsMatrixView4.addRecord(record: [String(i + 1), PremixArr[i], String(format: "%.2f", requirments.primexArrayFinal[i])])
         }
         
     }

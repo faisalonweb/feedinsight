@@ -16,7 +16,7 @@ import Firebase
 import CountryPickerView
 import SVProgressHUD
 
-class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource{
     
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var pickanimal: DropDown!
@@ -51,7 +51,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     var workarray: [String] = [String]()
     private let locationManager = LocationManager()
     var industrycellValue = ""
-    let textArr = ["Research","Farming","FoodManufacturing"]
+    let textArr = ["Research","Farming","Feed \nManufacturing"]
     let imageArr: [UIImage] = [
         UIImage(named: "research-unselected")!,
         UIImage(named: "farm-unselected")!,
@@ -84,7 +84,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         }
     }
     override func viewDidLoad() {
-        
+        self.dismissKey()
         SignupCollectionData = DataAppend.getAllSignupData()
         super.viewDidLoad()
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
@@ -94,16 +94,22 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
-        pickanimal.optionArray = ["Cow","Deer","Camel"]
-        pickanimal.didSelect{(selectedText , index ,id) in
-        }
+//        pickanimal.optionArray = ["Poultry","Equines","Ruminants"]
+//        pickanimal.didSelect{(selectedText , index ,id) in
+//        }
+//        pickanimal.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         pickrole.optionArray = ["Option 1", "Option 2", "Option 3"]
         pickrole.optionArray = ["Admin","user","manager"]
         pickrole.didSelect{(selectedText , index ,id) in
         }
+        pickrole.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         picklocation.optionArray = pickerData1
         picklocation.didSelect{(selectedText , index ,id) in
         }
+        picklocation.selectedRowColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+        //picklocation.hideList()
+        picklocation.arrowSize = 0
+        //picklocation.touchAction()
         let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -115,10 +121,10 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         signinoutlet.enabledTypes.append(customType)
         signinoutlet.urlMaximumLength = 91
         signinoutlet.customize { label in
-            signinoutlet.text = "Have an Account? Sign In"
-            signinoutlet.numberOfLines = 1
-            signinoutlet.lineSpacing = 4
-            signinoutlet.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
+        signinoutlet.text = "Have an Account? Sign In"
+        signinoutlet.numberOfLines = 1
+        signinoutlet.lineSpacing = 4
+        signinoutlet.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
             signinoutlet.customSelectedColor[customType] = UIColor.black
             signinoutlet.configureLinkAttribute = { (type, attributes, isSelected) in
                 var atts = attributes
@@ -185,6 +191,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             }
         }
     }
+  
     func showError(_ message:String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -232,20 +239,23 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 128)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 50, height: 128)
+//    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "usersignup", for: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
-        cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
-        cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
+        cell.signuplabel.numberOfLines = 0
+        cell.signupimage.image = imageArr[cellIndex]
+        cell.signuplabel.text = textArr[cellIndex]
+        
         cell.layer.cornerRadius = 10
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
+        cell.signuplabel.numberOfLines = 0
         cell.signupimage.image = imageArr1[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
@@ -253,9 +263,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
-        cell.signupimage.image = SignupCollectionData[cellIndex].singupImg
-        cell.signuplabel.text = SignupCollectionData[cellIndex].signupStr
+        cell.signuplabel.numberOfLines = 0
+        cell.signupimage.image = imageArr[cellIndex]
+        cell.signuplabel.text = textArr[cellIndex]
     }
 }
+
 
 

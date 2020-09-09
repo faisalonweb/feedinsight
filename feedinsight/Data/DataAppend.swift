@@ -62,7 +62,7 @@ class DataAppend {
               SignupDataArr = [
            SignupModel(signupStr: "Research", singupImg:  UIImage(named: "research-unselected")!),
            SignupModel(signupStr: "Farming", singupImg:  UIImage(named: "farm-unselected")!),
-           SignupModel(signupStr: "FoodManufacturing", singupImg: UIImage(named: "feedmanufacturing-unselected")!)
+           SignupModel(signupStr: "FeedManufacturing", singupImg: UIImage(named: "feedmanufacturing-unselected")!)
         ]
         return SignupDataArr
           }

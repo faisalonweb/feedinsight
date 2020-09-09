@@ -94,6 +94,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         if let userName = defaults.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String

@@ -105,6 +105,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         textField.clipsToBounds = true
     }
     override func viewDidLoad() {
+        self.dismissKey()
         nameField.text = groupcompany
         animalField.text = nameanimal
         PsychField.text = statepsychlogical
@@ -178,9 +179,11 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         proimage?.layer.borderWidth = 3.0
         proimage?.layer.borderColor = UIColor.white.cgColor
         PsychField.optionArray = ["Lactating", "Growing", "Dry-Gestating"]
-        PsychField.optionIds = [1,23,54,22]
+        PsychField.optionIds = [20,13,24,36]
         PsychField.didSelect{(selectedText , index ,id) in
+            print("Selected String: \(selectedText) \n index: \(index)")
         }
+        PsychField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
         if let navController = self.navigationController {
@@ -350,4 +353,17 @@ extension UITextField {
     // Default actions:
     @objc func doneButtonTapped() { self.resignFirstResponder() }
     @objc func cancelButtonTapped() { self.resignFirstResponder() }
+}
+
+extension UIViewController {
+func dismissKey()
+{
+let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action: #selector(UIViewController.dismissKeyboard))
+tap.cancelsTouchesInView = false
+view.addGestureRecognizer(tap)
+}
+@objc func dismissKeyboard()
+{
+view.endEditing(true)
+}
 }

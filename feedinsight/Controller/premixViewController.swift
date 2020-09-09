@@ -64,6 +64,7 @@ class premixViewController: UIViewController {
     var biotinVitaminData = ""
     @IBOutlet weak var profileimage: UIImageView!
     override func viewDidLoad() {
+         self.dismissKey()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = true
@@ -119,7 +120,7 @@ class premixViewController: UIViewController {
         formatter.dateStyle = .long
         let datetimestamp = formatter.string(from: currentDateTime)
         let db = Firestore.firestore()
-        let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
             let text = alertController.textFields!.first!.text!
             let dict : [String : Any] = ["productName": self.productName.text ?? "none", "productDose" : self.productDose.text ?? "none", "pMacroMineral" : self.pMacroText.text ?? "none","caMacroMineral": self.caMacroText.text ?? "none" , "mgMacroMineral": self.mgMacroText.text ?? "none" , "kMacroMineral": self.kMacroText.text ?? "none", "naMacroMineral": self.naMacroText.text ?? "none" , "clMacroMineral": self.clMacroText.text ?? "none" , "sMacroMineral": self.sMacroText.text ?? "none","coMicroMineral": self.coMicroText.text ?? "none","cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none","cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none","se(inorganic)MicroMineral": self.seMicroText.text ?? "none","se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none","zn(inorganic)MicroMineral": self.znMicroText.text ?? "none","zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none","aiuVitamin": self.aiuVitamin.text ?? "none","diuVitamin": self.diuVitamin.text ?? "none","eiuVitamin": self.eiuVitamin.text ?? "none","niacinVitamin": self.niacinVitamin.text ?? "none","biotinVitamin": self.biotinVitamin.text ?? "none","ReportName" : text,"currentdatetime": datetimestamp]
@@ -137,7 +138,7 @@ class premixViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
         }
         alertController.addTextField { (textField) in
-            textField.placeholder = "Report Name"
+            textField.placeholder = "Premix Profile"
         }
         alertController.addAction(withdrawAction)
         alertController.addAction(cancelAction)

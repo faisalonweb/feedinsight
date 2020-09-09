@@ -31,6 +31,7 @@ class WaterCustomViewController: UIViewController {
     @IBOutlet weak var SText: UITextField!
     let userID = Auth.auth().currentUser?.uid    
     override func viewDidLoad() {
+        self.dismissKey() 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(doThisWhenNotify),
                                                name: NSNotification.Name(rawValue: "myNotificationKey"),
@@ -56,7 +57,7 @@ class WaterCustomViewController: UIViewController {
         formatter.dateStyle = .long
         let datetimestamp = formatter.string(from: currentDateTime)
         let db = Firestore.firestore()
-        let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
             let text = alertController.textFields!.first!.text!
             let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
@@ -74,7 +75,7 @@ class WaterCustomViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
         }
         alertController.addTextField { (textField) in
-            textField.placeholder = "Report Name"
+            textField.placeholder = "Water Profile"
         }
         alertController.addAction(withdrawAction)
         alertController.addAction(cancelAction)

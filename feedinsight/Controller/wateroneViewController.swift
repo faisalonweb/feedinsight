@@ -25,6 +25,7 @@ class wateroneViewController: UIViewController {
     let userID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
+        self.dismissKey() 
         self.navigationController?.isNavigationBarHidden = true
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         standardbtn.layer.cornerRadius = 8

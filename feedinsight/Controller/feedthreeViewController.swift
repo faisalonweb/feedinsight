@@ -17,6 +17,8 @@ var subUrl: URL?
 var fm = FileManager.default
 var fresult: Bool = false
 var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
+var productList: [Person] = []
+var currentIndex = 0
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
     var dropdownvalues = [String]()
@@ -33,7 +35,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var plusbutton: UIButton!
     let defaults = UserDefaults.standard
     
-    var productList: [Person] = []
+    @IBOutlet weak var viewHeight: NSLayoutConstraint!
+    
     var selectedProductList: [Person] = []
     
     func getData() {
@@ -72,6 +75,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     
     override func viewDidLoad() {
         getData()
+        self.dismissKey()
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
@@ -79,7 +83,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
         addfeed.didSelect{(selectedText , index ,id) in
+            currentIndex = index
         }
+        addfeed.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         for i in 0..<dropdownvalues.count {
             for item in productList {
                 let name = item.FeedName
@@ -88,6 +94,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 }
             }
         }
+        if(self.dropdownvalues.count < 3) {
+            self.viewHeight.constant = 150
+        } else {
+            self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
+        }
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -191,7 +203,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
             let datetimestamp = formatter.string(from: currentDateTime)
             let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Report Name", message: "", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
             let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                 let text = alertController.textFields!.first!.text!
                 let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
@@ -206,7 +218,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
             }
             alertController.addTextField { (textField) in
-                textField.placeholder = "Report Name"
+                textField.placeholder = "Ration Profile"
             }
             alertController.addAction(withdrawAction)
             alertController.addAction(cancelAction)
@@ -223,6 +235,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     
     
     @IBAction func editFeed(_ sender: Any) {
+        
         if addfeed.text == "" {
             self.showError("Select Feed value")
         } else {
@@ -230,7 +243,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 let name = item.FeedName
                 if(addfeed.text == name) {
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
-                    vc?.editList = [item]
                     vc?.screenName = "Edit Feed"
                     self.navigationController?.pushViewController(vc!, animated: true)
                     
@@ -256,6 +268,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             } else {
                 print(addfeed.text ?? "none")
                 dropdownvalues.append(addfeed.text ?? "none")
+                
                 for item in productList {
                     let name = item.FeedName
                     if(addfeed.text == name) {
@@ -266,6 +279,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 calculateFloatArray()
                 print("paki")
                 print("array values is \(dropdownvalues)")
+                if(self.dropdownvalues.count > 2) {
+                    self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
+                }
                 tblView.reloadData()
             }
             
@@ -289,6 +305,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         cell.delegate = self
         cell.cellIndex = indexPath.section
         return cell
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dropdownvalues.count
