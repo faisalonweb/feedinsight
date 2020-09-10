@@ -19,6 +19,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     let defaults = UserDefaults.standard
     var reportNameList = [String]()
     var reportDateList = [String]()
+    var DocumentIdList = [String]()
     var reportProductList = [String]()
     var reportValueList = [String]()
     var CaList = [String]()
@@ -63,6 +64,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     private var datasixstation = [String]()
     private var datasevenstation = [String]()
     private var dataeightstation = [String]()
+    private var documentIdStation = [String]()
+    
     // Premix controller data stations
     // Macro data station
     private var productNameStation = [String]()
@@ -113,6 +116,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currentdatetime"] as? String ?? "20/20/20"
+                        let docID = documentData["DocId"] as? String ?? "20/20/20"
                         let PName = documentData["P"] as? String ?? "Anonymous"
                         let CaName = documentData["Ca"] as? String ?? "Anonymous"
                         let MgName = documentData["Mg"] as? String ?? "Anonymous"
@@ -123,6 +127,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         
                         self.datastation.insert(ReportName, at: 0)
                         self.dataonestation.insert(timestamp, at: 0)
+                        self.documentIdStation.insert(docID, at: 0)
                         self.datatwostation.insert(CaName, at: 0)
                         self.datathreestation.insert(ClName, at: 0)
                         self.datafourstation.insert(MgName, at: 0)
@@ -134,6 +139,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     }
                     self.reportNameList.append(contentsOf: self.datastation)
                     self.reportDateList.append(contentsOf: self.dataonestation)
+                    self.DocumentIdList.append(contentsOf: self.documentIdStation)
                     self.CaList.append(contentsOf: self.datatwostation)
                     self.ClList.append(contentsOf: self.datathreestation)
                     self.MgList.append(contentsOf: self.datafourstation)
@@ -162,8 +168,10 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         let documentData = document.data()
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currenttimedate"] as? String ?? "20/20/20"
+                        let documentiddata = documentData["DocId"] as? String ?? "20/20/20"
                         self.datastation.insert(ReportName, at: i)
                         self.dataonestation.insert(timestamp, at: i)
+                        self.documentIdStation.insert(documentiddata, at: i)
                         i = i + 1
                         self.copyArray.append(documentData as NSDictionary)
                         
@@ -172,6 +180,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     }
                     self.reportNameList.append(contentsOf: self.datastation)
                     self.reportDateList.append(contentsOf: self.dataonestation)
+                    self.DocumentIdList.append(contentsOf: self.documentIdStation)
                     self.reportProductList.append(contentsOf: self.datatwostation)
                     self.reportValueList.append(contentsOf: self.datathreestation)
                     self.tblView.reloadData()
@@ -194,6 +203,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currentdatetime"] as? String ?? "20/20/20"
+                        let documentID = documentData["DocId"] as? String ?? "20/20/20"
                         let productName = documentData["productName"] as? String ?? "Anonymous"
                         let doseQuan = documentData["productDose"] as? String ?? "Anonymous"
                         let pMacro = documentData["pMacroMineral"] as? String ?? "Anonymous"
@@ -223,6 +233,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         
                         self.datastation.insert(ReportName, at: 0)
                         self.dataonestation.insert(timestamp, at: 0)
+                        self.documentIdStation.insert(documentID, at: 0)
+                        
                         // Macro
                         self.productNameStation.insert(productName, at: 0)
                         self.productDoseStation.insert(doseQuan, at: 0)
@@ -253,6 +265,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     }
                     self.reportNameList.append(contentsOf: self.datastation)
                     self.reportDateList.append(contentsOf: self.dataonestation)
+                    self.DocumentIdList.append(contentsOf: self.documentIdStation)
                     
                     // Macro
                     self.productNameList.append(contentsOf: self.productNameStation)
@@ -333,6 +346,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             let vcone = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController;
             vcone?.dropdownvalues = copyArray[indexPath.section]["ProductNameArray"] as! [String]
             vcone?.dropdownfloatValue = copyArray[indexPath.section]["ProductValueArray"] as! [String]
+            vcone?.documentID = DocumentIdList[indexPath.section]
+            vcone?.ReportName = reportNameList[indexPath.section]
             self.navigationController?.pushViewController(vcone!, animated: true)
         }
         else if (screenNAME == "water") {
@@ -344,6 +359,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             addressDict["Na"] = NaList[indexPath.section] as AnyObject
             addressDict["Cl"] = ClList[indexPath.section] as AnyObject
             addressDict["S"] = SList[indexPath.section] as AnyObject
+            addressDict["ReportName"] = reportNameList[indexPath.section] as AnyObject
+            addressDict["DocId"] = DocumentIdList[indexPath.section] as AnyObject
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "myNotificationKey"), object: nil, userInfo: addressDict)
             if let navController = self.navigationController {
@@ -353,8 +370,11 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         else {
             let vcone = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController;
             // Macro
+            vcone?.premixStatus = true
             vcone?.productNameData = productNameList[indexPath.section]
             vcone?.productDoseData = productDoseList[indexPath.section]
+            vcone?.DocumentId = DocumentIdList[indexPath.section]
+            vcone?.ReportName = reportNameList[indexPath.section]
             vcone?.pMacroMineralData = pMacroList[indexPath.section]
             vcone?.caMacroMinerlData = caMacroList[indexPath.section]
             vcone?.mgMacroMineralData = mgMacroList[indexPath.section]

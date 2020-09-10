@@ -37,6 +37,9 @@ class premixViewController: UIViewController {
     @IBOutlet weak var niacinVitamin: UITextField!
     @IBOutlet weak var biotinVitamin: UITextField!
     let userID = Auth.auth().currentUser?.uid
+    var premixStatus : Bool = false
+    var DocumentId : String = ""
+    var ReportName : String = ""
     let defaults = UserDefaults.standard
     // Macro Mineral
     var productNameData = ""
@@ -64,7 +67,7 @@ class premixViewController: UIViewController {
     var biotinVitaminData = ""
     @IBOutlet weak var profileimage: UIImageView!
     override func viewDidLoad() {
-         self.dismissKey()
+        self.dismissKey()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = true
@@ -114,37 +117,179 @@ class premixViewController: UIViewController {
         }
     }
     @IBAction func saveOnClick(_ sender: Any) {
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        formatter.dateStyle = .long
-        let datetimestamp = formatter.string(from: currentDateTime)
-        let db = Firestore.firestore()
-        let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
-        let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-            let text = alertController.textFields!.first!.text!
-            let dict : [String : Any] = ["productName": self.productName.text ?? "none", "productDose" : self.productDose.text ?? "none", "pMacroMineral" : self.pMacroText.text ?? "none","caMacroMineral": self.caMacroText.text ?? "none" , "mgMacroMineral": self.mgMacroText.text ?? "none" , "kMacroMineral": self.kMacroText.text ?? "none", "naMacroMineral": self.naMacroText.text ?? "none" , "clMacroMineral": self.clMacroText.text ?? "none" , "sMacroMineral": self.sMacroText.text ?? "none","coMicroMineral": self.coMicroText.text ?? "none","cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none","cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none","se(inorganic)MicroMineral": self.seMicroText.text ?? "none","se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none","zn(inorganic)MicroMineral": self.znMicroText.text ?? "none","zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none","aiuVitamin": self.aiuVitamin.text ?? "none","diuVitamin": self.diuVitamin.text ?? "none","eiuVitamin": self.eiuVitamin.text ?? "none","niacinVitamin": self.niacinVitamin.text ?? "none","biotinVitamin": self.biotinVitamin.text ?? "none","ReportName" : text,"currentdatetime": datetimestamp]
-            
-            db.collection("premixReports").document(self.userID!).collection("premixReports").addDocument(data: dict){ err in
-                if let err = err {
-                    //                       SVProgressHUD.dismiss()
-                    print("Error adding document: \(err)")
-                } else {
-                    //                       SVProgressHUD.dismiss()
-                    print("Document added")
+        
+        if (premixStatus == true) {
+       // Create Alert
+            let dialogMessage = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
+
+       // Create OK button with action handler
+       let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
+           let currentDateTime = Date()
+                      let formatter = DateFormatter()
+                      formatter.timeStyle = .medium
+                      formatter.dateStyle = .long
+                      let datetimestamp = formatter.string(from: currentDateTime)
+                      let db = Firestore.firestore()
+                      let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
+                      let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                          let text = alertController.textFields!.first!.text!
+                          let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
+                          var dict1: Dictionary<String, String> = [:]
+                          dict1 = ["productName": self.productName.text ?? "none",
+                                   "productDose" : self.productDose.text ?? "none",
+                                   "pMacroMineral" : self.pMacroText.text ?? "none",
+                                   "caMacroMineral": self.caMacroText.text ?? "none" ,
+                                   "mgMacroMineral": self.mgMacroText.text ?? "none" ,
+                                   "kMacroMineral": self.kMacroText.text ?? "none",
+                                   "naMacroMineral": self.naMacroText.text ?? "none" ,
+                                   "clMacroMineral": self.clMacroText.text ?? "none" ,
+                                   "sMacroMineral": self.sMacroText.text ?? "none",
+                                   "coMicroMineral": self.coMicroText.text ?? "none",
+                                   "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
+                                   "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
+                                   "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
+                                   "se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none",
+                                   "zn(inorganic)MicroMineral": self.znMicroText.text ?? "none",
+                                   "zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none",
+                                   "aiuVitamin": self.aiuVitamin.text ?? "none",
+                                   "diuVitamin": self.diuVitamin.text ?? "none",
+                                   "eiuVitamin": self.eiuVitamin.text ?? "none",
+                                   "niacinVitamin": self.niacinVitamin.text ?? "none",
+                                   "biotinVitamin": self.biotinVitamin.text ?? "none",
+                                   "ReportName" : text,
+                                   "currentdatetime": datetimestamp,
+                                   "DocId": newDocument.documentID
+                          ]
+                          newDocument.setData(dict1){ err in
+                              if let err = err {
+                                  print("Error adding document: \(err)")
+                              } else {
+                                  print("Document added")
+                              }
+                          }
+                      }
+                      let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                      }
+                      alertController.addTextField { (textField) in
+                          textField.placeholder = "Premix Profile"
+                      }
+                      alertController.addAction(withdrawAction)
+                      alertController.addAction(cancelAction)
+                      self.present(alertController, animated: true, completion: nil)
+       })
+
+       // Create Cancel button with action handlder
+            let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
+            let currentDateTime = Date()
+                       let formatter = DateFormatter()
+                       formatter.timeStyle = .medium
+                       formatter.dateStyle = .long
+                       let datetimestamp = formatter.string(from: currentDateTime)
+                       let db = Firestore.firestore()
+                          
+                        let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document(self.DocumentId)
+                           var dict1: Dictionary<String, String> = [:]
+                           dict1 = ["productName": self.productName.text ?? "none",
+                                    "productDose" : self.productDose.text ?? "none",
+                                    "pMacroMineral" : self.pMacroText.text ?? "none",
+                                    "caMacroMineral": self.caMacroText.text ?? "none" ,
+                                    "mgMacroMineral": self.mgMacroText.text ?? "none" ,
+                                    "kMacroMineral": self.kMacroText.text ?? "none",
+                                    "naMacroMineral": self.naMacroText.text ?? "none" ,
+                                    "clMacroMineral": self.clMacroText.text ?? "none" ,
+                                    "sMacroMineral": self.sMacroText.text ?? "none",
+                                    "coMicroMineral": self.coMicroText.text ?? "none",
+                                    "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
+                                    "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
+                                    "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
+                                    "se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none",
+                                    "zn(inorganic)MicroMineral": self.znMicroText.text ?? "none",
+                                    "zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none",
+                                    "aiuVitamin": self.aiuVitamin.text ?? "none",
+                                    "diuVitamin": self.diuVitamin.text ?? "none",
+                                    "eiuVitamin": self.eiuVitamin.text ?? "none",
+                                    "niacinVitamin": self.niacinVitamin.text ?? "none",
+                                    "biotinVitamin": self.biotinVitamin.text ?? "none",
+                                    "ReportName" : self.ReportName,
+                                    "currentdatetime": datetimestamp,
+                                    "DocId": newDocument.documentID
+                           ]
+                           newDocument.setData(dict1){ err in
+                               if let err = err {
+                                   print("Error adding document: \(err)")
+                               } else {
+                                   print("Document added")
+                               }
+                           }
+                       
+                      
+       }
+
+       //Add OK and Cancel button to an Alert object
+       dialogMessage.addAction(new)
+       dialogMessage.addAction(previous)
+
+       // Present alert message to user
+       self.present(dialogMessage, animated: true, completion: nil)
+        }
+        else {
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .long
+            let datetimestamp = formatter.string(from: currentDateTime)
+            let db = Firestore.firestore()
+            let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
+            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                let text = alertController.textFields!.first!.text!
+                let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
+                var dict1: Dictionary<String, String> = [:]
+                dict1 = ["productName": self.productName.text ?? "none",
+                         "productDose" : self.productDose.text ?? "none",
+                         "pMacroMineral" : self.pMacroText.text ?? "none",
+                         "caMacroMineral": self.caMacroText.text ?? "none" ,
+                         "mgMacroMineral": self.mgMacroText.text ?? "none" ,
+                         "kMacroMineral": self.kMacroText.text ?? "none",
+                         "naMacroMineral": self.naMacroText.text ?? "none" ,
+                         "clMacroMineral": self.clMacroText.text ?? "none" ,
+                         "sMacroMineral": self.sMacroText.text ?? "none",
+                         "coMicroMineral": self.coMicroText.text ?? "none",
+                         "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
+                         "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
+                         "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
+                         "se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none",
+                         "zn(inorganic)MicroMineral": self.znMicroText.text ?? "none",
+                         "zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none",
+                         "aiuVitamin": self.aiuVitamin.text ?? "none",
+                         "diuVitamin": self.diuVitamin.text ?? "none",
+                         "eiuVitamin": self.eiuVitamin.text ?? "none",
+                         "niacinVitamin": self.niacinVitamin.text ?? "none",
+                         "biotinVitamin": self.biotinVitamin.text ?? "none",
+                         "ReportName" : text,
+                         "currentdatetime": datetimestamp,
+                         "DocId": newDocument.documentID
+                ]
+                newDocument.setData(dict1){ err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added")
+                    }
                 }
             }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            }
+            alertController.addTextField { (textField) in
+                textField.placeholder = "Premix Profile"
+            }
+            alertController.addAction(withdrawAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Premix Profile"
-        }
-        alertController.addAction(withdrawAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+        
     }
     @IBAction func loadOnClick(_ sender: Any) {
+        premixStatus = true
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
         vc?.screenNAME = "premix"
         self.navigationController?.pushViewController(vc!, animated: true)

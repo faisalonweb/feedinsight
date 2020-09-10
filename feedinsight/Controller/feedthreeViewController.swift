@@ -19,10 +19,13 @@ var fresult: Bool = false
 var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
 var productList: [Person] = []
 var currentIndex = 0
+var checkStatus : Bool = false
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
     var dropdownvalues = [String]()
     var dropdownfloatValue = [String]()
+    var documentID : String = ""
+    var ReportName : String = ""
     @IBOutlet weak var userNameLabel: UILabel!
     var getNameData = [String]()
     var getValueData = [String]()
@@ -142,6 +145,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     @IBAction func onClickLoad(_ sender: Any) {
+        checkStatus = true
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
         vc?.screenNAME = "ration"
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -195,45 +199,118 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         
     }
     @IBAction func saveButtonPressed(_ sender: Any) {
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        formatter.dateStyle = .long
-        calculateFloatArray()
-        if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                let text = alertController.textFields!.first!.text!
-                let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
-                db.collection("rationReports").document(self.userID!).collection("rationReports").addDocument(data: dict){ err in
-                    if let err = err {
-                        print("Error adding document: \(err)")
-                    } else {
-                        print("Document added")
+        if (checkStatus == true){
+            // Create Alert
+            let dialogMessage = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
+            
+            // Create OK button with action handler
+            let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                self.calculateFloatArray()
+                if(self.dropdownvalues.count == self.dropdownfloatValue.count && self.dropdownvalues.count > 0 ) {
+                    let datetimestamp = formatter.string(from: currentDateTime)
+                    let db = Firestore.firestore()
+                    let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
+                    let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                        let text = alertController.textFields!.first!.text!
+                        //                        let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                        let newDocument =  db.collection("rationReports").document(self.userID!).collection("rationReports").document()
+                        newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
+                            if let err = err {
+                                print("Error adding document: \(err)")
+                            } else {
+                                print("Document added")
+                            }
+                        }
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                    }
+                    alertController.addTextField { (textField) in
+                        textField.placeholder = "Ration Profile"
+                    }
+                    alertController.addAction(withdrawAction)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
+            })
+            // Create Cancel button with action handlder
+            let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                self.calculateFloatArray()
+                if(self.dropdownvalues.count == self.dropdownfloatValue.count && self.dropdownvalues.count > 0 ) {
+                    let datetimestamp = formatter.string(from: currentDateTime)
+                    let db = Firestore.firestore()
+                    
+                    let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document(self.documentID)
+                    newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added")
+                        }
+                    }
+                    
+                }
+                
+            }
+            //Add OK and Cancel button to an Alert object
+            dialogMessage.addAction(new)
+            dialogMessage.addAction(previous)
+            
+            // Present alert message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        else {
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .long
+            calculateFloatArray()
+            if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
+                let datetimestamp = formatter.string(from: currentDateTime)
+                let db = Firestore.firestore()
+                let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                    let text = alertController.textFields!.first!.text!
+                    //                    let _ : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                    let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
+                    newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added")
+                        }
                     }
                 }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Ration Profile"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Ration Profile"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
         }
-        
-        
     }
-    
-    
     @IBAction func editFeed(_ sender: Any) {
         
         if addfeed.text == "" {
@@ -245,20 +322,16 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
                     vc?.screenName = "Edit Feed"
                     self.navigationController?.pushViewController(vc!, animated: true)
-                    
+                
                 }
             }
         }
-        
     }
-    
     @IBAction func addFeedButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
         vc?.screenName = "Add Feed"
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    
     @IBAction func touchaddbtn(_ sender: Any) {
         if addfeed.text == "" {
             self.showError("Select dropdown value")
