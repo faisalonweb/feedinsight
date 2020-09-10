@@ -348,10 +348,12 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             vcone?.dropdownfloatValue = copyArray[indexPath.section]["ProductValueArray"] as! [String]
             vcone?.documentID = DocumentIdList[indexPath.section]
             vcone?.ReportName = reportNameList[indexPath.section]
+            vcone?.checkStatus = true
             self.navigationController?.pushViewController(vcone!, animated: true)
         }
         else if (screenNAME == "water") {
             var addressDict = [String:AnyObject]()
+            addressDict["waterStatus"] = true as AnyObject
             addressDict["P"] = PList[indexPath.section] as AnyObject
             addressDict["Ca"] = CaList[indexPath.section] as AnyObject
             addressDict["Mg"] = MgList[indexPath.section] as AnyObject

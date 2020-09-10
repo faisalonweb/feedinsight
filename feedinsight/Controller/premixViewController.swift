@@ -224,10 +224,13 @@ class premixViewController: UIViewController {
                        
                       
        }
+            let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
+            }
 
        //Add OK and Cancel button to an Alert object
        dialogMessage.addAction(new)
        dialogMessage.addAction(previous)
+        dialogMessage.addAction(destructive)
 
        // Present alert message to user
        self.present(dialogMessage, animated: true, completion: nil)

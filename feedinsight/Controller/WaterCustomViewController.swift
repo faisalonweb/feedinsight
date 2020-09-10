@@ -54,6 +54,7 @@ class WaterCustomViewController: UIViewController {
             SText.text = dict["S"] as? String
             reportName = (dict["ReportName"] as? String)!
             documentID = (dict["DocId"] as? String)!
+            waterStatus = (dict["waterStatus"] as? Bool)!
         }
     }
     @IBAction func saveOnClick(_ sender: Any) {
@@ -113,10 +114,13 @@ class WaterCustomViewController: UIViewController {
                     }
                 }
             }
+            let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
+                       }
             
             //Add OK and Cancel button to an Alert object
             dialogMessage.addAction(new)
             dialogMessage.addAction(previous)
+             dialogMessage.addAction(destructive)
             
             // Present alert message to user
             self.present(dialogMessage, animated: true, completion: nil)
@@ -155,7 +159,7 @@ class WaterCustomViewController: UIViewController {
         
     }
     @IBAction func loadOnClick(_ sender: Any) {
-        waterStatus = true
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
         vc?.screenNAME = "water"
         self.navigationController?.pushViewController(vc!, animated: true)

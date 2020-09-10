@@ -19,7 +19,7 @@ var fresult: Bool = false
 var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
 var productList: [Person] = []
 var currentIndex = 0
-var checkStatus : Bool = false
+
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
     var dropdownvalues = [String]()
@@ -37,6 +37,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var plusbutton: UIButton!
     let defaults = UserDefaults.standard
+    var checkStatus : Bool = false
     
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     
@@ -145,7 +146,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     @IBAction func onClickLoad(_ sender: Any) {
-        checkStatus = true
+       // checkStatus = true
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
         vc?.screenNAME = "ration"
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -198,6 +199,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
         
     }
+    
     @IBAction func saveButtonPressed(_ sender: Any) {
         if (checkStatus == true){
             // Create Alert
@@ -266,9 +268,14 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 }
                 
             }
+           let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
+            }
             //Add OK and Cancel button to an Alert object
             dialogMessage.addAction(new)
             dialogMessage.addAction(previous)
+            dialogMessage.addAction(destructive)
+                       
+            
             
             // Present alert message to user
             self.present(dialogMessage, animated: true, completion: nil)

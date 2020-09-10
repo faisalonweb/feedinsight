@@ -22,6 +22,7 @@ class loadProfileAnimalsViewController: UIViewController {
     let defaults = UserDefaults.standard
     var animalList = [String]()
     var reportNameList = [String]()
+    var docIdList = [String]()
     var dateList = [String]()
     var companynameList = [String]()
     var categoryList = [String]()
@@ -52,6 +53,7 @@ class loadProfileAnimalsViewController: UIViewController {
     private var datafourteenstation = [Bool]()
     private var datafifteenstation = [Bool]()
     private var datasixteenstation = [String]()
+    private var docIdStation = [String]()
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
@@ -68,6 +70,7 @@ class loadProfileAnimalsViewController: UIViewController {
                     let animaltype = documentData["animalGroup"] as? String ?? "Anonymous"
                     let reportName = documentData["reportName"] as? String ?? "Anonymous"
                     let timestamp = documentData["currentdate"] as? String ?? "20/20/20"
+                    let docID = documentData["DocId"] as? String ?? "20/20/20"
                     let companytype = documentData["companyName"] as? String ?? "Anonymous"
                     let categortype = documentData["categorySelected"] as? String ?? "Anonymous"
                     let currentweighttype = documentData["CurrentBodyWeight"] as? String ?? "Anonymous"
@@ -84,6 +87,7 @@ class loadProfileAnimalsViewController: UIViewController {
                     
                     self.datastation.insert(reportName, at: 0)
                     self.dataonestation.insert(timestamp, at: 0)
+                    self.docIdStation.insert(docID, at: 0)
                     self.datathreestation.insert(companytype, at: 0)
                     self.datafourstation.insert(categortype, at: 0)
                     self.datafivestation.insert(currentweighttype, at: 0)
@@ -101,6 +105,7 @@ class loadProfileAnimalsViewController: UIViewController {
                 }
                 self.reportNameList.append(contentsOf: self.datastation)
                 self.animalList.append(contentsOf: self.datasixteenstation)
+                self.docIdList.append(contentsOf: self.docIdStation)
                 self.dateList.append(contentsOf: self.dataonestation)
                 self.companynameList.append(contentsOf: self.datathreestation)
                 self.categoryList.append(contentsOf: self.datafourstation)
@@ -189,7 +194,10 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "StateView") as? StateViewController;
+        vcone?.stateStatus = true
         vcone?.nameanimal = animalList[indexPath.section]
+        vcone?.ReportName = reportNameList[indexPath.section]
+        vcone?.documentId = docIdList[indexPath.section]
         vcone?.groupcompany =  companynameList[indexPath.section]
         vcone?.statepsychlogical =  psystateList[indexPath.section]
         vcone?.bodycurrentweigth =  currentweightList[indexPath.section]
