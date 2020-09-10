@@ -56,7 +56,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     var industrycellValue = ""
     private let locationManager = LocationManager()
     
-    let textArr = ["Research","Farming","FoodManufacturing"]
+    let textArr = ["Research","Farming","Feed \nManufacturing"]
     let imageArr: [UIImage] = [
         UIImage(named: "research-unselected")!,
         UIImage(named: "farm-unselected")!,
@@ -355,6 +355,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cellIndex = indexPath.item
         cell.imageusr.image = imageArr[cellIndex]
         cell.labelusr.text = textArr[cellIndex]
+        cell.labelusr.numberOfLines = 0
         industrycellValue = cell.labelusr.text!
         if(self.collectionselectedcell == cell.labelusr.text!) {
             cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
@@ -367,11 +368,13 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
+        cell.labelusr.numberOfLines = 0
         cell.imageusr.image = imageArr1[cellIndex]
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
+         cell.labelusr.numberOfLines = 0
         cell.imageusr.image = imageArr[cellIndex]
     }
 }
