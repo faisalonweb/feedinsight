@@ -362,15 +362,22 @@ class premixViewController: UIViewController {
         let pMacroText8 = Double(coMicroText.text!) ?? 0.0
         let pMacroText9 = Double(cuMicroText.text!) ?? 0.0
         let pMacroText10 = Double(cuOrganicMicroText.text!) ?? 0.0
+        let totalCu =  cuMicroText.text! + cuOrganicMicroText.text!
         let pMacroText11 = Double(seMicroText.text!) ?? 0.0
         let pMacroText12 = Double(seOrganicMicroText.text!) ?? 0.0
+        let totalSe = seMicroText.text! + seOrganicMicroText.text!
         let pMacroText13 = Double(znMicroText.text!) ?? 0.0
         let pMacroText14 = Double(znOrganicMicroText.text!) ?? 0.0
+        let totalZn =  znMicroText.text! + znOrganicMicroText.text!
         let pMacroText15 = Double(aiuVitamin.text!) ?? 0.0
         let pMacroText16 = Double(diuVitamin.text!) ?? 0.0
         let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
         let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
+        let pMacroText20 = Double(totalCu) ?? 0.0
+        let pMacroText21 = Double(totalSe) ?? 0.0
+        let pMacroText22 = Double(totalZn) ?? 0.0
+        
         
         requirments.pMacroText = pMacroText1 * doseinKG
         requirments.caMacroText = pMacroText2 * doseinKG
@@ -380,12 +387,12 @@ class premixViewController: UIViewController {
         requirments.clMacroText = pMacroText6 * doseinKG
         requirments.sMacroText = pMacroText7 * doseinKG
         requirments.coMicroText = pMacroText8 * doseinKG
-        requirments.cuMicroText = pMacroText9 * doseinKG
-        requirments.cuOrganicMicroText = pMacroText10 * doseinKG
-        requirments.seMicroText = pMacroText11 * doseinKG
-        requirments.seOrganicMicroText = pMacroText12 * doseinKG
-        requirments.znMicroText = pMacroText13 * doseinKG
-        requirments.znOrganicMicroText = pMacroText14 * doseinKG
+        requirments.cuMicroText = pMacroText20 * doseinKG
+        //requirments.cuOrganicMicroText = pMacroText10 * doseinKG
+        requirments.seMicroText = pMacroText21 * doseinKG
+        //requirments.seOrganicMicroText = pMacroText12 * doseinKG
+        requirments.znMicroText = pMacroText22 * doseinKG
+        //requirments.znOrganicMicroText = pMacroText14 * doseinKG
         requirments.aiuVitamin = pMacroText15 * doseinKG
         requirments.diuVitamin = pMacroText16 * doseinKG
         requirments.eiuVitamin = pMacroText17 * doseinKG

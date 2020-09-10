@@ -22,13 +22,13 @@ class ResultsViewController: UIViewController {
     
     @IBOutlet weak var userNameLabel: UILabel!
     //660
-    var RationArr = ["Ca","Ca (Abs)","P","P (Abs)" ,"Mg", "Mg(Abs)" , "K","S","Na","Cl","Fe","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    var RationArr = ["Ca","P","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
     //210
     var WaterRationArr = ["P","Ca","Mg", "K","S","Na","Cl"]
     // 540
     var requirmentsArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vitamin A","Vitamin D3","Vitamin E","Niacin B3","Biotin B7"]
     //630
-    var PremixArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu(Inorganic)","Cu(Organic)","Se(inorganic)","Se(Organic)","Zn(Inorganic)","Zn(Organic)","AIU","DIU","EIU","Niacin(mg)","Biotin(mg)"]
+    var PremixArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","Se","Zn","AIU","DIU","EIU","Niacin(mg)","Biotin(mg)"]
     override func viewDidLoad() {
         super.viewDidLoad()
         if let userName = defaults.value(forKey: "usernameStringKey"){
@@ -62,7 +62,7 @@ class ResultsViewController: UIViewController {
         self.fourthView.addSubview(self.labelsMatrixView3)
         labelsMatrixView3.addRecord(record: ["No", "Water Results", "Value"])
         for i in 0...WaterRationArr.count - 1 {
-            labelsMatrixView3.addRecord(record: [String(i + 1), WaterRationArr[i], String(format: "%.2f", requirments.waterArrayFinal[i])])
+            labelsMatrixView3.addRecord(record: [String(i + 1), WaterRationArr[i], String(requirments.waterArrayFinal[i])])
         }
         
         // second ration
@@ -70,7 +70,7 @@ class ResultsViewController: UIViewController {
         self.fifthView.addSubview(self.labelsMatrixView4)
         labelsMatrixView4.addRecord(record: ["No", "Premix Results", "Value"])
         for i in 0...PremixArr.count - 1 {
-            labelsMatrixView4.addRecord(record: [String(i + 1), PremixArr[i], String(format: "%.2f", requirments.primexArrayFinal[i])])
+            labelsMatrixView4.addRecord(record: [String(i + 1), PremixArr[i], String(requirments.primexArrayFinal[i])])
         }
         
     }
