@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AY4-zq-SJZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AY4-zq-SJZ">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -682,7 +682,7 @@
                                                 <rect key="frame" x="0.0" y="835" width="414" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-qt-T7g">
-                                                        <rect key="frame" x="20" y="10" width="374" height="61"/>
+                                                        <rect key="frame" x="20" y="10" width="374" height="57"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of Animals" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="cN5-iV-NtW">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="19"/>
@@ -690,12 +690,15 @@
                                                                 <color key="textColor" red="0.31764705879999999" green="0.090196078430000007" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick Animal" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="flE-xp-bSv" customClass="DropDown" customModule="iOSDropDown">
-                                                                <rect key="frame" x="0.0" y="27" width="374" height="34"/>
-                                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMq-fu-HQ7">
+                                                                <rect key="frame" x="0.0" y="27" width="374" height="30"/>
+                                                                <state key="normal" title="Pick Animal">
+                                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="pickAnimalAction:" destination="qgH-8d-5rK" eventType="touchUpInside" id="mux-1S-zYW"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -856,7 +859,7 @@
                                                 <rect key="frame" x="0.0" y="1435" width="414" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hrg-n8-F55">
-                                                        <rect key="frame" x="20" y="10" width="374" height="76.666666666666671"/>
+                                                        <rect key="frame" x="20" y="10" width="374" height="77"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tz4-9k-byq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
@@ -876,7 +879,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an Account? sign in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="cIm-1o-YHq" customClass="ActiveLabel" customModule="ActiveLabel">
-                                                                <rect key="frame" x="0.0" y="60.999999999999993" width="374" height="15.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="61" width="374" height="16"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="13"/>
                                                                 <color key="textColor" red="0.52156862749999999" green="0.51372549020000002" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -894,12 +897,63 @@
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I8y-Uf-OKI">
+                                        <rect key="frame" x="20" y="859" width="374" height="120"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="gXZ-0p-Bey"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AnimalSelection" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnimalSelection" id="Khc-cI-uiV" customClass="AnimalSelectionTableViewCell" customModule="FeedInsight" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="374" height="30"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Khc-cI-uiV" id="SBK-q4-v0B">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-LQ-Oa6">
+                                                            <rect key="frame" x="10" y="2.6666666666666661" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="OFO-6h-rYn"/>
+                                                                <constraint firstAttribute="width" constant="25" id="aWj-jq-9M4"/>
+                                                            </constraints>
+                                                            <state key="normal" image="research-unselected"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESz-xY-TI2">
+                                                            <rect key="frame" x="50" y="5" width="191" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="GT6-LQ-Oa6" firstAttribute="leading" secondItem="SBK-q4-v0B" secondAttribute="leading" constant="10" id="UNZ-xl-IRM"/>
+                                                        <constraint firstItem="ESz-xY-TI2" firstAttribute="centerY" secondItem="SBK-q4-v0B" secondAttribute="centerY" id="Zbq-YD-j1s"/>
+                                                        <constraint firstItem="ESz-xY-TI2" firstAttribute="leading" secondItem="GT6-LQ-Oa6" secondAttribute="trailing" constant="15" id="bjc-i1-MxF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ESz-xY-TI2" secondAttribute="trailing" constant="133" id="cF2-Gq-wYF"/>
+                                                        <constraint firstItem="GT6-LQ-Oa6" firstAttribute="centerY" secondItem="SBK-q4-v0B" secondAttribute="centerY" id="dqq-s3-gGt"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="setAnimalName" destination="ESz-xY-TI2" id="0Rc-ke-QZM"/>
+                                                    <outlet property="tickImage" destination="GT6-LQ-Oa6" id="iTf-RD-pWE"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="qgH-8d-5rK" id="bYS-d2-8nM"/>
+                                            <outlet property="delegate" destination="qgH-8d-5rK" id="541-xY-hLh"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="K7s-6G-PEf" firstAttribute="leading" secondItem="SZ8-FU-gfR" secondAttribute="leading" id="0o6-Rz-bGi"/>
                                     <constraint firstAttribute="bottom" secondItem="K7s-6G-PEf" secondAttribute="bottom" id="8fm-W8-ZWf"/>
+                                    <constraint firstItem="I8y-Uf-OKI" firstAttribute="top" secondItem="DqU-qt-T7g" secondAttribute="bottom" constant="2" id="DcC-kf-Jd1"/>
                                     <constraint firstAttribute="trailing" secondItem="K7s-6G-PEf" secondAttribute="trailing" id="RJY-GX-6oT"/>
                                     <constraint firstItem="K7s-6G-PEf" firstAttribute="top" secondItem="Zda-Gc-Uaw" secondAttribute="top" constant="-45" id="i4g-Se-Yfu"/>
+                                    <constraint firstItem="I8y-Uf-OKI" firstAttribute="leading" secondItem="DqU-qt-T7g" secondAttribute="leading" id="jNz-3i-idw"/>
+                                    <constraint firstItem="I8y-Uf-OKI" firstAttribute="trailing" secondItem="DqU-qt-T7g" secondAttribute="trailing" id="sZa-jU-rdJ"/>
                                     <constraint firstItem="K7s-6G-PEf" firstAttribute="width" secondItem="SZ8-FU-gfR" secondAttribute="width" id="vdf-TH-Tal"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Zda-Gc-Uaw"/>
@@ -916,9 +970,9 @@
                         <viewLayoutGuide key="safeArea" id="CTa-Do-IX0"/>
                     </view>
                     <connections>
+                        <outlet property="animalSelectionTableView" destination="I8y-Uf-OKI" id="gAs-NF-Jwx"/>
                         <outlet property="collectionview" destination="KyJ-AL-xDf" id="X5j-Oy-9cb"/>
                         <outlet property="countrycode" destination="14o-SZ-Q1t" id="68e-Zg-lDM"/>
-                        <outlet property="pickanimal" destination="flE-xp-bSv" id="aiR-lF-LVC"/>
                         <outlet property="picklocation" destination="LeJ-Rl-6Jr" id="I25-Ff-LlL"/>
                         <outlet property="pickrole" destination="WAD-N2-Qbk" id="dZB-cz-rXD"/>
                         <outlet property="signinoutlet" destination="cIm-1o-YHq" id="ly3-nk-f8h"/>
@@ -7873,6 +7927,7 @@
         <image name="ibackrrow" width="30" height="30"/>
         <image name="isplash" width="375" height="812"/>
         <image name="purple" width="56" height="56"/>
+        <image name="research-unselected" width="2134" height="2134"/>
         <image name="ruminants" width="2134" height="2134"/>
         <image name="toggle-Yes" width="2168" height="872"/>
         <image name="userimage" width="30" height="30"/>

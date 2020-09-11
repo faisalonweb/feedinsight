@@ -16,7 +16,35 @@ import Firebase
 import CountryPickerView
 import SVProgressHUD
 
-class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource{
+class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource{
+    
+    let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalSelection", for: indexPath) as! AnimalSelectionTableViewCell
+        cell.setAnimalName?.text = animalNameArray[indexPath.row]
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    
+    
+    @IBAction func pickAnimalAction(_ sender: Any) {
+        if(self.animalSelectionTableView.isHidden == true) {
+            self.animalSelectionTableView.isHidden = false
+            self.animalSelectionTableView.reloadData()
+        } else {
+            self.animalSelectionTableView.isHidden = true
+        }
+    }
+    
     
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var pickanimal: DropDown!
@@ -31,6 +59,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var usercnfpassword: UITextField!
     @IBOutlet weak var countrycode: CountryPickerView!
     @IBOutlet weak var signinoutlet: ActiveLabel!
+    @IBOutlet weak var animalSelectionTableView: UITableView!
     
     struct dKeys {
         static let keyAnimal = "animalStringKey"
@@ -86,6 +115,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     override func viewDidLoad() {
         self.dismissKey()
         SignupCollectionData = DataAppend.getAllSignupData()
+        self.animalSelectionTableView.isHidden = true
         super.viewDidLoad()
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
         let lineArray = text.components(separatedBy: "\n")
