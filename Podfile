@@ -23,6 +23,7 @@ target 'FeedInsight' do
   pod 'FirebaseUI/Storage'
   pod 'CoreXLSX'
   pod "SearchTextField"
+  pod 'Google-Mobile-Ads-SDK'
   
 end
 

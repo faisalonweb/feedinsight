@@ -36,43 +36,43 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let cell = tableView.cellForRow(at: indexPath) as! animalTypeTableViewCell
-         
-         if cell.setimagebtn.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
-             cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
-             animalSelectionArray.append(animalNameArray[indexPath.row])
-             var copyStr : String = ""
-             pickAnimalSelection.setTitle("", for: .normal)
-             for i in 0 ..< animalSelectionArray.count {
-                 let string : String = animalSelectionArray[i] + " , "
-                 copyStr = copyStr + string
-                 pickAnimalSelection.setTitle(copyStr, for: .normal)
-             }
-         } else {
+        let cell = tableView.cellForRow(at: indexPath) as! animalTypeTableViewCell
+        
+        if cell.setimagebtn.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
+            cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
+            animalSelectionArray.append(animalNameArray[indexPath.row])
+            var copyStr : String = ""
+            pickAnimalSelection.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickAnimalSelection.setTitle(copyStr, for: .normal)
+            }
+        } else {
             cell.setimagebtn.setImage(UIImage(named: "animaluncheck"), for:  .normal)
-             if(animalSelectionArray.count != 0) {
-                 for i in 0 ..< animalSelectionArray.count {
-                     if(animalSelectionArray[i] == cell.labelset.text) {
-                         animalSelectionArray.remove(at: i)
-                         break
-                     }
-                 }
-             }
-
-             var copyStr : String = ""
-             pickAnimalSelection.setTitle("", for: .normal)
-             for i in 0 ..< animalSelectionArray.count {
-                 let string : String = animalSelectionArray[i] + " , "
-                 copyStr = copyStr + string
-                 pickAnimalSelection.setTitle(copyStr, for: .normal)
-             }
-         }
-         
-     }
+            if(animalSelectionArray.count != 0) {
+                for i in 0 ..< animalSelectionArray.count {
+                    if(animalSelectionArray[i] == cell.labelset.text) {
+                        animalSelectionArray.remove(at: i)
+                        break
+                    }
+                }
+            }
+            
+            var copyStr : String = ""
+            pickAnimalSelection.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickAnimalSelection.setTitle(copyStr, for: .normal)
+            }
+        }
+        
+    }
     @IBAction func pickAnimalSelection(_ sender: Any) {
         if(self.animaltableview.isHidden == true) {
             self.animaltableview.isHidden = false
-           // self.animaltableview.reloadData()
+            // self.animaltableview.reloadData()
         } else {
             self.animaltableview.isHidden = true
         }
@@ -195,13 +195,13 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.useremail.text = userEmail as? String
             print(userEmail)
         }
-                if let animal = defaults.value(forKey: dKeys.keyAnimal){
-        
-                    //self.userdropdown.text = animal as? String
-                    //print(animal)
-                    self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
-                   
-                }
+        if let animal = defaults.value(forKey: dKeys.keyAnimal){
+            
+            //self.userdropdown.text = animal as? String
+            //print(animal)
+            self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
+            
+        }
         
         if let countrycode = defaults.value(forKey: dKeys.keycountrycode){
             
@@ -299,35 +299,35 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
-//        locationField.optionArray = pickerData1
-//        locationField.didSelect{(selectedText , index ,id) in
-//        }
-//        locationField.arrowSize = 0
-//        locationField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+        //        locationField.optionArray = pickerData1
+        //        locationField.didSelect{(selectedText , index ,id) in
+        //        }
+        //        locationField.arrowSize = 0
+        //        locationField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         //        userdropdown.optionArray = ["Cow","Deer","Camel"]
         //        userdropdown.didSelect{(selectedText , index ,id) in
         //        }
         //        userdropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-         locationField.filterStrings(pickerData1)
-         locationField.maxNumberOfResults = 2
-         locationField.theme.font = UIFont.systemFont(ofSize: 14)
-         locationField.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-         locationField.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-         locationField.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        locationField.filterStrings(pickerData1)
+        locationField.maxNumberOfResults = 2
+        locationField.theme.font = UIFont.systemFont(ofSize: 14)
+        locationField.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        locationField.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        locationField.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         locationField.theme.cellHeight = 40
         locationField.itemSelectionHandler = { filteredResults, itemPosition in
-             // Just in case you need the item position
-             let item = filteredResults[itemPosition]
-             print("Item at position \(itemPosition): \(item.title)")
-
-             // Do whatever you want with the picked item
-             self.locationField.text = item.title
-         }
+            // Just in case you need the item position
+            let item = filteredResults[itemPosition]
+            print("Item at position \(itemPosition): \(item.title)")
+            
+            // Do whatever you want with the picked item
+            self.locationField.text = item.title
+        }
         
-//        roledropdown.optionArray = ["Admin","Client","Lender"]
-//        roledropdown.didSelect{(selectedText , index ,id) in
-//        }
-//        roledropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+        //        roledropdown.optionArray = ["Admin","Client","Lender"]
+        //        roledropdown.didSelect{(selectedText , index ,id) in
+        //        }
+        //        roledropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         //let itemSize = UIScreen.main.bounds.width/5 - 3
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -343,9 +343,9 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         
     }
     @IBAction func clickOnLogout(_ sender: Any) {
-            let firebaseAuth = Auth.auth()
+        let firebaseAuth = Auth.auth()
         do {
-          try firebaseAuth.signOut()
+            try firebaseAuth.signOut()
             let defaults = UserDefaults.standard
             let dictionary = defaults.dictionaryRepresentation()
             dictionary.keys.forEach { key in
@@ -353,25 +353,31 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             }
             let vcone = storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController; self.navigationController?.pushViewController(vcone!, animated: true)
         } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
+            print ("Error signing out: %@", signOutError)
         }
-          
+        
     }
     
     @IBAction func clickOnLogoutIcon(_ sender: Any) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-            let defaults = UserDefaults.standard
-            let dictionary = defaults.dictionaryRepresentation()
-            dictionary.keys.forEach { key in
-                defaults.removeObject(forKey: key)
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                let defaults = UserDefaults.standard
+                let dictionary = defaults.dictionaryRepresentation()
+                dictionary.keys.forEach { key in
+                    defaults.removeObject(forKey: key)
+                }
+                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
+                self.navigationController?.pushViewController(vcone!, animated: true)
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
             }
-            let vcone = storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     
@@ -460,7 +466,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                     print(error)
                                 }
                                 else {
-                                    //                                SVProgressHUD.dismiss()
                                     print("No error while updating the email")
                                 }
                             }
