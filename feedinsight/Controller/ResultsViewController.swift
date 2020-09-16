@@ -70,7 +70,7 @@ class ResultsViewController: UIViewController {
         self.fifthView.addSubview(self.labelsMatrixView4)
         labelsMatrixView4.addRecord(record: ["No", "Premix Results", "Value"])
         for i in 0...PremixArr.count - 1 {
-            labelsMatrixView4.addRecord(record: [String(i + 1), PremixArr[i], String(requirments.primexArrayFinal[i])])
+            labelsMatrixView4.addRecord(record: [String(i + 1), PremixArr[i], String(format: "%.2f",requirments.primexArrayFinal[i])])
         }
         
     }

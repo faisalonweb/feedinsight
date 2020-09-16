@@ -72,16 +72,23 @@ class WaterCustomViewController: UIViewController {
                 let db = Firestore.firestore()
                 let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
                     let text = alertController.textFields!.first!.text!
                     //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
                     let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document()
                     newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID]){ err in
                         if let err = err {
                             //                       SVProgressHUD.dismiss()
+                           SVProgressHUD.showError(withStatus: "Error")
+                            
                             print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
                         } else {
                             //                       SVProgressHUD.dismiss()
+                            SVProgressHUD.showSuccess(withStatus: "Sucess")
+                            
                             print("Document added")
+                            SVProgressHUD.dismiss()
                         }
                     }
                 }
@@ -97,6 +104,7 @@ class WaterCustomViewController: UIViewController {
             
             // Create Cancel button with action handlder
             let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
+                SVProgressHUD.show(withStatus: "it's working ...")
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -107,10 +115,16 @@ class WaterCustomViewController: UIViewController {
                 newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : self.reportName,"currentdatetime": datetimestamp, "DocId": newDocument.documentID]){ err in
                     if let err = err {
                         //                       SVProgressHUD.dismiss()
+                       SVProgressHUD.showError(withStatus: "Error")
+                        
                         print("Error adding document: \(err)")
+                        SVProgressHUD.dismiss()
                     } else {
                         //                       SVProgressHUD.dismiss()
+                       SVProgressHUD.showSuccess(withStatus: "Sucess")
+                        
                         print("Document added")
+                        SVProgressHUD.dismiss()
                     }
                 }
             }
@@ -134,16 +148,23 @@ class WaterCustomViewController: UIViewController {
             let db = Firestore.firestore()
             let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
             let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                SVProgressHUD.show(withStatus: "it's working ...")
                 let text = alertController.textFields!.first!.text!
                 //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
                 let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document()
                 newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID]){ err in
                     if let err = err {
                         //                       SVProgressHUD.dismiss()
+                        SVProgressHUD.showError(withStatus: "Error")
+                        
                         print("Error adding document: \(err)")
+                        SVProgressHUD.dismiss()
                     } else {
                         //                       SVProgressHUD.dismiss()
+                        SVProgressHUD.showSuccess(withStatus: "Sucess")
+                        
                         print("Document added")
+                        SVProgressHUD.dismiss()
                     }
                 }
             }

@@ -12,6 +12,7 @@ import Firebase
 import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
+import SVProgressHUD
 
 var subUrl: URL?
 var fm = FileManager.default
@@ -207,6 +208,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             
             // Create OK button with action handler
             let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
+               
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -217,14 +219,22 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let db = Firestore.firestore()
                     let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
                     let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                         SVProgressHUD.show(withStatus: "it's working ...")
                         let text = alertController.textFields!.first!.text!
                         //                        let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
                         let newDocument =  db.collection("rationReports").document(self.userID!).collection("rationReports").document()
                         newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
                             if let err = err {
-                                print("Error adding document: \(err)")
+                                SVProgressHUD.showError(withStatus: "Error")
+                                                       
+                                                       print("Error adding document: \(err)")
+                                                       SVProgressHUD.dismiss()
+                                
                             } else {
+                                SVProgressHUD.showSuccess(withStatus: "Success")
+                                
                                 print("Document added")
+                                SVProgressHUD.dismiss()
                             }
                         }
                     }
@@ -247,6 +257,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             })
             // Create Cancel button with action handlder
             let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
+                SVProgressHUD.show(withStatus: "it's working ...")
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -259,9 +270,15 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document(self.documentID)
                     newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
                         if let err = err {
+                           SVProgressHUD.showError(withStatus: "Error")
+                            
                             print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
                         } else {
-                            print("Document added")
+                            SVProgressHUD.showSuccess(withStatus: "Success")
+                                                           
+                                                           print("Document added")
+                                                           SVProgressHUD.dismiss()
                         }
                     }
                     
@@ -281,6 +298,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.present(dialogMessage, animated: true, completion: nil)
         }
         else {
+            
             let currentDateTime = Date()
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
@@ -291,14 +309,21 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 let db = Firestore.firestore()
                 let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
                     let text = alertController.textFields!.first!.text!
                     //                    let _ : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
                     let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
                     newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
                         if let err = err {
+                            SVProgressHUD.showError(withStatus: "Error")
+                            
                             print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
                         } else {
-                            print("Document added")
+                             SVProgressHUD.showSuccess(withStatus: "Success")
+                                                           
+                                                           print("Document added")
+                                                           SVProgressHUD.dismiss()
                         }
                     }
                 }

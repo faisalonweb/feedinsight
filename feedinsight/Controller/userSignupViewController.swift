@@ -1,10 +1,8 @@
-//
 //  userSignupViewController.swift
 //  FeedInsight
 //
 //  Created by Mac 2014 on 17/06/2020.
 //  Copyright © 2020 faisal. All rights reserved.
-//
 
 import UIKit
 import iOSDropDown
@@ -15,6 +13,7 @@ import FirebaseAuth
 import Firebase
 import CountryPickerView
 import SVProgressHUD
+import SearchTextField
 
 class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource{
     
@@ -24,6 +23,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalSelection", for: indexPath) as! AnimalSelectionTableViewCell
         cell.setAnimalName?.text = animalNameArray[indexPath.row]
+        cell.tickImage.setImage(UIImage(named:"animaluncheck"), for: .normal)
         return cell
     }
     
@@ -34,22 +34,58 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! AnimalSelectionTableViewCell
+        
+        if cell.tickImage.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
+            cell.tickImage.setImage(UIImage(named: "animalcheck"), for:  .normal)
+            animalSelectionArray.append(animalNameArray[indexPath.row])
+            var copyStr : String = ""
+            pickani.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickani.setTitle(copyStr, for: .normal)
+            }
+        } else {
+            cell.tickImage.setImage(UIImage(named: "animaluncheck"), for:  .normal)
+            if(animalSelectionArray.count != 0) {
+                for i in 0 ..< animalSelectionArray.count {
+                    if(animalSelectionArray[i] == cell.setAnimalName.text) {
+                        animalSelectionArray.remove(at: i)
+                        break
+                    }
+                }
+            }
+
+            var copyStr : String = ""
+            pickani.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickani.setTitle(copyStr, for: .normal)
+            }
+        }
+        
+    }
     
     
     @IBAction func pickAnimalAction(_ sender: Any) {
         if(self.animalSelectionTableView.isHidden == true) {
             self.animalSelectionTableView.isHidden = false
-            self.animalSelectionTableView.reloadData()
+            //self.animalSelectionTableView.reloadData()
         } else {
             self.animalSelectionTableView.isHidden = true
         }
     }
     
     
+    
+    @IBOutlet weak var pickani: UIButton!
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var pickanimal: DropDown!
-    @IBOutlet weak var pickrole: DropDown!
-    @IBOutlet weak var picklocation: DropDown!
+    @IBOutlet weak var pickrole: UITextField!
+    @IBOutlet weak var picklocation: SearchTextField!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var useremail: UITextField!
     @IBOutlet weak var userphoneno: UITextField!
@@ -60,6 +96,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var countrycode: CountryPickerView!
     @IBOutlet weak var signinoutlet: ActiveLabel!
     @IBOutlet weak var animalSelectionTableView: UITableView!
+    @IBOutlet weak var industryLabel: UILabel!
     
     struct dKeys {
         static let keyAnimal = "animalStringKey"
@@ -78,6 +115,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     var SignupCollectionData = [SignupModel]()
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
+    var animalSelectionArray: [String] = [String]()
     private let locationManager = LocationManager()
     var industrycellValue = ""
     let textArr = ["Research","Farming","Feed \nManufacturing"]
@@ -85,6 +123,16 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         UIImage(named: "research-unselected")!,
         UIImage(named: "farm-unselected")!,
         UIImage(named: "feedmanufacturing-unselected")!,
+    ]
+    let animalArr: [UIImage] = [
+        UIImage(named: "CheckBoxChecked")!,
+        UIImage(named: "CheckBoxChecked")!,
+        UIImage(named: "CheckBoxChecked")!,
+    ]
+    let animalArrOne: [UIImage] = [
+        UIImage(named: "CheckBoxUnChecked")!,
+        UIImage(named: "CheckBoxUnChecked")!,
+        UIImage(named: "CheckBoxUnChecked")!,
     ]
     let imageArr1: [UIImage] = [
         UIImage(named: "research-selected")!,
@@ -114,6 +162,17 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     override func viewDidLoad() {
         self.dismissKey()
+        animalSelectionTableView.clipsToBounds = false
+        animalSelectionTableView.layer.masksToBounds = false
+        animalSelectionTableView.layer.shadowColor = UIColor.lightGray.cgColor
+        animalSelectionTableView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        animalSelectionTableView.layer.shadowRadius = 5.0
+        animalSelectionTableView.layer.shadowOpacity = 0.5
+        pickani.titleEdgeInsets.top = 0
+        pickani.titleEdgeInsets.left = 8
+        pickani.titleEdgeInsets.bottom = 0
+        pickani.titleEdgeInsets.right = 0
+        self.dismissKey()
         SignupCollectionData = DataAppend.getAllSignupData()
         self.animalSelectionTableView.isHidden = true
         super.viewDidLoad()
@@ -124,28 +183,45 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
-//        pickanimal.optionArray = ["Poultry","Equines","Ruminants"]
-//        pickanimal.didSelect{(selectedText , index ,id) in
+        pickani.layer.borderWidth = 1
+        pickani.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
+//        pickrole.optionArray = ["Option 1", "Option 2", "Option 3"]
+//        pickrole.optionArray = ["Admin","user","manager"]
+//        pickrole.didSelect{(selectedText , index ,id) in
 //        }
-//        pickanimal.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        pickrole.optionArray = ["Option 1", "Option 2", "Option 3"]
-        pickrole.optionArray = ["Admin","user","manager"]
-        pickrole.didSelect{(selectedText , index ,id) in
+//        pickrole.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+        // Set the array of strings you want to suggest
+        picklocation.filterStrings(pickerData1)
+        picklocation.maxNumberOfResults = 2
+        picklocation.theme.font = UIFont.systemFont(ofSize: 14)
+        picklocation.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        picklocation.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        picklocation.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        picklocation.theme.cellHeight = 40
+       picklocation.itemSelectionHandler = { filteredResults, itemPosition in
+            // Just in case you need the item position
+            let item = filteredResults[itemPosition]
+            print("Item at position \(itemPosition): \(item.title)")
+
+            // Do whatever you want with the picked item
+            self.picklocation.text = item.title
         }
-        pickrole.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        picklocation.optionArray = pickerData1
-        picklocation.didSelect{(selectedText , index ,id) in
-        }
-        picklocation.selectedRowColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        //picklocation.hideList()
-        picklocation.arrowSize = 0
+        //picklocation.theme = SearchTextFieldTheme.darkTheme()
+        // Then set the inline mode in true
+        //picklocation.inlineMode = true
+//        picklocation.optionArray = pickerData1
+//        //picklocation.hideList()
+//        picklocation.didSelect{(selectedText , index ,id) in
+//        }
+//        picklocation.selectedRowColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+//        picklocation.arrowSize = 0
         //picklocation.touchAction()
-        let itemSize = UIScreen.main.bounds.width/3 - 2
+        //let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.itemSize = CGSize(width: 117, height: 150)
         layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 16
+        layout.minimumLineSpacing = 10
         collectionview.collectionViewLayout = layout
         let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
         signinoutlet.enabledTypes.append(customType)
@@ -192,7 +268,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             let password = userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let busindessEnter = userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let pickrolEnter = pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let pickanimalEnter = pickanimal.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            //let pickanimalEnter = pickanimal.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
@@ -203,7 +279,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                 }
                 else {
                     let db = Firestore.firestore()
-                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter, "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
+                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : self.pickani.titleLabel!.text! , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
                         if error != nil {
                             SVProgressHUD.showError(withStatus:"Data insertion failed")
                             self.showError(error!.localizedDescription)
@@ -246,7 +322,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             usercnfpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             pickrole.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            pickanimal.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            //pickanimal.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
@@ -279,7 +355,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signupimage.image = imageArr[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 15
+        cell.layer.masksToBounds = true
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -289,6 +366,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signupimage.image = imageArr1[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
+        
+        userindustry.alpha = 0.3
+        industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+        userindustry.isUserInteractionEnabled =  false
+        
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell

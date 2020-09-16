@@ -58,6 +58,7 @@
 		1AC35CDA245098AF001C7693 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC35CD9245098AF001C7693 /* iOSDropDown.framework */; };
 		1AC35CDC24509D5C001C7693 /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC35CDB24509D5C001C7693 /* StateViewController.swift */; };
 		1AC88FC92466D4AF00694903 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC88FC82466D4AF00694903 /* PaddingTextField.swift */; };
+		1ACCDCC9250F9C3200BC13EE /* animalTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACCDCC8250F9C3200BC13EE /* animalTypeTableViewCell.swift */; };
 		1ADBC19F249A9DE800D061B5 /* userSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADBC19E249A9DE800D061B5 /* userSignupViewController.swift */; };
 		1ADBC1A1249AA08D00D061B5 /* userSignupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADBC1A0249AA08D00D061B5 /* userSignupCollectionViewCell.swift */; };
 		1AE3587824EA78A600A7E0AA /* waterrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3587724EA78A600A7E0AA /* waterrationViewController.swift */; };
@@ -130,6 +131,7 @@
 		1AC35CD9245098AF001C7693 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC35CDB24509D5C001C7693 /* StateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
 		1AC88FC82466D4AF00694903 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
+		1ACCDCC8250F9C3200BC13EE /* animalTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animalTypeTableViewCell.swift; sourceTree = "<group>"; };
 		1ADBC19E249A9DE800D061B5 /* userSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSignupViewController.swift; sourceTree = "<group>"; };
 		1ADBC1A0249AA08D00D061B5 /* userSignupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSignupCollectionViewCell.swift; sourceTree = "<group>"; };
 		1AE3587724EA78A600A7E0AA /* waterrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waterrationViewController.swift; sourceTree = "<group>"; };
@@ -303,8 +305,9 @@
 				046A1B942455AAA00012F519 /* profileTitleTableViewCell.xib */,
 				04236AE62450E19900C66F66 /* AnimalCollectionViewCell.swift */,
 				1ABC8BA424D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift */,
-				1AE3587B24EA872300A7E0AA /* waterrationTableViewCell.swift */,
 				C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */,
+				1ACCDCC8250F9C3200BC13EE /* animalTypeTableViewCell.swift */,
+				1AE3587B24EA872300A7E0AA /* waterrationTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */,
 				1ABC8BA524D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift in Sources */,
 				1A277B9D24C6FC4700FDA1DD /* feedthreeViewController.swift in Sources */,
+				1ACCDCC9250F9C3200BC13EE /* animalTypeTableViewCell.swift in Sources */,
 				1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */,
 				04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */,
 				1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */,
@@ -672,7 +676,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -695,7 +699,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
