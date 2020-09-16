@@ -95,8 +95,23 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBOutlet weak var countryCode: CountryPickerView!
     @IBOutlet weak var induslabel: UILabel!
     @IBOutlet weak var animaltableview: UITableView!
-    
     @IBOutlet weak var pickAnimalSelection: UIButton!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var indusview: UIView!
+    @IBOutlet weak var otherindusView: UIView!
+    @IBOutlet weak var animalView: UIView!
+    @IBOutlet weak var bussView: UIView!
+    @IBOutlet weak var roleView: UIView!
+    @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var password: UIView!
+    @IBOutlet weak var cnfpassView: UIView!
+    @IBOutlet weak var changeView: UIView!
+    
+    
+    
     var db: Firestore!
     var urllink : URL!
     var urlbool : Bool = false
@@ -162,6 +177,35 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     
     override func viewDidLoad() {
+        self.dismissKey()
+        let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let taplocation = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        
+        emailView.addGestureRecognizer(tapemail)
+        headerView.addGestureRecognizer(tapheader)
+        nameView.addGestureRecognizer(tapname)
+        phoneView.addGestureRecognizer(tapphone)
+        //indusview.addGestureRecognizer(tapindus)
+        otherindusView.addGestureRecognizer(tapotherindus)
+        animalView.addGestureRecognizer(tapanimal)
+        bussView.addGestureRecognizer(tapbuss)
+        locationView.addGestureRecognizer(taplocation)
+        roleView.addGestureRecognizer(taprole)
+        password.addGestureRecognizer(tappass)
+        cnfpassView.addGestureRecognizer(tapcnfpass)
+        changeView.addGestureRecognizer(tapsignup)
         self.animaltableview.isHidden = true
         animaltableview.clipsToBounds = false
         animaltableview.layer.masksToBounds = false
@@ -357,7 +401,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
           
     }
-    
+    @objc func tapAction() {
+
+        self.animaltableview.isHidden = true
+
+       }
     @IBAction func clickOnLogoutIcon(_ sender: Any) {
         
         let firebaseAuth = Auth.auth()

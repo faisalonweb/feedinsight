@@ -696,8 +696,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="ON6-Ma-0YJ"/>
                                                                 </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" title="Pick Animal">
-                                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="titleColor" white="0.66666666666666663" alpha="0.63848458904109584" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
@@ -980,13 +981,25 @@
                     </view>
                     <connections>
                         <outlet property="animalSelectionTableView" destination="I8y-Uf-OKI" id="gAs-NF-Jwx"/>
+                        <outlet property="businessView" destination="lcu-u0-pAS" id="g98-ed-h0N"/>
+                        <outlet property="cnfpassView" destination="SiH-k0-yM9" id="1Em-im-ltD"/>
                         <outlet property="collectionview" destination="KyJ-AL-xDf" id="X5j-Oy-9cb"/>
                         <outlet property="countrycode" destination="14o-SZ-Q1t" id="68e-Zg-lDM"/>
+                        <outlet property="emailView" destination="gjT-Qu-U79" id="QFD-0j-Tir"/>
+                        <outlet property="headerView" destination="iJ1-JS-V6G" id="hX4-Si-CUN"/>
                         <outlet property="industryLabel" destination="pJa-gK-Q2s" id="XQF-j1-CUy"/>
+                        <outlet property="locationView" destination="BjW-bg-Rry" id="0n1-OU-b3o"/>
+                        <outlet property="nameView" destination="cZu-gj-HCv" id="0tt-V6-cyu"/>
+                        <outlet property="otherIndustryView" destination="3BB-E1-lFD" id="42w-0O-nbL"/>
+                        <outlet property="passView" destination="gqs-ls-hv6" id="c7t-8R-EMP"/>
+                        <outlet property="phoneView" destination="WlI-6N-ohF" id="AVa-pn-QXq"/>
                         <outlet property="pickani" destination="sMq-fu-HQ7" id="F2O-GE-3tc"/>
                         <outlet property="picklocation" destination="LeJ-Rl-6Jr" id="I25-Ff-LlL"/>
                         <outlet property="pickrole" destination="WAD-N2-Qbk" id="dZB-cz-rXD"/>
+                        <outlet property="roleView" destination="tCJ-D9-CuN" id="Jmh-i3-NRw"/>
                         <outlet property="signinoutlet" destination="cIm-1o-YHq" id="ly3-nk-f8h"/>
+                        <outlet property="signupView" destination="58v-q6-oq0" id="0ZB-U0-eDe"/>
+                        <outlet property="typeAnimalView" destination="ylC-fb-HoK" id="saX-Rw-sfM"/>
                         <outlet property="userbussiness" destination="yO5-ko-nkQ" id="jbO-3s-dv1"/>
                         <outlet property="usercnfpassword" destination="0Ak-6p-t8T" id="AIh-Ds-cM8"/>
                         <outlet property="useremail" destination="Dff-Sj-kuF" id="MAv-DY-RAa"/>
@@ -994,6 +1007,7 @@
                         <outlet property="username" destination="gKL-ec-4ZZ" id="IOc-ja-URT"/>
                         <outlet property="userpassword" destination="XDd-Y5-eBe" id="6Mm-dR-kqd"/>
                         <outlet property="userphoneno" destination="xXl-Yq-TDU" id="u2V-2C-GJ6"/>
+                        <outlet property="welcomeView" destination="BrY-D1-mIj" id="cc5-MO-7qw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKr-8c-bQJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4472,13 +4486,25 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="userimage" id="1jc-1h-8Dn"/>
                     <connections>
+                        <outlet property="animalView" destination="pEg-ij-yeS" id="Aw5-El-T6i"/>
                         <outlet property="animaltableview" destination="w6T-xa-c9Z" id="mes-db-fft"/>
+                        <outlet property="bussView" destination="x12-nH-iHO" id="b8l-Lw-ff3"/>
+                        <outlet property="changeView" destination="rF6-0w-g5O" id="4JR-RX-8Um"/>
                         <outlet property="changebutton" destination="xOa-eH-QCL" id="bzM-LN-Nvk"/>
+                        <outlet property="cnfpassView" destination="Gqr-GD-j3O" id="cHa-IK-BWn"/>
                         <outlet property="collectionView" destination="C5x-E6-Oar" id="7ra-BY-JFi"/>
                         <outlet property="countryCode" destination="QyW-4b-vrZ" id="kCs-JV-LoB"/>
+                        <outlet property="emailView" destination="lvf-x1-q65" id="2xe-yN-oag"/>
+                        <outlet property="headerView" destination="mWU-3y-yG4" id="os1-1f-AVA"/>
                         <outlet property="induslabel" destination="9aT-HM-TiA" id="zlM-fV-cGo"/>
                         <outlet property="locationField" destination="e0P-dA-QKx" id="6Q4-BR-arU"/>
+                        <outlet property="locationView" destination="pYt-Zp-Sy4" id="fSO-hd-xxq"/>
+                        <outlet property="nameView" destination="bFb-Nc-HJl" id="9OJ-Ba-yoY"/>
+                        <outlet property="otherindusView" destination="DyB-wb-jaV" id="RIH-pk-pDk"/>
+                        <outlet property="password" destination="wjv-kv-cDN" id="PDG-Ou-Xyp"/>
+                        <outlet property="phoneView" destination="r6U-yO-K5D" id="1wY-3w-Wrm"/>
                         <outlet property="pickAnimalSelection" destination="HI2-dd-nMX" id="Dkd-gd-RqW"/>
+                        <outlet property="roleView" destination="0eO-VC-K5t" id="Azr-Yr-Pq3"/>
                         <outlet property="roledropdown" destination="OFy-qJ-cgz" id="xVe-zP-Wup"/>
                         <outlet property="userbuss" destination="Aa8-3H-w9C" id="t3e-Ob-gCk"/>
                         <outlet property="userconfirmpassword" destination="WkT-nv-CDd" id="r6C-4l-y90"/>

@@ -98,6 +98,22 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var animalSelectionTableView: UITableView!
     @IBOutlet weak var industryLabel: UILabel!
     
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var welcomeView: UIView!
+    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var IndustryView: UIView!
+    @IBOutlet weak var otherIndustryView: UIView!
+    @IBOutlet weak var typeAnimalView: UIView!
+    @IBOutlet weak var businessView: UIView!
+    @IBOutlet weak var roleView: UIView!
+    @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var passView: UIView!
+    @IBOutlet weak var cnfpassView: UIView!
+    @IBOutlet weak var signupView: UIView!
+    
+    
     struct dKeys {
         static let keyAnimal = "animalStringKey"
         static let keyRole = "roleStringKey"
@@ -162,6 +178,35 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     override func viewDidLoad() {
         self.dismissKey()
+        let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let taplocation = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        
+        emailView.addGestureRecognizer(tapemail)
+        headerView.addGestureRecognizer(tapheader)
+        welcomeView.addGestureRecognizer(tapwelcome)
+        nameView.addGestureRecognizer(tapname)
+        phoneView.addGestureRecognizer(tapphone)
+        //IndustryView.addGestureRecognizer(tapindus)
+        otherIndustryView.addGestureRecognizer(tapotherindus)
+        typeAnimalView.addGestureRecognizer(tapanimal)
+        businessView.addGestureRecognizer(tapbuss)
+        locationView.addGestureRecognizer(taplocation)
+        roleView.addGestureRecognizer(taprole)
+        passView.addGestureRecognizer(tappass)
+        cnfpassView.addGestureRecognizer(tapcnfpass)
+        signupView.addGestureRecognizer(tapsignup)
         animalSelectionTableView.clipsToBounds = false
         animalSelectionTableView.layer.masksToBounds = false
         animalSelectionTableView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -219,7 +264,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         //let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 117, height: 150)
+        layout.itemSize = CGSize(width: 105, height: 150)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 10
         collectionview.collectionViewLayout = layout
@@ -251,7 +296,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         //  self.present(signUpViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
-    
+    @objc func tapAction() {
+
+        self.animalSelectionTableView.isHidden = true
+
+    }
     @IBAction func singuponclick(_ sender: Any) {
         SVProgressHUD.show()
         let country = self.countrycode.selectedCountry
