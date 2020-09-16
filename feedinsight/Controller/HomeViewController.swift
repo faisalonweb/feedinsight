@@ -8,21 +8,33 @@
 
 import UIKit
 import CoreXLSX
+import GoogleMobileAds
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    @IBOutlet weak var corRad: UIImageView!
+    @IBOutlet weak var advertismentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     var arrData = [PremixCollectionCell]()
     let textArr = ["Premix Check","Unit Conveter"]
     let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
-    
+    var bannerView: GADBannerView!
     override func viewDidLoad() {
         arrData = DataAppend.getAllPremixData()
         super.viewDidLoad()
-        corRad.layer.cornerRadius = 15
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-8321259434016641/8943852654"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+     bannerView.translatesAutoresizingMaskIntoConstraints = false
+     advertismentView.addSubview(bannerView)
+     
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrData.count
     }
