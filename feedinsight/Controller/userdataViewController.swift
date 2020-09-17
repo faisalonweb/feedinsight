@@ -28,11 +28,21 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
+       let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
+        let animalName : String = defaults.value(forKey: dKeys.keyAnimal) as? String ?? "Pick Animal"
+        let animalNameList : [String] = animalName.components(separatedBy: ",")
+        for i in 0 ..< animalNameList.count {
+            let string = animalNameList[i]
+            let trimmedString = string.trimmingCharacters(in: .whitespaces)
+            if(animalNameArray[indexPath.row] == trimmedString) {
+                cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
+                animalSelectionArray.append(animalNameArray[indexPath.row])
+                break
+            } else {
+                 cell.setimagebtn.setImage(UIImage(named:"animaluncheck"), for: .normal)
+            }
+        }
         cell.labelset?.text = animalNameArray[indexPath.row]
-        //cell.setimagebtn.setImage(UIImage(named:"CheckBoxChecked"), for: .normal)
-        cell.setimagebtn.setImage(UIImage(named:"animaluncheck"), for: .normal)
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -110,6 +120,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBOutlet weak var cnfpassView: UIView!
     @IBOutlet weak var changeView: UIView!
     
+    @IBOutlet weak var personName: UILabel!
+    
     
     
     
@@ -170,11 +182,13 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.locationField.text = output
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        //        if(userotherindus.text == ""){
-        //            userotherindus.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-        //            userotherindus.isUserInteractionEnabled =  false
-        //        }
+   override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if let userName = defaults.value(forKey: "usernameStringKey"){
+            self.personName.text = userName as? String
+            print(userName)
+    }
+        
     }
     
     override func viewDidLoad() {
