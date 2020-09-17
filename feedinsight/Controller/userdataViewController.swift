@@ -15,14 +15,13 @@ import CountryPickerView
 import SVProgressHUD
 import SearchTextField
 
-
 class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate  {
-    
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
@@ -481,8 +480,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                             let country = self.countryCode.selectedCountry
                             let db = Firestore.firestore()
                             let userID = Auth.auth().currentUser?.uid
-                            let userEmail =  Auth.auth().currentUser?.email
-                            let currentUser =  Auth.auth().currentUser
+                            //let userEmail =  Auth.auth().currentUser?.email
+                            //let currentUser =  Auth.auth().currentUser
                             if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
                                 Auth.auth().currentUser?.updatePassword(to: self.userpassword.text!) { (error) in
                                     if  let error = error {
@@ -495,17 +494,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                     }
                                     else {
                                         SVProgressHUD.dismiss()
-                                        //                                    var roledrop : String = self.roledropdown.text!
-                                        //                                    var location : String = self.locationField.text!
-                                        //                                    var username : String = self.username.text!
-                                        //                                    var useremail: String = self.useremail.text!
-                                        //                                    var userphone : String = self.userphone.text!
-                                        //                                    var userindus : String = self.userotherindus.text!
-                                        //                                    var userbus : String = self.userbuss.text!
-                                        //                                    var userpas : String = self.userpassword.text!
-                                        //                                    var usercnfpas : String = self.userconfirmpassword!
-                                        //                                    var usercoll : String = self.industrycellValue!
-                                        //
                                         self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
                                         self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
                                         self.defaults.set(self.username.text, forKey: dKeys.keyusername)
@@ -518,17 +506,17 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                         self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
                                         self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
                                         self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
-                                        if self.useremail.text != userEmail {
-                                            currentUser?.updateEmail(to: self.useremail.text!){ error in
-                                                if  let error = error {
-                                                    print(error)
-                                                }
-                                                else {
-                                                    //                                SVProgressHUD.dismiss()
-                                                    print("No error while updating the email")
-                                                }
-                                            }
-                                        }
+//                                        if self.useremail.text != userEmail {
+//                                            currentUser?.updateEmail(to: self.useremail.text!){ error in
+//                                                if  let error = error {
+//                                                    print(error)
+//                                                }
+//                                                else {
+//                                                    //                                SVProgressHUD.dismiss()
+//                                                    print("No error while updating the email")
+//                                                }
+//                                            }
+//                                        }
                                     }
                                 }
                             }
@@ -547,8 +535,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let country = self.countryCode.selectedCountry
                 let db = Firestore.firestore()
                 let userID = Auth.auth().currentUser?.uid
-                let userEmail =  Auth.auth().currentUser?.email
-                let currentUser =  Auth.auth().currentUser
+//                let userEmail =  Auth.auth().currentUser?.email
+//                let currentUser =  Auth.auth().currentUser
                 if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
                     Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
                         if  let error = error {
@@ -573,19 +561,15 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                             self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
                             self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
                             self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
-                            if self.useremail.text != userEmail {
-                                
-                                currentUser?.updateEmail(to: self.useremail.text!){ error in
-                                    
-                                    if  let error = error {
-                                        
-                                        print(error)
-                                    }
-                                    else {
-                                        print("No error while updating the email")
-                                    }
-                                }
-                            }
+//                            if self.useremail.text != userEmail {
+//                                currentUser?.updateEmail(to: self.useremail.text!){ error in
+//                                    if  let error = error {
+//                                        print(error)
+//                                    } else {
+//                                        print("No error while updating the email")
+//                                    }
+//                                }
+//                            }
                         }
                     }
                 }

@@ -118,7 +118,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
         self.animalSelectionTableView.isHidden = true
     }
-   
+    
     override func viewDidLoad() {
         self.dismissKey()
         self.pickrole.delegate = self
@@ -136,7 +136,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -144,14 +143,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         
         emailView.addGestureRecognizer(tapemail)
         headerView.addGestureRecognizer(tapheader)
         welcomeView.addGestureRecognizer(tapwelcome)
         nameView.addGestureRecognizer(tapname)
         phoneView.addGestureRecognizer(tapphone)
-        //IndustryView.addGestureRecognizer(tapindus)
         otherIndustryView.addGestureRecognizer(tapotherindus)
         typeAnimalView.addGestureRecognizer(tapanimal)
         businessView.addGestureRecognizer(tapbuss)
@@ -159,7 +156,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         roleView.addGestureRecognizer(taprole)
         passView.addGestureRecognizer(tappass)
         cnfpassView.addGestureRecognizer(tapcnfpass)
-        //signupView.addGestureRecognizer(tapsignup)
         animalSelectionTableView.clipsToBounds = false
         animalSelectionTableView.layer.masksToBounds = false
         animalSelectionTableView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -177,19 +173,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         pickani.setTitleColor(.lightGray, for: .normal)
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
         let lineArray = text.components(separatedBy: "\n")
-        for eachLA in lineArray
-        {
+        for eachLA in lineArray {
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
         pickani.layer.borderWidth = 1
         pickani.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
-//        pickrole.optionArray = ["Option 1", "Option 2", "Option 3"]
-//        pickrole.optionArray = ["Admin","user","manager"]
-//        pickrole.didSelect{(selectedText , index ,id) in
-//        }
-//        pickrole.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        // Set the array of strings you want to suggest
         picklocation.filterStrings(pickerData1)
         picklocation.maxNumberOfResults = 2
         picklocation.theme.font = UIFont.systemFont(ofSize: 14)
@@ -197,25 +186,10 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         picklocation.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         picklocation.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         picklocation.theme.cellHeight = 40
-       picklocation.itemSelectionHandler = { filteredResults, itemPosition in
-            // Just in case you need the item position
+        picklocation.itemSelectionHandler = { filteredResults, itemPosition in
             let item = filteredResults[itemPosition]
-            print("Item at position \(itemPosition): \(item.title)")
-
-            // Do whatever you want with the picked item
             self.picklocation.text = item.title
         }
-        //picklocation.theme = SearchTextFieldTheme.darkTheme()
-        // Then set the inline mode in true
-        //picklocation.inlineMode = true
-//        picklocation.optionArray = pickerData1
-//        //picklocation.hideList()
-//        picklocation.didSelect{(selectedText , index ,id) in
-//        }
-//        picklocation.selectedRowColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-//        picklocation.arrowSize = 0
-        //picklocation.touchAction()
-        //let itemSize = UIScreen.main.bounds.width/3 - 2
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 105, height: 150)
@@ -226,13 +200,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         signinoutlet.enabledTypes.append(customType)
         self.pickrole.delegate = self
         self.userpassword.delegate = self
-        
         signinoutlet.urlMaximumLength = 91
         signinoutlet.customize { label in
-        signinoutlet.text = "Have an Account? Sign In"
-        signinoutlet.numberOfLines = 1
-        signinoutlet.lineSpacing = 4
-        signinoutlet.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
+            signinoutlet.text = "Have an Account? Sign In"
+            signinoutlet.numberOfLines = 1
+            signinoutlet.lineSpacing = 4
+            signinoutlet.customColor[customType] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
             signinoutlet.customSelectedColor[customType] = UIColor.black
             signinoutlet.configureLinkAttribute = { (type, attributes, isSelected) in
                 var atts = attributes
@@ -247,12 +220,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         }
     }
     func SignupSelection(){
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SigninVC") as! LoginViewController
-        //  self.present(signUpViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
+
     @objc func tapAction() {
         self.animalSelectionTableView.isHidden = true
     }
@@ -264,13 +236,14 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! AnimalSelectionTableViewCell
         
@@ -297,7 +270,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                     }
                 }
             }
-
+            
             var copyStr : String = ""
             pickani.setTitleColor(.lightGray, for: .normal)
             pickani.setTitle("Pick Animal", for: .normal)
@@ -368,7 +341,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             }
         }
     }
-  
+    
     func showError(_ message:String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -414,7 +387,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "usersignup", for: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
