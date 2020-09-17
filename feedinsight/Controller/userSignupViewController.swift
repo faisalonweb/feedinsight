@@ -322,6 +322,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         SVProgressHUD.show()
         let country = self.countrycode.selectedCountry
         print(country)
+        if(collectionViewSelectedName.count > 0) {
+            industrycellValue = collectionViewSelectedName[0]
+        } else {
+            industrycellValue = ""
+        }
         let error = validateFields()
         if error != nil {
             SVProgressHUD.dismiss()
@@ -376,10 +381,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         present(vc, animated: true, completion: nil)
     }
     func validateFields() -> String? {
-        if ( industrycellValue == "")
-        {
-            if (self.userindustry.text == "")
-            {
+        if(industrycellValue == "") {
+            if (self.userindustry.text == "") {
                 return "please select your Industry!"
             }
         }

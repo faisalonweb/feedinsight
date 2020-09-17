@@ -417,6 +417,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     @IBAction func changeData(_ sender: Any) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
+        if(collectionViewSelectedName.count > 0) {
+            industrycellValue = collectionViewSelectedName[0]
+        } else {
+            industrycellValue = ""
+        }
         SVProgressHUD.show(withStatus: "it's working ...")
         if urlbool == true {
             let storage = Storage.storage()
