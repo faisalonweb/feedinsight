@@ -121,7 +121,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBOutlet weak var password: UIView!
     @IBOutlet weak var cnfpassView: UIView!
     @IBOutlet weak var changeView: UIView!
-    
+    var collectionViewSelectedName: [String] = [String]()
     @IBOutlet weak var personName: UILabel!
     
     
@@ -328,6 +328,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
         if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
             self.collectionselectedcell = collectioncell as! String
+            collectionViewSelectedName.append(self.collectionselectedcell)
             print(collectioncell)
         }
         super.viewDidLoad()
@@ -568,33 +569,53 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "usercell", for: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
-        cell.imageusr.image = imageArr[cellIndex]
-        cell.labelusr.text = textArr[cellIndex]
         cell.labelusr.numberOfLines = 0
-        industrycellValue = cell.labelusr.text!
-        
-        if(self.collectionselectedcell == cell.labelusr.text!) {
-            cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-            cell.imageusr.image = imageArr1[cellIndex]
-            cell.labelusr.textColor = UIColor.white
-        }
-        
         cell.layer.cornerRadius = 15
         cell.layer.masksToBounds = true
+        if(collectionViewSelectedName.count > 0) {
+            userotherindus.alpha = 0.3
+            //industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+            userotherindus.isUserInteractionEnabled =  false
+            for i in 0 ..< collectionViewSelectedName.count {
+                let string : String = collectionViewSelectedName[i]
+                if(string == textArr[cellIndex]) {
+                    cell.imageusr.image = imageArr1[cellIndex]
+                    cell.backgroundColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+                    break
+                } else {
+                    cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+                    cell.imageusr.image = imageArr[cellIndex]
+                }
+            }
+        } else {
+            userotherindus.alpha = 1
+            //industryLabel.textColor = UIColor.init(red: 81/255, green: 23/255, blue: 79/255, alpha: 1)
+            userotherindus.isUserInteractionEnabled =  true
+            cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+            cell.imageusr.image = imageArr[cellIndex]
+        }
+        cell.labelusr.text = textArr[cellIndex]
         return cell
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
-        let cellIndex = indexPath.item
-        cell.labelusr.numberOfLines = 0
-        industrycellValue = cell.labelusr.text!
-        cell.imageusr.image = imageArr1[cellIndex]
-        //self.collectionView.reloadData()
+        let cellIndex = indexPath.item        
+        var boolValue = false
+        if(collectionViewSelectedName.count > 0) {
+            for i in 0 ..< collectionViewSelectedName.count {
+                let string : String = collectionViewSelectedName[i]
+                if(string == textArr[cellIndex]) {
+                    collectionViewSelectedName.removeAll()
+                    boolValue = true
+                    break
+                }
+            }
+        }
+        if(boolValue == false) {
+            collectionViewSelectedName.removeAll()
+            collectionViewSelectedName.append(textArr[indexPath.row])
+        }
+        self.collectionView.reloadData()
     }
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
-        let cellIndex = indexPath.item
-        cell.labelusr.numberOfLines = 0
-        cell.imageusr.image = imageArr[cellIndex]
-    }
+    
 }

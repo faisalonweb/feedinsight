@@ -444,12 +444,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
-        cell.signuplabel.numberOfLines = 0
-        cell.signupimage.image = imageArr1[cellIndex]
-        cell.signuplabel.text = textArr[cellIndex]
-        industrycellValue =  cell.signuplabel.text!
         var boolValue = false
         if(collectionViewSelectedName.count > 0) {
             for i in 0 ..< collectionViewSelectedName.count {
