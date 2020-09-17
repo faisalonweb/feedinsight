@@ -574,7 +574,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         cell.layer.masksToBounds = true
         if(collectionViewSelectedName.count > 0) {
             userotherindus.alpha = 0.3
-            //industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+            induslabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
             userotherindus.isUserInteractionEnabled =  false
             for i in 0 ..< collectionViewSelectedName.count {
                 let string : String = collectionViewSelectedName[i]
@@ -591,7 +591,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             }
         } else {
             userotherindus.alpha = 1
-            //industryLabel.textColor = UIColor.init(red: 81/255, green: 23/255, blue: 79/255, alpha: 1)
+            induslabel.textColor = UIColor.init(red: 81/255, green: 23/255, blue: 79/255, alpha: 1)
             userotherindus.isUserInteractionEnabled =  true
             cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
             cell.imageusr.image = imageArr[cellIndex]
