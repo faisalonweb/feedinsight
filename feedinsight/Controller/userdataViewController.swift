@@ -17,78 +17,7 @@ import SearchTextField
 
 
 class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource  {
-    
-    
-    let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
-        let animalName : String = defaults.value(forKey: dKeys.keyAnimal) as? String ?? "Pick Animal"
-        let animalNameList : [String] = animalName.components(separatedBy: ",")
-        for i in 0 ..< animalNameList.count {
-            let string = animalNameList[i]
-            let trimmedString = string.trimmingCharacters(in: .whitespaces)
-            if(animalNameArray[indexPath.row] == trimmedString) {
-                cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
-                animalSelectionArray.append(animalNameArray[indexPath.row])
-                break
-            } else {
-                 cell.setimagebtn.setImage(UIImage(named:"animaluncheck"), for: .normal)
-            }
-        }
-        cell.labelset?.text = animalNameArray[indexPath.row]
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! animalTypeTableViewCell
-        
-        if cell.setimagebtn.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
-            cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
-            animalSelectionArray.append(animalNameArray[indexPath.row])
-            var copyStr : String = ""
-            pickAnimalSelection.setTitle("", for: .normal)
-            for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
-                copyStr = copyStr + string
-                pickAnimalSelection.setTitle(copyStr, for: .normal)
-            }
-        } else {
-            cell.setimagebtn.setImage(UIImage(named: "animaluncheck"), for:  .normal)
-            if(animalSelectionArray.count != 0) {
-                for i in 0 ..< animalSelectionArray.count {
-                    if(animalSelectionArray[i] == cell.labelset.text) {
-                        animalSelectionArray.remove(at: i)
-                        break
-                    }
-                }
-            }
-            
-            var copyStr : String = ""
-            pickAnimalSelection.setTitle("", for: .normal)
-            for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
-                copyStr = copyStr + string
-                pickAnimalSelection.setTitle(copyStr, for: .normal)
-            }
-        }
-        
-    }
-    @IBAction func pickAnimalSelection(_ sender: Any) {
-        if(self.animaltableview.isHidden == true) {
-            self.animaltableview.isHidden = false
-            // self.animaltableview.reloadData()
-        } else {
-            self.animaltableview.isHidden = true
-        }
-    }
-    
-    var animalSelectionArray: [String] = [String]()
+    // MARK: IBOutlets
     @IBOutlet weak var changebutton: UIButton!
     @IBOutlet weak var userdropdown: DropDown!
     @IBOutlet weak var roledropdown: UITextField!
@@ -119,18 +48,16 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBOutlet weak var password: UIView!
     @IBOutlet weak var cnfpassView: UIView!
     @IBOutlet weak var changeView: UIView!
-    
     @IBOutlet weak var personName: UILabel!
-    
-    
-    
-    
+    // MARK: Variable Declaration
     var db: Firestore!
     var urllink : URL!
     var urlbool : Bool = false
     var collectionselectedcell : String = "pak"
     var nmr : Int = 0
     let defaults = UserDefaults.standard
+    let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
+    var animalSelectionArray: [String] = [String]()
     struct dKeys {
         static let keyAnimal = "animalStringKey"
         static let keyRole = "roleStringKey"
@@ -149,7 +76,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     var workarray: [String] = [String]()
     var industrycellValue = ""
     private let locationManager = LocationManager()
-    
     let textArr = ["Research","Farming","Feed \nManufacturing"]
     let imageArr: [UIImage] = [
         UIImage(named: "research-unselected")!,
@@ -161,6 +87,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         UIImage(named: "farm-selected")!,
         UIImage(named: "feedmanufacturing-selected")!,
     ]
+    
+    // MARK: Location Functions
     private func setCurrentLocation() {
         guard let exposedLocation = self.locationManager.exposedLocation else {
             print("*** Error in \(#function): exposedLocation is nil")
@@ -168,7 +96,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
         self.locationManager.getPlace(for: exposedLocation) { placemark in
             guard let placemark = placemark else { return }
-            
             var output = "Our location is:"
             if let country = placemark.country {
                 output = output + "\n\(country)"
@@ -182,23 +109,18 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.locationField.text = output
         }
     }
-   override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
-            self.personName.text = userName as? String
-            print(userName)
-    }
-        
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)        
     }
     
-    override func viewDidLoad() {
-        self.dismissKey()
+    func customization () {
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -206,13 +128,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        
         emailView.addGestureRecognizer(tapemail)
         headerView.addGestureRecognizer(tapheader)
         nameView.addGestureRecognizer(tapname)
         phoneView.addGestureRecognizer(tapphone)
-        //indusview.addGestureRecognizer(tapindus)
         otherindusView.addGestureRecognizer(tapotherindus)
         animalView.addGestureRecognizer(tapanimal)
         bussView.addGestureRecognizer(tapbuss)
@@ -220,7 +139,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         roleView.addGestureRecognizer(taprole)
         password.addGestureRecognizer(tappass)
         cnfpassView.addGestureRecognizer(tapcnfpass)
-        //changeView.addGestureRecognizer(tapsignup)
+        userpic.addGestureRecognizer(tapOnImage)
         self.animaltableview.isHidden = true
         animaltableview.clipsToBounds = false
         animaltableview.layer.masksToBounds = false
@@ -235,92 +154,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         pickAnimalSelection.titleEdgeInsets.right = 0
         pickAnimalSelection.layer.borderWidth = 1
         pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            let data = self?.defaults.value(forKey: "imageData") as? Data
-            if(data != nil) {
-                self?.userpic.image = UIImage(data: data!)
-            }
-        }
-        
-        if let userName = defaults.value(forKey: dKeys.keyusername){
-            
-            self.username.text = userName as? String
-            print(userName)
-        }
-        if let userEmail = defaults.value(forKey: dKeys.keyuseremail){
-            
-            self.useremail.text = userEmail as? String
-            print(userEmail)
-        }
-        if let animal = defaults.value(forKey: dKeys.keyAnimal){
-            
-            //self.userdropdown.text = animal as? String
-            //print(animal)
-            self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
-            
-        }
-        
-        if let countrycode = defaults.value(forKey: dKeys.keycountrycode){
-            
-            self.countryCode.setCountryByPhoneCode(countrycode as! String)
-            print(countrycode)
-        }
-        if let location = defaults.value(forKey: dKeys.keyLocation){
-            
-            self.locationField.text = location as? String
-            print(location)
-        }
-        if let role = defaults.value(forKey: dKeys.keyRole){
-            
-            self.roledropdown.text = role as? String
-            print(role)
-        }
-        if let busines = defaults.value(forKey: dKeys.keyuserbussiness){
-            
-            self.userbuss.text = busines as? String
-            print(busines)
-        }
-        if let indus = defaults.value(forKey: dKeys.keyuserindustry){
-            if(indus as? String == "") {
-                //userotherindus.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-                induslabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-                userotherindus.isUserInteractionEnabled =  false
-                userotherindus.alpha = 0.3
-            } else {
-                self.userotherindus.text = indus as? String
-                print("industry values is \(indus)")
-            }
-        }
-        if let pass = defaults.value(forKey: dKeys.keyuserpassowrd){
-            
-            self.userpassword.text = pass as? String
-            print(pass)
-        }
-        if let passcnf = defaults.value(forKey: dKeys.keyuserpassowrd){
-            
-            self.userconfirmpassword.text = passcnf as? String
-            print(passcnf)
-        }
-        if let phone = defaults.value(forKey: dKeys.keyuserphoneno){
-            
-            self.userphone.text = phone as? String
-            print(phone)
-        }
-        if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
-            self.collectionselectedcell = collectioncell as! String
-            print(collectioncell)
-        }
-        super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
-        let lineArray = text.components(separatedBy: "\n")
-        for eachLA in lineArray {
-            workarray = eachLA.components(separatedBy: ",")
-            pickerData1.append(workarray[0])
-        }
         locationField.filterStrings(pickerData1)
         locationField.maxNumberOfResults = 2
         locationField.theme.font = UIFont.systemFont(ofSize: 14)
@@ -344,8 +177,162 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         userpic.layer.borderWidth = 2.0
         userpic.layer.borderColor = UIColor.white.cgColor
         changebutton.layer.cornerRadius = 8
+    }
+    
+    override func viewDidLoad() {
+        self.dismissKey()
+        customization()
+        DispatchQueue.main.async { [weak self] in
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.userpic.image = UIImage(data: data!)
+            }
+        }
+        if let userName = defaults.value(forKey: dKeys.keyusername){
+            self.username.text = userName as? String
+            self.personName.text = userName as? String
+            print(userName)
+        }
+        if let userEmail = defaults.value(forKey: dKeys.keyuseremail){
+            self.useremail.text = userEmail as? String
+            print(userEmail)
+        }
+        if let animal = defaults.value(forKey: dKeys.keyAnimal){
+            self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
+        }
+        
+        if let countrycode = defaults.value(forKey: dKeys.keycountrycode){
+            self.countryCode.setCountryByPhoneCode(countrycode as! String)
+            print(countrycode)
+        }
+        if let location = defaults.value(forKey: dKeys.keyLocation){
+            self.locationField.text = location as? String
+            print(location)
+        }
+        if let role = defaults.value(forKey: dKeys.keyRole){
+            self.roledropdown.text = role as? String
+            print(role)
+        }
+        if let busines = defaults.value(forKey: dKeys.keyuserbussiness){
+            self.userbuss.text = busines as? String
+            print(busines)
+        }
+        if let indus = defaults.value(forKey: dKeys.keyuserindustry){
+            if(indus as? String == "") {
+                induslabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+                userotherindus.isUserInteractionEnabled =  false
+                userotherindus.alpha = 0.3
+            } else {
+                self.userotherindus.text = indus as? String
+                print("industry values is \(indus)")
+            }
+        }
+        if let pass = defaults.value(forKey: dKeys.keyuserpassowrd){
+            self.userpassword.text = pass as? String
+            print(pass)
+        }
+        if let passcnf = defaults.value(forKey: dKeys.keyuserpassowrd){
+            self.userconfirmpassword.text = passcnf as? String
+            print(passcnf)
+        }
+        if let phone = defaults.value(forKey: dKeys.keyuserphoneno){
+            self.userphone.text = phone as? String
+            print(phone)
+        }
+        if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
+            self.collectionselectedcell = collectioncell as! String
+            print(collectioncell)
+        }
+        super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
+        let lineArray = text.components(separatedBy: "\n")
+        for eachLA in lineArray {
+            workarray = eachLA.components(separatedBy: ",")
+            pickerData1.append(workarray[0])
+        }
+    }
+    
+    // MARK: Table View Delegates
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
+        let animalName : String = defaults.value(forKey: dKeys.keyAnimal) as? String ?? "Pick Animal"
+        let animalNameList : [String] = animalName.components(separatedBy: ",")
+        for i in 0 ..< animalNameList.count {
+            let string = animalNameList[i]
+            let trimmedString = string.trimmingCharacters(in: .whitespaces)
+            if(animalNameArray[indexPath.row] == trimmedString) {
+                cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
+                animalSelectionArray.append(animalNameArray[indexPath.row])
+                break
+            } else {
+                cell.setimagebtn.setImage(UIImage(named:"animaluncheck"), for: .normal)
+            }
+        }
+        cell.labelset?.text = animalNameArray[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! animalTypeTableViewCell
+        if cell.setimagebtn.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
+            cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
+            animalSelectionArray.append(animalNameArray[indexPath.row])
+            var copyStr : String = ""
+            pickAnimalSelection.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickAnimalSelection.setTitle(copyStr, for: .normal)
+            }
+        } else {
+            cell.setimagebtn.setImage(UIImage(named: "animaluncheck"), for:  .normal)
+            if(animalSelectionArray.count != 0) {
+                for i in 0 ..< animalSelectionArray.count {
+                    if(animalSelectionArray[i] == cell.labelset.text) {
+                        animalSelectionArray.remove(at: i)
+                        break
+                    }
+                }
+            }
+            var copyStr : String = ""
+            pickAnimalSelection.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickAnimalSelection.setTitle(copyStr, for: .normal)
+            }
+        }
+    }
+    
+    // MARK: Tap Gasture Functions
+    @objc func tapAction() {
+        self.animaltableview.isHidden = true
         
     }
+    @objc func tapOnImageAction() {
+        let imagecontroller = UIImagePickerController()
+        imagecontroller.delegate = self
+        imagecontroller.sourceType = .photoLibrary
+        self.present(imagecontroller, animated: true, completion: nil)
+    }
+    // MARK: IBActions
+    @IBAction func pickAnimalSelection(_ sender: Any) {
+        if(self.animaltableview.isHidden == true) {
+            self.animaltableview.isHidden = false
+            // self.animaltableview.reloadData()
+        } else {
+            self.animaltableview.isHidden = true
+        }
+    }
+    
     @IBAction func clickOnLogout(_ sender: Any) {
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
@@ -366,11 +353,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    @objc func tapAction() {
-
-        self.animaltableview.isHidden = true
-
-       }
+    
     @IBAction func clickOnLogoutIcon(_ sender: Any) {
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
@@ -392,10 +375,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
     }
+    
     @IBAction func changeData(_ sender: Any) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         SVProgressHUD.show(withStatus: "it's working ...")
@@ -434,20 +417,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                 }
                                 else {
                                     SVProgressHUD.dismiss()
-//                                    var roledrop : String = self.roledropdown.text!
-//                                    var location : String = self.locationField.text!
-//                                    var username : String = self.username.text!
-//                                    var useremail: String = self.useremail.text!
-//                                    var userphone : String = self.userphone.text!
-//                                    var userindus : String = self.userotherindus.text!
-//                                    var userbus : String = self.userbuss.text!
-//                                    var userpas : String = self.userpassword.text!
-//                                    var usercnfpas : String = self.userconfirmpassword!
-//                                    var usercoll : String = self.industrycellValue!
-//
                                     self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
                                     self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
                                     self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                                    self.personName.text = self.username.text
                                     self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
                                     self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
                                     self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
@@ -462,7 +435,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                                 print(error)
                                             }
                                             else {
-                                                //                                SVProgressHUD.dismiss()
                                                 print("No error while updating the email")
                                             }
                                         }
@@ -494,6 +466,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
                         self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
                         self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                        self.personName.text = self.username.text
                         self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
                         self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
                         self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
@@ -503,11 +476,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
                         self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
                         if self.useremail.text != userEmail {
-                            
                             currentUser?.updateEmail(to: self.useremail.text!){ error in
-                                
                                 if  let error = error {
-                                    
                                     print(error)
                                 }
                                 else {
@@ -522,15 +492,14 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     
     @IBAction func selectPhoto(_ sender: UIButton) {
-        
         let imagecontroller = UIImagePickerController()
         imagecontroller.delegate = self
         imagecontroller.sourceType = .photoLibrary
         self.present(imagecontroller, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         userpic.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        // Bool true
         self.dismiss(animated: true, completion: nil)
         
         if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
