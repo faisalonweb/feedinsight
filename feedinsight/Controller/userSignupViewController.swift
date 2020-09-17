@@ -69,6 +69,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
     var animalSelectionArray: [String] = [String]()
+    var collectionViewSelectedName: [String] = [String]()
     private let locationManager = LocationManager()
     var industrycellValue = ""
     let textArr = ["Research","Farming","Feed \nManufacturing"]
@@ -410,17 +411,36 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 50, height: 128)
-//    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "usersignup", for: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
         cell.signuplabel.numberOfLines = 0
-        cell.signupimage.image = imageArr[cellIndex]
-        cell.signuplabel.text = textArr[cellIndex]
         cell.layer.cornerRadius = 15
         cell.layer.masksToBounds = true
+        if(collectionViewSelectedName.count > 0) {
+            userindustry.alpha = 0.3
+            industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+            userindustry.isUserInteractionEnabled =  false
+            for i in 0 ..< collectionViewSelectedName.count {
+                let string : String = collectionViewSelectedName[i]
+                if(string == textArr[cellIndex]) {
+                    cell.signupimage.image = imageArr1[cellIndex]
+                    cell.backgroundColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+                    break
+                } else {
+                    cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+                    cell.signupimage.image = imageArr[cellIndex]
+                }
+            }
+        } else {
+            userindustry.alpha = 1
+            industryLabel.textColor = UIColor.init(red: 81/255, green: 23/255, blue: 79/255, alpha: 1)
+            userindustry.isUserInteractionEnabled =  true
+            cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+            cell.signupimage.image = imageArr[cellIndex]
+        }
+        cell.signuplabel.text = textArr[cellIndex]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -430,36 +450,22 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signupimage.image = imageArr1[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
-        let cellIndex = indexPath.item
-        cell.signuplabel.numberOfLines = 0
-        cell.signupimage.image = imageArr[cellIndex]
-        cell.signuplabel.text = textArr[cellIndex]
-        
-    }
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        let item = collectionView.cellForItem(at: indexPath)
-        let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
-        let cellIndex = indexPath.item
-        if item?.isSelected ?? false {
-            collectionView.deselectItem(at: indexPath, animated: true)
-            userindustry.alpha = 1
-            industryLabel.textColor = UIColor.init(red: 81/255, green: 23/255, blue: 79/255, alpha: 1)
-            userindustry.isUserInteractionEnabled =  true
-            cell.signupimage.image = imageArr[cellIndex]
-        } else {
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-            userindustry.alpha = 0.3
-            industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-            userindustry.isUserInteractionEnabled =  false
-            cell.signupimage.image = imageArr1[cellIndex]
-            return true
+        var boolValue = false
+        if(collectionViewSelectedName.count > 0) {
+            for i in 0 ..< collectionViewSelectedName.count {
+                let string : String = collectionViewSelectedName[i]
+                if(string == textArr[cellIndex]) {
+                    collectionViewSelectedName.removeAll()
+                    boolValue = true
+                    break
+                }
+            }
         }
-
-        return false
+        if(boolValue == false) {
+            collectionViewSelectedName.removeAll()
+            collectionViewSelectedName.append(textArr[indexPath.row])
+        }
+        self.collectionview.reloadData()
     }
 }
 
