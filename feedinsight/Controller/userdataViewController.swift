@@ -28,7 +28,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
         let animalName : String = defaults.value(forKey: dKeys.keyAnimal) as? String ?? "Pick Animal"
         let animalNameList : [String] = animalName.components(separatedBy: ",")
         for i in 0 ..< animalNameList.count {
@@ -39,7 +39,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 animalSelectionArray.append(animalNameArray[indexPath.row])
                 break
             } else {
-                 cell.setimagebtn.setImage(UIImage(named:"animaluncheck"), for: .normal)
+                cell.setimagebtn.setImage(UIImage(named:"animaluncheck"), for: .normal)
             }
         }
         cell.labelset?.text = animalNameArray[indexPath.row]
@@ -184,12 +184,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.locationField.text = output
         }
     }
-   override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
         self.animaltableview.isHidden = true
-       }
+    }
     
     @objc func tapOnImageAction() {
         let imagecontroller = UIImagePickerController()
@@ -328,7 +328,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
         if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
             self.collectionselectedcell = collectioncell as! String
-            collectionViewSelectedName.append(self.collectionselectedcell)
+            if(self.collectionselectedcell != "") {
+                collectionViewSelectedName.append(self.collectionselectedcell)
+            }
+            
             print(collectioncell)
         }
         super.viewDidLoad()
@@ -386,10 +389,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         self.present(alert, animated: true, completion: nil)
     }
     @objc func tapAction() {
-
+        
         self.animaltableview.isHidden = true
-
-       }
+        
+    }
     @IBAction func clickOnLogoutIcon(_ sender: Any) {
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
@@ -415,6 +418,34 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
     }
+    func validateFields() -> String? {
+        if(industrycellValue == "") {
+            if (self.userotherindus.text == "") {
+                return "please select your Industry!"
+            }
+        }
+        if  username.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            userbuss.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            userphone.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            roledropdown.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            locationField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            userpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            userconfirmpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+             {
+            return "Please fill in all fields."
+        }
+        if userpassword.text != userconfirmpassword.text {
+            return "Passwords don't Match"
+        }
+        return nil
+    }
+    func showError(_ message:String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     @IBAction func changeData(_ sender: Any) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         if(collectionViewSelectedName.count > 0) {
@@ -424,125 +455,141 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
         SVProgressHUD.show(withStatus: "it's working ...")
         if urlbool == true {
-            let storage = Storage.storage()
-            let storageRef =  storage.reference().child("user/\(uid)")
-            let localFile = urllink
-            _ = storageRef.putFile(from: localFile!, metadata: nil) { (metadata, err) in
-                guard metadata != nil else {
-                    print(err?.localizedDescription ?? "none")
-                    return
-                }
-                storageRef.downloadURL(completion: { (url, error) in
-                    if let err = error{
-                        print(err)
-                    } else {
-                        let localFile = url?.absoluteString
-                        let fileUrl = URL(string: url!.absoluteString)
-                        let data = try? Data(contentsOf:fileUrl!)
-                        self.userpic.image = UIImage(data: data!)
-                        UserDefaults().set(data, forKey: "imageData")
-                        let country = self.countryCode.selectedCountry
-                        let db = Firestore.firestore()
-                        let userID = Auth.auth().currentUser?.uid
-                        let userEmail =  Auth.auth().currentUser?.email
-                        let currentUser =  Auth.auth().currentUser
-                        if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
-                            Auth.auth().currentUser?.updatePassword(to: self.userpassword.text!) { (error) in
-                                if  let error = error {
-                                    print(error)
+            let error = validateFields()
+            if error != nil {
+                SVProgressHUD.dismiss()
+                showError(error!)
+            }
+            else {
+                let storage = Storage.storage()
+                let storageRef =  storage.reference().child("user/\(uid)")
+                let localFile = urllink
+                _ = storageRef.putFile(from: localFile!, metadata: nil) { (metadata, err) in
+                    guard metadata != nil else {
+                        print(err?.localizedDescription ?? "none")
+                        return
+                    }
+                    storageRef.downloadURL(completion: { (url, error) in
+                        if let err = error{
+                            print(err)
+                        } else {
+                            let localFile = url?.absoluteString
+                            let fileUrl = URL(string: url!.absoluteString)
+                            let data = try? Data(contentsOf:fileUrl!)
+                            self.userpic.image = UIImage(data: data!)
+                            UserDefaults().set(data, forKey: "imageData")
+                            let country = self.countryCode.selectedCountry
+                            let db = Firestore.firestore()
+                            let userID = Auth.auth().currentUser?.uid
+                            let userEmail =  Auth.auth().currentUser?.email
+                            let currentUser =  Auth.auth().currentUser
+                            if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
+                                Auth.auth().currentUser?.updatePassword(to: self.userpassword.text!) { (error) in
+                                    if  let error = error {
+                                        print(error)
+                                    }
                                 }
-                            }
-                            db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
-                                if let error = error {
-                                    print("error while updating the reord \(error)")
-                                }
-                                else {
-                                    SVProgressHUD.dismiss()
-//                                    var roledrop : String = self.roledropdown.text!
-//                                    var location : String = self.locationField.text!
-//                                    var username : String = self.username.text!
-//                                    var useremail: String = self.useremail.text!
-//                                    var userphone : String = self.userphone.text!
-//                                    var userindus : String = self.userotherindus.text!
-//                                    var userbus : String = self.userbuss.text!
-//                                    var userpas : String = self.userpassword.text!
-//                                    var usercnfpas : String = self.userconfirmpassword!
-//                                    var usercoll : String = self.industrycellValue!
-//
-                                    self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
-                                    self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
-                                    self.defaults.set(self.username.text, forKey: dKeys.keyusername)
-                                    self.personName.text = self.username.text
-                                    self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
-                                    self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
-                                    self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
-                                    self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
-                                    self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
-                                    self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
-                                    self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
-                                    self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
-                                    if self.useremail.text != userEmail {
-                                        currentUser?.updateEmail(to: self.useremail.text!){ error in
-                                            if  let error = error {
-                                                print(error)
-                                            }
-                                            else {
-                                                //                                SVProgressHUD.dismiss()
-                                                print("No error while updating the email")
+                                db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
+                                    if let error = error {
+                                        print("error while updating the reord \(error)")
+                                    }
+                                    else {
+                                        SVProgressHUD.dismiss()
+                                        //                                    var roledrop : String = self.roledropdown.text!
+                                        //                                    var location : String = self.locationField.text!
+                                        //                                    var username : String = self.username.text!
+                                        //                                    var useremail: String = self.useremail.text!
+                                        //                                    var userphone : String = self.userphone.text!
+                                        //                                    var userindus : String = self.userotherindus.text!
+                                        //                                    var userbus : String = self.userbuss.text!
+                                        //                                    var userpas : String = self.userpassword.text!
+                                        //                                    var usercnfpas : String = self.userconfirmpassword!
+                                        //                                    var usercoll : String = self.industrycellValue!
+                                        //
+                                        self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
+                                        self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
+                                        self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                                        self.personName.text = self.username.text
+                                        self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
+                                        self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
+                                        self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
+                                        self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
+                                        self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
+                                        self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
+                                        self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
+                                        self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
+                                        if self.useremail.text != userEmail {
+                                            currentUser?.updateEmail(to: self.useremail.text!){ error in
+                                                if  let error = error {
+                                                    print(error)
+                                                }
+                                                else {
+                                                    //                                SVProgressHUD.dismiss()
+                                                    print("No error while updating the email")
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-                })
-            }
-        } else {
-            let country = self.countryCode.selectedCountry
-            let db = Firestore.firestore()
-            let userID = Auth.auth().currentUser?.uid
-            let userEmail =  Auth.auth().currentUser?.email
-            let currentUser =  Auth.auth().currentUser
-            if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
-                Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
-                    if  let error = error {
-                        print(error)
-                    }
+                    })
                 }
-                db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
-                    if let error = error {
-                        print("error while updating the reord \(error)")
+            }
+            
+        } else {
+            let error = validateFields()
+            if error != nil {
+                SVProgressHUD.dismiss()
+                showError(error!)
+            }
+            else {
+                let country = self.countryCode.selectedCountry
+                let db = Firestore.firestore()
+                let userID = Auth.auth().currentUser?.uid
+                let userEmail =  Auth.auth().currentUser?.email
+                let currentUser =  Auth.auth().currentUser
+                if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
+                    Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
+                        if  let error = error {
+                            self.showError(error.localizedDescription)
+                        }
                     }
-                    else {
-                        SVProgressHUD.dismiss()
-                        self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
-                        self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
-                        self.defaults.set(self.username.text, forKey: dKeys.keyusername)
-                        self.personName.text = self.username.text
-                        self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
-                        self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
-                        self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
-                        self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
-                        self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
-                        self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
-                        self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
-                        self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
-                        if self.useremail.text != userEmail {
-                            
-                            currentUser?.updateEmail(to: self.useremail.text!){ error in
+                    db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
+                        if let error = error {
+                            print("error while updating the reord \(error)")
+                        }
+                        else {
+                            SVProgressHUD.dismiss()
+                            self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
+                            self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
+                            self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                            self.personName.text = self.username.text
+                            self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
+                            self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
+                            self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
+                            self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
+                            self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
+                            self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
+                            self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
+                            self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
+                            if self.useremail.text != userEmail {
                                 
-                                if  let error = error {
+                                currentUser?.updateEmail(to: self.useremail.text!){ error in
                                     
-                                    print(error)
-                                }
-                                else {
-                                    print("No error while updating the email")
+                                    if  let error = error {
+                                        
+                                        print(error)
+                                    }
+                                    else {
+                                        print("No error while updating the email")
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                
             }
         }
     }

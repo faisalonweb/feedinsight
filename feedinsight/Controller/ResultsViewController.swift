@@ -28,7 +28,7 @@ class ResultsViewController: UIViewController {
     // 540
     var requirmentsArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vitamin A","Vitamin D3","Vitamin E","Niacin B3","Biotin B7"]
     //630
-    var PremixArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","Se","Zn","AIU","DIU","EIU","Niacin(mg)","Biotin(mg)"]
+    var PremixArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Se","Zn","AIU","DIU","EIU","Niacin(mg)","Biotin(mg)"]
     override func viewDidLoad() {
         super.viewDidLoad()
         if let userName = defaults.value(forKey: "usernameStringKey"){
