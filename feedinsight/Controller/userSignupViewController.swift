@@ -121,6 +121,14 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     override func viewDidLoad() {
         self.dismissKey()
         self.pickrole.delegate = self
+        self.userpassword.delegate = self
+        self.username.delegate = self
+        self.useremail.delegate = self
+        self.userphoneno.delegate = self
+        self.userindustry.delegate = self
+        self.usercnfpassword.delegate = self
+        self.userbussiness.delegate = self
+        self.usercnfpassword.delegate = self
         
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
