@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         addBannerViewToView(bannerView)
         bannerView.adUnitID = "ca-app-pub-8321259434016641/8943852654"
         bannerView.rootViewController = self
@@ -30,8 +30,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
-     bannerView.translatesAutoresizingMaskIntoConstraints = false
-     advertismentView.addSubview(bannerView)
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        bannerView.frame.size.height = advertismentView.frame.size.height
+        bannerView.frame.size.width = advertismentView.frame.size.width
+        advertismentView.addSubview(bannerView)
      
     }
     

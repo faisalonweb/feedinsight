@@ -1044,24 +1044,7 @@
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE5-5i-4OV">
                                                                 <rect key="frame" x="0.0" y="60.000000000000014" width="374" height="203.33333333333337"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBack" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-ru-XJf">
-                                                                        <rect key="frame" x="0.0" y="20" width="374" height="183.33333333333334"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBound" value="YES"/>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                <integer key="value" value="15"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </imageView>
-                                                                </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="D0h-ru-XJf" secondAttribute="trailing" id="GAA-eN-pe2"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="D0h-ru-XJf" secondAttribute="bottom" id="GFz-UP-5Z6"/>
-                                                                    <constraint firstItem="D0h-ru-XJf" firstAttribute="top" secondItem="xE5-5i-4OV" secondAttribute="top" constant="20" symbolic="YES" id="e6e-fb-nuv"/>
-                                                                    <constraint firstItem="D0h-ru-XJf" firstAttribute="leading" secondItem="xE5-5i-4OV" secondAttribute="leading" id="vjI-n8-j0N"/>
-                                                                </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="MRG-D4-Bpm">
                                                                 <rect key="frame" x="0.0" y="283.33333333333331" width="374" height="16.666666666666686"/>
@@ -1203,7 +1186,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4GZ-g2-nHE"/>
                     <connections>
-                        <outlet property="advertismentView" destination="xE5-5i-4OV" id="SSQ-CF-taX"/>
+                        <outlet property="advertismentView" destination="xE5-5i-4OV" id="yIC-4h-Vmo"/>
                         <outlet property="collectionView" destination="gJx-kI-L3P" id="qY0-j1-pMF"/>
                     </connections>
                 </viewController>
