@@ -112,6 +112,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     
     
+    
     var db: Firestore!
     var urllink : URL!
     var urlbool : Bool = false
@@ -191,7 +192,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         
         emailView.addGestureRecognizer(tapemail)
         headerView.addGestureRecognizer(tapheader)
@@ -205,7 +206,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         roleView.addGestureRecognizer(taprole)
         password.addGestureRecognizer(tappass)
         cnfpassView.addGestureRecognizer(tapcnfpass)
-        changeView.addGestureRecognizer(tapsignup)
+        //changeView.addGestureRecognizer(tapsignup)
         self.animaltableview.isHidden = true
         animaltableview.clipsToBounds = false
         animaltableview.layer.masksToBounds = false
@@ -297,43 +298,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.collectionselectedcell = collectioncell as! String
             print(collectioncell)
         }
-        let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-        docRef.getDocuments { (querySnapshot, err) in
-            if let err = err {
-                print(err.localizedDescription)
-                return
-            } else if querySnapshot!.documents.count != 1 {
-                print("More than one documents or none")
-            } else {
-                let document = querySnapshot!.documents.first
-                let dataDescription = document?.data()
-                let currentusername = dataDescription?["name"]
-                let currentuseremail = dataDescription?["email"]
-                let currentuserphone = dataDescription?["phone"]
-                let currentuserindustry = dataDescription?["industry"]
-                let currentuserbusiness = dataDescription?["business"]
-                let currentuserpass = dataDescription?["password"]
-                let currentuserpickanimal = dataDescription?["pickanimal"]
-                let currentuserlocation = dataDescription?["location"]
-                let currentuserrole = dataDescription?["pickrole"]
-                let currentusercountrycode = dataDescription?["countrycode"]
-                let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-                self.username.text = currentusername as? String
-                self.useremail.text = currentuseremail as? String
-                self.userphone.text = currentuserphone as? String
-                self.userotherindus.text = currentuserindustry as? String
-                self.userbuss.text = currentuserbusiness as? String
-                self.userpassword.text = currentuserpass as? String
-                self.userconfirmpassword.text = currentuserpass as? String
-                //self.userdropdown.text = currentuserpickanimal as? String
-                self.locationField.text = currentuserlocation as? String
-                self.roledropdown.text = currentuserrole as? String
-                self.nmr = currentusercountrycode as? Int ?? 0
-                self.collectionselectedcell = currentusercollectionindustry as! String
-                self.countryCode.setCountryByPhoneCode(currentusercountrycode as! String)
-                self.collectionView.reloadData()
-            }
-        }
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -343,15 +307,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
-        //        locationField.optionArray = pickerData1
-        //        locationField.didSelect{(selectedText , index ,id) in
-        //        }
-        //        locationField.arrowSize = 0
-        //        locationField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        //        userdropdown.optionArray = ["Cow","Deer","Camel"]
-        //        userdropdown.didSelect{(selectedText , index ,id) in
-        //        }
-        //        userdropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         locationField.filterStrings(pickerData1)
         locationField.maxNumberOfResults = 2
         locationField.theme.font = UIFont.systemFont(ofSize: 14)
@@ -360,19 +315,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         locationField.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         locationField.theme.cellHeight = 40
         locationField.itemSelectionHandler = { filteredResults, itemPosition in
-            // Just in case you need the item position
             let item = filteredResults[itemPosition]
             print("Item at position \(itemPosition): \(item.title)")
-            
-            // Do whatever you want with the picked item
             self.locationField.text = item.title
         }
-        
-        //        roledropdown.optionArray = ["Admin","Client","Lender"]
-        //        roledropdown.didSelect{(selectedText , index ,id) in
-        //        }
-        //        roledropdown.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        //let itemSize = UIScreen.main.bounds.width/5 - 3
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 117, height: 150)
@@ -387,19 +333,24 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         
     }
     @IBAction func clickOnLogout(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            let defaults = UserDefaults.standard
-            let dictionary = defaults.dictionaryRepresentation()
-            dictionary.keys.forEach { key in
-                defaults.removeObject(forKey: key)
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                let defaults = UserDefaults.standard
+                let dictionary = defaults.dictionaryRepresentation()
+                dictionary.keys.forEach { key in
+                    defaults.removeObject(forKey: key)
+                }
+                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
+                self.navigationController?.pushViewController(vcone!, animated: true)
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
             }
-            let vcone = storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     @objc func tapAction() {
 
@@ -425,7 +376,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     
@@ -464,12 +414,34 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                     print(error)
                                 }
                             }
-                            db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
+                            db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
                                 if let error = error {
                                     print("error while updating the reord \(error)")
                                 }
                                 else {
                                     SVProgressHUD.dismiss()
+//                                    var roledrop : String = self.roledropdown.text!
+//                                    var location : String = self.locationField.text!
+//                                    var username : String = self.username.text!
+//                                    var useremail: String = self.useremail.text!
+//                                    var userphone : String = self.userphone.text!
+//                                    var userindus : String = self.userotherindus.text!
+//                                    var userbus : String = self.userbuss.text!
+//                                    var userpas : String = self.userpassword.text!
+//                                    var usercnfpas : String = self.userconfirmpassword!
+//                                    var usercoll : String = self.industrycellValue!
+//
+                                    self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
+                                    self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
+                                    self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                                    self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
+                                    self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
+                                    self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
+                                    self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
+                                    self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
+                                    self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
+                                    self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
+                                    self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
                                     if self.useremail.text != userEmail {
                                         currentUser?.updateEmail(to: self.useremail.text!){ error in
                                             if  let error = error {
@@ -499,12 +471,23 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         print(error)
                     }
                 }
-                db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
+                db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
                     if let error = error {
                         print("error while updating the reord \(error)")
                     }
                     else {
                         SVProgressHUD.dismiss()
+                        self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
+                        self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
+                        self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                        self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
+                        self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
+                        self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
+                        self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
+                        self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
+                        self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
+                        self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
+                        self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
                         if self.useremail.text != userEmail {
                             
                             currentUser?.updateEmail(to: self.useremail.text!){ error in
@@ -555,6 +538,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         cell.labelusr.text = textArr[cellIndex]
         cell.labelusr.numberOfLines = 0
         industrycellValue = cell.labelusr.text!
+        
         if(self.collectionselectedcell == cell.labelusr.text!) {
             cell.backgroundColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
             cell.imageusr.image = imageArr1[cellIndex]
@@ -569,7 +553,9 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell
         let cellIndex = indexPath.item
         cell.labelusr.numberOfLines = 0
+        industrycellValue = cell.labelusr.text!
         cell.imageusr.image = imageArr1[cellIndex]
+        //self.collectionView.reloadData()
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userCollectionViewCell

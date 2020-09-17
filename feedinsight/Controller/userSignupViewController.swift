@@ -18,69 +18,6 @@ import SearchTextField
 class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource{
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalSelection", for: indexPath) as! AnimalSelectionTableViewCell
-        cell.setAnimalName?.text = animalNameArray[indexPath.row]
-        cell.tickImage.setImage(UIImage(named:"animaluncheck"), for: .normal)
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! AnimalSelectionTableViewCell
-        
-        if cell.tickImage.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
-            cell.tickImage.setImage(UIImage(named: "animalcheck"), for:  .normal)
-            animalSelectionArray.append(animalNameArray[indexPath.row])
-            var copyStr : String = ""
-            pickani.setTitle("", for: .normal)
-            for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
-                copyStr = copyStr + string
-                pickani.setTitle(copyStr, for: .normal)
-            }
-        } else {
-            cell.tickImage.setImage(UIImage(named: "animaluncheck"), for:  .normal)
-            if(animalSelectionArray.count != 0) {
-                for i in 0 ..< animalSelectionArray.count {
-                    if(animalSelectionArray[i] == cell.setAnimalName.text) {
-                        animalSelectionArray.remove(at: i)
-                        break
-                    }
-                }
-            }
-
-            var copyStr : String = ""
-            pickani.setTitle("", for: .normal)
-            for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
-                copyStr = copyStr + string
-                pickani.setTitle(copyStr, for: .normal)
-            }
-        }
-        
-    }
-    
-    
-    @IBAction func pickAnimalAction(_ sender: Any) {
-        if(self.animalSelectionTableView.isHidden == true) {
-            self.animalSelectionTableView.isHidden = false
-            //self.animalSelectionTableView.reloadData()
-        } else {
-            self.animalSelectionTableView.isHidden = true
-        }
-    }
-    
-    
-    
     @IBOutlet weak var pickani: UIButton!
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var pickanimal: DropDown!
@@ -176,7 +113,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             self.picklocation.text = output
         }
     }
+   
     override func viewDidLoad() {
+        
         self.dismissKey()
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -191,7 +130,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         
         emailView.addGestureRecognizer(tapemail)
         headerView.addGestureRecognizer(tapheader)
@@ -206,7 +145,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         roleView.addGestureRecognizer(taprole)
         passView.addGestureRecognizer(tappass)
         cnfpassView.addGestureRecognizer(tapcnfpass)
-        signupView.addGestureRecognizer(tapsignup)
+        //signupView.addGestureRecognizer(tapsignup)
         animalSelectionTableView.clipsToBounds = false
         animalSelectionTableView.layer.masksToBounds = false
         animalSelectionTableView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -300,6 +239,63 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
 
         self.animalSelectionTableView.isHidden = true
 
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalSelection", for: indexPath) as! AnimalSelectionTableViewCell
+        cell.setAnimalName?.text = animalNameArray[indexPath.row]
+        cell.tickImage.setImage(UIImage(named:"animaluncheck"), for: .normal)
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! AnimalSelectionTableViewCell
+        
+        if cell.tickImage.currentImage!.isEqual(UIImage(named: "animaluncheck")) {
+            cell.tickImage.setImage(UIImage(named: "animalcheck"), for:  .normal)
+            animalSelectionArray.append(animalNameArray[indexPath.row])
+            var copyStr : String = ""
+            pickani.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickani.setTitle(copyStr, for: .normal)
+            }
+        } else {
+            cell.tickImage.setImage(UIImage(named: "animaluncheck"), for:  .normal)
+            if(animalSelectionArray.count != 0) {
+                for i in 0 ..< animalSelectionArray.count {
+                    if(animalSelectionArray[i] == cell.setAnimalName.text) {
+                        animalSelectionArray.remove(at: i)
+                        break
+                    }
+                }
+            }
+
+            var copyStr : String = ""
+            pickani.setTitle("", for: .normal)
+            for i in 0 ..< animalSelectionArray.count {
+                let string : String = animalSelectionArray[i] + " , "
+                copyStr = copyStr + string
+                pickani.setTitle(copyStr, for: .normal)
+            }
+        }
+        
+    }
+    @IBAction func pickAnimalAction(_ sender: Any) {
+        if(self.animalSelectionTableView.isHidden == true) {
+            self.animalSelectionTableView.isHidden = false
+            //self.animalSelectionTableView.reloadData()
+        } else {
+            self.animalSelectionTableView.isHidden = true
+        }
     }
     @IBAction func singuponclick(_ sender: Any) {
         SVProgressHUD.show()
@@ -416,17 +412,40 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
         
-        userindustry.alpha = 0.3
-        industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-        userindustry.isUserInteractionEnabled =  false
-        
+        var addressDict = [String:Int]()
+       
+        addressDict["P"] =  cellIndex as Int
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "myCellKey"), object: nil, userInfo: addressDict)
     }
+   
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
         let cellIndex = indexPath.item
         cell.signuplabel.numberOfLines = 0
         cell.signupimage.image = imageArr[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let item = collectionView.cellForItem(at: indexPath)
+        let cell = collectionView.cellForItem(at: indexPath) as! userSignupCollectionViewCell
+        let cellIndex = indexPath.item
+        if item?.isSelected ?? false {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            userindustry.alpha = 1
+            industryLabel.textColor = UIColor.init(red: 81/255, green: 23/255, blue: 79/255, alpha: 1)
+            userindustry.isUserInteractionEnabled =  true
+            cell.signupimage.image = imageArr[cellIndex]
+        } else {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+            userindustry.alpha = 0.3
+            industryLabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+            userindustry.isUserInteractionEnabled =  false
+            cell.signupimage.image = imageArr1[cellIndex]
+            return true
+        }
+
+        return false
     }
 }
 
