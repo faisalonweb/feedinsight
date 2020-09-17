@@ -186,19 +186,22 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
-            self.personName.text = userName as? String
-            print(userName)
-    }
-        
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
         self.animaltableview.isHidden = true
        }
+    
+    @objc func tapOnImageAction() {
+        let imagecontroller = UIImagePickerController()
+        imagecontroller.delegate = self
+        imagecontroller.sourceType = .photoLibrary
+        self.present(imagecontroller, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         self.dismissKey()
         
-        
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -213,7 +216,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        
+        userpic.addGestureRecognizer(tapOnImage)
         emailView.addGestureRecognizer(tapemail)
         headerView.addGestureRecognizer(tapheader)
         nameView.addGestureRecognizer(tapname)
@@ -261,6 +264,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         if let userName = defaults.value(forKey: dKeys.keyusername){
             
             self.username.text = userName as? String
+            self.personName.text = userName as? String
             print(userName)
         }
         if let userEmail = defaults.value(forKey: dKeys.keyuseremail){
@@ -462,6 +466,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                     self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
                                     self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
                                     self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                                    self.personName.text = self.username.text
                                     self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
                                     self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
                                     self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
@@ -508,6 +513,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
                         self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
                         self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                        self.personName.text = self.username.text
                         self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
                         self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
                         self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
