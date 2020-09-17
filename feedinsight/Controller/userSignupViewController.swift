@@ -419,7 +419,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signuplabel.numberOfLines = 0
         cell.signupimage.image = imageArr[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
-        
         cell.layer.cornerRadius = 15
         cell.layer.masksToBounds = true
         return cell
@@ -431,11 +430,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         cell.signupimage.image = imageArr1[cellIndex]
         cell.signuplabel.text = textArr[cellIndex]
         industrycellValue =  cell.signuplabel.text!
-        
-        var addressDict = [String:Int]()
-       
-        addressDict["P"] =  cellIndex as Int
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "myCellKey"), object: nil, userInfo: addressDict)
     }
    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
