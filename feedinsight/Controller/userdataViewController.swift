@@ -581,10 +581,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 if(string == textArr[cellIndex]) {
                     cell.imageusr.image = imageArr1[cellIndex]
                     cell.backgroundColor =  UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+                    cell.labelusr.textColor = UIColor.white
                     break
                 } else {
                     cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
                     cell.imageusr.image = imageArr[cellIndex]
+                    cell.labelusr.textColor = UIColor.black
                 }
             }
         } else {
@@ -593,13 +595,14 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             userotherindus.isUserInteractionEnabled =  true
             cell.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
             cell.imageusr.image = imageArr[cellIndex]
+            cell.labelusr.textColor = UIColor.black
         }
         cell.labelusr.text = textArr[cellIndex]
         return cell
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cellIndex = indexPath.item        
+        let cellIndex = indexPath.item
         var boolValue = false
         if(collectionViewSelectedName.count > 0) {
             for i in 0 ..< collectionViewSelectedName.count {
