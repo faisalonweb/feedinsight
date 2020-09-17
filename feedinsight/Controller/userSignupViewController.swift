@@ -15,7 +15,7 @@ import CountryPickerView
 import SVProgressHUD
 import SearchTextField
 
-class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource{
+class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
     @IBOutlet weak var pickani: UIButton!
@@ -113,10 +113,15 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             self.picklocation.text = output
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
+        self.animalSelectionTableView.isHidden = true
+    }
    
     override func viewDidLoad() {
-        
         self.dismissKey()
+        self.pickrole.delegate = self
+        
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -156,10 +161,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         pickani.titleEdgeInsets.left = 8
         pickani.titleEdgeInsets.bottom = 0
         pickani.titleEdgeInsets.right = 0
-        self.dismissKey()
+        
         SignupCollectionData = DataAppend.getAllSignupData()
         self.animalSelectionTableView.isHidden = true
         super.viewDidLoad()
+        pickani.setTitleColor(.lightGray, for: .normal)
         let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
         let lineArray = text.components(separatedBy: "\n")
         for eachLA in lineArray
@@ -209,6 +215,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         collectionview.collectionViewLayout = layout
         let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
         signinoutlet.enabledTypes.append(customType)
+        self.pickrole.delegate = self
+        self.userpassword.delegate = self
+        
         signinoutlet.urlMaximumLength = 91
         signinoutlet.customize { label in
         signinoutlet.text = "Have an Account? Sign In"
@@ -236,9 +245,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     @objc func tapAction() {
-
         self.animalSelectionTableView.isHidden = true
-
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -262,11 +269,14 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             cell.tickImage.setImage(UIImage(named: "animalcheck"), for:  .normal)
             animalSelectionArray.append(animalNameArray[indexPath.row])
             var copyStr : String = ""
-            pickani.setTitle("", for: .normal)
+            pickani.setTitle("Pick Animal", for: .normal)
+            pickani.setTitleColor(.lightGray, for: .normal)
             for i in 0 ..< animalSelectionArray.count {
                 let string : String = animalSelectionArray[i] + " , "
                 copyStr = copyStr + string
                 pickani.setTitle(copyStr, for: .normal)
+                pickani.setTitleColor(.black, for: .normal)
+                
             }
         } else {
             cell.tickImage.setImage(UIImage(named: "animaluncheck"), for:  .normal)
@@ -280,11 +290,13 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             }
 
             var copyStr : String = ""
-            pickani.setTitle("", for: .normal)
+            pickani.setTitleColor(.lightGray, for: .normal)
+            pickani.setTitle("Pick Animal", for: .normal)
             for i in 0 ..< animalSelectionArray.count {
                 let string : String = animalSelectionArray[i] + " , "
                 copyStr = copyStr + string
                 pickani.setTitle(copyStr, for: .normal)
+                pickani.setTitleColor(.black, for: .normal)
             }
         }
         
