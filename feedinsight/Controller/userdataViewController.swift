@@ -16,7 +16,7 @@ import SVProgressHUD
 import SearchTextField
 
 
-class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource  {
+class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate  {
     
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
@@ -52,11 +52,13 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             cell.setimagebtn.setImage(UIImage(named: "animalcheck"), for:  .normal)
             animalSelectionArray.append(animalNameArray[indexPath.row])
             var copyStr : String = ""
-            pickAnimalSelection.setTitle("", for: .normal)
+            pickAnimalSelection.setTitle("Pick Animal", for: .normal)
+            pickAnimalSelection.setTitleColor(.lightGray, for: .normal)
             for i in 0 ..< animalSelectionArray.count {
                 let string : String = animalSelectionArray[i] + " , "
                 copyStr = copyStr + string
                 pickAnimalSelection.setTitle(copyStr, for: .normal)
+                pickAnimalSelection.setTitleColor(.black, for: .normal)
             }
         } else {
             cell.setimagebtn.setImage(UIImage(named: "animaluncheck"), for:  .normal)
@@ -190,9 +192,13 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
         
     }
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
+        self.animaltableview.isHidden = true
+       }
     override func viewDidLoad() {
         self.dismissKey()
+        
+        
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -235,7 +241,15 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         pickAnimalSelection.titleEdgeInsets.right = 0
         pickAnimalSelection.layer.borderWidth = 1
         pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
-        
+        self.username.delegate = self
+        self.useremail.delegate = self
+        self.userpassword.delegate = self
+        self.userbuss.delegate = self
+        self.userphone.delegate = self
+        self.roledropdown.delegate = self
+        self.userconfirmpassword.delegate = self
+        self.userotherindus.delegate = self
+        self.locationField.delegate = self
         DispatchQueue.main.async { [weak self] in
             
             let data = self?.defaults.value(forKey: "imageData") as? Data
