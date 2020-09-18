@@ -28,6 +28,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     var portait:CGFloat=0
     var landscap:CGFloat=0
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -51,7 +52,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
                 self?.userpic.image = UIImage(data: data!)
             }
         }
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        //self.navigationController?.setNavigationBarHidden(true, animated: animated)
         if(UIScreen.main.bounds.width < 415)
         {
             getScreenSize()
@@ -145,7 +146,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        //self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     @IBAction func selectAnimal(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

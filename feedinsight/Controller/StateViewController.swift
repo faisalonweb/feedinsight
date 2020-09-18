@@ -108,6 +108,8 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         textField.clipsToBounds = true
     }
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = true
+        proimage?.layer.cornerRadius = (proimage?.frame.size.width ?? 0.0) / 2
         self.dismissKey()
         nameField.text = groupcompany
         animalField.text = nameanimal
