@@ -343,7 +343,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             pickerData1.append(workarray[0])
         }
         locationField.filterStrings(pickerData1)
-        locationField.maxNumberOfResults = 2
+        locationField.maxNumberOfResults = 5
         locationField.theme.font = UIFont.systemFont(ofSize: 14)
         locationField.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         locationField.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
@@ -354,6 +354,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             print("Item at position \(itemPosition): \(item.title)")
             self.locationField.text = item.title
         }
+        locationField.minCharactersNumberToStartFiltering = 3
+        locationField.comparisonOptions = [.anchored]
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 117, height: 150)

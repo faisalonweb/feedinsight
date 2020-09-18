@@ -161,7 +161,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "homeSegue"){
-            let displayVC = segue.destination as! UITabBarController
+            //let displayVC = segue.destination as! UITabBarController
         }
     }
     func validateFields() -> String? {

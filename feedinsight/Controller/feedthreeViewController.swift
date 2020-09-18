@@ -77,10 +77,24 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             }
         } catch {}
     }
-    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
     override func viewDidLoad() {
         getData()
         self.dismissKey()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
@@ -298,43 +312,61 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.present(dialogMessage, animated: true, completion: nil)
         }
         else {
-            
             let currentDateTime = Date()
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
             formatter.dateStyle = .long
             calculateFloatArray()
             if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
-                let datetimestamp = formatter.string(from: currentDateTime)
-                let db = Firestore.firestore()
-                let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
-                let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                    SVProgressHUD.show(withStatus: "it's working ...")
-                    let text = alertController.textFields!.first!.text!
-                    //                    let _ : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
-                    let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
-                    newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
-                        if let err = err {
-                            SVProgressHUD.showError(withStatus: "Error")
-                            
-                            print("Error adding document: \(err)")
-                            SVProgressHUD.dismiss()
-                        } else {
-                             SVProgressHUD.showSuccess(withStatus: "Success")
-                                                           
-                                                           print("Document added")
-                                                           SVProgressHUD.dismiss()
-                        }
+                var boolValue : Bool = false
+                for i in 0..<dropdownvalues.count {
+                    if(dropdownfloatValue[i] == "none") {
+                        boolValue = true
+                        let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(defaultAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        break
                     }
                 }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                if(boolValue == false) {
+                    let datetimestamp = formatter.string(from: currentDateTime)
+                    let db = Firestore.firestore()
+                    let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
+                    let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                        SVProgressHUD.show(withStatus: "it's working ...")
+                        let text = alertController.textFields!.first!.text!
+                        //                    let _ : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                        let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
+                        newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                            if let err = err {
+                                SVProgressHUD.showError(withStatus: "Error")
+                                
+                                print("Error adding document: \(err)")
+                                SVProgressHUD.dismiss()
+                            } else {
+                                 SVProgressHUD.showSuccess(withStatus: "Success")
+                                                               
+                                                               print("Document added")
+                                                               SVProgressHUD.dismiss()
+                            }
+                        }
+                    }
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                    }
+                    alertController.addTextField { (textField) in
+                        textField.placeholder = "Ration Profile"
+                    }
+                    alertController.addAction(withdrawAction)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
-                alertController.addTextField { (textField) in
-                    textField.placeholder = "Ration Profile"
-                }
-                alertController.addAction(withdrawAction)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
             } else {
                 let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

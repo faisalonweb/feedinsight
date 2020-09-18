@@ -95,6 +95,15 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     @IBOutlet weak var changeableLabel: UILabel!
     var screenNAME : String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            
+            let data = self?.defaults.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.profileimage.image = UIImage(data: data!)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         
