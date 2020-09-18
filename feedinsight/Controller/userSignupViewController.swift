@@ -180,7 +180,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         pickani.layer.borderWidth = 1
         pickani.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
         picklocation.filterStrings(pickerData1)
-        picklocation.maxNumberOfResults = 2
+        picklocation.maxNumberOfResults = 5
         picklocation.theme.font = UIFont.systemFont(ofSize: 14)
         picklocation.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         picklocation.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
@@ -190,6 +190,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             let item = filteredResults[itemPosition]
             self.picklocation.text = item.title
         }
+        picklocation.minCharactersNumberToStartFiltering = 3
+        picklocation.comparisonOptions = [.anchored]
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 105, height: 150)

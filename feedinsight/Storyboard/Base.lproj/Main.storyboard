@@ -1055,12 +1055,16 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See All" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-3p-pQc">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTW-4M-DLe">
                                                                         <rect key="frame" x="207.66666666666663" y="0.0" width="166.33333333333337" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="17"/>
-                                                                        <color key="textColor" red="0.31764705882352939" green="0.090196078431372548" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                        <state key="normal" title="See All">
+                                                                            <color key="titleColor" red="0.31764705879999999" green="0.090196078430000007" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <segue destination="UNE-2E-8vk" kind="show" id="OUc-nM-8ne"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
@@ -1187,12 +1191,29 @@
                     <navigationItem key="navigationItem" id="4GZ-g2-nHE"/>
                     <connections>
                         <outlet property="advertismentView" destination="xE5-5i-4OV" id="yIC-4h-Vmo"/>
+                        <outlet property="clickOnSeeAll" destination="fTW-4M-DLe" id="C2c-LH-2Iv"/>
                         <outlet property="collectionView" destination="gJx-kI-L3P" id="qY0-j1-pMF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C6g-EE-tNg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2090" y="1730"/>
+        </scene>
+        <!--See All View Controller-->
+        <scene sceneID="TfA-WU-JhN">
+            <objects>
+                <viewController storyboardIdentifier="SeeAllViewController" id="UNE-2E-8vk" customClass="SeeAllViewController" customModule="FeedInsight" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ysi-Z6-E16">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aHp-XQ-Ew9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eTZ-af-CAK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AcS-cn-aom" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2646" y="2398"/>
         </scene>
         <!--State View Controller-->
         <scene sceneID="C5M-Uk-Qc4">
@@ -5427,7 +5448,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="c0B-0w-XNt" secondAttribute="bottom" id="xet-9l-T6h"/>
                                                                 </constraints>
                                                             </view>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mzV-wj-ejs">
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mzV-wj-ejs">
                                                                 <rect key="frame" x="0.0" y="58" width="374" height="424"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>

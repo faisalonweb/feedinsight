@@ -13,6 +13,8 @@ import GoogleMobileAds
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var advertismentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var clickOnSeeAll: UIButton!
     var arrData = [PremixCollectionCell]()
     let textArr = ["Premix Check","Unit Conveter"]
     let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
@@ -92,6 +94,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         print("SCREEN RESOLUTION: "+screenWidth.description+" x "+screenHeight.description)
         sizee = screenWidth
     }
+    
+//    @IBAction func clickOnSeeAll(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
+//        self.navigationController?.pushViewController(animalViewController, animated: true)
+//    }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if UIDevice.current.orientation.isLandscape {

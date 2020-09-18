@@ -59,6 +59,8 @@ class loadProfileAnimalsViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         tblView.isHidden = true
+       self.tblView.refreshControl = UIRefreshControl()
+       self.tblView.refreshControl?.beginRefreshing()
         super.viewDidLoad()
         mainBtn.layer.cornerRadius = 10
         Firestore.firestore().collection("animalState").document(Auth.auth().currentUser?.uid ?? "").collection("animalState").getDocuments{(snapshot,error) in
@@ -122,6 +124,8 @@ class loadProfileAnimalsViewController: UIViewController {
                 self.productionstate.append(contentsOf: self.datafifteenstation)
                 self.tblView.reloadData()
                 print(self.productionstate)
+                
+                self.tblView.refreshControl?.endRefreshing()
             }
             else {
                 print("pakis")
@@ -157,10 +161,12 @@ class loadProfileAnimalsViewController: UIViewController {
         if toggle {
             UIView.animate(withDuration: 0.3) {
                 self.tblView.isHidden = false
+                
             }
         } else {
             UIView.animate(withDuration: 0.3) {
                 self.tblView.isHidden = true
+                
             }
         }
     }
