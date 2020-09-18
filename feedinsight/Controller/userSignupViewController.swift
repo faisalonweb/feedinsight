@@ -330,13 +330,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             SVProgressHUD.dismiss()
                         }
                     }
-                    if #available(iOS 13.0, *) {
-                        SVProgressHUD.showSuccess(withStatus: "Success")
-                        self.transitionToHome()
-                        SVProgressHUD.dismiss()
-                    } else {
-                        // Fallback on earlier versions
-                    }
+                    SVProgressHUD.showSuccess(withStatus: "Success")
+                    self.transitionToHome()
+                    SVProgressHUD.dismiss()
                 }
             }
         }

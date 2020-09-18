@@ -149,11 +149,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     print(result?.user.uid ?? 0)
-                    if #available(iOS 13.0, *) {
-                        self.transitionToHome()
-                    } else {
-                        // Fallback on earlier versions
-                    }
+                    self.transitionToHome()
                 }
             }
         }
