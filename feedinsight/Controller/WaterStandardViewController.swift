@@ -34,11 +34,7 @@ class WaterStandardViewController: UIViewController {
         self.dismissKey() 
         super.viewDidLoad()
     }
-    @IBAction func saveOnClick(_ sender: Any) {
-        
-    }
-    @IBAction func loadOnClick(_ sender: Any) {
-    }
+    
     @IBAction func nextOnClick(_ sender: Any) {
         //let requirments = Requirments()
         requirments.waterPVal = 0.0
