@@ -24,6 +24,7 @@ target 'FeedInsight' do
   pod 'CoreXLSX'
   pod "SearchTextField"
   pod 'Google-Mobile-Ads-SDK'
+  pod 'ImageCropper'
   
 end
 

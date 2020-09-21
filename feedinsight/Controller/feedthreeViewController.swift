@@ -91,7 +91,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     override func viewDidLoad() {
-        getData()
         self.dismissKey()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -101,6 +100,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getData()
         addfeed.didSelect{(selectedText , index ,id) in
             currentIndex = index
         }
@@ -118,11 +122,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         } else {
             self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
         }
-        
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+
         if let userName = defaults.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
@@ -185,7 +185,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 for i in 0..<dropdownvalues.count {
                     var productDM : Double = 0
                     if(dropdownfloatValue[i] != "none") {
-                        productDM = Double(dropdownfloatValue[i])! * selectedProductList[i].DryMatter
+                        productDM = Double(dropdownfloatValue[i])! * Double(selectedProductList[i].DryMatter)!
                         dmi = dmi + productDM
                         print(dmi)
                     } else {

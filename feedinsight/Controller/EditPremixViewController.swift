@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class EditPremixViewController: UIViewController {
     
@@ -66,22 +67,22 @@ class EditPremixViewController: UIViewController {
             self.FeedName.text! = productList[currentIndex].FeedName
             saveName = productList[currentIndex].FeedName
             self.FeedType.text! = productList[currentIndex].Type1
-            self.dryMatter.text! = String(format: "%f", productList[currentIndex].DryMatter)
-            self.caTextField.text! = String(format: "%f", productList[currentIndex].Ca)
-            self.caAbsTextField.text! = String(format: "%f", productList[currentIndex].CaAbs)
-            self.pTextField.text! = String(format: "%f", productList[currentIndex].P)
-            self.pAbsTextField.text! = String(format: "%f", productList[currentIndex].PAbs)
-            self.mgTextField.text! = String(format: "%f", productList[currentIndex].Mg)
-            self.mgAbsTextField.text! = String(format: "%f", productList[currentIndex].MgAbs)
-            self.kTextField.text! = String(format: "%f", productList[currentIndex].K)
-            self.sTextField.text! = String(format: "%f", productList[currentIndex].S)
-            self.naTextField.text! = String(format: "%f", productList[currentIndex].Na)
-            self.clTextField.text! = String(format: "%f", productList[currentIndex].Cl)
-            self.feTextField.text! = String(format: "%f", productList[currentIndex].Fe)
-            self.znTextField.text! = String(format: "%f", productList[currentIndex].Zn)
-            self.cuTextField.text! = String(format: "%f", productList[currentIndex].Cu)
-            self.mnTextField.text! = String(format: "%f", productList[currentIndex].Mn)
-            self.seTextField.text! = String(format: "%f", productList[currentIndex].Se)
+            self.dryMatter.text! = productList[currentIndex].DryMatter
+            self.caTextField.text! = productList[currentIndex].Ca
+            self.caAbsTextField.text! =  productList[currentIndex].CaAbs
+            self.pTextField.text! =  productList[currentIndex].P
+            self.pAbsTextField.text! =  productList[currentIndex].PAbs
+            self.mgTextField.text! =  productList[currentIndex].Mg
+            self.mgAbsTextField.text! =  productList[currentIndex].MgAbs
+            self.kTextField.text! =  productList[currentIndex].K
+            self.sTextField.text! =  productList[currentIndex].S
+            self.naTextField.text! =  productList[currentIndex].Na
+            self.clTextField.text! =  productList[currentIndex].Cl
+            self.feTextField.text! =  productList[currentIndex].Fe
+            self.znTextField.text! =  productList[currentIndex].Zn
+            self.cuTextField.text! =  productList[currentIndex].Cu
+            self.mnTextField.text! =  productList[currentIndex].Mn
+            self.seTextField.text! =  productList[currentIndex].Se
             self.coTextField.text! = productList[currentIndex].Co
             self.iTextField.text! = productList[currentIndex].I
             self.vitaminATextField.text! = productList[currentIndex].VitaminA
@@ -100,38 +101,22 @@ class EditPremixViewController: UIViewController {
         if(screenName == "Edit Feed") {
             productList[currentIndex].FeedName = FeedName.text!
             productList[currentIndex].Type1 = FeedType.text!
-            let DryMatter = Double(self.dryMatter.text!)
-            productList[currentIndex].DryMatter = DryMatter ?? 0.0
-            let ca = Double(self.caTextField.text!)
-            productList[currentIndex].Ca = ca ?? 0.0
-            let caAbs = Double(self.caTextField.text!)
-            productList[currentIndex].CaAbs = caAbs ?? 0.0
-            let p = Double(self.pTextField.text!)
-            productList[currentIndex].P = p ?? 0.0
-            let pAbs = Double(self.pAbsTextField.text!)
-            productList[currentIndex].PAbs = pAbs ?? 0.0
-            let mg = Double(self.mgTextField.text!)
-            productList[currentIndex].Mg = mg ?? 0.0
-            let mgAbs = Double(self.mgAbsTextField.text!)
-            productList[currentIndex].MgAbs = mgAbs ?? 0.0
-            let k = Double(self.kTextField.text!)
-            productList[currentIndex].K = k ?? 0.0
-            let s = Double(self.sTextField.text!)
-            productList[currentIndex].S = s ?? 0.0
-            let na = Double(self.naTextField.text!)
-            productList[currentIndex].Na = na ?? 0.0
-            let cl = Double(self.clTextField.text!)
-            productList[currentIndex].Cl = cl ?? 0.0
-            let fe = Double(self.feTextField.text!)
-            productList[currentIndex].Fe = fe ?? 0.0
-            let zn = Double(self.znTextField.text!)
-            productList[currentIndex].Zn = zn ?? 0.0
-            let cu = Double(self.cuTextField.text!)
-            productList[currentIndex].Cu = cu ?? 0.0
-            let mn = Double(self.mnTextField.text!)
-            productList[currentIndex].Mn = mn ?? 0.0
-            let se = Double(self.seTextField.text!)
-            productList[currentIndex].Se = se ?? 0.0
+            productList[currentIndex].DryMatter = self.dryMatter.text!
+            productList[currentIndex].Ca = self.caTextField.text!
+            productList[currentIndex].CaAbs = self.caTextField.text!
+            productList[currentIndex].P = self.pTextField.text!
+            productList[currentIndex].PAbs = self.pAbsTextField.text!
+            productList[currentIndex].Mg = self.mgTextField.text!
+            productList[currentIndex].MgAbs = self.mgAbsTextField.text!
+            productList[currentIndex].K = self.kTextField.text!
+            productList[currentIndex].S = self.sTextField.text!
+            productList[currentIndex].Na = self.naTextField.text!
+            productList[currentIndex].Cl = self.clTextField.text!
+            productList[currentIndex].Fe = self.feTextField.text!
+            productList[currentIndex].Zn = self.znTextField.text!
+            productList[currentIndex].Cu = self.cuTextField.text!
+            productList[currentIndex].Mn = self.mnTextField.text!
+            productList[currentIndex].Se = self.seTextField.text!
             productList[currentIndex].Co = self.coTextField.text!
             productList[currentIndex].I = self.iTextField.text!
             productList[currentIndex].VitaminA = self.vitaminATextField.text!
@@ -144,38 +129,22 @@ class EditPremixViewController: UIViewController {
             addedDataList.append(productList[0])
             addedDataList[0].FeedName = FeedName.text!
             addedDataList[0].Type1 = FeedType.text!
-            let DryMatter = Double(self.dryMatter.text!)
-            addedDataList[0].DryMatter = DryMatter ?? 0.0
-            let ca = Double(self.caTextField.text!)
-            addedDataList[0].Ca = ca ?? 0.0
-            let caAbs = Double(self.caTextField.text!)
-            addedDataList[0].CaAbs = caAbs ?? 0.0
-            let p = Double(self.pTextField.text!)
-            addedDataList[0].P = p ?? 0.0
-            let pAbs = Double(self.pAbsTextField.text!)
-            addedDataList[0].PAbs = pAbs ?? 0.0
-            let mg = Double(self.mgTextField.text!)
-            addedDataList[0].Mg = mg ?? 0.0
-            let mgAbs = Double(self.mgAbsTextField.text!)
-            addedDataList[0].MgAbs = mgAbs ?? 0.0
-            let k = Double(self.kTextField.text!)
-            addedDataList[0].K = k ?? 0.0
-            let s = Double(self.sTextField.text!)
-            addedDataList[0].S = s ?? 0.0
-            let na = Double(self.naTextField.text!)
-            addedDataList[0].Na = na ?? 0.0
-            let cl = Double(self.clTextField.text!)
-            addedDataList[0].Cl = cl ?? 0.0
-            let fe = Double(self.feTextField.text!)
-            addedDataList[0].Fe = fe ?? 0.0
-            let zn = Double(self.znTextField.text!)
-            addedDataList[0].Zn = zn ?? 0.0
-            let cu = Double(self.cuTextField.text!)
-            addedDataList[0].Cu = cu ?? 0.0
-            let mn = Double(self.mnTextField.text!)
-            addedDataList[0].Mn = mn ?? 0.0
-            let se = Double(self.seTextField.text!)
-            addedDataList[0].Se = se ?? 0.0
+            addedDataList[0].DryMatter = self.dryMatter.text!
+            addedDataList[0].Ca = self.caTextField.text!
+            addedDataList[0].CaAbs = self.caTextField.text!
+            addedDataList[0].P = self.pTextField.text!
+            addedDataList[0].PAbs = self.pAbsTextField.text!
+            addedDataList[0].Mg = self.mgTextField.text!
+            addedDataList[0].MgAbs = self.mgAbsTextField.text!
+            addedDataList[0].K = self.kTextField.text!
+            addedDataList[0].S = self.sTextField.text!
+            addedDataList[0].Na = self.naTextField.text!
+            addedDataList[0].Cl = self.clTextField.text!
+            addedDataList[0].Fe = self.feTextField.text!
+            addedDataList[0].Zn = self.znTextField.text!
+            addedDataList[0].Cu = self.cuTextField.text!
+            addedDataList[0].Mn = self.mnTextField.text!
+            addedDataList[0].Se = self.seTextField.text!
             addedDataList[0].Co = self.coTextField.text!
             addedDataList[0].I = self.iTextField.text!
             addedDataList[0].VitaminA = self.vitaminATextField.text!
@@ -186,6 +155,7 @@ class EditPremixViewController: UIViewController {
             addedDataList[0].Reference = self.referTextField.text!
         }
         productList.append(contentsOf: addedDataList)
+        SVProgressHUD.show(withStatus: "it's working ...")
         writeToFile(location: subUrl!)
         print("this is the location\(String(describing: subUrl))")
     }
@@ -196,7 +166,9 @@ class EditPremixViewController: UIViewController {
             encoder.outputFormatting = .prettyPrinted
             let JsonData = try encoder.encode(productList)
             try JsonData.write(to: location)
+            SVProgressHUD.showSuccess(withStatus: "Sucess")
             print("this is the location\(location)")
+            SVProgressHUD.dismiss()
         }catch{}
     }
     

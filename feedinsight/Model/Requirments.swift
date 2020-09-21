@@ -110,7 +110,7 @@ class Requirments {
     }
     func calculateRationData () {
         for i in 0..<finalDropdownfloatValue.count {
-            var value = Double(finalDropdownfloatValue[i])! * finalProductList[i].DryMatter
+            var value = Double(finalDropdownfloatValue[i])! * Double(finalProductList[i].DryMatter)!
             value = value / 100.0
             valueAfterDryMatter.append(value)
         }
@@ -118,21 +118,21 @@ class Requirments {
     }
     func calculateRationDataParameters() {
         for i in 0..<finalDropdownfloatValue.count {
-            rationP = rationP + (valueAfterDryMatter[i] * finalProductList[i].P)
-            rationPAbs = rationPAbs + (valueAfterDryMatter[i] * finalProductList[i].PAbs)
-            rationCa = rationCa + (valueAfterDryMatter[i] * finalProductList[i].Ca)
-            rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * finalProductList[i].CaAbs)
-            rationMg = rationMg + (valueAfterDryMatter[i] * finalProductList[i].Mg)
-            rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * finalProductList[i].MgAbs)
-            rationK = rationK + (valueAfterDryMatter[i] * finalProductList[i].K)
-            rationS = rationS + (valueAfterDryMatter[i] * finalProductList[i].S)
-            rationNa = rationNa + (valueAfterDryMatter[i] * finalProductList[i].Na)
-            rationCl = rationCl + (valueAfterDryMatter[i] * finalProductList[i].Cl)
-            rationFe = rationFe + (valueAfterDryMatter[i] * finalProductList[i].Fe)
-            rationZn = rationZn + (valueAfterDryMatter[i] * finalProductList[i].Zn)
-            rationCu = rationCu + (valueAfterDryMatter[i] * finalProductList[i].Cu)
-            rationMn = rationMn + (valueAfterDryMatter[i] * finalProductList[i].Mn)
-            rationSe = rationSe + (valueAfterDryMatter[i] * finalProductList[i].Se)
+            rationP = rationP + (valueAfterDryMatter[i] * Double(finalProductList[i].P)!)
+            rationPAbs = rationPAbs + (valueAfterDryMatter[i] * Double(finalProductList[i].PAbs)!)
+            rationCa = rationCa + (valueAfterDryMatter[i] * Double(finalProductList[i].Ca)!)
+            rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * Double(finalProductList[i].CaAbs)!)
+            rationMg = rationMg + (valueAfterDryMatter[i] * Double(finalProductList[i].Mg)!)
+            rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * Double(finalProductList[i].MgAbs)!)
+            rationK = rationK + (valueAfterDryMatter[i] * Double(finalProductList[i].K)!)
+            rationS = rationS + (valueAfterDryMatter[i] * Double(finalProductList[i].S)!)
+            rationNa = rationNa + (valueAfterDryMatter[i] * Double(finalProductList[i].Na)!)
+            rationCl = rationCl + (valueAfterDryMatter[i] * Double(finalProductList[i].Cl)!)
+            rationFe = rationFe + (valueAfterDryMatter[i] * Double(finalProductList[i].Fe)!)
+            rationZn = rationZn + (valueAfterDryMatter[i] * Double(finalProductList[i].Zn)!)
+            rationCu = rationCu + (valueAfterDryMatter[i] * Double(finalProductList[i].Cu)!)
+            rationMn = rationMn + (valueAfterDryMatter[i] * Double(finalProductList[i].Mn)!)
+            rationSe = rationSe + (valueAfterDryMatter[i] * Double(finalProductList[i].Se)!)
             let coVal = Double(finalProductList[i].Co) ?? 0.0
             rationCo = rationCo + (valueAfterDryMatter[i] * coVal)
             let iVal = Double(finalProductList[i].I) ?? 0.0
