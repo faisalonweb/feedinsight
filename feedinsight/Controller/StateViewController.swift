@@ -308,66 +308,110 @@ class StateViewController: UIViewController, UITextFieldDelegate {
         }
     }
     func showAlertWithThreeButton(theText: String) {
-        if (stateStatus == true)
-        {
-            let alert = UIAlertController(title: "Animal Profile", message: "", preferredStyle: .alert)
+        if ((nameField.text?.isEmpty != true) && (animalField.text?.isEmpty != true) && (PsychField.text?.isEmpty != true) && (CurrentBodyWeightF.text?.isEmpty != true) && (TargetBodyWeightF.text?.isEmpty != true) && (daystoAchiveF.text?.isEmpty != true) && (daysinMilkF.text?.isEmpty != true) && (daysPregnantF.text?.isEmpty != true) && (milkInProducitonF.text?.isEmpty != true)) {
             
-            alert.addAction(UIAlertAction(title: "Save as New", style: .default, handler: { (_) in
+            if (stateStatus == true)
+            {
+                let alert = UIAlertController(title: "Animal Profile", message: "", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Save as New", style: .default, handler: { (_) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
+                    let currentDateTime = Date()
+                    let formatter = DateFormatter()
+                    formatter.timeStyle = .medium
+                    formatter.dateStyle = .long
+                    let datetimestamp = formatter.string(from: currentDateTime)
+                    let daysPregnantEnter = self.daysPregnantF.text!
+                    let daysinMilkEnter = self.daysinMilkF.text!
+                    let milkInProducitonEnter = self.milkInProducitonF.text!
+                    let daystoAchiveEnter = self.daystoAchiveF.text!
+                    let TargetBodyWeightEnter = self.TargetBodyWeightF.text!
+                    let CurrentBodyWeightEnter = self.CurrentBodyWeightF.text!
+                    let companynameEnter = self.nameField.text!
+                    let userID = Auth.auth().currentUser?.uid
+                    let categoryEnter = self.headLabel.text!
+                    let combinedString = "\(self.headLabel.text!)-\(self.PsychField.text!)-\(self.animalField.text!)"
+                    //        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString]
+                    let db = Firestore.firestore()
+                    let newDocument = db.collection("animalState").document(userID!).collection("animalState").document()
+                    newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : self.animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : self.disorderbole,"dietbole": self.dietbole , "productionbole" : self.productionbole, "heatbole" : self.heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
+                        if let err = err {
+                            SVProgressHUD.showError(withStatus: "Error")
+                            
+                            print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
+                        } else {
+                            SVProgressHUD.showSuccess(withStatus: "Success")
+                            
+                            print("Document added")
+                            SVProgressHUD.dismiss()
+                        }
+                    }
+                }))
+                
+                alert.addAction(UIAlertAction(title: "Save as Previous", style: .default, handler: { (_) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
+                    let currentDateTime = Date()
+                    let formatter = DateFormatter()
+                    formatter.timeStyle = .medium
+                    formatter.dateStyle = .long
+                    let datetimestamp = formatter.string(from: currentDateTime)
+                    let daysPregnantEnter = self.daysPregnantF.text!
+                    let daysinMilkEnter = self.daysinMilkF.text!
+                    let milkInProducitonEnter = self.milkInProducitonF.text!
+                    let daystoAchiveEnter = self.daystoAchiveF.text!
+                    let TargetBodyWeightEnter = self.TargetBodyWeightF.text!
+                    let CurrentBodyWeightEnter = self.CurrentBodyWeightF.text!
+                    let companynameEnter = self.nameField.text!
+                    let userID = Auth.auth().currentUser?.uid
+                    let categoryEnter = self.headLabel.text!
+                    let combinedString = "\(self.headLabel.text!)-\(self.PsychField.text!)-\(self.animalField.text!)"
+                    //        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString]
+                    let db = Firestore.firestore()
+                    let newDocument = db.collection("animalState").document(userID!).collection("animalState").document(self.documentId)
+                    newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : self.animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : self.disorderbole,"dietbole": self.dietbole , "productionbole" : self.productionbole, "heatbole" : self.heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
+                        if let err = err {
+                            SVProgressHUD.showError(withStatus: "Error")
+                            
+                            print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
+                        } else {
+                            
+                    
+                            SVProgressHUD.showSuccess(withStatus: "Sucess")
+                            
+                            print("Document added")
+                            SVProgressHUD.dismiss()
+                        }
+                    }
+                }))
+                
+                alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (_) in
+                    print("You've pressed the destructive")
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+            else {
                 SVProgressHUD.show(withStatus: "it's working ...")
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
                 formatter.dateStyle = .long
                 let datetimestamp = formatter.string(from: currentDateTime)
-                let daysPregnantEnter = self.daysPregnantF.text!
-                let daysinMilkEnter = self.daysinMilkF.text!
-                let milkInProducitonEnter = self.milkInProducitonF.text!
-                let daystoAchiveEnter = self.daystoAchiveF.text!
-                let TargetBodyWeightEnter = self.TargetBodyWeightF.text!
-                let CurrentBodyWeightEnter = self.CurrentBodyWeightF.text!
-                let companynameEnter = self.nameField.text!
+                let daysPregnantEnter = daysPregnantF.text!
+                let daysinMilkEnter = daysinMilkF.text!
+                let milkInProducitonEnter = milkInProducitonF.text!
+                let daystoAchiveEnter = daystoAchiveF.text!
+                let TargetBodyWeightEnter = TargetBodyWeightF.text!
+                let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
+                let companynameEnter = nameField.text!
                 let userID = Auth.auth().currentUser?.uid
-                let categoryEnter = self.headLabel.text!
-                let combinedString = "\(self.headLabel.text!)-\(self.PsychField.text!)-\(self.animalField.text!)"
+                let categoryEnter = headLabel.text!
+                let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
                 //        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString]
                 let db = Firestore.firestore()
                 let newDocument = db.collection("animalState").document(userID!).collection("animalState").document()
-                newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : self.animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : self.disorderbole,"dietbole": self.dietbole , "productionbole" : self.productionbole, "heatbole" : self.heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
-                    if let err = err {
-                        SVProgressHUD.showError(withStatus: "Error")
-                        
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Success")
-                        
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                    }
-                }
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Save as Previous", style: .default, handler: { (_) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                let currentDateTime = Date()
-                let formatter = DateFormatter()
-                formatter.timeStyle = .medium
-                formatter.dateStyle = .long
-                let datetimestamp = formatter.string(from: currentDateTime)
-                let daysPregnantEnter = self.daysPregnantF.text!
-                let daysinMilkEnter = self.daysinMilkF.text!
-                let milkInProducitonEnter = self.milkInProducitonF.text!
-                let daystoAchiveEnter = self.daystoAchiveF.text!
-                let TargetBodyWeightEnter = self.TargetBodyWeightF.text!
-                let CurrentBodyWeightEnter = self.CurrentBodyWeightF.text!
-                let companynameEnter = self.nameField.text!
-                let userID = Auth.auth().currentUser?.uid
-                let categoryEnter = self.headLabel.text!
-                let combinedString = "\(self.headLabel.text!)-\(self.PsychField.text!)-\(self.animalField.text!)"
-                //        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString]
-                let db = Firestore.firestore()
-                let newDocument = db.collection("animalState").document(userID!).collection("animalState").document(self.documentId)
-                newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : self.animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : self.disorderbole,"dietbole": self.dietbole , "productionbole" : self.productionbole, "heatbole" : self.heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
+                newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
                     if let err = err {
                         SVProgressHUD.showError(withStatus: "Error")
                         
@@ -375,56 +419,23 @@ class StateViewController: UIViewController, UITextFieldDelegate {
                         SVProgressHUD.dismiss()
                     } else {
                         
-                
+                        
                         SVProgressHUD.showSuccess(withStatus: "Sucess")
                         
                         print("Document added")
                         SVProgressHUD.dismiss()
                     }
                 }
-            }))
+            }
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (_) in
-                print("You've pressed the destructive")
-            }))
-            self.present(alert, animated: true, completion: nil)
         }
         else {
-            SVProgressHUD.show(withStatus: "it's working ...")
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let daysPregnantEnter = daysPregnantF.text!
-            let daysinMilkEnter = daysinMilkF.text!
-            let milkInProducitonEnter = milkInProducitonF.text!
-            let daystoAchiveEnter = daystoAchiveF.text!
-            let TargetBodyWeightEnter = TargetBodyWeightF.text!
-            let CurrentBodyWeightEnter = CurrentBodyWeightF.text!
-            let companynameEnter = nameField.text!
-            let userID = Auth.auth().currentUser?.uid
-            let categoryEnter = headLabel.text!
-            let combinedString = "\(headLabel.text!)-\(PsychField.text!)-\(animalField.text!)"
-            //        let dict : [String : Any] = ["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString]
-            let db = Firestore.firestore()
-            let newDocument = db.collection("animalState").document(userID!).collection("animalState").document()
-            newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : disorderbole,"dietbole": dietbole , "productionbole" : productionbole, "heatbole" : heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
-                if let err = err {
-                    SVProgressHUD.showError(withStatus: "Error")
-                    
-                    print("Error adding document: \(err)")
-                    SVProgressHUD.dismiss()
-                } else {
-                    
-                    
-                    SVProgressHUD.showSuccess(withStatus: "Sucess")
-                    
-                    print("Document added")
-                    SVProgressHUD.dismiss()
-                }
-            }
+            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
         }
+     
         
     }
     func saveText(theText: String) {

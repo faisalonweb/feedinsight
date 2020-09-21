@@ -871,7 +871,7 @@
                                                 <rect key="frame" x="0.0" y="1435" width="414" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hrg-n8-F55">
-                                                        <rect key="frame" x="20" y="10" width="374" height="76"/>
+                                                        <rect key="frame" x="20" y="10" width="374" height="75.333333333333329"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tz4-9k-byq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -891,7 +891,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an Account? sign in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="cIm-1o-YHq" customClass="ActiveLabel" customModule="ActiveLabel">
-                                                                <rect key="frame" x="0.0" y="60" width="374" height="16"/>
+                                                                <rect key="frame" x="0.0" y="60.000000000000007" width="374" height="15.333333333333336"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="13"/>
                                                                 <color key="textColor" red="0.52156862749999999" green="0.51372549020000002" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3943,16 +3943,6 @@
                                                         <color key="textColor" red="0.98345748960000001" green="0.98345748960000001" blue="0.98345748960000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXE-2w-L7y">
-                                                        <rect key="frame" x="139.66666666666666" y="259.33333333333337" width="134.99999999999997" height="31"/>
-                                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
-                                                        <state key="normal" title="Edit Profile Photo">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="selectPhoto:" destination="z1O-OL-jra" eventType="touchUpInside" id="p5N-GB-Ik9"/>
-                                                        </connections>
-                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZr-bR-ZuK">
                                                         <rect key="frame" x="312" y="60" width="82" height="29"/>
                                                         <subviews>
@@ -3984,14 +3974,12 @@
                                                     <constraint firstAttribute="bottom" secondItem="rFB-uY-ooV" secondAttribute="bottom" id="0Xo-p8-vBr"/>
                                                     <constraint firstItem="Ii8-34-vb8" firstAttribute="top" secondItem="mWU-3y-yG4" secondAttribute="top" constant="110" id="6x8-4p-j7c"/>
                                                     <constraint firstItem="GZr-bR-ZuK" firstAttribute="top" secondItem="mWU-3y-yG4" secondAttribute="top" constant="60" id="CsX-hf-jDi"/>
-                                                    <constraint firstItem="gXE-2w-L7y" firstAttribute="centerX" secondItem="mWU-3y-yG4" secondAttribute="centerX" id="KLe-Tf-yPI"/>
                                                     <constraint firstItem="rFB-uY-ooV" firstAttribute="top" secondItem="mWU-3y-yG4" secondAttribute="top" id="Kfq-5X-UPi"/>
                                                     <constraint firstItem="rFB-uY-ooV" firstAttribute="leading" secondItem="mWU-3y-yG4" secondAttribute="leading" id="Ld0-dY-bKh"/>
                                                     <constraint firstAttribute="trailing" secondItem="GZr-bR-ZuK" secondAttribute="trailing" constant="20" id="Rc0-FN-TxC"/>
                                                     <constraint firstItem="Ii8-34-vb8" firstAttribute="centerX" secondItem="mWU-3y-yG4" secondAttribute="centerX" id="Z7q-h6-CqV"/>
                                                     <constraint firstItem="chv-7o-hxN" firstAttribute="top" secondItem="Ii8-34-vb8" secondAttribute="bottom" constant="27.666666666666686" id="Zza-IK-jS6"/>
                                                     <constraint firstAttribute="height" constant="320" id="qbk-pm-Snb"/>
-                                                    <constraint firstItem="gXE-2w-L7y" firstAttribute="top" secondItem="chv-7o-hxN" secondAttribute="bottom" constant="7.6669999999999998" id="t6T-fZ-3U0"/>
                                                     <constraint firstAttribute="trailing" secondItem="rFB-uY-ooV" secondAttribute="trailing" id="vNq-1n-iff"/>
                                                     <constraint firstItem="chv-7o-hxN" firstAttribute="centerX" secondItem="mWU-3y-yG4" secondAttribute="centerX" id="wPU-2T-aAU"/>
                                                 </constraints>
@@ -8038,10 +8026,10 @@
     </scenes>
     <designables>
         <designable name="FJe-0w-iSI">
-            <size key="intrinsicContentSize" width="249" height="21"/>
+            <size key="intrinsicContentSize" width="249" height="20"/>
         </designable>
         <designable name="cIm-1o-YHq">
-            <size key="intrinsicContentSize" width="149" height="16"/>
+            <size key="intrinsicContentSize" width="148.33333333333334" height="15.333333333333334"/>
         </designable>
     </designables>
     <resources>

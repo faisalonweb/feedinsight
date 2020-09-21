@@ -14,14 +14,208 @@ import FirebaseFirestore
 import CountryPickerView
 import SVProgressHUD
 import SearchTextField
+import RSKImageCropper
 
-class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate  {
+
+class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, RSKImageCropViewControllerDelegate  {
+    
+    var animalSelectionArray: [String] = [String]()
+    @IBOutlet weak var changebutton: UIButton!
+    @IBOutlet weak var userdropdown: DropDown!
+    @IBOutlet weak var roledropdown: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var locationField: SearchTextField!
+    @IBOutlet weak var userpic: UIImageView!
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var useremail: UITextField!
+    @IBOutlet weak var userphone: UITextField!
+    @IBOutlet weak var userotherindus: UITextField!
+    @IBOutlet weak var userbuss: UITextField!
+    @IBOutlet weak var userpassword: UITextField!
+    @IBOutlet weak var userconfirmpassword: UITextField!
+    @IBOutlet weak var countryCode: CountryPickerView!
+    @IBOutlet weak var induslabel: UILabel!
+    @IBOutlet weak var animaltableview: UITableView!
+    @IBOutlet weak var pickAnimalSelection: UIButton!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var indusview: UIView!
+    @IBOutlet weak var otherindusView: UIView!
+    @IBOutlet weak var animalView: UIView!
+    @IBOutlet weak var bussView: UIView!
+    @IBOutlet weak var roleView: UIView!
+    @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var password: UIView!
+    @IBOutlet weak var cnfpassView: UIView!
+    @IBOutlet weak var changeView: UIView!
+    var collectionViewSelectedName: [String] = [String]()
+    @IBOutlet weak var personName: UILabel!
+    
+    
+    var imagePicker : UIImagePickerController!
+    var db: Firestore!
+    var collectionselectedcell : String = "pak"
+    var nmr : Int = 0
+    let defaults = UserDefaults.standard
+    struct dKeys {
+        static let keyAnimal = "animalStringKey"
+        static let keyRole = "roleStringKey"
+        static let keyLocation = "locationStringKey"
+        static let keyusername = "usernameStringKey"
+        static let keyuseremail = "useremailStringKey"
+        static let keyuserphoneno = "userphonenoStringKey"
+        static let keyuserindustry = "userindustryStringKey"
+        static let keyuserbussiness = "userbussinessStringKey"
+        static let keyuserpassowrd = "userpasswordStringKey"
+        static let keyusercnfpassword = "usercnfpasswordStringKey"
+        static let keycountrycode = "countrycodeStringKey"
+        static let keycollectionview = "collectionviewStringKey"
+    }
+    var pickerData1: [String] = [String]()
+    var workarray: [String] = [String]()
+    var industrycellValue = ""
+    private let locationManager = LocationManager()
+    
+    let textArr = ["Research","Farming","Feed \nManufacturing"]
+    let imageArr: [UIImage] = [
+        UIImage(named: "research-unselected")!,
+        UIImage(named: "farm-unselected")!,
+        UIImage(named: "feedmanufacturing-unselected")!,
+    ]
+    let imageArr1: [UIImage] = [
+        UIImage(named: "research-selected")!,
+        UIImage(named: "farm-selected")!,
+        UIImage(named: "feedmanufacturing-selected")!,
+    ]
+    private func setCurrentLocation() {
+        guard let exposedLocation = self.locationManager.exposedLocation else {
+            print("*** Error in \(#function): exposedLocation is nil")
+            return
+        }
+        self.locationManager.getPlace(for: exposedLocation) { placemark in
+            guard let placemark = placemark else { return }
+            
+            var output = "Our location is:"
+            if let country = placemark.country {
+                output = output + "\n\(country)"
+            }
+            if let state = placemark.administrativeArea {
+                output = output + "\n\(state)"
+            }
+            if let town = placemark.locality {
+                output = output + "\n\(town)"
+            }
+            self.locationField.text = output
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
+        self.animaltableview.isHidden = true
+    }
+    
+    @objc func tapOnImageAction() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Photo Gallery", style: .default, handler: { (button) in
+            self.imagePicker = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary;
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (button) in
+            self.imagePicker = UIImagePickerController()
+            self.imagePicker.delegate = self
+            self.imagePicker.sourceType = UIImagePickerController.SourceType.camera;
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image : UIImage = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage)!
+        picker.dismiss(animated: false, completion: { () -> Void in
+            var imageCropVC : RSKImageCropViewController!
+            imageCropVC = RSKImageCropViewController(image: image, cropMode: RSKImageCropMode.circle)
+            imageCropVC.delegate = self
+            self.navigationController?.pushViewController(imageCropVC, animated: true)
+        })
+    }
+    
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
+    }
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
+        userpic.image = croppedImage
+        let data = userpic.image!.pngData()
+        UserDefaults().set(data, forKey: "imageData")
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let storage = Storage.storage()
+        let storageRef =  storage.reference().child("user/\(uid)")
+        if let uploadData = self.userpic.image!.pngData() {
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                guard metadata != nil else {
+                    return
+                }
+                storageRef.downloadURL(completion: { (url, error) in
+                    if let err = error{
+                        print(err)
+                    } else {
+                        let localFile = url?.absoluteString
+                        let imageURL = localFile
+                        if (imageURL != "") {
+                            let fileUrl = URL(string: imageURL!)
+                            let data = try? Data(contentsOf:fileUrl!)
+                            UserDefaults().set(data, forKey: "imageData")
+                            self.defaults.set(imageURL, forKey: "Link")
+                        }
+
+                        let fileUrl = URL(string: url!.absoluteString)
+                        let data = try? Data(contentsOf:fileUrl!)
+                        self.userpic.image = UIImage(data: data!)
+                        UserDefaults().set(data, forKey: "imageData")
+                        let db = Firestore.firestore()
+                        let userID = Auth.auth().currentUser?.uid
+                        if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
+                            Auth.auth().currentUser?.updatePassword(to: self.userpassword.text!) { (error) in
+                                if  let error = error {
+                                    print(error)
+                                }
+                            }
+                            db.collection("users").document("\(userID ?? "00")").updateData(["imageURL": localFile!]){ error in
+                                if let error = error {
+                                    print("error while updating the reord \(error)")
+                                }
+                                else {
+                                    SVProgressHUD.dismiss()
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+        }
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
+    }
+    
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
@@ -89,117 +283,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         }
     }
     
-    var animalSelectionArray: [String] = [String]()
-    @IBOutlet weak var changebutton: UIButton!
-    @IBOutlet weak var userdropdown: DropDown!
-    @IBOutlet weak var roledropdown: UITextField!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var locationField: SearchTextField!
-    @IBOutlet weak var userpic: UIImageView!
-    @IBOutlet weak var username: UITextField!
-    @IBOutlet weak var useremail: UITextField!
-    @IBOutlet weak var userphone: UITextField!
-    @IBOutlet weak var userotherindus: UITextField!
-    @IBOutlet weak var userbuss: UITextField!
-    @IBOutlet weak var userpassword: UITextField!
-    @IBOutlet weak var userconfirmpassword: UITextField!
-    @IBOutlet weak var countryCode: CountryPickerView!
-    @IBOutlet weak var induslabel: UILabel!
-    @IBOutlet weak var animaltableview: UITableView!
-    @IBOutlet weak var pickAnimalSelection: UIButton!
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var nameView: UIView!
-    @IBOutlet weak var emailView: UIView!
-    @IBOutlet weak var phoneView: UIView!
-    @IBOutlet weak var indusview: UIView!
-    @IBOutlet weak var otherindusView: UIView!
-    @IBOutlet weak var animalView: UIView!
-    @IBOutlet weak var bussView: UIView!
-    @IBOutlet weak var roleView: UIView!
-    @IBOutlet weak var locationView: UIView!
-    @IBOutlet weak var password: UIView!
-    @IBOutlet weak var cnfpassView: UIView!
-    @IBOutlet weak var changeView: UIView!
-    var collectionViewSelectedName: [String] = [String]()
-    @IBOutlet weak var personName: UILabel!
-    
-    
-    
-    
-    var db: Firestore!
-    var urllink : URL!
-    var urlbool : Bool = false
-    var collectionselectedcell : String = "pak"
-    var nmr : Int = 0
-    let defaults = UserDefaults.standard
-    struct dKeys {
-        static let keyAnimal = "animalStringKey"
-        static let keyRole = "roleStringKey"
-        static let keyLocation = "locationStringKey"
-        static let keyusername = "usernameStringKey"
-        static let keyuseremail = "useremailStringKey"
-        static let keyuserphoneno = "userphonenoStringKey"
-        static let keyuserindustry = "userindustryStringKey"
-        static let keyuserbussiness = "userbussinessStringKey"
-        static let keyuserpassowrd = "userpasswordStringKey"
-        static let keyusercnfpassword = "usercnfpasswordStringKey"
-        static let keycountrycode = "countrycodeStringKey"
-        static let keycollectionview = "collectionviewStringKey"
-    }
-    var pickerData1: [String] = [String]()
-    var workarray: [String] = [String]()
-    var industrycellValue = ""
-    private let locationManager = LocationManager()
-    
-    let textArr = ["Research","Farming","Feed \nManufacturing"]
-    let imageArr: [UIImage] = [
-        UIImage(named: "research-unselected")!,
-        UIImage(named: "farm-unselected")!,
-        UIImage(named: "feedmanufacturing-unselected")!,
-    ]
-    let imageArr1: [UIImage] = [
-        UIImage(named: "research-selected")!,
-        UIImage(named: "farm-selected")!,
-        UIImage(named: "feedmanufacturing-selected")!,
-    ]
-    private func setCurrentLocation() {
-        guard let exposedLocation = self.locationManager.exposedLocation else {
-            print("*** Error in \(#function): exposedLocation is nil")
-            return
-        }
-        self.locationManager.getPlace(for: exposedLocation) { placemark in
-            guard let placemark = placemark else { return }
-            
-            var output = "Our location is:"
-            if let country = placemark.country {
-                output = output + "\n\(country)"
-            }
-            if let state = placemark.administrativeArea {
-                output = output + "\n\(state)"
-            }
-            if let town = placemark.locality {
-                output = output + "\n\(town)"
-            }
-            self.locationField.text = output
-        }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
-        self.animaltableview.isHidden = true
-    }
-    
-    @objc func tapOnImageAction() {
-        let imagecontroller = UIImagePickerController()
-        imagecontroller.delegate = self
-        imagecontroller.sourceType = .photoLibrary
-        self.present(imagecontroller, animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         self.dismissKey()
-        
         let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -426,14 +511,14 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             }
         }
         if  username.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            userbuss.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            userphone.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            roledropdown.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            locationField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            userpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            userconfirmpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
-             {
+                useremail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                userbuss.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                userphone.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                roledropdown.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                locationField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                userpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+                userconfirmpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+        {
             return "Please fill in all fields."
         }
         if userpassword.text != userconfirmpassword.text {
@@ -448,134 +533,47 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         self.present(alertController, animated: true, completion: nil)
     }
     @IBAction func changeData(_ sender: Any) {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
         if(collectionViewSelectedName.count > 0) {
             industrycellValue = collectionViewSelectedName[0]
         } else {
             industrycellValue = ""
         }
         SVProgressHUD.show(withStatus: "it's working ...")
-        if urlbool == true {
-            let error = validateFields()
-            if error != nil {
-                SVProgressHUD.dismiss()
-                showError(error!)
-            }
-            else {
-                let storage = Storage.storage()
-                let storageRef =  storage.reference().child("user/\(uid)")
-                let localFile = urllink
-                _ = storageRef.putFile(from: localFile!, metadata: nil) { (metadata, err) in
-                    guard metadata != nil else {
-                        print(err?.localizedDescription ?? "none")
-                        return
-                    }
-                    storageRef.downloadURL(completion: { (url, error) in
-                        if let err = error{
-                            print(err)
-                        } else {
-                            let localFile = url?.absoluteString
-                            let fileUrl = URL(string: url!.absoluteString)
-                            let data = try? Data(contentsOf:fileUrl!)
-                            self.userpic.image = UIImage(data: data!)
-                            UserDefaults().set(data, forKey: "imageData")
-                            let country = self.countryCode.selectedCountry
-                            let db = Firestore.firestore()
-                            let userID = Auth.auth().currentUser?.uid
-                            //let userEmail =  Auth.auth().currentUser?.email
-                            //let currentUser =  Auth.auth().currentUser
-                            if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
-                                Auth.auth().currentUser?.updatePassword(to: self.userpassword.text!) { (error) in
-                                    if  let error = error {
-                                        print(error)
-                                    }
-                                }
-                                db.collection("users").document("\(userID ?? "00")").updateData(["name": self.username.text!, "email": self.useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : self.roledropdown.text! , "location": self.locationField.text!, "industry" : self.userotherindus.text!, "imageURL": localFile!, "business" : self.userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": self.userpassword.text!, "userconfirmpassword": self.userconfirmpassword.text!]){ error in
-                                    if let error = error {
-                                        print("error while updating the reord \(error)")
-                                    }
-                                    else {
-                                        SVProgressHUD.dismiss()
-                                        self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
-                                        self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
-                                        self.defaults.set(self.username.text, forKey: dKeys.keyusername)
-                                        self.personName.text = self.username.text
-                                        self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
-                                        self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
-                                        self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
-                                        self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
-                                        self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
-                                        self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
-                                        self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
-                                        self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
-//                                        if self.useremail.text != userEmail {
-//                                            currentUser?.updateEmail(to: self.useremail.text!){ error in
-//                                                if  let error = error {
-//                                                    print(error)
-//                                                }
-//                                                else {
-//                                                    //                                SVProgressHUD.dismiss()
-//                                                    print("No error while updating the email")
-//                                                }
-//                                            }
-//                                        }
-                                    }
-                                }
-                            }
-                        }
-                    })
-                }
-            }
-            
-        } else {
-            let error = validateFields()
-            if error != nil {
-                SVProgressHUD.dismiss()
-                showError(error!)
-            }
-            else {
-                let country = self.countryCode.selectedCountry
-                let db = Firestore.firestore()
-                let userID = Auth.auth().currentUser?.uid
-//                let userEmail =  Auth.auth().currentUser?.email
-//                let currentUser =  Auth.auth().currentUser
-                if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
-                    Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
-                        if  let error = error {
-                            self.showError(error.localizedDescription)
-                        }
-                    }
-                    db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
-                        if let error = error {
-                            print("error while updating the reord \(error)")
-                        }
-                        else {
-                            SVProgressHUD.dismiss()
-                            self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
-                            self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
-                            self.defaults.set(self.username.text, forKey: dKeys.keyusername)
-                            self.personName.text = self.username.text
-                            self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
-                            self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
-                            self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
-                            self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
-                            self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
-                            self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
-                            self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
-                            self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
-//                            if self.useremail.text != userEmail {
-//                                currentUser?.updateEmail(to: self.useremail.text!){ error in
-//                                    if  let error = error {
-//                                        print(error)
-//                                    } else {
-//                                        print("No error while updating the email")
-//                                    }
-//                                }
-//                            }
-                        }
+        let error = validateFields()
+        if error != nil {
+            SVProgressHUD.dismiss()
+            showError(error!)
+        }
+        else {
+            let country = self.countryCode.selectedCountry
+            let db = Firestore.firestore()
+            let userID = Auth.auth().currentUser?.uid
+            if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
+                Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
+                    if  let error = error {
+                        self.showError(error.localizedDescription)
                     }
                 }
-                
+                db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
+                    if let error = error {
+                        print("error while updating the reord \(error)")
+                    }
+                    else {
+                        SVProgressHUD.dismiss()
+                        self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
+                        self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
+                        self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                        self.personName.text = self.username.text
+                        self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
+                        self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
+                        self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
+                        self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
+                        self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
+                        self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
+                        self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
+                        self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
+                    }
+                }
             }
         }
     }
@@ -587,19 +585,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         imagecontroller.sourceType = .photoLibrary
         self.present(imagecontroller, animated: true, completion: nil)
     }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        userpic.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        // Bool true
-        self.dismiss(animated: true, completion: nil)
-        
-        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
-            self.urlbool = true
-            print("pic url is \(url)")
-            
-            
-            self.urllink = url
-        }
-    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }

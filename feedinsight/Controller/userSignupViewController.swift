@@ -93,6 +93,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         UIImage(named: "farm-selected")!,
         UIImage(named: "feedmanufacturing-selected")!,
     ]
+    
+    
     private func setCurrentLocation() {
         
         guard let exposedLocation = self.locationManager.exposedLocation else {
