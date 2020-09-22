@@ -300,6 +300,21 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             self.animalSelectionTableView.isHidden = true
         }
     }
+    private var authUser : User? {
+        return Auth.auth().currentUser
+    }
+    
+    public func sendVerificationMail() {
+        if self.authUser != nil && !self.authUser!.isEmailVerified {
+            self.authUser!.sendEmailVerification(completion: { (error) in
+                // Notify the user that the mail has sent or couldn't because of an error.
+            })
+        }
+        else {
+            // Either the user is not available, or the user is already verified.
+        }
+    }
+    
     @IBAction func singuponclick(_ sender: Any) {
         SVProgressHUD.show()
         let country = self.countrycode.selectedCountry
@@ -324,13 +339,14 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             let pickanimalEnter = self.pickani.titleLabel!.text!
             let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+            Auth.auth().createUser(withEmail: email, password: password) { [self] (result, err) in
                 if err != nil {
                     SVProgressHUD.showError(withStatus:"user creation failed")
                     self.showError(err!.localizedDescription)
                     SVProgressHUD.dismiss()
                 }
                 else {
+                    sendVerificationMail()
                     let db = Firestore.firestore()
                     db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
                         if error != nil {
@@ -352,15 +368,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             let currentuserrole = pickrolEnter
                             let currentusercountrycode = country.phoneCode
                             let currentusercollectionindustry =  self.industrycellValue
-                            
-                            
-//                            let imageURL = dataDescription?["imageURL"] as? String
-//                            if (imageURL != "") {
-//                                let fileUrl = URL(string: imageURL!)
-//                                let data = try? Data(contentsOf:fileUrl!)
-//                                UserDefaults().set(data, forKey: "imageData")
-//                                self.userDefault.set(imageURL, forKey: "Link")
-//                            }
                             self.defaults.set(currentuserrole, forKey: dKeys.keyRole)
                             self.defaults.set(currentuserlocation, forKey: dKeys.keyLocation)
                             self.defaults.set(currentusername, forKey: dKeys.keyusername)
@@ -372,13 +379,11 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             self.defaults.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                             self.defaults.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
                             self.defaults.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                            
                             SVProgressHUD.showSuccess(withStatus: "Success")
                             self.transitionToHome()
                             SVProgressHUD.dismiss()
                         }
                     }
-                   
                 }
             }
         }

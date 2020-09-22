@@ -93,63 +93,72 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil {
-                    // Couldn't sign in
                     SVProgressHUD.dismiss()
                     self.emailField.isUserInteractionEnabled = true
                     self.paswordField.isUserInteractionEnabled = true
                     self.showError(error!.localizedDescription)
                 }
                 else {
-                    SVProgressHUD.dismiss()
-                    self.emailField.isUserInteractionEnabled = true
-                    self.paswordField.isUserInteractionEnabled = true
-                    self.userDefault.set(true, forKey: "usersignedin")
-                    self.userDefault.synchronize()
-                    
-                    let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-                    docRef.getDocuments { (querySnapshot, err) in
-                        if let err = err {
-                            print(err.localizedDescription)
-                            return
-                        } else if querySnapshot!.documents.count != 1 {
-                            print("More than one documents or none")
-                        } else {
-                            let document = querySnapshot!.documents.first
-                            let dataDescription = document?.data()
-                            let currentusername = dataDescription?["name"]
-                            let currentuseremail = dataDescription?["email"]
-                            let currentuserphone = dataDescription?["phone"]
-                            let currentuserindustry = dataDescription?["industry"]
-                            let currentuserbusiness = dataDescription?["business"]
-                            let currentuserpass = dataDescription?["password"]
-                            let currentuserpickanimal = dataDescription?["pickanimal"]
-                            let currentuserlocation = dataDescription?["location"]
-                            let currentuserrole = dataDescription?["pickrole"]
-                            let currentusercountrycode = dataDescription?["countrycode"]
-                            let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-                            self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                            
-                            let imageURL = dataDescription?["imageURL"] as? String
-                            if (imageURL != "") {
-                                let fileUrl = URL(string: imageURL!)
-                                let data = try? Data(contentsOf:fileUrl!)
-                                UserDefaults().set(data, forKey: "imageData")
-                                self.userDefault.set(imageURL, forKey: "Link")
+                    if let authResult = result {
+                        let user = authResult.user
+                        print("User has Signed In")
+                        if user.isEmailVerified {
+                            SVProgressHUD.dismiss()
+                            self.emailField.isUserInteractionEnabled = true
+                            self.paswordField.isUserInteractionEnabled = true
+                            self.userDefault.set(true, forKey: "usersignedin")
+                            self.userDefault.synchronize()
+                            let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
+                            docRef.getDocuments { (querySnapshot, err) in
+                                if let err = err {
+                                    print(err.localizedDescription)
+                                    return
+                                } else if querySnapshot!.documents.count != 1 {
+                                    print("More than one documents or none")
+                                } else {
+                                    let document = querySnapshot!.documents.first
+                                    let dataDescription = document?.data()
+                                    let currentusername = dataDescription?["name"]
+                                    let currentuseremail = dataDescription?["email"]
+                                    let currentuserphone = dataDescription?["phone"]
+                                    let currentuserindustry = dataDescription?["industry"]
+                                    let currentuserbusiness = dataDescription?["business"]
+                                    let currentuserpass = dataDescription?["password"]
+                                    let currentuserpickanimal = dataDescription?["pickanimal"]
+                                    let currentuserlocation = dataDescription?["location"]
+                                    let currentuserrole = dataDescription?["pickrole"]
+                                    let currentusercountrycode = dataDescription?["countrycode"]
+                                    let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
+                                    self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                                    
+                                    let imageURL = dataDescription?["imageURL"] as? String
+                                    if (imageURL != "") {
+                                        let fileUrl = URL(string: imageURL!)
+                                        let data = try? Data(contentsOf:fileUrl!)
+                                        UserDefaults().set(data, forKey: "imageData")
+                                        self.userDefault.set(imageURL, forKey: "Link")
+                                    }
+                                    self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
+                                    self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
+                                    self.userDefault.set(currentusername, forKey: dKeys.keyusername)
+                                    self.userDefault.set(currentuseremail, forKey: dKeys.keyuseremail)
+                                    self.userDefault.set(currentuserphone, forKey: dKeys.keyuserphoneno)
+                                    self.userDefault.set(currentuserindustry, forKey: dKeys.keyuserindustry)
+                                    self.userDefault.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
+                                    self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
+                                    self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
+                                    self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                                }
                             }
-                            self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
-                            self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
-                            self.userDefault.set(currentusername, forKey: dKeys.keyusername)
-                            self.userDefault.set(currentuseremail, forKey: dKeys.keyuseremail)
-                            self.userDefault.set(currentuserphone, forKey: dKeys.keyuserphoneno)
-                            self.userDefault.set(currentuserindustry, forKey: dKeys.keyuserindustry)
-                            self.userDefault.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                            self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
-                            self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
-                            self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                            print(result?.user.uid ?? 0)
+                            self.transitionToHome()
+                        } else {
+                            SVProgressHUD.dismiss()
+                            self.emailField.isUserInteractionEnabled = true
+                            self.paswordField.isUserInteractionEnabled = true
+                            self.showError("Please verify your email.")
                         }
                     }
-                    print(result?.user.uid ?? 0)
-                    self.transitionToHome()
                 }
             }
         }
