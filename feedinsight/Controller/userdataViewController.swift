@@ -53,6 +53,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     var collectionViewSelectedName: [String] = [String]()
     @IBOutlet weak var personName: UILabel!
     
+    @IBOutlet weak var ProfileCountry: SearchTextField!
     
     var imagePicker : UIImagePickerController!
     var db: Firestore!
@@ -284,6 +285,25 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.animaltableview.isHidden = true
         }
     }
+    fileprivate func localCountries() -> [String] {
+        if let path = Bundle.main.path(forResource: "countries", ofType: "json") {
+            do {
+                let jsonData = try Data(contentsOf: URL(fileURLWithPath: path), options: .dataReadingMapped)
+                let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [[String:String]]
+                
+                var countryNames = [String]()
+                for country in jsonResult {
+                    countryNames.append(country["name"]!)
+                }
+                
+                return countryNames
+            } catch {
+                print("Error parsing jSON: \(error)")
+                return []
+            }
+        }
+        return []
+    }
     
     override func viewDidLoad() {
         self.dismissKey()
@@ -429,6 +449,26 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
+        let countries = localCountries()
+        ProfileCountry.filterStrings(countries)
+        ProfileCountry.maxNumberOfResults = 5
+        ProfileCountry.theme.font = UIFont.systemFont(ofSize: 14)
+        ProfileCountry.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        ProfileCountry.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        ProfileCountry.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        ProfileCountry.theme.cellHeight = 40
+        ProfileCountry.itemSelectionHandler = { filteredResults, itemPosition in
+            let item = filteredResults[itemPosition]
+            self.ProfileCountry.text = item.title
+        }
+        ProfileCountry.minCharactersNumberToStartFiltering = 3
+        ProfileCountry.comparisonOptions = [.anchored]
+        pickAnimalSelection.titleEdgeInsets.top = 0
+        pickAnimalSelection.titleEdgeInsets.left = 8
+        pickAnimalSelection.titleEdgeInsets.bottom = 0
+        pickAnimalSelection.titleEdgeInsets.right = 0
+        pickAnimalSelection.layer.borderWidth = 0.3
+        pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
         locationField.filterStrings(pickerData1)
         locationField.maxNumberOfResults = 5
         locationField.theme.font = UIFont.systemFont(ofSize: 14)

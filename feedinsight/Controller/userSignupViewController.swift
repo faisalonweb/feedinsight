@@ -35,6 +35,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var animalSelectionTableView: UITableView!
     @IBOutlet weak var industryLabel: UILabel!
     
+    @IBOutlet weak var lCountry: SearchTextField!
+    
+    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var welcomeView: UIView!
@@ -46,6 +49,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     @IBOutlet weak var businessView: UIView!
     @IBOutlet weak var roleView: UIView!
     @IBOutlet weak var locationView: UIView!
+    
+    @IBOutlet weak var cityCountry: UIView!
     @IBOutlet weak var passView: UIView!
     @IBOutlet weak var cnfpassView: UIView!
     @IBOutlet weak var signupView: UIView!
@@ -64,10 +69,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         static let keyusercnfpassword = "usercnfpasswordStringKey"
         static let keycountrycode = "countrycodeStringKey"
         static let keycollectionview = "collectionviewStringKey"
+        static let keyusercountry = "usercountryKey"
     }
     let defaults = UserDefaults.standard
     var SignupCollectionData = [SignupModel]()
     var pickerData1: [String] = [String]()
+    var pickerData2: [String] = [String]()
     var workarray: [String] = [String]()
     var animalSelectionArray: [String] = [String]()
     var collectionViewSelectedName: [String] = [String]()
@@ -105,7 +112,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             return
         }
         self.locationManager.getPlace(for: exposedLocation) { placemark in
-            guard let placemark = placemark else { return }
+            guard let placemark = placemark else {
+                return
+            }
             var output = "Our location is:"
             if let country = placemark.country {
                 output = output + "\n\(country)"
@@ -116,12 +125,31 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             if let town = placemark.locality {
                 output = output + "\n\(town)"
             }
-            self.picklocation.text = output
+            self.lCountry.text = output
         }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
         self.animalSelectionTableView.isHidden = true
+    }
+    fileprivate func localCountries() -> [String] {
+        if let path = Bundle.main.path(forResource: "countries", ofType: "json") {
+            do {
+                let jsonData = try Data(contentsOf: URL(fileURLWithPath: path), options: .dataReadingMapped)
+                let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [[String:String]]
+                
+                var countryNames = [String]()
+                for country in jsonResult {
+                    countryNames.append(country["name"]!)
+                }
+                
+                return countryNames
+            } catch {
+                print("Error parsing jSON: \(error)")
+                return []
+            }
+        }
+        return []
     }
     
     override func viewDidLoad() {
@@ -171,7 +199,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         pickani.titleEdgeInsets.left = 8
         pickani.titleEdgeInsets.bottom = 0
         pickani.titleEdgeInsets.right = 0
-        
+        self.setCurrentLocation()
         SignupCollectionData = DataAppend.getAllSignupData()
         self.animalSelectionTableView.isHidden = true
         super.viewDidLoad()
@@ -182,7 +210,21 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             workarray = eachLA.components(separatedBy: ",")
             pickerData1.append(workarray[0])
         }
-        pickani.layer.borderWidth = 1
+        let countries = localCountries()
+        lCountry.filterStrings(countries)
+        lCountry.maxNumberOfResults = 5
+        lCountry.theme.font = UIFont.systemFont(ofSize: 14)
+        lCountry.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        lCountry.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        lCountry.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        lCountry.theme.cellHeight = 40
+        lCountry.itemSelectionHandler = { filteredResults, itemPosition in
+            let item = filteredResults[itemPosition]
+            self.lCountry.text = item.title
+        }
+        lCountry.minCharactersNumberToStartFiltering = 3
+        lCountry.comparisonOptions = [.anchored]
+        pickani.layer.borderWidth = 0.3
         pickani.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
         picklocation.filterStrings(pickerData1)
         picklocation.maxNumberOfResults = 5
@@ -324,6 +366,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             let pickanimalEnter = self.pickani.titleLabel!.text!
             let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let countryUser = lCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 if err != nil {
                     SVProgressHUD.showError(withStatus:"user creation failed")
@@ -332,7 +375,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                 }
                 else {
                     let db = Firestore.firestore()
-                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
+                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue,"UserCountry" : countryUser , "countrycode": country.phoneCode]) { (error) in
                         if error != nil {
                             SVProgressHUD.showError(withStatus:"Data insertion failed")
                             self.showError(error!.localizedDescription)
@@ -352,6 +395,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             let currentuserrole = pickrolEnter
                             let currentusercountrycode = country.phoneCode
                             let currentusercollectionindustry =  self.industrycellValue
+                            let UserCountry =  countryUser
                             
                             
 //                            let imageURL = dataDescription?["imageURL"] as? String
@@ -372,6 +416,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             self.defaults.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                             self.defaults.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
                             self.defaults.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                            self.defaults.set(UserCountry, forKey: dKeys.keyusercountry)
                             
                             SVProgressHUD.showSuccess(withStatus: "Success")
                             self.transitionToHome()
@@ -409,7 +454,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             //pickanimal.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            lCountry.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             return "Please fill in all fields."
         }
         if userpassword.text != usercnfpassword.text {

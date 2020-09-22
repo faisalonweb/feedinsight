@@ -84,6 +84,12 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         sizee = screenWidth
         
     }
+    
+    @IBAction func backButton(_ sender: Any) {
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
+    }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if UIDevice.current.orientation.isLandscape {
