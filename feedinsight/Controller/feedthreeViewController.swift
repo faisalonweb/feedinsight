@@ -22,7 +22,7 @@ var productList: [Person] = []
 var currentIndex = 0
 
 
-class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate {
+class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate, UIGestureRecognizerDelegate {
     var dropdownvalues = [String]()
     var dropdownfloatValue = [String]()
     var documentID : String = ""
@@ -95,6 +95,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         addbtn.layer.cornerRadius = 8

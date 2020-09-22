@@ -8,11 +8,12 @@
     
     import UIKit
     
-    class SigninFscreenViewController: UIViewController{
+    class SigninFscreenViewController: UIViewController, UIGestureRecognizerDelegate{
         @IBOutlet weak var forgetpasswordLabel: UILabel!
         override func viewDidLoad() {
             super.viewDidLoad()
             self.navigationController?.isNavigationBarHidden = true
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             self.navigationController?.navigationBar.shadowImage = UIImage()
         }

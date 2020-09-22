@@ -13,7 +13,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
 
-class premixViewController: UIViewController {
+class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     
     @IBOutlet weak var productName: UITextField!
     @IBOutlet weak var productDose: UITextField!
@@ -71,7 +71,7 @@ class premixViewController: UIViewController {
         self.dismissKey()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         // Macro Data
         productName.text = productNameData

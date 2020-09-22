@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseUI
 
 
-class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var animalCollectionView: UICollectionView!
     @IBOutlet weak var companynameLabel: UILabel!
@@ -155,6 +155,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     }
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         animalData = DataAppend.getAllAnimalData()
         super.viewDidLoad()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
