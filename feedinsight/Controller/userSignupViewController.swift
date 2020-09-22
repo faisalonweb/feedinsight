@@ -106,7 +106,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     
     
     private func setCurrentLocation() {
-        
         guard let exposedLocation = self.locationManager.exposedLocation else {
             print("*** Error in \(#function): exposedLocation is nil")
             return
@@ -115,17 +114,13 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             guard let placemark = placemark else {
                 return
             }
-            var output = "Our location is:"
             if let country = placemark.country {
-                output = output + "\n\(country)"
-            }
-            if let state = placemark.administrativeArea {
-                output = output + "\n\(state)"
+                self.lCountry.text = country
             }
             if let town = placemark.locality {
-                output = output + "\n\(town)"
+                self.picklocation.text = town
             }
-            self.lCountry.text = output
+            
         }
     }
     
