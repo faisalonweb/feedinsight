@@ -59,11 +59,11 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
-        tblView.isHidden = true
+        
        self.tblView.refreshControl = UIRefreshControl()
        self.tblView.refreshControl?.beginRefreshing()
         super.viewDidLoad()
-        mainBtn.layer.cornerRadius = 10
+        
         Firestore.firestore().collection("animalState").document(Auth.auth().currentUser?.uid ?? "").collection("animalState").getDocuments{(snapshot,error) in
             
             if error == nil && snapshot != nil {
@@ -145,14 +145,14 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
             }
         }
     }
-    @IBAction func mainBtnAction(_ sender: Any) {
-        
-        if tblView.isHidden {
-            animate(toggle: true)
-        } else {
-            animate(toggle: false)
-        }
-    }
+//    @IBAction func mainBtnAction(_ sender: Any) {
+//
+//        if tblView.isHidden {
+//            animate(toggle: true)
+//        } else {
+//            animate(toggle: false)
+//        }
+//    }
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)

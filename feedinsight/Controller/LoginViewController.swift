@@ -30,6 +30,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         static let keyusercnfpassword = "usercnfpasswordStringKey"
         static let keycountrycode = "countrycodeStringKey"
         static let keycollectionview = "collectionviewStringKey"
+        static let keyusercountry = "usercountryKey"
     }
     func SignupSelection(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -129,6 +130,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     let currentuserrole = dataDescription?["pickrole"]
                                     let currentusercountrycode = dataDescription?["countrycode"]
                                     let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
+                                    let currentuserprofilecountry =  dataDescription?["UserCountry"]
                                     self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
                                     
                                     let imageURL = dataDescription?["imageURL"] as? String
@@ -148,6 +150,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
                                     self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                                     self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                                    self.userDefault.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
                                 }
                             }
                             print(result?.user.uid ?? 0)
