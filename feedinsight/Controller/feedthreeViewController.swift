@@ -22,7 +22,7 @@ var productList: [Person] = []
 var currentIndex = 0
 
 
-class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate, UIGestureRecognizerDelegate {
+class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate {
     var dropdownvalues = [String]()
     var dropdownfloatValue = [String]()
     var documentID : String = ""
@@ -39,7 +39,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var plusbutton: UIButton!
     let defaults = UserDefaults.standard
     var checkStatus : Bool = false
-    
+    var currentTappedTextField : UITextField?
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     
     var selectedProductList: [Person] = []
@@ -78,10 +78,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         } catch {}
     }
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-               
+        if(currentTappedTextField != addfeed){
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                   
+                }
             }
         }
     }
@@ -91,8 +93,17 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.view.frame.origin.y = 0
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        currentTappedTextField = textField
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        currentTappedTextField = nil
+    }
+
     override func viewDidLoad() {
         self.dismissKey()
+        addfeed.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.navigationController?.isNavigationBarHidden = true
@@ -104,6 +115,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         plusbutton.layer.cornerRadius = 28
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getData()
