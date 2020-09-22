@@ -376,7 +376,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     @IBAction func editFeed(_ sender: Any) {
-        
         if addfeed.text == "" {
             self.showError("Select Feed value")
         } else {
@@ -392,9 +391,23 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     @IBAction func addFeedButton(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
-        vc?.screenName = "Add Feed"
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if addfeed.text == "" {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+            vc?.screenName = "Add Feed"
+            self.navigationController?.pushViewController(vc!, animated: true)
+        } else {
+            for item in productList {
+                let name = item.FeedName
+                if(addfeed.text == name) {
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+                    vc?.screenName = "Add Feed"
+                    vc?.screenType = "addNewFeed"
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                
+                }
+            }
+        }
+        
     }
     @IBAction func touchaddbtn(_ sender: Any) {
         if addfeed.text == "" {
