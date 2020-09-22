@@ -118,21 +118,36 @@ class Requirments {
     }
     func calculateRationDataParameters() {
         for i in 0..<finalDropdownfloatValue.count {
-            rationP = rationP + (valueAfterDryMatter[i] * Double(finalProductList[i].P)!)
-            rationPAbs = rationPAbs + (valueAfterDryMatter[i] * Double(finalProductList[i].PAbs)!)
-            rationCa = rationCa + (valueAfterDryMatter[i] * Double(finalProductList[i].Ca)!)
-            rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * Double(finalProductList[i].CaAbs)!)
-            rationMg = rationMg + (valueAfterDryMatter[i] * Double(finalProductList[i].Mg)!)
-            rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * Double(finalProductList[i].MgAbs)!)
-            rationK = rationK + (valueAfterDryMatter[i] * Double(finalProductList[i].K)!)
-            rationS = rationS + (valueAfterDryMatter[i] * Double(finalProductList[i].S)!)
-            rationNa = rationNa + (valueAfterDryMatter[i] * Double(finalProductList[i].Na)!)
-            rationCl = rationCl + (valueAfterDryMatter[i] * Double(finalProductList[i].Cl)!)
-            rationFe = rationFe + (valueAfterDryMatter[i] * Double(finalProductList[i].Fe)!)
-            rationZn = rationZn + (valueAfterDryMatter[i] * Double(finalProductList[i].Zn)!)
-            rationCu = rationCu + (valueAfterDryMatter[i] * Double(finalProductList[i].Cu)!)
-            rationMn = rationMn + (valueAfterDryMatter[i] * Double(finalProductList[i].Mn)!)
-            rationSe = rationSe + (valueAfterDryMatter[i] * Double(finalProductList[i].Se)!)
+            let pVal = Double(finalProductList[i].P) ?? 0.0
+            rationP = rationP + (valueAfterDryMatter[i] * pVal)
+            let pAbsVal = Double(finalProductList[i].PAbs) ?? 0.0
+            rationPAbs = rationPAbs + (valueAfterDryMatter[i] * pAbsVal)
+            let caVal = Double(finalProductList[i].Ca) ?? 0.0
+            rationCa = rationCa + (valueAfterDryMatter[i] * caVal)
+            let caAbsVal = Double(finalProductList[i].CaAbs) ?? 0.0
+            rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * caAbsVal)
+            let mgVal = Double(finalProductList[i].Mg) ?? 0.0
+            rationMg = rationMg + (valueAfterDryMatter[i] * mgVal)
+            let mgAbsVal = Double(finalProductList[i].MgAbs) ?? 0.0
+            rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * mgAbsVal)
+            let kVal = Double(finalProductList[i].K) ?? 0.0
+            rationK = rationK + (valueAfterDryMatter[i] * kVal)
+            let SVal = Double(finalProductList[i].S) ?? 0.0
+            rationS = rationS + (valueAfterDryMatter[i] * SVal)
+            let NaVal = Double(finalProductList[i].Na) ?? 0.0
+            rationNa = rationNa + (valueAfterDryMatter[i] * NaVal)
+            let ClVal = Double(finalProductList[i].Cl) ?? 0.0
+            rationCl = rationCl + (valueAfterDryMatter[i] * ClVal)
+            let FeVal = Double(finalProductList[i].Fe) ?? 0.0
+            rationFe = rationFe + (valueAfterDryMatter[i] * FeVal)
+            let ZnVal = Double(finalProductList[i].Zn) ?? 0.0
+            rationZn = rationZn + (valueAfterDryMatter[i] * ZnVal)
+            let CuVal = Double(finalProductList[i].Cu) ?? 0.0
+            rationCu = rationCu + (valueAfterDryMatter[i] * CuVal)
+            let mnVal = Double(finalProductList[i].Mn) ?? 0.0
+            rationMn = rationMn + (valueAfterDryMatter[i] * mnVal)
+            let seVal = Double(finalProductList[i].Se) ?? 0.0
+            rationSe = rationSe + (valueAfterDryMatter[i] * seVal)
             let coVal = Double(finalProductList[i].Co) ?? 0.0
             rationCo = rationCo + (valueAfterDryMatter[i] * coVal)
             let iVal = Double(finalProductList[i].I) ?? 0.0
@@ -159,16 +174,12 @@ class Requirments {
         rationNa = rationNa * 10.0
         rationCl = rationCl * 10.0
         rationArrayFinal.append(rationCa)
-//        rationArrayFinal.append(rationCaAbs)
         rationArrayFinal.append(rationP)
-//        rationArrayFinal.append(rationPAbs)
         rationArrayFinal.append(rationMg)
-//        rationArrayFinal.append(rationMgAbs)
         rationArrayFinal.append(rationK)
         rationArrayFinal.append(rationS)
         rationArrayFinal.append(rationNa)
         rationArrayFinal.append(rationCl)
-//        rationArrayFinal.append(rationFe)
         rationArrayFinal.append(rationZn)
         rationArrayFinal.append(rationCu)
         rationArrayFinal.append(rationMn)
@@ -180,7 +191,6 @@ class Requirments {
         rationArrayFinal.append(rationVitaminE)
         rationArrayFinal.append(rationNiacin)
         rationArrayFinal.append(rationBiotin)
-        
         print("done")
     }
     
