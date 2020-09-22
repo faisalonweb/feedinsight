@@ -73,6 +73,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         static let keyusercnfpassword = "usercnfpasswordStringKey"
         static let keycountrycode = "countrycodeStringKey"
         static let keycollectionview = "collectionviewStringKey"
+        static let keyusercountry = "usercountryKey"
     }
     var pickerData1: [String] = [String]()
     var workarray: [String] = [String]()
@@ -405,6 +406,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             
             self.userbuss.text = busines as? String
             print(busines)
+        }
+        if let profilecountry = defaults.value(forKey: dKeys.keyusercountry){
+            
+            self.ProfileCountry.text = profilecountry as? String
+            
         }
         if let indus = defaults.value(forKey: dKeys.keyuserindustry){
             if(indus as? String == "") {
