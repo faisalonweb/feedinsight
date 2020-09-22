@@ -12,7 +12,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 
-class loadProfileAnimalsViewController: UIViewController {
+class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDelegate{
     
     @IBOutlet weak var mainBtn: UIButton!
     var db: Firestore!
@@ -57,6 +57,7 @@ class loadProfileAnimalsViewController: UIViewController {
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         tblView.isHidden = true
        self.tblView.refreshControl = UIRefreshControl()

@@ -16,7 +16,7 @@ import SVProgressHUD
 
 let requirments = Requirments()
 
-class StateViewController: UIViewController, UITextFieldDelegate {
+class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     let defaults = UserDefaults.standard
     @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var woolHairLabel: UILabel!
@@ -109,6 +109,7 @@ class StateViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         proimage?.layer.cornerRadius = (proimage?.frame.size.width ?? 0.0) / 2
         self.dismissKey()
         nameField.text = groupcompany

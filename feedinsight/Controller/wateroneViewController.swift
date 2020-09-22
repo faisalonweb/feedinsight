@@ -12,7 +12,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 
-class wateroneViewController: UIViewController {
+class wateroneViewController: UIViewController , UIGestureRecognizerDelegate{
     
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var standardbtn: UIButton!
@@ -27,6 +27,7 @@ class wateroneViewController: UIViewController {
     override func viewDidLoad() {
         self.dismissKey() 
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         standardbtn.layer.cornerRadius = 8
         custombtn.layer.cornerRadius = 8

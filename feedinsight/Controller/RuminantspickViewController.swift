@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseUI
 
-class RuminantspickViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+class RuminantspickViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -29,6 +29,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     var landscap:CGFloat=0
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
         userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
