@@ -78,15 +78,17 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     var industrycellValue = ""
     private let locationManager = LocationManager()
     
-    let textArr = ["Research","Farming","Feed \nManufacturing"]
+    let textArr = ["Research","Farming","Feed \nManufacturing","Feed Additives \nTrader/Distributor "]
     let imageArr: [UIImage] = [
         UIImage(named: "research-unselected")!,
         UIImage(named: "farm-unselected")!,
         UIImage(named: "feedmanufacturing-unselected")!,
+        UIImage(named: "feedmanufacturing-unselected")!
     ]
     let imageArr1: [UIImage] = [
         UIImage(named: "research-selected")!,
         UIImage(named: "farm-selected")!,
+        UIImage(named: "feedmanufacturing-selected")!,
         UIImage(named: "feedmanufacturing-selected")!,
     ]
     private func setCurrentLocation() {
@@ -443,7 +445,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         locationField.comparisonOptions = [.anchored]
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 117, height: 150)
+        let itemSize = UIScreen.main.bounds.width/3 - 2
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 10
         collectionView.collectionViewLayout = layout

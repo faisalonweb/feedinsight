@@ -63,6 +63,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         static let keyuserpassowrd = "userpasswordStringKey"
         static let keyusercnfpassword = "usercnfpasswordStringKey"
         static let keycountrycode = "countrycodeStringKey"
+        static let keycollectionview = "collectionviewStringKey"
     }
     let defaults = UserDefaults.standard
     var SignupCollectionData = [SignupModel]()
@@ -72,11 +73,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     var collectionViewSelectedName: [String] = [String]()
     private let locationManager = LocationManager()
     var industrycellValue = ""
-    let textArr = ["Research","Farming","Feed \nManufacturing"]
+    let textArr = ["Research","Farming","Feed \nManufacturing","Feed Additives \nTrader/Distributor "]
     let imageArr: [UIImage] = [
         UIImage(named: "research-unselected")!,
         UIImage(named: "farm-unselected")!,
         UIImage(named: "feedmanufacturing-unselected")!,
+        UIImage(named: "feedmanufacturing-unselected")!
     ]
     let animalArr: [UIImage] = [
         UIImage(named: "CheckBoxChecked")!,
@@ -92,6 +94,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         UIImage(named: "research-selected")!,
         UIImage(named: "farm-selected")!,
         UIImage(named: "feedmanufacturing-selected")!,
+        UIImage(named: "feedmanufacturing-selected")!
     ]
     
     
@@ -196,8 +199,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         picklocation.comparisonOptions = [.anchored]
         
         let layout = UICollectionViewFlowLayout()
+        let itemSize = UIScreen.main.bounds.width/3 - 2
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 105, height: 150)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 10
         collectionview.collectionViewLayout = layout
@@ -317,7 +321,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             let password = userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let busindessEnter = userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let pickrolEnter = pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            //let pickanimalEnter = pickanimal.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pickanimalEnter = self.pickani.titleLabel!.text!
             let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
@@ -328,16 +332,53 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                 }
                 else {
                     let db = Firestore.firestore()
-                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : self.pickani.titleLabel!.text! , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
+                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue , "countrycode": country.phoneCode]) { (error) in
                         if error != nil {
                             SVProgressHUD.showError(withStatus:"Data insertion failed")
                             self.showError(error!.localizedDescription)
                             SVProgressHUD.dismiss()
                         }
+                        else {
+                            self.defaults.set(true, forKey: "usersignedin")
+                            self.defaults.synchronize()
+                            let currentusername = firstName
+                            let currentuseremail = email
+                            let currentuserphone = phoneEnter
+                            let currentuserindustry = industryEnter
+                            let currentuserbusiness = busindessEnter
+                            let currentuserpass = password
+                            let currentuserpickanimal = pickanimalEnter
+                            let currentuserlocation = locationEnter
+                            let currentuserrole = pickrolEnter
+                            let currentusercountrycode = country.phoneCode
+                            let currentusercollectionindustry =  self.industrycellValue
+                            
+                            
+//                            let imageURL = dataDescription?["imageURL"] as? String
+//                            if (imageURL != "") {
+//                                let fileUrl = URL(string: imageURL!)
+//                                let data = try? Data(contentsOf:fileUrl!)
+//                                UserDefaults().set(data, forKey: "imageData")
+//                                self.userDefault.set(imageURL, forKey: "Link")
+//                            }
+                            self.defaults.set(currentuserrole, forKey: dKeys.keyRole)
+                            self.defaults.set(currentuserlocation, forKey: dKeys.keyLocation)
+                            self.defaults.set(currentusername, forKey: dKeys.keyusername)
+                            self.defaults.set(currentuseremail, forKey: dKeys.keyuseremail)
+                            self.defaults.set(currentuserphone, forKey: dKeys.keyuserphoneno)
+                            self.defaults.set(currentuserindustry, forKey: dKeys.keyuserindustry)
+                            self.defaults.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
+                            self.defaults.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
+                            self.defaults.set(currentusercountrycode, forKey: dKeys.keycountrycode)
+                            self.defaults.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                            self.defaults.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                            
+                            SVProgressHUD.showSuccess(withStatus: "Success")
+                            self.transitionToHome()
+                            SVProgressHUD.dismiss()
+                        }
                     }
-                    SVProgressHUD.showSuccess(withStatus: "Success")
-                    self.transitionToHome()
-                    SVProgressHUD.dismiss()
+                   
                 }
             }
         }
@@ -378,7 +419,10 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     func transitionToHome() {
-        let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
+//        let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     @IBAction func backbtn(_ sender: Any) {
         if let navController = self.navigationController {
