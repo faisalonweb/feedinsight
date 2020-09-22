@@ -7251,7 +7251,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SJ-s2-WdZ">
-                                                                        <rect key="frame" x="0.0" y="111" width="374" height="1"/>
+                                                                        <rect key="frame" x="0.0" y="106" width="374" height="1"/>
                                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="1" id="MUc-BS-AnB"/>
@@ -7266,27 +7266,39 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Feed Type" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4SB-99-vuR">
-                                                                        <rect key="frame" x="306.66666666666669" y="58" width="67.333333333333314" height="25"/>
+                                                                        <rect key="frame" x="306.66666666666669" y="58" width="67.333333333333314" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
+                                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4t-Il-H0Q">
+                                                                        <rect key="frame" x="300" y="111" width="66" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="12"/>
+                                                                        <state key="normal" title="Clear All">
+                                                                            <color key="titleColor" red="0.31764705879999999" green="0.090196078430000007" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clearAll:" destination="jWw-MG-vkR" eventType="touchUpInside" id="n5W-Sb-7WP"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="2SJ-s2-WdZ" firstAttribute="top" secondItem="4SB-99-vuR" secondAttribute="bottom" constant="28" id="0RJ-fP-xcI"/>
+                                                                    <constraint firstItem="2SJ-s2-WdZ" firstAttribute="top" secondItem="4SB-99-vuR" secondAttribute="bottom" constant="25" id="0RJ-fP-xcI"/>
                                                                     <constraint firstAttribute="trailing" secondItem="tku-8L-dzd" secondAttribute="trailing" id="3GF-DT-Ufe"/>
                                                                     <constraint firstItem="tku-8L-dzd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dAA-XW-zGG" secondAttribute="trailing" constant="8" symbolic="YES" id="7KB-X5-bu4"/>
                                                                     <constraint firstItem="2SJ-s2-WdZ" firstAttribute="leading" secondItem="jjF-Xx-W1a" secondAttribute="leading" id="ARU-a9-Hl7"/>
                                                                     <constraint firstItem="tku-8L-dzd" firstAttribute="top" secondItem="jjF-Xx-W1a" secondAttribute="top" constant="18" id="Atx-SH-C6b"/>
                                                                     <constraint firstAttribute="trailing" secondItem="2SJ-s2-WdZ" secondAttribute="trailing" id="CiO-cG-zhZ"/>
+                                                                    <constraint firstItem="u4t-Il-H0Q" firstAttribute="trailing" secondItem="2SJ-s2-WdZ" secondAttribute="trailing" constant="-8" id="NgR-91-y7u"/>
                                                                     <constraint firstItem="dAA-XW-zGG" firstAttribute="top" secondItem="jjF-Xx-W1a" secondAttribute="top" constant="20" id="OMv-o3-Fdk"/>
                                                                     <constraint firstItem="pV9-WN-LI6" firstAttribute="leading" secondItem="jjF-Xx-W1a" secondAttribute="leading" id="OWI-Eo-9eI"/>
+                                                                    <constraint firstItem="u4t-Il-H0Q" firstAttribute="top" secondItem="2SJ-s2-WdZ" secondAttribute="top" constant="5" id="TGE-1j-FMc"/>
                                                                     <constraint firstItem="pV9-WN-LI6" firstAttribute="top" secondItem="dAA-XW-zGG" secondAttribute="bottom" constant="25" id="eQw-Ll-nha"/>
                                                                     <constraint firstAttribute="trailing" secondItem="4SB-99-vuR" secondAttribute="trailing" id="iHA-MC-nGc"/>
                                                                     <constraint firstItem="4SB-99-vuR" firstAttribute="top" secondItem="tku-8L-dzd" secondAttribute="bottom" constant="10" id="mcM-vE-Exs"/>
                                                                     <constraint firstItem="dAA-XW-zGG" firstAttribute="leading" secondItem="jjF-Xx-W1a" secondAttribute="leading" id="ohf-6c-dOl"/>
                                                                     <constraint firstItem="4SB-99-vuR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pV9-WN-LI6" secondAttribute="trailing" constant="8" symbolic="YES" id="p1I-fQ-v9k"/>
-                                                                    <constraint firstItem="2SJ-s2-WdZ" firstAttribute="top" secondItem="pV9-WN-LI6" secondAttribute="bottom" constant="30" id="sYL-2q-1Wa"/>
+                                                                    <constraint firstItem="2SJ-s2-WdZ" firstAttribute="top" secondItem="pV9-WN-LI6" secondAttribute="bottom" constant="25" id="sYL-2q-1Wa"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -7865,7 +7877,7 @@
                     <viewLayoutGuide key="safeArea" id="psc-LP-IN4"/>
                 </stackView>
             </objects>
-            <point key="canvasLocation" x="5503" y="2527"/>
+            <point key="canvasLocation" x="5502.898550724638" y="2526.5625"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="Ww3-nc-KwO">

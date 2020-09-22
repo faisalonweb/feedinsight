@@ -231,6 +231,33 @@ class EditPremixViewController: UIViewController {
         }
     }
     
+    @IBAction func clearAll(_ sender: Any) {
+        dryMatter.text = ""
+        caTextField.text = ""
+        caAbsTextField.text = ""
+        pTextField.text =  ""
+        pAbsTextField.text =  ""
+        mgTextField.text =  ""
+        mgAbsTextField.text =  ""
+        kTextField.text =  ""
+        sTextField.text =  ""
+        naTextField.text = ""
+        clTextField.text = ""
+        feTextField.text = ""
+        znTextField.text = ""
+        cuTextField.text = ""
+        mnTextField.text = ""
+        seTextField.text = ""
+        coTextField.text = ""
+        iTextField.text = ""
+        vitaminATextField.text = ""
+        vitaminD3TextField.text = ""
+        vitaminETextField.text = ""
+        NiacinTextField.text = ""
+        biotinTextField.text = ""
+        referTextField.text = ""
+    }
+    
     func writeToFile(location: URL) {
         do{
             let encoder = JSONEncoder()
