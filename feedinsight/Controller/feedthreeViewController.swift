@@ -430,23 +430,35 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             if dropdownvalues.contains(addfeed.text!) {
                 self.showError("Already added.")
             } else {
-                print(addfeed.text ?? "none")
-                dropdownvalues.append(addfeed.text ?? "none")
-                
+                var validProduct : Bool = false
                 for item in productList {
                     let name = item.FeedName
                     if(addfeed.text == name) {
-                        selectedProductList.append(item)
+                        validProduct = true
                         break
                     }
                 }
-                calculateFloatArray()
-                print("paki")
-                print("array values is \(dropdownvalues)")
-                if(self.dropdownvalues.count > 2) {
-                    self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
+                if(validProduct == true) {
+                    print(addfeed.text ?? "none")
+                    dropdownvalues.append(addfeed.text ?? "none")
+                    for item in productList {
+                        let name = item.FeedName
+                        if(addfeed.text == name) {
+                            selectedProductList.append(item)
+                            break
+                        }
+                    }
+                    calculateFloatArray()
+                    print("paki")
+                    print("array values is \(dropdownvalues)")
+                    if(self.dropdownvalues.count > 2) {
+                        self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
+                    }
+                    tblView.reloadData()
+                } else {
+                    self.showError("Invalid product name.")
                 }
-                tblView.reloadData()
+                
             }
             
         }
