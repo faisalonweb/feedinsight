@@ -17,7 +17,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var thirdView: UIView! // 660
     @IBOutlet weak var fourthView: UIView! // 210
     @IBOutlet weak var fifthView: UIView! // 630
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var userNameLabel: UILabel!
@@ -31,17 +31,21 @@ class ResultsViewController: UIViewController {
     var PremixArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Se","Zn","AIU","DIU","EIU","Niacin(mg)","Biotin(mg)"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
                  self.userNameLabel.text = userName as? String
                  print(userName)
              }
              DispatchQueue.main.async { [weak self] in
-                 let data = self?.defaults.value(forKey: "imageData") as? Data
+                 let data = self?.defaults!.value(forKey: "imageData") as? Data
                  if(data != nil) {
                      self?.profileImage.image = UIImage(data: data!)
                  }
              }
+        //profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
         profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
+        profileImage?.clipsToBounds = true
+        profileImage?.layer.borderWidth = 3.0
+        profileImage?.layer.borderColor = UIColor.white.cgColor
         self.labelsMatrixView1 = NALLabelsMatrixView(frame: CGRect.init(x: self.secView.frame.origin.x, y: 0, width: self.secView.frame.size.width - 20, height: self.secView.frame.size.height), columns: [60, Int(self.secView.frame.size.width - 80) / 2 , Int(self.secView.frame.size.width - 80) / 2])
         self.secView.addSubview(self.labelsMatrixView1)
         labelsMatrixView1.addRecord(record: ["No", "Requirments Results", "Value"])

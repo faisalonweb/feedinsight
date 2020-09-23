@@ -22,7 +22,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     var textArr = ["Dairy Cows","Beef Cows","Sheep/Goat","Camel","Deer","Buffalo"]
     var titlename = ""
     var titleImage = UIImage(named:"")
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     var sizee1:CGFloat=0
     var sizee2:CGFloat=0
     var portait:CGFloat=0
@@ -46,13 +46,13 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
             
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.userpic.image = UIImage(data: data!)
             }

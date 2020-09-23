@@ -40,7 +40,7 @@ class EditPremixViewController: UIViewController {
     @IBOutlet weak var NiacinTextField: UITextField!
     @IBOutlet weak var biotinTextField: UITextField!
     @IBOutlet weak var referTextField: UITextField!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     var screenName : String = ""
     var screenType : String = ""
     var addedDataList : [Person] = []
@@ -48,12 +48,12 @@ class EditPremixViewController: UIViewController {
     var saveName : String = ""
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.ProfileImage.image = UIImage(data: data!)
             }
         }
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }

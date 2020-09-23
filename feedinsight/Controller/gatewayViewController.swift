@@ -10,12 +10,12 @@ import UIKit
 
 class gatewayViewController: UIViewController {
     
-    let userDefault = UserDefaults.standard
-    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
+    let userDefault = UserDefaults(suiteName:"User")
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
-        if userDefault.bool(forKey: "usersignedin") {
+        let userEmail : String = userDefault?.value(forKey: "useremailStringKey") as? String ?? ""
+        if userEmail != "" {
             let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
         }
         else {

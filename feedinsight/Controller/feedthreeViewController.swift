@@ -37,7 +37,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var plusbutton: UIButton!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     var checkStatus : Bool = false
     var currentTappedTextField : UITextField?
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
@@ -141,12 +141,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
         }
 
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)
             }

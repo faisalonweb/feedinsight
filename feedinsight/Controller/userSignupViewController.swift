@@ -71,7 +71,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         static let keycollectionview = "collectionviewStringKey"
         static let keyusercountry = "usercountryKey"
     }
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     var SignupCollectionData = [SignupModel]()
     var pickerData1: [String] = [String]()
     var pickerData2: [String] = [String]()
@@ -394,8 +394,8 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                             SVProgressHUD.dismiss()
                         }
                         else {
-                            self.defaults.set(true, forKey: "usersignedin")
-                            self.defaults.synchronize()
+                            self.defaults!.set(true, forKey: "usersignedin")
+                            self.defaults!.synchronize()
                             let currentusername = firstName
                             let currentuseremail = email
                             let currentuserphone = phoneEnter
@@ -417,18 +417,18 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
 //                                UserDefaults().set(data, forKey: "imageData")
 //                                self.userDefault.set(imageURL, forKey: "Link")
 //                            }
-                            self.defaults.set(currentuserrole, forKey: dKeys.keyRole)
-                            self.defaults.set(currentuserlocation, forKey: dKeys.keyLocation)
-                            self.defaults.set(currentusername, forKey: dKeys.keyusername)
-                            self.defaults.set(currentuseremail, forKey: dKeys.keyuseremail)
-                            self.defaults.set(currentuserphone, forKey: dKeys.keyuserphoneno)
-                            self.defaults.set(currentuserindustry, forKey: dKeys.keyuserindustry)
-                            self.defaults.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                            self.defaults.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
-                            self.defaults.set(currentusercountrycode, forKey: dKeys.keycountrycode)
-                            self.defaults.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                            self.defaults.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                            self.defaults.set(UserCountry, forKey: dKeys.keyusercountry)
+                            self.defaults!.set(currentuserrole, forKey: dKeys.keyRole)
+                            self.defaults!.set(currentuserlocation, forKey: dKeys.keyLocation)
+                            self.defaults!.set(currentusername, forKey: dKeys.keyusername)
+                            self.defaults!.set(currentuseremail, forKey: dKeys.keyuseremail)
+                            self.defaults!.set(currentuserphone, forKey: dKeys.keyuserphoneno)
+                            self.defaults!.set(currentuserindustry, forKey: dKeys.keyuserindustry)
+                            self.defaults!.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
+                            self.defaults!.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
+                            self.defaults!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
+                            self.defaults!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                            self.defaults!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                            self.defaults!.set(UserCountry, forKey: dKeys.keyusercountry)
                             
                             SVProgressHUD.showSuccess(withStatus: "Success")
                             self.transitionToHome()

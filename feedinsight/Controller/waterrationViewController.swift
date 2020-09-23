@@ -16,7 +16,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileimage: UIImageView!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     var reportNameList = [String]()
     var reportDateList = [String]()
     var DocumentIdList = [String]()
@@ -98,7 +98,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async { [weak self] in
             
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)
             }
@@ -108,7 +108,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }

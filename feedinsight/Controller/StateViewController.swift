@@ -17,7 +17,7 @@ import SVProgressHUD
 let requirments = Requirments()
 
 class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var woolHairLabel: UILabel!
     @IBOutlet weak var proimage: UIImageView!
@@ -78,12 +78,12 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.proimage.image = UIImage(data: data!)
             }
@@ -157,7 +157,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         } else {
             heatStreesOutlet.setBackgroundImage(toggleNo, for: UIControl.State.normal)
         }
-        if let busines = defaults.value(forKey: "userbussinessStringKey"){
+        if let busines = defaults!.value(forKey: "userbussinessStringKey"){
             self.nameField.text = busines as? String
             print(busines)
         }

@@ -18,7 +18,7 @@ class wateroneViewController: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var standardbtn: UIButton!
     @IBOutlet weak var custombtn: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     @IBOutlet weak var firstview: UIView!
     @IBOutlet weak var secondview: UIView!
     @IBOutlet var buttonOutlets: [UIButton]!
@@ -39,13 +39,13 @@ class wateroneViewController: UIViewController , UIGestureRecognizerDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
             
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)
             }

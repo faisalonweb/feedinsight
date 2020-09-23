@@ -19,7 +19,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     @IBOutlet weak var userProfileView: UIImageView!
     @IBOutlet weak var notificaitonViewA: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     let textArr = ["Ruminants","Poultry","Aqua","Equines"]
     let imageArr: [UIImage] = [
         UIImage(named: "ruminants")!,
@@ -34,13 +34,13 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
             
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.userProfileView.image = UIImage(data: data!)
             }

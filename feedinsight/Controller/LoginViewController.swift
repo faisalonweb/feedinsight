@@ -12,8 +12,7 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    let userDefault = UserDefaults.standard
-    let launchedBefore = UserDefaults.standard.bool(forKey: "usersignedin")
+    let userDefault = UserDefaults(suiteName:"User")
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -104,11 +103,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let user = authResult.user
                         print("User has Signed In")
                         if user.isEmailVerified {
-                            SVProgressHUD.dismiss()
-                            self.emailField.isUserInteractionEnabled = true
-                            self.paswordField.isUserInteractionEnabled = true
-                            self.userDefault.set(true, forKey: "usersignedin")
-                            self.userDefault.synchronize()
+                            self.userDefault!.set(true, forKey: "usersignedin")
+                            self.userDefault!.synchronize()
                             let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
                             docRef.getDocuments { (querySnapshot, err) in
                                 if let err = err {
@@ -131,30 +127,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     let currentusercountrycode = dataDescription?["countrycode"]
                                     let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
                                     let currentuserprofilecountry =  dataDescription?["UserCountry"]
-                                    self.userDefault.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                                    self.userDefault!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
                                     
                                     let imageURL = dataDescription?["imageURL"] as? String
                                     if (imageURL != "") {
                                         let fileUrl = URL(string: imageURL!)
                                         let data = try? Data(contentsOf:fileUrl!)
-                                        UserDefaults().set(data, forKey: "imageData")
-                                        self.userDefault.set(imageURL, forKey: "Link")
+                                        self.userDefault!.set(data, forKey: "imageData")
+                                        self.userDefault!.set(imageURL, forKey: "Link")
                                     }
-                                    self.userDefault.set(currentuserrole, forKey: dKeys.keyRole)
-                                    self.userDefault.set(currentuserlocation, forKey: dKeys.keyLocation)
-                                    self.userDefault.set(currentusername, forKey: dKeys.keyusername)
-                                    self.userDefault.set(currentuseremail, forKey: dKeys.keyuseremail)
-                                    self.userDefault.set(currentuserphone, forKey: dKeys.keyuserphoneno)
-                                    self.userDefault.set(currentuserindustry, forKey: dKeys.keyuserindustry)
-                                    self.userDefault.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                                    self.userDefault.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
-                                    self.userDefault.set(currentusercountrycode, forKey: dKeys.keycountrycode)
-                                    self.userDefault.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                                    self.userDefault.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
+                                    self.userDefault!.set(currentuserrole, forKey: dKeys.keyRole)
+                                    self.userDefault!.set(currentuserlocation, forKey: dKeys.keyLocation)
+                                    self.userDefault!.set(currentusername, forKey: dKeys.keyusername)
+                                    self.userDefault!.set(currentuseremail, forKey: dKeys.keyuseremail)
+                                    self.userDefault!.set(currentuserphone, forKey: dKeys.keyuserphoneno)
+                                    self.userDefault!.set(currentuserindustry, forKey: dKeys.keyuserindustry)
+                                    self.userDefault!.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
+                                    self.userDefault!.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
+                                    self.userDefault!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
+                                    self.userDefault!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                                    self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
+                                    print(result?.user.uid ?? 0)
+                                    SVProgressHUD.dismiss()
+                                    self.emailField.isUserInteractionEnabled = true
+                                    self.paswordField.isUserInteractionEnabled = true
+                                    self.transitionToHome()
                                 }
                             }
-                            print(result?.user.uid ?? 0)
-                            self.transitionToHome()
                         } else {
                             SVProgressHUD.dismiss()
                             self.emailField.isUserInteractionEnabled = true

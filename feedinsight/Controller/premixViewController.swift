@@ -41,7 +41,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     var premixStatus : Bool = false
     var DocumentId : String = ""
     var ReportName : String = ""
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     // Macro Mineral
     var productNameData = ""
     var productDoseData = ""
@@ -105,12 +105,12 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)
             }

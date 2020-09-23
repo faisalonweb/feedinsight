@@ -33,7 +33,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     private var documents: [DocumentSnapshot] = []
     public var tasks: [Task] = []
     private var listener : ListenerRegistration!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     fileprivate func baseQuery() -> Query {
         return Firestore.firestore().collection("premixReport").limit(to: 50)
     }
@@ -52,7 +52,7 @@ class ProfileLoadViewController: UIViewController, UITableViewDelegate, UITableV
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }

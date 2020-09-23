@@ -19,7 +19,7 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     var animalList = [String]()
     var reportNameList = [String]()
     var docIdList = [String]()
@@ -138,12 +138,12 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        if let userName = defaults.value(forKey: "usernameStringKey"){
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
         }
         DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.profileimage.image = UIImage(data: data!)
             }

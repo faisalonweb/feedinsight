@@ -59,7 +59,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     var db: Firestore!
     var collectionselectedcell : String = "pak"
     var nmr : Int = 0
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName:"User")
     struct dKeys {
         static let keyAnimal = "animalStringKey"
         static let keyRole = "roleStringKey"
@@ -162,7 +162,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
         userpic.image = croppedImage
         let data = userpic.image!.pngData()
-        UserDefaults().set(data, forKey: "imageData")
+        self.defaults!.set(data, forKey: "imageData")
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let storage = Storage.storage()
         let storageRef =  storage.reference().child("user/\(uid)")
@@ -180,14 +180,14 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         if (imageURL != "") {
                             let fileUrl = URL(string: imageURL!)
                             let data = try? Data(contentsOf:fileUrl!)
-                            UserDefaults().set(data, forKey: "imageData")
-                            self.defaults.set(imageURL, forKey: "Link")
+                            self.defaults!.set(data, forKey: "imageData")
+                            self.defaults!.set(imageURL, forKey: "Link")
                         }
 
                         let fileUrl = URL(string: url!.absoluteString)
                         let data = try? Data(contentsOf:fileUrl!)
                         self.userpic.image = UIImage(data: data!)
-                        UserDefaults().set(data, forKey: "imageData")
+                        self.defaults!.set(data, forKey: "imageData")
                         let db = Firestore.firestore()
                         let userID = Auth.auth().currentUser?.uid
                         if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
@@ -226,7 +226,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellreuse", for: indexPath) as! animalTypeTableViewCell
-        let animalName : String = defaults.value(forKey: dKeys.keyAnimal) as? String ?? "Pick Animal"
+        let animalName : String = defaults!.value(forKey: dKeys.keyAnimal) as? String ?? "Pick Animal"
         let animalNameList : [String] = animalName.components(separatedBy: ",")
         for i in 0 ..< animalNameList.count {
             let string = animalNameList[i]
@@ -362,24 +362,24 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         self.locationField.delegate = self
         DispatchQueue.main.async { [weak self] in
             
-            let data = self?.defaults.value(forKey: "imageData") as? Data
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
                 self?.userpic.image = UIImage(data: data!)
             }
         }
         
-        if let userName = defaults.value(forKey: dKeys.keyusername){
+        if let userName = defaults!.value(forKey: dKeys.keyusername){
             
             self.username.text = userName as? String
             self.personName.text = userName as? String
             print(userName)
         }
-        if let userEmail = defaults.value(forKey: dKeys.keyuseremail){
+        if let userEmail = defaults!.value(forKey: dKeys.keyuseremail){
             
             self.useremail.text = userEmail as? String
             print(userEmail)
         }
-        if let animal = defaults.value(forKey: dKeys.keyAnimal){
+        if let animal = defaults!.value(forKey: dKeys.keyAnimal){
             
             //self.userdropdown.text = animal as? String
             //print(animal)
@@ -387,32 +387,32 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             
         }
         
-        if let countrycode = defaults.value(forKey: dKeys.keycountrycode){
+        if let countrycode = defaults!.value(forKey: dKeys.keycountrycode){
             
             self.countryCode.setCountryByPhoneCode(countrycode as! String)
             print(countrycode)
         }
-        if let location = defaults.value(forKey: dKeys.keyLocation){
+        if let location = defaults!.value(forKey: dKeys.keyLocation){
             
             self.locationField.text = location as? String
             print(location)
         }
-        if let role = defaults.value(forKey: dKeys.keyRole){
+        if let role = defaults!.value(forKey: dKeys.keyRole){
             
             self.roledropdown.text = role as? String
             print(role)
         }
-        if let busines = defaults.value(forKey: dKeys.keyuserbussiness){
+        if let busines = defaults?.value(forKey: dKeys.keyuserbussiness){
             
             self.userbuss.text = busines as? String
             print(busines)
         }
-        if let profilecountry = defaults.value(forKey: dKeys.keyusercountry){
+        if let profilecountry = defaults!.value(forKey: dKeys.keyusercountry){
             
             self.ProfileCountry.text = profilecountry as? String
             
         }
-        if let indus = defaults.value(forKey: dKeys.keyuserindustry){
+        if let indus = defaults!.value(forKey: dKeys.keyuserindustry){
             if(indus as? String == "") {
                 //userotherindus.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
                 induslabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
@@ -423,22 +423,22 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 print("industry values is \(indus)")
             }
         }
-        if let pass = defaults.value(forKey: dKeys.keyuserpassowrd){
+        if let pass = defaults!.value(forKey: dKeys.keyuserpassowrd){
             
             self.userpassword.text = pass as? String
             print(pass)
         }
-        if let passcnf = defaults.value(forKey: dKeys.keyuserpassowrd){
+        if let passcnf = defaults!.value(forKey: dKeys.keyuserpassowrd){
             
             self.userconfirmpassword.text = passcnf as? String
             print(passcnf)
         }
-        if let phone = defaults.value(forKey: dKeys.keyuserphoneno){
+        if let phone = defaults!.value(forKey: dKeys.keyuserphoneno){
             
             self.userphone.text = phone as? String
             print(phone)
         }
-        if let collectioncell = defaults.value(forKey: dKeys.keycollectionview){
+        if let collectioncell = defaults!.value(forKey: dKeys.keycollectionview){
             self.collectionselectedcell = collectioncell as! String
             if(self.collectionselectedcell != "") {
                 collectionViewSelectedName.append(self.collectionselectedcell)
@@ -504,24 +504,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         
     }
     @IBAction func clickOnLogout(_ sender: Any) {
-        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                let defaults = UserDefaults.standard
-                let dictionary = defaults.dictionaryRepresentation()
-                dictionary.keys.forEach { key in
-                    defaults.removeObject(forKey: key)
-                }
-                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
-                self.navigationController?.pushViewController(vcone!, animated: true)
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        logOutAccount()
     }
     @objc func tapAction() {
         
@@ -529,18 +512,29 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         
     }
     @IBAction func clickOnLogoutIcon(_ sender: Any) {
+        logOutAccount()
+    }
+    
+    func logOutAccount () {
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
-                let defaults = UserDefaults.standard
-                let dictionary = defaults.dictionaryRepresentation()
+                SVProgressHUD.show(withStatus: "it's working ...")
+                let defaults = UserDefaults(suiteName:"User")
+                let dictionary = defaults!.dictionaryRepresentation()
                 dictionary.keys.forEach { key in
-                    defaults.removeObject(forKey: key)
+                    defaults!.removeObject(forKey: key)
                 }
-                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
-                self.navigationController?.pushViewController(vcone!, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                    SVProgressHUD.dismiss()
+                    let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
+                    self.navigationController?.pushViewController(vcone!, animated: true)
+                })
+
+                
+                
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
             }
@@ -548,7 +542,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
     
     @IBAction func backbutton(_ sender: Any) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
@@ -609,18 +602,18 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                     }
                     else {
                         SVProgressHUD.dismiss()
-                        self.defaults.set(self.roledropdown.text, forKey: dKeys.keyRole)
-                        self.defaults.set(self.locationField.text, forKey: dKeys.keyLocation)
-                        self.defaults.set(self.username.text, forKey: dKeys.keyusername)
+                        self.defaults!.set(self.roledropdown.text, forKey: dKeys.keyRole)
+                        self.defaults!.set(self.locationField.text, forKey: dKeys.keyLocation)
+                        self.defaults!.set(self.username.text, forKey: dKeys.keyusername)
                         self.personName.text = self.username.text
-                        self.defaults.set(self.useremail.text, forKey: dKeys.keyuseremail)
-                        self.defaults.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
-                        self.defaults.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
-                        self.defaults.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
-                        self.defaults.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
-                        self.defaults.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
-                        self.defaults.set(self.industrycellValue, forKey: dKeys.keycollectionview)
-                        self.defaults.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
+                        self.defaults!.set(self.useremail.text, forKey: dKeys.keyuseremail)
+                        self.defaults!.set(self.userphone.text, forKey: dKeys.keyuserphoneno)
+                        self.defaults!.set(self.userotherindus.text, forKey: dKeys.keyuserindustry)
+                        self.defaults!.set(self.userbuss.text, forKey: dKeys.keyuserbussiness)
+                        self.defaults!.set(self.userpassword.text, forKey: dKeys.keyuserpassowrd)
+                        self.defaults!.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
+                        self.defaults!.set(self.industrycellValue, forKey: dKeys.keycollectionview)
+                        self.defaults!.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
                     }
                 }
             }
