@@ -69,7 +69,11 @@ class EditPremixViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ProfileImage?.layer.cornerRadius = (ProfileImage?.frame.size.width ?? 0.0) / 2
         ProfileImage?.layer.cornerRadius = (ProfileImage?.frame.size.width ?? 0.0) / 2
+        ProfileImage?.clipsToBounds = true
+        ProfileImage?.layer.borderWidth = 3.0
+        ProfileImage?.layer.borderColor = UIColor.white.cgColor
         EditLabel.text! =  screenName
         if(screenName == "Edit Feed" || screenType == "addNewFeed") {
             self.FeedName.text! = productList[currentIndex].FeedName

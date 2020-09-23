@@ -31,7 +31,11 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
+        //userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
         userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
+        userpic?.clipsToBounds = true
+        userpic?.layer.borderWidth = 3.0
+        userpic?.layer.borderColor = UIColor.white.cgColor
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)

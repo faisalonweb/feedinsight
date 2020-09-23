@@ -313,7 +313,11 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 }
             }
         }
+        //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
+        profileimage?.clipsToBounds = true
+        profileimage?.layer.borderWidth = 3.0
+        profileimage?.layer.borderColor = UIColor.white.cgColor
         
         
     }

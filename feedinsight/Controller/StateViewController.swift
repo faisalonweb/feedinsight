@@ -110,7 +110,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        proimage?.layer.cornerRadius = (proimage?.frame.size.width ?? 0.0) / 2
+//        proimage?.layer.cornerRadius = (proimage?.frame.size.width ?? 0.0) / 2
         self.dismissKey()
         nameField.text = groupcompany
         animalField.text = nameanimal

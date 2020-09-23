@@ -174,6 +174,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         userProfileView?.clipsToBounds = true
         userProfileView?.layer.borderWidth = 3.0
         userProfileView?.layer.borderColor = UIColor.white.cgColor
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

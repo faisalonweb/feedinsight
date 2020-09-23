@@ -109,7 +109,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
+        //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
+        profileimage?.clipsToBounds = true
+        profileimage?.layer.borderWidth = 3.0
+        profileimage?.layer.borderColor = UIColor.white.cgColor
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28

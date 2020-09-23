@@ -28,7 +28,11 @@ class wateroneViewController: UIViewController , UIGestureRecognizerDelegate{
         self.dismissKey() 
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
+        profileimage?.clipsToBounds = true
+        profileimage?.layer.borderWidth = 3.0
+        profileimage?.layer.borderColor = UIColor.white.cgColor
         standardbtn.layer.cornerRadius = 8
         custombtn.layer.cornerRadius = 8
         super.viewDidLoad()
