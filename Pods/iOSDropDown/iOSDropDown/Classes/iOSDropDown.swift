@@ -53,7 +53,7 @@ open class DropDown : UITextField{
 
     //Variables
     fileprivate  var tableheightX: CGFloat = 100
-    fileprivate  var dataArray = [String]()
+    public var dataArray = [String]()
     fileprivate  var imageArray = [String]()
     fileprivate  var parentController:UIViewController?
     fileprivate  var pointToParent = CGPoint(x: 0, y: 0)
@@ -71,7 +71,7 @@ open class DropDown : UITextField{
         }
     }
     public var optionIds : [Int]?
-    var searchText = String() {
+    public var searchText = String() {
         didSet{
             if searchText == "" {
                 self.dataArray = self.optionArray

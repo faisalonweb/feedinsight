@@ -93,12 +93,34 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.view.frame.origin.y = 0
         }
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        currentTappedTextField = textField
-    }
     func textFieldDidEndEditing(_ textField: UITextField) {
         currentTappedTextField = nil
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addfeed.superview?.endEditing(true)
+        return false
+    }
+    func  textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+        addfeed.dataArray = addfeed.optionArray
+        addfeed.touchAction()
+        currentTappedTextField = textField
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return addfeed.isSearchEnable
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string != "" {
+            addfeed.searchText = addfeed.text! + string
+        }else{
+            let subText = addfeed.text?.dropLast()
+            addfeed.searchText = String(subText!)
+        }
+        if !addfeed.isSelected {
+            addfeed.showList()
+        }
+        return true;
     }
 
     override func viewDidLoad() {
