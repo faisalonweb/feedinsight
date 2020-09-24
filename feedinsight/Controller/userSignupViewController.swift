@@ -78,6 +78,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     var workarray: [String] = [String]()
     var animalSelectionArray: [String] = [String]()
     var collectionViewSelectedName: [String] = [String]()
+    var country : String = ""
     private let locationManager = LocationManager()
     var industrycellValue = ""
     let textArr = ["Research","Farming","Feed \nManufacturing","Feed Additives \nTrader/Distributor "]
@@ -368,16 +369,17 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             showError(error!)
         }
         else {
-            let firstName = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let industryEnter = userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let busindessEnter = userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let pickrolEnter = pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let country = country.phoneCode
+            let firstName = self.username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let industryEnter = self.userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = self.useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = self.userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let busindessEnter = self.userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pickrolEnter = self.pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let pickanimalEnter = self.pickani.titleLabel!.text!
-            let phoneEnter = userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let locationEnter = picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let countryUser = lCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let phoneEnter = self.userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let locationEnter = self.picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let countryUser = self.lCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 if err != nil {
                     SVProgressHUD.showError(withStatus:"user creation failed")
@@ -386,56 +388,23 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                 }
                 else {
                     self.sendVerificationMail()
-                    let db = Firestore.firestore()
-                    db.collection("users").document(result!.user.uid).setData(["name":firstName, "password":password, "uid": result!.user.uid,"industry" : industryEnter, "business" : busindessEnter, "imageURL" : "","pickanimal" : pickanimalEnter , "pickrole" : pickrolEnter, "email" : email, "phone" : phoneEnter, "location" : locationEnter,"CollectionIndustry": self.industrycellValue,"UserCountry" : countryUser , "countrycode": country.phoneCode]) { (error) in
-                        if error != nil {
-                            SVProgressHUD.showError(withStatus:"Data insertion failed")
-                            self.showError(error!.localizedDescription)
-                            SVProgressHUD.dismiss()
-                        }
-                        else {
-                            self.defaults!.set(true, forKey: "usersignedin")
-                            self.defaults!.synchronize()
-                            let currentusername = firstName
-                            let currentuseremail = email
-                            let currentuserphone = phoneEnter
-                            let currentuserindustry = industryEnter
-                            let currentuserbusiness = busindessEnter
-                            let currentuserpass = password
-                            let currentuserpickanimal = pickanimalEnter
-                            let currentuserlocation = locationEnter
-                            let currentuserrole = pickrolEnter
-                            let currentusercountrycode = country.phoneCode
-                            let currentusercollectionindustry =  self.industrycellValue
-                            let UserCountry =  countryUser
-                            
-                            
-//                            let imageURL = dataDescription?["imageURL"] as? String
-//                            if (imageURL != "") {
-//                                let fileUrl = URL(string: imageURL!)
-//                                let data = try? Data(contentsOf:fileUrl!)
-//                                UserDefaults().set(data, forKey: "imageData")
-//                                self.userDefault.set(imageURL, forKey: "Link")
-//                            }
-                            self.defaults!.set(currentuserrole, forKey: dKeys.keyRole)
-                            self.defaults!.set(currentuserlocation, forKey: dKeys.keyLocation)
-                            self.defaults!.set(currentusername, forKey: dKeys.keyusername)
-                            self.defaults!.set(currentuseremail, forKey: dKeys.keyuseremail)
-                            self.defaults!.set(currentuserphone, forKey: dKeys.keyuserphoneno)
-                            self.defaults!.set(currentuserindustry, forKey: dKeys.keyuserindustry)
-                            self.defaults!.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                            self.defaults!.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
-                            self.defaults!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
-                            self.defaults!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                            self.defaults!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                            self.defaults!.set(UserCountry, forKey: dKeys.keyusercountry)
-                            
-                            SVProgressHUD.showSuccess(withStatus: "Success")
-                            self.transitionToHome()
-                            SVProgressHUD.dismiss()
-                        }
-                    }
-                   
+                    SVProgressHUD.showSuccess(withStatus: "Success")
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let signUpViewController = storyboard.instantiateViewController(withIdentifier: "VerifyViewController") as! VerifyViewController
+                    signUpViewController.veremail = email
+                    signUpViewController.verpassword = password
+                    signUpViewController.verrole = pickrolEnter
+                    signUpViewController.veranimal = pickanimalEnter
+                    signUpViewController.verphoneno = phoneEnter
+                    signUpViewController.verlocation = locationEnter
+                    signUpViewController.verusername = firstName
+                    signUpViewController.verindustry = industryEnter
+                    signUpViewController.vercollection = self.industrycellValue
+                    signUpViewController.verbusiness = busindessEnter
+                    signUpViewController.vercountrycode = country
+                    signUpViewController.verusercountry = countryUser
+                    self.navigationController?.pushViewController(signUpViewController, animated: true)
+                    SVProgressHUD.dismiss()
                 }
             }
         }
@@ -478,10 +447,35 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     
     func transitionToHome() {
 //        let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
-        self.navigationController?.pushViewController(signUpViewController, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
+//        self.navigationController?.pushViewController(signUpViewController, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "VerifyViewController") as! VerifyViewController
+//        signUpViewController.veremail = useremail.text!
+//        signUpViewController.verpassword = userpassword.text!
+//        signUpViewController.verrole = pickrole.text!
+//        signUpViewController.veranimal = self.pickani.titleLabel!.text!
+//        signUpViewController.verphoneno = userphoneno.text!
+//        signUpViewController.verlocation = picklocation.text!
+//        signUpViewController.verusername = username.text!
+//        signUpViewController.verindustry = userindustry.text!
+//        signUpViewController.vercollection = self.industrycellValue
+//        signUpViewController.verbusiness = userbussiness.text!
+//        signUpViewController.vercountrycode = country.phoneCode!
+//        signUpViewController.verusercountry = lCountry.text!
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
+    
     @IBAction func backbtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
