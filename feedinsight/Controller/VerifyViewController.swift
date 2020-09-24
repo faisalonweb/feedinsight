@@ -17,9 +17,10 @@ import SVProgressHUD
 
 
 
-class VerifyViewController: UIViewController {
+class VerifyViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var emailtext: UILabel!
     @IBOutlet weak var receemail: UIButton!
+    @IBOutlet weak var nextBtnOutlet: UIButton!
     
     let defaults = UserDefaults(suiteName:"User")
     struct dKeys {
@@ -51,15 +52,22 @@ class VerifyViewController: UIViewController {
     var vercollection : String = ""
     var verusercountry : String = ""
     
-    var navBar: UINavigationBar = UINavigationBar()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addNavBarImage()
-//        setCustomNavBarView()
-        emailtext.text = veremail
-
-       
+        let emailStr : String = "We sent you a verification email on " + veremail + ". Please verify your email to access FeedInsight."
+        emailtext.text = emailStr
+        nextBtnOutlet.layer.cornerRadius = 0.5 * nextBtnOutlet.bounds.size.height
+        nextBtnOutlet.clipsToBounds = true
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
+    
+    @IBAction func backButton(_ sender: Any) {
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
+    }
+    
     func showError(_ message:String) {
         //SVProgressHUD.dismiss()
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -73,11 +81,7 @@ class VerifyViewController: UIViewController {
     public func sendVerificationMail() {
         if self.authUser != nil && !self.authUser!.isEmailVerified {
             self.authUser!.sendEmailVerification(completion: { (error) in
-                // Notify the user that the mail has sent or couldn't because of an error.
             })
-        }
-        else {
-            // Either the user is not available, or the user is already verified.
         }
     }
     
@@ -136,30 +140,4 @@ class VerifyViewController: UIViewController {
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
-    
-    func addNavBarImage() {
-        //navigationItem.titleView = UIImageView(image: UIImage(named: "AppIcon"))
-            let navController = navigationController!
-
-            let image = UIImage(named: "AppIcon")!
-            let imageView = UIImageView(image: image)
-
-            let bannerWidth = navController.navigationBar.frame.size.width
-            let bannerHeight = navController.navigationBar.frame.size.height
-
-            let bannerX = bannerWidth / 2 - image.size.width / 2
-            let bannerY = bannerHeight / 2 - image.size.height / 2
-
-            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-        imageView.contentMode = .scaleAspectFit
-
-            navigationItem.titleView = imageView
-        }
-    func setCustomNavBarView() {
-            self.navBar.frame = CGRect(x: 0, y: 0, width: 350, height: 50)  // Set you custom width and Height
-            self.navBar.backgroundColor = UIColor.gray
-            self.view.addSubview(navBar)
-
-        }
-
 }
