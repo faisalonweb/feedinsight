@@ -238,11 +238,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 }
                 dmi = dmi / 100.0
                 //let requirments = Requirments()
-                requirments.DMI = dmi
-                requirments.finalProductList = selectedProductList
-                requirments.finalDropdownfloatValue = dropdownfloatValue
-                requirments.calculateRationData()
-                requirments.calculateRequirmentsData()
+                Requirments.shared().DMI = dmi
+                Requirments.shared().finalProductList = selectedProductList
+                Requirments.shared().finalDropdownfloatValue = dropdownfloatValue
+                Requirments.shared().calculateRationData()
+                Requirments.shared().calculateRequirmentsData()
                 let vc = storyboard?.instantiateViewController(withIdentifier: "waterViewController") as? wateroneViewController
                 self.navigationController?.pushViewController(vc!, animated: true)
             }

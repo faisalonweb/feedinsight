@@ -327,8 +327,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     }
     
     @IBAction func skipButton(_ sender: Any) {
-        requirments.productName = productName.text!
-        requirments.productDose = Double(productDose.text!) ?? 0.0
+        Requirments.shared().productName = productName.text!
+        Requirments.shared().productDose = Double(productDose.text!) ?? 0.0
         var doseinKG : Double = Double(productDose.text!) ?? 0.0
         doseinKG = doseinKG / 1000
         let pMacroText1 = Double(pMacroText.text!) ?? 0.0
@@ -351,33 +351,33 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
         
-        requirments.pMacroText = pMacroText1 * doseinKG
-        requirments.caMacroText = pMacroText2 * doseinKG
-        requirments.mgMacroText = pMacroText3 * doseinKG
-        requirments.kMacroText = pMacroText4 * doseinKG
-        requirments.naMacroText = pMacroText5 * doseinKG
-        requirments.clMacroText = pMacroText6 * doseinKG
-        requirments.sMacroText = pMacroText7 * doseinKG
-        requirments.coMicroText = pMacroText8 * doseinKG
-        requirments.cuMicroText = pMacroText9 * doseinKG
-        requirments.cuOrganicMicroText = pMacroText10 * doseinKG
-        requirments.seMicroText = pMacroText11 * doseinKG
-        requirments.seOrganicMicroText = pMacroText12 * doseinKG
-        requirments.znMicroText = pMacroText13 * doseinKG
-        requirments.znOrganicMicroText = pMacroText14 * doseinKG
-        requirments.aiuVitamin = pMacroText15 * doseinKG
-        requirments.diuVitamin = pMacroText16 * doseinKG
-        requirments.eiuVitamin = pMacroText17 * doseinKG
-        requirments.niacinVitamin = pMacroText18 * doseinKG
-        requirments.biotinVitamin = pMacroText19 * doseinKG
-        requirments.appendPremixValues()
+        Requirments.shared().pMacroText = pMacroText1 * doseinKG
+        Requirments.shared().caMacroText = pMacroText2 * doseinKG
+        Requirments.shared().mgMacroText = pMacroText3 * doseinKG
+        Requirments.shared().kMacroText = pMacroText4 * doseinKG
+        Requirments.shared().naMacroText = pMacroText5 * doseinKG
+        Requirments.shared().clMacroText = pMacroText6 * doseinKG
+        Requirments.shared().sMacroText = pMacroText7 * doseinKG
+        Requirments.shared().coMicroText = pMacroText8 * doseinKG
+        Requirments.shared().cuMicroText = pMacroText9 * doseinKG
+        Requirments.shared().cuOrganicMicroText = pMacroText10 * doseinKG
+        Requirments.shared().seMicroText = pMacroText11 * doseinKG
+        Requirments.shared().seOrganicMicroText = pMacroText12 * doseinKG
+        Requirments.shared().znMicroText = pMacroText13 * doseinKG
+        Requirments.shared().znOrganicMicroText = pMacroText14 * doseinKG
+        Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
+        Requirments.shared().diuVitamin = pMacroText16 * doseinKG
+        Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
+        Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
+        Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
+        Requirments.shared().appendPremixValues()
         let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        requirments.productName = productName.text!
-        requirments.productDose = Double(productDose.text!) ?? 0.0
+        Requirments.shared().productName = productName.text!
+        Requirments.shared().productDose = Double(productDose.text!) ?? 0.0
         var doseinKG : Double = Double(productDose.text!) ?? 0.0
         doseinKG = doseinKG / 1000
         let pMacroText1 = Double(pMacroText.text!) ?? 0.0
@@ -407,26 +407,23 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText22 = Double(totalZn) ?? 0.0
         
         
-        requirments.pMacroText = pMacroText1 * doseinKG
-        requirments.caMacroText = pMacroText2 * doseinKG
-        requirments.mgMacroText = pMacroText3 * doseinKG
-        requirments.kMacroText = pMacroText4 * doseinKG
-        requirments.naMacroText = pMacroText5 * doseinKG
-        requirments.clMacroText = pMacroText6 * doseinKG
-        requirments.sMacroText = pMacroText7 * doseinKG
-        requirments.coMicroText = pMacroText8 * doseinKG
-        requirments.cuMicroText = pMacroText20 * doseinKG
-        //requirments.cuOrganicMicroText = pMacroText10 * doseinKG
-        requirments.seMicroText = pMacroText21 * doseinKG
-        //requirments.seOrganicMicroText = pMacroText12 * doseinKG
-        requirments.znMicroText = pMacroText22 * doseinKG
-        //requirments.znOrganicMicroText = pMacroText14 * doseinKG
-        requirments.aiuVitamin = pMacroText15 * doseinKG
-        requirments.diuVitamin = pMacroText16 * doseinKG
-        requirments.eiuVitamin = pMacroText17 * doseinKG
-        requirments.niacinVitamin = pMacroText18 * doseinKG
-        requirments.biotinVitamin = pMacroText19 * doseinKG
-        requirments.appendPremixValues()
+        Requirments.shared().pMacroText = pMacroText1 * doseinKG
+        Requirments.shared().caMacroText = pMacroText2 * doseinKG
+        Requirments.shared().mgMacroText = pMacroText3 * doseinKG
+        Requirments.shared().kMacroText = pMacroText4 * doseinKG
+        Requirments.shared().naMacroText = pMacroText5 * doseinKG
+        Requirments.shared().clMacroText = pMacroText6 * doseinKG
+        Requirments.shared().sMacroText = pMacroText7 * doseinKG
+        Requirments.shared().coMicroText = pMacroText8 * doseinKG
+        Requirments.shared().cuMicroText = pMacroText20 * doseinKG
+        Requirments.shared().seMicroText = pMacroText21 * doseinKG
+        Requirments.shared().znMicroText = pMacroText22 * doseinKG
+        Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
+        Requirments.shared().diuVitamin = pMacroText16 * doseinKG
+        Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
+        Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
+        Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
+        Requirments.shared().appendPremixValues()
         let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
