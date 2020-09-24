@@ -455,37 +455,6 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         return nil
     }
     
-    func transitionToHome() {
-//        let vcone = storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController; self.navigationController?.pushViewController(vcone!, animated: true)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
-//        self.navigationController?.pushViewController(signUpViewController, animated: true)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "VerifyViewController") as! VerifyViewController
-//        signUpViewController.veremail = useremail.text!
-//        signUpViewController.verpassword = userpassword.text!
-//        signUpViewController.verrole = pickrole.text!
-//        signUpViewController.veranimal = self.pickani.titleLabel!.text!
-//        signUpViewController.verphoneno = userphoneno.text!
-//        signUpViewController.verlocation = picklocation.text!
-//        signUpViewController.verusername = username.text!
-//        signUpViewController.verindustry = userindustry.text!
-//        signUpViewController.vercollection = self.industrycellValue
-//        signUpViewController.verbusiness = userbussiness.text!
-//        signUpViewController.vercountrycode = country.phoneCode!
-//        signUpViewController.verusercountry = lCountry.text!
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //self.navigationController?.pushViewController(signUpViewController, animated: true)
-    }
-    
     @IBAction func backbtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
