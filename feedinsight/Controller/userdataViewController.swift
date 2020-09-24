@@ -252,7 +252,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             pickAnimalSelection.setTitle("Pick Animal", for: .normal)
             pickAnimalSelection.setTitleColor(.lightGray, for: .normal)
             for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
+                var string : String = ""
+                if(i == 0) {
+                    string = animalSelectionArray[i]
+                } else {
+                    string = " , " + animalSelectionArray[i]
+                }
                 copyStr = copyStr + string
                 pickAnimalSelection.setTitle(copyStr, for: .normal)
                 pickAnimalSelection.setTitleColor(.black, for: .normal)
@@ -269,11 +274,18 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             }
             
             var copyStr : String = ""
-            pickAnimalSelection.setTitle("", for: .normal)
+            pickAnimalSelection.setTitle("Pick Animal", for: .normal)
+            pickAnimalSelection.setTitleColor(.lightGray, for: .normal)
             for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
+                var string : String = ""
+                if(i == 0) {
+                    string = animalSelectionArray[i]
+                } else {
+                    string = " , " + animalSelectionArray[i]
+                }
                 copyStr = copyStr + string
                 pickAnimalSelection.setTitle(copyStr, for: .normal)
+                pickAnimalSelection.setTitleColor(.black, for: .normal)
             }
         }
         
@@ -380,10 +392,14 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             print(userEmail)
         }
         if let animal = defaults!.value(forKey: dKeys.keyAnimal){
+            if(animal as! String == "") {
+                self.pickAnimalSelection.setTitle("Pick Animal", for: .normal)
+                pickAnimalSelection.setTitleColor(.lightGray, for: .normal)
+            } else {
+                self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
+                pickAnimalSelection.setTitleColor(.black, for: .normal)
+            }
             
-            //self.userdropdown.text = animal as? String
-            //print(animal)
-            self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
             
         }
         
@@ -559,7 +575,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 roledropdown.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                 locationField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
                 userpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-                userconfirmpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+                userconfirmpassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || self.animalSelectionArray.count == 0
         {
             return "Please fill in all fields."
         }
@@ -593,7 +609,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             if username.text != nil && useremail.text != nil && userotherindus.text != nil && userbuss.text != nil && userphone.text != nil && roledropdown.text != nil && locationField.text != nil && userpassword.text != nil {
                 Auth.auth().currentUser?.updatePassword(to: userpassword.text!) { (error) in
                     if  let error = error {
-                        self.showError(error.localizedDescription)
+                        print("error while updating the reord \(error.localizedDescription)")
                     }
                 }
                 db.collection("users").document("\(userID ?? "00")").updateData(["name": username.text!, "email": useremail.text!,"phone":self.userphone.text!, "pickanimal": self.pickAnimalSelection.titleLabel!.text! , "pickrole" : roledropdown.text! , "location": locationField.text!, "industry" : userotherindus.text!, "business" : userbuss.text!,"CollectionIndustry": self.industrycellValue,"countrycode": country.phoneCode,"password": userpassword.text!, "userconfirmpassword": userconfirmpassword.text!]){ error in
