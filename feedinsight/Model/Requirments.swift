@@ -10,7 +10,19 @@ import Foundation
 import UIKit
 
 class Requirments {
-    // Requirment Values
+        
+    private static var sharedFunction : Requirments = {
+        let requirments = Requirments()
+        return requirments
+    }()
+    
+    class func shared () -> Requirments {
+        return sharedFunction
+    }
+    private init(){
+        
+    }
+    
     var companyName : String?
     var animalGroup : String?
     var physiologicalState : String?
@@ -87,6 +99,7 @@ class Requirments {
     var niacinVitamin: Double = 0
     var biotinVitamin: Double = 0
     var primexArrayFinal = [Double]()
+    
     
     func calculateRequirmentsData() {
         self.phosphorusCalculate()

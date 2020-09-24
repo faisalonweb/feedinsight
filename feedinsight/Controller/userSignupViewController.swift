@@ -301,7 +301,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             pickani.setTitle("Pick Animal", for: .normal)
             pickani.setTitleColor(.lightGray, for: .normal)
             for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
+                var string : String = ""
+                if(i == 0) {
+                    string = animalSelectionArray[i]
+                } else {
+                    string = " , " + animalSelectionArray[i]
+                }
                 copyStr = copyStr + string
                 pickani.setTitle(copyStr, for: .normal)
                 pickani.setTitleColor(.black, for: .normal)
@@ -322,7 +327,12 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             pickani.setTitleColor(.lightGray, for: .normal)
             pickani.setTitle("Pick Animal", for: .normal)
             for i in 0 ..< animalSelectionArray.count {
-                let string : String = animalSelectionArray[i] + " , "
+                var string : String = ""
+                if(i == 0) {
+                    string = animalSelectionArray[i]
+                } else {
+                    string = " , " + animalSelectionArray[i]
+                }
                 copyStr = copyStr + string
                 pickani.setTitle(copyStr, for: .normal)
                 pickani.setTitleColor(.black, for: .normal)
@@ -436,7 +446,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
             userbussiness.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             userphoneno.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             picklocation.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            lCountry.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+            lCountry.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || self.animalSelectionArray.count == 0 {
             return "Please fill in all fields."
         }
         if userpassword.text != usercnfpassword.text {
