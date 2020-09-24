@@ -111,7 +111,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     print(err.localizedDescription)
                                     return
                                 } else if querySnapshot!.documents.count != 1 {
-                                    print("More than one documents or none")
+                                    SVProgressHUD.dismiss()
+                                    self.emailField.isUserInteractionEnabled = true
+                                    self.paswordField.isUserInteractionEnabled = true
+                                    self.showError("User not found, Please try again.")
                                 } else {
                                     let document = querySnapshot!.documents.first
                                     let dataDescription = document?.data()

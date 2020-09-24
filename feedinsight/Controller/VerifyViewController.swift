@@ -113,7 +113,7 @@ class VerifyViewController: UIViewController, UIGestureRecognizerDelegate {
                                 self.defaults!.set(self.verrole, forKey: dKeys.keyRole)
                                 self.defaults!.set(self.verlocation, forKey: dKeys.keyLocation)
                                 self.defaults!.set(self.verusername, forKey: dKeys.keyusername)
-                                self.defaults!.set(self.veranimal, forKey: dKeys.keyuseremail)
+                                self.defaults!.set(self.veremail, forKey: dKeys.keyuseremail)
                                 self.defaults!.set(self.verphoneno, forKey: dKeys.keyuserphoneno)
                                 self.defaults!.set(self.verindustry, forKey: dKeys.keyuserindustry)
                                 self.defaults!.set(self.verbusiness, forKey: dKeys.keyuserbussiness)
