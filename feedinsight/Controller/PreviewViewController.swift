@@ -28,14 +28,14 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
     @IBOutlet weak var GrandView: UIView!
     
     var invoiceInfo: [String: AnyObject]!
-    let players = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
-    let goals = [6, 8, 26, 30, 8, 10]
+    let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
+    let goals = [6, 8, 26, 30, 8, 10,12,12,12,12,12,100,500,23,232,55,333,323]
     @IBOutlet weak var barchart: BarChartView!
     var invoiceComposer: InvoiceComposer!
     
     var HTMLContent: String!
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollView.contentOffset.x != 0
     }
     override func viewDidLoad() {
@@ -45,30 +45,93 @@ class PreviewViewController: UIViewController,UICollectionViewDelegate, UICollec
         //scrollview.isDirectionalLockEnabled = false
         
         scrollview.delegate = self
-        barchart.animate(yAxisDuration: 2.0)
+        barchart.animate(yAxisDuration: 1.0)
         barchart.pinchZoomEnabled = false
         barchart.drawBarShadowEnabled = false
         barchart.drawBordersEnabled = false
         barchart.doubleTapToZoomEnabled = false
         barchart.drawGridBackgroundEnabled = true
         barchart.chartDescription?.text = "Bar Chart View"
-        
-        setChart(dataPoints: players, values: goals.map { Double($0) })
+        setChart(dataPoints: players, values: Requirments.shared().rationArrayFinal.map { Double($0) })
         // Do any additional setup after loading the view.
     }
     func setChart(dataPoints: [String], values: [Double]) {
+        barchart.xAxis.setLabelCount(18, force: true)
+        barchart.xAxis.valueFormatter = IndexAxisValueFormatter(values: players)
+        barchart.xAxis.granularity = 1.0
+        barchart.xAxis.labelPosition = .bottom
+        barchart.xAxis.drawGridLinesEnabled = false
+        
+        barchart.leftAxis.enabled = false
+        barchart.rightAxis.granularity = 1.0
+        barchart.rightAxis.axisMinimum = 0.0
+        
+        
+        guard let description = barchart.chartDescription else {return}
+        description.text = ""
+        barchart.leftAxis.drawGridLinesEnabled = false
+        barchart.xAxis.drawGridLinesEnabled = false
         barchart.noDataText = "You need to provide data for the chart."
+//        var dataEntries: [BarChartDataEntry] = []
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
+//            dataEntries.append(dataEntry)
+//        }
+//        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "")
+//        let chartData = BarChartData(dataSet: chartDataSet)
+//        barchart.data = chartData
         
-        var dataEntries: [BarChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
-            dataEntries.append(dataEntry)
-        }
+        let entry1 = BarChartDataEntry(x: 0, yValues: [ Requirments.shared().rationArrayFinal[0],
+                                                        Requirments.shared().primexArrayFinal[0],
+                                                        Requirments.shared().waterArrayFinal[0]])
+        let entry2 = BarChartDataEntry(x: 1, yValues: [ Requirments.shared().rationArrayFinal[1],
+                                                        Requirments.shared().primexArrayFinal[1],
+                                                        Requirments.shared().waterArrayFinal[1]])
+        let entry3 = BarChartDataEntry(x: 2, yValues: [ Requirments.shared().rationArrayFinal[2],
+                                                        Requirments.shared().primexArrayFinal[2],
+                                                        Requirments.shared().waterArrayFinal[2]])
+        let entry4 = BarChartDataEntry(x: 3, yValues: [ Requirments.shared().rationArrayFinal[3],
+                                                        Requirments.shared().primexArrayFinal[3],
+                                                        Requirments.shared().waterArrayFinal[3]])
+        let entry5 = BarChartDataEntry(x: 4, yValues: [ Requirments.shared().rationArrayFinal[4],
+                                                        Requirments.shared().primexArrayFinal[4],
+                                                        Requirments.shared().waterArrayFinal[4]])
+        let entry6 = BarChartDataEntry(x: 5, yValues: [ Requirments.shared().rationArrayFinal[5],
+                                                        Requirments.shared().primexArrayFinal[5],
+                                                        Requirments.shared().waterArrayFinal[5]])
+        let entry7 = BarChartDataEntry(x: 6, yValues: [ Requirments.shared().rationArrayFinal[6],
+                                                        Requirments.shared().primexArrayFinal[6],
+                                                        Requirments.shared().waterArrayFinal[6]])
+        let entry8 = BarChartDataEntry(x: 7, yValues: [ Requirments.shared().rationArrayFinal[7],
+                                                        Requirments.shared().primexArrayFinal[7],0])
+        let entry9 = BarChartDataEntry(x: 8, yValues: [ Requirments.shared().rationArrayFinal[8],
+                                                        Requirments.shared().primexArrayFinal[8],0])
+        let entry10 = BarChartDataEntry(x: 9, yValues: [ Requirments.shared().rationArrayFinal[9],
+                                                         Requirments.shared().primexArrayFinal[9],0])
+        let entry11 = BarChartDataEntry(x: 10, yValues: [ Requirments.shared().rationArrayFinal[10],
+                                                          Requirments.shared().primexArrayFinal[10],0])
+        let entry12 = BarChartDataEntry(x: 11, yValues: [ Requirments.shared().rationArrayFinal[11],
+                                                          Requirments.shared().primexArrayFinal[11],0])
+        let entry13 = BarChartDataEntry(x: 12, yValues: [ Requirments.shared().rationArrayFinal[12],
+                                                          Requirments.shared().primexArrayFinal[12],0])
+        let entry14 = BarChartDataEntry(x: 13, yValues: [ Requirments.shared().rationArrayFinal[13],
+                                                          Requirments.shared().primexArrayFinal[13],0])
+        let entry15 = BarChartDataEntry(x: 14, yValues: [ Requirments.shared().rationArrayFinal[14],
+                                                          Requirments.shared().primexArrayFinal[14],0])
+        let entry16 = BarChartDataEntry(x: 15, yValues: [ Requirments.shared().rationArrayFinal[15],
+                                                          Requirments.shared().primexArrayFinal[15],0])
+        let entry17 = BarChartDataEntry(x: 16, yValues: [ Requirments.shared().rationArrayFinal[16],
+                                                          Requirments.shared().primexArrayFinal[16],0])
+        let entry18 = BarChartDataEntry(x: 17, yValues: [ Requirments.shared().rationArrayFinal[17],
+                                                          Requirments.shared().primexArrayFinal[17],0])
         
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Bar Chart View")
-        let chartData = BarChartData(dataSet: chartDataSet)
-        barchart.data = chartData
+        let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
+        dataSet.colors = [ UIColor.purple, UIColor.systemPink, UIColor.systemYellow]
+        let chartData1 = BarChartData(dataSet: dataSet)
+
+        barchart.data = chartData1
+        barchart.leftAxis.labelCount = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -16,10 +16,12 @@ class gatewayViewController: UIViewController {
         super.viewDidLoad()
         let userEmail : String = userDefault?.value(forKey: "useremailStringKey") as? String ?? ""
         if userEmail != "" {
-            let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController; self.navigationController?.pushViewController(vcone!, animated: true)
+            let vcone = storyboard?.instantiateViewController(withIdentifier: "tabar") as? UITabBarController;
+            self.navigationController?.pushViewController(vcone!, animated: true)
         }
         else {
-            let vctwo = storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController; self.navigationController?.pushViewController(vctwo!, animated: true)
+            let vctwo = storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
+            self.navigationController?.pushViewController(vctwo!, animated: true)
         }
     }
     
