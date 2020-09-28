@@ -38,6 +38,15 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var niacinVitamin: UITextField!
     @IBOutlet weak var biotinVitamin: UITextField!
     let userID = Auth.auth().currentUser?.uid
+    
+    var RationArr = ["Ca","P","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    //210
+    var WaterRationArr = ["P","Ca","Mg", "K","S","Na","Cl"]
+    // 540
+    var requirmentsArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vitamin A","Vitamin D3","Vitamin E","Niacin B3","Biotin B7"]
+    //630
+    var PremixArr = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Se","Zn","AIU","DIU","EIU","Niacin(mg)","Biotin(mg)"]
+    
     var premixStatus : Bool = false
     var DocumentId : String = ""
     var ReportName : String = ""
@@ -424,8 +433,56 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
         Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
         Requirments.shared().appendPremixValues()
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        
+        /*
+             Save Report code start
+         */
+        
+        
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .long
+            let datetimestamp = formatter.string(from: currentDateTime)
+            let db = Firestore.firestore()
+            let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
+            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                SVProgressHUD.show(withStatus: "it's working ...")
+                let text = alertController.textFields!.first!.text!
+                //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
+                let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
+                newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
+                    if let err = err {
+                        //                       SVProgressHUD.dismiss()
+                        SVProgressHUD.showError(withStatus: "Error")
+                        
+                        print("Error adding document: \(err)")
+                        SVProgressHUD.dismiss()
+                    } else {
+                        //                       SVProgressHUD.dismiss()
+                        SVProgressHUD.showSuccess(withStatus: "Sucess")
+                        
+                        print("Document added")
+                        SVProgressHUD.dismiss()
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
+                        self.navigationController?.pushViewController(vc!, animated: true)
+                    }
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            }
+            alertController.addTextField { (textField) in
+                textField.placeholder = "Pdf Report"
+            }
+            alertController.addAction(withdrawAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        
+       
+        
+       
+        
+        
     }
     
 }

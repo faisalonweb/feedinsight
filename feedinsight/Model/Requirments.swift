@@ -186,8 +186,8 @@ class Requirments {
         rationS = rationS * 10.0
         rationNa = rationNa * 10.0
         rationCl = rationCl * 10.0
-        rationArrayFinal.append(rationCa)
         rationArrayFinal.append(rationP)
+        rationArrayFinal.append(rationCa)
         rationArrayFinal.append(rationMg)
         rationArrayFinal.append(rationK)
         rationArrayFinal.append(rationS)
