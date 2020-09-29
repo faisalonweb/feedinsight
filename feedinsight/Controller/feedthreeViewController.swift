@@ -22,7 +22,6 @@ var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "jso
 var productList: [Person] = []
 var currentIndex = 0
 
-
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate {
     var dropdownvalues = [String]()
     var dropdownfloatValue = [String]()
@@ -42,7 +41,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     var checkStatus : Bool = false
     var currentTappedTextField : UITextField?
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
-    
+    var nameArray: [String] = []
     var selectedProductList: [Person] = []
     
     func getData() {
@@ -58,7 +57,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     func loadFile(mainPath: URL, subPath: URL){
         if fm.fileExists(atPath: subPath.path){
             decodeData(pathName: subPath)
-            if addfeed.text == ""{
+            if nameArray.count == 0{
                 decodeData(pathName: mainPath)
             }
         }else{
@@ -72,7 +71,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             let decoder = JSONDecoder()
             productList = try decoder.decode([Person].self, from: jsonData)
             let count = productList.count
-            var nameArray: [String] = []
             for i in 0...count - 1 {
                 let name = productList[i].FeedName
                 nameArray.append(name)
@@ -96,35 +94,19 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.view.frame.origin.y = 0
         }
     }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        currentTappedTextField = nil
-//    }
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        addfeed.superview?.endEditing(true)
-//        return false
-//    }
-//    func  textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.text = ""
-//        addfeed.dataArray = addfeed.optionArray
-//        addfeed.touchAction()
-//        currentTappedTextField = textField
-//    }
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        return addfeed.isSearchEnable
-//    }
-//
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if string != "" {
-//            addfeed.searchText = addfeed.text! + string
-//        }else{
-//            let subText = addfeed.text?.dropLast()
-//            addfeed.searchText = String(subText!)
-//        }
-//        if !addfeed.isSelected {
-//            addfeed.showList()
-//        }
-//        return true;
-//    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        currentTappedTextField = nil
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addfeed.superview?.endEditing(true)
+        return false
+    }
+    func  textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+        currentTappedTextField = textField
+    }
+    
 
     override func viewDidLoad() {
         self.dismissKey()
@@ -142,30 +124,19 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
-        addfeed.maxNumberOfResults = 5
-          addfeed.theme.font = UIFont.systemFont(ofSize: 14)
-        addfeed.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-        addfeed.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        addfeed.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        addfeed.theme.cellHeight = 40
-        //addfeed.comparisonOptions = .anchored
-        addfeed.minCharactersNumberToStartFiltering = 1
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getData()
-//        addfeed.didSelect{(selectedText , index ,id) in
-//            currentIndex = index
-//        }
-//        addfeed.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
-        
-//        addfeed.itemSelectionHandler = { filteredResults, itemPosition in
-//            let item = filteredResults[itemPosition]
-//            self.addfeed.text = item.title
-//        }
-//        addfeed.minCharactersNumberToStartFiltering = 2
+        addfeed.maxNumberOfResults = 5
+        addfeed.theme.font = UIFont.systemFont(ofSize: 14)
+        addfeed.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        addfeed.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        addfeed.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        addfeed.theme.cellHeight = 40
+        addfeed.comparisonOptions = .anchored
+        addfeed.minCharactersNumberToStartFiltering = 1
     
         for i in 0..<dropdownvalues.count {
             for item in productList {
@@ -437,9 +408,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         if addfeed.text == "" {
             self.showError("Select Feed value")
         } else {
-            for item in productList {
-                let name = item.FeedName
+            let count = productList.count
+            for i in 0...count - 1 {
+                let name = productList[i].FeedName
                 if(addfeed.text == name) {
+                    currentIndex = i
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
                     vc?.screenName = "Edit Feed"
                     self.navigationController?.pushViewController(vc!, animated: true)
@@ -454,9 +427,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             vc?.screenName = "Add Feed"
             self.navigationController?.pushViewController(vc!, animated: true)
         } else {
-            for item in productList {
-                let name = item.FeedName
+            let count = productList.count
+            for i in 0...count - 1 {
+                let name = productList[i].FeedName
                 if(addfeed.text == name) {
+                    currentIndex = i
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
                     vc?.screenName = "Add Feed"
                     vc?.screenType = "addNewFeed"
@@ -547,5 +522,3 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         return 58
     }
 }
-
-
