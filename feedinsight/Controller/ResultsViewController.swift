@@ -22,7 +22,7 @@ class ResultsViewController: UIViewController {
     
     @IBOutlet weak var userNameLabel: UILabel!
     //660
-    var RationArr = ["Ca","P","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    var RationArr = ["P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
     //210
     var WaterRationArr = ["P","Ca","Mg", "K","S","Na","Cl"]
     // 540

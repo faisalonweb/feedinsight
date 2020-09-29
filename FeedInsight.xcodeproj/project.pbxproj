@@ -56,6 +56,8 @@
 		1AA316B5251C6585006DC865 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA316B4251C6585006DC865 /* VerifyViewController.swift */; };
 		1AAAF51324B433350010F945 /* loadProfileAnimalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAAF51224B433350010F945 /* loadProfileAnimalsViewController.swift */; };
 		1AAAF51524B4D0250010F945 /* loadAnimalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAAF51424B4D0250010F945 /* loadAnimalsTableViewCell.swift */; };
+		1AB9EC892521E31A00072C1C /* PDFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9EC882521E31A00072C1C /* PDFTableViewCell.swift */; };
+		1AB9ECB72522029B00072C1C /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9ECB62522029B00072C1C /* PDFViewController.swift */; };
 		1ABC8BA324D0C62E00BE7628 /* RuminantspickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC8BA224D0C62E00BE7628 /* RuminantspickViewController.swift */; };
 		1ABC8BA524D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC8BA424D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift */; };
 		1AC35CDA245098AF001C7693 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC35CD9245098AF001C7693 /* iOSDropDown.framework */; };
@@ -77,7 +79,6 @@
 		C3C5DD25E952937DFF8D3273 /* Pods_FeedInsight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */; };
 		C60248FE2501428D008E1C7A /* NALLabelsMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60248FD2501428D008E1C7A /* NALLabelsMatrix.swift */; };
 		C6062FD0250B8E93009A8443 /* AnimalSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */; };
-		C63D59DC252329A800CFE439 /* UnitConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D59DB252329A800CFE439 /* UnitConvertorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +134,8 @@
 		1AA316B4251C6585006DC865 /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		1AAAF51224B433350010F945 /* loadProfileAnimalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadProfileAnimalsViewController.swift; sourceTree = "<group>"; };
 		1AAAF51424B4D0250010F945 /* loadAnimalsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadAnimalsTableViewCell.swift; sourceTree = "<group>"; };
+		1AB9EC882521E31A00072C1C /* PDFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTableViewCell.swift; sourceTree = "<group>"; };
+		1AB9ECB62522029B00072C1C /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		1ABC8BA224D0C62E00BE7628 /* RuminantspickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuminantspickViewController.swift; sourceTree = "<group>"; };
 		1ABC8BA424D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuminantsPickCollectionViewCell.swift; sourceTree = "<group>"; };
 		1AC35CD9245098AF001C7693 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +158,6 @@
 		90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.release.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.release.xcconfig"; sourceTree = "<group>"; };
 		C60248FD2501428D008E1C7A /* NALLabelsMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NALLabelsMatrix.swift; sourceTree = "<group>"; };
 		C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionTableViewCell.swift; sourceTree = "<group>"; };
-		C63D59DB252329A800CFE439 /* UnitConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConvertorViewController.swift; sourceTree = "<group>"; };
 		D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedInsight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -219,7 +221,7 @@
 				1A1A2BA22514C15300269A6E /* SeeAllViewController.swift */,
 				1A4C526B251B3DD40047F2D7 /* ReportViewController.swift */,
 				1AA316B4251C6585006DC865 /* VerifyViewController.swift */,
-				C63D59DB252329A800CFE439 /* UnitConvertorViewController.swift */,
+				1AB9ECB62522029B00072C1C /* PDFViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -320,6 +322,7 @@
 				C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */,
 				1ACCDCC8250F9C3200BC13EE /* animalTypeTableViewCell.swift */,
 				1AE3587B24EA872300A7E0AA /* waterrationTableViewCell.swift */,
+				1AB9EC882521E31A00072C1C /* PDFTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -488,7 +491,6 @@
 				1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */,
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */,
-				C63D59DC252329A800CFE439 /* UnitConvertorViewController.swift in Sources */,
 				1AE39C762500F7EA00C2E67E /* ResultsViewController.swift in Sources */,
 				1AE3587C24EA872300A7E0AA /* waterrationTableViewCell.swift in Sources */,
 				1AFE70DE24C2CDD800C4E08F /* premixViewController.swift in Sources */,
@@ -528,8 +530,10 @@
 				1AC35CDC24509D5C001C7693 /* StateViewController.swift in Sources */,
 				1AC88FC92466D4AF00694903 /* PaddingTextField.swift in Sources */,
 				1A4C526C251B3DD40047F2D7 /* ReportViewController.swift in Sources */,
+				1AB9EC892521E31A00072C1C /* PDFTableViewCell.swift in Sources */,
 				046D6A69249744D000F7E494 /* PreviewViewController.swift in Sources */,
 				1A7F122A243E12610008CFC0 /* HomeViewController.swift in Sources */,
+				1AB9ECB72522029B00072C1C /* PDFViewController.swift in Sources */,
 				1AAAF51524B4D0250010F945 /* loadAnimalsTableViewCell.swift in Sources */,
 				04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */,
 				1ABC8BA524D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift in Sources */,
