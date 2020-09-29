@@ -49,8 +49,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
-        self.navigationController?.pushViewController(animalViewController, animated: true)
+        
+        if(indexPath.row == 0) {
+            let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
+            self.navigationController?.pushViewController(animalViewController, animated: true)
+        } else if(indexPath.row == 1) {
+            let unitConvertorVC = storyboard.instantiateViewController(withIdentifier: "unitConvertorVC") as! UnitConvertorViewController
+            self.navigationController?.pushViewController(unitConvertorVC, animated: true)
+        }
+        
     }
     var portait:CGFloat=0
     var landscap:CGFloat=0
