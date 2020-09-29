@@ -135,7 +135,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         addfeed.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         addfeed.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         addfeed.theme.cellHeight = 40
-        addfeed.comparisonOptions = .anchored
+       // addfeed.comparisonOptions = .
         addfeed.minCharactersNumberToStartFiltering = 1
     
         for i in 0..<dropdownvalues.count {

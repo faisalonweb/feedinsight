@@ -25,6 +25,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var clMacroText: UITextField!
     @IBOutlet weak var sMacroText: UITextField!
     @IBOutlet weak var coMicroText: UITextField!
+    @IBOutlet weak var iMicroText: UITextField!
+    @IBOutlet weak var mnMicroText: UITextField!
     @IBOutlet weak var cuMicroText: UITextField!
     @IBOutlet weak var cuOrganicMicroText: UITextField!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -397,15 +399,12 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText6 = Double(clMacroText.text!) ?? 0.0
         let pMacroText7 = Double(sMacroText.text!) ?? 0.0
         let pMacroText8 = Double(coMicroText.text!) ?? 0.0
-        let pMacroText9 = Double(cuMicroText.text!) ?? 0.0
-        let pMacroText10 = Double(cuOrganicMicroText.text!) ?? 0.0
         let totalCu =  cuMicroText.text! + cuOrganicMicroText.text!
-        let pMacroText11 = Double(seMicroText.text!) ?? 0.0
-        let pMacroText12 = Double(seOrganicMicroText.text!) ?? 0.0
         let totalSe = seMicroText.text! + seOrganicMicroText.text!
-        let pMacroText13 = Double(znMicroText.text!) ?? 0.0
-        let pMacroText14 = Double(znOrganicMicroText.text!) ?? 0.0
         let totalZn =  znMicroText.text! + znOrganicMicroText.text!
+        
+        let pMacroText23 = Double(iMicroText.text!) ?? 0.0
+        let pMacroText24 = Double(mnMicroText.text!) ?? 0.0
         let pMacroText15 = Double(aiuVitamin.text!) ?? 0.0
         let pMacroText16 = Double(diuVitamin.text!) ?? 0.0
         let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
@@ -432,6 +431,9 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
         Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
         Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
+        Requirments.shared().iMicroText = pMacroText23 * doseinKG
+        Requirments.shared().mnMicroText = pMacroText24 * doseinKG
+        
         Requirments.shared().appendPremixValues()
         
         /*

@@ -87,6 +87,8 @@ class Requirments {
     var clMacroText: Double = 0
     var sMacroText: Double = 0
     var coMicroText: Double = 0
+    var iMicroText: Double = 0
+    var mnMicroText: Double = 0
     var cuMicroText: Double = 0
     var cuOrganicMicroText: Double = 0
     var seMicroText: Double = 0
@@ -217,8 +219,8 @@ class Requirments {
         primexArrayFinal.append(sMacroText)
         primexArrayFinal.append(coMicroText)
         primexArrayFinal.append(cuMicroText)
-        primexArrayFinal.append(0.0)
-        primexArrayFinal.append(0.0)
+        primexArrayFinal.append(iMicroText)
+        primexArrayFinal.append(mnMicroText)
         primexArrayFinal.append(seMicroText)
         primexArrayFinal.append(znMicroText)
         primexArrayFinal.append(aiuVitamin)
