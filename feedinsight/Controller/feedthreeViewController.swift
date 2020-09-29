@@ -13,6 +13,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
+import SearchTextField
 
 var subUrl: URL?
 var fm = FileManager.default
@@ -31,7 +32,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     var getNameData = [String]()
     var getValueData = [String]()
     let userID = Auth.auth().currentUser?.uid
-    @IBOutlet weak var addfeed: DropDown!
+    @IBOutlet weak var addfeed: SearchTextField!
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var addbtn: UIButton!
     @IBOutlet weak var tblView: UITableView!
@@ -57,7 +58,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     func loadFile(mainPath: URL, subPath: URL){
         if fm.fileExists(atPath: subPath.path){
             decodeData(pathName: subPath)
-            if addfeed.optionArray.isEmpty{
+            if addfeed.text == ""{
                 decodeData(pathName: mainPath)
             }
         }else{
@@ -71,10 +72,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             let decoder = JSONDecoder()
             productList = try decoder.decode([Person].self, from: jsonData)
             let count = productList.count
+            var nameArray: [String] = []
             for i in 0...count - 1 {
                 let name = productList[i].FeedName
-                addfeed.optionArray.append(name)
+                nameArray.append(name)
             }
+            addfeed.filterStrings(nameArray)
         } catch {}
     }
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -93,35 +96,35 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             self.view.frame.origin.y = 0
         }
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        currentTappedTextField = nil
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        addfeed.superview?.endEditing(true)
-        return false
-    }
-    func  textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-        addfeed.dataArray = addfeed.optionArray
-        addfeed.touchAction()
-        currentTappedTextField = textField
-    }
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return addfeed.isSearchEnable
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string != "" {
-            addfeed.searchText = addfeed.text! + string
-        }else{
-            let subText = addfeed.text?.dropLast()
-            addfeed.searchText = String(subText!)
-        }
-        if !addfeed.isSelected {
-            addfeed.showList()
-        }
-        return true;
-    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        currentTappedTextField = nil
+//    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        addfeed.superview?.endEditing(true)
+//        return false
+//    }
+//    func  textFieldDidBeginEditing(_ textField: UITextField) {
+//        textField.text = ""
+//        addfeed.dataArray = addfeed.optionArray
+//        addfeed.touchAction()
+//        currentTappedTextField = textField
+//    }
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        return addfeed.isSearchEnable
+//    }
+//
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if string != "" {
+//            addfeed.searchText = addfeed.text! + string
+//        }else{
+//            let subText = addfeed.text?.dropLast()
+//            addfeed.searchText = String(subText!)
+//        }
+//        if !addfeed.isSelected {
+//            addfeed.showList()
+//        }
+//        return true;
+//    }
 
     override func viewDidLoad() {
         self.dismissKey()
@@ -139,16 +142,31 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         addbtn.layer.cornerRadius = 8
         editBtn.layer.cornerRadius = 8
         plusbutton.layer.cornerRadius = 28
+        addfeed.maxNumberOfResults = 5
+          addfeed.theme.font = UIFont.systemFont(ofSize: 14)
+        addfeed.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        addfeed.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        addfeed.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        addfeed.theme.cellHeight = 40
+        //addfeed.comparisonOptions = .anchored
+        addfeed.minCharactersNumberToStartFiltering = 1
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getData()
-        addfeed.didSelect{(selectedText , index ,id) in
-            currentIndex = index
-        }
-        addfeed.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+//        addfeed.didSelect{(selectedText , index ,id) in
+//            currentIndex = index
+//        }
+//        addfeed.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+        
+//        addfeed.itemSelectionHandler = { filteredResults, itemPosition in
+//            let item = filteredResults[itemPosition]
+//            self.addfeed.text = item.title
+//        }
+//        addfeed.minCharactersNumberToStartFiltering = 2
+    
         for i in 0..<dropdownvalues.count {
             for item in productList {
                 let name = item.FeedName
