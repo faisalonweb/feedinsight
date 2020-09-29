@@ -1,3 +1,4 @@
+
 //
 //  UnitConvertorViewController.swift
 //  FeedInsight
@@ -61,7 +62,7 @@ class UnitConvertorViewController: UIViewController, UITextFieldDelegate, UIGest
         rsl1 = 2 * val1
         rsl2 = 4 * val2
         self.result1.text = String(rsl1)
-        self.result2.text = String(rsl2)        
+        self.result2.text = String(rsl2)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
