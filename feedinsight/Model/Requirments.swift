@@ -104,6 +104,9 @@ class Requirments {
     
     
     func calculateRequirmentsData() {
+        
+        // multiple factor
+        
         self.phosphorusCalculate()
         self.Calcium()
         self.Magnesium()
@@ -210,6 +213,8 @@ class Requirments {
     }
     
     func appendPremixValues () {
+        // multiple factor
+        
         primexArrayFinal.append(pMacroText)
         primexArrayFinal.append(caMacroText)
         primexArrayFinal.append(mgMacroText)
@@ -434,6 +439,8 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        // multiple factor
+        
         waterArrayFinal.append(waterPVal)
         waterArrayFinal.append(waterCaVal)
         waterArrayFinal.append(waterMgVal)
@@ -822,6 +829,9 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        if(self.anionic == false) {
+            final = DMI * 10
+        }
         self.reqArrayFinal.append(final)
     }
     
@@ -925,6 +935,11 @@ class Requirments {
             
         default:
             print("animal group not found")
+        }
+        if(anionic == false) {
+            final = DMI * 3
+        } else {
+           final = final * 1.1
         }
         self.reqArrayFinal.append(final)
     }
@@ -1030,6 +1045,9 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        if(self.anionic == true) {
+            final = DMI * 3
+        }
         self.reqArrayFinal.append(final)
     }
     
@@ -1083,6 +1101,10 @@ class Requirments {
             
         default:
             print("animal group not found")
+        }
+        
+        if(self.anionic == true) {
+            final = DMI * 3.5
         }
         self.reqArrayFinal.append(final)
     }
@@ -1176,6 +1198,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        final = final * 1.2
         self.reqArrayFinal.append(final)
     }
     
@@ -1309,6 +1332,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        final = final * 1.1
         self.reqArrayFinal.append(final)
     }
     
@@ -1351,6 +1375,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        final = final * 1.1
         self.reqArrayFinal.append(final)
     }
     
@@ -1393,6 +1418,14 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        if(self.anionic == true) {
+            final = 7
+        } else if (metaBolic == true) {
+            final = final * 1.4
+        } else {
+            final = final * 1.3
+        }
+        
         self.reqArrayFinal.append(final)
     }
     func VitaminA () {
@@ -1547,6 +1580,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        final = final * 1.5
         self.reqArrayFinal.append(final)
     }
     
@@ -1702,6 +1736,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        final = final * 1.2
         self.reqArrayFinal.append(final)
     }
     
@@ -1857,6 +1892,11 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        if(heatStress == true || anionic == true || metaBolic == true) {
+            final = 1000
+        } else {
+            final = final * 1.2
+        }
         self.reqArrayFinal.append(final)
     }
     
@@ -1909,6 +1949,9 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        if(heatStress == true || anionic == true) {
+            final = final * 1.5
+        }
         self.reqArrayFinal.append(final)
     }
     
@@ -1960,6 +2003,9 @@ class Requirments {
             
         default:
             print("animal group not found")
+        }
+        if(self.physiologicalState == "Lactating") {
+            final = 20
         }
         self.reqArrayFinal.append(final)
     }
