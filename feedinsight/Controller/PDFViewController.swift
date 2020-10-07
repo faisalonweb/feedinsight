@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class PDFViewController: UIViewController{
     
@@ -26,13 +27,59 @@ class PDFViewController: UIViewController{
     var nutrientPremixArr = ["Premix","54","34","44","45","46","27","56","23","67","87","99","88","45","43","76","93","39","41"]
     var nutrientWaterArr = ["Water","54","34","44","45","46","27","56","23","67","87","99","88","45","43","76","93","39","41"]
     var nutrientperArr = ["245","245","245","245","245","245","245","245","245","245","245","245","245","245","245","345","345","345","345"]
-    
+    let players = ["Ozil", "Ramsey", "Laca", "Auba", "Xhaka", "Torreira"]
+    let goals = [6, 8, 26, 30, 8, 10]
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         super.viewDidLoad()
         self.addGaugeView()
+        barchartview.animate(yAxisDuration: 0.0)
+        barchartview.pinchZoomEnabled = false
+        barchartview.drawBarShadowEnabled = false
+        barchartview.drawBordersEnabled = false
+        barchartview.doubleTapToZoomEnabled = false
+        barchartview.drawGridBackgroundEnabled = true
+        barchartview.backgroundColor = UIColor.clear
+        barchartview.chartDescription?.text = "Bar Chart View"
+        setChart(dataPoints: players, values: goals.map { Double($0) })
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        barchartview.noDataText = "You need to provide data for the chart."
+//        var dataEntries: [BarChartDataEntry] = []
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
+//            dataEntries.append(dataEntry)
+//        }
+//        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Bar Chart View")
+//        let chartData = BarChartData(dataSet: chartDataSet)
+        let entry1 = BarChartDataEntry(x: 0, yValues: [ 8, 16 ])
+        let entry2 = BarChartDataEntry(x: 1, yValues: [ 32, 0 ])
+        let entry3 = BarChartDataEntry(x: 2, yValues: [ 8, 16 ])
+        let entry4 = BarChartDataEntry(x: 3, yValues: [ 32, 0 ])
+        let entry5 = BarChartDataEntry(x: 4, yValues: [ 8, 16 ])
+        let entry6 = BarChartDataEntry(x: 5, yValues: [ 32, 0 ])
+        let entry7 = BarChartDataEntry(x: 6, yValues: [ 8, 16 ])
+        let entry8 = BarChartDataEntry(x: 7, yValues: [ 32, 0 ])
+        let entry9 = BarChartDataEntry(x: 8, yValues: [ 8, 16 ])
+        let entry10 = BarChartDataEntry(x: 9, yValues: [ 32, 0 ])
+        let entry11 = BarChartDataEntry(x: 10, yValues: [ 8, 16 ])
+        let entry12 = BarChartDataEntry(x: 11, yValues: [ 32, 0 ])
+        let entry13 = BarChartDataEntry(x: 12, yValues: [ 8, 16 ])
+        let entry14 = BarChartDataEntry(x: 13, yValues: [ 32, 0 ])
+        let entry15 = BarChartDataEntry(x: 14, yValues: [ 8, 16 ])
+        let entry16 = BarChartDataEntry(x: 15, yValues: [ 32, 0 ])
+        let entry17 = BarChartDataEntry(x: 16, yValues: [ 8, 16 ])
+        let entry18 = BarChartDataEntry(x: 17, yValues: [ 32, 0 ])
+        let dataSet = BarChartDataSet(entries: [ entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18], label: nil)
         
+        dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0)]
+        
+//        dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]
+        let chartData = BarChartData(dataSet: dataSet)
+        chartData.setDrawValues(false)
+        barchartview.data = chartData
     }
     
     func addGaugeView() {
