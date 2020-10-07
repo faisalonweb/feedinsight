@@ -11,6 +11,7 @@ import UIKit
 class PDFViewController: UIViewController{
     
     
+    @IBOutlet weak var barchartview: BarChartView!
     
     @IBOutlet weak var reqtblview: UITableView!
     @IBOutlet weak var supplytblview: UITableView!
