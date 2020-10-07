@@ -47,6 +47,9 @@
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50F0E624EE6455007EC60C /* Requirments.swift */; };
 		1A63AA1B24F8E97400ADCAB0 /* EditPremixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */; };
+		1A7D19F1252C5CE4004A0F00 /* NewPDFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D19F0252C5CE4004A0F00 /* NewPDFTableViewCell.swift */; };
+		1A7D1A1F252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D1A1E252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift */; };
+		1A7D1A78252C8D31004A0F00 /* BalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D1A77252C8D31004A0F00 /* BalanceTableViewCell.swift */; };
 		1A7F1216243CE34F0008CFC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */; };
 		1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */; };
 		1A7F121D243CE34F0008CFC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7F121B243CE34F0008CFC0 /* Main.storyboard */; };
@@ -124,6 +127,9 @@
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A50F0E624EE6455007EC60C /* Requirments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirments.swift; sourceTree = "<group>"; };
 		1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPremixViewController.swift; sourceTree = "<group>"; };
+		1A7D19F0252C5CE4004A0F00 /* NewPDFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPDFTableViewCell.swift; sourceTree = "<group>"; };
+		1A7D1A1E252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyPDFTableViewCell.swift; sourceTree = "<group>"; };
+		1A7D1A77252C8D31004A0F00 /* BalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTableViewCell.swift; sourceTree = "<group>"; };
 		1A7F1212243CE34F0008CFC0 /* FeedInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7F1215243CE34F0008CFC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A7F1217243CE34F0008CFC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -326,6 +332,9 @@
 				1ACCDCC8250F9C3200BC13EE /* animalTypeTableViewCell.swift */,
 				1AE3587B24EA872300A7E0AA /* waterrationTableViewCell.swift */,
 				1AB9EC882521E31A00072C1C /* PDFTableViewCell.swift */,
+				1A7D19F0252C5CE4004A0F00 /* NewPDFTableViewCell.swift */,
+				1A7D1A1E252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift */,
+				1A7D1A77252C8D31004A0F00 /* BalanceTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -538,6 +547,8 @@
 				1A7F122A243E12610008CFC0 /* HomeViewController.swift in Sources */,
 				1AB9ECB72522029B00072C1C /* PDFViewController.swift in Sources */,
 				1AAAF51524B4D0250010F945 /* loadAnimalsTableViewCell.swift in Sources */,
+				1A7D1A1F252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift in Sources */,
+				1A7D19F1252C5CE4004A0F00 /* NewPDFTableViewCell.swift in Sources */,
 				04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */,
 				1ABC8BA524D0CF4200BE7628 /* RuminantsPickCollectionViewCell.swift in Sources */,
 				1A277B9D24C6FC4700FDA1DD /* feedthreeViewController.swift in Sources */,
@@ -546,6 +557,7 @@
 				04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */,
 				1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */,
 				1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */,
+				1A7D1A78252C8D31004A0F00 /* BalanceTableViewCell.swift in Sources */,
 				C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -543,7 +543,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 dictionary.keys.forEach { key in
                     defaults!.removeObject(forKey: key)
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute: {
                     SVProgressHUD.dismiss()
                     let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
                     self.navigationController?.pushViewController(vcone!, animated: true)
