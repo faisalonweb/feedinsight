@@ -13,14 +13,38 @@ class PDFViewController: UIViewController{
     
     
     @IBOutlet weak var barchartview: BarChartView!
-    
     @IBOutlet weak var reqtblview: UITableView!
     @IBOutlet weak var supplytblview: UITableView!
-    
     @IBOutlet weak var balancetblview: UITableView!
     @IBOutlet weak var gaugeView: UIView!
-    
     @IBOutlet weak var viewRound: UIView!
+    @IBOutlet weak var companyName: UILabel!
+    @IBOutlet weak var ruminantType: UILabel!
+    @IBOutlet weak var animalGroup: UILabel!
+    @IBOutlet weak var psciState: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var referenceLabel: UILabel!
+    @IBOutlet weak var preparedByLabel: UILabel!
+    @IBOutlet weak var reportType: UILabel!
+    @IBOutlet weak var magOrganic: UILabel!
+    @IBOutlet weak var magInorganic: UILabel!
+    @IBOutlet weak var magCurrentRatio: UILabel!
+    @IBOutlet weak var magRecomRatio: UILabel!
+    @IBOutlet weak var selOrganic: UILabel!
+    @IBOutlet weak var selInOrganic: UILabel!
+    @IBOutlet weak var selCurrentRatio: UILabel!
+    @IBOutlet weak var selRecomRatio: UILabel!
+    @IBOutlet weak var coOrganic: UILabel!
+    @IBOutlet weak var coInOrganic: UILabel!
+    @IBOutlet weak var coCurrentRatio: UILabel!
+    @IBOutlet weak var coRecomRatio: UILabel!
+    @IBOutlet weak var znOrganic: UILabel!
+    @IBOutlet weak var znInorganic: UILabel!
+    @IBOutlet weak var znCurrentRatio: UILabel!
+    @IBOutlet weak var znRecomRatio: UILabel!
+    
+    
+    
     var nutrientNames = ["Nutrients","Phosphorus","Calcium","Phosphrous","Potasium","Phosphrous","Phosphorus","Magensium","Potasium","Calcium","Phosphrous","Phosphrous","Magensium","Potasium","Calcium","Potasium","Calcium","Magensium","Phosphrous"]
     var nutrientValues = ["Total","54","34","44","45","46","27","56","23","67","87","99","88","45","43","76","93","39","41"]
     var nutrientFeedArr = ["Feed","54","34","44","45","46","27","56","23","67","87","99","88","45","43","76","93","39","41"]
