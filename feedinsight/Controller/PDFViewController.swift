@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Charts
 class PDFViewController: UIViewController{
     
     
