@@ -733,14 +733,14 @@ extension PDFViewController: UITableViewDelegate , UITableViewDataSource{
                     self.addGaugeView()
                 }
             } else {
-                let value : Double = requiredArray[indexPath.row - 1]
-                let value1 : Double = rationArray[indexPath.row - 1]
-                let value2 : Double = premixArray[indexPath.row - 1]
+                let value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
+                let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
+                let value2 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
                 var value3 : Double = 0.0
                 if(indexPath.row > 7) {
                     value3 = 0.0
                 } else {
-                    let value : Double = waterArray[indexPath.row - 1]
+                    let value : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
                     value3 = value
                 }
                 let value4 : Double = value1 + value2 + value3

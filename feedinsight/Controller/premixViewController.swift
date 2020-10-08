@@ -464,7 +464,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 SVProgressHUD.show(withStatus: "it's working ...")
                 let text = alertController.textFields!.first!.text!
                 let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
-            newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":self.defaults!.value(forKey: "companyname")!,
+            newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
                                  "ruminantType":Requirments.shared().animalKind!,
                                  "ruminantGroup":self.defaults!.value(forKey: "rumigroup")!,
                                  "ruminantState":self.defaults!.value(forKey: "psycholo")!,
