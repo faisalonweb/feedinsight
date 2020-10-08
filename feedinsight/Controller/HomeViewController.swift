@@ -14,11 +14,13 @@ import Foundation
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var advertismentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var clickOnSeeAll: UIButton!
+    
+    var screenWidth:CGFloat=0
+    var screenHeight:CGFloat=0
+    var sizee:CGFloat=0
+    
     var arrData = [PremixCollectionCell]()
-    let textArr = ["Premix Check","Unit Conveter"]
-    let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
     var bannerView: GADBannerView!
     override func viewDidLoad() {
         arrData = DataAppend.getAllPremixData()
@@ -57,6 +59,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else if(indexPath.row == 1) {
             let unitConvertorVC = storyboard.instantiateViewController(withIdentifier: "unitConvertorVC") as! UnitConvertorViewController
             self.navigationController?.pushViewController(unitConvertorVC, animated: true)
+        } else if(indexPath.row == 2){
+            let ResultsViewController = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
+            ResultsViewController.pdfType = "pdf1"
+            self.navigationController?.pushViewController(ResultsViewController, animated: true)
+        } else if(indexPath.row == 3){
+            let ResultsViewController = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
+            ResultsViewController.pdfType = "pdf2"
+            self.navigationController?.pushViewController(ResultsViewController, animated: true)
         }
         
     }
@@ -64,11 +74,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(UIScreen.main.bounds.width < 415)
-        {
+        if(UIScreen.main.bounds.width < 415) {
             getScreenSize()
-            print("h11")
-            print("zise is : ", UIScreen.main.bounds.width)
             let itemSize = UIScreen.main.bounds.width/3 - 2
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
@@ -77,12 +84,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             collectionView.collectionViewLayout = layout
             portait = UIScreen.main.bounds.width
             landscap = UIScreen.main.bounds.height
-        }
-        else
-        {
+        } else {
             getScreenSize()
-            print("h12")
-            print("zise is : ", UIScreen.main.bounds.width)
             let itemSize = UIScreen.main.bounds.width/4 - 2
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: itemSize + 30, height: itemSize + 30)
@@ -93,9 +96,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             portait = UIScreen.main.bounds.height
         }
     }
-    var screenWidth:CGFloat=0
-    var screenHeight:CGFloat=0
-    var sizee:CGFloat=0
     func getScreenSize(){
         screenWidth=UIScreen.main.bounds.width
         screenHeight=UIScreen.main.bounds.height
