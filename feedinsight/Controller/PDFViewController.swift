@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class PDFViewController: UIViewController{
+class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
     
     
     @IBOutlet weak var barchartview: BarChartView!
@@ -71,6 +71,8 @@ class PDFViewController: UIViewController{
     
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
         // Set Data
         barchartview.animate(yAxisDuration: 1.0)

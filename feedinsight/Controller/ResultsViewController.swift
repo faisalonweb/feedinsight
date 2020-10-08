@@ -14,6 +14,10 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     var pdfType : String = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true

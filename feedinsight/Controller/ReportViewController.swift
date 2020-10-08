@@ -66,10 +66,7 @@ class ReportViewController: UIViewController {
                     self.pdfDatestation.insert(timestamp, at: i)
                     self.documentIdStation.insert(documentiddata, at: i)
                     i = i + 1
-                    self.copyArray.append(documentData as NSDictionary)
-                    
-                   // let userRef = self.myRootRef.childByAppend
-                    
+                    self.copyArray.append(documentData as NSDictionary)                    
                 }
                 self.companyNameList.append(contentsOf: self.companyNameStation)
                 self.ruminantTypeList.append(contentsOf: self.ruminantTypeStation)
@@ -80,11 +77,7 @@ class ReportViewController: UIViewController {
                 self.preparedBy.append(contentsOf: self.preparedStation)
                 self.reportType.append(contentsOf: self.pdfReportTypeStation)
                 self.DocumentIdList.append(contentsOf: self.documentIdStation)
-//                self.reportProductList.append(contentsOf: self.datatwostation)
-//                self.reportValueList.append(contentsOf: self.datathreestation)
                 self.tableView.reloadData()
-//                print("report name is \(self.reportProductList)")
-//                print("report Data is \(self.reportValueList)")
                 self.tableView.refreshControl?.endRefreshing()
             } else {
                 print("pakis")
@@ -121,7 +114,7 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
         return 58
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vcone = storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController;
+        let vcone = storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
         vcone?.premixArray = copyArray[indexPath.section]["PremixVal"] as! [Double]
         vcone?.waterArray = copyArray[indexPath.section]["WaterVal"] as! [Double]
         vcone?.requiredArray = copyArray[indexPath.section]["RequirmentsVal"] as! [Double]

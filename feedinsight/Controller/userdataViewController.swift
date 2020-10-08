@@ -116,6 +116,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
         self.animaltableview.isHidden = true
