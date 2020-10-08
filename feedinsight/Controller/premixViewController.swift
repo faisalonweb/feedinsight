@@ -466,8 +466,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
             newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
                                  "ruminantType":Requirments.shared().animalKind!,
-                                 "ruminantGroup":self.defaults!.value(forKey: "rumigroup")!,
-                                 "ruminantState":self.defaults!.value(forKey: "psycholo")!,
+                                 "ruminantGroup":Requirments.shared().animalGroup!,
+                                 "ruminantState":Requirments.shared().physiologicalState!,
                                  "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
                                  "reportType":"Premix Check"
               ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
