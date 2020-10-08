@@ -46,10 +46,18 @@ class GaugeView: UIView {
     var valueFont = UIFont.systemFont(ofSize: 10)
     var valueColor = UIColor.black
     
+    let valueLabelName = UILabel()
+    
     var value1: Double = 0 {
         didSet {
             // update the value label to show the exact number
             valueLabel.text = String(value1)
+        }
+    }
+    var value2: String = "" {
+        didSet {
+            // update the value label to show the exact number
+            valueLabelName.text = value2
         }
     }
     var value: Double = 0 {
@@ -79,6 +87,16 @@ class GaugeView: UIView {
         NSLayoutConstraint.activate([
             valueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        ])
+        
+        valueLabelName.font = valueFont
+        valueLabelName.text = "0"
+        valueLabelName.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(valueLabelName)
+
+        NSLayoutConstraint.activate([
+            valueLabelName.centerXAnchor.constraint(equalTo: centerXAnchor),
+            valueLabelName.bottomAnchor.constraint(equalTo: topAnchor, constant: 30)
         ])
         
         needle.backgroundColor = needleColor
