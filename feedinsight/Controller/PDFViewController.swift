@@ -223,6 +223,12 @@ class PDFViewController: UIViewController{
         }
     }
     
+    @IBAction func backBtn(_ sender: Any) {
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
+    }
+    
     func addGaugeView() {
         var frm: CGRect = self.gaugeView.frame
         frm.origin.x = frm.origin.x
