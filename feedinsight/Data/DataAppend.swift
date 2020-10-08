@@ -18,8 +18,9 @@ class DataAppend {
         var arrData = [PremixCollectionCell]()
         arrData = [
             PremixCollectionCell(img: UIImage(named: "premix")!, titleStr: "Premix Check"),
-            PremixCollectionCell(img: UIImage(named: "calculator")!, titleStr: "Unit Converter")
-            
+            PremixCollectionCell(img: UIImage(named: "calculator")!, titleStr: "Unit Converter"),
+            PremixCollectionCell(img: UIImage(named: "premix")!, titleStr: "PDF 1"),
+            PremixCollectionCell(img: UIImage(named: "calculator")!, titleStr: "PDF 2")
         ]
         return arrData
     }

@@ -17,8 +17,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var clickOnSeeAll: UIButton!
     var arrData = [PremixCollectionCell]()
-    let textArr = ["Premix Check","Unit Conveter"]
-    let imageArr = [UIImage(named: "premix"),UIImage(named: "calculator")]
     var bannerView: GADBannerView!
     override func viewDidLoad() {
         arrData = DataAppend.getAllPremixData()
