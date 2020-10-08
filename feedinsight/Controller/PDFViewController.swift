@@ -109,8 +109,8 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
     
     func setChart(dataPoints: [String], values: [Double]) {
         barchartview.noDataText = "You need to provide data for the chart."
-        barchartview.xAxis.setLabelCount(18, force: true)
-        barchartview.xAxis.valueFormatter = IndexAxisValueFormatter(values: players)
+        //barchartview.xAxis.setLabelCount(18, force: true)
+        //barchartview.xAxis.valueFormatter = IndexAxisValueFormatter(values: players)
         barchartview.xAxis.granularity = 0.5
         barchartview.xAxis.labelPosition = .bottom
         barchartview.xAxis.drawGridLinesEnabled = false
