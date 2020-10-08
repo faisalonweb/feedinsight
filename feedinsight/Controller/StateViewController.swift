@@ -309,6 +309,9 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         }
     }
     func showAlertWithThreeButton(theText: String) {
+        self.defaults!.set(theText, forKey: "psycholo")
+        self.defaults!.set(self.animalField.text!, forKey: "rumigroup")
+        self.defaults!.set(self.nameField.text!, forKey: "companyname")
         if ((nameField.text?.isEmpty != true) && (animalField.text?.isEmpty != true) && (PsychField.text?.isEmpty != true) && (CurrentBodyWeightF.text?.isEmpty != true) && (TargetBodyWeightF.text?.isEmpty != true) && (daystoAchiveF.text?.isEmpty != true) && (daysinMilkF.text?.isEmpty != true) && (daysPregnantF.text?.isEmpty != true) && (milkInProducitonF.text?.isEmpty != true)) {
             
             if (stateStatus == true)

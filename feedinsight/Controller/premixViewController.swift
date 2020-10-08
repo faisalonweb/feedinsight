@@ -65,6 +65,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     var sMacroMineralData = ""
     // Micro Mineral
     var coMicroMineralData = ""
+    var iMicroMineralData = ""
+    var mnMicroMineralData = ""
     var cuMicroMineralData = ""
     var cuOrganicMicroMineralData = ""
     var seMicroMineralData = ""
@@ -100,6 +102,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         sMacroText.text = sMacroMineralData
         // Micro Data
         coMicroText.text = coMicroMineralData
+        iMicroText.text = iMicroMineralData
+        mnMicroText.text = mnMicroMineralData
         cuMicroText.text = cuMicroMineralData
         cuOrganicMicroText.text = cuOrganicMicroMineralData
         seMicroText.text = seMicroMineralData
@@ -224,6 +228,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                          "clMacroMineral": self.clMacroText.text ?? "none" ,
                          "sMacroMineral": self.sMacroText.text ?? "none",
                          "coMicroMineral": self.coMicroText.text ?? "none",
+                         "iMicroMineral": self.iMicroText.text ?? "none",
+                         "mnMicroMineral": self.mnMicroText.text ?? "none",
                          "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
                          "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
                          "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
@@ -290,6 +296,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                          "clMacroMineral": self.clMacroText.text ?? "none" ,
                          "sMacroMineral": self.sMacroText.text ?? "none",
                          "coMicroMineral": self.coMicroText.text ?? "none",
+                         "iMicroMineral": self.iMicroText.text ?? "none",
+                         "mnMicroMineral": self.mnMicroText.text ?? "none",
                          "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
                          "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
                          "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
@@ -361,6 +369,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
         let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
+        let pMacroText23 = Double(iMicroText.text!) ?? 0.0
+        let pMacroText24 = Double(mnMicroText.text!) ?? 0.0
         
         Requirments.shared().pMacroText = pMacroText1 * doseinKG
         Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -381,6 +391,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
         Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
         Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
+        Requirments.shared().iMicroText = pMacroText23 * doseinKG
+        Requirments.shared().mnMicroText = pMacroText24 * doseinKG
         Requirments.shared().appendPremixValues()
         let vc = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -448,11 +460,17 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let datetimestamp = formatter.string(from: currentDateTime)
             let db = Firestore.firestore()
             let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+        let withdrawAction = UIAlertAction(title: "Save", style: .default) { [self] (aciton) in
                 SVProgressHUD.show(withStatus: "it's working ...")
                 let text = alertController.textFields!.first!.text!
                 let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
-                newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
+            newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":self.defaults!.value(forKey: "companyname")!,
+                                 "ruminantType":Requirments.shared().animalKind!,
+                                 "ruminantGroup":self.defaults!.value(forKey: "rumigroup")!,
+                                 "ruminantState":self.defaults!.value(forKey: "psycholo")!,
+                                 "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
+                                 "reportType":"Premix Check"
+              ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
                     if let err = err {
                         SVProgressHUD.showError(withStatus: "Error")
                         print("Error adding document: \(err)")
