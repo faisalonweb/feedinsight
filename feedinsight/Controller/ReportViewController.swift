@@ -16,6 +16,9 @@ class ReportViewController: UIViewController {
 
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    
     private var companyNameStation = [String]()
     private var ruminantTypeStation = [String]()
     private var animalGroupStation = [String]()
@@ -36,8 +39,28 @@ class ReportViewController: UIViewController {
     var reportType = [String]()
     var DocumentIdList = [String]()
     var copyArray = [NSDictionary]()
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
+            self.userName.text = userName as? String
+            print(userName)
+        }
+        DispatchQueue.main.async { [weak self] in
+            
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.profileImage.image = UIImage(data: data!)
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
+        profileImage?.clipsToBounds = true
+        profileImage?.layer.borderWidth = 3.0
+        profileImage?.layer.borderColor = UIColor.white.cgColor
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.beginRefreshing()
         Firestore.firestore().collection("pdfReports").document(Auth.auth().currentUser?.uid ?? "").collection("pdfReports").getDocuments{(snapshot,error) in
