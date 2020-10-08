@@ -10,7 +10,7 @@ import UIKit
 
 class PDFTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+   
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var animalLabel: UILabel!
