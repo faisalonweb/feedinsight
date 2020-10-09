@@ -460,7 +460,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let datetimestamp = formatter.string(from: currentDateTime)
             let db = Firestore.firestore()
             let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
-        let withdrawAction = UIAlertAction(title: "Save", style: .default) { [self] (aciton) in
+        let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
                 SVProgressHUD.show(withStatus: "it's working ...")
                 let text = alertController.textFields!.first!.text!
                 let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
