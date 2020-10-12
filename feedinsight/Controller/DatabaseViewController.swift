@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DatabaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class DatabaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     
 
@@ -20,6 +20,8 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     var nameArrayCopy: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         let count = productList.count
         for i in 0...count - 1 {
             let name = productList[i].FeedName
