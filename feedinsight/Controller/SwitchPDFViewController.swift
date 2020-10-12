@@ -1,17 +1,14 @@
-//
-//  PDFViewController.swift
-//  FeedInsight
-//
-//  Created by Mac 2014 on 28/09/2020.
-//  Copyright © 2020 faisal. All rights reserved.
-//
+
 
 import UIKit
 import Charts
 
-class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
+class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     
-    
+    @IBOutlet var buttonsOutlets: [UIButton]!
+    @IBOutlet weak var review: UIView!
+    @IBOutlet weak var supview: UIView!
+    @IBOutlet weak var balview: UIView!
     @IBOutlet weak var barchartview: BarChartView!
     @IBOutlet weak var reqtblview: UITableView!
     @IBOutlet weak var supplytblview: UITableView!
@@ -74,6 +71,9 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
+                        review.alpha = 1
+                        supview.alpha = 0
+                        balview.alpha = 0
         // Set Data
         barchartview.animate(yAxisDuration: 1.0)
         barchartview.pinchZoomEnabled = false
@@ -107,6 +107,39 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
+    @IBAction func buttonAction(_ sender: UIButton) {
+        self.buttonsOutlets.forEach { (button) in
+            if (sender.tag == 1) {
+                button.backgroundColor = (button === sender && sender.tag == 1) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                review.alpha = 1
+                supview.alpha = 0
+                balview.alpha = 0
+            }
+            else if (sender.tag == 2) {
+                button.backgroundColor = (button === sender && sender.tag == 2) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                review.alpha = 0
+                supview.alpha = 1
+                balview.alpha = 0
+            }
+            else if (sender.tag == 3) {
+                button.backgroundColor = (button === sender && sender.tag == 3) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+                review.alpha = 0
+                supview.alpha = 0
+                balview.alpha = 1
+            }
+//            else {
+//                button.backgroundColor = (button === sender && sender.tag == 1) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+//                button.setTitleColor((button === sender) ? .white : .black, for: .normal)
+//                review.alpha = 1
+//                supview.alpha = 0
+//                balview.alpha = 0
+//            }
+        }
+       
+    }
     func setChart(dataPoints: [String], values: [Double]) {
         barchartview.noDataText = "You need to provide data for the chart."
         //barchartview.xAxis.setLabelCount(18, force: true)
@@ -121,7 +154,7 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
         description.text = ""
         barchartview.leftAxis.drawGridLinesEnabled = false
         barchartview.xAxis.drawGridLinesEnabled = false
-        
+
         if(fromDatabase == "yes") {
             let entry1 = BarChartDataEntry(x: 0, yValues: [ rationArray[0],
                                                             premixArray[0],
@@ -166,7 +199,7 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                                                               premixArray[16],0])
             let entry18 = BarChartDataEntry(x: 17, yValues: [ rationArray[17],
                                                               premixArray[17],0])
-            
+
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]
             let chartData = BarChartData(dataSet: dataSet)
@@ -305,14 +338,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Pa
                 // 0 , 225
                 var value : Double = self.percentageArray[0]
-                test.value1 = value.roundToDecimal(1)
+                //test.value1 = value.roundToDecimalone(1)
                 test.value2 = "Pa"
                 value = value / 225
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test.value = value
             }
         }
@@ -322,14 +355,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Ca
                 // 0 , 500
                 var value : Double = self.percentageArray[1]
-                test1.value1 = value.roundToDecimal(1)
+                //test1.value1 = value.roundToDecimalone(1)
                 test1.value2 = "Ca"
                 value = value / 500
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test1.value = value
             }
         }
@@ -340,13 +373,13 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // 0 , 1375
                 var value : Double = self.percentageArray[2]
                 test2.value2 = "Mg"
-                test2.value1 = value.roundToDecimal(1)
+                //test2.value1 = value.roundToDecimalone(1)
                 value = value / 1375
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test2.value = value
             }
         }
@@ -356,14 +389,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Potassium
                 // 0 , 400
                 var value : Double = self.percentageArray[3]
-                test3.value1 = value.roundToDecimal(1)
+               // test3.value1 = value.roundToDecimalone(1)
                 test3.value2 = "K"
                 value = value / 400
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test3.value = value
             }
         }
@@ -373,14 +406,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Sodium
                 // 0 , 500
                 var value : Double = self.percentageArray[4]
-                test4.value1 = value.roundToDecimal(1)
+                //test4.value1 = value.roundToDecimalone(1)
                 test4.value2 = "Na"
                 value = value / 500
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test4.value = value
             }
         }
@@ -390,14 +423,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Chloride
                 // 0 , 1625
                 var value : Double = self.percentageArray[5]
-                test5.value1 = value.roundToDecimal(1)
+               // test5.value1 = value.roundToDecimalone(1)
                 test5.value2 = "Cl"
                 value = value / 1625
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test5.value = value
             }
         }
@@ -407,14 +440,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Sulfur
                 // 0 , 200
                 var value : Double = self.percentageArray[6]
-                test6.value1 = value.roundToDecimal(1)
+               // test6.value1 = value.roundToDecimalone(1)
                 test6.value2 = "S"
                 value = value / 200
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test6.value = value
             }
         }
@@ -424,14 +457,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Zinc
                 // 0 , 1125
                 var value : Double = self.percentageArray[7]
-                test7.value1 = value.roundToDecimal(1)
+                //test7.value1 = value.roundToDecimalone(1)
                 test7.value2 = "Zn"
                 value = value / 1125
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+               // value = value.roundToDecimalone(1)
                 test7.value = value
             }
         }
@@ -441,14 +474,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Manganese
                 // 0 , 3750
                 var value : Double = self.percentageArray[8]
-                test8.value1 = value.roundToDecimal(1)
+               // test8.value1 = value.roundToDecimalone(1)
                 test8.value2 = "Mn"
                 value = value / 3750
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test8.value = value
             }
         }
@@ -458,14 +491,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Copper
                 // 0 , 375
                 var value : Double = self.percentageArray[9]
-                test9.value1 = value.roundToDecimal(1)
+                //test9.value1 = value.roundToDecimalone(1)
                 test9.value2 = "Cu"
                 value = value / 375
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test9.value = value
             }
         }
@@ -475,14 +508,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Selenium
                 // 0 , 1750
                 var value : Double = self.percentageArray[10]
-                test10.value1 = value.roundToDecimal(1)
+               // test10.value1 = value.roundToDecimalone(1)
                 test10.value2 = "Se"
                 value = value / 1750
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test10.value = value
             }
         }
@@ -492,14 +525,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Cobalt
                 // 0 , 3750
                 var value : Double = self.percentageArray[11]
-                test11.value1 = value.roundToDecimal(1)
+               // test11.value1 = value.roundToDecimalone(1)
                 test11.value2 = "Co"
                 value = value / 3750
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+               // value = value.roundToDecimalone(1)
                 test11.value = value
             }
         }
@@ -509,14 +542,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Iodine
                 // 0 , 1000
                 var value : Double = self.percentageArray[12]
-                test12.value1 = value.roundToDecimal(1)
+               // test12.value1 = value.roundToDecimalone(1)
                 test12.value2 = "I"
                 value = value / 1000
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test12.value = value
             }
         }
@@ -526,14 +559,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Vitamin E
                 // 0 , 200
                 var value : Double = self.percentageArray[13]
-                test13.value1 = value.roundToDecimal(1)
+                //test13.value1 = value.roundToDecimalone(1)
                 test13.value2 = "Vitamin E"
                 value = value / 200
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test13.value = value
             }
         }
@@ -543,14 +576,14 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Vitamin D
                 // 0 , 225
                 var value : Double = self.percentageArray[14]
-                test14.value1 = value.roundToDecimal(1)
+                //test14.value1 = value.roundToDecimalone(1)
                 test14.value2 = "Vitamin D"
                 value = value / 225
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test14.value = value
             }
         }
@@ -560,215 +593,18 @@ class PDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 // Vitamin A
                 // 0 , 1950
                 var value : Double = self.percentageArray[15]
-                test15.value1 = value.roundToDecimal(1)
+                //test15.value1 = value.roundToDecimalone(1)
                 test15.value2 = "Vitamin A"
                 value = value / 1950
                 value = value * 100
                 if(value > 100.0) {
                     value = 105.0
                 }
-                value = value.roundToDecimal(1)
+                //value = value.roundToDecimalone(1)
                 test15.value = value
             }
         }
     }
     
-    
-}
-extension PDFViewController: UITableViewDelegate , UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 580/18
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.nutrientNames.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == reqtblview,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellreq") as? NewPDFTableViewCell {
-            if (indexPath.row == 0) {
-                cell.layer.cornerRadius = 10
-                cell.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
-                cell.nutrientUnit?.text = "Unit"
-                cell.nutrientUnit?.textColor = UIColor.white
-                cell.nutrientValue?.textColor = UIColor.white
-                cell.nutrientValue?.text = "Total"
-                cell.nutrientName?.textColor = UIColor.white
-                return cell
-            }
-            if(indexPath.row % 2 == 0) {
-                cell.backgroundColor = UIColor(red: 169/255, green: 169/255.0, blue: 169/255.0, alpha: 0.4)
-            } else {
-                cell.backgroundColor = UIColor.white
-            }
-            cell.nutrientName?.text = nutrientNames[indexPath.row]
-            
-            if(fromDatabase == "yes") {
-                var value : Double = requiredArray[indexPath.row - 1]
-                value = value.roundToDecimal(1)
-                let stringValue = String(value)
-                cell.nutrientValue?.text = stringValue
-            } else {
-                var value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
-                value = value.roundToDecimal(1)
-                let stringValue = String(value)
-                cell.nutrientValue?.text = stringValue
-            }
-            
-            
-            cell.layer.cornerRadius = 10
-            return cell
-        } else if tableView == supplytblview,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "supplycell") as? SupplyPDFTableViewCell {
-            if (indexPath.row == 0) {
-                cell.layer.cornerRadius = 10
-                cell.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
-                cell.nutrientUnits?.text = "Unit"
-                cell.nutrientUnits?.textColor = UIColor.white
-                cell.nutrientTotal?.textColor = UIColor.white
-                cell.nutrientPremix?.textColor = UIColor.white
-                cell.nutrientFeed?.textColor = UIColor.white
-                cell.nutrientWater?.textColor = UIColor.white
-                cell.nutrientNames?.textColor = UIColor.white
-                cell.nutrientTotal?.text = "Total"
-                return cell
-            }
-            if(indexPath.row % 2 == 0) {
-                cell.backgroundColor = UIColor(red: 169/255, green: 169/255.0, blue: 169/255.0, alpha: 0.4)
-            } else {
-                cell.backgroundColor = UIColor.white
-            }
-            cell.nutrientNames?.text = nutrientNames[indexPath.row]
-            
-            if(fromDatabase == "yes") {
-                var value : Double = rationArray[indexPath.row - 1]
-                value = value.roundToDecimal(1)
-                let stringValue = String(value)
-                cell.nutrientFeed?.text = stringValue
-                
-                var value1 : Double = premixArray[indexPath.row - 1]
-                value1 = value1.roundToDecimal(1)
-                let stringValue1 = String(value1)
-                cell.nutrientPremix?.text = stringValue1
-                var value4 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value4 = 0.0
-                    cell.nutrientWater?.text = "0.0"
-                } else {
-                    var value2 : Double = waterArray[indexPath.row - 1]
-                    value2 = value2.roundToDecimal(1)
-                    value4 = value2
-                    
-                    let stringValue2 = String(value2)
-                    cell.nutrientWater?.text = stringValue2
-                }
-                
-                var value3 : Double = value + value1 + value4
-                value3 = value3.roundToDecimal(1)
-                let stringValue3 = String(value3)
-                cell.nutrientTotal?.text = stringValue3
-            } else {
-                var value : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
-                value = value.roundToDecimal(1)
-                let stringValue = String(value)
-                cell.nutrientFeed?.text = stringValue
-                
-                var value1 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
-                value1 = value1.roundToDecimal(1)
-                let stringValue1 = String(value1)
-                cell.nutrientPremix?.text = stringValue1
-                var value4 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value4 = 0.0
-                    cell.nutrientWater?.text = "0.0"
-                } else {
-                    var value2 : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
-                    value2 = value2.roundToDecimal(1)
-                    value4 = value2
-                    
-                    let stringValue2 = String(value2)
-                    cell.nutrientWater?.text = stringValue2
-                }
-                
-                var value3 : Double = value + value1 + value4
-                value3 = value3.roundToDecimal(1)
-                let stringValue3 = String(value3)
-                cell.nutrientTotal?.text = stringValue3
-            }
-            cell.layer.cornerRadius = 10
-            return cell
-        }
-        else if tableView == balancetblview,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellbal") as? BalanceTableViewCell {
-            if (indexPath.row == 0) {
-                cell.layer.cornerRadius = 10
-                cell.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
-                cell.nutreintUnits?.text = "Unit"
-                cell.nutreintUnits?.textColor = UIColor.white
-                cell.nutrientValues?.textColor = UIColor.white
-                cell.nutrientPercent?.textColor = UIColor.white
-                cell.nutrientNames?.textColor =  UIColor.white
-                cell.nutrientValues?.text = "Total"
-                return cell
-            }
-            if(indexPath.row % 2 == 0) {
-                cell.backgroundColor = UIColor(red: 169/255, green: 169/255.0, blue: 169/255.0, alpha: 0.4)
-            } else {
-                cell.backgroundColor = UIColor.white
-            }
-            if(fromDatabase == "yes") {
-                let value : Double = requiredArray[indexPath.row - 1]
-                let value1 : Double = rationArray[indexPath.row - 1]
-                let value2 : Double = premixArray[indexPath.row - 1]
-                var value3 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value3 = 0.0
-                } else {
-                    let value : Double = waterArray[indexPath.row - 1]
-                    value3 = value
-                }
-                let value4 : Double = value1 + value2 + value3
-                var value5 : Double = value4 - value
-                value5 = value5.roundToDecimal(1)
-                cell.nutrientNames?.text = nutrientNames[indexPath.row]
-                cell.nutrientValues?.text = String(value5)
-                var percent : Double = (value4/value) * 100
-                percent = percent.roundToDecimal(1)
-                percentageArray.append(percent)
-                cell.nutrientPercent?.text = String(percent)
-                if(indexPath.row == 17) {
-                    self.addGaugeView()
-                }
-            } else {
-                let value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
-                let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
-                let value2 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
-                var value3 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value3 = 0.0
-                } else {
-                    let value : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
-                    value3 = value
-                }
-                let value4 : Double = value1 + value2 + value3
-                var value5 : Double = value4 - value
-                value5 = value5.roundToDecimal(1)
-                cell.nutrientNames?.text = nutrientNames[indexPath.row]
-                cell.nutrientValues?.text = String(value5)
-                var percent : Double = (value4/value) * 100
-                percent = percent.roundToDecimal(1)
-                percentageArray.append(percent)
-                cell.nutrientPercent?.text = String(percent)
-                if(indexPath.row == 17) {
-                    self.addGaugeView()
-                }
-            }
-            cell.layer.cornerRadius = 10
-            return cell
-        }
-        return UITableViewCell()
-        
-    }
     
 }

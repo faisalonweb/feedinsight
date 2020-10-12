@@ -47,6 +47,10 @@
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50F0E624EE6455007EC60C /* Requirments.swift */; };
 		1A63AA1B24F8E97400ADCAB0 /* EditPremixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */; };
+		1A7556D025345676005A9C09 /* SwitchPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7556CF25345676005A9C09 /* SwitchPDFViewController.swift */; };
+		1A7556FE253466C0005A9C09 /* ConReqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7556FD253466C0005A9C09 /* ConReqViewController.swift */; };
+		1A755701253466E8005A9C09 /* ConSupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A755700253466E8005A9C09 /* ConSupViewController.swift */; };
+		1A755704253466FC005A9C09 /* ConBalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A755703253466FC005A9C09 /* ConBalViewController.swift */; };
 		1A7D19F1252C5CE4004A0F00 /* NewPDFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D19F0252C5CE4004A0F00 /* NewPDFTableViewCell.swift */; };
 		1A7D1A1F252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D1A1E252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift */; };
 		1A7D1A78252C8D31004A0F00 /* BalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D1A77252C8D31004A0F00 /* BalanceTableViewCell.swift */; };
@@ -132,6 +136,10 @@
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A50F0E624EE6455007EC60C /* Requirments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirments.swift; sourceTree = "<group>"; };
 		1A63AA1A24F8E97400ADCAB0 /* EditPremixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPremixViewController.swift; sourceTree = "<group>"; };
+		1A7556CF25345676005A9C09 /* SwitchPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPDFViewController.swift; sourceTree = "<group>"; };
+		1A7556FD253466C0005A9C09 /* ConReqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConReqViewController.swift; sourceTree = "<group>"; };
+		1A755700253466E8005A9C09 /* ConSupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConSupViewController.swift; sourceTree = "<group>"; };
+		1A755703253466FC005A9C09 /* ConBalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConBalViewController.swift; sourceTree = "<group>"; };
 		1A7D19F0252C5CE4004A0F00 /* NewPDFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPDFTableViewCell.swift; sourceTree = "<group>"; };
 		1A7D1A1E252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplyPDFTableViewCell.swift; sourceTree = "<group>"; };
 		1A7D1A77252C8D31004A0F00 /* BalanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTableViewCell.swift; sourceTree = "<group>"; };
@@ -242,6 +250,10 @@
 				1AB9ECB62522029B00072C1C /* PDFViewController.swift */,
 				C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */,
 				C6113BE62534309B0062EA6B /* DatabaseViewController.swift */,
+				1A7556CF25345676005A9C09 /* SwitchPDFViewController.swift */,
+				1A7556FD253466C0005A9C09 /* ConReqViewController.swift */,
+				1A755700253466E8005A9C09 /* ConSupViewController.swift */,
+				1A755703253466FC005A9C09 /* ConBalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -518,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */,
+				1A755704253466FC005A9C09 /* ConBalViewController.swift in Sources */,
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */,
 				1AE39C762500F7EA00C2E67E /* ResultsViewController.swift in Sources */,
@@ -532,10 +545,12 @@
 				1AFE559724AAD6FB0099DB12 /* wateroneViewController.swift in Sources */,
 				04E98D59246E3FBB00D7AB67 /* Constants.swift in Sources */,
 				0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */,
+				1A7556D025345676005A9C09 /* SwitchPDFViewController.swift in Sources */,
 				046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */,
 				1AEEA0FB24CB590C0077324A /* DataAppend.swift in Sources */,
 				044BE5022452A66C00551BF6 /* dropdownTableViewCell.swift in Sources */,
 				1AA316B5251C6585006DC865 /* VerifyViewController.swift in Sources */,
+				1A755701253466E8005A9C09 /* ConSupViewController.swift in Sources */,
 				1ABC8BA324D0C62E00BE7628 /* RuminantspickViewController.swift in Sources */,
 				1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */,
 				046D6A672497412000F7E494 /* CustomPrintPageRenderer.swift in Sources */,
@@ -576,6 +591,7 @@
 				04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */,
 				1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */,
 				C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */,
+				1A7556FE253466C0005A9C09 /* ConReqViewController.swift in Sources */,
 				1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */,
 				1A7D1A78252C8D31004A0F00 /* BalanceTableViewCell.swift in Sources */,
 				C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */,

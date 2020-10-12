@@ -426,7 +426,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                     SVProgressHUD.showSuccess(withStatus: "Sucess")
                     print("Document added")
                     SVProgressHUD.dismiss()
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
                     vc?.reportName = text
                     vc?.reportDate = datetimestamp
                     self.navigationController?.pushViewController(vc!, animated: true)
@@ -532,7 +532,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                     SVProgressHUD.showSuccess(withStatus: "Sucess")
                     print("Document added")
                     SVProgressHUD.dismiss()
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
                     vc?.reportName = text
                     vc?.reportDate = datetimestamp
                     self.navigationController?.pushViewController(vc!, animated: true)
