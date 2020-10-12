@@ -141,7 +141,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         if (premixStatus == true) {
             // Create Alert
             let dialogMessage = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
-           
+            
             
             // Create OK button with action handler
             let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
@@ -153,7 +153,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 let db = Firestore.firestore()
                 let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                     SVProgressHUD.show(withStatus: "it's working ...")
+                    SVProgressHUD.show(withStatus: "it's working ...")
                     let text = alertController.textFields!.first!.text!
                     let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
                     var dict1: Dictionary<String, String> = [:]
@@ -396,58 +396,59 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().appendPremixValues()
         
         /*
-             Save Report code start
+         Save Report code start
          */
         
         
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .long
+        let datetimestamp = formatter.string(from: currentDateTime)
+        let db = Firestore.firestore()
+        let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                let text = alertController.textFields!.first!.text!
-                let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
+            SVProgressHUD.show(withStatus: "it's working ...")
+            let text = alertController.textFields!.first!.text!
+            let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
             newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
                                  "ruminantType":Requirments.shared().animalKind!,
                                  "ruminantGroup":Requirments.shared().animalGroup!,
                                  "ruminantState":Requirments.shared().physiologicalState!,
                                  "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
                                  "reportType":"Premix Check"
-              ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
-                    if let err = err {
-                        SVProgressHUD.showError(withStatus: "Error")
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
-                        vc?.reportName = text
-                        vc?.reportDate = datetimestamp
-                        self.navigationController?.pushViewController(vc!, animated: true)
-                    }
+                                 ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
+                if let err = err {
+                    SVProgressHUD.showError(withStatus: "Error")
+                    print("Error adding document: \(err)")
+                    SVProgressHUD.dismiss()
+                } else {
+                    SVProgressHUD.showSuccess(withStatus: "Sucess")
+                    print("Document added")
+                    SVProgressHUD.dismiss()
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
+                    vc?.reportName = text
+                    vc?.reportDate = datetimestamp
+                    self.navigationController?.pushViewController(vc!, animated: true)
                 }
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Pdf Report"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
-        
-       
-        
-       
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Pdf Report"
+        }
+        alertController.addAction(withdrawAction)
+        alertController.addAction(cancelAction)
+        alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
+        self.present(alertController, animated: true, completion: nil)
         
         
-
+        
+        
+        
+        
+        
     }
     
     @IBAction func nextButton(_ sender: Any) {
@@ -501,57 +502,51 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().appendPremixValues()
         
         /*
-             Save Report code start
+         Save Report code start
          */
         
         
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .long
+        let datetimestamp = formatter.string(from: currentDateTime)
+        let db = Firestore.firestore()
+        let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                let text = alertController.textFields!.first!.text!
-                let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
+            SVProgressHUD.show(withStatus: "it's working ...")
+            let text = alertController.textFields!.first!.text!
+            let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
             newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
                                  "ruminantType":Requirments.shared().animalKind!,
                                  "ruminantGroup":Requirments.shared().animalGroup!,
                                  "ruminantState":Requirments.shared().physiologicalState!,
                                  "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
                                  "reportType":"Premix Check"
-              ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
-                    if let err = err {
-                        SVProgressHUD.showError(withStatus: "Error")
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
-                        vc?.reportName = text
-                        vc?.reportDate = datetimestamp
-                        self.navigationController?.pushViewController(vc!, animated: true)
-                    }
+                                 ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
+                if let err = err {
+                    SVProgressHUD.showError(withStatus: "Error")
+                    print("Error adding document: \(err)")
+                    SVProgressHUD.dismiss()
+                } else {
+                    SVProgressHUD.showSuccess(withStatus: "Sucess")
+                    print("Document added")
+                    SVProgressHUD.dismiss()
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
+                    vc?.reportName = text
+                    vc?.reportDate = datetimestamp
+                    self.navigationController?.pushViewController(vc!, animated: true)
                 }
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Pdf Report"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
-        
-       
-        
-       
-        
-        
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Pdf Report"
+        }
+        alertController.addAction(withdrawAction)
+        alertController.addAction(cancelAction)
+        alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
+        self.present(alertController, animated: true, completion: nil)
     }
-    
 }
