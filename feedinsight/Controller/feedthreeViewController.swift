@@ -21,10 +21,13 @@ var fresult: Bool = false
 var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
 var productList: [Person] = []
 var currentIndex = 0
+var dropdownvalues = [String]()
+var dropdownfloatValue = [String]()
+var selectedProductList: [Person] = []
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate {
-    var dropdownvalues = [String]()
-    var dropdownfloatValue = [String]()
+    
+    
     var documentID : String = ""
     var ReportName : String = ""
     @IBOutlet weak var userNameLabel: UILabel!
@@ -42,7 +45,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     var currentTappedTextField : UITextField?
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     var nameArray: [String] = []
-    var selectedProductList: [Person] = []
+    
     
     func getData() {
         do {
@@ -103,6 +106,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         return false
     }
     func  textFieldDidBeginEditing(_ textField: UITextField) {
+        self.addfeed.superview?.endEditing(true)
+        calculateFloatArray()
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DatabaseViewController") as? DatabaseViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
         textField.text = ""
         currentTappedTextField = textField
     }
@@ -146,12 +153,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 }
             }
         }
-        if(self.dropdownvalues.count < 3) {
+        if(dropdownvalues.count < 3) {
             self.viewHeight.constant = 150
         } else {
-            self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
+            self.viewHeight.constant = CGFloat(dropdownvalues.count * 70)
         }
-
+        self.tblView.reloadData()
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
@@ -257,16 +264,16 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 formatter.timeStyle = .medium
                 formatter.dateStyle = .long
                 self.calculateFloatArray()
-                if(self.dropdownvalues.count == self.dropdownfloatValue.count && self.dropdownvalues.count > 0 ) {
+                if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
                     let datetimestamp = formatter.string(from: currentDateTime)
                     let db = Firestore.firestore()
                     let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
                     let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                          SVProgressHUD.show(withStatus: "it's working ...")
                         let text = alertController.textFields!.first!.text!
-                        //                        let dict : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                        //                        let dict : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
                         let newDocument =  db.collection("rationReports").document(self.userID!).collection("rationReports").document()
-                        newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
+                        newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
                             if let err = err {
                                 SVProgressHUD.showError(withStatus: "Error")
                                                        
@@ -306,12 +313,12 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 formatter.timeStyle = .medium
                 formatter.dateStyle = .long
                 self.calculateFloatArray()
-                if(self.dropdownvalues.count == self.dropdownfloatValue.count && self.dropdownvalues.count > 0 ) {
+                if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
                     let datetimestamp = formatter.string(from: currentDateTime)
                     let db = Firestore.firestore()
                     
                     let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document(self.documentID)
-                    newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                    newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
                         if let err = err {
                            SVProgressHUD.showError(withStatus: "Error")
                             
@@ -365,9 +372,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                         SVProgressHUD.show(withStatus: "it's working ...")
                         let text = alertController.textFields!.first!.text!
-                        //                    let _ : [String : Any] = ["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                        //                    let _ : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
                         let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
-                        newDocument.setData(["ProductNameArray" : self.dropdownvalues , "ProductValueArray" : self.dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                        newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
                             if let err = err {
                                 SVProgressHUD.showError(withStatus: "Error")
                                 
@@ -470,8 +477,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     calculateFloatArray()
                     print("paki")
                     print("array values is \(dropdownvalues)")
-                    if(self.dropdownvalues.count > 2) {
-                        self.viewHeight.constant = CGFloat(self.dropdownvalues.count * 70)
+                    if(dropdownvalues.count > 2) {
+                        self.viewHeight.constant = CGFloat(dropdownvalues.count * 70)
                     }
                     tblView.reloadData()
                 } else {
@@ -505,7 +512,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         return UITableView.automaticDimension
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.dropdownvalues.count
+        return dropdownvalues.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

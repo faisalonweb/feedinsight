@@ -367,8 +367,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (screenNAME == "ration") {
             let vcone = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController;
-            vcone?.dropdownvalues = copyArray[indexPath.section]["ProductNameArray"] as! [String]
-            vcone?.dropdownfloatValue = copyArray[indexPath.section]["ProductValueArray"] as! [String]
+            dropdownvalues = copyArray[indexPath.section]["ProductNameArray"] as! [String]
+            dropdownfloatValue = copyArray[indexPath.section]["ProductValueArray"] as! [String]
             vcone?.documentID = DocumentIdList[indexPath.section]
             vcone?.ReportName = reportNameList[indexPath.section]
             vcone?.checkStatus = true
