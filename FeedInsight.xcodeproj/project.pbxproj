@@ -84,6 +84,8 @@
 		C6062FD0250B8E93009A8443 /* AnimalSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */; };
 		C6068ABE252F043D004AE2A8 /* pdf2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C6068ABC252F043D004AE2A8 /* pdf2.pdf */; };
 		C6068ABF252F043D004AE2A8 /* pdf1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C6068ABD252F043D004AE2A8 /* pdf1.pdf */; };
+		C6113BE72534309B0062EA6B /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6113BE62534309B0062EA6B /* DatabaseViewController.swift */; };
+		C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */; };
 		C639DF19252D8FCA00B544E6 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639DF18252D8FCA00B544E6 /* GaugeView.swift */; };
 		C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */; };
 /* End PBXBuildFile section */
@@ -170,6 +172,8 @@
 		C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		C6068ABC252F043D004AE2A8 /* pdf2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdf2.pdf; sourceTree = "<group>"; };
 		C6068ABD252F043D004AE2A8 /* pdf1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdf1.pdf; sourceTree = "<group>"; };
+		C6113BE62534309B0062EA6B /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
+		C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadDatabaseTableViewCell.swift; sourceTree = "<group>"; };
 		C639DF18252D8FCA00B544E6 /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConvertorViewController.swift; sourceTree = "<group>"; };
 		D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedInsight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +241,7 @@
 				1AA316B4251C6585006DC865 /* VerifyViewController.swift */,
 				1AB9ECB62522029B00072C1C /* PDFViewController.swift */,
 				C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */,
+				C6113BE62534309B0062EA6B /* DatabaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				1A7D1A1E252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift */,
 				1A7D1A77252C8D31004A0F00 /* BalanceTableViewCell.swift */,
 				C639DF18252D8FCA00B544E6 /* GaugeView.swift */,
+				C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				0442AD1D248EA9A300A53BA1 /* Task.swift in Sources */,
 				1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */,
 				1AAAF51324B433350010F945 /* loadProfileAnimalsViewController.swift in Sources */,
+				C6113BE72534309B0062EA6B /* DatabaseViewController.swift in Sources */,
 				1AE3587824EA78A600A7E0AA /* waterrationViewController.swift in Sources */,
 				1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */,
 				1A277B9F24C769E300FDA1DD /* feedthreeTableViewCell.swift in Sources */,
@@ -568,6 +575,7 @@
 				1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */,
 				04236AE92450E1B500C66F66 /* AnimalSelectionViewController.swift in Sources */,
 				1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */,
+				C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */,
 				1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */,
 				1A7D1A78252C8D31004A0F00 /* BalanceTableViewCell.swift in Sources */,
 				C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */,
