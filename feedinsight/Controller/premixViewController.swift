@@ -39,6 +39,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var eiuVitamin: UITextField!
     @IBOutlet weak var niacinVitamin: UITextField!
     @IBOutlet weak var biotinVitamin: UITextField!
+    
+    @IBOutlet weak var feMicroText: UITextField!
     let userID = Auth.auth().currentUser?.uid
     
     var RationArr = ["Ca","P","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
@@ -68,6 +70,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     var iMicroMineralData = ""
     var mnMicroMineralData = ""
     var cuMicroMineralData = ""
+    var feMicroMineralData = ""
     var cuOrganicMicroMineralData = ""
     var seMicroMineralData = ""
     var seOrganicMicroMineralData = ""
@@ -105,6 +108,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         iMicroText.text = iMicroMineralData
         mnMicroText.text = mnMicroMineralData
         cuMicroText.text = cuMicroMineralData
+        feMicroText.text = feMicroMineralData
         cuOrganicMicroText.text = cuOrganicMicroMineralData
         seMicroText.text = seMicroMineralData
         seOrganicMicroText.text = seOrganicMicroMineralData
@@ -371,6 +375,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
         let pMacroText23 = Double(iMicroText.text!) ?? 0.0
         let pMacroText24 = Double(mnMicroText.text!) ?? 0.0
+        let pMicroText23 = Double(feMicroText.text!) ?? 0.0
         
         Requirments.shared().pMacroText = pMacroText1 * doseinKG
         Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -393,6 +398,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
         Requirments.shared().iMicroText = pMacroText23 * doseinKG
         Requirments.shared().mnMicroText = pMacroText24 * doseinKG
+        Requirments.shared().feMicroText = pMicroText23 * doseinKG
         Requirments.shared().appendPremixValues()
         
         /*
@@ -475,6 +481,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
         let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
+        let pMicroText23 = Double(feMicroText.text!) ?? 0.0
         let pMacroText20 = Double(totalCu) ?? 0.0
         let pMacroText21 = Double(totalSe) ?? 0.0
         let pMacroText22 = Double(totalZn) ?? 0.0
@@ -490,6 +497,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().coMicroText = pMacroText8 * doseinKG
         Requirments.shared().cuMicroText = pMacroText20 * doseinKG
         Requirments.shared().seMicroText = pMacroText21 * doseinKG
+        Requirments.shared().feMicroText = pMicroText23 * doseinKG
         Requirments.shared().znMicroText = pMacroText22 * doseinKG
         Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
         Requirments.shared().diuVitamin = pMacroText16 * doseinKG

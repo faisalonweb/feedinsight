@@ -46,6 +46,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     var iMicroList = [String]()
     var mnMicroList = [String]()
     var cuOrganicMicroList = [String]()
+    var feMicroList = [String]()
     var seMicroList = [String]()
     var seOrganicMicroList = [String]()
     var znMicroList = [String]()
@@ -85,6 +86,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     private var mnMicroStation = [String]()
     private var cuMicroStation = [String]()
     private var cuOrganicMicroStation = [String]()
+    private var feMicroStation = [String]()
     private var seMicroStation = [String]()
     private var seOrganicMicroStation = [String]()
     private var znMicroStation = [String]()
@@ -230,6 +232,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         // Micro
                         let coMicro = documentData["coMicroMineral"] as? String ?? "Anonymous"
                         let iMicro = documentData["iMicroMineral"] as? String ?? "Anonymous"
+                        let feMicro = documentData["feMicroMineral"] as? String ?? "Anonymous"
                         let mnMicro = documentData["mnMicroMineral"] as? String ?? "Anonymous"
                         let cuMicro = documentData["cu(inorganic)MicroMineral"] as? String ?? "Anonymous"
                         let cuorganicMicro = documentData["cu(organic)MicroMineral"] as? String ?? "Anonymous"
@@ -265,6 +268,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         self.iMicroStation.insert(iMicro, at: 0)
                         self.mnMicroStation.insert(mnMicro, at: 0)
                         self.cuMicroStation.insert(cuMicro, at: 0)
+                        self.feMicroStation.insert(feMicro, at: 0)
                         self.cuOrganicMicroStation.insert(cuorganicMicro, at: 0)
                         self.seMicroStation.insert(seMicro, at: 0)
                         self.seOrganicMicroStation.insert(seOrganicMicro, at: 0)
@@ -299,6 +303,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.iMicroList.append(contentsOf: self.iMicroStation)
                     self.mnMicroList.append(contentsOf: self.mnMicroStation)
                     self.cuMicroList.append(contentsOf: self.cuMicroStation)
+                    self.feMicroList.append(contentsOf: self.feMicroStation)
                     self.cuOrganicMicroList.append(contentsOf: self.cuOrganicMicroStation)
                     self.znMicroList.append(contentsOf: self.znMicroStation)
                     self.znOrganicMicroList.append(contentsOf: self.znOrganicMicroStation)
@@ -412,6 +417,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             vcone?.iMicroMineralData = iMicroList[indexPath.section]
             vcone?.mnMicroMineralData = mnMicroList[indexPath.section]
             vcone?.cuMicroMineralData = cuMicroList[indexPath.section]
+            vcone?.feMicroMineralData = feMicroList[indexPath.section]
             vcone?.cuOrganicMicroMineralData = cuOrganicMicroList[indexPath.section]
             vcone?.seMicroMineralData = seMicroList[indexPath.section]
             vcone?.seOrganicMicroMineralData = seOrganicMicroList[indexPath.section]

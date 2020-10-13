@@ -126,6 +126,29 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let cell = tableView.cellForRow(at: indexPath) as! loadDatabaseTableViewCell
+            let complete = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
+                if cell.productName.text == "" {
+                    self.showError("Select Feed value")
+                } else {
+                    let count = productList.count
+                    for i in 0...count - 1 {
+                        let name = productList[i].FeedName
+                        if(cell.productName.text == name) {
+                            currentIndex = i
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+                            vc?.screenName = "Edit Feed"
+                            self.navigationController?.pushViewController(vc!, animated: true)
+                        
+                        }
+                    }
+                }
+            }
+            complete.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
+
+            return [complete]
+        }
     
     @IBAction func backBtnTapped(_ sender: Any) {
         if let navController = self.navigationController {
