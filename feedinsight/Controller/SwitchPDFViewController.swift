@@ -430,12 +430,13 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value = value / 225
         value = value * 100
         var xValue : Double = 0.0
-        if(value > 100.0) {
-            value = 105.0
-            xValue = 280
+        if(value > 84.0) {
+//            value = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value
         }
+        value = value.roundToDecimal(1)
         var frame : CGRect = l1.frame
         frame.origin.x = CGFloat(xValue)
         l1.frame = frame
@@ -446,9 +447,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value1 : Double = percentageArray[1]
         value1 = value1 / 500
         value1 = value1 * 100
-        if(value1 > 100.0) {
-            value1 = 105.0
-            xValue = 280
+        
+        if(value1 > 84.0) {
+//            value1 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value1
         }
@@ -462,9 +464,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value2 : Double = percentageArray[2]
         value2 = value2 / 1375
         value2 = value2 * 100
-        if(value2 > 100.0) {
-            value2 = 105.0
-            xValue = 280
+        if(value2 > 84.0) {
+//            value2 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value2
         }
@@ -478,9 +480,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value3 : Double = percentageArray[3]
         value3 = value3 / 400
         value3 = value3 * 100
-        if(value3 > 100.0) {
-            value3 = 105.0
-            xValue = 280
+        if(value3 > 84.0) {
+//            value3 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value3
         }
@@ -494,9 +496,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value4 : Double = percentageArray[4]
         value4 = value4 / 500
         value4 = value4 * 100
-        if(value4 > 100.0) {
-            value4 = 105.0
-            xValue = 280
+        if(value4 > 84.0) {
+//            value4 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value4
         }
@@ -510,9 +512,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value5 : Double = percentageArray[5]
         value5 = value5 / 1625
         value5 = value5 * 100
-        if(value5 > 100.0) {
-            value5 = 105.0
-            xValue = 280
+        if(value5 > 84.0) {
+//            value5 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value5
         }
@@ -526,9 +528,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value6 : Double = percentageArray[6]
         value6 = value6 / 200
         value6 = value6 * 100
-        if(value6 > 100.0) {
-            value6 = 105.0
-            xValue = 280
+        if(value6 > 84.0) {
+//            value6 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value6
         }
@@ -542,9 +544,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value7 : Double = percentageArray[7]
         value7 = value7 / 1125
         value7 = value7 * 100
-        if(value7 > 100.0) {
-            value7 = 105.0
-            xValue = 280
+        if(value7 > 84.0) {
+//            value7 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value7
         }
@@ -558,9 +560,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value8 : Double = percentageArray[8]
         value8 = value8 / 3750
         value8 = value8 * 100
-        if(value8 > 100.0) {
-            value8 = 105.0
-            xValue = 280
+        if(value8 > 84.0) {
+//            value8 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value8
         }
@@ -573,10 +575,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         // 0 , 375
         var value9 : Double = percentageArray[9]
         value9 = value9 / 375
-        value9 = value9 * 100
-        if(value9 > 100.0) {
+//        value9 = value9 * 100
+        if(value9 > 84.0) {
             value9 = 105.0
-            xValue = 280
+            xValue = 250
         } else {
             xValue = 3 * value9
         }
@@ -589,10 +591,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         // 0 , 1750
         var value10 : Double = percentageArray[10]
         value10 = value10 / 1750
-        value10 = value10 * 100
-        if(value10 > 100.0) {
+//        value10 = value10 * 100
+        if(value10 > 84.0) {
             value10 = 105.0
-            xValue = 280
+            xValue = 250
         } else {
             xValue = 3 * value10
         }
@@ -606,9 +608,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value11 : Double = percentageArray[11]
         value11 = value11 / 3750
         value11 = value11 * 100
-        if(value11 > 100.0) {
-            value11 = 105.0
-            xValue = 280
+        if(value11 > 84.0) {
+//            value11 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value11
         }
@@ -622,9 +624,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value12 : Double = percentageArray[12]
         value12 = value12 / 1000
         value12 = value12 * 100
-        if(value12 > 100.0) {
-            value12 = 105.0
-            xValue = 280
+        if(value12 > 84.0) {
+//            value12 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value12
         }
@@ -638,9 +640,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value13 : Double = percentageArray[13]
         value13 = value13 / 200
         value13 = value13 * 100
-        if(value13 > 100.0) {
-            value13 = 105.0
-            xValue = 280
+        if(value13 > 84.0) {
+//            value13 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value13
         }
@@ -654,9 +656,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value14 : Double = percentageArray[14]
         value14 = value14 / 225
         value14 = value14 * 100
-        if(value14 > 100.0) {
-            value14 = 105.0
-            xValue = 280
+        if(value14 > 84.0) {
+//            value14 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value14
         }
@@ -670,9 +672,9 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         var value15 : Double = percentageArray[15]
         value15 = value15 / 1950
         value15 = value15 * 100
-        if(value15 > 100.0) {
-            value15 = 105.0
-            xValue = 280
+        if(value15 > 84.0) {
+//            value15 = 105.0
+            xValue = 250
         } else {
             xValue = 3 * value15
         }
