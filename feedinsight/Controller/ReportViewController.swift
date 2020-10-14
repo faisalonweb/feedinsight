@@ -137,11 +137,11 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
         return 58
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vcone = storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as? PDFViewController
-        vcone?.premixArray = copyArray[indexPath.section]["PremixVal"] as! [Double]
-        vcone?.waterArray = copyArray[indexPath.section]["WaterVal"] as! [Double]
-        vcone?.requiredArray = copyArray[indexPath.section]["RequirmentsVal"] as! [Double]
-        vcone?.rationArray = copyArray[indexPath.section]["RationVal"] as! [Double]
+        let vcone = storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
+        premixArray = copyArray[indexPath.section]["PremixVal"] as! [Double]
+        waterArray = copyArray[indexPath.section]["WaterVal"] as! [Double]
+        requiredArray = copyArray[indexPath.section]["RequirmentsVal"] as! [Double]
+        rationArray = copyArray[indexPath.section]["RationVal"] as! [Double]
         vcone?.companystr1 = companyNameList[indexPath.section]
         vcone?.animalgroupstr2 = animalGroupList[indexPath.section]
         vcone?.datestr3 = pdfDateList[indexPath.section]
@@ -150,7 +150,7 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
         vcone?.preparedbystr6 = preparedBy[indexPath.section]
         vcone?.reporttypestr7 = reportType[indexPath.section]
         vcone?.pscistatestr8 = psychologicalList[indexPath.section]
-        vcone?.fromDatabase = "yes"
+        fromDatabase = "yes"
         self.navigationController?.pushViewController(vcone!, animated: true)
     }
 }

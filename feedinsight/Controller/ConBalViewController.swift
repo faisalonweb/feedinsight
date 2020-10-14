@@ -8,14 +8,10 @@
 
 import UIKit
 
+var percentageArray = [Double]()
 class ConBalViewController: UIViewController {
     
     @IBOutlet weak var baltblview: UITableView!
-    var premixArray = [Double]()
-    var waterArray = [Double]()
-    var requiredArray = [Double]()
-    var rationArray = [Double]()
-    
     // initilaze report parameters
     
     var companystr1 : String = ""
@@ -26,11 +22,8 @@ class ConBalViewController: UIViewController {
     var preparedbystr6 : String = ""
     var reporttypestr7 : String = ""
     var pscistatestr8 : String = ""
-    var fromDatabase : String = ""
     
     var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
-    
-    var percentageArray = [Double]()
     
     let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
     
@@ -82,65 +75,58 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
             } else {
                 cell.backgroundColor = UIColor.white
             }
-                        if(fromDatabase == "yes") {
-                            let value : Double = requiredArray[indexPath.row - 1]
-                            let value1 : Double = rationArray[indexPath.row - 1]
-                            let value2 : Double = premixArray[indexPath.row - 1]
-                            var value3 : Double = 0.0
-                            if(indexPath.row > 7) {
-                                value3 = 0.0
-                            } else {
-                                let value : Double = waterArray[indexPath.row - 1]
-                                value3 = value
-                            }
-                            let value4 : Double = value1 + value2 + value3
-                            var value5 : Double = value4 - value
-                            value5 = value5.roundToDecimal(1)
-                            cell.nutrientNames?.text = nutrientNames[indexPath.row]
-                            cell.nutrientValues?.text = String(value5)
-                            var percent : Double = (value4/value) * 100
-                            percent = percent.roundToDecimal(1)
-                            percentageArray.append(percent)
-                            cell.nutrientPercent?.text = String(percent)
-                            if(indexPath.row == 17) {
-                                //self.addGaugeView()
-                            }
-                        } else {
-                            let value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
-                            let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
-                            let value2 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
-                            var value3 : Double = 0.0
-                            if(indexPath.row > 7) {
-                                value3 = 0.0
-                            } else {
-                                let value : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
-                                value3 = value
-                            }
-                            let value4 : Double = value1 + value2 + value3
-                            var value5 : Double = value4 - value
-                            value5 = value5.roundToDecimal(1)
-            cell.nutrientNames?.text = nutrientNames[indexPath.row]
-                            cell.nutrientValues?.text = String(value5)
-                            var percent : Double = (value4/value) * 100
-                            percent = percent.roundToDecimal(1)
-                            percentageArray.append(percent)
-                            cell.nutrientPercent?.text = String(percent)
-                            if(indexPath.row == 17) {
-                                
-                            }
-                        }
+            if(fromDatabase == "yes") {
+                let value : Double = requiredArray[indexPath.row - 1]
+                let value1 : Double = rationArray[indexPath.row - 1]
+                let value2 : Double = premixArray[indexPath.row - 1]
+                var value3 : Double = 0.0
+                if(indexPath.row > 7) {
+                    value3 = 0.0
+                } else {
+                    let value : Double = waterArray[indexPath.row - 1]
+                    value3 = value
+                }
+                let value4 : Double = value1 + value2 + value3
+                var value5 : Double = value4 - value
+                value5 = value5.roundToDecimal(1)
+                cell.nutrientNames?.text = nutrientNames[indexPath.row]
+                cell.nutrientValues?.text = String(value5)
+                var percent : Double = (value4/value) * 100
+                percent = percent.roundToDecimal(1)
+                percentageArray.append(percent)
+                cell.nutrientPercent?.text = String(percent)
+                if(indexPath.row == 17) {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
+                }
+            } else {
+                let value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
+                let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
+                let value2 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
+                var value3 : Double = 0.0
+                if(indexPath.row > 7) {
+                    value3 = 0.0
+                } else {
+                    let value : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
+                    value3 = value
+                }
+                let value4 : Double = value1 + value2 + value3
+                var value5 : Double = value4 - value
+                value5 = value5.roundToDecimal(1)
+                cell.nutrientNames?.text = nutrientNames[indexPath.row]
+                cell.nutrientValues?.text = String(value5)
+                var percent : Double = (value4/value) * 100
+                percent = percent.roundToDecimal(1)
+                percentageArray.append(percent)
+                cell.nutrientPercent?.text = String(percent)
+                if(indexPath.row == 17) {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
+                }
+            }
             cell.layer.cornerRadius = 10
             return cell
-                    }
-            return UITableViewCell()
-            
         }
+        return UITableViewCell()
+        
+    }
     
 }
-
-//extension Double {
-//    func roundToDecimal(_ fractionDigits: Int) -> Double {
-//        let multiplier = pow(10, Double(fractionDigits))
-//        return Darwin.round(self * multiplier) / multiplier
-//    }
-//}

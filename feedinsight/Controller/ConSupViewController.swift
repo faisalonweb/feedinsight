@@ -9,15 +9,8 @@
 import UIKit
 
 class ConSupViewController: UIViewController {
-
+    
     @IBOutlet weak var suptblview: UITableView!
-    var premixArray = [Double]()
-    var waterArray = [Double]()
-    var requiredArray = [Double]()
-    var rationArray = [Double]()
-    
-    // initilaze report parameters
-    
     var companystr1 : String = ""
     var animalgroupstr2 : String = ""
     var datestr3 : String = ""
@@ -26,7 +19,6 @@ class ConSupViewController: UIViewController {
     var preparedbystr6 : String = ""
     var reporttypestr7 : String = ""
     var pscistatestr8 : String = ""
-    var fromDatabase : String = ""
     
     var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
     
@@ -36,21 +28,21 @@ class ConSupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
     
@@ -62,8 +54,8 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      if tableView == suptblview,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "supplycell") as? SupplyPDFTableViewCell {
+        if tableView == suptblview,
+           let cell = tableView.dequeueReusableCell(withIdentifier: "supplycell") as? SupplyPDFTableViewCell {
             if (indexPath.row == 0) {
                 cell.layer.cornerRadius = 10
                 cell.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
@@ -138,16 +130,13 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
                 value3 = value3.roundToDecimal(1)
                 let stringValue3 = String(value3)
                 cell.nutrientTotal?.text = stringValue3
-        cell.layer.cornerRadius = 10
-        return cell
             }
-           
-        
-                
+            cell.layer.cornerRadius = 10
+            return cell
+        }
+        return UITableViewCell()
     }
-    return UITableViewCell()
-    }
-
+    
 }
 
 //extension Double {

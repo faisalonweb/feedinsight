@@ -11,10 +11,7 @@ import UIKit
 class ConReqViewController: UIViewController {
 
     @IBOutlet weak var reqtblview: UITableView!
-    var fromDatabase : String = ""
     var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
-    var requiredArray = [Double]()
-    var percentageArray = [Double]()
     
     let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
     

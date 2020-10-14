@@ -226,7 +226,7 @@ class Requirments {
         primexArrayFinal.append(coMicroText)
         primexArrayFinal.append(cuMicroText)
         primexArrayFinal.append(iMicroText)
-        primexArrayFinal.append(feMicroText)
+        //primexArrayFinal.append(feMicroText)
         primexArrayFinal.append(mnMicroText)
         primexArrayFinal.append(seMicroText)
         primexArrayFinal.append(znMicroText)
