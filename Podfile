@@ -25,6 +25,7 @@ target 'FeedInsight' do
   pod "SearchTextField"
   pod 'Google-Mobile-Ads-SDK'
   pod 'RSKImageCropper'
+  pod 'SwiftMessages'
   
   
 end
