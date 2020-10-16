@@ -18,6 +18,7 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchTextField: UITextField!
     var nameArray: [String] = []
     var nameArrayCopy: [String] = []
+    let defaults = UserDefaults(suiteName:"User")
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -29,6 +30,23 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
         }
         nameArrayCopy = nameArray
         searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        userImage?.layer.cornerRadius = (userImage?.frame.size.width ?? 0.0) / 2
+        userImage?.clipsToBounds = true
+        userImage?.layer.borderWidth = 3.0
+        userImage?.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let userName = defaults!.value(forKey: "usernameStringKey"){
+            self.userName.text = userName as? String
+            print(userName)
+        }
+        DispatchQueue.main.async { [weak self] in
+            let data = self?.defaults!.value(forKey: "imageData") as? Data
+            if(data != nil) {
+                self?.userImage.image = UIImage(data: data!)
+            }
+        }
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {

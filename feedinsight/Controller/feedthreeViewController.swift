@@ -154,7 +154,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             }
         }
         if(dropdownvalues.count < 3) {
-            self.viewHeight.constant = 150
+            let bounds = UIScreen.main.bounds
+            let height = bounds.size.height
+            self.viewHeight.constant = height - 290 - 90 - 110
         } else {
             self.viewHeight.constant = CGFloat(dropdownvalues.count * 70)
         }
