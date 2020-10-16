@@ -90,7 +90,6 @@ class Requirments {
     var iMicroText: Double = 0
     var mnMicroText: Double = 0
     var cuMicroText: Double = 0
-    var feMicroText: Double = 0
     var cuOrganicMicroText: Double = 0
     var seMicroText: Double = 0
     var seOrganicMicroText: Double = 0
@@ -214,8 +213,7 @@ class Requirments {
     }
     
     func appendPremixValues () {
-        // multiple factor
-        
+        // multiple factor        
         primexArrayFinal.append(pMacroText)
         primexArrayFinal.append(caMacroText)
         primexArrayFinal.append(mgMacroText)
@@ -226,7 +224,6 @@ class Requirments {
         primexArrayFinal.append(coMicroText)
         primexArrayFinal.append(cuMicroText)
         primexArrayFinal.append(iMicroText)
-        //primexArrayFinal.append(feMicroText)
         primexArrayFinal.append(mnMicroText)
         primexArrayFinal.append(seMicroText)
         primexArrayFinal.append(znMicroText)

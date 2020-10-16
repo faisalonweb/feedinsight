@@ -362,20 +362,32 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText6 = Double(clMacroText.text!) ?? 0.0
         let pMacroText7 = Double(sMacroText.text!) ?? 0.0
         let pMacroText8 = Double(coMicroText.text!) ?? 0.0
-        let pMacroText9 = Double(cuMicroText.text!) ?? 0.0
-        let pMacroText10 = Double(cuOrganicMicroText.text!) ?? 0.0
-        let pMacroText11 = Double(seMicroText.text!) ?? 0.0
-        let pMacroText12 = Double(seOrganicMicroText.text!) ?? 0.0
-        let pMacroText13 = Double(znMicroText.text!) ?? 0.0
-        let pMacroText14 = Double(znOrganicMicroText.text!) ?? 0.0
+        
+        let cu1 = Double(cuMicroText.text!) ?? 0.0
+        let cu2 = Double(cuOrganicMicroText.text!) ?? 0.0
+        let se1 = Double(seMicroText.text!) ?? 0.0
+        let se2 = Double(seOrganicMicroText.text!) ?? 0.0
+        let zn1 = Double(znMicroText.text!) ?? 0.0
+        let zn2 = Double(znOrganicMicroText.text!) ?? 0.0
+        let mn1 = Double(mnMicroText.text!) ?? 0.0
+        let mn2 = Double(feMicroText.text!) ?? 0.0
+        
+        let totalCu = cu1 + cu2
+        let totalSe = se1 + se2
+        let totalZn = zn1 + zn2
+        let totalMn = mn1 + mn2
+        
+        let pMacroText23 = Double(iMicroText.text!) ?? 0.0
         let pMacroText15 = Double(aiuVitamin.text!) ?? 0.0
         let pMacroText16 = Double(diuVitamin.text!) ?? 0.0
         let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
         let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
-        let pMacroText23 = Double(iMicroText.text!) ?? 0.0
-        let pMacroText24 = Double(mnMicroText.text!) ?? 0.0
-        let pMicroText23 = Double(feMicroText.text!) ?? 0.0
+        
+        let pMacroText20 = Double(totalCu)
+        let pMacroText21 = Double(totalSe)
+        let pMacroText22 = Double(totalZn)
+        let pMacroText25 = Double(totalMn)
         
         Requirments.shared().pMacroText = pMacroText1 * doseinKG
         Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -385,26 +397,22 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().clMacroText = pMacroText6 * doseinKG
         Requirments.shared().sMacroText = pMacroText7 * doseinKG
         Requirments.shared().coMicroText = pMacroText8 * doseinKG
-        Requirments.shared().cuMicroText = pMacroText9 * doseinKG
-        Requirments.shared().cuOrganicMicroText = pMacroText10 * doseinKG
-        Requirments.shared().seMicroText = pMacroText11 * doseinKG
-        Requirments.shared().seOrganicMicroText = pMacroText12 * doseinKG
-        Requirments.shared().znMicroText = pMacroText13 * doseinKG
-        Requirments.shared().znOrganicMicroText = pMacroText14 * doseinKG
+        Requirments.shared().cuMicroText = pMacroText20 * doseinKG
+        Requirments.shared().seMicroText = pMacroText21 * doseinKG
+        Requirments.shared().znMicroText = pMacroText22 * doseinKG
         Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
         Requirments.shared().diuVitamin = pMacroText16 * doseinKG
         Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
         Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
         Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
         Requirments.shared().iMicroText = pMacroText23 * doseinKG
-        Requirments.shared().mnMicroText = pMacroText24 * doseinKG
-        Requirments.shared().feMicroText = pMicroText23 * doseinKG
+        Requirments.shared().mnMicroText = pMacroText25 * doseinKG
+        
         Requirments.shared().appendPremixValues()
         
         /*
          Save Report code start
          */
-        
         
         let currentDateTime = Date()
         let formatter = DateFormatter()
@@ -449,12 +457,6 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
         self.present(alertController, animated: true, completion: nil)
         
-        
-        
-        
-        
-        
-        
     }
     
     @IBAction func nextButton(_ sender: Any) {
@@ -470,21 +472,30 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let pMacroText6 = Double(clMacroText.text!) ?? 0.0
         let pMacroText7 = Double(sMacroText.text!) ?? 0.0
         let pMacroText8 = Double(coMicroText.text!) ?? 0.0
-        let totalCu =  cuMicroText.text! + cuOrganicMicroText.text!
-        let totalSe = seMicroText.text! + seOrganicMicroText.text!
-        let totalZn =  znMicroText.text! + znOrganicMicroText.text!
         
+        let cu1 = Double(cuMicroText.text!) ?? 0.0
+        let cu2 = Double(cuOrganicMicroText.text!) ?? 0.0
+        let se1 = Double(seMicroText.text!) ?? 0.0
+        let se2 = Double(seOrganicMicroText.text!) ?? 0.0
+        let zn1 = Double(znMicroText.text!) ?? 0.0
+        let zn2 = Double(znOrganicMicroText.text!) ?? 0.0
+        let mn1 = Double(mnMicroText.text!) ?? 0.0
+        let mn2 = Double(feMicroText.text!) ?? 0.0
+        let totalCu = cu1 + cu2
+        let totalSe = se1 + se2
+        let totalZn = zn1 + zn2
+        let totalMn = mn1 + mn2
         let pMacroText23 = Double(iMicroText.text!) ?? 0.0
-        let pMacroText24 = Double(mnMicroText.text!) ?? 0.0
         let pMacroText15 = Double(aiuVitamin.text!) ?? 0.0
         let pMacroText16 = Double(diuVitamin.text!) ?? 0.0
         let pMacroText17 = Double(eiuVitamin.text!) ?? 0.0
         let pMacroText18 = Double(niacinVitamin.text!) ?? 0.0
         let pMacroText19 = Double(biotinVitamin.text!) ?? 0.0
-        let pMicroText23 = Double(feMicroText.text!) ?? 0.0
-        let pMacroText20 = Double(totalCu) ?? 0.0
-        let pMacroText21 = Double(totalSe) ?? 0.0
-        let pMacroText22 = Double(totalZn) ?? 0.0
+        
+        let pMacroText20 = Double(totalCu)
+        let pMacroText21 = Double(totalSe)
+        let pMacroText22 = Double(totalZn)
+        let pMacroText25 = Double(totalMn)
         
         
         Requirments.shared().pMacroText = pMacroText1 * doseinKG
@@ -497,7 +508,6 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().coMicroText = pMacroText8 * doseinKG
         Requirments.shared().cuMicroText = pMacroText20 * doseinKG
         Requirments.shared().seMicroText = pMacroText21 * doseinKG
-        Requirments.shared().feMicroText = pMicroText23 * doseinKG
         Requirments.shared().znMicroText = pMacroText22 * doseinKG
         Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
         Requirments.shared().diuVitamin = pMacroText16 * doseinKG
@@ -505,14 +515,13 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
         Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
         Requirments.shared().iMicroText = pMacroText23 * doseinKG
-        Requirments.shared().mnMicroText = pMacroText24 * doseinKG
+        Requirments.shared().mnMicroText = pMacroText25 * doseinKG
         
         Requirments.shared().appendPremixValues()
         
         /*
          Save Report code start
          */
-        
         
         let currentDateTime = Date()
         let formatter = DateFormatter()
