@@ -11,6 +11,7 @@ import ActiveLabel
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
+import SwiftMessages
 class LoginViewController: UIViewController, UITextFieldDelegate {
     let userDefault = UserDefaults(suiteName:"User")
     @IBOutlet weak var signupBtn: ActiveLabel!
@@ -72,9 +73,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     func alert(_ title: String, message: String) {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        present(vc, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: title, body: message)
+        SwiftMessages.show(view: view)
     }
     @IBAction func signinPressed(_ sender: Any) {
         SVProgressHUD.show()
@@ -188,9 +191,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     func showError(_ message:String) {
         SVProgressHUD.dismiss()
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
 }

@@ -15,7 +15,7 @@ import CountryPickerView
 import SVProgressHUD
 import SearchTextField
 import RSKImageCropper
-
+import SwiftMessages
 
 class userdataViewController: UIViewController , UICollectionViewDataSource , UICollectionViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, RSKImageCropViewControllerDelegate  {
     
@@ -586,10 +586,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         return nil
     }
     func showError(_ message:String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
     @IBAction func changeData(_ sender: Any) {
         if(collectionViewSelectedName.count > 0) {

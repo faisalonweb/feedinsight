@@ -14,7 +14,7 @@ import Firebase
 import CountryPickerView
 import SVProgressHUD
 import SearchTextField
-
+import SwiftMessages
 class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
@@ -421,15 +421,18 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     func showError(_ message:String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
     func alert(_ title: String, message: String) {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        present(vc, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: title, body: message)
+        SwiftMessages.show(view: view)
     }
     func validateFields() -> String? {
         if(industrycellValue == "") {

@@ -196,25 +196,6 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
-//        let view = MessageView.viewFromNib(layout: .cardView)
-//        view.configureTheme(.error)
-//        view.configureTheme(backgroundColor: UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0), foregroundColor: UIColor.white)
-//        view.configureDropShadow()
-//        view.configureContent(title: "Error", body: "Please fill all fields")
-//        SwiftMessages.show(view: view)
-        
-//        SwiftMessages.defaultConfig.presentationStyle = .bottom
-//
-//        // Show message with default config.
-//        SwiftMessages.show(view: view)
-//
-//        // Customize config using the default as a base.
-//        var config = SwiftMessages.defaultConfig
-//        config.duration = .forever
-//        SwiftMessages.show(config: config, view: view)
-        
-        
-        //SwiftMessages.show(view: self.view)
         if ((nameField.text?.isEmpty != true) && (animalField.text?.isEmpty != true) && (PsychField.text?.isEmpty != true) && (CurrentBodyWeightF.text?.isEmpty != true) && (TargetBodyWeightF.text?.isEmpty != true) && (daystoAchiveF.text?.isEmpty != true) && (daysinMilkF.text?.isEmpty != true) && (daysPregnantF.text?.isEmpty != true) && (milkInProducitonF.text?.isEmpty != true)){
 
             Requirments.shared().animalKind = self.headLabel.text!
@@ -222,17 +203,19 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
             self.navigationController?.pushViewController(vc!, animated: true)
         }else{
-            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "Fill all fields")
+            SwiftMessages.show(view: view)
         }
     }
     func showError(_ message:String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let psychEnter = PsychField.text!
@@ -452,10 +435,11 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             
         }
         else {
-            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "Fill all fields")
+            SwiftMessages.show(view: view)
         }
      
         

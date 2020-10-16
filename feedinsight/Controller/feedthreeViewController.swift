@@ -14,6 +14,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
 import SearchTextField
+import SwiftMessages
 
 var subUrl: URL?
 var fm = FileManager.default
@@ -212,10 +213,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             for i in 0..<dropdownvalues.count {
                 if(dropdownfloatValue[i] == "none") {
                     boolValue = true
-                    let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    let view = MessageView.viewFromNib(layout: .cardView)
+                    view.configureTheme(.error)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Error", body: "Fill all fields")
+                    SwiftMessages.show(view: view)
                     break
                 }
             }
@@ -227,10 +229,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                         dmi = dmi + productDM
                         print(dmi)
                     } else {
-                        let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        alertController.addAction(defaultAction)
-                        self.present(alertController, animated: true, completion: nil)
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.error)
+                        view.configureDropShadow()
+                        view.configureContent(title: "Error", body: "Fill all fields")
+                        SwiftMessages.show(view: view)
                     }
                     
                 }
@@ -245,10 +248,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
         } else {
-            let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "Fill all fields")
+            SwiftMessages.show(view: view)
         }
         
     }
@@ -300,10 +304,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    let view = MessageView.viewFromNib(layout: .cardView)
+                    view.configureTheme(.error)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Error", body: "Fill all fields")
+                    SwiftMessages.show(view: view)
                 }
                 
             })
@@ -360,10 +365,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 for i in 0..<dropdownvalues.count {
                     if(dropdownfloatValue[i] == "none") {
                         boolValue = true
-                        let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        alertController.addAction(defaultAction)
-                        self.present(alertController, animated: true, completion: nil)
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.error)
+                        view.configureDropShadow()
+                        view.configureContent(title: "Error", body: "Fill all fields")
+                        SwiftMessages.show(view: view)
                         break
                     }
                 }
@@ -400,16 +406,19 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     self.present(alertController, animated: true, completion: nil)
 
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    let view = MessageView.viewFromNib(layout: .cardView)
+                    view.configureTheme(.error)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Error", body: "Fill all fields")
+                    SwiftMessages.show(view: view)
                 }
             } else {
-                let alertController = UIAlertController(title: "Error", message: "Fill all fields.", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+                
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "Error", body: "Fill all fields")
+                SwiftMessages.show(view: view)
             }
         }
     }
@@ -492,10 +501,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     func showError(_ message:String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! feedthreeTableViewCell

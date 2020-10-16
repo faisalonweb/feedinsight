@@ -14,7 +14,7 @@ import CoreLocation
 import FirebaseAuth
 import Firebase
 import SVProgressHUD
-
+import SwiftMessages
 
 
 class VerifyViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -69,11 +69,11 @@ class VerifyViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showError(_ message:String) {
-        //SVProgressHUD.dismiss()
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
     private var authUser : User? {
         return Auth.auth().currentUser

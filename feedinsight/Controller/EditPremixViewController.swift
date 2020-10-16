@@ -8,7 +8,7 @@
 
 import UIKit
 import SVProgressHUD
-
+import SwiftMessages
 class EditPremixViewController: UIViewController {
     
     @IBOutlet weak var userNameLabel: UILabel!
@@ -61,10 +61,11 @@ class EditPremixViewController: UIViewController {
     }
     
     func showError(_ message:String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.error)
+        view.configureDropShadow()
+        view.configureContent(title: "Error", body: message)
+        SwiftMessages.show(view: view)
     }
     
     override func viewDidLoad() {
