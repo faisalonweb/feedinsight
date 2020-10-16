@@ -64,16 +64,14 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
         profileimage?.layer.borderWidth = 3.0
         profileimage?.layer.borderColor = UIColor.white.cgColor
         
-       self.tblView.refreshControl = UIRefreshControl()
-       self.tblView.refreshControl?.beginRefreshing()
+        self.tblView.refreshControl = UIRefreshControl()
+        self.tblView.refreshControl?.beginRefreshing()
         super.viewDidLoad()
         
-        Firestore.firestore().collection("animalState").document(Auth.auth().currentUser?.uid ?? "").collection("animalState").getDocuments{(snapshot,error) in
-            
-            if error == nil && snapshot != nil {
-                guard let snap = snapshot else {return}
-                for document in snap.documents {
-                    let documentData = document.data()
+        let script =  ApiCalling()
+        script.LoadProfile() { (result) -> ()  in
+            if result.count > 0 {
+                for documentData in result {
                     let animaltype = documentData["animalGroup"] as? String ?? "Anonymous"
                     let reportName = documentData["reportName"] as? String ?? "Anonymous"
                     let timestamp = documentData["currentdate"] as? String ?? "20/20/20"
@@ -149,14 +147,14 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
             }
         }
     }
-//    @IBAction func mainBtnAction(_ sender: Any) {
-//
-//        if tblView.isHidden {
-//            animate(toggle: true)
-//        } else {
-//            animate(toggle: false)
-//        }
-//    }
+    //    @IBAction func mainBtnAction(_ sender: Any) {
+    //
+    //        if tblView.isHidden {
+    //            animate(toggle: true)
+    //        } else {
+    //            animate(toggle: false)
+    //        }
+    //    }
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)

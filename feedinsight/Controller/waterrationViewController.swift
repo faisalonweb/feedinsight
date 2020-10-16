@@ -112,8 +112,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+       
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
@@ -122,12 +122,14 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         self.tblView.refreshControl?.beginRefreshing()
         if(self.screenNAME == "water") {
             changeableLabel.text = "Water Reports"
-            Firestore.firestore().collection("waterReports").document(Auth.auth().currentUser?.uid ?? "").collection("waterReports").getDocuments{(snapshot,error) in
+            
+            let script =  ApiCalling()
+            script.WaterData() { (result) -> () in
                 
-                if error == nil && snapshot != nil {
-                    guard let snap = snapshot else {return}
-                    for document in snap.documents {
-                        let documentData = document.data()
+                if result.count > 0{
+                   
+                    for documentData in result {
+                        
                         //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currentdatetime"] as? String ?? "20/20/20"
@@ -174,13 +176,14 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             }
         } else if (self.screenNAME == "ration") {
             changeableLabel.text = "Ration Reports"
-            Firestore.firestore().collection("rationReports").document(Auth.auth().currentUser?.uid ?? "").collection("rationReports").getDocuments{(snapshot,error) in
+            let script =  ApiCalling()
+            script.RationData() { (result) -> () in
                 
-                if error == nil && snapshot != nil {
-                    guard let snap = snapshot else {return}
+                if result.count > 0 {
+                  
                     var i = 0
-                    for document in snap.documents {
-                        let documentData = document.data()
+                    for documentData in result {
+                       
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currenttimedate"] as? String ?? "20/20/20"
                         let documentiddata = documentData["DocId"] as? String ?? "20/20/20"
@@ -209,12 +212,12 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         }
         else if (self.screenNAME == "premix") {
             changeableLabel.text = "Premix Reports"
-            Firestore.firestore().collection("premixReports").document(Auth.auth().currentUser?.uid ?? "").collection("premixReports").getDocuments{(snapshot,error) in
-                
-                if error == nil && snapshot != nil {
-                    guard let snap = snapshot else {return}
-                    for document in snap.documents {
-                        let documentData = document.data()
+            let script =  ApiCalling()
+            script.PremixData() { (result) -> () in
+                if result.count > 0{
+                    
+                    for documentData in result {
+                       
                         //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
                         let ReportName = documentData["ReportName"] as? String ?? "Anonymous"
                         let timestamp = documentData["currentdatetime"] as? String ?? "20/20/20"

@@ -105,34 +105,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         if user.isEmailVerified {
                             self.userDefault!.set(true, forKey: "usersignedin")
                             self.userDefault!.synchronize()
-                            let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-                            docRef.getDocuments { (querySnapshot, err) in
-                                if let err = err {
-                                    print(err.localizedDescription)
-                                    return
-                                } else if querySnapshot!.documents.count != 1 {
-                                    SVProgressHUD.dismiss()
-                                    self.emailField.isUserInteractionEnabled = true
-                                    self.paswordField.isUserInteractionEnabled = true
-                                    self.showError("User not found, Please try again.")
-                                } else {
-                                    let document = querySnapshot!.documents.first
-                                    let dataDescription = document?.data()
-                                    let currentusername = dataDescription?["name"]
-                                    let currentuseremail = dataDescription?["email"]
-                                    let currentuserphone = dataDescription?["phone"]
-                                    let currentuserindustry = dataDescription?["industry"]
-                                    let currentuserbusiness = dataDescription?["business"]
-                                    let currentuserpass = dataDescription?["password"]
-                                    let currentuserpickanimal = dataDescription?["pickanimal"]
-                                    let currentuserlocation = dataDescription?["location"]
-                                    let currentuserrole = dataDescription?["pickrole"]
-                                    let currentusercountrycode = dataDescription?["countrycode"]
-                                    let currentusercollectionindustry =  dataDescription?["CollectionIndustry"]
-                                    let currentuserprofilecountry =  dataDescription?["UserCountry"]
+                            let script =  ApiCalling()
+                            script.LoginData() { (result) -> () in
+                               
+                                if result.count > 0 {
+                                    let currentusername = result["name"]
+                                    let currentuseremail = result["email"]
+                                    let currentuserphone = result["phone"]
+                                    let currentuserindustry = result["industry"]
+                                    let currentuserbusiness = result["business"]
+                                    let currentuserpass = result["password"]
+                                    let currentuserpickanimal = result["pickanimal"]
+                                    let currentuserlocation = result["location"]
+                                    let currentuserrole = result["pickrole"]
+                                    let currentusercountrycode = result["countrycode"]
+                                    let currentusercollectionindustry =  result["CollectionIndustry"]
+                                    let currentuserprofilecountry =  result["UserCountry"]
                                     self.userDefault!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
                                     
-                                    let imageURL = dataDescription?["imageURL"] as? String
+                                    let imageURL = result["imageURL"] as? String
                                     if (imageURL != "") {
                                         let fileUrl = URL(string: imageURL!)
                                         let data = try? Data(contentsOf:fileUrl!)
@@ -150,7 +141,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     self.userDefault!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                                     self.userDefault!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
                                     self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
-                                    print(result?.user.uid ?? 0)
+                                    //print(result.user.uid ?? 0)
                                     SVProgressHUD.dismiss()
                                     self.emailField.isUserInteractionEnabled = true
                                     self.paswordField.isUserInteractionEnabled = true

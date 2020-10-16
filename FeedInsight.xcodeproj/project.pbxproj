@@ -43,6 +43,8 @@
 		1A34E5AC251A05610092C05F /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A34E5AB251A05610092C05F /* countries.json */; };
 		1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */; };
 		1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */; };
+		1A4A898C2538283800CEA4B4 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A898B2538283700CEA4B4 /* TestViewController.swift */; };
+		1A4A899125382D8700CEA4B4 /* ApiCalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A899025382D8700CEA4B4 /* ApiCalling.swift */; };
 		1A4C526C251B3DD40047F2D7 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C526B251B3DD40047F2D7 /* ReportViewController.swift */; };
 		1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */; };
 		1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50F0E624EE6455007EC60C /* Requirments.swift */; };
@@ -131,6 +133,8 @@
 		1A34E5AB251A05610092C05F /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterCustomViewController.swift; sourceTree = "<group>"; };
 		1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterStandardViewController.swift; sourceTree = "<group>"; };
+		1A4A898B2538283700CEA4B4 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		1A4A899025382D8700CEA4B4 /* ApiCalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalling.swift; sourceTree = "<group>"; };
 		1A4C526B251B3DD40047F2D7 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		1A4C5E712456CC620091DC87 /* premixCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A50F0E624EE6455007EC60C /* Requirments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirments.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 				1A7556FD253466C0005A9C09 /* ConReqViewController.swift */,
 				1A755700253466E8005A9C09 /* ConSupViewController.swift */,
 				1A755703253466FC005A9C09 /* ConBalViewController.swift */,
+				1A4A898B2538283700CEA4B4 /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				1AFE81DA24FD260B00DFECC7 /* Person.swift */,
 				1AEEA0F824CB580B0077324A /* DataModel.swift */,
 				1A50F0E624EE6455007EC60C /* Requirments.swift */,
+				1A4A899025382D8700CEA4B4 /* ApiCalling.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 				1AFE559724AAD6FB0099DB12 /* wateroneViewController.swift in Sources */,
 				04E98D59246E3FBB00D7AB67 /* Constants.swift in Sources */,
 				0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */,
+				1A4A898C2538283800CEA4B4 /* TestViewController.swift in Sources */,
 				1A7556D025345676005A9C09 /* SwitchPDFViewController.swift in Sources */,
 				046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */,
 				1AEEA0FB24CB590C0077324A /* DataAppend.swift in Sources */,
@@ -575,6 +582,7 @@
 				1AB9EC892521E31A00072C1C /* PDFTableViewCell.swift in Sources */,
 				046D6A69249744D000F7E494 /* PreviewViewController.swift in Sources */,
 				1A7F122A243E12610008CFC0 /* HomeViewController.swift in Sources */,
+				1A4A899125382D8700CEA4B4 /* ApiCalling.swift in Sources */,
 				1AB9ECB72522029B00072C1C /* PDFViewController.swift in Sources */,
 				1AAAF51524B4D0250010F945 /* loadAnimalsTableViewCell.swift in Sources */,
 				1A7D1A1F252C7AF6004A0F00 /* SupplyPDFTableViewCell.swift in Sources */,
