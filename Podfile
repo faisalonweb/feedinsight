@@ -27,7 +27,6 @@ target 'FeedInsight' do
   pod 'RSKImageCropper'
   pod 'SwiftMessages'
   
-  
 end
 
 

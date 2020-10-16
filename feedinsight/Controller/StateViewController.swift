@@ -13,7 +13,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
-
+import SwiftMessages
 //let requirments = Requirments()
 
 class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
@@ -196,8 +196,27 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         }
     }
     @IBAction func nextTapped(_ sender: UIButton) {
+//        let view = MessageView.viewFromNib(layout: .cardView)
+//        view.configureTheme(.error)
+//        view.configureTheme(backgroundColor: UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0), foregroundColor: UIColor.white)
+//        view.configureDropShadow()
+//        view.configureContent(title: "Error", body: "Please fill all fields")
+//        SwiftMessages.show(view: view)
+        
+//        SwiftMessages.defaultConfig.presentationStyle = .bottom
+//
+//        // Show message with default config.
+//        SwiftMessages.show(view: view)
+//
+//        // Customize config using the default as a base.
+//        var config = SwiftMessages.defaultConfig
+//        config.duration = .forever
+//        SwiftMessages.show(config: config, view: view)
+        
+        
+        //SwiftMessages.show(view: self.view)
         if ((nameField.text?.isEmpty != true) && (animalField.text?.isEmpty != true) && (PsychField.text?.isEmpty != true) && (CurrentBodyWeightF.text?.isEmpty != true) && (TargetBodyWeightF.text?.isEmpty != true) && (daystoAchiveF.text?.isEmpty != true) && (daysinMilkF.text?.isEmpty != true) && (daysPregnantF.text?.isEmpty != true) && (milkInProducitonF.text?.isEmpty != true)){
-            
+
             Requirments.shared().animalKind = self.headLabel.text!
             Requirments.shared().setStateValue(companyName: nameField.text!, animalGroup: animalField.text!, physiologicalState: PsychField.text!, currentBodyWeight: CurrentBodyWeightF.text!, targetBodyWeight: TargetBodyWeightF.text!, achieveTargerWeight: daystoAchiveF.text!, daysInMilk: daysinMilkF.text!, daysPregnant: daysPregnantF.text!, milkProduction: milkInProducitonF.text! , animalKind: self.headLabel.text! , heatStress: heatbole , metaBolic: disorderbole ,  anionic : dietbole , woolProduction : productionbole)
             let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
