@@ -186,9 +186,11 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         PsychField.optionArray = ["Lactating", "Growing", "Dry-Gestating"]
         PsychField.optionIds = [20,13,24,36]
         PsychField.didSelect{(selectedText , index ,id) in
+            
             print("Selected String: \(selectedText) \n index: \(index)")
         }
         PsychField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
+        PsychField.isSearchEnable = false
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
         if let navController = self.navigationController {
