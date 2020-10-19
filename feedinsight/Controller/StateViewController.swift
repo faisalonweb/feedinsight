@@ -203,6 +203,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             Requirments.shared().animalKind = self.headLabel.text!
             Requirments.shared().setStateValue(companyName: nameField.text!, animalGroup: animalField.text!, physiologicalState: PsychField.text!, currentBodyWeight: CurrentBodyWeightF.text!, targetBodyWeight: TargetBodyWeightF.text!, achieveTargerWeight: daystoAchiveF.text!, daysInMilk: daysinMilkF.text!, daysPregnant: daysPregnantF.text!, milkProduction: milkInProducitonF.text! , animalKind: self.headLabel.text! , heatStress: heatbole , metaBolic: disorderbole ,  anionic : dietbole , woolProduction : productionbole)
             let vc = storyboard?.instantiateViewController(withIdentifier: "feedthreeViewController") as? feedthreeViewController
+            vc?.fromStateVC = true
             self.navigationController?.pushViewController(vc!, animated: true)
         }else{
             let view = MessageView.viewFromNib(layout: .cardView)
