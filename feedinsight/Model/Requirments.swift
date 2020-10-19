@@ -9,8 +9,14 @@
 import Foundation
 import UIKit
 
+
+precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
+infix operator ^^ : PowerPrecedence
+func ^^ (radix: Double, power: Double) -> Double {
+    return Double(pow(Double(radix), Double(power)))
+}
 class Requirments {
-        
+    
     private static var sharedFunction : Requirments = {
         let requirments = Requirments()
         return requirments
@@ -209,7 +215,6 @@ class Requirments {
         rationArrayFinal.append(rationVitaminE)
         rationArrayFinal.append(rationNiacin)
         rationArrayFinal.append(rationBiotin)
-        print("done")
     }
     
     func appendPremixValues () {
@@ -265,7 +270,7 @@ class Requirments {
                 waterNaVal = (100.0 * waterNaVal) * 0.001
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -299,7 +304,8 @@ class Requirments {
                 waterNaVal = (15.0 * waterNaVal) * 0.001
             }
             else {
-                print("physiological is empty")
+                
+                
             }
             
             
@@ -333,7 +339,7 @@ class Requirments {
                 waterNaVal = (100.0 * waterNaVal) * 0.001
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Buffalo" :
@@ -366,7 +372,7 @@ class Requirments {
                 waterNaVal = (100.0 * waterNaVal) * 0.001
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Deer" :
@@ -399,7 +405,7 @@ class Requirments {
                 waterNaVal = (15.0 * waterNaVal) * 0.001
             }
             else {
-                print("physiological is empty")
+                
             }
         case "Camel" :
             
@@ -431,7 +437,7 @@ class Requirments {
                 waterNaVal = (200.0 * waterNaVal) * 0.001
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -470,6 +476,9 @@ class Requirments {
         print("hello from requirments modeal \(self.animalKind ?? "None")")
         
     }
+    
+    
+
     func phosphorusCalculate () {
         let animalType = self.animalKind
         var final : Double = 0
@@ -479,13 +488,57 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.83 * DMI + 0.002 * mycurrentweight
             print("goat phosphorus result : \(final)")
-            
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            let final2 = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            if(gpro > 66.0) {
+                //final2 = 7.38/(1+EXP(19.1-5.46*(40-WBC))
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.9
+            final = final + final3
+        
         case "Sheep/Goat" :
-            
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
             print("Sheep phosphorus result : \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (1.2 + (3.19 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28)) * g
+            final = final + final1
+            // Last Trimester // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 21.4)
+            var final2 : Double = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.9
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.5
+            final = final + final3
             
         case "Beef cow" :
             
@@ -493,6 +546,29 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Beef phosphorus result : \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
+            final = final + final1
+            // Last Trimester // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            let final2 : Double = 0.0
+            if(gpro > 66.0) {
+                //final2 = 0.9
+                //=if(GPRO>66, if(AT="Beef Cow",7.38/(1+EXP(19.1-5.46*(40-WBC))),""),"")
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.9
+            final = final + final3
             
         case "Buffalo" :
             
@@ -501,12 +577,58 @@ class Requirments {
             final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Buffalo phosphorus result \(final)")
             
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 44.2)
+            let final2 = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            if(gpro > 66.0) {
+                //final2 = =if(GPRO>66, if(AT="Buffalo",7.38/(1+EXP(19.1-5.46*(40-WBC))),""),"")
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1
+            final = final + final3
+            
         case "Deer" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.905 * DMI + 0.3 + 0.002 * mycurrentweight
             print("Deer phosphorus result \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (1.2 + (3.19 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28)) * g
+            final = final + final1
+            // Last Trimester // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 28.7)
+            var final2 : Double = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.9
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.95
+            final = final + final3
             
         case "Camel" :
             
@@ -514,11 +636,34 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.83 * DMI + 0.002 * mycurrentweight
             print("Camel phosphorus result \(final)")
-            
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 60.0)
+            let final2 = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            if(gpro > 66.0) {
+                //final2 = =if(GPRO>66, if(AT="Camel",7.38/(1+EXP(19.1-5.46*(40-WBC))),""),"")
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.9
+            final = final + final3
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         self.reqArrayFinal.append(final)
     }
     func Calcium () {
@@ -544,9 +689,31 @@ class Requirments {
                 final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
-            else {
-                print("physiological is empty")
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            let final2 = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            if(gpro > 66.0) {
+                // final 2 = =if(GPRO>66, if(AT="Dairy Cow",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.2
+            final = final + final3
             
             
         case "Sheep/Goat" :
@@ -569,9 +736,31 @@ class Requirments {
                 final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
-            else {
-                print("physiological is empty")
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            print("Sheep phosphorus result : \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (6.75 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28) * g
+            final = final + final1
+            // Last Trimester // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 21.4)
+            var final2 : Double = 0.0
+            if(gpro > 66.0) {
+                final2 = 1.5
             }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.9
+            final = final + final3
             
             
         case "Beef Cows" :
@@ -594,9 +783,32 @@ class Requirments {
                 final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
-            else {
-                print("physiological is empty")
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            print("Beef phosphorus result : \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
+            final = final + final1
+            // Last Trimester // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            let final2 : Double = 0.0
+            if(gpro > 66.0) {
+                //final2 = 0.9
+                //=if(GPRO>66, if(AT="Beef Cow",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.25
+            final = final + final3
             
         case "Buffalo" :
             
@@ -618,9 +830,33 @@ class Requirments {
                 final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
-            else {
-                print("physiological is empty")
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            print("Buffalo phosphorus result \(final)")
+            
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 44.2)
+            let final2 = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            if(gpro > 66.0) {
+                //final2 = =if(GPRO>66, if(AT="Buffalo",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.25
+            final = final + final3
             
         case "Deer" :
             
@@ -642,9 +878,31 @@ class Requirments {
                 final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
-            else {
-                print("physiological is empty")
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            print("Deer phosphorus result \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (6.75 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28) * g
+            final = final + final1
+            // Last Trimester // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 28.7)
+            var final2 : Double = 0.0
+            if(gpro > 66.0) {
+                final2 = 2.0
             }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.25
+            final = final + final3
         case "Camel" :
             
             if (self.physiologicalState == "Lactating"){
@@ -665,14 +923,37 @@ class Requirments {
                 final = 0.015 * mycurrentweight
                 print("Dry Gestation result : \(final)")
             }
-            else {
-                print("physiological is empty")
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            final = 0.83 * DMI + 0.002 * mycurrentweight
+            print("Camel phosphorus result \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 60.0)
+            let final2 = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            if(gpro > 66.0) {
+                //final2 = =if(GPRO>66, if(AT="Camel",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
-            
-            
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.25
+            final = final + final3
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         self.reqArrayFinal.append(final)
     }
     
@@ -685,6 +966,28 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.011 * mycurrentweight
             print("goat result : \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         case "Sheep/Goat" :
             
@@ -692,13 +995,56 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.014 * mycurrentweight
             print("Sheep result : \(final)")
-            
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 21.4)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.03
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.18
+            final = final + final3
         case "Beef cow" :
             
             let currentweight = self.currentBodyWeight
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.011 * mycurrentweight
             print("Beef result : \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         case "Buffalo" :
             
@@ -706,6 +1052,28 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.011 * mycurrentweight
             print("Buffalo result \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 44.2)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         case "Deer" :
             
@@ -713,6 +1081,28 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.011 * mycurrentweight
             print("Deer result \(final)")
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 28.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.05
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         case "Camel" :
             
@@ -720,11 +1110,33 @@ class Requirments {
             let mycurrentweight = Double(currentweight!) ?? 0
             final = 0.011 * mycurrentweight
             print("Camel result \(final)")
-            
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 60.0)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         self.reqArrayFinal.append(final)
     }
     func Potassium () {
@@ -744,6 +1156,31 @@ class Requirments {
                 final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            // Gain
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.6 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.5
+            final = final + final3
             
             
         case "Sheep/Goat" :
@@ -760,6 +1197,30 @@ class Requirments {
                 final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.8 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 21.4)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.2
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.4
+            final = final + final3
             
             
         case "Beef Cows" :
@@ -776,7 +1237,30 @@ class Requirments {
                 final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
-            
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.6 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.5
+            final = final + final3
             
         case "Buffalo" :
             
@@ -792,6 +1276,30 @@ class Requirments {
                 final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.6 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 44.2)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.5
+            final = final + final3
             
         case "Deer" :
             
@@ -807,6 +1315,30 @@ class Requirments {
                 final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.8 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 28.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.8
+            final = final + final3
             
         case "Camel" :
             
@@ -822,12 +1354,35 @@ class Requirments {
                 final = 0.07 * mycurrentweight
                 print("Lactation result : \(final)")
             }
-            
-            
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.6 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 60.0)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 1.5
+            final = final + final3
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(self.anionic == false) {
             final = DMI * 10
         }
@@ -851,6 +1406,31 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            // Gain
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.45
+            final = final + final3
             
             
         case "Sheep/Goat" :
@@ -867,6 +1447,30 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.9 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 21.4)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.45
+            final = final + final3
             
             
         case "Beef Cows" :
@@ -883,6 +1487,30 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.45
+            final = final + final3
             
             
         case "Buffalo" :
@@ -899,6 +1527,30 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 44.2)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.45
+            final = final + final3
             
         case "Deer" :
             
@@ -914,6 +1566,30 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.2 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 28.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.45
+            final = final + final3
             
         case "Camel" :
             
@@ -929,16 +1605,40 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
-            
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1.4 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 60.0)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1.3
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.45
+            final = final + final3
             
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(anionic == false) {
             final = DMI * 3
         } else {
-           final = final * 1.1
+            final = final * 1.1
         }
         self.reqArrayFinal.append(final)
     }
@@ -960,7 +1660,31 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
-            
+            // Gain
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         case "Sheep/Goat" :
             
@@ -976,6 +1700,30 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 0.7 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 21.4)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.4
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
             
         case "Beef Cows" :
@@ -993,6 +1741,30 @@ class Requirments {
                 print("Lactation result : \(final)")
             }
             
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 41.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
         case "Buffalo" :
             
@@ -1009,6 +1781,31 @@ class Requirments {
                 print("Lactation result : \(final)")
             }
             
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 44.2)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
+            
         case "Deer" :
             
             if (self.physiologicalState == "Lactating"){
@@ -1023,6 +1820,30 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 28.7)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 0.4
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.3
+            final = final + final3
             
         case "Camel" :
             
@@ -1038,12 +1859,36 @@ class Requirments {
                 final = 0.023 * mycurrentweight
                 print("Lactation result : \(final)")
             }
-            
+            let currentweight = self.currentBodyWeight
+            let mycurrentweight = Double(currentweight!) ?? 0
+            // Gain
+            let bwt = self.targetBodyWeight
+            let bwt1 = Double(bwt!) ?? 0
+            let dc = self.achieveTargetWeight
+            let dc1 = Double(dc!) ?? 0
+            let g = (bwt1 - mycurrentweight) / dc1
+            let final1 = 1 * g
+            final = final + final1
+            // Last Trimester        // calculte GPRO
+            let dp = self.daysPregnant
+            let dp1 = Double(dp!) ?? 0
+            let gpro = 100 * ((dp1 / 7) / 60.0)
+            var final2 = 0.0
+            if(gpro > 66.0) {
+                final2 = 1
+            }
+            final = final + final2
+            // Lactation
+            let mp = self.milkProduction
+            let mp1 = Double(mp!) ?? 0
+            let final3 : Double = mp1 * 0.15
+            final = final + final3
             
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(self.anionic == true) {
             final = DMI * 3
         }
@@ -1101,7 +1946,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
-        
+        print("Final Array \(final)")
         if(self.anionic == true) {
             final = DMI * 3.5
         }
@@ -1146,6 +1991,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         self.reqArrayFinal.append(final)
     }
     
@@ -1197,6 +2043,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         final = final * 1.2
         self.reqArrayFinal.append(final)
     }
@@ -1289,6 +2136,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         self.reqArrayFinal.append(final)
     }
     
@@ -1331,6 +2179,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         final = final * 1.1
         self.reqArrayFinal.append(final)
     }
@@ -1374,6 +2223,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         final = final * 1.1
         self.reqArrayFinal.append(final)
     }
@@ -1417,6 +2267,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(self.anionic == true) {
             final = 7
         } else if (metaBolic == true) {
@@ -1451,7 +2302,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -1476,7 +2327,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -1501,7 +2352,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Buffalo" :
@@ -1525,7 +2376,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Deer" :
@@ -1549,7 +2400,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
         case "Camel" :
             
@@ -1572,13 +2423,14 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         final = final * 1.5
         self.reqArrayFinal.append(final)
     }
@@ -1607,7 +2459,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -1632,7 +2484,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -1657,7 +2509,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Buffalo" :
@@ -1681,7 +2533,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Deer" :
@@ -1705,7 +2557,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
         case "Camel" :
             
@@ -1728,13 +2580,14 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         final = final * 1.2
         self.reqArrayFinal.append(final)
     }
@@ -1763,7 +2616,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -1788,7 +2641,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
@@ -1813,7 +2666,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Buffalo" :
@@ -1837,7 +2690,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
         case "Deer" :
@@ -1861,7 +2714,7 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
         case "Camel" :
             
@@ -1884,13 +2737,14 @@ class Requirments {
                 print("Dry Gestation result : \(final)")
             }
             else {
-                print("physiological is empty")
+                
             }
             
             
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(heatStress == true || anionic == true || metaBolic == true) {
             final = 1000
         } else {
@@ -1948,6 +2802,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(heatStress == true || anionic == true) {
             final = final * 1.5
         }
@@ -2003,6 +2858,7 @@ class Requirments {
         default:
             print("animal group not found")
         }
+        print("Final Array \(final)")
         if(self.physiologicalState == "Lactating") {
             final = 20
         }

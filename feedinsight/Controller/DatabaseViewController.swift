@@ -28,6 +28,7 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
             let name = productList[i].FeedName
             self.nameArray.append(name)
         }
+        nameArray = nameArray.sorted(by: <)
         nameArrayCopy = nameArray
         searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         userImage?.layer.cornerRadius = (userImage?.frame.size.width ?? 0.0) / 2
@@ -50,8 +51,14 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        filterContentForSearchText(searchText: textField.text!)
-        databaseTableView.reloadData()
+        if(textField.text == "") {
+            nameArrayCopy = nameArray
+            databaseTableView.reloadData()
+        } else {
+            filterContentForSearchText(searchText: textField.text!)
+            databaseTableView.reloadData()
+        }
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -63,6 +70,8 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func  textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+        nameArrayCopy = nameArray
+        databaseTableView.reloadData()
     }
     
     func filterContentForSearchText(searchText: String) {
@@ -117,12 +126,6 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }
-//        if cell.checkImage.image!.isEqual(UIImage(named: "animaluncheck")) {
-//
-//        } else {
-//
-//        }
-        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
