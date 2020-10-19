@@ -166,7 +166,7 @@ class EditPremixViewController: UIViewController {
                         }
                     }
                     if(validProduct == true) {
-                        
+                        self.showError("Already added in database.")
                     } else {
                         addedDataList.append(productList[0])
                         addedDataList[0].FeedName = FeedName.text!

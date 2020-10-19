@@ -31,6 +31,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     
     var documentID : String = ""
     var ReportName : String = ""
+    var fromStateVC : Bool = false
     @IBOutlet weak var userNameLabel: UILabel!
     var getNameData = [String]()
     var getValueData = [String]()
@@ -146,14 +147,22 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
        // addfeed.comparisonOptions = .
         addfeed.minCharactersNumberToStartFiltering = 1
     
-        for i in 0..<dropdownvalues.count {
-            for item in productList {
-                let name = item.FeedName
-                if(dropdownvalues[i] == name) {
-                    selectedProductList.append(item)
+        if(fromStateVC == true) {
+            fromStateVC = false
+            dropdownvalues.removeAll()
+            dropdownfloatValue.removeAll()
+            selectedProductList.removeAll()
+        } else {
+            for i in 0..<dropdownvalues.count {
+                for item in productList {
+                    let name = item.FeedName
+                    if(dropdownvalues[i] == name) {
+                        selectedProductList.append(item)
+                    }
                 }
             }
         }
+        
         if(dropdownvalues.count < 3) {
             let bounds = UIScreen.main.bounds
             let height = bounds.size.height
@@ -238,7 +247,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     
                 }
                 dmi = dmi / 100.0
-                //let requirments = Requirments()
                 Requirments.shared().DMI = dmi
                 Requirments.shared().finalProductList = selectedProductList
                 Requirments.shared().finalDropdownfloatValue = dropdownfloatValue
