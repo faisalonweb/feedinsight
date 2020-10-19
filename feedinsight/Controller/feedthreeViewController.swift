@@ -440,26 +440,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     @IBAction func addFeedButton(_ sender: Any) {
-        if addfeed.text == "" {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
-            vc?.screenName = "Add Feed"
-            self.navigationController?.pushViewController(vc!, animated: true)
-        } else {
-            let count = productList.count
-            for i in 0...count - 1 {
-                let name = productList[i].FeedName
-                if(addfeed.text == name) {
-                    currentIndex = i
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
-                    vc?.screenName = "Add Feed"
-                    vc?.screenType = "addNewFeed"
-                    self.navigationController?.pushViewController(vc!, animated: true)
-                
-                }
-            }
-        }
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+        vc?.screenName = "Add Feed"
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
     @IBAction func touchaddbtn(_ sender: Any) {
         if addfeed.text == "" {
             self.showError("Select dropdown value")
