@@ -45,8 +45,8 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
         profileImage?.layer.borderWidth = 3.0
         profileImage?.layer.borderColor = UIColor.white.cgColor
        
-        let combined = zip(FeedStuff, Mositure).sorted {$0 < $1}
-        nameArrayCopy = combined
+//        let combined = zip(FeedStuff, Mositure).sorted {$0 < $1}
+        nameArrayCopy = FeedStuff
         searchField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
