@@ -42,6 +42,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var plusbutton: UIButton!
+    @IBOutlet weak var RationScrollView: UIScrollView!
+    
     let defaults = UserDefaults(suiteName:"User")
     var checkStatus : Bool = false
     var currentTappedTextField : UITextField?
@@ -87,8 +89,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+            if self.RationScrollView.frame.origin.y == 0 {
+                self.RationScrollView.frame.origin.y -= keyboardSize.height
+            } else {
+                let y = -(self.RationScrollView.frame.origin.y + keyboardSize.height)
+                self.RationScrollView.frame.origin.y = y
             }
         }
     }
