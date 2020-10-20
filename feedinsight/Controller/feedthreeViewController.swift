@@ -84,12 +84,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         } catch {}
     }
     @objc func keyboardWillShow(notification: NSNotification) {
-        if(currentTappedTextField != addfeed){
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
-                   
-                }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
             }
         }
     }
@@ -120,8 +117,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     override func viewDidLoad() {
         self.dismissKey()
         addfeed.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         super.viewDidLoad()
@@ -138,6 +133,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getData()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         addfeed.maxNumberOfResults = 5
         addfeed.theme.font = UIFont.systemFont(ofSize: 14)
         addfeed.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)

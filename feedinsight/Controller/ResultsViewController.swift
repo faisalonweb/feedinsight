@@ -150,6 +150,17 @@ extension ResultsViewController: UITableViewDelegate , UITableViewDataSource{
             cell?.ADF.text = ADF[indexPath.row]
             cell?.NDF.text = NDF[indexPath.row]
             cell?.Search.text = Starch[indexPath.row]
+            cell?.layer.cornerRadius = 10
+            cell?.backgroundColor = UIColor.white
+            cell?.feedName.textColor = UIColor.black
+            cell?.moisture.textColor = UIColor.black
+            cell?.CP.textColor = UIColor.black
+            cell?.Fat.textColor = UIColor.black
+            cell?.Ash.textColor = UIColor.black
+            cell?.CF.textColor = UIColor.black
+            cell?.ADF.textColor = UIColor.black
+            cell?.NDF.textColor = UIColor.black
+            cell?.Search.textColor = UIColor.black
         }
         
         
