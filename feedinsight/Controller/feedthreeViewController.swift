@@ -42,6 +42,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var plusbutton: UIButton!
+    @IBOutlet weak var RationScrollView: UIScrollView!
+    
     let defaults = UserDefaults(suiteName:"User")
     var checkStatus : Bool = false
     var currentTappedTextField : UITextField?
@@ -74,8 +76,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         do{
             let jsonData = try Data(contentsOf: pathName)
             let decoder = JSONDecoder()
+            productList.removeAll()
             productList = try decoder.decode([Person].self, from: jsonData)
             let count = productList.count
+            nameArray.removeAll()
             for i in 0...count - 1 {
                 let name = productList[i].FeedName
                 nameArray.append(name)
@@ -85,10 +89,11 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            // Logic
-            
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+            if self.RationScrollView.frame.origin.y == 0 {
+                self.RationScrollView.frame.origin.y -= keyboardSize.height
+            } else {
+                let y = -(self.RationScrollView.frame.origin.y + keyboardSize.height)
+                self.RationScrollView.frame.origin.y = y
             }
         }
     }
@@ -448,7 +453,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     @IBAction func addFeedButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
-        vc?.screenName = "Add Feed"
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
