@@ -118,7 +118,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     
     
     var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
-    let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
+    let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","VA","VD","VE","N","B"]
     
     @objc func addNewGuageView(_ notification: Notification) {
         self.addGaugeView()
@@ -295,18 +295,37 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     func setChart(dataPoints: [String], values: [Double]) {
         barchartview.noDataText = "You need to provide data for the chart."
-        //barchartview.xAxis.setLabelCount(18, force: true)
-        //barchartview.xAxis.valueFormatter = IndexAxisValueFormatter(values: players)
-        barchartview.xAxis.granularity = 0.5
-        barchartview.xAxis.labelPosition = .bottom
-        barchartview.xAxis.drawGridLinesEnabled = false
+        
+        barchartview.xAxis.setLabelCount(18, force: true)
+        barchartview.xAxis.valueFormatter = IndexAxisValueFormatter(values: players)
+        barchartview.xAxis.labelPosition = .bottomInside
+        
         barchartview.leftAxis.enabled = false
-        barchartview.rightAxis.granularity = 0.5
-        barchartview.rightAxis.axisMinimum = 0.0
+        barchartview.rightAxis.enabled = true
+        
+        barchartview.rightAxis.granularity = 1
+        barchartview.xAxis.granularity = 1
+        
+        
         guard let description = barchartview.chartDescription else {return}
         description.text = ""
         barchartview.leftAxis.drawGridLinesEnabled = false
         barchartview.xAxis.drawGridLinesEnabled = false
+        
+        let xAxis:XAxis = barchartview.xAxis
+        xAxis.drawAxisLineEnabled = false
+        xAxis.drawGridLinesEnabled = false
+        
+        let limitLine = ChartLimitLine(limit: 100, label: "")
+        limitLine.lineColor = UIColor.green.withAlphaComponent(0.5)
+        limitLine.lineWidth = 4
+        barchartview.rightAxis.addLimitLine(limitLine)
+        
+        barchartview.leftAxis.drawZeroLineEnabled = false
+        barchartview.rightAxis.drawZeroLineEnabled = false
+        
+        barchartview.rightAxis.axisMinimum = 0
+        barchartview.rightAxis.axisMaximum = 150
         
         if(fromDatabase == "yes") {
             let entry1 = BarChartDataEntry(x: 0, yValues: [ rationArray[0],

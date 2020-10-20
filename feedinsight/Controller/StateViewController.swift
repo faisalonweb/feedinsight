@@ -107,6 +107,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         textField.layer.cornerRadius = 5
         textField.clipsToBounds = true
     }
+
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -129,6 +130,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         setBorderDarkGray(daysinMilkF)
         setBorderDarkGray(milkInProducitonF)
         setBorderDarkGray(daysPregnantF)
+        
         if (name == "Deer" || name == "Sheep/Goat") {
             producitonOutlet.isHidden = false
             woolHairLabel.isHidden = false
@@ -185,10 +187,13 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         proimage?.layer.borderColor = UIColor.white.cgColor
         PsychField.optionArray = ["Lactating", "Growing", "Dry-Gestating"]
         PsychField.optionIds = [20,13,24,36]
+        PsychField.listWillAppear {
+            self.view.endEditing(true)
+        }
         PsychField.didSelect{(selectedText , index ,id) in
-            
             print("Selected String: \(selectedText) \n index: \(index)")
         }
+        PsychField.rowHeight = 40
         PsychField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         PsychField.isSearchEnable = false
     }
@@ -266,8 +271,6 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         let vc = storyboard?.instantiateViewController(withIdentifier: "loadProfileAnimalsViewController") as? loadProfileAnimalsViewController
         self.navigationController?.pushViewController(vc!, animated: true)
         
-        //        let vc = storyboard?.instantiateViewController(withIdentifier: "profileLoadID") as? ProfileLoadViewController
-        //        self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func productionToggleTap(_ sender: UIButton) {
         
