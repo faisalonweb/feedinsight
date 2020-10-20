@@ -496,14 +496,15 @@ class Requirments {
             let g = (bwt1 - mycurrentweight) / dc1
             let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
             final = final + final1
-            // Last Trimester        // calculte GPRO
+            // Last Trimester        // calculte 1GPRO
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 41.7)
-            let final2 = 0.0
+            var final2 = 0.0
             let WBC = 41.7 - (dp1 / 7)
             if(gpro > 66.0) {
-                //final2 = 7.38/(1+EXP(19.1-5.46*(40-WBC))
+                let a : Double = (19.1-5.46*(40-WBC))
+                final2 = 7.38/(1 + 2.718 ^^ a)
             }
             final = final + final2
             // Lactation
@@ -525,7 +526,7 @@ class Requirments {
             let g = (bwt1 - mycurrentweight) / dc1
             let final1 = (1.2 + (3.19 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28)) * g
             final = final + final1
-            // Last Trimester // calculte GPRO
+            // Last Trimester // calculte 1GPRO
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 21.4)
@@ -558,10 +559,11 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 41.7)
-            let final2 : Double = 0.0
+            let WBC = 41.7 - (dp1 / 7)
+            var final2 : Double = 0.0
             if(gpro > 66.0) {
-                //final2 = 0.9
-                //=if(GPRO>66, if(AT="Beef Cow",7.38/(1+EXP(19.1-5.46*(40-WBC))),""),"")
+                let a : Double = 19.1-5.46*(40-WBC)
+                final2 = 7.38/(1 + 2.718 ^^ a)
             }
             final = final + final2
             // Lactation
@@ -589,11 +591,14 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 44.2)
-            let final2 = 0.0
-            let WBC = 41.7 - (dp1 / 7)
+            var final2 = 0.0
+            let WBC = 44.2 - (dp1 / 7)
             if(gpro > 66.0) {
+                let a : Double = (19.1-5.46*(40-WBC))
+                final2 = 7.38/(1 + 2.718 ^^ a)
                 //final2 = =if(GPRO>66, if(AT="Buffalo",7.38/(1+EXP(19.1-5.46*(40-WBC))),""),"")
             }
+            
             final = final + final2
             // Lactation
             let mp = self.milkProduction
@@ -648,9 +653,11 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 60.0)
-            let final2 = 0.0
-            let WBC = 41.7 - (dp1 / 7)
+            var final2 = 0.0
+            let WBC = 60.0 - (dp1 / 7)
             if(gpro > 66.0) {
+                let a : Double = (19.1-5.46*(40-WBC))
+                final2 = 7.38/(1 + 2.718 ^^ a)
                 //final2 = =if(GPRO>66, if(AT="Camel",7.38/(1+EXP(19.1-5.46*(40-WBC))),""),"")
             }
             final = final + final2
@@ -703,9 +710,11 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 41.7)
-            let final2 = 0.0
+            var final2 = 0.0
             let WBC = 41.7 - (dp1 / 7)
             if(gpro > 66.0) {
+                let a : Double = (18.8-5.03*(40-WBC))
+                final2 = 23.5/(1 + 2.718 ^^ a)
                 // final 2 = =if(GPRO>66, if(AT="Dairy Cow",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
             final = final + final2
@@ -798,8 +807,11 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 41.7)
-            let final2 : Double = 0.0
+            var final2 : Double = 0.0
+            let WBC = 41.7 - (dp1 / 7)
             if(gpro > 66.0) {
+                let a : Double = (18.8-5.03*(40-WBC))
+                final2 = 23.5/(1 + 2.718 ^^ a)
                 //final2 = 0.9
                 //=if(GPRO>66, if(AT="Beef Cow",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
@@ -846,9 +858,11 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 44.2)
-            let final2 = 0.0
-            let WBC = 41.7 - (dp1 / 7)
+            var final2 = 0.0
+            let WBC = 44.2 - (dp1 / 7)
             if(gpro > 66.0) {
+                let a : Double = (18.8-5.03*(40-WBC))
+                final2 = 23.5/(1 + 2.718 ^^ a)
                 //final2 = =if(GPRO>66, if(AT="Buffalo",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
             final = final + final2
@@ -939,9 +953,11 @@ class Requirments {
             let dp = self.daysPregnant
             let dp1 = Double(dp!) ?? 0
             let gpro = 100 * ((dp1 / 7) / 60.0)
-            let final2 = 0.0
-            let WBC = 41.7 - (dp1 / 7)
+            var final2 = 0.0
+            let WBC = 60.0 - (dp1 / 7)
             if(gpro > 66.0) {
+                let a : Double = (18.8-5.03*(40-WBC))
+                final2 = 23.5/(1 + 2.718 ^^ a)
                 //final2 = =if(GPRO>66, if(AT="Camel",23.5/(1+EXP(18.8-5.03*(40-WBC))),""),"")
             }
             final = final + final2
@@ -1383,9 +1399,9 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(self.anionic == false) {
-            final = DMI * 10
-        }
+//        if(self.anionic == false) {
+//            final = DMI * 10
+//        }
         self.reqArrayFinal.append(final)
     }
     
@@ -1635,11 +1651,11 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(anionic == false) {
-            final = DMI * 3
-        } else {
-            final = final * 1.1
-        }
+//        if(anionic == false) {
+//            final = DMI * 3
+//        } else {
+//            final = final * 1.1
+//        }
         self.reqArrayFinal.append(final)
     }
     
@@ -1889,9 +1905,9 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(self.anionic == true) {
-            final = DMI * 3
-        }
+//        if(self.anionic == true) {
+//            final = DMI * 3
+//        }
         self.reqArrayFinal.append(final)
     }
     
@@ -1947,9 +1963,9 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(self.anionic == true) {
-            final = DMI * 3.5
-        }
+//        if(self.anionic == true) {
+//            final = DMI * 3.5
+//        }
         self.reqArrayFinal.append(final)
     }
     func Cobalt () {
@@ -2044,7 +2060,7 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        final = final * 1.2
+        //final = final * 1.2
         self.reqArrayFinal.append(final)
     }
     
@@ -2180,7 +2196,7 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        final = final * 1.1
+        //final = final * 1.1
         self.reqArrayFinal.append(final)
     }
     
@@ -2224,7 +2240,7 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        final = final * 1.1
+        //final = final * 1.1
         self.reqArrayFinal.append(final)
     }
     
@@ -2268,13 +2284,13 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(self.anionic == true) {
-            final = 7
-        } else if (metaBolic == true) {
-            final = final * 1.4
-        } else {
-            final = final * 1.3
-        }
+//        if(self.anionic == true) {
+//            final = 7
+//        } else if (metaBolic == true) {
+//            final = final * 1.4
+//        } else {
+//            final = final * 1.3
+//        }
         
         self.reqArrayFinal.append(final)
     }
@@ -2431,7 +2447,7 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        final = final * 1.5
+        //final = final * 1.5
         self.reqArrayFinal.append(final)
     }
     
@@ -2588,7 +2604,7 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        final = final * 1.2
+        //final = final * 1.2
         self.reqArrayFinal.append(final)
     }
     
@@ -2745,11 +2761,11 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(heatStress == true || anionic == true || metaBolic == true) {
-            final = 1000
-        } else {
-            final = final * 1.2
-        }
+//        if(heatStress == true || anionic == true || metaBolic == true) {
+//            final = 1000
+//        } else {
+//            final = final * 1.2
+//        }
         self.reqArrayFinal.append(final)
     }
     
@@ -2803,9 +2819,9 @@ class Requirments {
             print("animal group not found")
         }
         print("Final Array \(final)")
-        if(heatStress == true || anionic == true) {
-            final = final * 1.5
-        }
+//        if(heatStress == true || anionic == true) {
+//            final = final * 1.5
+//        }
         self.reqArrayFinal.append(final)
     }
     
@@ -2858,10 +2874,10 @@ class Requirments {
         default:
             print("animal group not found")
         }
-        print("Final Array \(final)")
-        if(self.physiologicalState == "Lactating") {
-            final = 20
-        }
+//        print("Final Array \(final)")
+//        if(self.physiologicalState == "Lactating") {
+//            final = 20
+//        }
         self.reqArrayFinal.append(final)
     }
     
