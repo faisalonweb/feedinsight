@@ -44,8 +44,6 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
         profileImage?.clipsToBounds = true
         profileImage?.layer.borderWidth = 3.0
         profileImage?.layer.borderColor = UIColor.white.cgColor
-       
-//        let combined = zip(FeedStuff, Mositure).sorted {$0 < $1}
         nameArrayCopy = FeedStuff
         searchField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         if let userName = defaults!.value(forKey: "usernameStringKey"){
@@ -58,12 +56,10 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
                 self?.profileImage.image = UIImage(data: data!)
             }
         }
-        
         if(pdfType == "pdf1") {
             if let pdf = Bundle.main.url(forResource: "pdf1", withExtension: "pdf", subdirectory: nil, localization: nil)  {
                 let req = NSURLRequest(url: pdf)
                 webView.load(req as URLRequest)
-                
                 samplepdfview.alpha = 0
                 searchField.alpha = 0
             }
