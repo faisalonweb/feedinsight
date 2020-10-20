@@ -74,8 +74,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         do{
             let jsonData = try Data(contentsOf: pathName)
             let decoder = JSONDecoder()
+            productList.removeAll()
             productList = try decoder.decode([Person].self, from: jsonData)
             let count = productList.count
+            nameArray.removeAll()
             for i in 0...count - 1 {
                 let name = productList[i].FeedName
                 nameArray.append(name)
@@ -446,7 +448,6 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     @IBAction func addFeedButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
-        vc?.screenName = "Add Feed"
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

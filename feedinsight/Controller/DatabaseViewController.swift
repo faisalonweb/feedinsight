@@ -19,17 +19,47 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     var nameArray: [String] = []
     var nameArrayCopy: [String] = []
     let defaults = UserDefaults(suiteName:"User")
+    
+    func getData() {
+        do {
+            let documentDirectory = try fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            subUrl = documentDirectory.appendingPathComponent("Athletes.json")
+            loadFile(mainPath: mainUrl!, subPath: subUrl!)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadFile(mainPath: URL, subPath: URL){
+        if fm.fileExists(atPath: subPath.path){
+            decodeData(pathName: subPath)
+            if nameArray.count == 0{
+                decodeData(pathName: mainPath)
+            }
+        }else{
+            decodeData(pathName: mainPath)
+        }
+    }
+    
+    func decodeData(pathName: URL){
+        do{
+            let jsonData = try Data(contentsOf: pathName)
+            let decoder = JSONDecoder()
+            productList.removeAll()
+            productList = try decoder.decode([Person].self, from: jsonData)
+            let count = productList.count
+            nameArray.removeAll()
+            for i in 0...count - 1 {
+                let name = productList[i].FeedName
+                nameArray.append(name)
+            }
+        } catch {}
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        let count = productList.count
-        for i in 0...count - 1 {
-            let name = productList[i].FeedName
-            self.nameArray.append(name)
-        }
-        nameArray = nameArray.sorted(by: <)
-        nameArrayCopy = nameArray
         searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         userImage?.layer.cornerRadius = (userImage?.frame.size.width ?? 0.0) / 2
         userImage?.clipsToBounds = true
@@ -38,6 +68,10 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getData()
+        nameArray = nameArray.sorted(by: <)
+        nameArrayCopy = nameArray
+        databaseTableView.reloadData()
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userName.text = userName as? String
             print(userName)
