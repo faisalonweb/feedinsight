@@ -104,6 +104,26 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     @IBOutlet weak var l17: UILabel!
     @IBOutlet weak var l18: UILabel!
 
+    @IBOutlet weak var pV1: UIView!
+    @IBOutlet weak var pv2: UIView!
+    @IBOutlet weak var pv3: UIView!
+    @IBOutlet weak var pv4: UIView!
+    @IBOutlet weak var pv5: UIView!
+    @IBOutlet weak var pv6: UIView!
+    @IBOutlet weak var pv7: UIView!
+    @IBOutlet weak var pv8: UIView!
+    @IBOutlet weak var pv9: UIView!
+    @IBOutlet weak var pv10: UIView!
+    @IBOutlet weak var pv11: UIView!
+    @IBOutlet weak var pv12: UIView!
+    @IBOutlet weak var pv13: UIView!
+    @IBOutlet weak var pv14: UIView!
+    @IBOutlet weak var pv15: UIView!
+    @IBOutlet weak var pv16: UIView!
+    @IBOutlet weak var pv17: UIView!
+    @IBOutlet weak var pv18: UIView!
+    
+    
     let defaults = UserDefaults(suiteName:"User")
     var reportName : String = ""
     var reportDate : String = ""
@@ -189,9 +209,62 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         v18.layer.cornerRadius = 0.5 * v18.bounds.size.height
         v18.clipsToBounds = true
         
+        pV1.layer.masksToBounds = true
+        pV1.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv2.layer.masksToBounds = true
+        pv2.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv3.layer.masksToBounds = true
+        pv3.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv4.layer.masksToBounds = true
+        pv4.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv5.layer.masksToBounds = true
+        pv5.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv6.layer.masksToBounds = true
+        pv6.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv7.layer.masksToBounds = true
+        pv7.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv8.layer.masksToBounds = true
+        pv8.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv9.layer.masksToBounds = true
+        pv9.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv10.layer.masksToBounds = true
+        pv10.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv11.layer.masksToBounds = true
+        pv11.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv12.layer.masksToBounds = true
+        pv12.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv13.layer.masksToBounds = true
+        pv13.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv14.layer.masksToBounds = true
+        pv14.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv15.layer.masksToBounds = true
+        pv15.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv16.layer.masksToBounds = true
+        pv16.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv17.layer.masksToBounds = true
+        pv17.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
+        pv18.layer.masksToBounds = true
+        pv18.roundCorners(corners: [.topLeft,.topRight], radius: 3)
+        
         g1.layer.masksToBounds = true
         g1.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g1.bounds.size.height)
-        
         g2.layer.masksToBounds = true
         g2.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g2.bounds.size.height)
         g3.layer.masksToBounds = true
@@ -450,8 +523,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value = value * 100
         var xValue : Double = 0.0
         if(value > 92.0) {
-//            value = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value
         }
@@ -460,7 +532,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame.origin.x = CGFloat(xValue)
         l1.frame = frame
         l1.text = String(value)
-        v1.addDashedBorder(xValue: xValue)
+        //v1.addDashedBorder(xValue: xValue)
+        var framepV1 : CGRect = pV1.frame
+        framepV1.origin.x = CGFloat(xValue)
+        pV1.frame = framepV1
+        let pg = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pV1.addSubview(pg)
         // Ca
         // 0 , 500
         var value1 : Double = percentageArray[1]
@@ -469,7 +546,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         
         if(value1 > 92.0) {
 //            value1 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value1
         }
@@ -478,7 +555,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame1.origin.x = CGFloat(xValue)
         l2.frame = frame1
         l2.text = String(value1)
-        v2.addDashedBorder(xValue: xValue)
+        //v2.addDashedBorder(xValue: xValue)
+        var framepV2 : CGRect = pv2.frame
+        framepV2.origin.x = CGFloat(xValue)
+        pv2.frame = framepV2
+        let pg2 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv2.addSubview(pg2)
         // Mg
         // 0 , 1375
         var value2 : Double = percentageArray[2]
@@ -486,7 +568,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value2 = value2 * 100
         if(value2 > 92.0) {
 //            value2 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value2
         }
@@ -495,7 +577,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame2.origin.x = CGFloat(xValue)
         l3.frame = frame2
         l3.text = String(value2)
-        v3.addDashedBorder(xValue: xValue)
+        //v3.addDashedBorder(xValue: xValue)
+        var framepV3 : CGRect = pv3.frame
+        framepV3.origin.x = CGFloat(xValue)
+        pv3.frame = framepV3
+        let pg3 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv3.addSubview(pg3)
         // Potassium
         // 0 , 400
         var value3 : Double = percentageArray[3]
@@ -503,7 +590,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value3 = value3 * 100
         if(value3 > 92.0) {
 //            value3 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value3
         }
@@ -512,7 +599,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame3.origin.x = CGFloat(xValue)
         l4.frame = frame3
         l4.text = String(value3)
-        v4.addDashedBorder(xValue: xValue)
+        //v4.addDashedBorder(xValue: xValue)
+        var framepV4 : CGRect = pv4.frame
+        framepV4.origin.x = CGFloat(xValue)
+        pv4.frame = framepV4
+        let pg4 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv4.addSubview(pg4)
         // Sodium
         // 0 , 500
         var value4 : Double = percentageArray[4]
@@ -520,7 +612,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value4 = value4 * 100
         if(value4 > 92.0) {
 //            value4 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value4
         }
@@ -529,7 +621,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame4.origin.x = CGFloat(xValue)
         l5.frame = frame4
         l5.text = String(value4)
-        v5.addDashedBorder(xValue: xValue)
+        //v5.addDashedBorder(xValue: xValue)
+        var framepV5 : CGRect = pv5.frame
+        framepV5.origin.x = CGFloat(xValue)
+        pv5.frame = framepV5
+        let pg5 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv5.addSubview(pg5)
         // Chloride
         // 0 , 1625
         var value5 : Double = percentageArray[5]
@@ -537,7 +634,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value5 = value5 * 100
         if(value5 > 92.0) {
 //            value5 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value5
         }
@@ -546,7 +643,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame5.origin.x = CGFloat(xValue)
         l6.frame = frame5
         l6.text = String(value5)
-        v6.addDashedBorder(xValue: xValue)
+        //v6.addDashedBorder(xValue: xValue)
+        var framepV6 : CGRect = pv6.frame
+        framepV6.origin.x = CGFloat(xValue)
+        pv6.frame = framepV6
+        let pg6 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv6.addSubview(pg6)
         // Sulfur
         // 0 , 200
         var value6 : Double = percentageArray[6]
@@ -554,7 +656,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value6 = value6 * 100
         if(value6 > 92.0) {
 //            value6 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value6
         }
@@ -563,7 +665,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame6.origin.x = CGFloat(xValue)
         l7.frame = frame6
         l7.text = String(value6)
-        v7.addDashedBorder(xValue: xValue)
+        //v7.addDashedBorder(xValue: xValue)
+        var framepV7 : CGRect = pv7.frame
+        framepV7.origin.x = CGFloat(xValue)
+        pv7.frame = framepV7
+        let pg7 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv7.addSubview(pg7)
         // Zinc
         // 0 , 1125
         var value7 : Double = percentageArray[7]
@@ -571,7 +678,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value7 = value7 * 100
         if(value7 > 92.0) {
 //            value7 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value7
         }
@@ -580,7 +687,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame7.origin.x = CGFloat(xValue)
         l8.frame = frame7
         l8.text = String(value7)
-        v8.addDashedBorder(xValue: xValue)
+        //v8.addDashedBorder(xValue: xValue)
+        var framepV8 : CGRect = pv8.frame
+        framepV8.origin.x = CGFloat(xValue)
+        pv8.frame = framepV8
+        let pg8 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv8.addSubview(pg8)
         // Manganese
         // 0 , 3750
         var value8 : Double = percentageArray[8]
@@ -588,7 +700,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value8 = value8 * 100
         if(value8 > 92.0) {
 //            value8 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value8
         }
@@ -597,7 +709,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame8.origin.x = CGFloat(xValue)
         l9.frame = frame8
         l9.text = String(value8)
-        v9.addDashedBorder(xValue: xValue)
+        //v9.addDashedBorder(xValue: xValue)
+        var framepV9 : CGRect = pv2.frame
+        framepV9.origin.x = CGFloat(xValue)
+        pv9.frame = framepV9
+        let pg9 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv9.addSubview(pg9)
         // Copper
         // 0 , 375
         var value9 : Double = percentageArray[9]
@@ -605,7 +722,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
 //        value9 = value9 * 100
         if(value9 > 92.0) {
             value9 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value9
         }
@@ -614,7 +731,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame9.origin.x = CGFloat(xValue)
         l10.frame = frame9
         l10.text = String(value9)
-        v10.addDashedBorder(xValue: xValue)
+        //v10.addDashedBorder(xValue: xValue)
+        var framepV10 : CGRect = pv10.frame
+        framepV10.origin.x = CGFloat(xValue)
+        pv10.frame = framepV10
+        let pg10 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv10.addSubview(pg10)
         // Selenium
         // 0 , 1750
         var value10 : Double = percentageArray[10]
@@ -622,7 +744,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
 //        value10 = value10 * 100
         if(value10 > 92.0) {
             value10 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value10
         }
@@ -631,7 +753,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame10.origin.x = CGFloat(xValue)
         l11.frame = frame10
         l11.text = String(value10)
-        v11.addDashedBorder(xValue: xValue)
+        //v11.addDashedBorder(xValue: xValue)
+        var framepV11 : CGRect = pv11.frame
+        framepV11.origin.x = CGFloat(xValue)
+        pv11.frame = framepV11
+        let pg11 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv11.addSubview(pg11)
         // Cobalt
         // 0 , 3750
         var value11 : Double = percentageArray[11]
@@ -639,7 +766,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value11 = value11 * 100
         if(value11 > 92.0) {
 //            value11 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value11
         }
@@ -648,7 +775,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame11.origin.x = CGFloat(xValue)
         l12.frame = frame11
         l12.text = String(value11)
-        v12.addDashedBorder(xValue: xValue)
+        //v12.addDashedBorder(xValue: xValue)
+        var framepV12 : CGRect = pv12.frame
+        framepV12.origin.x = CGFloat(xValue)
+        pv12.frame = framepV12
+        let pg12 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv12.addSubview(pg12)
         // Iodine
         // 0 , 1000
         var value12 : Double = percentageArray[12]
@@ -656,7 +788,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value12 = value12 * 100
         if(value12 > 92.0) {
 //            value12 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value12
         }
@@ -665,7 +797,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame12.origin.x = CGFloat(xValue)
         l13.frame = frame12
         l13.text = String(value12)
-        v13.addDashedBorder(xValue: xValue)
+        //v13.addDashedBorder(xValue: xValue)
+        var framepV13 : CGRect = pv13.frame
+        framepV13.origin.x = CGFloat(xValue)
+        pv13.frame = framepV13
+        let pg13 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv13.addSubview(pg13)
         // Vitamin E
         // 0 , 200
         var value13 : Double = percentageArray[13]
@@ -673,7 +810,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value13 = value13 * 100
         if(value13 > 92.0) {
 //            value13 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value13
         }
@@ -682,7 +819,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame13.origin.x = CGFloat(xValue)
         l14.frame = frame13
         l14.text = String(value13)
-        v14.addDashedBorder(xValue: xValue)
+//        v14.addDashedBorder(xValue: xValue)
+        var framepV14 : CGRect = pv14.frame
+        framepV14.origin.x = CGFloat(xValue)
+        pv14.frame = framepV14
+        let pg14 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv14.addSubview(pg14)
         // Vitamin D
         // 0 , 225
         var value14 : Double = percentageArray[14]
@@ -690,7 +832,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value14 = value14 * 100
         if(value14 > 92.0) {
 //            value14 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value14
         }
@@ -699,7 +841,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame14.origin.x = CGFloat(xValue)
         l15.frame = frame14
         l15.text = String(value14)
-        v15.addDashedBorder(xValue: xValue)
+        //v15.addDashedBorder(xValue: xValue)
+        var framepV15 : CGRect = pv15.frame
+        framepV15.origin.x = CGFloat(xValue)
+        pv15.frame = framepV15
+        let pg15 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv15.addSubview(pg15)
         // Vitamin A
         // 0 , 1950
         var value15 : Double = percentageArray[15]
@@ -707,7 +854,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         value15 = value15 * 100
         if(value15 > 92.0) {
 //            value15 = 105.0
-            xValue = 275
+            xValue = 270
         } else {
             xValue = 3 * value15
         }
@@ -716,48 +863,44 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         frame15.origin.x = CGFloat(xValue)
         l16.frame = frame15
         l16.text = String(value15)
-        v16.addDashedBorder(xValue: xValue)
+        //v16.addDashedBorder(xValue: xValue)
+        var framepV16 : CGRect = pv16.frame
+        framepV16.origin.x = CGFloat(xValue)
+        pv16.frame = framepV16
+        let pg16 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv16.addSubview(pg16)
+        
         var frame16 : CGRect = l17.frame
-        frame16.origin.x = CGFloat(xValue)
+        frame16.origin.x = CGFloat(45.0)
         l17.frame = frame16
         xValue = xValue.roundToDecimal(1)
-        l17.text = String(xValue)
-        v17.addDashedBorder(xValue: xValue)
+        l17.text = "45.0"
+        //v17.addDashedBorder(xValue: xValue)
+        var framepV17 : CGRect = pv17.frame
+        framepV17.origin.x = CGFloat(45.0)
+        pv17.frame = framepV17
+        let pg17 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv17.addSubview(pg17)
         var frame17 : CGRect = l18.frame
-        frame17.origin.x = CGFloat(xValue)
+        frame17.origin.x = CGFloat(60.0)
         l18.frame = frame17
-        l18.text = String(xValue)
-        v18.addDashedBorder(xValue: xValue)
+        l18.text = "60.0"
+        //v18.addDashedBorder(xValue: xValue)
+        var framepV18 : CGRect = pv18.frame
+        framepV18.origin.x = CGFloat(60.0)
+        pv18.frame = framepV18
+        let pg18 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv18.addSubview(pg18)
     }
     
     
 }
 
-extension UIView
-{
+extension UIView {
     func roundCorners(corners:UIRectCorner, radius: CGFloat) {
         let maskLayer = CAShapeLayer()
         maskLayer.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius)).cgPath
         self.layer.mask = maskLayer
-    }
-    
-    func addDashedBorder(xValue: Double, color: UIColor = UIColor.black) {
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = color.cgColor
-        shapeLayer.lineWidth = 2
-        shapeLayer.lineDashPattern = [2,3]
-        
-        let path = CGMutablePath()
-        if(xValue >= 4.0) {
-            path.addLines(between: [CGPoint(x: xValue, y: -10),
-                                    CGPoint(x: xValue, y: 60)])
-        } else {
-            path.addLines(between: [CGPoint(x: 5, y: -10),
-                                    CGPoint(x: 5, y: 60)])
-        }
-        
-        shapeLayer.path = path
-        layer.addSublayer(shapeLayer)
     }
 }
 
