@@ -125,7 +125,7 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
             var screenHeight2:CGFloat=0
             screenHeight2 = UIScreen.main.bounds.width
             
-            getScreenSize()     ///yeh galta hota h
+            getScreenSize()
             if(screenHeight2 == portait)
             {
                 let itemSize = UIScreen.main.bounds.width/4 - 2
