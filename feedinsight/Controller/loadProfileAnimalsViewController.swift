@@ -61,12 +61,12 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
-        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
-          let gestureRecognizer = UIPanGestureRecognizer()
-          gestureRecognizer.setValue(targets, forKey: "targets")
-          self.view.addGestureRecognizer(gestureRecognizer)
-        }
+//        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+//        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+//          let gestureRecognizer = UIPanGestureRecognizer()
+//          gestureRecognizer.setValue(targets, forKey: "targets")
+//          self.view.addGestureRecognizer(gestureRecognizer)
+//        }
         //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.clipsToBounds = true
@@ -134,9 +134,10 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
                 self.disorderstate.append(contentsOf: self.datathirteenstation)
                 self.heatstate.append(contentsOf: self.datafourteenstation)
                 self.productionstate.append(contentsOf: self.datafifteenstation)
+                self.tblView.refreshControl?.endRefreshing()
                 self.tblView.reloadData()
                 print(self.productionstate)
-                self.tblView.refreshControl?.endRefreshing()
+                
             }
             else {
                 self.tblView.refreshControl?.endRefreshing()

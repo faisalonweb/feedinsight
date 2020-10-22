@@ -65,6 +65,7 @@ class ReportViewController: UIViewController {
         profileImage?.layer.borderColor = UIColor.white.cgColor
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.beginRefreshing()
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Firestore.firestore().collection("pdfReports").document(Auth.auth().currentUser?.uid ?? "").collection("pdfReports").getDocuments{(snapshot,error) in
             
             if error == nil && snapshot != nil {
