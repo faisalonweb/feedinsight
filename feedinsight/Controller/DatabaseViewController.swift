@@ -82,10 +82,12 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
             self.userName.text = userName as? String
             print(userName)
         }
-        DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+            let data = self.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
-                self?.userImage.image = UIImage(data: data!)
+                self.userImage.image = UIImage(data: data!)
+            }
             }
         }
     }

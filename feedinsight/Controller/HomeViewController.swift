@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreXLSX
 import GoogleMobileAds
 import Foundation
 

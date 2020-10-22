@@ -56,10 +56,12 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
             self.userNameLabel.text = userName as? String
             print(userName)
         }
-        DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+            let data = self.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
-                self?.profileImage.image = UIImage(data: data!)
+                self.profileImage.image = UIImage(data: data!)
+            }
             }
         }
         if(pdfType == "pdf1") {

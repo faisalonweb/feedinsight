@@ -21,7 +21,6 @@ target 'FeedInsight' do
   pod 'Charts'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
-  pod 'CoreXLSX'
   pod "SearchTextField"
   pod 'Google-Mobile-Ads-SDK'
   pod 'RSKImageCropper'

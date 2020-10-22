@@ -133,10 +133,10 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
                 self.productionstate.append(contentsOf: self.datafifteenstation)
                 self.tblView.reloadData()
                 print(self.productionstate)
-                
                 self.tblView.refreshControl?.endRefreshing()
             }
             else {
+                self.tblView.refreshControl?.endRefreshing()
                 print("pakis")
             }
         }
@@ -146,10 +146,12 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
             self.userNameLabel.text = userName as? String
             print(userName)
         }
-        DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+            let data = self.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
-                self?.profileimage.image = UIImage(data: data!)
+                self.profileimage.image = UIImage(data: data!)
+            }
             }
         }
     }

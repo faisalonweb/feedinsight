@@ -15,7 +15,7 @@ import CountryPickerView
 import SVProgressHUD
 import SearchTextField
 import SwiftMessages
-class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
+class userSignupViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
     @IBOutlet weak var pickani: UIButton!
@@ -149,6 +149,13 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     override func viewDidLoad() {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
         self.dismissKey()
         self.pickrole.delegate = self
         self.userpassword.delegate = self

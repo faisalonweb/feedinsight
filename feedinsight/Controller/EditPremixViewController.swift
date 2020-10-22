@@ -47,10 +47,12 @@ class EditPremixViewController: UIViewController {
     var itemDictionary : [String : Any] = [:]
     var saveName : String = ""
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+            let data = self.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
-                self?.ProfileImage.image = UIImage(data: data!)
+                self.ProfileImage.image = UIImage(data: data!)
+            }
             }
         }
         if let userName = defaults!.value(forKey: "usernameStringKey"){

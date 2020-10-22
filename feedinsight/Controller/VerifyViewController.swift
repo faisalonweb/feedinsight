@@ -128,6 +128,7 @@ class VerifyViewController: UIViewController, UIGestureRecognizerDelegate {
                                 self.defaults!.set(self.veranimal, forKey: dKeys.keyAnimal)
                                 self.defaults!.set(self.vercollection, forKey: dKeys.keycollectionview)
                                 self.defaults!.set(self.verusercountry, forKey: dKeys.keyusercountry)
+                                self.defaults!.synchronize()
                                 SVProgressHUD.dismiss()
                                 self.transitionToHome()
                             }

@@ -164,6 +164,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         userpic.image = croppedImage
         let data = userpic.image!.pngData()
         self.defaults!.set(data, forKey: "imageData")
+        self.defaults!.synchronize()
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let storage = Storage.storage()
         let storageRef =  storage.reference().child("user/\(uid)")
@@ -183,12 +184,14 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                             let data = try? Data(contentsOf:fileUrl!)
                             self.defaults!.set(data, forKey: "imageData")
                             self.defaults!.set(imageURL, forKey: "Link")
+                            self.defaults!.synchronize()
                         }
 
                         let fileUrl = URL(string: url!.absoluteString)
                         let data = try? Data(contentsOf:fileUrl!)
                         self.userpic.image = UIImage(data: data!)
                         self.defaults!.set(data, forKey: "imageData")
+                        self.defaults!.synchronize()
                         let db = Firestore.firestore()
                         let userID = Auth.auth().currentUser?.uid
                         if self.username.text != nil && self.useremail.text != nil && self.userotherindus.text != nil && self.userbuss.text != nil && self.userphone.text != nil && self.roledropdown.text != nil && self.locationField.text != nil && self.userpassword.text != nil {
@@ -373,11 +376,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         self.userconfirmpassword.delegate = self
         self.userotherindus.delegate = self
         self.locationField.delegate = self
-        DispatchQueue.main.async { [weak self] in
-            
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
-            if(data != nil) {
-                self?.userpic.image = UIImage(data: data!)
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                let data = self.defaults!.value(forKey: "imageData") as? Data
+                if(data != nil) {
+                    self.userpic.image = UIImage(data: data!)
+                }
             }
         }
         
@@ -543,14 +547,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 let dictionary = defaults!.dictionaryRepresentation()
                 dictionary.keys.forEach { key in
                     defaults!.removeObject(forKey: key)
+                    self.defaults!.synchronize()
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute: {
-                    SVProgressHUD.dismiss()
-                    let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
-                    self.navigationController?.pushViewController(vcone!, animated: true)
-                })
-
-                
+                self.defaults!.synchronize()
+                SVProgressHUD.dismiss()
+                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
+                self.navigationController?.pushViewController(vcone!, animated: true)
                 
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
@@ -632,6 +634,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                         self.defaults!.set(self.userconfirmpassword.text, forKey: dKeys.keycountrycode)
                         self.defaults!.set(self.industrycellValue, forKey: dKeys.keycollectionview)
                         self.defaults!.set(self.pickAnimalSelection.titleLabel!.text!, forKey: dKeys.keyAnimal)
+                        self.defaults!.synchronize()
                     }
                 }
             }

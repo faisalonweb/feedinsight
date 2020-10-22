@@ -38,11 +38,12 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
             self.userNameLabel.text = userName as? String
             print(userName)
         }
-        DispatchQueue.main.async { [weak self] in
-            
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
-            if(data != nil) {
-                self?.userProfileView.image = UIImage(data: data!)
+        DispatchQueue.global().async { [weak self] in
+            DispatchQueue.main.async {
+                let data = self?.defaults!.value(forKey: "imageData") as? Data
+                if(data != nil) {
+                    self?.userProfileView.image = UIImage(data: data!)
+                }
             }
         }
         if(UIScreen.main.bounds.width < 415)

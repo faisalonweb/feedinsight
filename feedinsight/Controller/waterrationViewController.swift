@@ -102,11 +102,12 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     var screenNAME : String = ""
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async { [weak self] in
-            
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+            let data = self.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
-                self?.profileimage.image = UIImage(data: data!)
+                self.profileimage.image = UIImage(data: data!)
+            }
             }
         }
     }
@@ -171,6 +172,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.tblView.refreshControl?.endRefreshing()
                 }
                 else {
+                    self.tblView.refreshControl?.endRefreshing()
                     print("pakis")
                 }
             }
@@ -206,6 +208,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     print("report Data is \(self.reportValueList)")
                     self.tblView.refreshControl?.endRefreshing()
                 } else {
+                    self.tblView.refreshControl?.endRefreshing()
                     print("pakis")
                 }
             }
@@ -327,6 +330,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.tblView.refreshControl?.endRefreshing()
                 }
                 else {
+                    self.tblView.refreshControl?.endRefreshing()
                     print("pakis")
                 }
             }

@@ -51,10 +51,12 @@ class UnitConvertorViewController: UIViewController, UITextFieldDelegate, UIGest
             self.userNameLabel.text = userName as? String
             print(userName)
         }
-        DispatchQueue.main.async { [weak self] in
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+            let data = self.defaults!.value(forKey: "imageData") as? Data
             if(data != nil) {
-                self?.proimage.image = UIImage(data: data!)
+                self.proimage.image = UIImage(data: data!)
+            }
             }
         }
     }

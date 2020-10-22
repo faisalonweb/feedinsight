@@ -47,11 +47,12 @@ class ReportViewController: UIViewController {
             self.userName.text = userName as? String
             print(userName)
         }
-        DispatchQueue.main.async { [weak self] in
-            
-            let data = self?.defaults!.value(forKey: "imageData") as? Data
-            if(data != nil) {
-                self?.profileImage.image = UIImage(data: data!)
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                let data = self.defaults!.value(forKey: "imageData") as? Data
+                if(data != nil) {
+                    self.profileImage.image = UIImage(data: data!)
+                }
             }
         }
     }

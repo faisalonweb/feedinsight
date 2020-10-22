@@ -12,7 +12,7 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 import SwiftMessages
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     let userDefault = UserDefaults(suiteName:"User")
     @IBOutlet weak var signupBtn: ActiveLabel!
     @IBOutlet weak var paswordField: UITextField!
@@ -45,6 +45,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
         self.paswordField.delegate = self
         self.emailField.delegate = self
         let customType = ActiveType.custom(pattern: "\\sSign\\sUp") //Looks for "are"
@@ -80,28 +87,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         SwiftMessages.show(view: view)
     }
     @IBAction func signinPressed(_ sender: Any) {
-        SVProgressHUD.show()
-        emailField.isUserInteractionEnabled = false
-        paswordField.isUserInteractionEnabled = false
         let error = validateFields()
         if error != nil {
             showError(error!)
-            print("error")
-            self.emailField.isUserInteractionEnabled = true
-            self.paswordField.isUserInteractionEnabled = true
-        }
-        else {
+        } else {
             let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
+            SVProgressHUD.show()
+            emailField.isUserInteractionEnabled = false
+            paswordField.isUserInteractionEnabled = false
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil {
                     SVProgressHUD.dismiss()
                     self.emailField.isUserInteractionEnabled = true
                     self.paswordField.isUserInteractionEnabled = true
                     self.showError(error!.localizedDescription)
-                }
-                else {
+                } else {
                     if let authResult = result {
                         let user = authResult.user
                         print("User has Signed In")
@@ -110,7 +111,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.userDefault!.synchronize()
                             let script =  ApiCalling()
                             script.LoginData() { (result) -> () in
-                               
                                 if result.count > 0 {
                                     let currentusername = result["name"]
                                     let currentuseremail = result["email"]
@@ -125,13 +125,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     let currentusercollectionindustry =  result["CollectionIndustry"]
                                     let currentuserprofilecountry =  result["UserCountry"]
                                     self.userDefault!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                                    
                                     let imageURL = result["imageURL"] as? String
                                     if (imageURL != "") {
-                                        let fileUrl = URL(string: imageURL!)
-                                        let data = try? Data(contentsOf:fileUrl!)
-                                        self.userDefault!.set(data, forKey: "imageData")
-                                        self.userDefault!.set(imageURL, forKey: "Link")
+                                        DispatchQueue.global().async {
+                                            let fileUrl = URL(string: imageURL!)
+                                            let data = try? Data(contentsOf:fileUrl!)
+                                            self.userDefault!.set(data, forKey: "imageData")
+                                            self.userDefault!.set(imageURL, forKey: "Link")
+                                        }
                                     }
                                     self.userDefault!.set(currentuserrole, forKey: dKeys.keyRole)
                                     self.userDefault!.set(currentuserlocation, forKey: dKeys.keyLocation)
@@ -144,10 +145,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     self.userDefault!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                                     self.userDefault!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
                                     self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
-                                    //print(result.user.uid ?? 0)
+                                    self.userDefault!.synchronize()
                                     SVProgressHUD.dismiss()
-                                    self.emailField.isUserInteractionEnabled = true
-                                    self.paswordField.isUserInteractionEnabled = true
                                     self.transitionToHome()
                                 }
                             }
@@ -155,7 +154,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             SVProgressHUD.dismiss()
                             self.emailField.isUserInteractionEnabled = true
                             self.paswordField.isUserInteractionEnabled = true
-                            self.showError("Please verify your email.")
+                            self.showError("Verify your email first.")
                         }
                     }
                 }
@@ -173,8 +172,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     func validateFields() -> String? {
-        
-        // Check that all fields are filled in
         if emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""  ||
             paswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             return "Please fill in all fields."

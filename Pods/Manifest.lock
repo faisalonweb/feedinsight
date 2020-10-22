@@ -168,9 +168,6 @@ PODS:
   - Charts (3.5.0):
     - Charts/Core (= 3.5.0)
   - Charts/Core (3.5.0)
-  - CoreXLSX (0.12.0):
-    - XMLCoder (~> 0.11.1)
-    - ZIPFoundation (~> 0.9.11)
   - CountryPickerView (3.1.2)
   - Firebase (6.23.0):
     - Firebase/Core (= 6.23.0)
@@ -320,13 +317,10 @@ PODS:
   - SwiftMessages (8.0.2):
     - SwiftMessages/App (= 8.0.2)
   - SwiftMessages/App (8.0.2)
-  - XMLCoder (0.11.1)
-  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - ActiveLabel
   - Charts
-  - CoreXLSX
   - CountryPickerView
   - Firebase
   - Firebase/Analytics
@@ -351,7 +345,6 @@ SPEC REPOS:
     - ActiveLabel
     - BoringSSL-GRPC
     - Charts
-    - CoreXLSX
     - CountryPickerView
     - Firebase
     - FirebaseAnalytics
@@ -385,15 +378,12 @@ SPEC REPOS:
     - SearchTextField
     - SVProgressHUD
     - SwiftMessages
-    - XMLCoder
-    - ZIPFoundation
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
-  CoreXLSX: 6cc62592f76130f23e1b5c7d775b4bc47b099d78
   CountryPickerView: 08ff5f391143aa79e2ae21b0eaa5c15395a80d22
   Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
   FirebaseAnalytics: 558f7a03d19de451093032c806f39d5f9dff096e
@@ -427,9 +417,7 @@ SPEC CHECKSUMS:
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: 633304165351b8e3dcbb81a71f8efcd86f9c1669
-  XMLCoder: c4638336674de7ba279cd23f2005817d69f538e0
-  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 8a2ffb2623d44f78b420a1616765cade2c3a460e
+PODFILE CHECKSUM: 9505cbd4e3b5077067e352334bf25b1d4476f6b9
 
 COCOAPODS: 1.9.1
