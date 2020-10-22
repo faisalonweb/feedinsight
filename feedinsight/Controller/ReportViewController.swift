@@ -18,7 +18,8 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    
+    var db = Firestore.firestore()
+    let userID = Auth.auth().currentUser?.uid
     private var companyNameStation = [String]()
     private var ruminantTypeStation = [String]()
     private var animalGroupStation = [String]()
@@ -135,6 +136,35 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
+    }
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            db.collection("pdfReports").document(self.userID!).collection("pdfReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                if error != nil {
+                    print(error!)
+                } else {
+                    for document in querySnapshot!.documents {
+                        document.reference.delete()
+                    }
+                }
+            }
+            companyNameList.remove(at: indexPath.section)
+            ruminantTypeList.remove(at: indexPath.section)
+            animalGroupList.remove(at: indexPath.section)
+            psychologicalList.remove(at: indexPath.section)
+            pdfDateList.remove(at: indexPath.section)
+            pdfReference.remove(at: indexPath.section)
+            preparedBy.remove(at: indexPath.section)
+            reportType.remove(at: indexPath.section)
+            DocumentIdList.remove(at: indexPath.section)
+            tableView.reloadData()
+            
+        }
+        
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController

@@ -17,6 +17,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileimage: UIImageView!
     let defaults = UserDefaults(suiteName:"User")
+    let db = Firestore.firestore()
+    let userID = Auth.auth().currentUser?.uid
     var reportNameList = [String]()
     var reportDateList = [String]()
     var DocumentIdList = [String]()
@@ -371,6 +373,99 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
+    }
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if(screenNAME == "ration") {
+                db.collection("rationReports").document(self.userID!).collection("rationReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        for document in querySnapshot!.documents {
+                            document.reference.delete()
+                        }
+                    }
+                }
+                
+                reportNameList.remove(at: indexPath.section)
+                reportDateList.remove(at: indexPath.section)
+                copyArray.remove(at: indexPath.section)
+                //reportValueList.remove(at: indexPath.section)
+                DocumentIdList.remove(at: indexPath.section)
+                tblView.reloadData()
+                
+                
+              
+            }
+            else if (screenNAME == "water") {
+                db.collection("waterReports").document(self.userID!).collection("waterReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        for document in querySnapshot!.documents {
+                            document.reference.delete()
+                        }
+                    }
+                }
+                PList.remove(at: indexPath.section)
+                CaList.remove(at: indexPath.section)
+                MgList.remove(at: indexPath.section)
+                KList.remove(at: indexPath.section)
+                NaList.remove(at: indexPath.section)
+                ClList.remove(at: indexPath.section)
+                SList.remove(at: indexPath.section)
+                reportNameList.remove(at: indexPath.section)
+                reportDateList.remove(at: indexPath.section)
+                DocumentIdList.remove(at: indexPath.section)
+                tblView.reloadData()
+            }
+             
+            else if (screenNAME == "premix") {
+                db.collection("premixReports").document(self.userID!).collection("premixReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        for document in querySnapshot!.documents {
+                            document.reference.delete()
+                        }
+                    }
+                }
+                productNameList.remove(at: indexPath.section)
+                reportDateList.remove(at: indexPath.section)
+                productDoseList.remove(at: indexPath.section)
+                DocumentIdList.remove(at: indexPath.section)
+                reportNameList.remove(at: indexPath.section)
+                pMacroList.remove(at: indexPath.section)
+                caMacroList.remove(at: indexPath.section)
+                mgMacroList.remove(at: indexPath.section)
+                kMacroList.remove(at: indexPath.section)
+                naMacroList.remove(at: indexPath.section)
+                clMacroList.remove(at: indexPath.section)
+                sMacroList.remove(at: indexPath.section)
+                coMicroList.remove(at: indexPath.section)
+                iMicroList.remove(at: indexPath.section)
+                mnMicroList.remove(at: indexPath.section)
+                cuMicroList.remove(at: indexPath.section)
+                feMicroList.remove(at: indexPath.section)
+                cuOrganicMicroList.remove(at: indexPath.section)
+                seMicroList.remove(at: indexPath.section)
+                seOrganicMicroList.remove(at: indexPath.section)
+                znMicroList.remove(at: indexPath.section)
+                znOrganicMicroList.remove(at: indexPath.section)
+                aiuVitaminList.remove(at: indexPath.section)
+                diuVitaminList.remove(at: indexPath.section)
+                eiuVitaminList.remove(at: indexPath.section)
+                niacinVitaminList.remove(at: indexPath.section)
+                biotinVitaminList.remove(at: indexPath.section)
+                tblView.reloadData()
+            }
+           
+            
+        }
+        
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (screenNAME == "ration") {
