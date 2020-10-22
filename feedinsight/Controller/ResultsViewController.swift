@@ -34,12 +34,18 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
     var pdfType : String = ""
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
         profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
         profileImage?.clipsToBounds = true
         profileImage?.layer.borderWidth = 3.0

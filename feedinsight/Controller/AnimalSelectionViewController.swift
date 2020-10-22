@@ -156,6 +156,12 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
         animalData = DataAppend.getAllAnimalData()
         super.viewDidLoad()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
