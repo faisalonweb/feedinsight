@@ -15,11 +15,13 @@ import FirebaseFirestore
 class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDelegate{
     
     @IBOutlet weak var mainBtn: UIButton!
-    var db: Firestore!
+    var db = Firestore.firestore()
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var profileimage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     let defaults = UserDefaults(suiteName:"User")
+    let userID = Auth.auth().currentUser?.uid
+    var DocumentIdList = [String]()
     var animalList = [String]()
     var reportNameList = [String]()
     var docIdList = [String]()
@@ -37,6 +39,7 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
     var disorderstate = [Bool]()
     var heatstate = [Bool]()
     var productionstate = [Bool]()
+    private var documentIdStation = [String]()
     private var datastation = [String]()
     private var dataonestation = [String]()
     private var datathreestation = [String]()
@@ -197,6 +200,43 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
+    }
+ 
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            db.collection("animalState").document(self.userID!).collection("animalState").whereField("DocId", isEqualTo: docIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                if error != nil {
+                    print(error!)
+                } else {
+                    for document in querySnapshot!.documents {
+                        document.reference.delete()
+                    }
+                }
+            }
+            animalList.remove(at: indexPath.section)
+            reportNameList.remove(at: indexPath.section)
+            docIdList.remove(at: indexPath.section)
+            companynameList.remove(at: indexPath.section)
+            psystateList.remove(at: indexPath.section)
+            currentweightList.remove(at: indexPath.section)
+            targetweightList.remove(at: indexPath.section)
+            daysachieveList.remove(at: indexPath.section)
+            daysmilkList.remove(at: indexPath.section)
+            dayspregnantList.remove(at: indexPath.section)
+            milkproductionList.remove(at: indexPath.section)
+            dietstate.remove(at: indexPath.section)
+            disorderstate.remove(at: indexPath.section)
+            heatstate.remove(at: indexPath.section)
+            productionstate.remove(at: indexPath.section)
+            categoryList.remove(at: indexPath.section)
+            tblView.reloadData()
+            
+        }
+        
+        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! loadAnimalsTableViewCell

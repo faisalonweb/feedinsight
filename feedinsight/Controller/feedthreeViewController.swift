@@ -20,6 +20,7 @@ var subUrl: URL?
 var fm = FileManager.default
 var fresult: Bool = false
 var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
+var mainUrl1: URL? = Bundle.main.url(forResource: "Athletes1", withExtension: "json")
 var productList: [Person] = []
 var currentIndex = 0
 var dropdownvalues = [String]()

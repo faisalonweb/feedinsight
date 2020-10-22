@@ -18,13 +18,19 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchTextField: UITextField!
     var nameArray: [String] = []
     var nameArrayCopy: [String] = []
+    var productListOne: [Person] = []
     let defaults = UserDefaults(suiteName:"User")
     
-    func getData() {
+    func getData(fileInput : String) {
         do {
             let documentDirectory = try fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            subUrl = documentDirectory.appendingPathComponent(fileInput)
+            if(fileInput == "Athletes.json") {
+                loadFile(mainPath: mainUrl!, subPath: subUrl!)
+            } else {
+                loadFile(mainPath: mainUrl1!, subPath: subUrl!)
+            }
             subUrl = documentDirectory.appendingPathComponent("Athletes.json")
-            loadFile(mainPath: mainUrl!, subPath: subUrl!)
         } catch {
             print(error)
         }
@@ -74,7 +80,7 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getData()
+        getData(fileInput: "Athletes.json")
         nameArray = nameArray.sorted(by: <)
         nameArrayCopy = nameArray
         databaseTableView.reloadData()
@@ -90,6 +96,28 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
             }
             }
         }
+    }
+    
+    @IBAction func restoreDatabase(_ sender: Any) {
+        getData(fileInput: "Athletes1.json")
+        nameArray = nameArray.sorted(by: <)
+        nameArrayCopy = nameArray
+        databaseTableView.reloadData()
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.success)
+        view.configureDropShadow()
+        view.configureContent(title: "Default Database", body: "you have successfully restored your database.")
+        SwiftMessages.show(view: view)
+        writeToFile(location: subUrl!)
+    }
+    
+    func writeToFile(location: URL) {
+        do{
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let JsonData = try encoder.encode(productList)
+            try JsonData.write(to: location)
+        }catch{}
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
