@@ -60,6 +60,12 @@ class VerifyViewController: UIViewController, UIGestureRecognizerDelegate {
         nextBtnOutlet.clipsToBounds = true
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
     }
     
     @IBAction func backButton(_ sender: Any) {

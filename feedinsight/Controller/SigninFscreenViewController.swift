@@ -14,6 +14,12 @@
             super.viewDidLoad()
             self.navigationController?.isNavigationBarHidden = true
             self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+            let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+            if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+              let gestureRecognizer = UIPanGestureRecognizer()
+              gestureRecognizer.setValue(targets, forKey: "targets")
+              self.view.addGestureRecognizer(gestureRecognizer)
+            }
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             self.navigationController?.navigationBar.shadowImage = UIImage()
         }

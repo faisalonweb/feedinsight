@@ -30,6 +30,12 @@ class UnitConvertorViewController: UIViewController, UITextFieldDelegate, UIGest
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
         value1.delegate = self
         value2.delegate = self
         value1.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
