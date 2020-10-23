@@ -114,10 +114,205 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             self.locationField.text = output
         }
     }
+    
+    override func viewDidLoad() {
+        self.dismissKey()
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let taplocation = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
+        userpic.addGestureRecognizer(tapOnImage)
+        emailView.addGestureRecognizer(tapemail)
+        headerView.addGestureRecognizer(tapheader)
+        nameView.addGestureRecognizer(tapname)
+        phoneView.addGestureRecognizer(tapphone)
+        //indusview.addGestureRecognizer(tapindus)
+        otherindusView.addGestureRecognizer(tapotherindus)
+        animalView.addGestureRecognizer(tapanimal)
+        bussView.addGestureRecognizer(tapbuss)
+        locationView.addGestureRecognizer(taplocation)
+        roleView.addGestureRecognizer(taprole)
+        password.addGestureRecognizer(tappass)
+        cnfpassView.addGestureRecognizer(tapcnfpass)
+        //changeView.addGestureRecognizer(tapsignup)
+        self.animaltableview.isHidden = true
+        animaltableview.clipsToBounds = false
+        animaltableview.layer.masksToBounds = false
+        animaltableview.layer.shadowColor = UIColor.lightGray.cgColor
+        animaltableview.layer.shadowOffset = CGSize(width: 0, height: 0)
+        animaltableview.layer.shadowRadius = 5.0
+        animaltableview.layer.shadowOpacity = 0.5
+        
+        pickAnimalSelection.titleEdgeInsets.top = 0
+        pickAnimalSelection.titleEdgeInsets.left = 8
+        pickAnimalSelection.titleEdgeInsets.bottom = 0
+        pickAnimalSelection.titleEdgeInsets.right = 0
+        pickAnimalSelection.layer.borderWidth = 1
+        pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
+        self.username.delegate = self
+        self.useremail.delegate = self
+        self.userpassword.delegate = self
+        self.userbuss.delegate = self
+        self.userphone.delegate = self
+        self.roledropdown.delegate = self
+        self.userconfirmpassword.delegate = self
+        self.userotherindus.delegate = self
+        self.locationField.delegate = self
+        super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
+        let lineArray = text.components(separatedBy: "\n")
+        for eachLA in lineArray {
+            workarray = eachLA.components(separatedBy: ",")
+            pickerData1.append(workarray[0])
+        }
+        let countries = localCountries()
+        ProfileCountry.filterStrings(countries)
+        ProfileCountry.maxNumberOfResults = 5
+        ProfileCountry.theme.font = UIFont.systemFont(ofSize: 14)
+        ProfileCountry.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        ProfileCountry.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        ProfileCountry.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        ProfileCountry.theme.cellHeight = 40
+        ProfileCountry.itemSelectionHandler = { filteredResults, itemPosition in
+            let item = filteredResults[itemPosition]
+            self.ProfileCountry.text = item.title
+        }
+        ProfileCountry.minCharactersNumberToStartFiltering = 3
+        ProfileCountry.comparisonOptions = [.anchored]
+        pickAnimalSelection.titleEdgeInsets.top = 0
+        pickAnimalSelection.titleEdgeInsets.left = 8
+        pickAnimalSelection.titleEdgeInsets.bottom = 0
+        pickAnimalSelection.titleEdgeInsets.right = 0
+        pickAnimalSelection.layer.borderWidth = 0.3
+        pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
+        locationField.filterStrings(pickerData1)
+        locationField.maxNumberOfResults = 5
+        locationField.theme.font = UIFont.systemFont(ofSize: 14)
+        locationField.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        locationField.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        locationField.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        locationField.theme.cellHeight = 40
+        locationField.itemSelectionHandler = { filteredResults, itemPosition in
+            let item = filteredResults[itemPosition]
+            print("Item at position \(itemPosition): \(item.title)")
+            self.locationField.text = item.title
+        }
+        locationField.minCharactersNumberToStartFiltering = 3
+        locationField.comparisonOptions = [.anchored]
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let itemSize = UIScreen.main.bounds.width/3 - 2
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 10
+        collectionView.collectionViewLayout = layout
+        userpic.layer.cornerRadius = userpic.frame.size.width/2
+        userpic.clipsToBounds = true
+        userpic.layer.borderWidth = 2.0
+        userpic.layer.borderColor = UIColor.white.cgColor
+        changebutton.layer.cornerRadius = 8
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                let data = self.defaults!.value(forKey: "imageData") as? Data
+                if(data != nil) {
+                    self.userpic.image = UIImage(data: data!)
+                }
+            }
+        }
+        
+        if let userName = defaults!.value(forKey: dKeys.keyusername){
+            
+            self.username.text = userName as? String
+            self.personName.text = userName as? String
+            print(userName)
+        }
+        if let userEmail = defaults!.value(forKey: dKeys.keyuseremail){
+            
+            self.useremail.text = userEmail as? String
+            print(userEmail)
+        }
+        if let animal = defaults!.value(forKey: dKeys.keyAnimal){
+            if(animal as! String == "") {
+                self.pickAnimalSelection.setTitle("Pick Animal", for: .normal)
+                pickAnimalSelection.setTitleColor(.lightGray, for: .normal)
+            } else {
+                self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
+                pickAnimalSelection.setTitleColor(.black, for: .normal)
+            }
+        }
+        
+        if let countrycode = defaults!.value(forKey: dKeys.keycountrycode){
+            self.countryCode.setCountryByPhoneCode(countrycode as! String)
+            print(countrycode)
+        }
+        if let location = defaults!.value(forKey: dKeys.keyLocation){
+            self.locationField.text = location as? String
+            print(location)
+        }
+        if let role = defaults!.value(forKey: dKeys.keyRole){
+            self.roledropdown.text = role as? String
+            print(role)
+        }
+        if let busines = defaults?.value(forKey: dKeys.keyuserbussiness){
+            self.userbuss.text = busines as? String
+            print(busines)
+        }
+        if let profilecountry = defaults!.value(forKey: dKeys.keyusercountry){
+            self.ProfileCountry.text = profilecountry as? String
+        }
+        if let indus = defaults!.value(forKey: dKeys.keyuserindustry){
+            if(indus as? String == "") {
+                //userotherindus.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+                induslabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
+                userotherindus.isUserInteractionEnabled =  false
+                userotherindus.alpha = 0.3
+            } else {
+                self.userotherindus.text = indus as? String
+                print("industry values is \(indus)")
+            }
+        }
+        if let pass = defaults!.value(forKey: dKeys.keyuserpassowrd){
+            self.userpassword.text = pass as? String
+            print(pass)
+        }
+        if let passcnf = defaults!.value(forKey: dKeys.keyuserpassowrd){
+            self.userconfirmpassword.text = passcnf as? String
+            print(passcnf)
+        }
+        if let phone = defaults!.value(forKey: dKeys.keyuserphoneno){
+            self.userphone.text = phone as? String
+            print(phone)
+        }
+        collectionViewSelectedName.removeAll()
+        if let collectioncell = defaults!.value(forKey: dKeys.keycollectionview){
+            self.collectionselectedcell = collectioncell as! String
+            if(self.collectionselectedcell != "") {
+                collectionViewSelectedName.append(self.collectionselectedcell)
+            }
+            print(collectioncell)
+        }
+        self.collectionView.reloadData()
     }
+    
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
         self.animaltableview.isHidden = true
     }
@@ -322,215 +517,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         return []
     }
     
-    override func viewDidLoad() {
-        self.dismissKey()
-        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
-        let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let taplocation = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        userpic.addGestureRecognizer(tapOnImage)
-        emailView.addGestureRecognizer(tapemail)
-        headerView.addGestureRecognizer(tapheader)
-        nameView.addGestureRecognizer(tapname)
-        phoneView.addGestureRecognizer(tapphone)
-        //indusview.addGestureRecognizer(tapindus)
-        otherindusView.addGestureRecognizer(tapotherindus)
-        animalView.addGestureRecognizer(tapanimal)
-        bussView.addGestureRecognizer(tapbuss)
-        locationView.addGestureRecognizer(taplocation)
-        roleView.addGestureRecognizer(taprole)
-        password.addGestureRecognizer(tappass)
-        cnfpassView.addGestureRecognizer(tapcnfpass)
-        //changeView.addGestureRecognizer(tapsignup)
-        self.animaltableview.isHidden = true
-        animaltableview.clipsToBounds = false
-        animaltableview.layer.masksToBounds = false
-        animaltableview.layer.shadowColor = UIColor.lightGray.cgColor
-        animaltableview.layer.shadowOffset = CGSize(width: 0, height: 0)
-        animaltableview.layer.shadowRadius = 5.0
-        animaltableview.layer.shadowOpacity = 0.5
-        
-        pickAnimalSelection.titleEdgeInsets.top = 0
-        pickAnimalSelection.titleEdgeInsets.left = 8
-        pickAnimalSelection.titleEdgeInsets.bottom = 0
-        pickAnimalSelection.titleEdgeInsets.right = 0
-        pickAnimalSelection.layer.borderWidth = 1
-        pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
-        self.username.delegate = self
-        self.useremail.delegate = self
-        self.userpassword.delegate = self
-        self.userbuss.delegate = self
-        self.userphone.delegate = self
-        self.roledropdown.delegate = self
-        self.userconfirmpassword.delegate = self
-        self.userotherindus.delegate = self
-        self.locationField.delegate = self
-        DispatchQueue.global().async {
-            DispatchQueue.main.async {
-                let data = self.defaults!.value(forKey: "imageData") as? Data
-                if(data != nil) {
-                    self.userpic.image = UIImage(data: data!)
-                }
-            }
-        }
-        
-        if let userName = defaults!.value(forKey: dKeys.keyusername){
-            
-            self.username.text = userName as? String
-            self.personName.text = userName as? String
-            print(userName)
-        }
-        if let userEmail = defaults!.value(forKey: dKeys.keyuseremail){
-            
-            self.useremail.text = userEmail as? String
-            print(userEmail)
-        }
-        if let animal = defaults!.value(forKey: dKeys.keyAnimal){
-            if(animal as! String == "") {
-                self.pickAnimalSelection.setTitle("Pick Animal", for: .normal)
-                pickAnimalSelection.setTitleColor(.lightGray, for: .normal)
-            } else {
-                self.pickAnimalSelection.setTitle(animal as? String, for: .normal)
-                pickAnimalSelection.setTitleColor(.black, for: .normal)
-            }
-            
-            
-        }
-        
-        if let countrycode = defaults!.value(forKey: dKeys.keycountrycode){
-            
-            self.countryCode.setCountryByPhoneCode(countrycode as! String)
-            print(countrycode)
-        }
-        if let location = defaults!.value(forKey: dKeys.keyLocation){
-            
-            self.locationField.text = location as? String
-            print(location)
-        }
-        if let role = defaults!.value(forKey: dKeys.keyRole){
-            
-            self.roledropdown.text = role as? String
-            print(role)
-        }
-        if let busines = defaults?.value(forKey: dKeys.keyuserbussiness){
-            
-            self.userbuss.text = busines as? String
-            print(busines)
-        }
-        if let profilecountry = defaults!.value(forKey: dKeys.keyusercountry){
-            
-            self.ProfileCountry.text = profilecountry as? String
-            
-        }
-        if let indus = defaults!.value(forKey: dKeys.keyuserindustry){
-            if(indus as? String == "") {
-                //userotherindus.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-                induslabel.textColor = UIColor.init(red: 169/255, green: 169/255, blue: 169/255, alpha: 0.5)
-                userotherindus.isUserInteractionEnabled =  false
-                userotherindus.alpha = 0.3
-            } else {
-                self.userotherindus.text = indus as? String
-                print("industry values is \(indus)")
-            }
-        }
-        if let pass = defaults!.value(forKey: dKeys.keyuserpassowrd){
-            
-            self.userpassword.text = pass as? String
-            print(pass)
-        }
-        if let passcnf = defaults!.value(forKey: dKeys.keyuserpassowrd){
-            
-            self.userconfirmpassword.text = passcnf as? String
-            print(passcnf)
-        }
-        if let phone = defaults!.value(forKey: dKeys.keyuserphoneno){
-            
-            self.userphone.text = phone as? String
-            print(phone)
-        }
-        if let collectioncell = defaults!.value(forKey: dKeys.keycollectionview){
-            self.collectionselectedcell = collectioncell as! String
-            if(self.collectionselectedcell != "") {
-                collectionViewSelectedName.append(self.collectionselectedcell)
-            }
-            
-            print(collectioncell)
-        }
-        super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        let text = try! String(contentsOfFile: Bundle.main.path(forResource: "world-cities", ofType: "txt")!)
-        let lineArray = text.components(separatedBy: "\n")
-        for eachLA in lineArray {
-            workarray = eachLA.components(separatedBy: ",")
-            pickerData1.append(workarray[0])
-        }
-        let countries = localCountries()
-        ProfileCountry.filterStrings(countries)
-        ProfileCountry.maxNumberOfResults = 5
-        ProfileCountry.theme.font = UIFont.systemFont(ofSize: 14)
-        ProfileCountry.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-        ProfileCountry.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        ProfileCountry.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        ProfileCountry.theme.cellHeight = 40
-        ProfileCountry.itemSelectionHandler = { filteredResults, itemPosition in
-            let item = filteredResults[itemPosition]
-            self.ProfileCountry.text = item.title
-        }
-        ProfileCountry.minCharactersNumberToStartFiltering = 3
-        ProfileCountry.comparisonOptions = [.anchored]
-        pickAnimalSelection.titleEdgeInsets.top = 0
-        pickAnimalSelection.titleEdgeInsets.left = 8
-        pickAnimalSelection.titleEdgeInsets.bottom = 0
-        pickAnimalSelection.titleEdgeInsets.right = 0
-        pickAnimalSelection.layer.borderWidth = 0.3
-        pickAnimalSelection.layer.borderColor = UIColor(red:192/255, green:192/255, blue:192/255, alpha: 1).cgColor
-        locationField.filterStrings(pickerData1)
-        locationField.maxNumberOfResults = 5
-        locationField.theme.font = UIFont.systemFont(ofSize: 14)
-        locationField.theme.bgColor = UIColor (red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-        locationField.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        locationField.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        locationField.theme.cellHeight = 40
-        locationField.itemSelectionHandler = { filteredResults, itemPosition in
-            let item = filteredResults[itemPosition]
-            print("Item at position \(itemPosition): \(item.title)")
-            self.locationField.text = item.title
-        }
-        locationField.minCharactersNumberToStartFiltering = 3
-        locationField.comparisonOptions = [.anchored]
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let itemSize = UIScreen.main.bounds.width/3 - 2
-        layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 10
-        collectionView.collectionViewLayout = layout
-        userpic.layer.cornerRadius = userpic.frame.size.width/2
-        userpic.clipsToBounds = true
-        userpic.layer.borderWidth = 2.0
-        userpic.layer.borderColor = UIColor.white.cgColor
-        changebutton.layer.cornerRadius = 8
-        
-    }
     @IBAction func clickOnLogout(_ sender: Any) {
         logOutAccount()
     }
+    
     @objc func tapAction() {
-        
         self.animaltableview.isHidden = true
-        
     }
     @IBAction func clickOnLogoutIcon(_ sender: Any) {
         logOutAccount()
