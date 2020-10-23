@@ -245,6 +245,7 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
         cell.animaltypelabel?.text = reportNameList[indexPath.section]
         cell.datetypelabel?.text = dateList[indexPath.section]
         cell.layer.cornerRadius = 10
+
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

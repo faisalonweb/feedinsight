@@ -161,6 +161,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             }
         }
     }
+    
+    @IBAction func forgetpass(_ sender: Any) {
+        let vcone = storyboard?.instantiateViewController(withIdentifier: "ForgotViewController") as? ForgotViewController;
+        self.navigationController?.pushViewController(vcone!, animated: true)
+    }
     func transitionToHome() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "tabar") as! UITabBarController
