@@ -138,7 +138,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     
     
     var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
-    let players = ["B","N","VE","VD","VA","Se","Zn","Mn","I","Cu","Co","S","Cl","Na","K","Mg","Ca","P"]
+    let players = ["Biotin","Niacin","Vit E","Vit D","Vit A","Se","Zn","Mn","I","Cu","Co","S","Cl","Na","K","Mg","Ca","P"]
     @objc func addNewGuageView(_ notification: Notification) {
         self.addGaugeView()
     }
@@ -377,7 +377,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         barchartview.xAxis.valueFormatter = IndexAxisValueFormatter(values: players)
         barchartview.xAxis.labelPosition = .bottom
         let limitLine = ChartLimitLine(limit: 100, label: "")
-        limitLine.lineColor = UIColor(red: 90/255, green: 130/255, blue: 57/255, alpha: 1)
+        limitLine.lineColor = UIColor(red: 237/255, green: 189/255, blue: 51/255, alpha: 0.76)
         limitLine.lineWidth = 4
         barchartview.rightAxis.addLimitLine(limitLine)
         barchartview.leftAxis.drawZeroLineEnabled = false

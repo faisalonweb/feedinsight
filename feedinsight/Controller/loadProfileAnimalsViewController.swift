@@ -202,12 +202,11 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
- 
+    
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             db.collection("animalState").document(self.userID!).collection("animalState").whereField("DocId", isEqualTo: docIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
                 if error != nil {
                     print(error!)
@@ -234,11 +233,9 @@ extension loadProfileAnimalsViewController: UITableViewDelegate , UITableViewDat
             productionstate.remove(at: indexPath.section)
             categoryList.remove(at: indexPath.section)
             tblView.reloadData()
-            
         }
-        
-        
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! loadAnimalsTableViewCell
         

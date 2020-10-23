@@ -14,6 +14,7 @@ class loadDatabaseTableViewCell: UITableViewCell {
     @IBOutlet weak var checkImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.contentView.layer.cornerRadius = 10
         // Initialization code
     }
 

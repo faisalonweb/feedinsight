@@ -40,7 +40,7 @@ class PentagonView : UIView {
         path.close()
 
         // fill the path
-        UIColor.black.set()
+        UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1).set()
         path.fill()
     }
 }
