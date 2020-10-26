@@ -24,4 +24,9 @@
             let vc = storyboard?.instantiateViewController(withIdentifier: "userSignupViewController") as? userSignupViewController
             self.navigationController?.pushViewController(vc!, animated: true)
         }
+        
+        @IBAction func forgotpassword(_ sender: Any) {
+            let vcone = storyboard?.instantiateViewController(withIdentifier: "ForgotViewController") as? ForgotViewController;
+            self.navigationController?.pushViewController(vcone!, animated: true)
+        }
     }
