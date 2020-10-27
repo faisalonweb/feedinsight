@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                                     self.userDefault!.set(currentuserphone, forKey: dKeys.keyuserphoneno)
                                     self.userDefault!.set(currentuserindustry, forKey: dKeys.keyuserindustry)
                                     self.userDefault!.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                                    self.userDefault!.set(currentuserpass, forKey: dKeys.keyuserpassowrd)
+                                    self.userDefault!.set(self.paswordField.text, forKey: dKeys.keyuserpassowrd)
                                     self.userDefault!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
                                     self.userDefault!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
                                     self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
