@@ -373,6 +373,16 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     
     @IBAction func singuponclick(_ sender: Any) {
         SVProgressHUD.show()
+        self.username.isUserInteractionEnabled = false
+        self.userindustry.isUserInteractionEnabled = false
+        self.useremail.isUserInteractionEnabled = false
+        self.userpassword.isUserInteractionEnabled = false
+        self.userbussiness.isUserInteractionEnabled = false
+        self.pickrole.isUserInteractionEnabled = false
+        self.pickani.isUserInteractionEnabled = false
+        self.userphoneno.isUserInteractionEnabled = false
+        self.picklocation.isUserInteractionEnabled = false
+        self.lCountry.isUserInteractionEnabled = false
         let country = self.countrycode.selectedCountry
         print(country)
         if(collectionViewSelectedName.count > 0) {
@@ -384,6 +394,16 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         if error != nil {
             SVProgressHUD.dismiss()
             showError(error!)
+            self.username.isUserInteractionEnabled = true
+            self.userindustry.isUserInteractionEnabled = true
+            self.useremail.isUserInteractionEnabled = true
+            self.userpassword.isUserInteractionEnabled = true
+            self.userbussiness.isUserInteractionEnabled = true
+            self.pickrole.isUserInteractionEnabled = true
+            self.pickani.isUserInteractionEnabled = true
+            self.userphoneno.isUserInteractionEnabled = true
+            self.picklocation.isUserInteractionEnabled = true
+            self.lCountry.isUserInteractionEnabled = true
         }
         else {
             let country = country.phoneCode
@@ -402,6 +422,16 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                     SVProgressHUD.showError(withStatus:"user creation failed")
                     self.showError(err!.localizedDescription)
                     SVProgressHUD.dismiss()
+                    self.username.isUserInteractionEnabled = true
+                    self.userindustry.isUserInteractionEnabled = true
+                    self.useremail.isUserInteractionEnabled = true
+                    self.userpassword.isUserInteractionEnabled = true
+                    self.userbussiness.isUserInteractionEnabled = true
+                    self.pickrole.isUserInteractionEnabled = true
+                    self.pickani.isUserInteractionEnabled = true
+                    self.userphoneno.isUserInteractionEnabled = true
+                    self.picklocation.isUserInteractionEnabled = true
+                    self.lCountry.isUserInteractionEnabled = true
                 }
                 else {
                     self.sendVerificationMail()
@@ -422,6 +452,16 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                     signUpViewController.verusercountry = countryUser
                     self.navigationController?.pushViewController(signUpViewController, animated: true)
                     SVProgressHUD.dismiss()
+                    self.username.isUserInteractionEnabled = true
+                    self.userindustry.isUserInteractionEnabled = true
+                    self.useremail.isUserInteractionEnabled = true
+                    self.userpassword.isUserInteractionEnabled = true
+                    self.userbussiness.isUserInteractionEnabled = true
+                    self.pickrole.isUserInteractionEnabled = true
+                    self.pickani.isUserInteractionEnabled = true
+                    self.userphoneno.isUserInteractionEnabled = true
+                    self.picklocation.isUserInteractionEnabled = true
+                    self.lCountry.isUserInteractionEnabled = true
                 }
             }
         }

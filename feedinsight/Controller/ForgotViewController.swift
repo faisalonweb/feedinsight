@@ -17,18 +17,23 @@ class ForgotViewController: UIViewController {
     
     @IBOutlet weak var cornerView: UIView!
     @IBOutlet weak var enterBtn: UIButton!
+    @IBOutlet weak var topImage: UIImageView!
+    @IBOutlet weak var parentView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.layer.cornerRadius = 20
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.borderColor = UIColor.lightGray.cgColor
-        self.cornerView.layer.cornerRadius = 20
-        self.cornerView.clipsToBounds =  true
-        //emailTextField.layer.cornerRadius = 0.5 * emailTextField.bounds.size.height
-        //emailTextField.clipsToBounds = true
-        enterBtn.layer.cornerRadius = 0.5 * enterBtn.bounds.size.height
+        enterBtn.layer.cornerRadius = 0.4 * enterBtn.bounds.size.height
         enterBtn.clipsToBounds = true
+        topImage.layer.masksToBounds = true
+        topImage.layer.cornerRadius = 0
+//        parentView.layer.masksToBounds = true
+//        parentView.roundCorners(corners: [.bottomLeft,.bottomRight], radius: 13)
+        
+        
         
     }
     
