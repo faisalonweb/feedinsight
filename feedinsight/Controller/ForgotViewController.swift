@@ -25,13 +25,13 @@ class ForgotViewController: UIViewController {
         super.viewDidLoad()
         emailTextField.layer.cornerRadius = 20
         emailTextField.layer.borderWidth = 1
-        emailTextField.layer.borderColor = UIColor.lightGray.cgColor
-        enterBtn.layer.cornerRadius = 0.4 * enterBtn.bounds.size.height
         enterBtn.clipsToBounds = true
+        enterBtn.layer.cornerRadius = 0.5 * enterBtn.bounds.size.height
+        emailTextField.layer.borderColor = UIColor.lightGray.cgColor
         topImage.layer.masksToBounds = true
         topImage.layer.cornerRadius = 0
-//        parentView.layer.masksToBounds = true
-//        parentView.roundCorners(corners: [.bottomLeft,.bottomRight], radius: 13)
+        parentView.layer.masksToBounds = true
+        parentView.roundCorners(corners: [.bottomLeft,.bottomRight], radius: 13)
         
         
         
@@ -53,6 +53,7 @@ class ForgotViewController: UIViewController {
         }
         else {
             let auth = Auth.auth()
+            
             auth.sendPasswordReset(withEmail: self.emailTextField.text!) { (error) in
                 if let error = error {
                     print("errr\(error)")
