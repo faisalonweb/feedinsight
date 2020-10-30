@@ -12,7 +12,7 @@ import FirebaseAuth
 import SwiftMessages
 import SVProgressHUD
 
-class ForgotViewController: UIViewController {
+class ForgotViewController: UIViewController , UIGestureRecognizerDelegate  {
     
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -24,6 +24,13 @@ class ForgotViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
         emailTextField.layer.cornerRadius = 20
         emailTextField.layer.borderWidth = 1
         enterBtn.clipsToBounds = true

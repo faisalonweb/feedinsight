@@ -12,6 +12,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
+import SwiftMessages
 
 class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     
@@ -411,131 +412,144 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             self.present(dialogMessage, animated: true, completion: nil)
         }
         else {
-            
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                self.productName.isUserInteractionEnabled = false
-                self.productDose.isUserInteractionEnabled = false
-                self.pMacroText.isUserInteractionEnabled = false
-                self.caMacroText.isUserInteractionEnabled = false
-                self.mgMacroText.isUserInteractionEnabled = false
-                self.kMacroText.isUserInteractionEnabled = false
-                self.naMacroText.isUserInteractionEnabled = false
-                self.clMacroText.isUserInteractionEnabled = false
-                self.sMacroText.isUserInteractionEnabled = false
-                self.coMicroText.isUserInteractionEnabled = false
-                self.cuMicroText.isUserInteractionEnabled = false
-                self.cuOrganicMicroText.isUserInteractionEnabled = false
-                self.seMicroText.isUserInteractionEnabled = false
-                self.seOrganicMicroText.isUserInteractionEnabled = false
-                self.znMicroText.isUserInteractionEnabled = false
-                self.znOrganicMicroText.isUserInteractionEnabled = false
-                self.aiuVitamin.isUserInteractionEnabled = false
-                self.diuVitamin.isUserInteractionEnabled = false
-                self.eiuVitamin.isUserInteractionEnabled = false
-                self.niacinVitamin.isUserInteractionEnabled = false
-                self.biotinVitamin.isUserInteractionEnabled = false
-                let text = alertController.textFields!.first!.text!
-                let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
-                var dict1: Dictionary<String, String> = [:]
-                dict1 = ["productName": self.productName.text ?? "none",
-                         "productDose" : self.productDose.text ?? "none",
-                         "pMacroMineral" : self.pMacroText.text ?? "none",
-                         "caMacroMineral": self.caMacroText.text ?? "none" ,
-                         "mgMacroMineral": self.mgMacroText.text ?? "none" ,
-                         "kMacroMineral": self.kMacroText.text ?? "none",
-                         "naMacroMineral": self.naMacroText.text ?? "none" ,
-                         "clMacroMineral": self.clMacroText.text ?? "none" ,
-                         "sMacroMineral": self.sMacroText.text ?? "none",
-                         "coMicroMineral": self.coMicroText.text ?? "none",
-                         "iMicroMineral": self.iMicroText.text ?? "none",
-                         "mnMicroMineral": self.mnMicroText.text ?? "none",
-                         "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
-                         "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
-                         "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
-                         "se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none",
-                         "zn(inorganic)MicroMineral": self.znMicroText.text ?? "none",
-                         "zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none",
-                         "aiuVitamin": self.aiuVitamin.text ?? "none",
-                         "diuVitamin": self.diuVitamin.text ?? "none",
-                         "eiuVitamin": self.eiuVitamin.text ?? "none",
-                         "niacinVitamin": self.niacinVitamin.text ?? "none",
-                         "biotinVitamin": self.biotinVitamin.text ?? "none",
-                         "ReportName" : text,
-                         "currentdatetime": datetimestamp,
-                         "DocId": newDocument.documentID
-                ]
-                newDocument.setData(dict1){ err in
-                    if let err = err {
-                        SVProgressHUD.showError(withStatus: "Error")
-                        
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                        self.productName.isUserInteractionEnabled = true
-                        self.productDose.isUserInteractionEnabled = true
-                        self.pMacroText.isUserInteractionEnabled = true
-                        self.caMacroText.isUserInteractionEnabled = true
-                        self.mgMacroText.isUserInteractionEnabled = true
-                        self.kMacroText.isUserInteractionEnabled = true
-                        self.naMacroText.isUserInteractionEnabled = true
-                        self.clMacroText.isUserInteractionEnabled = true
-                        self.sMacroText.isUserInteractionEnabled = true
-                        self.coMicroText.isUserInteractionEnabled = true
-                        self.cuMicroText.isUserInteractionEnabled = true
-                        self.cuOrganicMicroText.isUserInteractionEnabled = true
-                        self.seMicroText.isUserInteractionEnabled = true
-                        self.seOrganicMicroText.isUserInteractionEnabled = true
-                        self.znMicroText.isUserInteractionEnabled = true
-                        self.znOrganicMicroText.isUserInteractionEnabled = true
-                        self.aiuVitamin.isUserInteractionEnabled = true
-                        self.diuVitamin.isUserInteractionEnabled = true
-                        self.eiuVitamin.isUserInteractionEnabled = true
-                        self.niacinVitamin.isUserInteractionEnabled = true
-                        self.biotinVitamin.isUserInteractionEnabled = true
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                        self.productName.isUserInteractionEnabled = true
-                        self.productDose.isUserInteractionEnabled = true
-                        self.pMacroText.isUserInteractionEnabled = true
-                        self.caMacroText.isUserInteractionEnabled = true
-                        self.mgMacroText.isUserInteractionEnabled = true
-                        self.kMacroText.isUserInteractionEnabled = true
-                        self.naMacroText.isUserInteractionEnabled = true
-                        self.clMacroText.isUserInteractionEnabled = true
-                        self.sMacroText.isUserInteractionEnabled = true
-                        self.coMicroText.isUserInteractionEnabled = true
-                        self.cuMicroText.isUserInteractionEnabled = true
-                        self.cuOrganicMicroText.isUserInteractionEnabled = true
-                        self.seMicroText.isUserInteractionEnabled = true
-                        self.seOrganicMicroText.isUserInteractionEnabled = true
-                        self.znMicroText.isUserInteractionEnabled = true
-                        self.znOrganicMicroText.isUserInteractionEnabled = true
-                        self.aiuVitamin.isUserInteractionEnabled = true
-                        self.diuVitamin.isUserInteractionEnabled = true
-                        self.eiuVitamin.isUserInteractionEnabled = true
-                        self.niacinVitamin.isUserInteractionEnabled = true
-                        self.biotinVitamin.isUserInteractionEnabled = true
+            if (self.productName.text == "" &&  self.productDose.text == "" && self.pMacroText.text == ""
+                    && self.caMacroText.text == "" && self.mgMacroText.text == "" && self.kMacroText.text == "" && self.naMacroText.text == "" && self.clMacroText.text == "" && self.sMacroText.text == "" && self.coMicroText.text == "" &&
+                    self.cuMicroText.text == "" &&  self.cuOrganicMicroText.text == "" && self.seMicroText.text == "" &&  self.seOrganicMicroText.text == "" &&  self.znMicroText.text == "" && self.znOrganicMicroText.text == "" && self.aiuVitamin.text == "" && self.diuVitamin.text == "" && self.eiuVitamin.text == "" && self.niacinVitamin.text == "" && self.biotinVitamin.text == "") {
+                
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "Error", body: "Kindly fill at least one text field")
+                SwiftMessages.show(view: view)
+            }
+            else {
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                let datetimestamp = formatter.string(from: currentDateTime)
+                let db = Firestore.firestore()
+                let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
+                    self.productName.isUserInteractionEnabled = false
+                    self.productDose.isUserInteractionEnabled = false
+                    self.pMacroText.isUserInteractionEnabled = false
+                    self.caMacroText.isUserInteractionEnabled = false
+                    self.mgMacroText.isUserInteractionEnabled = false
+                    self.kMacroText.isUserInteractionEnabled = false
+                    self.naMacroText.isUserInteractionEnabled = false
+                    self.clMacroText.isUserInteractionEnabled = false
+                    self.sMacroText.isUserInteractionEnabled = false
+                    self.coMicroText.isUserInteractionEnabled = false
+                    self.cuMicroText.isUserInteractionEnabled = false
+                    self.cuOrganicMicroText.isUserInteractionEnabled = false
+                    self.seMicroText.isUserInteractionEnabled = false
+                    self.seOrganicMicroText.isUserInteractionEnabled = false
+                    self.znMicroText.isUserInteractionEnabled = false
+                    self.znOrganicMicroText.isUserInteractionEnabled = false
+                    self.aiuVitamin.isUserInteractionEnabled = false
+                    self.diuVitamin.isUserInteractionEnabled = false
+                    self.eiuVitamin.isUserInteractionEnabled = false
+                    self.niacinVitamin.isUserInteractionEnabled = false
+                    self.biotinVitamin.isUserInteractionEnabled = false
+                    let text = alertController.textFields!.first!.text!
+                    let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
+                    var dict1: Dictionary<String, String> = [:]
+                    dict1 = ["productName": self.productName.text ?? "none",
+                             "productDose" : self.productDose.text ?? "none",
+                             "pMacroMineral" : self.pMacroText.text ?? "none",
+                             "caMacroMineral": self.caMacroText.text ?? "none" ,
+                             "mgMacroMineral": self.mgMacroText.text ?? "none" ,
+                             "kMacroMineral": self.kMacroText.text ?? "none",
+                             "naMacroMineral": self.naMacroText.text ?? "none" ,
+                             "clMacroMineral": self.clMacroText.text ?? "none" ,
+                             "sMacroMineral": self.sMacroText.text ?? "none",
+                             "coMicroMineral": self.coMicroText.text ?? "none",
+                             "iMicroMineral": self.iMicroText.text ?? "none",
+                             "mnMicroMineral": self.mnMicroText.text ?? "none",
+                             "cu(inorganic)MicroMineral": self.cuMicroText.text ?? "none",
+                             "cu(organic)MicroMineral": self.cuOrganicMicroText.text ?? "none",
+                             "se(inorganic)MicroMineral": self.seMicroText.text ?? "none",
+                             "se(organic)MicroMineral": self.seOrganicMicroText.text ?? "none",
+                             "zn(inorganic)MicroMineral": self.znMicroText.text ?? "none",
+                             "zn(organic)MicroMineral": self.znOrganicMicroText.text ?? "none",
+                             "aiuVitamin": self.aiuVitamin.text ?? "none",
+                             "diuVitamin": self.diuVitamin.text ?? "none",
+                             "eiuVitamin": self.eiuVitamin.text ?? "none",
+                             "niacinVitamin": self.niacinVitamin.text ?? "none",
+                             "biotinVitamin": self.biotinVitamin.text ?? "none",
+                             "ReportName" : text,
+                             "currentdatetime": datetimestamp,
+                             "DocId": newDocument.documentID
+                    ]
+                    newDocument.setData(dict1){ err in
+                        if let err = err {
+                            SVProgressHUD.showError(withStatus: "Error")
+                            
+                            print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
+                            self.productName.isUserInteractionEnabled = true
+                            self.productDose.isUserInteractionEnabled = true
+                            self.pMacroText.isUserInteractionEnabled = true
+                            self.caMacroText.isUserInteractionEnabled = true
+                            self.mgMacroText.isUserInteractionEnabled = true
+                            self.kMacroText.isUserInteractionEnabled = true
+                            self.naMacroText.isUserInteractionEnabled = true
+                            self.clMacroText.isUserInteractionEnabled = true
+                            self.sMacroText.isUserInteractionEnabled = true
+                            self.coMicroText.isUserInteractionEnabled = true
+                            self.cuMicroText.isUserInteractionEnabled = true
+                            self.cuOrganicMicroText.isUserInteractionEnabled = true
+                            self.seMicroText.isUserInteractionEnabled = true
+                            self.seOrganicMicroText.isUserInteractionEnabled = true
+                            self.znMicroText.isUserInteractionEnabled = true
+                            self.znOrganicMicroText.isUserInteractionEnabled = true
+                            self.aiuVitamin.isUserInteractionEnabled = true
+                            self.diuVitamin.isUserInteractionEnabled = true
+                            self.eiuVitamin.isUserInteractionEnabled = true
+                            self.niacinVitamin.isUserInteractionEnabled = true
+                            self.biotinVitamin.isUserInteractionEnabled = true
+                        } else {
+                            SVProgressHUD.showSuccess(withStatus: "Sucess")
+                            
+                            print("Document added")
+                            SVProgressHUD.dismiss()
+                            self.productName.isUserInteractionEnabled = true
+                            self.productDose.isUserInteractionEnabled = true
+                            self.pMacroText.isUserInteractionEnabled = true
+                            self.caMacroText.isUserInteractionEnabled = true
+                            self.mgMacroText.isUserInteractionEnabled = true
+                            self.kMacroText.isUserInteractionEnabled = true
+                            self.naMacroText.isUserInteractionEnabled = true
+                            self.clMacroText.isUserInteractionEnabled = true
+                            self.sMacroText.isUserInteractionEnabled = true
+                            self.coMicroText.isUserInteractionEnabled = true
+                            self.cuMicroText.isUserInteractionEnabled = true
+                            self.cuOrganicMicroText.isUserInteractionEnabled = true
+                            self.seMicroText.isUserInteractionEnabled = true
+                            self.seOrganicMicroText.isUserInteractionEnabled = true
+                            self.znMicroText.isUserInteractionEnabled = true
+                            self.znOrganicMicroText.isUserInteractionEnabled = true
+                            self.aiuVitamin.isUserInteractionEnabled = true
+                            self.diuVitamin.isUserInteractionEnabled = true
+                            self.eiuVitamin.isUserInteractionEnabled = true
+                            self.niacinVitamin.isUserInteractionEnabled = true
+                            self.biotinVitamin.isUserInteractionEnabled = true
+                        }
                     }
                 }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Premix Profile"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Premix Profile"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
+            
+           
         }
         
     }

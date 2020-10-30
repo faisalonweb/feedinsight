@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if(indexPath.row == 0) {
-            let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
+            let animalViewController = storyboard.instantiateViewController(withIdentifier: "NewRumiViewController") as! NewRumiViewController
             self.navigationController?.pushViewController(animalViewController, animated: true)
         } else if(indexPath.row == 1) {
             let unitConvertorVC = storyboard.instantiateViewController(withIdentifier: "unitConvertorVC") as! UnitConvertorViewController

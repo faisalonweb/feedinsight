@@ -12,6 +12,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
+import SwiftMessages
 
 class WaterCustomViewController: UIViewController {
     
@@ -182,64 +183,76 @@ class WaterCustomViewController: UIViewController {
             self.present(dialogMessage, animated: true, completion: nil)
         }
         else {
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                self.PText.isUserInteractionEnabled =  false
-                self.CaText.isUserInteractionEnabled =  false
-                self.MgText.isUserInteractionEnabled =  false
-                self.KText.isUserInteractionEnabled =  false
-                self.NaText.isUserInteractionEnabled =  false
-                self.ClText.isUserInteractionEnabled =  false
-                self.SText.isUserInteractionEnabled =  false
-                let text = alertController.textFields!.first!.text!
-                //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
-                let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document()
-                newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID]){ err in
-                    if let err = err {
-                        //                       SVProgressHUD.dismiss()
-                        SVProgressHUD.showError(withStatus: "Error")
-                        
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                        self.PText.isUserInteractionEnabled =  true
-                        self.CaText.isUserInteractionEnabled =  true
-                        self.MgText.isUserInteractionEnabled =  true
-                        self.KText.isUserInteractionEnabled =  true
-                        self.NaText.isUserInteractionEnabled =  true
-                        self.ClText.isUserInteractionEnabled =  true
-                        self.SText.isUserInteractionEnabled =  true
-                    } else {
-                        //                       SVProgressHUD.dismiss()
-                        SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                        self.PText.isUserInteractionEnabled =  true
-                        self.CaText.isUserInteractionEnabled =  true
-                        self.MgText.isUserInteractionEnabled =  true
-                        self.KText.isUserInteractionEnabled =  true
-                        self.NaText.isUserInteractionEnabled =  true
-                        self.ClText.isUserInteractionEnabled =  true
-                        self.SText.isUserInteractionEnabled =  true
+            if (self.PText.text == "" && self.CaText.text == "" && self.MgText.text == "" && self.KText.text == "" && self.NaText.text == "" && self.ClText.text == "" && self.SText.text == "") {
+                
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "Error", body: "Kindly fill at least one text field")
+                SwiftMessages.show(view: view)
+                
+            }
+            else {
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                let datetimestamp = formatter.string(from: currentDateTime)
+                let db = Firestore.firestore()
+                let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
+                    self.PText.isUserInteractionEnabled =  false
+                    self.CaText.isUserInteractionEnabled =  false
+                    self.MgText.isUserInteractionEnabled =  false
+                    self.KText.isUserInteractionEnabled =  false
+                    self.NaText.isUserInteractionEnabled =  false
+                    self.ClText.isUserInteractionEnabled =  false
+                    self.SText.isUserInteractionEnabled =  false
+                    let text = alertController.textFields!.first!.text!
+                    //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
+                    let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document()
+                    newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID]){ err in
+                        if let err = err {
+                            //                       SVProgressHUD.dismiss()
+                            SVProgressHUD.showError(withStatus: "Error")
+                            
+                            print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
+                            self.PText.isUserInteractionEnabled =  true
+                            self.CaText.isUserInteractionEnabled =  true
+                            self.MgText.isUserInteractionEnabled =  true
+                            self.KText.isUserInteractionEnabled =  true
+                            self.NaText.isUserInteractionEnabled =  true
+                            self.ClText.isUserInteractionEnabled =  true
+                            self.SText.isUserInteractionEnabled =  true
+                        } else {
+                            //                       SVProgressHUD.dismiss()
+                            SVProgressHUD.showSuccess(withStatus: "Sucess")
+                            
+                            print("Document added")
+                            SVProgressHUD.dismiss()
+                            self.PText.isUserInteractionEnabled =  true
+                            self.CaText.isUserInteractionEnabled =  true
+                            self.MgText.isUserInteractionEnabled =  true
+                            self.KText.isUserInteractionEnabled =  true
+                            self.NaText.isUserInteractionEnabled =  true
+                            self.ClText.isUserInteractionEnabled =  true
+                            self.SText.isUserInteractionEnabled =  true
+                        }
                     }
                 }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Water Profile"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
             }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Water Profile"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
+            
         
     }
     @IBAction func loadOnClick(_ sender: Any) {

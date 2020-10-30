@@ -11,4 +11,6 @@ import UIKit
 class RuminantsPickCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var rumiLabel: UILabel!
+    
+    
 }

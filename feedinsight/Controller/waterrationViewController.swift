@@ -12,7 +12,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 
-class waterrationViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
+class waterrationViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate{
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileimage: UIImageView!
@@ -116,6 +116,13 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
        
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
