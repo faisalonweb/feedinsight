@@ -74,43 +74,21 @@ class WaterCustomViewController: UIViewController {
                 let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                     SVProgressHUD.show(withStatus: "it's working ...")
-                    self.PText.isUserInteractionEnabled =  false
-                    self.CaText.isUserInteractionEnabled =  false
-                    self.MgText.isUserInteractionEnabled =  false
-                    self.KText.isUserInteractionEnabled =  false
-                    self.NaText.isUserInteractionEnabled =  false
-                    self.ClText.isUserInteractionEnabled =  false
-                    self.SText.isUserInteractionEnabled =  false
+                    self.view.isUserInteractionEnabled =  false
                     let text = alertController.textFields!.first!.text!
                     //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
                     let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document()
                     newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID]){ err in
                         if let err = err {
-                            //                       SVProgressHUD.dismiss()
-                           SVProgressHUD.showError(withStatus: "Error")
-                            
+                            SVProgressHUD.showError(withStatus: "Error")
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
-                            self.PText.isUserInteractionEnabled =  true
-                            self.CaText.isUserInteractionEnabled =  true
-                            self.MgText.isUserInteractionEnabled =  true
-                            self.KText.isUserInteractionEnabled =  true
-                            self.NaText.isUserInteractionEnabled =  true
-                            self.ClText.isUserInteractionEnabled =  true
-                            self.SText.isUserInteractionEnabled =  true
+                            self.view.isUserInteractionEnabled =  true
                         } else {
-                            //                       SVProgressHUD.dismiss()
                             SVProgressHUD.showSuccess(withStatus: "Sucess")
-                            
                             print("Document added")
                             SVProgressHUD.dismiss()
-                            self.PText.isUserInteractionEnabled =  true
-                            self.CaText.isUserInteractionEnabled =  true
-                            self.MgText.isUserInteractionEnabled =  true
-                            self.KText.isUserInteractionEnabled =  true
-                            self.NaText.isUserInteractionEnabled =  true
-                            self.ClText.isUserInteractionEnabled =  true
-                            self.SText.isUserInteractionEnabled =  true
+                            self.view.isUserInteractionEnabled =  true
                         }
                     }
                 }
@@ -127,13 +105,7 @@ class WaterCustomViewController: UIViewController {
             // Create Cancel button with action handlder
             let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
                 SVProgressHUD.show(withStatus: "it's working ...")
-                self.PText.isUserInteractionEnabled =  false
-                self.CaText.isUserInteractionEnabled =  false
-                self.MgText.isUserInteractionEnabled =  false
-                self.KText.isUserInteractionEnabled =  false
-                self.NaText.isUserInteractionEnabled =  false
-                self.ClText.isUserInteractionEnabled =  false
-                self.SText.isUserInteractionEnabled =  false
+                self.view.isUserInteractionEnabled =  false
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -143,31 +115,14 @@ class WaterCustomViewController: UIViewController {
                 let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document(self.documentID)
                 newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : self.reportName,"currentdatetime": datetimestamp, "DocId": newDocument.documentID]){ err in
                     if let err = err {
-                        //                       SVProgressHUD.dismiss()
-                       SVProgressHUD.showError(withStatus: "Error")
-                        
+                        SVProgressHUD.showError(withStatus: "Error")
                         print("Error adding document: \(err)")
                         SVProgressHUD.dismiss()
-                        self.PText.isUserInteractionEnabled =  true
-                        self.CaText.isUserInteractionEnabled =  true
-                        self.MgText.isUserInteractionEnabled =  true
-                        self.KText.isUserInteractionEnabled =  true
-                        self.NaText.isUserInteractionEnabled =  true
-                        self.ClText.isUserInteractionEnabled =  true
-                        self.SText.isUserInteractionEnabled =  true
+                        self.view.isUserInteractionEnabled =  true
                     } else {
-                        //                       SVProgressHUD.dismiss()
-                       SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        
-                        print("Document added")
+                        SVProgressHUD.showSuccess(withStatus: "Sucess")
                         SVProgressHUD.dismiss()
-                        self.PText.isUserInteractionEnabled =  true
-                        self.CaText.isUserInteractionEnabled =  true
-                        self.MgText.isUserInteractionEnabled =  true
-                        self.KText.isUserInteractionEnabled =  true
-                        self.NaText.isUserInteractionEnabled =  true
-                        self.ClText.isUserInteractionEnabled =  true
-                        self.SText.isUserInteractionEnabled =  true
+                        self.view.isUserInteractionEnabled =  true
                     }
                 }
             }
@@ -202,43 +157,20 @@ class WaterCustomViewController: UIViewController {
                 let alertController = UIAlertController(title: "Water Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                     SVProgressHUD.show(withStatus: "it's working ...")
-                    self.PText.isUserInteractionEnabled =  false
-                    self.CaText.isUserInteractionEnabled =  false
-                    self.MgText.isUserInteractionEnabled =  false
-                    self.KText.isUserInteractionEnabled =  false
-                    self.NaText.isUserInteractionEnabled =  false
-                    self.ClText.isUserInteractionEnabled =  false
-                    self.SText.isUserInteractionEnabled =  false
+                    self.view.isUserInteractionEnabled =  false
                     let text = alertController.textFields!.first!.text!
                     //                let dict : [String : Any] = ["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp]
                     let newDocument =  db.collection("waterReports").document(self.userID!).collection("waterReports").document()
                     newDocument.setData(["P" : self.PText.text ?? "none", "Ca" : self.CaText.text ?? "none", "Mg" : self.MgText.text ?? "none","K": self.KText.text ?? "none" , "Na": self.NaText.text ?? "none" , "Cl": self.ClText.text ?? "none", "S": self.SText.text ?? "none" , "ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID]){ err in
                         if let err = err {
-                            //                       SVProgressHUD.dismiss()
                             SVProgressHUD.showError(withStatus: "Error")
-                            
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
-                            self.PText.isUserInteractionEnabled =  true
-                            self.CaText.isUserInteractionEnabled =  true
-                            self.MgText.isUserInteractionEnabled =  true
-                            self.KText.isUserInteractionEnabled =  true
-                            self.NaText.isUserInteractionEnabled =  true
-                            self.ClText.isUserInteractionEnabled =  true
-                            self.SText.isUserInteractionEnabled =  true
+                            self.view.isUserInteractionEnabled =  true
                         } else {
-                            //                       SVProgressHUD.dismiss()
                             SVProgressHUD.showSuccess(withStatus: "Sucess")
-                            
-                            print("Document added")
                             SVProgressHUD.dismiss()
-                            self.PText.isUserInteractionEnabled =  true
-                            self.CaText.isUserInteractionEnabled =  true
-                            self.MgText.isUserInteractionEnabled =  true
-                            self.KText.isUserInteractionEnabled =  true
-                            self.NaText.isUserInteractionEnabled =  true
-                            self.ClText.isUserInteractionEnabled =  true
-                            self.SText.isUserInteractionEnabled =  true
+                            self.view.isUserInteractionEnabled =  true
                         }
                     }
                 }

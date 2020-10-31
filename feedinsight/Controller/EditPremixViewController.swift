@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 import SwiftMessages
 class EditPremixViewController: UIViewController {
     
@@ -145,7 +144,6 @@ class EditPremixViewController: UIViewController {
                 productList[currentIndex].Biotin = self.biotinTextField.text!
                 productList[currentIndex].Reference = self.referTextField.text!
                 productList.append(contentsOf: addedDataList)
-                //SVProgressHUD.show(withStatus: "it's working ...")
                 writeToFile(location: subUrl!)
                 print("this is the location\(String(describing: subUrl))")
             }
@@ -197,7 +195,6 @@ class EditPremixViewController: UIViewController {
                     addedDataList[0].Biotin = self.biotinTextField.text!
                     addedDataList[0].Reference = self.referTextField.text!
                     productList.append(contentsOf: addedDataList)
-                    //SVProgressHUD.show(withStatus: "it's working ...")
                     writeToFile(location: subUrl!)
                     print("this is the location\(String(describing: subUrl))")
                 }

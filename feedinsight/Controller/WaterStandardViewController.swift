@@ -11,7 +11,6 @@ import Firebase
 import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
-import SVProgressHUD
 
 class WaterStandardViewController: UIViewController {
     

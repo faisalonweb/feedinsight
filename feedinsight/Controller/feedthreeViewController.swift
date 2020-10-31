@@ -95,7 +95,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -118,7 +118,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         currentTappedTextField = textField
     }
     
-
+    
     override func viewDidLoad() {
         self.dismissKey()
         addfeed.delegate = self
@@ -126,9 +126,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
         if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
-          let gestureRecognizer = UIPanGestureRecognizer()
-          gestureRecognizer.setValue(targets, forKey: "targets")
-          self.view.addGestureRecognizer(gestureRecognizer)
+            let gestureRecognizer = UIPanGestureRecognizer()
+            gestureRecognizer.setValue(targets, forKey: "targets")
+            self.view.addGestureRecognizer(gestureRecognizer)
         }
         super.viewDidLoad()
         //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
@@ -152,9 +152,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         addfeed.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         addfeed.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         addfeed.theme.cellHeight = 40
-       // addfeed.comparisonOptions = .
+        // addfeed.comparisonOptions = .
         addfeed.minCharactersNumberToStartFiltering = 1
-    
+        
         if(fromStateVC == true) {
             fromStateVC = false
             dropdownvalues.removeAll()
@@ -185,10 +185,10 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
         DispatchQueue.global().async {
             DispatchQueue.main.async {
-            let data = self.defaults!.value(forKey: "imageData") as? Data
-            if(data != nil) {
-                self.profileimage.image = UIImage(data: data!)
-            }
+                let data = self.defaults!.value(forKey: "imageData") as? Data
+                if(data != nil) {
+                    self.profileimage.image = UIImage(data: data!)
+                }
             }
         }
     }
@@ -219,7 +219,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         }
     }
     @IBAction func onClickLoad(_ sender: Any) {
-       // checkStatus = true
+        // checkStatus = true
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController
         vc?.screenNAME = "ration"
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -282,7 +282,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             
             // Create OK button with action handler
             let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
-               
+                
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -293,22 +293,25 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let db = Firestore.firestore()
                     let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
                     let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                         SVProgressHUD.show(withStatus: "it's working ...")
+                        self.view.isUserInteractionEnabled = false
+                        SVProgressHUD.show(withStatus: "it's working ...")
                         let text = alertController.textFields!.first!.text!
                         //                        let dict : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
                         let newDocument =  db.collection("rationReports").document(self.userID!).collection("rationReports").document()
                         newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
                             if let err = err {
                                 SVProgressHUD.showError(withStatus: "Error")
-                                                       
-                                                       print("Error adding document: \(err)")
-                                                       SVProgressHUD.dismiss()
+                                
+                                print("Error adding document: \(err)")
+                                SVProgressHUD.dismiss()
+                                self.view.isUserInteractionEnabled = true
                                 
                             } else {
                                 SVProgressHUD.showSuccess(withStatus: "Success")
                                 
                                 print("Document added")
                                 SVProgressHUD.dismiss()
+                                self.view.isUserInteractionEnabled = true
                             }
                         }
                     }
@@ -333,6 +336,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             // Create Cancel button with action handlder
             let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
                 SVProgressHUD.show(withStatus: "it's working ...")
+                self.view.isUserInteractionEnabled = false
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -345,28 +349,30 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document(self.documentID)
                     newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
                         if let err = err {
-                           SVProgressHUD.showError(withStatus: "Error")
+                            SVProgressHUD.showError(withStatus: "Error")
                             
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
+                            self.view.isUserInteractionEnabled = true
                         } else {
                             SVProgressHUD.showSuccess(withStatus: "Success")
-                                                           
-                                                           print("Document added")
-                                                           SVProgressHUD.dismiss()
+                            
+                            print("Document added")
+                            SVProgressHUD.dismiss()
+                            self.view.isUserInteractionEnabled = true
                         }
                     }
                     
                 }
                 
             }
-           let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
+            let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
             }
             //Add OK and Cancel button to an Alert object
             dialogMessage.addAction(new)
             dialogMessage.addAction(previous)
             dialogMessage.addAction(destructive)
-                       
+            
             
             
             // Present alert message to user
@@ -397,6 +403,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
                     let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                         SVProgressHUD.show(withStatus: "it's working ...")
+                        self.view.isUserInteractionEnabled = false
                         let text = alertController.textFields!.first!.text!
                         //                    let _ : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
                         let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
@@ -406,11 +413,13 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                                 
                                 print("Error adding document: \(err)")
                                 SVProgressHUD.dismiss()
+                                self.view.isUserInteractionEnabled = true
                             } else {
-                                 SVProgressHUD.showSuccess(withStatus: "Success")
-                                                               
-                                                               print("Document added")
-                                                               SVProgressHUD.dismiss()
+                                SVProgressHUD.showSuccess(withStatus: "Success")
+                                
+                                print("Document added")
+                                SVProgressHUD.dismiss()
+                                self.view.isUserInteractionEnabled = true
                             }
                         }
                     }
@@ -422,7 +431,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     alertController.addAction(withdrawAction)
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
-
+                    
                 } else {
                     let view = MessageView.viewFromNib(layout: .cardView)
                     view.configureTheme(.error)
@@ -452,7 +461,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                     let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
                     vc?.screenName = "Edit Feed"
                     self.navigationController?.pushViewController(vc!, animated: true)
-                
+                    
                 }
             }
         }

@@ -94,13 +94,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             SVProgressHUD.show()
-            emailField.isUserInteractionEnabled = false
-            paswordField.isUserInteractionEnabled = false
+            self.view.isUserInteractionEnabled = false
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil {
                     SVProgressHUD.dismiss()
-                    self.emailField.isUserInteractionEnabled = true
-                    self.paswordField.isUserInteractionEnabled = true
+                    self.view.isUserInteractionEnabled = true
                     self.showError(error!.localizedDescription)
                 } else {
                     if let authResult = result {
@@ -147,13 +145,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                                     self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
                                     self.userDefault!.synchronize()
                                     SVProgressHUD.dismiss()
+                                    self.view.isUserInteractionEnabled = true
                                     self.transitionToHome()
                                 }
                             }
                         } else {
                             SVProgressHUD.dismiss()
-                            self.emailField.isUserInteractionEnabled = true
-                            self.paswordField.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                             self.showError("Verify your email first.")
                         }
                     }
@@ -192,7 +190,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         return nil
     }
     func showError(_ message:String) {
-        SVProgressHUD.dismiss()
         let view = MessageView.viewFromNib(layout: .cardView)
         view.configureTheme(.error)
         view.configureDropShadow()

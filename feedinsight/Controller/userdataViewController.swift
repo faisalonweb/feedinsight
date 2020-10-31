@@ -120,10 +120,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
         let tapemail = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapheader = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapwelcome = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapname = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapphone = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapotherindus = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapanimal = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapbuss = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
@@ -131,13 +129,11 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         let taprole = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tappass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         let tapcnfpass = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
-        //let tapsignup = UITapGestureRecognizer.init(target: self, action: #selector(tapAction))
         userpic.addGestureRecognizer(tapOnImage)
         emailView.addGestureRecognizer(tapemail)
         headerView.addGestureRecognizer(tapheader)
         nameView.addGestureRecognizer(tapname)
         phoneView.addGestureRecognizer(tapphone)
-        //indusview.addGestureRecognizer(tapindus)
         otherindusView.addGestureRecognizer(tapotherindus)
         animalView.addGestureRecognizer(tapanimal)
         bussView.addGestureRecognizer(tapbuss)
@@ -145,7 +141,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         roleView.addGestureRecognizer(taprole)
         password.addGestureRecognizer(tappass)
         cnfpassView.addGestureRecognizer(tapcnfpass)
-        //changeView.addGestureRecognizer(tapsignup)
         self.animaltableview.isHidden = true
         animaltableview.clipsToBounds = false
         animaltableview.layer.masksToBounds = false
@@ -153,7 +148,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         animaltableview.layer.shadowOffset = CGSize(width: 0, height: 0)
         animaltableview.layer.shadowRadius = 5.0
         animaltableview.layer.shadowOpacity = 0.5
-        
         pickAnimalSelection.titleEdgeInsets.top = 0
         pickAnimalSelection.titleEdgeInsets.left = 8
         pickAnimalSelection.titleEdgeInsets.bottom = 0
@@ -401,6 +395,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                                 }
                                 else {
                                     SVProgressHUD.dismiss()
+                                    self.view.isUserInteractionEnabled = true
+
                                 }
                             }
                         }
@@ -534,7 +530,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
-                SVProgressHUD.show(withStatus: "it's working ...")
                 let defaults = UserDefaults(suiteName:"User")
                 let dictionary = defaults!.dictionaryRepresentation()
                 dictionary.keys.forEach { key in
@@ -542,7 +537,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                     self.defaults!.synchronize()
                 }
                 self.defaults!.synchronize()
-                SVProgressHUD.dismiss()
                 let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
                 self.navigationController?.pushViewController(vcone!, animated: true)
                 
@@ -592,10 +586,12 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
         } else {
             industrycellValue = ""
         }
+        self.view.isUserInteractionEnabled = false
         SVProgressHUD.show(withStatus: "it's working ...")
         let error = validateFields()
         if error != nil {
             SVProgressHUD.dismiss()
+            self.view.isUserInteractionEnabled = true
             showError(error!)
         }
         else {
@@ -614,6 +610,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                     }
                     else {
                         SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
                         self.defaults!.set(self.roledropdown.text, forKey: dKeys.keyRole)
                         self.defaults!.set(self.locationField.text, forKey: dKeys.keyLocation)
                         self.defaults!.set(self.username.text, forKey: dKeys.keyusername)

@@ -117,12 +117,12 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
-        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
-          let gestureRecognizer = UIPanGestureRecognizer()
-          gestureRecognizer.setValue(targets, forKey: "targets")
-          self.view.addGestureRecognizer(gestureRecognizer)
-        }
+//        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+//        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+//          let gestureRecognizer = UIPanGestureRecognizer()
+//          gestureRecognizer.setValue(targets, forKey: "targets")
+//          self.view.addGestureRecognizer(gestureRecognizer)
+//        }
        
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String

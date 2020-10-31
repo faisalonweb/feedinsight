@@ -150,13 +150,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         }
     }
     @IBAction func saveOnClick(_ sender: Any) {
-        
         if (premixStatus == true) {
-            // Create Alert
             let dialogMessage = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
-            
-            
-            // Create OK button with action handler
             let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
@@ -167,27 +162,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                     SVProgressHUD.show(withStatus: "it's working ...")
-                    self.productName.isUserInteractionEnabled = false
-                    self.productDose.isUserInteractionEnabled = false
-                    self.pMacroText.isUserInteractionEnabled = false
-                    self.caMacroText.isUserInteractionEnabled = false
-                    self.mgMacroText.isUserInteractionEnabled = false
-                    self.kMacroText.isUserInteractionEnabled = false
-                    self.naMacroText.isUserInteractionEnabled = false
-                    self.clMacroText.isUserInteractionEnabled = false
-                    self.sMacroText.isUserInteractionEnabled = false
-                    self.coMicroText.isUserInteractionEnabled = false
-                    self.cuMicroText.isUserInteractionEnabled = false
-                    self.cuOrganicMicroText.isUserInteractionEnabled = false
-                    self.seMicroText.isUserInteractionEnabled = false
-                    self.seOrganicMicroText.isUserInteractionEnabled = false
-                    self.znMicroText.isUserInteractionEnabled = false
-                    self.znOrganicMicroText.isUserInteractionEnabled = false
-                    self.aiuVitamin.isUserInteractionEnabled = false
-                    self.diuVitamin.isUserInteractionEnabled = false
-                    self.eiuVitamin.isUserInteractionEnabled = false
-                    self.niacinVitamin.isUserInteractionEnabled = false
-                    self.biotinVitamin.isUserInteractionEnabled = false
+                    self.view.isUserInteractionEnabled = false
                     let text = alertController.textFields!.first!.text!
                     let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
                     var dict1: Dictionary<String, String> = [:]
@@ -222,53 +197,13 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                             
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
-                            self.productName.isUserInteractionEnabled = true
-                            self.productDose.isUserInteractionEnabled = true
-                            self.pMacroText.isUserInteractionEnabled = true
-                            self.caMacroText.isUserInteractionEnabled = true
-                            self.mgMacroText.isUserInteractionEnabled = true
-                            self.kMacroText.isUserInteractionEnabled = true
-                            self.naMacroText.isUserInteractionEnabled = true
-                            self.clMacroText.isUserInteractionEnabled = true
-                            self.sMacroText.isUserInteractionEnabled = true
-                            self.coMicroText.isUserInteractionEnabled = true
-                            self.cuMicroText.isUserInteractionEnabled = true
-                            self.cuOrganicMicroText.isUserInteractionEnabled = true
-                            self.seMicroText.isUserInteractionEnabled = true
-                            self.seOrganicMicroText.isUserInteractionEnabled = true
-                            self.znMicroText.isUserInteractionEnabled = true
-                            self.znOrganicMicroText.isUserInteractionEnabled = true
-                            self.aiuVitamin.isUserInteractionEnabled = true
-                            self.diuVitamin.isUserInteractionEnabled = true
-                            self.eiuVitamin.isUserInteractionEnabled = true
-                            self.niacinVitamin.isUserInteractionEnabled = true
-                            self.biotinVitamin.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         } else {
                             SVProgressHUD.showSuccess(withStatus: "Sucess")
                             
                             print("Document added")
                             SVProgressHUD.dismiss()
-                            self.productName.isUserInteractionEnabled = true
-                            self.productDose.isUserInteractionEnabled = true
-                            self.pMacroText.isUserInteractionEnabled = true
-                            self.caMacroText.isUserInteractionEnabled = true
-                            self.mgMacroText.isUserInteractionEnabled = true
-                            self.kMacroText.isUserInteractionEnabled = true
-                            self.naMacroText.isUserInteractionEnabled = true
-                            self.clMacroText.isUserInteractionEnabled = true
-                            self.sMacroText.isUserInteractionEnabled = true
-                            self.coMicroText.isUserInteractionEnabled = true
-                            self.cuMicroText.isUserInteractionEnabled = true
-                            self.cuOrganicMicroText.isUserInteractionEnabled = true
-                            self.seMicroText.isUserInteractionEnabled = true
-                            self.seOrganicMicroText.isUserInteractionEnabled = true
-                            self.znMicroText.isUserInteractionEnabled = true
-                            self.znOrganicMicroText.isUserInteractionEnabled = true
-                            self.aiuVitamin.isUserInteractionEnabled = true
-                            self.diuVitamin.isUserInteractionEnabled = true
-                            self.eiuVitamin.isUserInteractionEnabled = true
-                            self.niacinVitamin.isUserInteractionEnabled = true
-                            self.biotinVitamin.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         }
                     }
                 }
@@ -285,27 +220,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             // Create Cancel button with action handlder
             let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
                 SVProgressHUD.show(withStatus: "it's working ...")
-                self.productName.isUserInteractionEnabled = false
-                self.productDose.isUserInteractionEnabled = false
-                self.pMacroText.isUserInteractionEnabled = false
-                self.caMacroText.isUserInteractionEnabled = false
-                self.mgMacroText.isUserInteractionEnabled = false
-                self.kMacroText.isUserInteractionEnabled = false
-                self.naMacroText.isUserInteractionEnabled = false
-                self.clMacroText.isUserInteractionEnabled = false
-                self.sMacroText.isUserInteractionEnabled = false
-                self.coMicroText.isUserInteractionEnabled = false
-                self.cuMicroText.isUserInteractionEnabled = false
-                self.cuOrganicMicroText.isUserInteractionEnabled = false
-                self.seMicroText.isUserInteractionEnabled = false
-                self.seOrganicMicroText.isUserInteractionEnabled = false
-                self.znMicroText.isUserInteractionEnabled = false
-                self.znOrganicMicroText.isUserInteractionEnabled = false
-                self.aiuVitamin.isUserInteractionEnabled = false
-                self.diuVitamin.isUserInteractionEnabled = false
-                self.eiuVitamin.isUserInteractionEnabled = false
-                self.niacinVitamin.isUserInteractionEnabled = false
-                self.biotinVitamin.isUserInteractionEnabled = false
+                self.view.isUserInteractionEnabled = false
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -348,53 +263,13 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                         
                         print("Error adding document: \(err)")
                         SVProgressHUD.dismiss()
-                        self.productName.isUserInteractionEnabled = true
-                        self.productDose.isUserInteractionEnabled = true
-                        self.pMacroText.isUserInteractionEnabled = true
-                        self.caMacroText.isUserInteractionEnabled = true
-                        self.mgMacroText.isUserInteractionEnabled = true
-                        self.kMacroText.isUserInteractionEnabled = true
-                        self.naMacroText.isUserInteractionEnabled = true
-                        self.clMacroText.isUserInteractionEnabled = true
-                        self.sMacroText.isUserInteractionEnabled = true
-                        self.coMicroText.isUserInteractionEnabled = true
-                        self.cuMicroText.isUserInteractionEnabled = true
-                        self.cuOrganicMicroText.isUserInteractionEnabled = true
-                        self.seMicroText.isUserInteractionEnabled = true
-                        self.seOrganicMicroText.isUserInteractionEnabled = true
-                        self.znMicroText.isUserInteractionEnabled = true
-                        self.znOrganicMicroText.isUserInteractionEnabled = true
-                        self.aiuVitamin.isUserInteractionEnabled = true
-                        self.diuVitamin.isUserInteractionEnabled = true
-                        self.eiuVitamin.isUserInteractionEnabled = true
-                        self.niacinVitamin.isUserInteractionEnabled = true
-                        self.biotinVitamin.isUserInteractionEnabled = true
+                        self.view.isUserInteractionEnabled = true
                     } else {
                         SVProgressHUD.showSuccess(withStatus: "Sucess")
                         
                         print("Document added")
                         SVProgressHUD.dismiss()
-                        self.productName.isUserInteractionEnabled = true
-                        self.productDose.isUserInteractionEnabled = true
-                        self.pMacroText.isUserInteractionEnabled = true
-                        self.caMacroText.isUserInteractionEnabled = true
-                        self.mgMacroText.isUserInteractionEnabled = true
-                        self.kMacroText.isUserInteractionEnabled = true
-                        self.naMacroText.isUserInteractionEnabled = true
-                        self.clMacroText.isUserInteractionEnabled = true
-                        self.sMacroText.isUserInteractionEnabled = true
-                        self.coMicroText.isUserInteractionEnabled = true
-                        self.cuMicroText.isUserInteractionEnabled = true
-                        self.cuOrganicMicroText.isUserInteractionEnabled = true
-                        self.seMicroText.isUserInteractionEnabled = true
-                        self.seOrganicMicroText.isUserInteractionEnabled = true
-                        self.znMicroText.isUserInteractionEnabled = true
-                        self.znOrganicMicroText.isUserInteractionEnabled = true
-                        self.aiuVitamin.isUserInteractionEnabled = true
-                        self.diuVitamin.isUserInteractionEnabled = true
-                        self.eiuVitamin.isUserInteractionEnabled = true
-                        self.niacinVitamin.isUserInteractionEnabled = true
-                        self.biotinVitamin.isUserInteractionEnabled = true
+                        self.view.isUserInteractionEnabled = true
                     }
                 }
                 
@@ -432,27 +307,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 let alertController = UIAlertController(title: "Premix Profile", message: "", preferredStyle: .alert)
                 let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
                     SVProgressHUD.show(withStatus: "it's working ...")
-                    self.productName.isUserInteractionEnabled = false
-                    self.productDose.isUserInteractionEnabled = false
-                    self.pMacroText.isUserInteractionEnabled = false
-                    self.caMacroText.isUserInteractionEnabled = false
-                    self.mgMacroText.isUserInteractionEnabled = false
-                    self.kMacroText.isUserInteractionEnabled = false
-                    self.naMacroText.isUserInteractionEnabled = false
-                    self.clMacroText.isUserInteractionEnabled = false
-                    self.sMacroText.isUserInteractionEnabled = false
-                    self.coMicroText.isUserInteractionEnabled = false
-                    self.cuMicroText.isUserInteractionEnabled = false
-                    self.cuOrganicMicroText.isUserInteractionEnabled = false
-                    self.seMicroText.isUserInteractionEnabled = false
-                    self.seOrganicMicroText.isUserInteractionEnabled = false
-                    self.znMicroText.isUserInteractionEnabled = false
-                    self.znOrganicMicroText.isUserInteractionEnabled = false
-                    self.aiuVitamin.isUserInteractionEnabled = false
-                    self.diuVitamin.isUserInteractionEnabled = false
-                    self.eiuVitamin.isUserInteractionEnabled = false
-                    self.niacinVitamin.isUserInteractionEnabled = false
-                    self.biotinVitamin.isUserInteractionEnabled = false
+                    self.view.isUserInteractionEnabled = false
                     let text = alertController.textFields!.first!.text!
                     let newDocument = db.collection("premixReports").document(self.userID!).collection("premixReports").document()
                     var dict1: Dictionary<String, String> = [:]
@@ -489,53 +344,13 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                             
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
-                            self.productName.isUserInteractionEnabled = true
-                            self.productDose.isUserInteractionEnabled = true
-                            self.pMacroText.isUserInteractionEnabled = true
-                            self.caMacroText.isUserInteractionEnabled = true
-                            self.mgMacroText.isUserInteractionEnabled = true
-                            self.kMacroText.isUserInteractionEnabled = true
-                            self.naMacroText.isUserInteractionEnabled = true
-                            self.clMacroText.isUserInteractionEnabled = true
-                            self.sMacroText.isUserInteractionEnabled = true
-                            self.coMicroText.isUserInteractionEnabled = true
-                            self.cuMicroText.isUserInteractionEnabled = true
-                            self.cuOrganicMicroText.isUserInteractionEnabled = true
-                            self.seMicroText.isUserInteractionEnabled = true
-                            self.seOrganicMicroText.isUserInteractionEnabled = true
-                            self.znMicroText.isUserInteractionEnabled = true
-                            self.znOrganicMicroText.isUserInteractionEnabled = true
-                            self.aiuVitamin.isUserInteractionEnabled = true
-                            self.diuVitamin.isUserInteractionEnabled = true
-                            self.eiuVitamin.isUserInteractionEnabled = true
-                            self.niacinVitamin.isUserInteractionEnabled = true
-                            self.biotinVitamin.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         } else {
                             SVProgressHUD.showSuccess(withStatus: "Sucess")
                             
                             print("Document added")
                             SVProgressHUD.dismiss()
-                            self.productName.isUserInteractionEnabled = true
-                            self.productDose.isUserInteractionEnabled = true
-                            self.pMacroText.isUserInteractionEnabled = true
-                            self.caMacroText.isUserInteractionEnabled = true
-                            self.mgMacroText.isUserInteractionEnabled = true
-                            self.kMacroText.isUserInteractionEnabled = true
-                            self.naMacroText.isUserInteractionEnabled = true
-                            self.clMacroText.isUserInteractionEnabled = true
-                            self.sMacroText.isUserInteractionEnabled = true
-                            self.coMicroText.isUserInteractionEnabled = true
-                            self.cuMicroText.isUserInteractionEnabled = true
-                            self.cuOrganicMicroText.isUserInteractionEnabled = true
-                            self.seMicroText.isUserInteractionEnabled = true
-                            self.seOrganicMicroText.isUserInteractionEnabled = true
-                            self.znMicroText.isUserInteractionEnabled = true
-                            self.znOrganicMicroText.isUserInteractionEnabled = true
-                            self.aiuVitamin.isUserInteractionEnabled = true
-                            self.diuVitamin.isUserInteractionEnabled = true
-                            self.eiuVitamin.isUserInteractionEnabled = true
-                            self.niacinVitamin.isUserInteractionEnabled = true
-                            self.biotinVitamin.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         }
                     }
                 }
@@ -634,6 +449,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
             SVProgressHUD.show(withStatus: "it's working ...")
+            self.view.isUserInteractionEnabled = false
             let text = alertController.textFields!.first!.text!
             let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
             newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
@@ -647,10 +463,12 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                     SVProgressHUD.showError(withStatus: "Error")
                     print("Error adding document: \(err)")
                     SVProgressHUD.dismiss()
+                    self.view.isUserInteractionEnabled = true
                 } else {
                     SVProgressHUD.showSuccess(withStatus: "Sucess")
                     print("Document added")
                     SVProgressHUD.dismiss()
+                    self.view.isUserInteractionEnabled = true
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
                     vc?.reportName = text
                     vc?.reportDate = datetimestamp
@@ -743,6 +561,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
         let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
             SVProgressHUD.show(withStatus: "it's working ...")
+            self.view.isUserInteractionEnabled = false
             let text = alertController.textFields!.first!.text!
             let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
             newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
@@ -756,10 +575,12 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                     SVProgressHUD.showError(withStatus: "Error")
                     print("Error adding document: \(err)")
                     SVProgressHUD.dismiss()
+                    self.view.isUserInteractionEnabled = true
                 } else {
                     SVProgressHUD.showSuccess(withStatus: "Sucess")
                     print("Document added")
                     SVProgressHUD.dismiss()
+                    self.view.isUserInteractionEnabled = true
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
                     vc?.reportName = text
                     vc?.reportDate = datetimestamp

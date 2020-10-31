@@ -66,12 +66,12 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
-        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
-          let gestureRecognizer = UIPanGestureRecognizer()
-          gestureRecognizer.setValue(targets, forKey: "targets")
-          self.view.addGestureRecognizer(gestureRecognizer)
-        }
+//        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+//        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+//          let gestureRecognizer = UIPanGestureRecognizer()
+//          gestureRecognizer.setValue(targets, forKey: "targets")
+//          self.view.addGestureRecognizer(gestureRecognizer)
+//        }
         searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         userImage?.layer.cornerRadius = (userImage?.frame.size.width ?? 0.0) / 2
         userImage?.clipsToBounds = true

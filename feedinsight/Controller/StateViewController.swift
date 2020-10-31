@@ -336,15 +336,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                 
                 alert.addAction(UIAlertAction(title: "Save as New", style: .default, handler: { (_) in
                     SVProgressHUD.show(withStatus: "it's working ...")
-                    self.daysPregnantF.isUserInteractionEnabled = false
-                    self.daysinMilkF.isUserInteractionEnabled = false
-                    self.daystoAchiveF.isUserInteractionEnabled = false
-                    self.TargetBodyWeightF.isUserInteractionEnabled = false
-                    self.CurrentBodyWeightF.isUserInteractionEnabled = false
-                    self.nameField.isUserInteractionEnabled = false
-                    self.animalField.isUserInteractionEnabled = false
-                    self.PsychField.isUserInteractionEnabled = false
-                    self.milkInProducitonF.isUserInteractionEnabled = false
+                    self.view.isUserInteractionEnabled = false
                     let currentDateTime = Date()
                     let formatter = DateFormatter()
                     formatter.timeStyle = .medium
@@ -366,48 +358,21 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                     newDocument.setData(["psychologicalState" : theText, "companyName" : companynameEnter, "animalGroup" : self.animalField.text!, "CurrentBodyWeight" : CurrentBodyWeightEnter, "TargetBodyWeight" : TargetBodyWeightEnter, "daystoAchive" : daystoAchiveEnter, "milkInProduciton" : milkInProducitonEnter, "daysinMilk" : daysinMilkEnter, "daysPregnant" : daysPregnantEnter, "userID" : userID ?? 1, "categorySelected" : categoryEnter , "disorderbole" : self.disorderbole,"dietbole": self.dietbole , "productionbole" : self.productionbole, "heatbole" : self.heatbole, "currentdate" : datetimestamp, "reportName" : combinedString , "DocId" : newDocument.documentID]){ err in
                         if let err = err {
                             SVProgressHUD.showError(withStatus: "Error")
-                            
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
-                            self.daysPregnantF.isUserInteractionEnabled = true
-                            self.daysinMilkF.isUserInteractionEnabled = true
-                            self.daystoAchiveF.isUserInteractionEnabled = true
-                            self.TargetBodyWeightF.isUserInteractionEnabled = true
-                            self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                            self.nameField.isUserInteractionEnabled = true
-                            self.animalField.isUserInteractionEnabled = true
-                            self.PsychField.isUserInteractionEnabled = true
-                            self.milkInProducitonF.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         } else {
                             SVProgressHUD.showSuccess(withStatus: "Success")
-                            
                             print("Document added")
                             SVProgressHUD.dismiss()
-                            self.daysPregnantF.isUserInteractionEnabled = true
-                            self.daysinMilkF.isUserInteractionEnabled = true
-                            self.daystoAchiveF.isUserInteractionEnabled = true
-                            self.TargetBodyWeightF.isUserInteractionEnabled = true
-                            self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                            self.nameField.isUserInteractionEnabled = true
-                            self.animalField.isUserInteractionEnabled = true
-                            self.PsychField.isUserInteractionEnabled = true
-                            self.milkInProducitonF.isUserInteractionEnabled = true
-                            
+                            self.view.isUserInteractionEnabled = true
                         }
                     }
                 }))
                 
                 alert.addAction(UIAlertAction(title: "Save as Previous", style: .default, handler: { (_) in
                     SVProgressHUD.show(withStatus: "it's working ...")
-                    self.daysPregnantF.isUserInteractionEnabled = false
-                    self.daysinMilkF.isUserInteractionEnabled = false
-                    self.daystoAchiveF.isUserInteractionEnabled = false
-                    self.TargetBodyWeightF.isUserInteractionEnabled = false
-                    self.CurrentBodyWeightF.isUserInteractionEnabled = false
-                    self.nameField.isUserInteractionEnabled = false
-                    self.animalField.isUserInteractionEnabled = false
-                    self.PsychField.isUserInteractionEnabled = false
-                    self.milkInProducitonF.isUserInteractionEnabled = false
+                    self.view.isUserInteractionEnabled = false
                     let currentDateTime = Date()
                     let formatter = DateFormatter()
                     formatter.timeStyle = .medium
@@ -432,15 +397,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                             
                             print("Error adding document: \(err)")
                             SVProgressHUD.dismiss()
-                            self.daysPregnantF.isUserInteractionEnabled = true
-                            self.daysinMilkF.isUserInteractionEnabled = true
-                            self.daystoAchiveF.isUserInteractionEnabled = true
-                            self.TargetBodyWeightF.isUserInteractionEnabled = true
-                            self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                            self.nameField.isUserInteractionEnabled = true
-                            self.animalField.isUserInteractionEnabled = true
-                            self.PsychField.isUserInteractionEnabled = true
-                            self.milkInProducitonF.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         } else {
                             
                     
@@ -448,15 +405,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                             
                             print("Document added")
                             SVProgressHUD.dismiss()
-                            self.daysPregnantF.isUserInteractionEnabled = true
-                            self.daysinMilkF.isUserInteractionEnabled = true
-                            self.daystoAchiveF.isUserInteractionEnabled = true
-                            self.TargetBodyWeightF.isUserInteractionEnabled = true
-                            self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                            self.nameField.isUserInteractionEnabled = true
-                            self.animalField.isUserInteractionEnabled = true
-                            self.PsychField.isUserInteractionEnabled = true
-                            self.milkInProducitonF.isUserInteractionEnabled = true
+                            self.view.isUserInteractionEnabled = true
                         }
                     }
                 }))
@@ -468,15 +417,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             }
             else {
                 SVProgressHUD.show(withStatus: "it's working ...")
-                self.daysPregnantF.isUserInteractionEnabled = false
-                self.daysinMilkF.isUserInteractionEnabled = false
-                self.daystoAchiveF.isUserInteractionEnabled = false
-                self.TargetBodyWeightF.isUserInteractionEnabled = false
-                self.CurrentBodyWeightF.isUserInteractionEnabled = false
-                self.nameField.isUserInteractionEnabled = false
-                self.animalField.isUserInteractionEnabled = false
-                self.PsychField.isUserInteractionEnabled = false
-                self.milkInProducitonF.isUserInteractionEnabled = false
+                self.view.isUserInteractionEnabled = false
                 let currentDateTime = Date()
                 let formatter = DateFormatter()
                 formatter.timeStyle = .medium
@@ -501,15 +442,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                         
                         print("Error adding document: \(err)")
                         SVProgressHUD.dismiss()
-                        self.daysPregnantF.isUserInteractionEnabled = true
-                        self.daysinMilkF.isUserInteractionEnabled = true
-                        self.daystoAchiveF.isUserInteractionEnabled = true
-                        self.TargetBodyWeightF.isUserInteractionEnabled = true
-                        self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                        self.nameField.isUserInteractionEnabled = true
-                        self.animalField.isUserInteractionEnabled = true
-                        self.PsychField.isUserInteractionEnabled = true
-                        self.milkInProducitonF.isUserInteractionEnabled = true
+                        self.view.isUserInteractionEnabled = true
                     } else {
                         
                         
@@ -517,15 +450,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                         
                         print("Document added")
                         SVProgressHUD.dismiss()
-                        self.daysPregnantF.isUserInteractionEnabled = true
-                        self.daysinMilkF.isUserInteractionEnabled = true
-                        self.daystoAchiveF.isUserInteractionEnabled = true
-                        self.TargetBodyWeightF.isUserInteractionEnabled = true
-                        self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                        self.nameField.isUserInteractionEnabled = true
-                        self.animalField.isUserInteractionEnabled = true
-                        self.PsychField.isUserInteractionEnabled = true
-                        self.milkInProducitonF.isUserInteractionEnabled = true
+                        self.view.isUserInteractionEnabled = true
                     }
                 }
             }
@@ -543,15 +468,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     }
     func saveText(theText: String) {
         SVProgressHUD.show(withStatus: "it's working ...")
-        self.daysPregnantF.isUserInteractionEnabled = false
-        self.daysinMilkF.isUserInteractionEnabled = false
-        self.daystoAchiveF.isUserInteractionEnabled = false
-        self.TargetBodyWeightF.isUserInteractionEnabled = false
-        self.CurrentBodyWeightF.isUserInteractionEnabled = false
-        self.nameField.isUserInteractionEnabled = false
-        self.animalField.isUserInteractionEnabled = false
-        self.PsychField.isUserInteractionEnabled = false
-        self.milkInProducitonF.isUserInteractionEnabled = false
+        self.view.isUserInteractionEnabled = false
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
@@ -576,29 +493,13 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                 
                 print("Error adding document: \(err)")
                 SVProgressHUD.dismiss()
-                self.daysPregnantF.isUserInteractionEnabled = true
-                self.daysinMilkF.isUserInteractionEnabled = true
-                self.daystoAchiveF.isUserInteractionEnabled = true
-                self.TargetBodyWeightF.isUserInteractionEnabled = true
-                self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                self.nameField.isUserInteractionEnabled = true
-                self.animalField.isUserInteractionEnabled = true
-                self.PsychField.isUserInteractionEnabled = true
-                self.milkInProducitonF.isUserInteractionEnabled = true
+                self.view.isUserInteractionEnabled = true
             } else {
                 SVProgressHUD.showSuccess(withStatus: "Success")
                 
                 print("Document added")
                 SVProgressHUD.dismiss()
-                self.daysPregnantF.isUserInteractionEnabled = true
-                self.daysinMilkF.isUserInteractionEnabled = true
-                self.daystoAchiveF.isUserInteractionEnabled = true
-                self.TargetBodyWeightF.isUserInteractionEnabled = true
-                self.CurrentBodyWeightF.isUserInteractionEnabled = true
-                self.nameField.isUserInteractionEnabled = true
-                self.animalField.isUserInteractionEnabled = true
-                self.PsychField.isUserInteractionEnabled = true
-                self.milkInProducitonF.isUserInteractionEnabled = true
+                self.view.isUserInteractionEnabled = true
             }
         }
     }
