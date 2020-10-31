@@ -231,7 +231,6 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 }
             }
         }
-        
         if let userName = defaults!.value(forKey: dKeys.keyusername){
             
             self.username.text = userName as? String
@@ -252,6 +251,8 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
                 pickAnimalSelection.setTitleColor(.black, for: .normal)
             }
         }
+        animalSelectionArray.removeAll()
+        self.animaltableview.reloadData()
         
         if let countrycode = defaults!.value(forKey: dKeys.keycountrycode){
             self.countryCode.setCountryByPhoneCode(countrycode as! String)
