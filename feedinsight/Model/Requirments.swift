@@ -112,7 +112,7 @@ class Requirments {
     func calculateRequirmentsData() {
         
         // multiple factor
-        
+        reqArrayFinal.removeAll()
         self.phosphorusCalculate()
         self.Calcium()
         self.Magnesium()
@@ -197,6 +197,7 @@ class Requirments {
         rationS = rationS * 10.0
         rationNa = rationNa * 10.0
         rationCl = rationCl * 10.0
+        rationArrayFinal.removeAll()
         rationArrayFinal.append(rationP)
         rationArrayFinal.append(rationCa)
         rationArrayFinal.append(rationMg)
@@ -218,7 +219,8 @@ class Requirments {
     }
     
     func appendPremixValues () {
-        // multiple factor        
+        // multiple factor
+        primexArrayFinal.removeAll()
         primexArrayFinal.append(pMacroText)
         primexArrayFinal.append(caMacroText)
         primexArrayFinal.append(mgMacroText)
@@ -445,7 +447,7 @@ class Requirments {
             print("animal group not found")
         }
         // multiple factor
-        
+        waterArrayFinal.removeAll()
         waterArrayFinal.append(waterPVal)
         waterArrayFinal.append(waterCaVal)
         waterArrayFinal.append(waterMgVal)
