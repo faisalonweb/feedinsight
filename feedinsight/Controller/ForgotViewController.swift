@@ -52,44 +52,56 @@ class ForgotViewController: UIViewController , UIGestureRecognizerDelegate  {
     }
     
     @IBAction func sendEmail(_ sender: Any) {
-        if emailTextField.text == "" {
+        let reachability = try! Reachability.init()
+        if((reachability.connection) != .unavailable)
+        {
+            if emailTextField.text == "" {
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "Error", body: "Kindly Fill the email text field")
+                SwiftMessages.show(view: view)
+            }
+            else {
+                let auth = Auth.auth()
+                SVProgressHUD.show()
+                self.view.isUserInteractionEnabled = false
+                auth.sendPasswordReset(withEmail: self.emailTextField.text!) { (error) in
+                    if let error = error {
+                        print("errr\(error)")
+                        SVProgressHUD.dismiss()
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.error)
+                        self.view.isUserInteractionEnabled = true
+                        view.configureDropShadow()
+                        view.configureContent(title: "Error", body: error.localizedDescription)
+                        SwiftMessages.show(view: view)
+                    }
+                    else {
+                        SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
+                        print("Email has been sent on your email address")
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.success)
+                        view.configureDropShadow()
+                        view.configureContent(title: "Success", body: "Email has been sent to your rigestered email kindly reset the password")
+                        SwiftMessages.show(view: view)
+                        let vctwo = self.storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController;
+                        self.navigationController?.pushViewController(vctwo!, animated: true)
+                    }
+                }
+            }
+           
+            
+        }
+        else{
             let view = MessageView.viewFromNib(layout: .cardView)
             view.configureTheme(.error)
             view.configureDropShadow()
-            view.configureContent(title: "Error", body: "Kindly Fill the email text field")
+            view.configureContent(title: "Error", body: "check your internet connection")
             SwiftMessages.show(view: view)
         }
-        else {
-            let auth = Auth.auth()
-            SVProgressHUD.show()
-            self.view.isUserInteractionEnabled = false
-            auth.sendPasswordReset(withEmail: self.emailTextField.text!) { (error) in
-                if let error = error {
-                    print("errr\(error)")
-                    SVProgressHUD.dismiss()
-                    let view = MessageView.viewFromNib(layout: .cardView)
-                    view.configureTheme(.error)
-                    self.view.isUserInteractionEnabled = true
-                    view.configureDropShadow()
-                    view.configureContent(title: "Error", body: error.localizedDescription)
-                    SwiftMessages.show(view: view)
-                }
-                else {
-                    SVProgressHUD.dismiss()
-                    self.view.isUserInteractionEnabled = true
-                    print("Email has been sent on your email address")
-                    let view = MessageView.viewFromNib(layout: .cardView)
-                    view.configureTheme(.success)
-                    view.configureDropShadow()
-                    view.configureContent(title: "Success", body: "Email has been sent to your rigestered email kindly reset the password")
-                    SwiftMessages.show(view: view)
-                    let vctwo = self.storyboard?.instantiateViewController(withIdentifier: "SigninVC") as? LoginViewController;
-                    self.navigationController?.pushViewController(vctwo!, animated: true)
-                }
-            }
-        }
        
-        
       
     }
     

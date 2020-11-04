@@ -14,7 +14,8 @@ import FirebaseFirestore
 import FirebaseStorage
 import SVProgressHUD
 import SwiftMessages
-//let requirments = Requirments()
+
+
 
 class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     let defaults = UserDefaults(suiteName:"User")
@@ -28,6 +29,8 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     var stateStatus : Bool = false
     var documentId : String = ""
     var ReportName :  String = ""
+    
+    
     @IBOutlet weak var CurrentBodyWeightF: UITextField!{
         didSet { CurrentBodyWeightF?.addDoneCancelToolbar() }
     }
@@ -76,6 +79,7 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     var heattoggle : Bool!
     var productiontoggle : Bool!
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if let userName = defaults!.value(forKey: "usernameStringKey"){
@@ -119,6 +123,8 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
           gestureRecognizer.setValue(targets, forKey: "targets")
           self.view.addGestureRecognizer(gestureRecognizer)
         }
+
+       
         self.dismissKey()
         nameField.text = groupcompany
         animalField.text = nameanimal
@@ -233,10 +239,27 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         view.configureContent(title: "Error", body: message)
         SwiftMessages.show(view: view)
     }
+   
+
+
     @IBAction func saveProfileTapped(_ sender: UIButton) {
-        let psychEnter = PsychField.text!
-        //        self.saveText(theText: psychEnter)
-        self.showAlertWithThreeButton(theText: psychEnter)
+        let reachability = try! Reachability.init()
+        
+        if((reachability.connection) != .unavailable)
+                {
+                    let psychEnter = PsychField.text!
+                    //        self.saveText(theText: psychEnter)
+                    self.showAlertWithThreeButton(theText: psychEnter)
+                }
+                else
+                {
+                    let view = MessageView.viewFromNib(layout: .cardView)
+                    view.configureTheme(.error)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Error", body: "check your internet connection")
+                    SwiftMessages.show(view: view)
+                }
+
     }
     @IBAction func loadProfileTapped(_ sender: UIButton) {
         // weeks of gestation
@@ -469,6 +492,12 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     func saveText(theText: String) {
         SVProgressHUD.show(withStatus: "it's working ...")
         self.view.isUserInteractionEnabled = false
+//        self.tabBarController!.tabBar.items![0].isEnabled = false
+//        self.tabBarController!.tabBar.items![1].isEnabled = false
+//        self.tabBarController!.tabBar.items![2].isEnabled = false
+//        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.tabBarController?.tabBar.isUserInteractionEnabled = false
+        
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium

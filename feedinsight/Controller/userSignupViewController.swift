@@ -372,63 +372,76 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     }
     
     @IBAction func singuponclick(_ sender: Any) {
-        SVProgressHUD.show()
-        self.view.isUserInteractionEnabled = false
-        let country = self.countrycode.selectedCountry
-        print(country)
-        if(collectionViewSelectedName.count > 0) {
-            industrycellValue = collectionViewSelectedName[0]
-        } else {
-            industrycellValue = ""
-        }
-        let error = validateFields()
-        if error != nil {
-            SVProgressHUD.dismiss()
-            showError(error!)
-            self.view.isUserInteractionEnabled = true
-        }
-        else {
-            let country = country.phoneCode
-            let firstName = self.username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let industryEnter = self.userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = self.useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = self.userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let busindessEnter = self.userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let pickrolEnter = self.pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let pickanimalEnter = self.pickani.titleLabel!.text!
-            let phoneEnter = self.userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let locationEnter = self.picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let countryUser = self.lCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                if err != nil {
-                    SVProgressHUD.dismiss()
-                    self.view.isUserInteractionEnabled = true
-                    self.showError("User creation failed")
-                    
-                }
-                else {
-                    self.sendVerificationMail()
-                    SVProgressHUD.showSuccess(withStatus: "Success")
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let signUpViewController = storyboard.instantiateViewController(withIdentifier: "VerifyViewController") as! VerifyViewController
-                    signUpViewController.veremail = email
-                    signUpViewController.verpassword = password
-                    signUpViewController.verrole = pickrolEnter
-                    signUpViewController.veranimal = pickanimalEnter
-                    signUpViewController.verphoneno = phoneEnter
-                    signUpViewController.verlocation = locationEnter
-                    signUpViewController.verusername = firstName
-                    signUpViewController.verindustry = industryEnter
-                    signUpViewController.vercollection = self.industrycellValue
-                    signUpViewController.verbusiness = busindessEnter
-                    signUpViewController.vercountrycode = country
-                    signUpViewController.verusercountry = countryUser
-                    self.navigationController?.pushViewController(signUpViewController, animated: true)
-                    SVProgressHUD.dismiss()
-                    self.view.isUserInteractionEnabled = true
+        let reachability = try! Reachability.init()
+        
+        if((reachability.connection) != .unavailable) {
+            SVProgressHUD.show()
+            self.view.isUserInteractionEnabled = false
+            let country = self.countrycode.selectedCountry
+            print(country)
+            if(collectionViewSelectedName.count > 0) {
+                industrycellValue = collectionViewSelectedName[0]
+            } else {
+                industrycellValue = ""
+            }
+            let error = validateFields()
+            if error != nil {
+                SVProgressHUD.dismiss()
+                showError(error!)
+                self.view.isUserInteractionEnabled = true
+            }
+            else {
+                let country = country.phoneCode
+                let firstName = self.username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let industryEnter = self.userindustry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let email = self.useremail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let password = self.userpassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let busindessEnter = self.userbussiness.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let pickrolEnter = self.pickrole.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let pickanimalEnter = self.pickani.titleLabel!.text!
+                let phoneEnter = self.userphoneno.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let locationEnter = self.picklocation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let countryUser = self.lCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                    if err != nil {
+                        SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
+                        self.showError("User creation failed")
+                        
+                    }
+                    else {
+                        self.sendVerificationMail()
+                        SVProgressHUD.showSuccess(withStatus: "Success")
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "VerifyViewController") as! VerifyViewController
+                        signUpViewController.veremail = email
+                        signUpViewController.verpassword = password
+                        signUpViewController.verrole = pickrolEnter
+                        signUpViewController.veranimal = pickanimalEnter
+                        signUpViewController.verphoneno = phoneEnter
+                        signUpViewController.verlocation = locationEnter
+                        signUpViewController.verusername = firstName
+                        signUpViewController.verindustry = industryEnter
+                        signUpViewController.vercollection = self.industrycellValue
+                        signUpViewController.verbusiness = busindessEnter
+                        signUpViewController.vercountrycode = country
+                        signUpViewController.verusercountry = countryUser
+                        self.navigationController?.pushViewController(signUpViewController, animated: true)
+                        SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
+                    }
                 }
             }
         }
+        else
+        {
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "check your internet connection")
+            SwiftMessages.show(view: view)
+        }
+       
     }
     
     func showError(_ message:String) {

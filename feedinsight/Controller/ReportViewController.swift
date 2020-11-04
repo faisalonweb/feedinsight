@@ -18,6 +18,8 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    
+    @IBOutlet weak var hiddenView: UIView!
     var db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.uid
     private var companyNameStation = [String]()
@@ -71,42 +73,50 @@ class ReportViewController: UIViewController {
             if error == nil && snapshot != nil {
                 guard let snap = snapshot else {return}
                 var i = 0
-                for document in snap.documents {
-                    let documentData = document.data()
-                    let compnayName = documentData["CompanyName"] as? String ?? "Anonymous"
-                    let ruminantType = documentData["ruminantType"] as? String ?? "Anonymous"
-                    let ruminantGroup = documentData["ruminantGroup"] as? String ?? "Anonymous"
-                    let rumiState = documentData["ruminantState"] as? String ?? "Anonymous"
-                    let pdfReference = documentData["ReportName"] as? String ?? "Anonymous"
-                    let pdfprepared = documentData["preparedBy"] as? String ?? "Anonymous"
-                    let pdfReportType = documentData["reportType"] as? String ?? "Anonymous"
-                    let timestamp = documentData["currentdatetime"] as? String ?? "20/20/20"
-                    let documentiddata = documentData["DocId"] as? String ?? "20/20/20"
-                    self.companyNameStation.insert(compnayName, at: i)
-                    self.ruminantTypeStation.insert(ruminantType, at: i)
-                    self.animalGroupStation.insert(ruminantGroup, at: i)
-                    self.psyStateStation.insert(rumiState, at: i)
-                    self.referenceStation.insert(pdfReference, at: i)
-                    self.preparedStation.insert(pdfprepared, at: i)
-                    self.pdfReportTypeStation.insert(pdfReportType, at: i)
-                    self.pdfDatestation.insert(timestamp, at: i)
-                    self.documentIdStation.insert(documentiddata, at: i)
-                    i = i + 1
-                    self.copyArray.append(documentData as NSDictionary)                    
+                if snap.documents.count > 0 {
+                    for document in snap.documents {
+                        let documentData = document.data()
+                        let compnayName = documentData["CompanyName"] as? String ?? "Anonymous"
+                        let ruminantType = documentData["ruminantType"] as? String ?? "Anonymous"
+                        let ruminantGroup = documentData["ruminantGroup"] as? String ?? "Anonymous"
+                        let rumiState = documentData["ruminantState"] as? String ?? "Anonymous"
+                        let pdfReference = documentData["ReportName"] as? String ?? "Anonymous"
+                        let pdfprepared = documentData["preparedBy"] as? String ?? "Anonymous"
+                        let pdfReportType = documentData["reportType"] as? String ?? "Anonymous"
+                        let timestamp = documentData["currentdatetime"] as? String ?? "20/20/20"
+                        let documentiddata = documentData["DocId"] as? String ?? "20/20/20"
+                        self.companyNameStation.insert(compnayName, at: i)
+                        self.ruminantTypeStation.insert(ruminantType, at: i)
+                        self.animalGroupStation.insert(ruminantGroup, at: i)
+                        self.psyStateStation.insert(rumiState, at: i)
+                        self.referenceStation.insert(pdfReference, at: i)
+                        self.preparedStation.insert(pdfprepared, at: i)
+                        self.pdfReportTypeStation.insert(pdfReportType, at: i)
+                        self.pdfDatestation.insert(timestamp, at: i)
+                        self.documentIdStation.insert(documentiddata, at: i)
+                        i = i + 1
+                        self.copyArray.append(documentData as NSDictionary)
+                    }
+                    self.companyNameList.append(contentsOf: self.companyNameStation)
+                    self.ruminantTypeList.append(contentsOf: self.ruminantTypeStation)
+                    self.animalGroupList.append(contentsOf: self.animalGroupStation)
+                    self.psychologicalList.append(contentsOf: self.psyStateStation)
+                    self.pdfDateList.append(contentsOf: self.pdfDatestation)
+                    self.pdfReference.append(contentsOf: self.referenceStation)
+                    self.preparedBy.append(contentsOf: self.preparedStation)
+                    self.reportType.append(contentsOf: self.pdfReportTypeStation)
+                    self.DocumentIdList.append(contentsOf: self.documentIdStation)
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
                 }
-                self.companyNameList.append(contentsOf: self.companyNameStation)
-                self.ruminantTypeList.append(contentsOf: self.ruminantTypeStation)
-                self.animalGroupList.append(contentsOf: self.animalGroupStation)
-                self.psychologicalList.append(contentsOf: self.psyStateStation)
-                self.pdfDateList.append(contentsOf: self.pdfDatestation)
-                self.pdfReference.append(contentsOf: self.referenceStation)
-                self.preparedBy.append(contentsOf: self.preparedStation)
-                self.reportType.append(contentsOf: self.pdfReportTypeStation)
-                self.DocumentIdList.append(contentsOf: self.documentIdStation)
-                self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+                else {
+                    self.tableView.alpha = 0
+                    self.hiddenView.alpha = 1
+                }
+                
             } else {
                 print("pakis")
+                
             }
         }
     }

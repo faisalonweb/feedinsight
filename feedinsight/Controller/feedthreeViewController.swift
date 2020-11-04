@@ -16,6 +16,7 @@ import SVProgressHUD
 import SearchTextField
 import SwiftMessages
 
+
 var subUrl: URL?
 var fm = FileManager.default
 var fresult: Bool = false
@@ -276,138 +277,82 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        if (checkStatus == true){
-            // Create Alert
-            let dialogMessage = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
-            
-            // Create OK button with action handler
-            let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
+        let reachability = try! Reachability.init()
+        
+        if((reachability.connection) != .unavailable)
+        {
+            if (checkStatus == true){
+                // Create Alert
+                let dialogMessage = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
                 
-                let currentDateTime = Date()
-                let formatter = DateFormatter()
-                formatter.timeStyle = .medium
-                formatter.dateStyle = .long
-                self.calculateFloatArray()
-                if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
-                    let datetimestamp = formatter.string(from: currentDateTime)
-                    let db = Firestore.firestore()
-                    let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
-                    let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                        self.view.isUserInteractionEnabled = false
-                        SVProgressHUD.show(withStatus: "it's working ...")
-                        let text = alertController.textFields!.first!.text!
-                        //                        let dict : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
-                        let newDocument =  db.collection("rationReports").document(self.userID!).collection("rationReports").document()
-                        newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
-                            if let err = err {
-                                SVProgressHUD.showError(withStatus: "Error")
-                                
-                                print("Error adding document: \(err)")
-                                SVProgressHUD.dismiss()
-                                self.view.isUserInteractionEnabled = true
-                                
-                            } else {
-                                SVProgressHUD.showSuccess(withStatus: "Success")
-                                
-                                print("Document added")
-                                SVProgressHUD.dismiss()
-                                self.view.isUserInteractionEnabled = true
+                // Create OK button with action handler
+                let new = UIAlertAction(title: "Save as New", style: .default, handler: { (action) -> Void in
+                    
+                    let currentDateTime = Date()
+                    let formatter = DateFormatter()
+                    formatter.timeStyle = .medium
+                    formatter.dateStyle = .long
+                    self.calculateFloatArray()
+                    if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
+                        let datetimestamp = formatter.string(from: currentDateTime)
+                        let db = Firestore.firestore()
+                        let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
+                        let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                            self.view.isUserInteractionEnabled = false
+                            SVProgressHUD.show(withStatus: "it's working ...")
+                            let text = alertController.textFields!.first!.text!
+                            //                        let dict : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                            let newDocument =  db.collection("rationReports").document(self.userID!).collection("rationReports").document()
+                            newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp,"DocId":newDocument.documentID]){ err in
+                                if let err = err {
+                                    SVProgressHUD.showError(withStatus: "Error")
+                                    
+                                    print("Error adding document: \(err)")
+                                    SVProgressHUD.dismiss()
+                                    self.view.isUserInteractionEnabled = true
+                                    
+                                } else {
+                                    SVProgressHUD.showSuccess(withStatus: "Success")
+                                    
+                                    print("Document added")
+                                    SVProgressHUD.dismiss()
+                                    self.view.isUserInteractionEnabled = true
+                                }
                             }
                         }
-                    }
-                    
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-                    }
-                    alertController.addTextField { (textField) in
-                        textField.placeholder = "Ration Profile"
-                    }
-                    alertController.addAction(withdrawAction)
-                    alertController.addAction(cancelAction)
-                    self.present(alertController, animated: true, completion: nil)
-                } else {
-                    let view = MessageView.viewFromNib(layout: .cardView)
-                    view.configureTheme(.error)
-                    view.configureDropShadow()
-                    view.configureContent(title: "Error", body: "Fill all fields")
-                    SwiftMessages.show(view: view)
-                }
-                
-            })
-            // Create Cancel button with action handlder
-            let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                self.view.isUserInteractionEnabled = false
-                let currentDateTime = Date()
-                let formatter = DateFormatter()
-                formatter.timeStyle = .medium
-                formatter.dateStyle = .long
-                self.calculateFloatArray()
-                if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
-                    let datetimestamp = formatter.string(from: currentDateTime)
-                    let db = Firestore.firestore()
-                    
-                    let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document(self.documentID)
-                    newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
-                        if let err = err {
-                            SVProgressHUD.showError(withStatus: "Error")
-                            
-                            print("Error adding document: \(err)")
-                            SVProgressHUD.dismiss()
-                            self.view.isUserInteractionEnabled = true
-                        } else {
-                            SVProgressHUD.showSuccess(withStatus: "Success")
-                            
-                            print("Document added")
-                            SVProgressHUD.dismiss()
-                            self.view.isUserInteractionEnabled = true
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
                         }
-                    }
-                    
-                }
-                
-            }
-            let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
-            }
-            //Add OK and Cancel button to an Alert object
-            dialogMessage.addAction(new)
-            dialogMessage.addAction(previous)
-            dialogMessage.addAction(destructive)
-            
-            
-            
-            // Present alert message to user
-            self.present(dialogMessage, animated: true, completion: nil)
-        }
-        else {
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            calculateFloatArray()
-            if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
-                var boolValue : Bool = false
-                for i in 0..<dropdownvalues.count {
-                    if(dropdownfloatValue[i] == "none") {
-                        boolValue = true
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Ration Profile"
+                        }
+                        alertController.addAction(withdrawAction)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
                         let view = MessageView.viewFromNib(layout: .cardView)
                         view.configureTheme(.error)
                         view.configureDropShadow()
                         view.configureContent(title: "Error", body: "Fill all fields")
                         SwiftMessages.show(view: view)
-                        break
                     }
-                }
-                if(boolValue == false) {
-                    let datetimestamp = formatter.string(from: currentDateTime)
-                    let db = Firestore.firestore()
-                    let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
-                    let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
-                        SVProgressHUD.show(withStatus: "it's working ...")
-                        self.view.isUserInteractionEnabled = false
-                        let text = alertController.textFields!.first!.text!
-                        //                    let _ : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
-                        let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
-                        newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                    
+                })
+                // Create Cancel button with action handlder
+                let previous = UIAlertAction(title: "Save as Previous", style: .default) { (action) -> Void in
+                    SVProgressHUD.show(withStatus: "it's working ...")
+                    self.view.isUserInteractionEnabled = false
+                    let currentDateTime = Date()
+                    let formatter = DateFormatter()
+                    formatter.timeStyle = .medium
+                    formatter.dateStyle = .long
+                    self.calculateFloatArray()
+                    if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
+                        let datetimestamp = formatter.string(from: currentDateTime)
+                        let db = Firestore.firestore()
+                        
+                        let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document(self.documentID)
+                        newDocument.setData(["ReportName" : self.ReportName, "ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue  ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
                             if let err = err {
                                 SVProgressHUD.showError(withStatus: "Error")
                                 
@@ -422,32 +367,101 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                                 self.view.isUserInteractionEnabled = true
                             }
                         }
+                        
                     }
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-                    }
-                    alertController.addTextField { (textField) in
-                        textField.placeholder = "Ration Profile"
-                    }
-                    alertController.addAction(withdrawAction)
-                    alertController.addAction(cancelAction)
-                    self.present(alertController, animated: true, completion: nil)
                     
+                }
+                let destructive = UIAlertAction(title: "Cancel", style: .destructive) { (action) -> Void in
+                }
+                //Add OK and Cancel button to an Alert object
+                dialogMessage.addAction(new)
+                dialogMessage.addAction(previous)
+                dialogMessage.addAction(destructive)
+                
+                
+                
+                // Present alert message to user
+                self.present(dialogMessage, animated: true, completion: nil)
+            }
+            else {
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                calculateFloatArray()
+                if(dropdownvalues.count == dropdownfloatValue.count && dropdownvalues.count > 0 ) {
+                    var boolValue : Bool = false
+                    for i in 0..<dropdownvalues.count {
+                        if(dropdownfloatValue[i] == "none") {
+                            boolValue = true
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.error)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Error", body: "Fill all fields")
+                            SwiftMessages.show(view: view)
+                            break
+                        }
+                    }
+                    if(boolValue == false) {
+                        let datetimestamp = formatter.string(from: currentDateTime)
+                        let db = Firestore.firestore()
+                        let alertController = UIAlertController(title: "Ration Profile", message: "", preferredStyle: .alert)
+                        let withdrawAction = UIAlertAction(title: "Save", style: .default) { (aciton) in
+                            SVProgressHUD.show(withStatus: "it's working ...")
+                            self.view.isUserInteractionEnabled = false
+                            let text = alertController.textFields!.first!.text!
+                            //                    let _ : [String : Any] = ["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp]
+                            let newDocument = db.collection("rationReports").document(self.userID!).collection("rationReports").document()
+                            newDocument.setData(["ProductNameArray" : dropdownvalues , "ProductValueArray" : dropdownfloatValue , "ReportName" : text ,"currenttimedate" : datetimestamp ,"DocId":newDocument.documentID]){ err in
+                                if let err = err {
+                                    SVProgressHUD.showError(withStatus: "Error")
+                                    
+                                    print("Error adding document: \(err)")
+                                    SVProgressHUD.dismiss()
+                                    self.view.isUserInteractionEnabled = true
+                                } else {
+                                    SVProgressHUD.showSuccess(withStatus: "Success")
+                                    
+                                    print("Document added")
+                                    SVProgressHUD.dismiss()
+                                    self.view.isUserInteractionEnabled = true
+                                }
+                            }
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                        }
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Ration Profile"
+                        }
+                        alertController.addAction(withdrawAction)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    } else {
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.error)
+                        view.configureDropShadow()
+                        view.configureContent(title: "Error", body: "Fill all fields")
+                        SwiftMessages.show(view: view)
+                    }
                 } else {
+                    
                     let view = MessageView.viewFromNib(layout: .cardView)
                     view.configureTheme(.error)
                     view.configureDropShadow()
                     view.configureContent(title: "Error", body: "Fill all fields")
                     SwiftMessages.show(view: view)
                 }
-            } else {
-                
-                let view = MessageView.viewFromNib(layout: .cardView)
-                view.configureTheme(.error)
-                view.configureDropShadow()
-                view.configureContent(title: "Error", body: "Fill all fields")
-                SwiftMessages.show(view: view)
             }
         }
+        else{
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "check your internet connection")
+            SwiftMessages.show(view: view)
+        }
+        
     }
     @IBAction func editFeed(_ sender: Any) {
         if addfeed.text == "" {

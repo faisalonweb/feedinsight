@@ -16,6 +16,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileimage: UIImageView!
+    
+    @IBOutlet weak var hiddenView: UIView!
     let defaults = UserDefaults(suiteName:"User")
     let db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.uid
@@ -137,7 +139,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             script.WaterData() { (result) -> () in
                 
                 if result.count > 0{
-                   
+                    self.tblView.alpha = 1
+                    self.hiddenView.alpha = 0
                     for documentData in result {
                         
                         //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
@@ -182,6 +185,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 }
                 else {
                     self.tblView.refreshControl?.endRefreshing()
+                    self.tblView.alpha = 0
+                    self.hiddenView.alpha = 1
                     print("pakis")
                 }
             }
@@ -191,7 +196,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             script.RationData() { (result) -> () in
                 
                 if result.count > 0 {
-                  
+                    self.tblView.alpha = 1
+                    self.hiddenView.alpha = 0
                     var i = 0
                     for documentData in result {
                        
@@ -218,6 +224,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.tblView.refreshControl?.endRefreshing()
                 } else {
                     self.tblView.refreshControl?.endRefreshing()
+                    self.tblView.alpha = 0
+                    self.hiddenView.alpha = 1
                     print("pakis")
                 }
             }
@@ -227,7 +235,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             let script =  ApiCalling()
             script.PremixData() { (result) -> () in
                 if result.count > 0{
-                    
+                    self.tblView.alpha = 1
+                    self.hiddenView.alpha = 0
                     for documentData in result {
                        
                         //                    let animaltype = documentData[ProductNameArray] as? String ?? "Anonymous"
@@ -341,6 +350,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 else {
                     self.tblView.refreshControl?.endRefreshing()
                     print("pakis")
+                    self.tblView.alpha = 0
+                    self.hiddenView.alpha = 1
                 }
             }
         }

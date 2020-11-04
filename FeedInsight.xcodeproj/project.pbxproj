@@ -36,6 +36,11 @@
 		1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */; };
 		1A277B9D24C6FC4700FDA1DD /* feedthreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A277B9C24C6FC4700FDA1DD /* feedthreeViewController.swift */; };
 		1A277B9F24C769E300FDA1DD /* feedthreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A277B9E24C769E300FDA1DD /* feedthreeTableViewCell.swift */; };
+		1A2EBF1525507AF50040403F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EBF1425507AF50040403F /* Reachability.swift */; };
+		1A2EBF4325519FB50040403F /* ReColViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EBF4225519FB50040403F /* ReColViewController.swift */; };
+		1A2EBF4625519FF90040403F /* NoProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EBF4525519FF90040403F /* NoProfileViewController.swift */; };
+		1A2EBF492551B7620040403F /* waterrationcombineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EBF482551B7620040403F /* waterrationcombineController.swift */; };
+		1A2EBF4C2551B7900040403F /* combineemptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EBF4B2551B7900040403F /* combineemptyController.swift */; };
 		1A34E5AC251A05610092C05F /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A34E5AB251A05610092C05F /* countries.json */; };
 		1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */; };
 		1A3A558624E3F25E008BF672 /* WaterStandardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */; };
@@ -127,6 +132,11 @@
 		1A1FD8612491112000F9A6AC /* userCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A277B9C24C6FC4700FDA1DD /* feedthreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = feedthreeViewController.swift; sourceTree = "<group>"; };
 		1A277B9E24C769E300FDA1DD /* feedthreeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = feedthreeTableViewCell.swift; sourceTree = "<group>"; };
+		1A2EBF1425507AF50040403F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		1A2EBF4225519FB50040403F /* ReColViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReColViewController.swift; sourceTree = "<group>"; };
+		1A2EBF4525519FF90040403F /* NoProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoProfileViewController.swift; sourceTree = "<group>"; };
+		1A2EBF482551B7620040403F /* waterrationcombineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waterrationcombineController.swift; sourceTree = "<group>"; };
+		1A2EBF4B2551B7900040403F /* combineemptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = combineemptyController.swift; sourceTree = "<group>"; };
 		1A34E5AB251A05610092C05F /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		1A3A558324E3F22D008BF672 /* WaterCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterCustomViewController.swift; sourceTree = "<group>"; };
 		1A3A558524E3F25E008BF672 /* WaterStandardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterStandardViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +266,10 @@
 				1A755703253466FC005A9C09 /* ConBalViewController.swift */,
 				1A8DB04C2542B3F5004919D7 /* ForgotViewController.swift */,
 				1AD3E1B2254C4CE200AA5BB6 /* NewRumiViewController.swift */,
+				1A2EBF4225519FB50040403F /* ReColViewController.swift */,
+				1A2EBF4525519FF90040403F /* NoProfileViewController.swift */,
+				1A2EBF482551B7620040403F /* waterrationcombineController.swift */,
+				1A2EBF4B2551B7900040403F /* combineemptyController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -273,6 +287,7 @@
 				0442AD1C248EA9A300A53BA1 /* Task.swift */,
 				04BBE55A246C3BED00B04F4A /* LocationManager.swift */,
 				04D6A906246BFE3100B37859 /* MakeDropDown.swift */,
+				1A2EBF1425507AF50040403F /* Reachability.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -542,6 +557,7 @@
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				1A8DB04D2542B3F5004919D7 /* ForgotViewController.swift in Sources */,
 				046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */,
+				1A2EBF1525507AF50040403F /* Reachability.swift in Sources */,
 				1AE39C762500F7EA00C2E67E /* ResultsViewController.swift in Sources */,
 				1AE3587C24EA872300A7E0AA /* waterrationTableViewCell.swift in Sources */,
 				1AFE70DE24C2CDD800C4E08F /* premixViewController.swift in Sources */,
@@ -558,9 +574,12 @@
 				0420CA9F244F6B3A00090F37 /* SigninFscreenViewController.swift in Sources */,
 				1A7556D025345676005A9C09 /* SwitchPDFViewController.swift in Sources */,
 				046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */,
+				1A2EBF4C2551B7900040403F /* combineemptyController.swift in Sources */,
 				1AEEA0FB24CB590C0077324A /* DataAppend.swift in Sources */,
 				044BE5022452A66C00551BF6 /* dropdownTableViewCell.swift in Sources */,
 				1AA316B5251C6585006DC865 /* VerifyViewController.swift in Sources */,
+				1A2EBF4325519FB50040403F /* ReColViewController.swift in Sources */,
+				1A2EBF492551B7620040403F /* waterrationcombineController.swift in Sources */,
 				1A755701253466E8005A9C09 /* ConSupViewController.swift in Sources */,
 				1ABC8BA324D0C62E00BE7628 /* RuminantspickViewController.swift in Sources */,
 				1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */,
@@ -601,6 +620,7 @@
 				C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */,
 				1A7556FE253466C0005A9C09 /* ConReqViewController.swift in Sources */,
 				1A50F0E724EE6455007EC60C /* Requirments.swift in Sources */,
+				1A2EBF4625519FF90040403F /* NoProfileViewController.swift in Sources */,
 				1A7D1A78252C8D31004A0F00 /* BalanceTableViewCell.swift in Sources */,
 				C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */,
 			);
@@ -756,7 +776,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.3;
+				MARKETING_VERSION = 5.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -779,7 +799,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.3;
+				MARKETING_VERSION = 5.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";

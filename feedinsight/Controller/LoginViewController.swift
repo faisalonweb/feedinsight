@@ -87,77 +87,89 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         SwiftMessages.show(view: view)
     }
     @IBAction func signinPressed(_ sender: Any) {
-        let error = validateFields()
-        if error != nil {
-            showError(error!)
-        } else {
-            let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            SVProgressHUD.show()
-            self.view.isUserInteractionEnabled = false
-            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-                if error != nil {
-                    SVProgressHUD.dismiss()
-                    self.view.isUserInteractionEnabled = true
-                    self.showError(error!.localizedDescription)
-                } else {
-                    if let authResult = result {
-                        let user = authResult.user
-                        print("User has Signed In")
-                        if user.isEmailVerified {
-                            self.userDefault!.set(true, forKey: "usersignedin")
-                            self.userDefault!.synchronize()
-                            let script =  ApiCalling()
-                            script.LoginData() { (result) -> () in
-                                if result.count > 0 {
-                                    let currentusername = result["name"]
-                                    let currentuseremail = result["email"]
-                                    let currentuserphone = result["phone"]
-                                    let currentuserindustry = result["industry"]
-                                    let currentuserbusiness = result["business"]
-                                    let currentuserpass = result["password"]
-                                    let currentuserpickanimal = result["pickanimal"]
-                                    let currentuserlocation = result["location"]
-                                    let currentuserrole = result["pickrole"]
-                                    let currentusercountrycode = result["countrycode"]
-                                    let currentusercollectionindustry =  result["CollectionIndustry"]
-                                    let currentuserprofilecountry =  result["UserCountry"]
-                                    self.userDefault!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
-                                    let imageURL = result["imageURL"] as? String
-                                    if (imageURL != "") {
-                                        DispatchQueue.global().async {
-                                            let fileUrl = URL(string: imageURL!)
-                                            let data = try? Data(contentsOf:fileUrl!)
-                                            self.userDefault!.set(data, forKey: "imageData")
-                                            self.userDefault!.set(imageURL, forKey: "Link")
+        let reachability = try! Reachability.init()
+        if((reachability.connection) != .unavailable)
+        {
+            let error = validateFields()
+            if error != nil {
+                showError(error!)
+            } else {
+                let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                let password = paswordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+                SVProgressHUD.show()
+                self.view.isUserInteractionEnabled = false
+                Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                    if error != nil {
+                        SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
+                        self.showError(error!.localizedDescription)
+                    } else {
+                        if let authResult = result {
+                            let user = authResult.user
+                            print("User has Signed In")
+                            if user.isEmailVerified {
+                                self.userDefault!.set(true, forKey: "usersignedin")
+                                self.userDefault!.synchronize()
+                                let script =  ApiCalling()
+                                script.LoginData() { (result) -> () in
+                                    if result.count > 0 {
+                                        let currentusername = result["name"]
+                                        let currentuseremail = result["email"]
+                                        let currentuserphone = result["phone"]
+                                        let currentuserindustry = result["industry"]
+                                        let currentuserbusiness = result["business"]
+                                        let currentuserpass = result["password"]
+                                        let currentuserpickanimal = result["pickanimal"]
+                                        let currentuserlocation = result["location"]
+                                        let currentuserrole = result["pickrole"]
+                                        let currentusercountrycode = result["countrycode"]
+                                        let currentusercollectionindustry =  result["CollectionIndustry"]
+                                        let currentuserprofilecountry =  result["UserCountry"]
+                                        self.userDefault!.set(currentuserpickanimal, forKey: dKeys.keyAnimal)
+                                        let imageURL = result["imageURL"] as? String
+                                        if (imageURL != "") {
+                                            DispatchQueue.global().async {
+                                                let fileUrl = URL(string: imageURL!)
+                                                let data = try? Data(contentsOf:fileUrl!)
+                                                self.userDefault!.set(data, forKey: "imageData")
+                                                self.userDefault!.set(imageURL, forKey: "Link")
+                                            }
                                         }
+                                        self.userDefault!.set(currentuserrole, forKey: dKeys.keyRole)
+                                        self.userDefault!.set(currentuserlocation, forKey: dKeys.keyLocation)
+                                        self.userDefault!.set(currentusername, forKey: dKeys.keyusername)
+                                        self.userDefault!.set(currentuseremail, forKey: dKeys.keyuseremail)
+                                        self.userDefault!.set(currentuserphone, forKey: dKeys.keyuserphoneno)
+                                        self.userDefault!.set(currentuserindustry, forKey: dKeys.keyuserindustry)
+                                        self.userDefault!.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
+                                        self.userDefault!.set(self.paswordField.text, forKey: dKeys.keyuserpassowrd)
+                                        self.userDefault!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
+                                        self.userDefault!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
+                                        self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
+                                        self.userDefault!.synchronize()
+                                        SVProgressHUD.dismiss()
+                                        self.view.isUserInteractionEnabled = true
+                                        self.transitionToHome()
                                     }
-                                    self.userDefault!.set(currentuserrole, forKey: dKeys.keyRole)
-                                    self.userDefault!.set(currentuserlocation, forKey: dKeys.keyLocation)
-                                    self.userDefault!.set(currentusername, forKey: dKeys.keyusername)
-                                    self.userDefault!.set(currentuseremail, forKey: dKeys.keyuseremail)
-                                    self.userDefault!.set(currentuserphone, forKey: dKeys.keyuserphoneno)
-                                    self.userDefault!.set(currentuserindustry, forKey: dKeys.keyuserindustry)
-                                    self.userDefault!.set(currentuserbusiness, forKey: dKeys.keyuserbussiness)
-                                    self.userDefault!.set(self.paswordField.text, forKey: dKeys.keyuserpassowrd)
-                                    self.userDefault!.set(currentusercountrycode, forKey: dKeys.keycountrycode)
-                                    self.userDefault!.set(currentusercollectionindustry, forKey: dKeys.keycollectionview)
-                                    self.userDefault!.set(currentuserprofilecountry, forKey: dKeys.keyusercountry)
-                                    self.userDefault!.synchronize()
-                                    SVProgressHUD.dismiss()
-                                    self.view.isUserInteractionEnabled = true
-                                    self.transitionToHome()
                                 }
+                            } else {
+                                SVProgressHUD.dismiss()
+                                self.view.isUserInteractionEnabled = true
+                                self.showError("Verify your email first.")
                             }
-                        } else {
-                            SVProgressHUD.dismiss()
-                            self.view.isUserInteractionEnabled = true
-                            self.showError("Verify your email first.")
                         }
                     }
                 }
             }
         }
+        else{
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "check your internet connection")
+            SwiftMessages.show(view: view)
+        }
+        
     }
     
     @IBAction func forgetpass(_ sender: Any) {
