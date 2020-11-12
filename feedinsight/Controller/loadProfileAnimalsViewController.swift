@@ -67,34 +67,20 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-//        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
-//        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
-//          let gestureRecognizer = UIPanGestureRecognizer()
-//          gestureRecognizer.setValue(targets, forKey: "targets")
-//          self.view.addGestureRecognizer(gestureRecognizer)
-//        }
-        //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.clipsToBounds = true
         profileimage?.layer.borderWidth = 3.0
         profileimage?.layer.borderColor = UIColor.white.cgColor
-        
-//        self.tblView.refreshControl = UIRefreshControl()
-//        self.tblView.refreshControl?.beginRefreshing()
         super.viewDidLoad()
         
         let script =  ApiCalling()
         script.LoadProfile() { (result) -> ()  in
             if result.count > 0 {
-               
                 self.requirmentscreen.alpha = 0
                 self.emptyscreen.alpha = 1
-            }
-            else {
-                //self.tblView.refreshControl?.endRefreshing()
+            } else {
                 self.requirmentscreen.alpha = 1
                 self.emptyscreen.alpha = 0
-                print("pakis")
             }
         }
     }
@@ -106,9 +92,9 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
         DispatchQueue.global().async {
             DispatchQueue.main.async {
             let data = self.defaults!.value(forKey: "imageData") as? Data
-            if(data != nil) {
-                self.profileimage.image = UIImage(data: data!)
-            }
+                if(data != nil) {
+                    self.profileimage.image = UIImage(data: data!)
+                }
             }
         }
     }

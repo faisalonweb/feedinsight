@@ -416,7 +416,14 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 copyArray.remove(at: indexPath.section)
                 //reportValueList.remove(at: indexPath.section)
                 DocumentIdList.remove(at: indexPath.section)
-                tblView.reloadData()
+                if(reportNameList.count == 0) {
+                    self.tblView.refreshControl?.endRefreshing()
+                    self.tblView.alpha = 0
+                    self.hiddenView.alpha = 1
+                } else {
+                    tblView.reloadData()
+                }
+                
                 
                 
               
@@ -441,7 +448,13 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 reportNameList.remove(at: indexPath.section)
                 reportDateList.remove(at: indexPath.section)
                 DocumentIdList.remove(at: indexPath.section)
-                tblView.reloadData()
+                if(reportNameList.count == 0) {
+                    self.tblView.refreshControl?.endRefreshing()
+                    self.tblView.alpha = 0
+                    self.hiddenView.alpha = 1
+                } else {
+                    tblView.reloadData()
+                }
             }
              
             else if (screenNAME == "premix") {
@@ -481,7 +494,13 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 eiuVitaminList.remove(at: indexPath.section)
                 niacinVitaminList.remove(at: indexPath.section)
                 biotinVitaminList.remove(at: indexPath.section)
-                tblView.reloadData()
+                if(productNameList.count == 0) {
+                    self.tblView.refreshControl?.endRefreshing()
+                    self.tblView.alpha = 0
+                    self.hiddenView.alpha = 1
+                } else {
+                    tblView.reloadData()
+                }
             }
            
             

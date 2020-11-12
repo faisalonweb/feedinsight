@@ -153,7 +153,6 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             db.collection("pdfReports").document(self.userID!).collection("pdfReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
                 if error != nil {
                     print(error!)
@@ -172,10 +171,13 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
             preparedBy.remove(at: indexPath.section)
             reportType.remove(at: indexPath.section)
             DocumentIdList.remove(at: indexPath.section)
-            tableView.reloadData()
-            
+            if(companyNameList.count == 0) {
+                self.tableView.alpha = 0
+                self.hiddenView.alpha = 1
+            } else {
+                tableView.reloadData()
+            }
         }
-        
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
