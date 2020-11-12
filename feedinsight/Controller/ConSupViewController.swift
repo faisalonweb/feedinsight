@@ -20,11 +20,32 @@ class ConSupViewController: UIViewController {
     var reporttypestr7 : String = ""
     var pscistatestr8 : String = ""
     
-    var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    var players = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    
+    let nutrientNames = ["Nutrients",
+                         "Vit. A",
+                         "Vit. D3",
+                         "Vit. E",
+                         "Biotin",
+                         "Niacin",
+                         "Zn",
+                         "Mn",
+                         "Cu",
+                         "Se",
+                         "I",
+                         "Co",
+                         "Ca",
+                         "P",
+                         "Mg",
+                         "Na",
+                         "Cl",
+                         "S",
+                         "K"]
+    
+    let nutrientUnits = ["Unit","IU","IU","IU/mg","mg","mg","mg","mg","mg","mg","mg","mg","gm","gm","gm","gm","gm","gm","gm"]
     
     var percentageArray = [Double]()
     
-    let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,16 +96,19 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
                 cell.backgroundColor = UIColor.white
             }
             cell.nutrientNames?.text = nutrientNames[indexPath.row]
+            cell.nutrientUnits?.text = nutrientUnits[indexPath.row]
             
             if(fromDatabase == "yes") {
                 var value : Double = rationArray[indexPath.row - 1]
                 value = value.roundToDecimal(1)
-                let stringValue = String(value)
+                var stringValue = String(value)
+                stringValue = value.removeZerosFromEnd()
                 cell.nutrientFeed?.text = stringValue
                 
                 var value1 : Double = premixArray[indexPath.row - 1]
                 value1 = value1.roundToDecimal(1)
-                let stringValue1 = String(value1)
+                var stringValue1 = String(value1)
+                stringValue1 = value1.removeZerosFromEnd()
                 cell.nutrientPremix?.text = stringValue1
                 var value4 : Double = 0.0
                 if(indexPath.row > 7) {
@@ -101,17 +125,20 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
                 
                 var value3 : Double = value + value1 + value4
                 value3 = value3.roundToDecimal(1)
-                let stringValue3 = String(value3)
+                var stringValue3 = String(value3)
+                stringValue3 = value3.removeZerosFromEnd()
                 cell.nutrientTotal?.text = stringValue3
             } else {
                 var value : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
                 value = value.roundToDecimal(1)
-                let stringValue = String(value)
+                var stringValue = String(value)
+                stringValue = value.removeZerosFromEnd()
                 cell.nutrientFeed?.text = stringValue
                 
                 var value1 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
                 value1 = value1.roundToDecimal(1)
-                let stringValue1 = String(value1)
+                var stringValue1 = String(value1)
+                stringValue1 = value1.removeZerosFromEnd()
                 cell.nutrientPremix?.text = stringValue1
                 var value4 : Double = 0.0
                 if(indexPath.row > 7) {
@@ -128,7 +155,8 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
                 
                 var value3 : Double = value + value1 + value4
                 value3 = value3.roundToDecimal(1)
-                let stringValue3 = String(value3)
+                var stringValue3 = String(value3)
+                stringValue3 = value3.removeZerosFromEnd()
                 cell.nutrientTotal?.text = stringValue3
             }
             cell.layer.cornerRadius = 10
@@ -138,10 +166,3 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
     }
     
 }
-
-//extension Double {
-//    func roundToDecimal(_ fractionDigits: Int) -> Double {
-//        let multiplier = pow(10, Double(fractionDigits))
-//        return Darwin.round(self * multiplier) / multiplier
-//    }
-//}

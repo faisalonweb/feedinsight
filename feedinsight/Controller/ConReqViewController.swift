@@ -11,9 +11,27 @@ import UIKit
 class ConReqViewController: UIViewController {
 
     @IBOutlet weak var reqtblview: UITableView!
-    var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    let nutrientNames = ["Nutrients",
+                         "Vit. A",
+                         "Vit. D3",
+                         "Vit. E",
+                         "Biotin",
+                         "Niacin",
+                         "Zn",
+                         "Mn",
+                         "Cu",
+                         "Se",
+                         "I",
+                         "Co",
+                         "Ca",
+                         "P",
+                         "Mg",
+                         "Na",
+                         "Cl",
+                         "S",
+                         "K"]
     
-    let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
+    let nutrientUnits = ["Unit","IU","IU","IU/mg","mg","mg","mg","mg","mg","mg","mg","mg","gm","gm","gm","gm","gm","gm","gm"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,16 +81,18 @@ extension ConReqViewController: UITableViewDelegate , UITableViewDataSource{
                 cell.backgroundColor = UIColor.white
             }
             cell.nutrientName?.text = nutrientNames[indexPath.row]
-            
+            cell.nutrientUnit?.text = nutrientUnits[indexPath.row]
             if(fromDatabase == "yes") {
                 var value : Double = requiredArray[indexPath.row - 1]
                 value = value.roundToDecimal(1)
-                let stringValue = String(value)
+                var stringValue = String(value)
+                stringValue = value.removeZerosFromEnd()
                 cell.nutrientValue?.text = stringValue
             } else {
                 var value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
                 value = value.roundToDecimal(1)
-                let stringValue = String(value)
+                var stringValue = String(value)
+                stringValue = value.removeZerosFromEnd()
                 cell.nutrientValue?.text = stringValue
             }
             
@@ -90,6 +110,14 @@ extension Double {
     func roundToDecimal(_ fractionDigits: Int) -> Double {
         let multiplier = pow(10, Double(fractionDigits))
         return Darwin.round(self * multiplier) / multiplier
+    }
+    
+    func removeZerosFromEnd() -> String {
+        let formatter = NumberFormatter()
+        let number = NSNumber(value: self)
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return String(formatter.string(from: number) ?? "0")
     }
 }
 

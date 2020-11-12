@@ -23,28 +23,35 @@ class ConBalViewController: UIViewController {
     var reporttypestr7 : String = ""
     var pscistatestr8 : String = ""
     
-    var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
+    let nutrientNames = ["Nutrients",
+                         "Vit. A",
+                         "Vit. D3",
+                         "Vit. E",
+                         "Biotin",
+                         "Niacin",
+                         "Zn",
+                         "Mn",
+                         "Cu",
+                         "Se",
+                         "I",
+                         "Co",
+                         "Ca",
+                         "P",
+                         "Mg",
+                         "Na",
+                         "Cl",
+                         "S",
+                         "K"]
     
-    let players = ["P","Ca","Mg","K","Na","Cl","S","Co","Cu","I","Mn","Zn","Se","Vit. A","Vit. D3","Vit. E","Niacin","Biotin"]
+    let nutrientUnits = ["Unit","IU","IU","IU/mg","mg","mg","mg","mg","mg","mg","mg","mg","gm","gm","gm","gm","gm","gm","gm"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
+
 extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -75,10 +82,13 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
             } else {
                 cell.backgroundColor = UIColor.white
             }
+            cell.nutrientNames?.text = nutrientNames[indexPath.row]
+            cell.nutrientUnits?.text = nutrientUnits[indexPath.row]
             if(fromDatabase == "yes") {
                 var value : Double = requiredArray[indexPath.row - 1]
                 value = value.roundToDecimal(1)
-                let stringValue = String(value)
+                var stringValue = String(value)
+                stringValue = value.removeZerosFromEnd()
                 cell.nutrientFeed?.text = stringValue
                 
                 let value1 : Double = rationArray[indexPath.row - 1]
@@ -92,17 +102,17 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 }
                 var value4 : Double = value1 + value2 + value3
                 value4 = value4.roundToDecimal(1)
-                let stringValue1 = String(value4)
+                var stringValue1 = String(value4)
+                stringValue1 = value4.removeZerosFromEnd()
                 cell.nutrientPremix?.text = stringValue1
                 
                 var value5 : Double = value4 - value
                 value5 = value5.roundToDecimal(1)
-                cell.nutrientNames?.text = nutrientNames[indexPath.row]
-                cell.nutrientWater?.text = String(value5)
+                cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                 var percent : Double = (value4/value) * 100
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
-                cell.nutrientTotal?.text = String(percent)
+                cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                 if(indexPath.row == 17) {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
                 }
@@ -110,7 +120,7 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 
                 var value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
                 value = value.roundToDecimal(1)
-                let stringValue = String(value)
+                let stringValue = String(value.removeZerosFromEnd())
                 cell.nutrientFeed?.text = stringValue
                 
                 let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
@@ -124,17 +134,17 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 }
                 var value4 : Double = value1 + value2 + value3
                 value4 = value4.roundToDecimal(1)
-                let stringValue1 = String(value4)
+                let stringValue1 = String(value4.removeZerosFromEnd())
                 cell.nutrientPremix?.text = stringValue1
                 
                 var value5 : Double = value4 - value
                 value5 = value5.roundToDecimal(1)
-                cell.nutrientNames?.text = nutrientNames[indexPath.row]
-                cell.nutrientWater?.text = String(value5)
+                
+                cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                 var percent : Double = (value4/value) * 100
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
-                cell.nutrientTotal?.text = String(percent)
+                cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                 if(indexPath.row == 17) {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
                 }

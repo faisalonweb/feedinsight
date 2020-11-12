@@ -137,8 +137,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     var pscistatestr8 : String = ""
     
     
-    var nutrientNames = ["Nutrients","P","Ca","Mg","K","S","Na","Cl","Zn","Cu","Mn","Se","Co","I","Vitamin A","Vitamin D3","Vitamin E","Niacin","Biotin"]
-    let players = ["Biotin","Niacin","Vit E","Vit D","Vit A","Se","Zn","Mn","I","Cu","Co","S","Cl","Na","K","Mg","Ca","P"]
+    let players = ["K","S","Cl","Na","Mg","P", "Ca","Co","I","Se","Cu","Mn","Zn","Niacin","Biotin","Vit. E","Vit. D3","Vit. A"]
     @objc func addNewGuageView(_ notification: Notification) {
         self.addGaugeView()
     }
@@ -397,26 +396,19 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         
         if(fromDatabase == "yes") {
             let entry1 = BarChartDataEntry(x: 17, yValues: [ rationArray[0] >= 150.0 ? 150.0: rationArray[0],
-                                                            premixArray[0] >= 150.0 ? 150.0: premixArray[0],
-                                                            waterArray[0] >= 150.0 ? 150.0: waterArray[0]])
+                                                            premixArray[0] >= 150.0 ? 150.0: premixArray[0],0])
             let entry2 = BarChartDataEntry(x: 16, yValues: [ rationArray[1] >= 150.0 ? 150.0: rationArray[1],
-                                                            premixArray[1] >= 150.0 ? 150.0: premixArray[1],
-                                                            waterArray[1] >= 150.0 ? 150.0: waterArray[1]])
+                                                            premixArray[1] >= 150.0 ? 150.0: premixArray[1],0])
             let entry3 = BarChartDataEntry(x: 15, yValues: [ rationArray[2] >= 150.0 ? 150.0: rationArray[2],
-                                                            premixArray[2] >= 150.0 ? 150.0: premixArray[2],
-                                                            waterArray[2] >= 150.0 ? 150.0: waterArray[2]])
+                                                            premixArray[2] >= 150.0 ? 150.0: premixArray[2],0])
             let entry4 = BarChartDataEntry(x: 14, yValues: [ rationArray[3] >= 150.0 ? 150.0: rationArray[3],
-                                                            premixArray[3] >= 150.0 ? 150.0: premixArray[3],
-                                                            waterArray[3] >= 150.0 ? 150.0: waterArray[3]])
+                                                            premixArray[3] >= 150.0 ? 150.0: premixArray[3],0])
             let entry5 = BarChartDataEntry(x: 13, yValues: [ rationArray[4] >= 150.0 ? 150.0: rationArray[4],
-                                                            premixArray[4] >= 150.0 ? 150.0: premixArray[4],
-                                                            waterArray[4] >= 150.0 ? 150.0: waterArray[4]])
+                                                            premixArray[4] >= 150.0 ? 150.0: premixArray[4],0])
             let entry6 = BarChartDataEntry(x: 12, yValues: [ rationArray[5] >= 150.0 ? 150.0: rationArray[5],
-                                                            premixArray[5] >= 150.0 ? 150.0: premixArray[5],
-                                                            waterArray[5] >= 150.0 ? 150.0: waterArray[5]])
+                                                            premixArray[5] >= 150.0 ? 150.0: premixArray[5],0])
             let entry7 = BarChartDataEntry(x: 11, yValues: [ rationArray[6] >= 150.0 ? 150.0: rationArray[6],
-                                                            premixArray[6] >= 150.0 ? 150.0: premixArray[6],
-                                                            waterArray[6] >= 150.0 ? 150.0: waterArray[6]])
+                                                            premixArray[6] >= 150.0 ? 150.0: premixArray[6],0])
             let entry8 = BarChartDataEntry(x: 10, yValues: [ rationArray[7] >= 150.0 ? 150.0: rationArray[7],
                                                             premixArray[7] >= 150.0 ? 150.0: premixArray[7],0])
             let entry9 = BarChartDataEntry(x: 9, yValues: [ rationArray[8] >= 150.0 ? 150.0: rationArray[8],
@@ -426,19 +418,26 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
             let entry11 = BarChartDataEntry(x: 7, yValues: [ rationArray[10] >= 150.0 ? 150.0: rationArray[10],
                                                               premixArray[10] >= 150.0 ? 150.0: premixArray[10],0])
             let entry12 = BarChartDataEntry(x: 6, yValues: [ rationArray[11] >= 150.0 ? 150.0: rationArray[11],
-                                                              premixArray[11] >= 150.0 ? 150.0: premixArray[11],0])
+                                                              premixArray[11] >= 150.0 ? 150.0: premixArray[11],
+                                                              waterArray[0] >= 150.0 ? 150.0: waterArray[0]])
             let entry13 = BarChartDataEntry(x: 5, yValues: [ rationArray[12] >= 150.0 ? 150.0: rationArray[12],
-                                                              premixArray[12] >= 150.0 ? 150.0: premixArray[12],0])
+                                                              premixArray[12] >= 150.0 ? 150.0: premixArray[12],
+                                                              waterArray[1] >= 150.0 ? 150.0: waterArray[1]])
             let entry14 = BarChartDataEntry(x: 4, yValues: [ rationArray[13] >= 150.0 ? 150.0: rationArray[13],
-                                                              premixArray[13] >= 150.0 ? 150.0: premixArray[13],0])
+                                                              premixArray[13] >= 150.0 ? 150.0: premixArray[13],
+                                                              waterArray[2] >= 150.0 ? 150.0: waterArray[2]])
             let entry15 = BarChartDataEntry(x: 3, yValues: [ rationArray[14] >= 150.0 ? 150.0: rationArray[14],
-                                                              premixArray[14] >= 150.0 ? 150.0: premixArray[14],0])
+                                                              premixArray[14] >= 150.0 ? 150.0: premixArray[14],
+                                                              waterArray[3] >= 150.0 ? 150.0: waterArray[3]])
             let entry16 = BarChartDataEntry(x: 2, yValues: [ rationArray[15] >= 150.0 ? 150.0: rationArray[15],
-                                                              premixArray[15] >= 150.0 ? 150.0: premixArray[15],0])
+                                                              premixArray[15] >= 150.0 ? 150.0: premixArray[15],
+                                                              waterArray[4] >= 150.0 ? 150.0: waterArray[4]])
             let entry17 = BarChartDataEntry(x: 1, yValues: [ rationArray[16] >= 150.0 ? 150.0: rationArray[16],
-                                                              premixArray[16] >= 150.0 ? 150.0: premixArray[16],0])
+                                                              premixArray[16] >= 150.0 ? 150.0: premixArray[16],
+                                                              waterArray[5] >= 150.0 ? 150.0: waterArray[5]])
             let entry18 = BarChartDataEntry(x: 0, yValues: [ rationArray[17] >= 150.0 ? 150.0: rationArray[17],
-                                                              premixArray[17] >= 150.0 ? 150.0: premixArray[17],0])
+                                                              premixArray[17] >= 150.0 ? 150.0: premixArray[17],
+                                                              waterArray[6] >= 150.0 ? 150.0: waterArray[6]])
             
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]
@@ -448,26 +447,19 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         } else {
             
             let entry1 = BarChartDataEntry(x: 17, yValues: [ Requirments.shared().rationArrayFinal[0] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[0],
-                                                            Requirments.shared().primexArrayFinal[0] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[0],
-                                                            Requirments.shared().waterArrayFinal[0] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[0]])
+                                                            Requirments.shared().primexArrayFinal[0] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[0],0])
             let entry2 = BarChartDataEntry(x: 16, yValues: [ Requirments.shared().rationArrayFinal[1] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[1],
-                                                            Requirments.shared().primexArrayFinal[1] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[1],
-                                                            Requirments.shared().waterArrayFinal[1] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[1]])
+                                                            Requirments.shared().primexArrayFinal[1] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[1],0])
             let entry3 = BarChartDataEntry(x: 15, yValues: [ Requirments.shared().rationArrayFinal[2] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[2],
-                                                            Requirments.shared().primexArrayFinal[2] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[2],
-                                                            Requirments.shared().waterArrayFinal[2] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[2]])
+                                                            Requirments.shared().primexArrayFinal[2] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[2],0])
             let entry4 = BarChartDataEntry(x: 14, yValues: [ Requirments.shared().rationArrayFinal[3] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[3],
-                                                            Requirments.shared().primexArrayFinal[3] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[3],
-                                                            Requirments.shared().waterArrayFinal[3] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[3]])
+                                                            Requirments.shared().primexArrayFinal[3] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[3],0])
             let entry5 = BarChartDataEntry(x: 13, yValues: [ Requirments.shared().rationArrayFinal[4] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[4],
-                                                            Requirments.shared().primexArrayFinal[4] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[4],
-                                                            Requirments.shared().waterArrayFinal[4] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[4]])
+                                                            Requirments.shared().primexArrayFinal[4] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[4],0])
             let entry6 = BarChartDataEntry(x: 12, yValues: [ Requirments.shared().rationArrayFinal[5] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[5],
-                                                            Requirments.shared().primexArrayFinal[5] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[5],
-                                                            Requirments.shared().waterArrayFinal[5] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[5]])
+                                                            Requirments.shared().primexArrayFinal[5] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[5],0])
             let entry7 = BarChartDataEntry(x: 11, yValues: [ Requirments.shared().rationArrayFinal[6] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[6],
-                                                            Requirments.shared().primexArrayFinal[6] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[6],
-                                                            Requirments.shared().waterArrayFinal[6] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[6]])
+                                                            Requirments.shared().primexArrayFinal[6] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[6],0])
             let entry8 = BarChartDataEntry(x: 10, yValues: [ Requirments.shared().rationArrayFinal[7] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[7],
                                                             Requirments.shared().primexArrayFinal[7] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[7],0])
             let entry9 = BarChartDataEntry(x: 9, yValues: [ Requirments.shared().rationArrayFinal[8] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[8],
@@ -477,19 +469,26 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
             let entry11 = BarChartDataEntry(x: 7, yValues: [ Requirments.shared().rationArrayFinal[10] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[10],
                                                               Requirments.shared().primexArrayFinal[10] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[10],0])
             let entry12 = BarChartDataEntry(x: 6, yValues: [ Requirments.shared().rationArrayFinal[11] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[11],
-                                                              Requirments.shared().primexArrayFinal[11] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[11],0])
+                                                              Requirments.shared().primexArrayFinal[11] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[11],
+                                                              Requirments.shared().waterArrayFinal[0] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[0]])
             let entry13 = BarChartDataEntry(x: 5, yValues: [ Requirments.shared().rationArrayFinal[12] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[12],
-                                                              Requirments.shared().primexArrayFinal[12] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[12],0])
+                                                              Requirments.shared().primexArrayFinal[12] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[12],
+                                                              Requirments.shared().waterArrayFinal[1] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[1]])
             let entry14 = BarChartDataEntry(x: 4, yValues: [ Requirments.shared().rationArrayFinal[13] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[13],
-                                                              Requirments.shared().primexArrayFinal[13] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[13],0])
+                                                              Requirments.shared().primexArrayFinal[13] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[13],
+                                                              Requirments.shared().waterArrayFinal[2] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[2]])
             let entry15 = BarChartDataEntry(x: 3, yValues: [ Requirments.shared().rationArrayFinal[14] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[14],
-                                                              Requirments.shared().primexArrayFinal[14] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[14],0])
+                                                              Requirments.shared().primexArrayFinal[14] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[14],
+                                                              Requirments.shared().waterArrayFinal[3] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[3]])
             let entry16 = BarChartDataEntry(x: 2, yValues: [ Requirments.shared().rationArrayFinal[15] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[15],
-                                                              Requirments.shared().primexArrayFinal[15] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[15],0])
+                                                              Requirments.shared().primexArrayFinal[15] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[15],
+                                                              Requirments.shared().waterArrayFinal[4] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[4]])
             let entry17 = BarChartDataEntry(x: 1, yValues: [ Requirments.shared().rationArrayFinal[16] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[16],
-                                                              Requirments.shared().primexArrayFinal[16] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[16],0])
+                                                              Requirments.shared().primexArrayFinal[16] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[16],
+                                                              Requirments.shared().waterArrayFinal[5] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[5]])
             let entry18 = BarChartDataEntry(x: 0, yValues: [ Requirments.shared().rationArrayFinal[17] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[17],
-                                                              Requirments.shared().primexArrayFinal[17] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[17],0])
+                                                              Requirments.shared().primexArrayFinal[17] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[17],
+                                                              Requirments.shared().waterArrayFinal[6] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[6]])
             
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]

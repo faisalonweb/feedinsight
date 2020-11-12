@@ -679,11 +679,6 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         Requirments.shared().mnMicroText = pMacroText25 * doseinKG
         
         Requirments.shared().appendPremixValues()
-        
-        /*
-         Save Report code start
-         */
-        
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
