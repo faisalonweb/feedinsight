@@ -419,25 +419,25 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                                                               premixArray[10] >= 150.0 ? 150.0: premixArray[10],0])
             let entry12 = BarChartDataEntry(x: 6, yValues: [ rationArray[11] >= 150.0 ? 150.0: rationArray[11],
                                                               premixArray[11] >= 150.0 ? 150.0: premixArray[11],
-                                                              waterArray[0] >= 150.0 ? 150.0: waterArray[0]])
+                                                              waterArray[11] >= 150.0 ? 150.0: waterArray[11]])
             let entry13 = BarChartDataEntry(x: 5, yValues: [ rationArray[12] >= 150.0 ? 150.0: rationArray[12],
                                                               premixArray[12] >= 150.0 ? 150.0: premixArray[12],
-                                                              waterArray[1] >= 150.0 ? 150.0: waterArray[1]])
+                                                              waterArray[12] >= 150.0 ? 150.0: waterArray[12]])
             let entry14 = BarChartDataEntry(x: 4, yValues: [ rationArray[13] >= 150.0 ? 150.0: rationArray[13],
                                                               premixArray[13] >= 150.0 ? 150.0: premixArray[13],
-                                                              waterArray[2] >= 150.0 ? 150.0: waterArray[2]])
+                                                              waterArray[13] >= 150.0 ? 150.0: waterArray[13]])
             let entry15 = BarChartDataEntry(x: 3, yValues: [ rationArray[14] >= 150.0 ? 150.0: rationArray[14],
                                                               premixArray[14] >= 150.0 ? 150.0: premixArray[14],
-                                                              waterArray[3] >= 150.0 ? 150.0: waterArray[3]])
+                                                              waterArray[14] >= 150.0 ? 150.0: waterArray[14]])
             let entry16 = BarChartDataEntry(x: 2, yValues: [ rationArray[15] >= 150.0 ? 150.0: rationArray[15],
                                                               premixArray[15] >= 150.0 ? 150.0: premixArray[15],
-                                                              waterArray[4] >= 150.0 ? 150.0: waterArray[4]])
+                                                              waterArray[15] >= 150.0 ? 150.0: waterArray[15]])
             let entry17 = BarChartDataEntry(x: 1, yValues: [ rationArray[16] >= 150.0 ? 150.0: rationArray[16],
                                                               premixArray[16] >= 150.0 ? 150.0: premixArray[16],
-                                                              waterArray[5] >= 150.0 ? 150.0: waterArray[5]])
+                                                              waterArray[16] >= 150.0 ? 150.0: waterArray[16]])
             let entry18 = BarChartDataEntry(x: 0, yValues: [ rationArray[17] >= 150.0 ? 150.0: rationArray[17],
                                                               premixArray[17] >= 150.0 ? 150.0: premixArray[17],
-                                                              waterArray[6] >= 150.0 ? 150.0: waterArray[6]])
+                                                              waterArray[17] >= 150.0 ? 150.0: waterArray[17]])
             
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]
@@ -470,25 +470,25 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                                                               Requirments.shared().primexArrayFinal[10] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[10],0])
             let entry12 = BarChartDataEntry(x: 6, yValues: [ Requirments.shared().rationArrayFinal[11] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[11],
                                                               Requirments.shared().primexArrayFinal[11] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[11],
-                                                              Requirments.shared().waterArrayFinal[0] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[0]])
+                                                              Requirments.shared().waterArrayFinal[11] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[11]])
             let entry13 = BarChartDataEntry(x: 5, yValues: [ Requirments.shared().rationArrayFinal[12] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[12],
                                                               Requirments.shared().primexArrayFinal[12] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[12],
-                                                              Requirments.shared().waterArrayFinal[1] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[1]])
+                                                              Requirments.shared().waterArrayFinal[12] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[12]])
             let entry14 = BarChartDataEntry(x: 4, yValues: [ Requirments.shared().rationArrayFinal[13] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[13],
                                                               Requirments.shared().primexArrayFinal[13] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[13],
-                                                              Requirments.shared().waterArrayFinal[2] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[2]])
+                                                              Requirments.shared().waterArrayFinal[13] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[13]])
             let entry15 = BarChartDataEntry(x: 3, yValues: [ Requirments.shared().rationArrayFinal[14] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[14],
                                                               Requirments.shared().primexArrayFinal[14] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[14],
-                                                              Requirments.shared().waterArrayFinal[3] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[3]])
+                                                              Requirments.shared().waterArrayFinal[14] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[14]])
             let entry16 = BarChartDataEntry(x: 2, yValues: [ Requirments.shared().rationArrayFinal[15] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[15],
                                                               Requirments.shared().primexArrayFinal[15] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[15],
-                                                              Requirments.shared().waterArrayFinal[4] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[4]])
+                                                              Requirments.shared().waterArrayFinal[15] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[15]])
             let entry17 = BarChartDataEntry(x: 1, yValues: [ Requirments.shared().rationArrayFinal[16] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[16],
                                                               Requirments.shared().primexArrayFinal[16] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[16],
-                                                              Requirments.shared().waterArrayFinal[5] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[5]])
+                                                              Requirments.shared().waterArrayFinal[16] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[16]])
             let entry18 = BarChartDataEntry(x: 0, yValues: [ Requirments.shared().rationArrayFinal[17] >= 150.0 ? 150.0: Requirments.shared().rationArrayFinal[17],
                                                               Requirments.shared().primexArrayFinal[17] >= 150.0 ? 150.0: Requirments.shared().primexArrayFinal[17],
-                                                              Requirments.shared().waterArrayFinal[6] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[6]])
+                                                              Requirments.shared().waterArrayFinal[17] >= 150.0 ? 150.0: Requirments.shared().waterArrayFinal[17]])
             
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]
@@ -511,266 +511,182 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     func addGaugeView() {
-        // Pa
-        // 0 , 225
-        var value : Double = percentageArray[0]
-        value = value / 225
-        value = value * 100
+        // Vitamin A
+        // 0 , 1950
         var xValue : Double = 0.0
-        if(value > 89.0) {
+        var value13 : Double = percentageArray[0]
+        value13 = value13 / 1950
+        value13 = value13 * 100
+        if(value13 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value
+            xValue = 3 * value13
         }
-        value = value.roundToDecimal(1)
-        var frame : CGRect = l1.frame
-        frame.origin.x = CGFloat(xValue)
-        l1.frame = frame
-        l1.text = String(value)
-        //v1.addDashedBorder(xValue: xValue)
-        var framepV1 : CGRect = pV1.frame
-        framepV1.origin.x = CGFloat(xValue)
-        pV1.frame = framepV1
-        let pg = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pV1.addSubview(pg)
-        // Ca
-        // 0 , 500
-        var value1 : Double = percentageArray[1]
-        value1 = value1 / 500
-        value1 = value1 * 100
-        
-        if(value1 > 89.0) {
-//            value1 = 105.0
+        value13 = percentageArray[0].roundToDecimal(0)
+        var frame13 : CGRect = l14.frame
+        frame13.origin.x = CGFloat(xValue)
+        l14.frame = frame13
+        l14.text = String(value13)
+        var framepV14 : CGRect = pv14.frame
+        framepV14.origin.x = CGFloat(xValue)
+        pv14.frame = framepV14
+        let pg14 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv14.addSubview(pg14)
+        // Vit D
+        // 0 , 225
+        var value14 : Double = percentageArray[1]
+        value14 = value14 / 225
+        value14 = value14 * 100
+        if(value14 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value1
+            xValue = 3 * value14
         }
-        value1 = value1.roundToDecimal(1)
-        var frame1 : CGRect = l2.frame
-        frame1.origin.x = CGFloat(xValue)
-        l2.frame = frame1
-        l2.text = String(value1)
-        //v2.addDashedBorder(xValue: xValue)
-        var framepV2 : CGRect = pv2.frame
-        framepV2.origin.x = CGFloat(xValue)
-        pv2.frame = framepV2
-        let pg2 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv2.addSubview(pg2)
-        // Mg
-        // 0 , 1375
-        var value2 : Double = percentageArray[2]
-        value2 = value2 / 1375
-        value2 = value2 * 100
-        if(value2 > 89.0) {
-//            value2 = 105.0
-            xValue = 260
-        } else {
-            xValue = 3 * value2
-        }
-        value2 = value2.roundToDecimal(1)
-        var frame2 : CGRect = l3.frame
-        frame2.origin.x = CGFloat(xValue)
-        l3.frame = frame2
-        l3.text = String(value2)
-        //v3.addDashedBorder(xValue: xValue)
-        var framepV3 : CGRect = pv3.frame
-        framepV3.origin.x = CGFloat(xValue)
-        pv3.frame = framepV3
-        let pg3 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv3.addSubview(pg3)
-        // Potassium
-        // 0 , 400
-        var value3 : Double = percentageArray[3]
-        value3 = value3 / 400
-        value3 = value3 * 100
-        if(value3 > 89.0) {
-//            value3 = 105.0
-            xValue = 260
-        } else {
-            xValue = 3 * value3
-        }
-        value3 = value3.roundToDecimal(1)
-        var frame3 : CGRect = l4.frame
-        frame3.origin.x = CGFloat(xValue)
-        l4.frame = frame3
-        l4.text = String(value3)
-        //v4.addDashedBorder(xValue: xValue)
-        var framepV4 : CGRect = pv4.frame
-        framepV4.origin.x = CGFloat(xValue)
-        pv4.frame = framepV4
-        let pg4 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv4.addSubview(pg4)
-        // Sodium
-        // 0 , 500
-        var value4 : Double = percentageArray[4]
-        value4 = value4 / 500
-        value4 = value4 * 100
-        if(value4 > 89.0) {
-//            value4 = 105.0
-            xValue = 260
-        } else {
-            xValue = 3 * value4
-        }
-        value4 = value4.roundToDecimal(1)
-        var frame4 : CGRect = l5.frame
-        frame4.origin.x = CGFloat(xValue)
-        l5.frame = frame4
-        l5.text = String(value4)
-        //v5.addDashedBorder(xValue: xValue)
-        var framepV5 : CGRect = pv5.frame
-        framepV5.origin.x = CGFloat(xValue)
-        pv5.frame = framepV5
-        let pg5 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv5.addSubview(pg5)
-        // Chloride
-        // 0 , 1625
-        var value5 : Double = percentageArray[5]
-        value5 = value5 / 1625
-        value5 = value5 * 100
-        if(value5 > 89.0) {
-//            value5 = 105.0
-            xValue = 260
-        } else {
-            xValue = 3 * value5
-        }
-        value5 = value5.roundToDecimal(1)
-        var frame5 : CGRect = l6.frame
-        frame5.origin.x = CGFloat(xValue)
-        l6.frame = frame5
-        l6.text = String(value5)
-        //v6.addDashedBorder(xValue: xValue)
-        var framepV6 : CGRect = pv6.frame
-        framepV6.origin.x = CGFloat(xValue)
-        pv6.frame = framepV6
-        let pg6 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv6.addSubview(pg6)
-        // Sulfur
+        value14 = percentageArray[1].roundToDecimal(0)
+        var frame14 : CGRect = l15.frame
+        frame14.origin.x = CGFloat(xValue)
+        l15.frame = frame14
+        l15.text = String(value14)
+        var framepV15 : CGRect = pv15.frame
+        framepV15.origin.x = CGFloat(xValue)
+        pv15.frame = framepV15
+        let pg15 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv15.addSubview(pg15)
+        // Vitamin E
         // 0 , 200
-        var value6 : Double = percentageArray[6]
-        value6 = value6 / 200
-        value6 = value6 * 100
-        if(value6 > 89.0) {
-//            value6 = 105.0
+        var value15 : Double = percentageArray[2]
+        value15 = value15 / 200
+        value15 = value15 * 100
+        if(value15 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value6
+            xValue = 3 * value15
         }
-        value6 = value6.roundToDecimal(1)
-        var frame6 : CGRect = l7.frame
-        frame6.origin.x = CGFloat(xValue)
-        l7.frame = frame6
-        l7.text = String(value6)
-        //v7.addDashedBorder(xValue: xValue)
-        var framepV7 : CGRect = pv7.frame
-        framepV7.origin.x = CGFloat(xValue)
-        pv7.frame = framepV7
-        let pg7 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv7.addSubview(pg7)
+        value15 = percentageArray[2].roundToDecimal(0)
+        var frame15 : CGRect = l16.frame
+        frame15.origin.x = CGFloat(xValue)
+        l16.frame = frame15
+        l16.text = String(value15)
+        var framepV16 : CGRect = pv16.frame
+        framepV16.origin.x = CGFloat(xValue)
+        pv16.frame = framepV16
+        let pg16 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv16.addSubview(pg16)
+        // Biotin
+        // 0 , 200
+        var value17 : Double = percentageArray[3]
+        value17 = value17 / 200
+        value17 = value17 * 100
+        if(value17 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value17
+        }
+        value17 = percentageArray[3].roundToDecimal(0)
+        var frame17 : CGRect = l18.frame
+        frame17.origin.x = CGFloat(xValue)
+        l18.frame = frame17
+        l18.text = String(value17)
+        var framepV18 : CGRect = pv18.frame
+        framepV18.origin.x = CGFloat(xValue)
+        pv18.frame = framepV18
+        let pg18 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv18.addSubview(pg18)
+        // Niacin
+        // 0 , 200
+        var value16 : Double = percentageArray[4]
+        value16 = value16 / 200
+        value16 = value16 * 100
+        if(value16 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value16
+        }
+        var frame16 : CGRect = l17.frame
+        frame16.origin.x = CGFloat(xValue)
+        l17.frame = frame16
+        value16 = percentageArray[4].roundToDecimal(0)
+        l17.text = String(value16)
+        var framepV17 : CGRect = pv17.frame
+        framepV17.origin.x = CGFloat(xValue)
+        pv17.frame = framepV17
+        let pg17 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv17.addSubview(pg17)
         // Zinc
         // 0 , 1125
-        var value7 : Double = percentageArray[7]
-        value7 = value7 / 1125
-        value7 = value7 * 100
-        if(value7 > 89.0) {
-//            value7 = 105.0
+        var value12 : Double = percentageArray[5]
+        value12 = value12 / 1125
+        value12 = value12 * 100
+        if(value12 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value7
+            xValue = 3 * value12
         }
-        value7 = value7.roundToDecimal(1)
-        var frame7 : CGRect = l8.frame
-        frame7.origin.x = CGFloat(xValue)
-        l8.frame = frame7
-        l8.text = String(value7)
-        //v8.addDashedBorder(xValue: xValue)
-        var framepV8 : CGRect = pv8.frame
-        framepV8.origin.x = CGFloat(xValue)
-        pv8.frame = framepV8
-        let pg8 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv8.addSubview(pg8)
+        value12 = percentageArray[5].roundToDecimal(0)
+        var frame12 : CGRect = l3.frame
+        frame12.origin.x = CGFloat(xValue)
+        l13.frame = frame12
+        l13.text = String(value12)
+        var framepV13 : CGRect = pv13.frame
+        framepV13.origin.x = CGFloat(xValue)
+        pv13.frame = framepV13
+        let pg13 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv13.addSubview(pg13)
         // Manganese
         // 0 , 3750
-        var value8 : Double = percentageArray[8]
-        value8 = value8 / 3750
-        value8 = value8 * 100
-        if(value8 > 89.0) {
-//            value8 = 105.0
-            xValue = 260
-        } else {
-            xValue = 3 * value8
-        }
-        value8 = value8.roundToDecimal(1)
-        var frame8 : CGRect = l9.frame
-        frame8.origin.x = CGFloat(xValue)
-        l9.frame = frame8
-        l9.text = String(value8)
-        //v9.addDashedBorder(xValue: xValue)
-        var framepV9 : CGRect = pv2.frame
-        framepV9.origin.x = CGFloat(xValue)
-        pv9.frame = framepV9
-        let pg9 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv9.addSubview(pg9)
-        // Copper
-        // 0 , 375
-        var value9 : Double = percentageArray[9]
-        value9 = value9 / 375
-//        value9 = value9 * 100
-        if(value9 > 89.0) {
-            value9 = 105.0
-            xValue = 260
-        } else {
-            xValue = 3 * value9
-        }
-        value9 = value9.roundToDecimal(1)
-        var frame9 : CGRect = l10.frame
-        frame9.origin.x = CGFloat(xValue)
-        l10.frame = frame9
-        l10.text = String(value9)
-        //v10.addDashedBorder(xValue: xValue)
-        var framepV10 : CGRect = pv10.frame
-        framepV10.origin.x = CGFloat(xValue)
-        pv10.frame = framepV10
-        let pg10 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv10.addSubview(pg10)
-        // Selenium
-        // 0 , 1750
-        var value10 : Double = percentageArray[10]
-        value10 = value10 / 1750
-//        value10 = value10 * 100
+        var value10 : Double = percentageArray[6]
+        value10 = value10 / 3750
+        value10 = value10 * 100
         if(value10 > 89.0) {
-            value10 = 105.0
             xValue = 260
         } else {
             xValue = 3 * value10
         }
-        value10 = value10.roundToDecimal(1)
+        value10 = percentageArray[6].roundToDecimal(0)
         var frame10 : CGRect = l11.frame
         frame10.origin.x = CGFloat(xValue)
         l11.frame = frame10
         l11.text = String(value10)
-        //v11.addDashedBorder(xValue: xValue)
         var framepV11 : CGRect = pv11.frame
         framepV11.origin.x = CGFloat(xValue)
         pv11.frame = framepV11
         let pg11 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
         self.pv11.addSubview(pg11)
-        // Cobalt
-        // 0 , 3750
-        var value11 : Double = percentageArray[11]
-        value11 = value11 / 3750
+        // Copper
+        // 0 , 375
+        var value8 : Double = percentageArray[7]
+        value8 = value8 / 375
+        value8 = value8 * 100
+        if(value8 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value8
+        }
+        value8 = percentageArray[7].roundToDecimal(0)
+        var frame8 : CGRect = l9.frame
+        frame8.origin.x = CGFloat(xValue)
+        l9.frame = frame8
+        l9.text = String(value8)
+        var framepV9 : CGRect = pv2.frame
+        framepV9.origin.x = CGFloat(xValue)
+        pv9.frame = framepV9
+        let pg9 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv9.addSubview(pg9)
+        // Selenium
+        // 0 , 1750
+        var value11 : Double = percentageArray[8]
+        value11 = value11 / 1750
         value11 = value11 * 100
         if(value11 > 89.0) {
-//            value11 = 105.0
             xValue = 260
         } else {
             xValue = 3 * value11
         }
-        value11 = value11.roundToDecimal(1)
+        value11 = percentageArray[8].roundToDecimal(0)
         var frame11 : CGRect = l12.frame
         frame11.origin.x = CGFloat(xValue)
         l12.frame = frame11
         l12.text = String(value11)
-        //v12.addDashedBorder(xValue: xValue)
         var framepV12 : CGRect = pv12.frame
         framepV12.origin.x = CGFloat(xValue)
         pv12.frame = framepV12
@@ -778,117 +694,185 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         self.pv12.addSubview(pg12)
         // Iodine
         // 0 , 1000
-        var value12 : Double = percentageArray[12]
-        value12 = value12 / 1000
-        value12 = value12 * 100
-        if(value12 > 89.0) {
-//            value12 = 105.0
+        var value9 : Double = percentageArray[9]
+        value9 = value9 / 1000
+        value9 = value9 * 100
+        if(value9 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value12
+            xValue = 3 * value9
         }
-        value12 = value12.roundToDecimal(1)
-        var frame12 : CGRect = l3.frame
-        frame12.origin.x = CGFloat(xValue)
-        l13.frame = frame12
-        l13.text = String(value12)
-        //v13.addDashedBorder(xValue: xValue)
-        var framepV13 : CGRect = pv13.frame
-        framepV13.origin.x = CGFloat(xValue)
-        pv13.frame = framepV13
-        let pg13 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv13.addSubview(pg13)
-        // Vitamin E
-        // 0 , 200
-        var value13 : Double = percentageArray[13]
-        value13 = value13 / 200
-        value13 = value13 * 100
-        if(value13 > 89.0) {
-//            value13 = 105.0
+        value9 = percentageArray[9].roundToDecimal(0)
+        var frame9 : CGRect = l10.frame
+        frame9.origin.x = CGFloat(xValue)
+        l10.frame = frame9
+        l10.text = String(value9)
+        var framepV10 : CGRect = pv10.frame
+        framepV10.origin.x = CGFloat(xValue)
+        pv10.frame = framepV10
+        let pg10 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv10.addSubview(pg10)
+        // Cobalt
+        // 0 , 3750
+        var value7 : Double = percentageArray[10]
+        value7 = value7 / 3750
+        value7 = value7 * 100
+        if(value7 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value13
+            xValue = 3 * value7
         }
-        value13 = value13.roundToDecimal(1)
-        var frame13 : CGRect = l14.frame
-        frame13.origin.x = CGFloat(xValue)
-        l14.frame = frame13
-        l14.text = String(value13)
-//        v14.addDashedBorder(xValue: xValue)
-        var framepV14 : CGRect = pv14.frame
-        framepV14.origin.x = CGFloat(xValue)
-        pv14.frame = framepV14
-        let pg14 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv14.addSubview(pg14)
-        // Vitamin D
+        value7 = percentageArray[10].roundToDecimal(0)
+        var frame7 : CGRect = l8.frame
+        frame7.origin.x = CGFloat(xValue)
+        l8.frame = frame7
+        l8.text = String(value7)
+        var framepV8 : CGRect = pv8.frame
+        framepV8.origin.x = CGFloat(xValue)
+        pv8.frame = framepV8
+        let pg8 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv8.addSubview(pg8)
+        // Ca
+        // 0 , 500
+        var value1 : Double = percentageArray[11]
+        value1 = value1 / 500
+        value1 = value1 * 100
+        if(value1 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value1
+        }
+        value1 = percentageArray[11].roundToDecimal(0)
+        var frame1 : CGRect = l2.frame
+        frame1.origin.x = CGFloat(xValue)
+        l2.frame = frame1
+        l2.text = String(value1)
+        var framepV2 : CGRect = pv2.frame
+        framepV2.origin.x = CGFloat(xValue)
+        pv2.frame = framepV2
+        let pg2 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv2.addSubview(pg2)
+        // Pa
         // 0 , 225
-        var value14 : Double = percentageArray[14]
-        value14 = value14 / 225
-        value14 = value14 * 100
-        if(value14 > 89.0) {
-//            value14 = 105.0
+        var value : Double = percentageArray[12]
+        value = value / 225
+        value = value * 100
+        if(value > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value14
+            xValue = 3 * value
         }
-        value14 = value14.roundToDecimal(1)
-        var frame14 : CGRect = l15.frame
-        frame14.origin.x = CGFloat(xValue)
-        l15.frame = frame14
-        l15.text = String(value14)
-        //v15.addDashedBorder(xValue: xValue)
-        var framepV15 : CGRect = pv15.frame
-        framepV15.origin.x = CGFloat(xValue)
-        pv15.frame = framepV15
-        let pg15 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv15.addSubview(pg15)
-        // Vitamin A
-        // 0 , 1950
-        var value15 : Double = percentageArray[15]
-        value15 = value15 / 1950
-        value15 = value15 * 100
-        if(value15 > 89.0) {
-//            value15 = 105.0
+        value = percentageArray[12].roundToDecimal(0)
+        var frame : CGRect = l1.frame
+        frame.origin.x = CGFloat(xValue)
+        l1.frame = frame
+        l1.text = String(value)
+        var framepV1 : CGRect = pV1.frame
+        framepV1.origin.x = CGFloat(xValue)
+        pV1.frame = framepV1
+        let pg = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pV1.addSubview(pg)
+        // Chloride
+        // 0 , 1625
+        var value2 : Double = percentageArray[13]
+        value2 = value2 / 1625
+        value2 = value2 * 100
+        if(value2 > 89.0) {
             xValue = 260
         } else {
-            xValue = 3 * value15
+            xValue = 3 * value2
         }
-        value15 = value15.roundToDecimal(1)
-        var frame15 : CGRect = l16.frame
-        frame15.origin.x = CGFloat(xValue)
-        l16.frame = frame15
-        l16.text = String(value15)
-        //v16.addDashedBorder(xValue: xValue)
-        var framepV16 : CGRect = pv16.frame
-        framepV16.origin.x = CGFloat(xValue)
-        pv16.frame = framepV16
-        let pg16 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv16.addSubview(pg16)
-        
-        var frame16 : CGRect = l17.frame
-        frame16.origin.x = CGFloat(45.0)
-        l17.frame = frame16
-        xValue = xValue.roundToDecimal(1)
-        l17.text = "45.0"
-        //v17.addDashedBorder(xValue: xValue)
-        var framepV17 : CGRect = pv17.frame
-        framepV17.origin.x = CGFloat(45.0)
-        pv17.frame = framepV17
-        let pg17 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv17.addSubview(pg17)
-        var frame17 : CGRect = l18.frame
-        frame17.origin.x = CGFloat(60.0)
-        l18.frame = frame17
-        l18.text = "60.0"
-        //v18.addDashedBorder(xValue: xValue)
-        var framepV18 : CGRect = pv18.frame
-        framepV18.origin.x = CGFloat(60.0)
-        pv18.frame = framepV18
-        let pg18 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
-        self.pv18.addSubview(pg18)
+        value2 = percentageArray[13].roundToDecimal(0)
+        var frame2 : CGRect = l3.frame
+        frame2.origin.x = CGFloat(xValue)
+        l3.frame = frame2
+        l3.text = String(value2)
+        var framepV3 : CGRect = pv3.frame
+        framepV3.origin.x = CGFloat(xValue)
+        pv3.frame = framepV3
+        let pg3 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv3.addSubview(pg3)
+        // Sodium
+        // 0 , 500
+        var value4 : Double = percentageArray[14]
+        value4 = value4 / 500
+        value4 = value4 * 100
+        if(value4 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value4
+        }
+        value4 = percentageArray[14].roundToDecimal(0)
+        var frame4 : CGRect = l5.frame
+        frame4.origin.x = CGFloat(xValue)
+        l5.frame = frame4
+        l5.text = String(value4)
+        var framepV5 : CGRect = pv5.frame
+        framepV5.origin.x = CGFloat(xValue)
+        pv5.frame = framepV5
+        let pg5 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv5.addSubview(pg5)
+        // Mg
+        // 0 , 1375
+        var value5 : Double = percentageArray[15]
+        value5 = value5 / 1375
+        value5 = value5 * 100
+        if(value5 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value5
+        }
+        value5 = percentageArray[15].roundToDecimal(0)
+        var frame5 : CGRect = l6.frame
+        frame5.origin.x = CGFloat(xValue)
+        l6.frame = frame5
+        l6.text = String(value5)
+        var framepV6 : CGRect = pv6.frame
+        framepV6.origin.x = CGFloat(xValue)
+        pv6.frame = framepV6
+        let pg6 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv6.addSubview(pg6)
+        // Sulfur
+        // 0 , 200
+        var value6 : Double = percentageArray[16]
+        value6 = value6 / 200
+        value6 = value6 * 100
+        if(value6 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value6
+        }
+        value6 = percentageArray[16].roundToDecimal(0)
+        var frame6 : CGRect = l7.frame
+        frame6.origin.x = CGFloat(xValue)
+        l7.frame = frame6
+        l7.text = String(value6)
+        var framepV7 : CGRect = pv7.frame
+        framepV7.origin.x = CGFloat(xValue)
+        pv7.frame = framepV7
+        let pg7 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv7.addSubview(pg7)
+        // Potassium
+        // 0 , 400
+        var value3 : Double = percentageArray[17]
+        value3 = value3 / 400
+        value3 = value3 * 100
+        if(value3 > 89.0) {
+            xValue = 260
+        } else {
+            xValue = 3 * value3
+        }
+        value3 = percentageArray[17].roundToDecimal(0)
+        var frame3 : CGRect = l4.frame
+        frame3.origin.x = CGFloat(xValue)
+        l4.frame = frame3
+        l4.text = String(value3)
+        var framepV4 : CGRect = pv4.frame
+        framepV4.origin.x = CGFloat(xValue)
+        pv4.frame = framepV4
+        let pg4 = PentagonView(frame:CGRect(x:0, y:0, width:30, height:25))
+        self.pv4.addSubview(pg4)
     }
-    
-    
 }
 
 extension UIView {

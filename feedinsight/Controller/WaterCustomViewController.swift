@@ -219,13 +219,13 @@ class WaterCustomViewController: UIViewController {
     }
     @IBAction func nextOnClick(_ sender: Any) {
         //let requirments = Requirments()
-        Requirments.shared().waterPVal = Double(PText.text!) ?? 0.0
-        Requirments.shared().waterKVal = Double(KText.text!) ?? 0.0
-        Requirments.shared().waterSVal = Double(SText.text!) ?? 0.0
-        Requirments.shared().waterCaVal = Double(CaText.text!) ?? 0.0
-        Requirments.shared().waterClVal = Double(ClText.text!) ?? 0.0
-        Requirments.shared().waterMgVal = Double(MgText.text!) ?? 0.0
-        Requirments.shared().waterNaVal = Double(NaText.text!) ?? 0.0
+        Requirments.shared().waterPVal = Double(PText.text!) ?? 0
+        Requirments.shared().waterKVal = Double(KText.text!) ?? 0
+        Requirments.shared().waterSVal = Double(SText.text!) ?? 0
+        Requirments.shared().waterCaVal = Double(CaText.text!) ?? 0
+        Requirments.shared().waterClVal = Double(ClText.text!) ?? 0
+        Requirments.shared().waterMgVal = Double(MgText.text!) ?? 0
+        Requirments.shared().waterNaVal = Double(NaText.text!) ?? 0
         Requirments.shared().waterCalculations()
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController

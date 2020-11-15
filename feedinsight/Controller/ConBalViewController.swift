@@ -94,12 +94,8 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 let value1 : Double = rationArray[indexPath.row - 1]
                 let value2 : Double = premixArray[indexPath.row - 1]
                 var value3 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value3 = 0.0
-                } else {
-                    let value : Double = waterArray[indexPath.row - 1]
-                    value3 = value
-                }
+                let valueh : Double = waterArray[indexPath.row - 1]
+                value3 = valueh
                 var value4 : Double = value1 + value2 + value3
                 value4 = value4.roundToDecimal(1)
                 var stringValue1 = String(value4)
@@ -113,7 +109,7 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
                 cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
-                if(indexPath.row == 17) {
+                if(indexPath.row == 18) {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
                 }
             } else {
@@ -126,12 +122,12 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
                 let value2 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
                 var value3 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value3 = 0.0
-                } else {
-                    let value : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
-                    value3 = value
-                }
+//                if(indexPath.row > 7) {
+//                    value3 = 0.0
+//                } else {
+                    let valuen : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
+                    value3 = valuen
+                //}
                 var value4 : Double = value1 + value2 + value3
                 value4 = value4.roundToDecimal(1)
                 let stringValue1 = String(value4.removeZerosFromEnd())
@@ -145,7 +141,7 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
                 cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
-                if(indexPath.row == 17) {
+                if(indexPath.row == 18) {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
                 }
             }

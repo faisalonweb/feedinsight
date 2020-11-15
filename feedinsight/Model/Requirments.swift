@@ -141,49 +141,49 @@ class Requirments {
     }
     func calculateRationDataParameters() {
         for i in 0..<finalDropdownfloatValue.count {
-            let pVal = Double(finalProductList[i].P) ?? 0.0
+            let pVal = Double(finalProductList[i].P) ?? 0
             rationP = rationP + (valueAfterDryMatter[i] * pVal)
-            let pAbsVal = Double(finalProductList[i].PAbs) ?? 0.0
+            let pAbsVal = Double(finalProductList[i].PAbs) ?? 0
             rationPAbs = rationPAbs + (valueAfterDryMatter[i] * pAbsVal)
-            let caVal = Double(finalProductList[i].Ca) ?? 0.0
+            let caVal = Double(finalProductList[i].Ca) ?? 0
             rationCa = rationCa + (valueAfterDryMatter[i] * caVal)
-            let caAbsVal = Double(finalProductList[i].CaAbs) ?? 0.0
+            let caAbsVal = Double(finalProductList[i].CaAbs) ?? 0
             rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * caAbsVal)
-            let mgVal = Double(finalProductList[i].Mg) ?? 0.0
+            let mgVal = Double(finalProductList[i].Mg) ?? 0
             rationMg = rationMg + (valueAfterDryMatter[i] * mgVal)
-            let mgAbsVal = Double(finalProductList[i].MgAbs) ?? 0.0
+            let mgAbsVal = Double(finalProductList[i].MgAbs) ?? 0
             rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * mgAbsVal)
-            let kVal = Double(finalProductList[i].K) ?? 0.0
+            let kVal = Double(finalProductList[i].K) ?? 0
             rationK = rationK + (valueAfterDryMatter[i] * kVal)
-            let SVal = Double(finalProductList[i].S) ?? 0.0
+            let SVal = Double(finalProductList[i].S) ?? 0
             rationS = rationS + (valueAfterDryMatter[i] * SVal)
-            let NaVal = Double(finalProductList[i].Na) ?? 0.0
+            let NaVal = Double(finalProductList[i].Na) ?? 0
             rationNa = rationNa + (valueAfterDryMatter[i] * NaVal)
-            let ClVal = Double(finalProductList[i].Cl) ?? 0.0
+            let ClVal = Double(finalProductList[i].Cl) ?? 0
             rationCl = rationCl + (valueAfterDryMatter[i] * ClVal)
-            let FeVal = Double(finalProductList[i].Fe) ?? 0.0
+            let FeVal = Double(finalProductList[i].Fe) ?? 0
             rationFe = rationFe + (valueAfterDryMatter[i] * FeVal)
-            let ZnVal = Double(finalProductList[i].Zn) ?? 0.0
+            let ZnVal = Double(finalProductList[i].Zn) ?? 0
             rationZn = rationZn + (valueAfterDryMatter[i] * ZnVal)
-            let CuVal = Double(finalProductList[i].Cu) ?? 0.0
+            let CuVal = Double(finalProductList[i].Cu) ?? 0
             rationCu = rationCu + (valueAfterDryMatter[i] * CuVal)
-            let mnVal = Double(finalProductList[i].Mn) ?? 0.0
+            let mnVal = Double(finalProductList[i].Mn) ?? 0
             rationMn = rationMn + (valueAfterDryMatter[i] * mnVal)
-            let seVal = Double(finalProductList[i].Se) ?? 0.0
+            let seVal = Double(finalProductList[i].Se) ?? 0
             rationSe = rationSe + (valueAfterDryMatter[i] * seVal)
-            let coVal = Double(finalProductList[i].Co) ?? 0.0
+            let coVal = Double(finalProductList[i].Co) ?? 0
             rationCo = rationCo + (valueAfterDryMatter[i] * coVal)
-            let iVal = Double(finalProductList[i].I) ?? 0.0
+            let iVal = Double(finalProductList[i].I) ?? 0
             rationI = rationI + (valueAfterDryMatter[i] * iVal)
-            let VitaminA = Double(finalProductList[i].VitaminA) ?? 0.0
+            let VitaminA = Double(finalProductList[i].VitaminA) ?? 0
             rationVitaminA = rationVitaminA + (valueAfterDryMatter[i] * VitaminA)
-            let VitaminE = Double(finalProductList[i].VitaminE) ?? 0.0
+            let VitaminE = Double(finalProductList[i].VitaminE) ?? 0
             rationVitaminE = rationVitaminE + (valueAfterDryMatter[i] * VitaminE)
-            let VitaminD3 = Double(finalProductList[i].VitaminD3) ?? 0.0
+            let VitaminD3 = Double(finalProductList[i].VitaminD3) ?? 0
             rationVitaminD3 = rationVitaminD3 + (valueAfterDryMatter[i] * VitaminD3)
-            let Niacin = Double(finalProductList[i].Niacin) ?? 0.0
+            let Niacin = Double(finalProductList[i].Niacin) ?? 0
             rationNiacin = rationNiacin + (valueAfterDryMatter[i] * Niacin)
-            let Biotin = Double(finalProductList[i].Biotin) ?? 0.0
+            let Biotin = Double(finalProductList[i].Biotin) ?? 0
             rationBiotin = rationBiotin + (valueAfterDryMatter[i] * Biotin)
         }
         rationP = rationP * 10.0
@@ -447,6 +447,9 @@ class Requirments {
         }
         // multiple factor
         waterArrayFinal.removeAll()
+        for _ in 0...10 {
+            waterArrayFinal.append(0)
+        }
         waterArrayFinal.append(waterCaVal)
         waterArrayFinal.append(waterPVal)
         waterArrayFinal.append(waterMgVal)

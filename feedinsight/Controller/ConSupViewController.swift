@@ -111,17 +111,17 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
                 stringValue1 = value1.removeZerosFromEnd()
                 cell.nutrientPremix?.text = stringValue1
                 var value4 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value4 = 0.0
-                    cell.nutrientWater?.text = "0.0"
-                } else {
+//                if(indexPath.row > 7) {
+//                    value4 = 0.0
+//                    cell.nutrientWater?.text = "0"
+                //} else {
                     var value2 : Double = waterArray[indexPath.row - 1]
                     value2 = value2.roundToDecimal(1)
                     value4 = value2
                     
                     let stringValue2 = String(value2)
                     cell.nutrientWater?.text = stringValue2
-                }
+                //}
                 
                 var value3 : Double = value + value1 + value4
                 value3 = value3.roundToDecimal(1)
@@ -141,17 +141,17 @@ extension ConSupViewController: UITableViewDelegate , UITableViewDataSource{
                 stringValue1 = value1.removeZerosFromEnd()
                 cell.nutrientPremix?.text = stringValue1
                 var value4 : Double = 0.0
-                if(indexPath.row > 7) {
-                    value4 = 0.0
-                    cell.nutrientWater?.text = "0.0"
-                } else {
+//                if(indexPath.row > 7) {
+//                    value4 = 0.0
+//                    cell.nutrientWater?.text = "0"
+//                } else {
                     var value2 : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
                     value2 = value2.roundToDecimal(1)
                     value4 = value2
                     
                     let stringValue2 = String(value2)
                     cell.nutrientWater?.text = stringValue2
-                }
+//                }
                 
                 var value3 : Double = value + value1 + value4
                 value3 = value3.roundToDecimal(1)

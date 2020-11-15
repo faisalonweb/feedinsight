@@ -36,7 +36,7 @@ class WaterStandardViewController: UIViewController {
     
     @IBAction func nextOnClick(_ sender: Any) {
         //let requirments = Requirments()
-        Requirments.shared().waterPVal = 0.0
+        Requirments.shared().waterPVal = 0
         Requirments.shared().waterKVal = 3
         Requirments.shared().waterSVal = 50
         Requirments.shared().waterCaVal = 10

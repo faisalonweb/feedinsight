@@ -36,10 +36,10 @@ class ForgotViewController: UIViewController , UIGestureRecognizerDelegate  {
         enterBtn.clipsToBounds = true
         enterBtn.layer.cornerRadius = 0.5 * enterBtn.bounds.size.height
         emailTextField.layer.borderColor = UIColor.lightGray.cgColor
-        topImage.layer.masksToBounds = true
-        topImage.layer.cornerRadius = 0
-        parentView.layer.masksToBounds = true
-        parentView.roundCorners(corners: [.bottomLeft,.bottomRight], radius: 13)
+        //topImage.layer.masksToBounds = true
+        //topImage.layer.cornerRadius = 0
+        //parentView.layer.masksToBounds = true
+        //parentView.roundCorners(corners: [.bottomLeft,.bottomRight], radius: 13)
         
         
         
