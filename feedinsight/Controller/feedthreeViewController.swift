@@ -482,6 +482,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     }
     @IBAction func addFeedButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EditPremixViewController") as?  EditPremixViewController
+        vc?.screenName = "Add Feed"
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

@@ -166,7 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             let view = MessageView.viewFromNib(layout: .cardView)
             view.configureTheme(.error)
             view.configureDropShadow()
-            view.configureContent(title: "Error", body: "check your internet connection")
+            view.configureContent(title: "Error", body: "Check your internet connection")
             SwiftMessages.show(view: view)
         }
         

@@ -244,22 +244,16 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
     @IBAction func saveProfileTapped(_ sender: UIButton) {
         let reachability = try! Reachability.init()
-        
-        if((reachability.connection) != .unavailable)
-                {
-                    let psychEnter = PsychField.text!
-                    //        self.saveText(theText: psychEnter)
-                    self.showAlertWithThreeButton(theText: psychEnter)
-                }
-                else
-                {
-                    let view = MessageView.viewFromNib(layout: .cardView)
-                    view.configureTheme(.error)
-                    view.configureDropShadow()
-                    view.configureContent(title: "Error", body: "check your internet connection")
-                    SwiftMessages.show(view: view)
-                }
-
+        if((reachability.connection) != .unavailable) {
+            let psychEnter = PsychField.text!
+            self.showAlertWithThreeButton(theText: psychEnter)
+        } else {
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Error", body: "check your internet connection")
+            SwiftMessages.show(view: view)
+        }
     }
     @IBAction func loadProfileTapped(_ sender: UIButton) {
         // weeks of gestation
