@@ -108,7 +108,158 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 var percent : Double = (value4/value) * 100
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
-                cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                
+                if(percent < 100.0) {
+                    cell.nutrientTotal?.textColor = UIColor.systemRed
+                    cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                } else {
+                    if(indexPath.row == 1) {
+                        if(percent > 1107.7) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 2) {
+                        if(percent > 169.2) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 3) {
+                        if(percent > 135.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 4) {
+                        if(percent > 0.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 5) {
+                        if(percent > 0.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 6) {
+                        if(percent > 909.1) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 7) {
+                        if(percent > 3636.4) {
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 8) {
+                        if(percent > 333.3) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 9) {
+                        if(percent > 1470.6) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 10) {
+                        if(percent > 7142.9) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 11) {
+                        if(percent > 3333.3) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 12) {
+                        if(percent > 436.4) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 13) {
+                        if(percent > 255.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 14) {
+                        if(percent > 1012.9) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 15) {
+                        if(percent > 160.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 16) {
+                        if(percent > 1153.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 17) {
+                        if(percent > 400.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 18) {
+                        if(percent > 200.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    }
+                }
+                
                 if(indexPath.row == 18) {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
                 }
@@ -122,12 +273,8 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 let value1 : Double = Requirments.shared().rationArrayFinal[indexPath.row - 1]
                 let value2 : Double = Requirments.shared().primexArrayFinal[indexPath.row - 1]
                 var value3 : Double = 0.0
-//                if(indexPath.row > 7) {
-//                    value3 = 0.0
-//                } else {
-                    let valuen : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
-                    value3 = valuen
-                //}
+                let valuen : Double = Requirments.shared().waterArrayFinal[indexPath.row - 1]
+                value3 = valuen
                 var value4 : Double = value1 + value2 + value3
                 value4 = value4.roundToDecimal(1)
                 let stringValue1 = String(value4.removeZerosFromEnd())
@@ -140,7 +287,157 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 var percent : Double = (value4/value) * 100
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
-                cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                if(percent < 100.0) {
+                    cell.nutrientTotal?.textColor = UIColor.systemRed
+                    cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                } else {
+                    if(indexPath.row == 1) {
+                        if(percent > 1107.7) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 2) {
+                        if(percent > 169.2) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 3) {
+                        if(percent > 135.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 4) {
+                        if(percent > 0.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 5) {
+                        if(percent > 0.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 6) {
+                        if(percent > 909.1) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 7) {
+                        if(percent > 3636.4) {
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 8) {
+                        if(percent > 333.3) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 9) {
+                        if(percent > 1470.6) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 10) {
+                        if(percent > 7142.9) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 11) {
+                        if(percent > 3333.3) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 12) {
+                        if(percent > 436.4) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 13) {
+                        if(percent > 255.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 14) {
+                        if(percent > 1012.9) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 15) {
+                        if(percent > 160.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 16) {
+                        if(percent > 1153.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 17) {
+                        if(percent > 400.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    } else if(indexPath.row == 18) {
+                        if(percent > 200.0) {
+                            cell.nutrientTotal?.textColor = UIColor.systemRed
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                        } else {
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        }
+                    }
+                }
+                
                 if(indexPath.row == 18) {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
                 }

@@ -2,6 +2,7 @@
 
 import UIKit
 import Charts
+import QuartzCore
 
 var fromDatabase : String = ""
 var premixArray = [Double]()
@@ -344,6 +345,32 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
+    @IBAction func shareButton(_ sender: Any) {
+//        NSMutableData *pdfData = [NSMutableData data];
+//        UIGraphicsBeginPDFContextToData(pdfData, aView.bounds, nil);
+//        UIGraphicsBeginPDFPage();
+//        CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+//        [aView.layer renderInContext:pdfContext];
+//        UIGraphicsEndPDFContext();
+//        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+//        NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+//        NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:aFilename];
+//        [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+
+        let pdfData = NSMutableData()
+        UIGraphicsBeginPDFContextToData(pdfData, self.view.bounds, nil)
+        UIGraphicsBeginPDFPage()
+        let pdfContext = UIGraphicsGetCurrentContext()
+        if let pdfContext = pdfContext {
+            self.view.layer.render(in: pdfContext)
+        }
+        UIGraphicsEndPDFContext()
+        let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).map(\.path)
+        let documentDirectory = documentDirectories[0]
+        let documentDirectoryFilename = URL(fileURLWithPath: documentDirectory).appendingPathComponent("testingPdfCheck.pdf").path
+        NSData(data: pdfData as Data).write(toFile: documentDirectoryFilename, atomically: true)
+
+    }
     @IBAction func buttonAction(_ sender: UIButton) {
         self.buttonsOutlets.forEach { (button) in
             if (sender.tag == 1) {
