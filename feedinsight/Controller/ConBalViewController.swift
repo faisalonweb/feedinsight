@@ -35,9 +35,9 @@ class ConBalViewController: UIViewController {
                          "Se",
                          "I",
                          "Co",
-                         "Ca",
-                         "P",
-                         "Mg",
+                         "Ca*",
+                         "P*",
+                         "Mg*",
                          "Na",
                          "Cl",
                          "S",
@@ -260,9 +260,9 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                     }
                 }
                 
-                if(indexPath.row == 18) {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
-                }
+//                if(indexPath.row == 18) {
+//                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
+//                }
             } else {
                 
                 var value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
@@ -438,9 +438,9 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                     }
                 }
                 
-                if(indexPath.row == 18) {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
-                }
+//                if(indexPath.row == 18) {
+//                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
+//                }
             }
             cell.layer.cornerRadius = 10
             return cell
