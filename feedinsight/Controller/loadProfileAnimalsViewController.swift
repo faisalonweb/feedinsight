@@ -67,6 +67,9 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileimage.addGestureRecognizer(tapOnImage)
+        self.profileimage.isUserInteractionEnabled = true
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.clipsToBounds = true
         profileimage?.layer.borderWidth = 3.0
@@ -84,6 +87,10 @@ class loadProfileAnimalsViewController: UIViewController , UIGestureRecognizerDe
             }
         }
     }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String

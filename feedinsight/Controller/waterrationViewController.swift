@@ -130,6 +130,9 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             self.userNameLabel.text = userName as? String
             print(userName)
         }
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileimage.addGestureRecognizer(tapOnImage)
+        self.profileimage.isUserInteractionEnabled = true
         self.tblView.refreshControl = UIRefreshControl()
         self.tblView.refreshControl?.beginRefreshing()
         if(self.screenNAME == "water") {
@@ -364,7 +367,9 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         
     }
     
-    
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
+    }
     @IBAction func backBtn(_ sender: Any) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)

@@ -72,6 +72,9 @@ class EditPremixViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //ProfileImage?.layer.cornerRadius = (ProfileImage?.frame.size.width ?? 0.0) / 2
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.ProfileImage.addGestureRecognizer(tapOnImage)
+        self.ProfileImage.isUserInteractionEnabled = true
         ProfileImage?.layer.cornerRadius = (ProfileImage?.frame.size.width ?? 0.0) / 2
         ProfileImage?.clipsToBounds = true
         ProfileImage?.layer.borderWidth = 3.0
@@ -107,7 +110,9 @@ class EditPremixViewController: UIViewController {
             self.referTextField.text! = productList[currentIndex].Reference
         }
     }
-    
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
+    }
     func changeValues() {
         if(saveName == FeedName.text!) {
             if(self.FeedName.text! == "" && self.dryMatter.text! == "") {

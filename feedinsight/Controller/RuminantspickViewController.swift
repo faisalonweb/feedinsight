@@ -36,6 +36,9 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
           gestureRecognizer.setValue(targets, forKey: "targets")
           self.view.addGestureRecognizer(gestureRecognizer)
         }
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.userpic.addGestureRecognizer(tapOnImage)
+        self.userpic.isUserInteractionEnabled = true
         super.viewDidLoad()
         //userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
         userpic?.layer.cornerRadius = (userpic?.frame.size.width ?? 0.0) / 2
@@ -155,6 +158,9 @@ class RuminantspickViewController: UIViewController , UICollectionViewDelegate ,
                 collectionview.collectionViewLayout = layout
             }
         }
+    }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
