@@ -95,6 +95,9 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             gestureRecognizer.setValue(targets, forKey: "targets")
             self.view.addGestureRecognizer(gestureRecognizer)
         }
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileimage.addGestureRecognizer(tapOnImage)
+        self.profileimage.isUserInteractionEnabled = true
         //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.clipsToBounds = true
@@ -128,6 +131,9 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         niacinVitamin.text = niacinVitaminData
         biotinVitamin.text = biotinVitaminData
         
+    }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -390,6 +396,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         
         
     }
+    
     @IBAction func loadOnClick(_ sender: Any) {
         premixStatus = true
         let vc = storyboard?.instantiateViewController(withIdentifier: "waterrationViewController") as? waterrationViewController

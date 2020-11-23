@@ -34,6 +34,9 @@ class wateroneViewController: UIViewController , UIGestureRecognizerDelegate{
           gestureRecognizer.setValue(targets, forKey: "targets")
           self.view.addGestureRecognizer(gestureRecognizer)
         }
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileimage.addGestureRecognizer(tapOnImage)
+        self.profileimage.isUserInteractionEnabled = true
         //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.clipsToBounds = true
@@ -57,6 +60,9 @@ class wateroneViewController: UIViewController , UIGestureRecognizerDelegate{
             }
             }
         }
+    }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     @IBAction func buttonspress(_ sender: UIButton) {
         self.buttonOutlets.forEach { (button) in

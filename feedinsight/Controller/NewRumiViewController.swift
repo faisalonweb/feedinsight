@@ -154,12 +154,18 @@ class NewRumiViewController: UIViewController,UICollectionViewDataSource,UIColle
           gestureRecognizer.setValue(targets, forKey: "targets")
           self.view.addGestureRecognizer(gestureRecognizer)
         }
-        //animalData = DataAppend.getAllAnimalData()
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.personimage.addGestureRecognizer(tapOnImage)
+        self.personimage.isUserInteractionEnabled = true
         super.viewDidLoad()
+        
+        //animalData = DataAppend.getAllAnimalData()
+       
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
+        
         newrumicol.delegate = self
         newrumicol.dataSource = self
         
@@ -180,7 +186,10 @@ class NewRumiViewController: UIViewController,UICollectionViewDataSource,UIColle
             navController.popViewController(animated: true)
         }
     }
-    
+    @objc func tapOnImageAction() {
+
+        self.tabBarController?.selectedIndex = 2
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return textArr.count
     }

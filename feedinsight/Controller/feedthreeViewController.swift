@@ -131,6 +131,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             gestureRecognizer.setValue(targets, forKey: "targets")
             self.view.addGestureRecognizer(gestureRecognizer)
         }
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileimage.addGestureRecognizer(tapOnImage)
+        self.profileimage.isUserInteractionEnabled = true
         super.viewDidLoad()
         //profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
         profileimage?.layer.cornerRadius = (profileimage?.frame.size.width ?? 0.0) / 2
@@ -192,6 +195,9 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
                 }
             }
         }
+    }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     func calculateFloatArray () {
         dropdownfloatValue.removeAll()

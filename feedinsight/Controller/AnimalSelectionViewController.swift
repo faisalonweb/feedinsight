@@ -158,6 +158,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
         if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
           let gestureRecognizer = UIPanGestureRecognizer()
           gestureRecognizer.setValue(targets, forKey: "targets")
@@ -169,6 +170,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         self.navigationController?.navigationBar.shadowImage = UIImage()
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
+        userProfileView.addGestureRecognizer(tapOnImage)
         animalCollectionView.delegate = self
         animalCollectionView.dataSource = self
         
@@ -182,6 +184,9 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
         userProfileView?.layer.borderWidth = 3.0
         userProfileView?.layer.borderColor = UIColor.white.cgColor
         
+    }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

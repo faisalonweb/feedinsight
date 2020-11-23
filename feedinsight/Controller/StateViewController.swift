@@ -123,7 +123,9 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
           gestureRecognizer.setValue(targets, forKey: "targets")
           self.view.addGestureRecognizer(gestureRecognizer)
         }
-
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.proimage.addGestureRecognizer(tapOnImage)
+        self.proimage.isUserInteractionEnabled = true
        
         self.dismissKey()
         nameField.text = groupcompany
@@ -210,6 +212,9 @@ class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         PsychField.rowHeight = 40
         PsychField.selectedRowColor = UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1.0)
         PsychField.isSearchEnable = false
+    }
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     @IBAction func backBtnTap(_ sender: UIButton) {
         if let navController = self.navigationController {

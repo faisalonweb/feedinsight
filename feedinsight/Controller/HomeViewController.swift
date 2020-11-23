@@ -14,7 +14,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var advertismentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var clickOnSeeAll: UIButton!
-    
+
+    let imageArr: [UIImage] = [
+        UIImage(named: "premix")!,
+        UIImage(named: "calculator")!,
+        UIImage(named: "pdfIcon")!,
+        UIImage(named: "pdfIcon")!,
+    ]
+    let lablArr = ["Premix Check","Unit Converter","VMP Guide","Feed Profiles"]
     var screenWidth:CGFloat=0
     var screenHeight:CGFloat=0
     var sizee:CGFloat=0
@@ -46,7 +53,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "thirdviewcell", for: indexPath) as! premixCollectionViewCell
-        cell.premixData = arrData[indexPath.row]
+        if(indexPath.row == 1) {
+            cell.contentView.layer.opacity = 0.3;
+            cell.isUserInteractionEnabled = false
+        }
+        cell.imgView.image = imageArr[indexPath.row]
+        cell.txtView.text = lablArr[indexPath.row]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
