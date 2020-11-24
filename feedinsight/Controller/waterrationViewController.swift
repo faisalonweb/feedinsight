@@ -11,6 +11,7 @@ import Firebase
 import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
+import SwiftMessages
 
 class waterrationViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate{
     @IBOutlet weak var tblView: UITableView!
@@ -401,12 +402,145 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
-    func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCell.EditingStyle,
-                   forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if(screenNAME == "ration") {
-                db.collection("rationReports").document(self.userID!).collection("rationReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+ 
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
+            //TODO: edit the row at indexPath here
+            if(self.screenNAME == "ration") {
+                let alertController = UIAlertController(title: "Edit Report Name", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Change", style: .default) { [self] (aciton) in
+                   
+                    self.view.isUserInteractionEnabled = false
+                    let text = alertController.textFields!.first!.text!
+                    //let db = Firestore.firestore()
+                    let newDocument = db.collection("rationReports").document(userID!).collection("rationReports").document(self.DocumentIdList[indexPath.section])
+                    newDocument.setData(["ReportName" : text, "DocId" : newDocument.documentID],merge: true){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.error)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Error", body: "Request Failed!")
+                            SwiftMessages.show(view: view)
+                            self.view.isUserInteractionEnabled = true
+                        } else {
+                            reportNameList[indexPath.section] = text
+                            self.tblView.reloadData()
+                            print("Document added")
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.success)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Success", body: "Report name change successfully")
+                            SwiftMessages.show(view: view)
+                            self.view.isUserInteractionEnabled = true
+                            
+                        }
+                    }
+                   
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Report Name"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                alertController.textFields!.first!.text! = self.reportNameList[indexPath.section]
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else if (self.screenNAME == "water") {
+                let alertController = UIAlertController(title: "Edit Report Name", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Change", style: .default) { [self] (aciton) in
+                   
+                    self.view.isUserInteractionEnabled = false
+                    let text = alertController.textFields!.first!.text!
+                    //let db = Firestore.firestore()
+                    let newDocument = db.collection("waterReports").document(userID!).collection("waterReports").document(self.DocumentIdList[indexPath.section])
+                    newDocument.setData(["ReportName" : text, "DocId" : newDocument.documentID],merge: true){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.error)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Error", body: "Request Failed!")
+                            SwiftMessages.show(view: view)
+                            self.view.isUserInteractionEnabled = true
+                        } else {
+                            reportNameList[indexPath.section] = text
+                            self.tblView.reloadData()
+                            print("Document added")
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.success)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Success", body: "Report name change successfully")
+                            SwiftMessages.show(view: view)
+                            self.view.isUserInteractionEnabled = true
+                            
+                        }
+                    }
+                   
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Report Name"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                alertController.textFields!.first!.text! = self.reportNameList[indexPath.section]
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else if (self.screenNAME == "premix") {
+                let alertController = UIAlertController(title: "Edit Report Name", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Change", style: .default) { [self] (aciton) in
+                   
+                    self.view.isUserInteractionEnabled = false
+                    let text = alertController.textFields!.first!.text!
+                    //let db = Firestore.firestore()
+                    let newDocument = db.collection("premixReports").document(userID!).collection("premixReports").document(self.DocumentIdList[indexPath.section])
+                    newDocument.setData(["ReportName" : text, "DocId" : newDocument.documentID],merge: true){ err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.error)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Error", body: "Request Failed!")
+                            SwiftMessages.show(view: view)
+                            self.view.isUserInteractionEnabled = true
+                        } else {
+                            reportNameList[indexPath.section] = text
+                            self.tblView.reloadData()
+                            print("Document added")
+                            let view = MessageView.viewFromNib(layout: .cardView)
+                            view.configureTheme(.success)
+                            view.configureDropShadow()
+                            view.configureContent(title: "Success", body: "Report name change successfully")
+                            SwiftMessages.show(view: view)
+                            self.view.isUserInteractionEnabled = true
+                            
+                        }
+                    }
+                   
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Report Name"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                alertController.textFields!.first!.text! = self.reportNameList[indexPath.section]
+                self.present(alertController, animated: true, completion: nil)
+            }
+          
+        }
+        editAction.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
+
+
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            if(self.screenNAME == "ration") {
+                self.db.collection("rationReports").document(self.userID!).collection("rationReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
                     if error != nil {
                         print(error!)
                     } else {
@@ -416,25 +550,25 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     }
                 }
                 
-                reportNameList.remove(at: indexPath.section)
-                reportDateList.remove(at: indexPath.section)
-                copyArray.remove(at: indexPath.section)
+                self.reportNameList.remove(at: indexPath.section)
+                self.reportDateList.remove(at: indexPath.section)
+                self.copyArray.remove(at: indexPath.section)
                 //reportValueList.remove(at: indexPath.section)
-                DocumentIdList.remove(at: indexPath.section)
-                if(reportNameList.count == 0) {
+                self.DocumentIdList.remove(at: indexPath.section)
+                if(self.reportNameList.count == 0) {
                     self.tblView.refreshControl?.endRefreshing()
                     self.tblView.alpha = 0
                     self.hiddenView.alpha = 1
                 } else {
-                    tblView.reloadData()
+                    self.tblView.reloadData()
                 }
                 
                 
                 
               
             }
-            else if (screenNAME == "water") {
-                db.collection("waterReports").document(self.userID!).collection("waterReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+            else if (self.screenNAME == "water") {
+                self.db.collection("waterReports").document(self.userID!).collection("waterReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
                     if error != nil {
                         print(error!)
                     } else {
@@ -443,27 +577,27 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         }
                     }
                 }
-                PList.remove(at: indexPath.section)
-                CaList.remove(at: indexPath.section)
-                MgList.remove(at: indexPath.section)
-                KList.remove(at: indexPath.section)
-                NaList.remove(at: indexPath.section)
-                ClList.remove(at: indexPath.section)
-                SList.remove(at: indexPath.section)
-                reportNameList.remove(at: indexPath.section)
-                reportDateList.remove(at: indexPath.section)
-                DocumentIdList.remove(at: indexPath.section)
-                if(reportNameList.count == 0) {
+                self.PList.remove(at: indexPath.section)
+                self.CaList.remove(at: indexPath.section)
+                self.MgList.remove(at: indexPath.section)
+                self.KList.remove(at: indexPath.section)
+                self.NaList.remove(at: indexPath.section)
+                self.ClList.remove(at: indexPath.section)
+                self.SList.remove(at: indexPath.section)
+                self.reportNameList.remove(at: indexPath.section)
+                self.reportDateList.remove(at: indexPath.section)
+                self.DocumentIdList.remove(at: indexPath.section)
+                if(self.reportNameList.count == 0) {
                     self.tblView.refreshControl?.endRefreshing()
                     self.tblView.alpha = 0
                     self.hiddenView.alpha = 1
                 } else {
-                    tblView.reloadData()
+                    self.tblView.reloadData()
                 }
             }
              
-            else if (screenNAME == "premix") {
-                db.collection("premixReports").document(self.userID!).collection("premixReports").whereField("DocId", isEqualTo: DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+            else if (self.screenNAME == "premix") {
+                self.db.collection("premixReports").document(self.userID!).collection("premixReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
                     if error != nil {
                         print(error!)
                     } else {
@@ -472,46 +606,46 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         }
                     }
                 }
-                productNameList.remove(at: indexPath.section)
-                reportDateList.remove(at: indexPath.section)
-                productDoseList.remove(at: indexPath.section)
-                DocumentIdList.remove(at: indexPath.section)
-                reportNameList.remove(at: indexPath.section)
-                pMacroList.remove(at: indexPath.section)
-                caMacroList.remove(at: indexPath.section)
-                mgMacroList.remove(at: indexPath.section)
-                kMacroList.remove(at: indexPath.section)
-                naMacroList.remove(at: indexPath.section)
-                clMacroList.remove(at: indexPath.section)
-                sMacroList.remove(at: indexPath.section)
-                coMicroList.remove(at: indexPath.section)
-                iMicroList.remove(at: indexPath.section)
-                mnMicroList.remove(at: indexPath.section)
-                cuMicroList.remove(at: indexPath.section)
-                feMicroList.remove(at: indexPath.section)
-                cuOrganicMicroList.remove(at: indexPath.section)
-                seMicroList.remove(at: indexPath.section)
-                seOrganicMicroList.remove(at: indexPath.section)
-                znMicroList.remove(at: indexPath.section)
-                znOrganicMicroList.remove(at: indexPath.section)
-                aiuVitaminList.remove(at: indexPath.section)
-                diuVitaminList.remove(at: indexPath.section)
-                eiuVitaminList.remove(at: indexPath.section)
-                niacinVitaminList.remove(at: indexPath.section)
-                biotinVitaminList.remove(at: indexPath.section)
-                if(productNameList.count == 0) {
+                self.productNameList.remove(at: indexPath.section)
+                self.reportDateList.remove(at: indexPath.section)
+                self.productDoseList.remove(at: indexPath.section)
+                self.DocumentIdList.remove(at: indexPath.section)
+                self.reportNameList.remove(at: indexPath.section)
+                self.pMacroList.remove(at: indexPath.section)
+                self.caMacroList.remove(at: indexPath.section)
+                self.mgMacroList.remove(at: indexPath.section)
+                self.kMacroList.remove(at: indexPath.section)
+                self.naMacroList.remove(at: indexPath.section)
+                self.clMacroList.remove(at: indexPath.section)
+                self.sMacroList.remove(at: indexPath.section)
+                self.coMicroList.remove(at: indexPath.section)
+                self.iMicroList.remove(at: indexPath.section)
+                self.mnMicroList.remove(at: indexPath.section)
+                self.cuMicroList.remove(at: indexPath.section)
+                self.feMicroList.remove(at: indexPath.section)
+                self.cuOrganicMicroList.remove(at: indexPath.section)
+                self.seMicroList.remove(at: indexPath.section)
+                self.seOrganicMicroList.remove(at: indexPath.section)
+                self.znMicroList.remove(at: indexPath.section)
+                self.znOrganicMicroList.remove(at: indexPath.section)
+                self.aiuVitaminList.remove(at: indexPath.section)
+                self.diuVitaminList.remove(at: indexPath.section)
+                self.eiuVitaminList.remove(at: indexPath.section)
+                self.niacinVitaminList.remove(at: indexPath.section)
+                self.biotinVitaminList.remove(at: indexPath.section)
+                if(self.productNameList.count == 0) {
                     self.tblView.refreshControl?.endRefreshing()
                     self.tblView.alpha = 0
                     self.hiddenView.alpha = 1
                 } else {
-                    tblView.reloadData()
+                    self.tblView.reloadData()
                 }
             }
            
-            
         }
-        
-        
+        deleteAction.backgroundColor = .red
+
+        return [editAction,deleteAction]
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (screenNAME == "ration") {
