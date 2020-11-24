@@ -46,85 +46,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     @IBOutlet weak var znInorganic: UILabel!
     @IBOutlet weak var znCurrentRatio: UILabel!
     @IBOutlet weak var znRecomRatio: UILabel!
+    @IBOutlet weak var toxicLabel: UILabel!
     
     // labels outlets
-    @IBOutlet weak var v1: UIView!
-    @IBOutlet weak var v2: UIView!
-    @IBOutlet weak var v3: UIView!
-    @IBOutlet weak var v4: UIView!
-    @IBOutlet weak var v5: UIView!
-    @IBOutlet weak var v6: UIView!
-    @IBOutlet weak var v7: UIView!
-    @IBOutlet weak var v8: UIView!
-    @IBOutlet weak var v9: UIView!
-    @IBOutlet weak var v10: UIView!
-    @IBOutlet weak var v11: UIView!
-    @IBOutlet weak var v12: UIView!
-    @IBOutlet weak var v13: UIView!
-    @IBOutlet weak var v14: UIView!
-    @IBOutlet weak var v15: UIView!
-    @IBOutlet weak var v16: UIView!
-    @IBOutlet weak var v17: UIView!
-    @IBOutlet weak var v18: UIView!
-    
-    @IBOutlet weak var g1: UIView!
-    @IBOutlet weak var g2: UIView!
-    @IBOutlet weak var g3: UIView!
-    @IBOutlet weak var g4: UIView!
-    @IBOutlet weak var g5: UIView!
-    @IBOutlet weak var g6: UIView!
-    @IBOutlet weak var g7: UIView!
-    @IBOutlet weak var g8: UIView!
-    @IBOutlet weak var g9: UIView!
-    @IBOutlet weak var g10: UIView!
-    @IBOutlet weak var g11: UIView!
-    @IBOutlet weak var g12: UIView!
-    @IBOutlet weak var g13: UIView!
-    @IBOutlet weak var g14: UIView!
-    @IBOutlet weak var g15: UIView!
-    @IBOutlet weak var g16: UIView!
-    @IBOutlet weak var g17: UIView!
-    @IBOutlet weak var g18: UIView!
-    
-    @IBOutlet weak var l1: UILabel!
-    @IBOutlet weak var l2: UILabel!
-    @IBOutlet weak var l3: UILabel!
-    @IBOutlet weak var l4: UILabel!
-    @IBOutlet weak var l5: UILabel!
-    @IBOutlet weak var l6: UILabel!
-    @IBOutlet weak var l7: UILabel!
-    @IBOutlet weak var l8: UILabel!
-    @IBOutlet weak var l9: UILabel!
-    @IBOutlet weak var l10: UILabel!
-    @IBOutlet weak var l11: UILabel!
-    @IBOutlet weak var l12: UILabel!
-    @IBOutlet weak var l13: UILabel!
-    @IBOutlet weak var l14: UILabel!
-    @IBOutlet weak var l15: UILabel!
-    @IBOutlet weak var l16: UILabel!
-    @IBOutlet weak var l17: UILabel!
-    @IBOutlet weak var l18: UILabel!
 
-    @IBOutlet weak var pV1: UIView!
-    @IBOutlet weak var pv2: UIView!
-    @IBOutlet weak var pv3: UIView!
-    @IBOutlet weak var pv4: UIView!
-    @IBOutlet weak var pv5: UIView!
-    @IBOutlet weak var pv6: UIView!
-    @IBOutlet weak var pv7: UIView!
-    @IBOutlet weak var pv8: UIView!
-    @IBOutlet weak var pv9: UIView!
-    @IBOutlet weak var pv10: UIView!
-    @IBOutlet weak var pv11: UIView!
-    @IBOutlet weak var pv12: UIView!
-    @IBOutlet weak var pv13: UIView!
-    @IBOutlet weak var pv14: UIView!
-    @IBOutlet weak var pv15: UIView!
-    @IBOutlet weak var pv16: UIView!
-    @IBOutlet weak var pv17: UIView!
-    @IBOutlet weak var pv18: UIView!
-    
-    
     let defaults = UserDefaults(suiteName:"User")
     var reportName : String = ""
     var reportDate : String = ""
@@ -152,153 +77,8 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     override func viewDidLoad() {
+        toxicLabel.isHidden = true
         percentageArray.removeAll()
-//        NotificationCenter.default.addObserver(self, selector: #selector(addNewGuageView(_:)), name: Notification.Name(rawValue: "addGuageView"), object: nil)
-//        v1.layer.cornerRadius = 0.5 * v1.bounds.size.height
-//        v1.clipsToBounds = true
-//
-//        v2.layer.cornerRadius = 0.5 * v2.bounds.size.height
-//        v2.clipsToBounds = true
-//
-//        v3.layer.cornerRadius = 0.5 * v3.bounds.size.height
-//        v3.clipsToBounds = true
-//
-//        v4.layer.cornerRadius = 0.5 * v4.bounds.size.height
-//        v4.clipsToBounds = true
-//
-//        v5.layer.cornerRadius = 0.5 * v5.bounds.size.height
-//        v5.clipsToBounds = true
-//
-//        v6.layer.cornerRadius = 0.5 * v6.bounds.size.height
-//        v6.clipsToBounds = true
-//
-//        v7.layer.cornerRadius = 0.5 * v7.bounds.size.height
-//        v7.clipsToBounds = true
-//
-//        v8.layer.cornerRadius = 0.5 * v8.bounds.size.height
-//        v8.clipsToBounds = true
-//
-//        v9.layer.cornerRadius = 0.5 * v9.bounds.size.height
-//        v9.clipsToBounds = true
-//
-//        v10.layer.cornerRadius = 0.5 * v10.bounds.size.height
-//        v10.clipsToBounds = true
-//
-//        v11.layer.cornerRadius = 0.5 * v11.bounds.size.height
-//        v11.clipsToBounds = true
-//
-//        v12.layer.cornerRadius = 0.5 * v12.bounds.size.height
-//        v12.clipsToBounds = true
-//
-//        v13.layer.cornerRadius = 0.5 * v13.bounds.size.height
-//        v13.clipsToBounds = true
-//
-//        v14.layer.cornerRadius = 0.5 * v14.bounds.size.height
-//        v14.clipsToBounds = true
-//
-//        v15.layer.cornerRadius = 0.5 * v15.bounds.size.height
-//        v15.clipsToBounds = true
-//
-//        v16.layer.cornerRadius = 0.5 * v16.bounds.size.height
-//        v16.clipsToBounds = true
-//
-//        v17.layer.cornerRadius = 0.5 * v17.bounds.size.height
-//        v17.clipsToBounds = true
-//
-//        v18.layer.cornerRadius = 0.5 * v18.bounds.size.height
-//        v18.clipsToBounds = true
-//
-//        pV1.layer.masksToBounds = true
-//        pV1.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv2.layer.masksToBounds = true
-//        pv2.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv3.layer.masksToBounds = true
-//        pv3.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv4.layer.masksToBounds = true
-//        pv4.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv5.layer.masksToBounds = true
-//        pv5.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv6.layer.masksToBounds = true
-//        pv6.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv7.layer.masksToBounds = true
-//        pv7.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv8.layer.masksToBounds = true
-//        pv8.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv9.layer.masksToBounds = true
-//        pv9.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv10.layer.masksToBounds = true
-//        pv10.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv11.layer.masksToBounds = true
-//        pv11.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv12.layer.masksToBounds = true
-//        pv12.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv13.layer.masksToBounds = true
-//        pv13.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv14.layer.masksToBounds = true
-//        pv14.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv15.layer.masksToBounds = true
-//        pv15.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv16.layer.masksToBounds = true
-//        pv16.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv17.layer.masksToBounds = true
-//        pv17.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        pv18.layer.masksToBounds = true
-//        pv18.roundCorners(corners: [.topLeft,.topRight], radius: 3)
-//
-//        g1.layer.masksToBounds = true
-//        g1.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g1.bounds.size.height)
-//        g2.layer.masksToBounds = true
-//        g2.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g2.bounds.size.height)
-//        g3.layer.masksToBounds = true
-//        g3.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g3.bounds.size.height)
-//        g4.layer.masksToBounds = true
-//        g4.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g4.bounds.size.height)
-//        g5.layer.masksToBounds = true
-//        g5.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g5.bounds.size.height)
-//        g6.layer.masksToBounds = true
-//        g6.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g6.bounds.size.height)
-//        g7.layer.masksToBounds = true
-//        g7.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g7.bounds.size.height)
-//        g8.layer.masksToBounds = true
-//        g8.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g8.bounds.size.height)
-//        g9.layer.masksToBounds = true
-//        g9.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g9.bounds.size.height)
-//        g10.layer.masksToBounds = true
-//        g10.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g10.bounds.size.height)
-//        g11.layer.masksToBounds = true
-//        g11.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g11.bounds.size.height)
-//        g12.layer.masksToBounds = true
-//        g12.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g12.bounds.size.height)
-//        g13.layer.masksToBounds = true
-//        g13.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g13.bounds.size.height)
-//        g14.layer.masksToBounds = true
-//        g14.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g14.bounds.size.height)
-//        g15.layer.masksToBounds = true
-//        g15.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g15.bounds.size.height)
-//        g16.layer.masksToBounds = true
-//        g16.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g16.bounds.size.height)
-//        g17.layer.masksToBounds = true
-//        g17.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g17.bounds.size.height)
-//        g18.layer.masksToBounds = true
-//        g18.roundCorners(corners: [.topLeft,.bottomLeft], radius: 0.5 * g18.bounds.size.height)
-        
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -346,17 +126,6 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     @IBAction func shareButton(_ sender: Any) {
-//        NSMutableData *pdfData = [NSMutableData data];
-//        UIGraphicsBeginPDFContextToData(pdfData, aView.bounds, nil);
-//        UIGraphicsBeginPDFPage();
-//        CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-//        [aView.layer renderInContext:pdfContext];
-//        UIGraphicsEndPDFContext();
-//        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-//        NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-//        NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:aFilename];
-//        [pdfData writeToFile:documentDirectoryFilename atomically:YES];
-
         let pdfData = NSMutableData()
         UIGraphicsBeginPDFContextToData(pdfData, self.view.bounds, nil)
         UIGraphicsBeginPDFPage()
@@ -379,6 +148,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 review.alpha = 1
                 supview.alpha = 0
                 balview.alpha = 0
+                toxicLabel.isHidden = true
             }
             else if (sender.tag == 2) {
                 button.backgroundColor = (button === sender && sender.tag == 2) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -386,6 +156,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 review.alpha = 0
                 supview.alpha = 1
                 balview.alpha = 0
+                toxicLabel.isHidden = true
             }
             else if (sender.tag == 3) {
                 button.backgroundColor = (button === sender && sender.tag == 3) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -393,6 +164,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 review.alpha = 0
                 supview.alpha = 0
                 balview.alpha = 1
+                toxicLabel.isHidden = false
             }
         }
         

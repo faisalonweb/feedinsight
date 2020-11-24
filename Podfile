@@ -22,7 +22,7 @@ target 'FeedInsight' do
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
   pod "SearchTextField"
-  pod 'Google-Mobile-Ads-SDK'
+  # pod 'Google-Mobile-Ads-SDK'
   pod 'RSKImageCropper'
   pod 'SwiftMessages'
   
