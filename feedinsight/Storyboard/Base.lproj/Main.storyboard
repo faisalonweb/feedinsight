@@ -8614,7 +8614,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="33i-Fh-KLd">
-                                        <rect key="frame" x="10" y="0.0" width="394" height="1830"/>
+                                        <rect key="frame" x="10" y="0.0" width="394" height="1891"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwq-LL-k6Z">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="170"/>
@@ -9195,6 +9195,17 @@
                                                     <constraint firstAttribute="height" constant="20" id="FXf-ev-iN0"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNg-rd-IAK">
+                                                <rect key="frame" x="0.0" y="1831" width="394" height="60"/>
+                                                <color key="backgroundColor" red="0.60392156860000001" green="0.035294117649999998" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="t4U-mO-oY6"/>
+                                                </constraints>
+                                                <string key="text">Feedinsight is a compendium of tools and services by Total Nutrition. Please visit our webpage: www.totalnutrition.pk or email us at: info@totalnutrition.pk to know more.</string>
+                                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
