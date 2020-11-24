@@ -59,12 +59,20 @@ class ReportViewController: UIViewController {
             }
         }
     }
+    
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
         profileImage?.clipsToBounds = true
         profileImage?.layer.borderWidth = 3.0
         profileImage?.layer.borderColor = UIColor.white.cgColor
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileImage.addGestureRecognizer(tapOnImage)
+        self.profileImage.isUserInteractionEnabled = true
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.beginRefreshing()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false

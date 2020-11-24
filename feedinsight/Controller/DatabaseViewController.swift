@@ -77,6 +77,9 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
         userImage?.clipsToBounds = true
         userImage?.layer.borderWidth = 3.0
         userImage?.layer.borderColor = UIColor.white.cgColor
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.userImage.addGestureRecognizer(tapOnImage)
+        self.userImage.isUserInteractionEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +99,10 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
             }
             }
         }
+    }
+    
+    @objc func tapOnImageAction() {
+        self.tabBarController?.selectedIndex = 2
     }
     
     @IBAction func restoreDatabase(_ sender: Any) {

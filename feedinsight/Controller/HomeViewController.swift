@@ -24,9 +24,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     ]
     
     let imageArrAds: [UIImage] = [
-        UIImage(named: "premix")!,
-        UIImage(named: "calculator")!,
-        UIImage(named: "pdfIcon")!,
+        UIImage(named: "adImg1")!,
+        UIImage(named: "adImg2")!,
     ]
     let lablArr = ["Premix Check","Unit Converter","VMP Guide","Feed Profiles"]
     var screenWidth:CGFloat=0
@@ -45,44 +44,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.navigationController?.navigationBar.shadowImage = UIImage()
         let array = imageArrAds
         repeatAnimateImagesChanges(images: array as NSArray, imageView: self.adsImgView)
-        
-//        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-//        addBannerViewToView(bannerView)
-//        bannerView.adUnitID = "ca-app-pub-8321259434016641/8943852654"
-//        bannerView.rootViewController = self
-//        bannerView.load(GADRequest())
     }
     
     @objc func tapOnImageAction() {
-        if(self.adsImgView.image?.isEqual(UIImage(named: "premix")))! {
-            if let url = URL(string: "http://www.apple.com") {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:])
-                }
-            }
-        } else if(self.adsImgView.image?.isEqual(UIImage(named: "calculator")))! {
-            if let url = URL(string: "http://www.google.com") {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:])
-                }
-            }
-        } else if(self.adsImgView.image?.isEqual(UIImage(named: "pdfIcon")))! {
-            if let url = URL(string: "http://www.facebook.com") {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:])
-                }
+        if let url = URL(string: "http://www.totalnutrition.pk") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:])
             }
         }
     }
     
-//    func addBannerViewToView(_ bannerView: GADBannerView) {
-//        bannerView.translatesAutoresizingMaskIntoConstraints = false
-//        bannerView.frame.size.height = advertismentView.frame.size.height
-//        bannerView.frame.size.width = advertismentView.frame.size.width
-//        advertismentView.addSubview(bannerView)
-//
-//    }
-    
+
     
     func repeatAnimateImagesChanges(images:NSArray, imageView:UIImageView) {
         if(images.count == 0) {
