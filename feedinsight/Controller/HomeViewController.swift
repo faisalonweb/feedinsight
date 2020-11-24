@@ -7,18 +7,25 @@
 //
 
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 import Foundation
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var advertismentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var clickOnSeeAll: UIButton!
-
+    @IBOutlet weak var adsImgView: UIImageView!
+    
     let imageArr: [UIImage] = [
         UIImage(named: "premix")!,
         UIImage(named: "calculator")!,
         UIImage(named: "pdfIcon")!,
+        UIImage(named: "pdfIcon")!,
+    ]
+    
+    let imageArrAds: [UIImage] = [
+        UIImage(named: "premix")!,
+        UIImage(named: "calculator")!,
         UIImage(named: "pdfIcon")!,
     ]
     let lablArr = ["Premix Check","Unit Converter","VMP Guide","Feed Profiles"]
@@ -27,26 +34,76 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var sizee:CGFloat=0
     
     var arrData = [PremixCollectionCell]()
-    var bannerView: GADBannerView!
+//    var bannerView: GADBannerView!
     override func viewDidLoad() {
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.adsImgView.addGestureRecognizer(tapOnImage)
+        self.adsImgView.isUserInteractionEnabled = true
         arrData = DataAppend.getAllPremixData()
         super.viewDidLoad()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-8321259434016641/8943852654"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
+        let array = imageArrAds
+        repeatAnimateImagesChanges(images: array as NSArray, imageView: self.adsImgView)
+        
+//        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+//        addBannerViewToView(bannerView)
+//        bannerView.adUnitID = "ca-app-pub-8321259434016641/8943852654"
+//        bannerView.rootViewController = self
+//        bannerView.load(GADRequest())
     }
     
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        bannerView.frame.size.height = advertismentView.frame.size.height
-        bannerView.frame.size.width = advertismentView.frame.size.width
-        advertismentView.addSubview(bannerView)
-     
+    @objc func tapOnImageAction() {
+        if(self.adsImgView.image?.isEqual(UIImage(named: "premix")))! {
+            if let url = URL(string: "http://www.apple.com") {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:])
+                }
+            }
+        } else if(self.adsImgView.image?.isEqual(UIImage(named: "calculator")))! {
+            if let url = URL(string: "http://www.google.com") {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:])
+                }
+            }
+        } else if(self.adsImgView.image?.isEqual(UIImage(named: "pdfIcon")))! {
+            if let url = URL(string: "http://www.facebook.com") {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:])
+                }
+            }
+        }
     }
+    
+//    func addBannerViewToView(_ bannerView: GADBannerView) {
+//        bannerView.translatesAutoresizingMaskIntoConstraints = false
+//        bannerView.frame.size.height = advertismentView.frame.size.height
+//        bannerView.frame.size.width = advertismentView.frame.size.width
+//        advertismentView.addSubview(bannerView)
+//
+//    }
+    
+    
+    func repeatAnimateImagesChanges(images:NSArray, imageView:UIImageView) {
+        if(images.count == 0) {
+            return
+        }
+        var newImage = images.firstObject as! UIImage
+        if(imageView.image != nil) {
+            for i in 0..<images.count {
+                newImage = images.object(at: i) as! UIImage
+                if(imageView.image?.isEqual(newImage))! {
+                    newImage = i == images.count - 1 ? images.firstObject as! UIImage : images.object(at: i + 1) as! UIImage
+                    break
+                }
+            }
+        }
+        imageView.image = newImage
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.repeatAnimateImagesChanges(images: images, imageView: imageView)
+        }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrData.count
