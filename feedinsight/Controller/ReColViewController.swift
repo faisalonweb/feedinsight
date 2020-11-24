@@ -5,12 +5,13 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftMessages
+import SVProgressHUD
 
 class ReColViewController: UIViewController , UIGestureRecognizerDelegate{
     
    
     var db = Firestore.firestore()
-    
+    var documentId : String = ""
     
     @IBOutlet weak var tblView: UITableView!
    
@@ -147,11 +148,57 @@ extension ReColViewController: UITableViewDelegate , UITableViewDataSource {
         return headerView
     }
     
-    func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCell.EditingStyle,
-                   forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            db.collection("animalState").document(self.userID!).collection("animalState").whereField("DocId", isEqualTo: docIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+   
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
+            let alertController = UIAlertController(title: "Edit Report Name", message: "", preferredStyle: .alert)
+            let withdrawAction = UIAlertAction(title: "Change", style: .default) { [self] (aciton) in
+               
+                self.view.isUserInteractionEnabled = false
+                let text = alertController.textFields!.first!.text!
+                //let db = Firestore.firestore()
+                let newDocument = db.collection("animalState").document(userID!).collection("animalState").document(self.docIdList[indexPath.section])
+                newDocument.setData(["reportName" : text, "DocId" : newDocument.documentID],merge: true){ err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.error)
+                        view.configureDropShadow()
+                        view.configureContent(title: "Error", body: "Request Failed!")
+                        SwiftMessages.show(view: view)
+                        self.view.isUserInteractionEnabled = true
+                    } else {
+                        
+                
+                        reportNameList[indexPath.section] = text
+                        self.tblView.reloadData()
+                        print("Document added")
+                        let view = MessageView.viewFromNib(layout: .cardView)
+                        view.configureTheme(.success)
+                        view.configureDropShadow()
+                        view.configureContent(title: "Success", body: "Report name change successfully")
+                        SwiftMessages.show(view: view)
+                        self.view.isUserInteractionEnabled = true
+                        
+                    }
+                }
+               
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            }
+            alertController.addTextField { (textField) in
+                textField.placeholder = "Report Name"
+            }
+            alertController.addAction(withdrawAction)
+            alertController.addAction(cancelAction)
+            alertController.textFields!.first!.text! = self.reportNameList[indexPath.section]
+            self.present(alertController, animated: true, completion: nil)
+        }
+       editAction.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
+
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            self.db.collection("animalState").document(self.userID!).collection("animalState").whereField("DocId", isEqualTo: self.docIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
                 if error != nil {
                     print(error!)
                 } else {
@@ -160,24 +207,27 @@ extension ReColViewController: UITableViewDelegate , UITableViewDataSource {
                     }
                 }
             }
-            animalList.remove(at: indexPath.section)
-            reportNameList.remove(at: indexPath.section)
-            docIdList.remove(at: indexPath.section)
-            companynameList.remove(at: indexPath.section)
-            psystateList.remove(at: indexPath.section)
-            currentweightList.remove(at: indexPath.section)
-            targetweightList.remove(at: indexPath.section)
-            daysachieveList.remove(at: indexPath.section)
-            daysmilkList.remove(at: indexPath.section)
-            dayspregnantList.remove(at: indexPath.section)
-            milkproductionList.remove(at: indexPath.section)
-            dietstate.remove(at: indexPath.section)
-            disorderstate.remove(at: indexPath.section)
-            heatstate.remove(at: indexPath.section)
-            productionstate.remove(at: indexPath.section)
-            categoryList.remove(at: indexPath.section)
-            tblView.reloadData()
+            self.animalList.remove(at: indexPath.section)
+            self.reportNameList.remove(at: indexPath.section)
+            self.docIdList.remove(at: indexPath.section)
+            self.companynameList.remove(at: indexPath.section)
+            self.psystateList.remove(at: indexPath.section)
+            self.currentweightList.remove(at: indexPath.section)
+            self.targetweightList.remove(at: indexPath.section)
+            self.daysachieveList.remove(at: indexPath.section)
+            self.daysmilkList.remove(at: indexPath.section)
+            self.dayspregnantList.remove(at: indexPath.section)
+            self.milkproductionList.remove(at: indexPath.section)
+            self.dietstate.remove(at: indexPath.section)
+            self.disorderstate.remove(at: indexPath.section)
+            self.heatstate.remove(at: indexPath.section)
+            self.productionstate.remove(at: indexPath.section)
+            self.categoryList.remove(at: indexPath.section)
+            self.tblView.reloadData()
         }
+        deleteAction.backgroundColor = .red
+
+        return [editAction,deleteAction]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
