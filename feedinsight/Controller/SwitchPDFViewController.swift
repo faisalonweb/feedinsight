@@ -12,6 +12,7 @@ var rationArray = [Double]()
 
 class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     
+    @IBOutlet weak var footerView: UIView!
     @IBOutlet var buttonsOutlets: [UIButton]!
     @IBOutlet weak var review: UIView!
     @IBOutlet weak var supview: UIView!
@@ -77,6 +78,8 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     override func viewDidLoad() {
+        footerView.layer.masksToBounds = true
+        footerView.roundCorners(corners: [.topRight,.topLeft], radius: 13)
         percentageArray.removeAll()
         toxicLabel.text = "      * = Absorable Value"
         self.navigationController?.isNavigationBarHidden = true
@@ -184,61 +187,65 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         barchartview.leftAxis.enabled = false
         barchartview.rightAxis.enabled = true
         
-        barchartview.rightAxis.granularity = 0.1
-        barchartview.xAxis.granularity = 0.1
+        //barchartview.rightAxis.granularity = 0.1
+        //barchartview.xAxis.granularity = 0.1
         barchartview.isUserInteractionEnabled = false
         guard let description = barchartview.chartDescription else {return}
         description.text = ""
+        
         barchartview.leftAxis.drawGridLinesEnabled = true
         barchartview.xAxis.drawGridLinesEnabled = true
         barchartview.rightAxis.drawGridLinesEnabled = false
-        
+        barchartview.leftAxis.axisMinimum = 0
+        barchartview.rightAxis.axisMinimum = 0
+        barchartview.minOffset = 0.0
+        barchartview.legend.enabled = false
         if(fromDatabase == "yes") {
-            let entry1 = BarChartDataEntry(x: 17, yValues: [ ((rationArray[0] / requiredArray[0]) * 100) >= 150.0 ? 150.0: ((rationArray[0] / requiredArray[0]) * 100),
-                                                             ((premixArray[0] / requiredArray[0]) * 100) >= 150.0 ? 150.0: ((premixArray[0] / requiredArray[0]) * 100),0])
-            let entry2 = BarChartDataEntry(x: 16, yValues: [ ((rationArray[1] / requiredArray[1]) * 100) >= 150.0 ? 150.0: ((rationArray[1] / requiredArray[1]) * 100),
-                                                             ((premixArray[1] / requiredArray[1]) * 100) >= 150.0 ? 150.0: ((premixArray[1] / requiredArray[1]) * 100),0])
-            let entry3 = BarChartDataEntry(x: 15, yValues: [ ((rationArray[2] / requiredArray[2]) * 100) >= 150.0 ? 150.0: ((rationArray[2] / requiredArray[2]) * 100),
-                                                             ((premixArray[2] / requiredArray[2]) * 100) >= 150.0 ? 150.0: ((premixArray[2] / requiredArray[2]) * 100),0])
-            let entry4 = BarChartDataEntry(x: 14, yValues: [ ((rationArray[3] / requiredArray[3]) * 100) >= 150.0 ? 150.0: ((rationArray[3] / requiredArray[3]) * 100),
-                                                             ((premixArray[3] / requiredArray[3]) * 100) >= 150.0 ? 150.0: ((premixArray[3] / requiredArray[3]) * 100),0])
-            let entry5 = BarChartDataEntry(x: 13, yValues: [ ((rationArray[4] / requiredArray[4]) * 100) >= 150.0 ? 150.0: ((rationArray[4] / requiredArray[4]) * 100),
-                                                             ((premixArray[4] / requiredArray[4]) * 100) >= 150.0 ? 150.0: ((premixArray[4] / requiredArray[4]) * 100),0])
-            let entry6 = BarChartDataEntry(x: 12, yValues: [ ((rationArray[5] / requiredArray[5]) * 100) >= 150.0 ? 150.0: ((rationArray[5] / requiredArray[5]) * 100),
-                                                             ((premixArray[5] / requiredArray[5]) * 100) >= 150.0 ? 150.0: ((premixArray[5] / requiredArray[5]) * 100),0])
-            let entry7 = BarChartDataEntry(x: 11, yValues: [ ((rationArray[6] / requiredArray[6]) * 100) >= 150.0 ? 150.0: ((rationArray[6] / requiredArray[6]) * 100),
-                                                             ((premixArray[6] / requiredArray[6]) * 100) >= 150.0 ? 150.0: ((premixArray[6] / requiredArray[6]) * 100),0])
-            let entry8 = BarChartDataEntry(x: 10, yValues: [ ((rationArray[7] / requiredArray[7]) * 100) >= 150.0 ? 150.0: ((rationArray[7] / requiredArray[7]) * 100),
-                                                             ((premixArray[7] / requiredArray[7]) * 100) >= 150.0 ? 150.0: ((premixArray[7] / requiredArray[7]) * 100),0])
-            let entry9 = BarChartDataEntry(x: 9, yValues: [  ((rationArray[8] / requiredArray[8]) * 100) >= 150.0 ? 150.0: ((rationArray[8] / requiredArray[8]) * 100),
-                                                             ((premixArray[8] / requiredArray[8]) * 100) >= 150.0 ? 150.0: ((premixArray[8] / requiredArray[8]) * 100),0])
-            let entry10 = BarChartDataEntry(x: 8, yValues: [ ((rationArray[9] / requiredArray[9]) * 100) >= 150.0 ? 150.0: ((rationArray[9] / requiredArray[9]) * 100),
-                                                             ((premixArray[9] / requiredArray[9]) * 100) >= 150.0 ? 150.0: ((premixArray[9] / requiredArray[9]) * 100),0])
-            let entry11 = BarChartDataEntry(x: 7, yValues: [ ((rationArray[10] / requiredArray[10]) * 100) >= 150.0 ? 150.0: ((rationArray[10] / requiredArray[10]) * 100),
-                                                             ((premixArray[10] / requiredArray[10]) * 100) >= 150.0 ? 150.0: ((premixArray[10] / requiredArray[10]) * 100),0])
+            let entry1 = BarChartDataEntry(x: 17, yValues: [ ((rationArray[0] / requiredArray[0]) * 100),
+                                                             ((premixArray[0] / requiredArray[0]) * 100),0])
+            let entry2 = BarChartDataEntry(x: 16, yValues: [ ((rationArray[1] / requiredArray[1]) * 100),
+                                                             ((premixArray[1] / requiredArray[1]) * 100),0])
+            let entry3 = BarChartDataEntry(x: 15, yValues: [ ((rationArray[2] / requiredArray[2]) * 100),
+                                                             ((premixArray[2] / requiredArray[2]) * 100),0])
+            let entry4 = BarChartDataEntry(x: 14, yValues: [ ((rationArray[3] / requiredArray[3]) * 100),
+                                                             ((premixArray[3] / requiredArray[3]) * 100),0])
+            let entry5 = BarChartDataEntry(x: 13, yValues: [ ((rationArray[4] / requiredArray[4]) * 100),
+                                                             ((premixArray[4] / requiredArray[4]) * 100),0])
+            let entry6 = BarChartDataEntry(x: 12, yValues: [ ((rationArray[5] / requiredArray[5]) * 100),
+                                                             ((premixArray[5] / requiredArray[5]) * 100),0])
+            let entry7 = BarChartDataEntry(x: 11, yValues: [ ((rationArray[6] / requiredArray[6]) * 100),
+                                                             ((premixArray[6] / requiredArray[6]) * 100),0])
+            let entry8 = BarChartDataEntry(x: 10, yValues: [ ((rationArray[7] / requiredArray[7]) * 100),
+                                                             ((premixArray[7] / requiredArray[7]) * 100),0])
+            let entry9 = BarChartDataEntry(x: 9, yValues: [  ((rationArray[8] / requiredArray[8]) * 100),
+                                                             ((premixArray[8] / requiredArray[8]) * 100),0])
+            let entry10 = BarChartDataEntry(x: 8, yValues: [ ((rationArray[9] / requiredArray[9]) * 100),
+                                                             ((premixArray[9] / requiredArray[9]) * 100),0])
+            let entry11 = BarChartDataEntry(x: 7, yValues: [ ((rationArray[10] / requiredArray[10]) * 100),
+                                                             ((premixArray[10] / requiredArray[10]) * 100),0])
             
             
-            let entry12 = BarChartDataEntry(x: 6, yValues: [ ((rationArray[11] / requiredArray[11]) * 100) >= 150.0 ? 150.0: ((rationArray[11] / requiredArray[11]) * 100),
-                                                             ((premixArray[11] / requiredArray[11]) * 100) >= 150.0 ? 150.0: ((premixArray[11] / requiredArray[11]) * 100),
-                                                             ((waterArray[11] / requiredArray[11]) * 100) >= 150.0 ? 150.0: ((waterArray[11] / requiredArray[11]) * 100)])
-            let entry13 = BarChartDataEntry(x: 5, yValues: [ ((rationArray[12] / requiredArray[12]) * 100) >= 150.0 ? 150.0: ((rationArray[12] / requiredArray[12]) * 100),
-                                                             ((premixArray[12] / requiredArray[12]) * 100) >= 150.0 ? 150.0: ((premixArray[12] / requiredArray[12]) * 100),
-                                                             ((waterArray[12] / requiredArray[12]) * 100) >= 150.0 ? 150.0: ((waterArray[12] / requiredArray[12]) * 100)])
-            let entry14 = BarChartDataEntry(x: 4, yValues: [ ((rationArray[13] / requiredArray[13]) * 100) >= 150.0 ? 150.0: ((rationArray[13] / requiredArray[13]) * 100),
-                                                             ((premixArray[13] / requiredArray[13]) * 100) >= 150.0 ? 150.0: ((premixArray[13] / requiredArray[13]) * 100),
-                                                             ((waterArray[13] / requiredArray[13]) * 100) >= 150.0 ? 150.0: ((waterArray[13] / requiredArray[13]) * 100)])
-            let entry15 = BarChartDataEntry(x: 3, yValues: [ ((rationArray[14] / requiredArray[14]) * 100) >= 150.0 ? 150.0: ((rationArray[14] / requiredArray[14]) * 100),
-                                                             ((premixArray[14] / requiredArray[14]) * 100) >= 150.0 ? 150.0: ((premixArray[14] / requiredArray[14]) * 100),
-                                                             ((waterArray[14] / requiredArray[14]) * 100) >= 150.0 ? 150.0: ((waterArray[14] / requiredArray[14]) * 100)])
-            let entry16 = BarChartDataEntry(x: 2, yValues: [ ((rationArray[15] / requiredArray[15]) * 100) >= 150.0 ? 150.0: ((rationArray[15] / requiredArray[15]) * 100),
-                                                             ((premixArray[15] / requiredArray[15]) * 100) >= 150.0 ? 150.0: ((premixArray[15] / requiredArray[15]) * 100),
-                                                             ((waterArray[15] / requiredArray[15]) * 100) >= 150.0 ? 150.0: ((waterArray[15] / requiredArray[15]) * 100)])
-            let entry17 = BarChartDataEntry(x: 1, yValues: [ ((rationArray[16] / requiredArray[16]) * 100) >= 150.0 ? 150.0: ((rationArray[16] / requiredArray[16]) * 100),
-                                                             ((premixArray[16] / requiredArray[16]) * 100) >= 150.0 ? 150.0: ((premixArray[16] / requiredArray[16]) * 100),
-                                                             ((waterArray[16] / requiredArray[16]) * 100) >= 150.0 ? 150.0: ((waterArray[16] / requiredArray[16]) * 100)])
-            let entry18 = BarChartDataEntry(x: 0, yValues: [ ((rationArray[17] / requiredArray[17]) * 100) >= 150.0 ? 150.0: ((rationArray[17] / requiredArray[17]) * 100),
-                                                             ((premixArray[17] / requiredArray[17]) * 100) >= 150.0 ? 150.0: ((premixArray[17] / requiredArray[17]) * 100),
-                                                             ((waterArray[17] / requiredArray[17]) * 100) >= 150.0 ? 150.0: ((waterArray[17] / requiredArray[17]) * 100)])
+            let entry12 = BarChartDataEntry(x: 6, yValues: [ ((rationArray[11] / requiredArray[11]) * 100),
+                                                             ((premixArray[11] / requiredArray[11]) * 100),
+                                                             ((waterArray[11] / requiredArray[11]) * 100)])
+            let entry13 = BarChartDataEntry(x: 5, yValues: [ ((rationArray[12] / requiredArray[12]) * 100),
+                                                             ((premixArray[12] / requiredArray[12]) * 100),
+                                                             ((waterArray[12] / requiredArray[12]) * 100)])
+            let entry14 = BarChartDataEntry(x: 4, yValues: [ ((rationArray[13] / requiredArray[13]) * 100),
+                                                             ((premixArray[13] / requiredArray[13]) * 100),
+                                                             ((waterArray[13] / requiredArray[13]) * 100)])
+            let entry15 = BarChartDataEntry(x: 3, yValues: [ ((rationArray[14] / requiredArray[14]) * 100),
+                                                             ((premixArray[14] / requiredArray[14]) * 100),
+                                                             ((waterArray[14] / requiredArray[14]) * 100)])
+            let entry16 = BarChartDataEntry(x: 2, yValues: [ ((rationArray[15] / requiredArray[15]) * 100),
+                                                             ((premixArray[15] / requiredArray[15]) * 100),
+                                                             ((waterArray[15] / requiredArray[15]) * 100)])
+            let entry17 = BarChartDataEntry(x: 1, yValues: [ ((rationArray[16] / requiredArray[16]) * 100),
+                                                             ((premixArray[16] / requiredArray[16]) * 100),
+                                                             ((waterArray[16] / requiredArray[16]) * 100)])
+            let entry18 = BarChartDataEntry(x: 0, yValues: [ ((rationArray[17] / requiredArray[17]) * 100),
+                                                             ((premixArray[17] / requiredArray[17]) * 100),
+                                                             ((waterArray[17] / requiredArray[17]) * 100)])
             
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]
@@ -247,129 +254,129 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
             barchartview.data = chartData
         } else {
             
-            let entry1 = BarChartDataEntry(x: 17, yValues: [ ((Requirments.shared().rationArrayFinal[0] / Requirments.shared().reqArrayFinal[0]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[0] / Requirments.shared().reqArrayFinal[0]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[0] / Requirments.shared().reqArrayFinal[0]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[0] / Requirments.shared().reqArrayFinal[0]) * 100),0])
+            let entry1 = BarChartDataEntry(x: 17, yValues: [ ((Requirments.shared().rationArrayFinal[0] / Requirments.shared().reqArrayFinal[0]) * 100),
+                                                             ((Requirments.shared().primexArrayFinal[0] / Requirments.shared().reqArrayFinal[0]) * 100) ,0])
             
             
             
-            let entry2 = BarChartDataEntry(x: 16, yValues: [ ((Requirments.shared().rationArrayFinal[1] / Requirments.shared().reqArrayFinal[1]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[1] / Requirments.shared().reqArrayFinal[1]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[1] / Requirments.shared().reqArrayFinal[1]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[1] / Requirments.shared().reqArrayFinal[1]) * 100),0])
+            let entry2 = BarChartDataEntry(x: 16, yValues: [ ((Requirments.shared().rationArrayFinal[1] / Requirments.shared().reqArrayFinal[1]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[1] / Requirments.shared().reqArrayFinal[1]) * 100) ,0])
             
             
             
             
             
-            let entry3 = BarChartDataEntry(x: 15, yValues: [ ((Requirments.shared().rationArrayFinal[2] / Requirments.shared().reqArrayFinal[2]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[2] / Requirments.shared().reqArrayFinal[2]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[2] / Requirments.shared().reqArrayFinal[2]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[2] / Requirments.shared().reqArrayFinal[2]) * 100),0])
+            let entry3 = BarChartDataEntry(x: 15, yValues: [ ((Requirments.shared().rationArrayFinal[2] / Requirments.shared().reqArrayFinal[2]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[2] / Requirments.shared().reqArrayFinal[2]) * 100) ,0])
             
             
             
             
             
-            let entry4 = BarChartDataEntry(x: 14, yValues: [ ((Requirments.shared().rationArrayFinal[3] / Requirments.shared().reqArrayFinal[3]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[3] / Requirments.shared().reqArrayFinal[3]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[3] / Requirments.shared().reqArrayFinal[3]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[3] / Requirments.shared().reqArrayFinal[3]) * 100),0])
+            let entry4 = BarChartDataEntry(x: 14, yValues: [ ((Requirments.shared().rationArrayFinal[3] / Requirments.shared().reqArrayFinal[3]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[3] / Requirments.shared().reqArrayFinal[3]) * 100) ,0])
             
             
             
             
             
-            let entry5 = BarChartDataEntry(x: 13, yValues: [ ((Requirments.shared().rationArrayFinal[4] / Requirments.shared().reqArrayFinal[4]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[4] / Requirments.shared().reqArrayFinal[4]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[4] / Requirments.shared().reqArrayFinal[4]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[4] / Requirments.shared().reqArrayFinal[4]) * 100),0])
+            let entry5 = BarChartDataEntry(x: 13, yValues: [ ((Requirments.shared().rationArrayFinal[4] / Requirments.shared().reqArrayFinal[4]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[4] / Requirments.shared().reqArrayFinal[4]) * 100) ,0])
             
             
             
             
             
-            let entry6 = BarChartDataEntry(x: 12, yValues: [ ((Requirments.shared().rationArrayFinal[5] / Requirments.shared().reqArrayFinal[5]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[5] / Requirments.shared().reqArrayFinal[5]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[5] / Requirments.shared().reqArrayFinal[5]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[5] / Requirments.shared().reqArrayFinal[5]) * 100),0])
+            let entry6 = BarChartDataEntry(x: 12, yValues: [ ((Requirments.shared().rationArrayFinal[5] / Requirments.shared().reqArrayFinal[5]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[5] / Requirments.shared().reqArrayFinal[5]) * 100) ,0])
             
             
             
             
-            let entry7 = BarChartDataEntry(x: 11, yValues: [ ((Requirments.shared().rationArrayFinal[6] / Requirments.shared().reqArrayFinal[6]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[6] / Requirments.shared().reqArrayFinal[6]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[6] / Requirments.shared().reqArrayFinal[6]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[6] / Requirments.shared().reqArrayFinal[6]) * 100),0])
+            let entry7 = BarChartDataEntry(x: 11, yValues: [ ((Requirments.shared().rationArrayFinal[6] / Requirments.shared().reqArrayFinal[6]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[6] / Requirments.shared().reqArrayFinal[6]) * 100) ,0])
             
             
             
             
             
-            let entry8 = BarChartDataEntry(x: 10, yValues: [ ((Requirments.shared().rationArrayFinal[7] / Requirments.shared().reqArrayFinal[7]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[7] / Requirments.shared().reqArrayFinal[7]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[7] / Requirments.shared().reqArrayFinal[7]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[7] / Requirments.shared().reqArrayFinal[7]) * 100),0])
+            let entry8 = BarChartDataEntry(x: 10, yValues: [ ((Requirments.shared().rationArrayFinal[7] / Requirments.shared().reqArrayFinal[7]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[7] / Requirments.shared().reqArrayFinal[7]) * 100) ,0])
             
             
             
             
             
-            let entry9 = BarChartDataEntry(x: 9, yValues: [ ((Requirments.shared().rationArrayFinal[8] / Requirments.shared().reqArrayFinal[8]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[8] / Requirments.shared().reqArrayFinal[8]) * 100),
-                                                            ((Requirments.shared().primexArrayFinal[8] / Requirments.shared().reqArrayFinal[8]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[8] / Requirments.shared().reqArrayFinal[8]) * 100),0])
+            let entry9 = BarChartDataEntry(x: 9, yValues: [ ((Requirments.shared().rationArrayFinal[8] / Requirments.shared().reqArrayFinal[8]) * 100) ,
+                                                            ((Requirments.shared().primexArrayFinal[8] / Requirments.shared().reqArrayFinal[8]) * 100) ,0])
             
             
             
             
             
-            let entry10 = BarChartDataEntry(x: 8, yValues: [ ((Requirments.shared().rationArrayFinal[9] / Requirments.shared().reqArrayFinal[9]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[9] / Requirments.shared().reqArrayFinal[9]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[9] / Requirments.shared().reqArrayFinal[9]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[9] / Requirments.shared().reqArrayFinal[9]) * 100),0])
+            let entry10 = BarChartDataEntry(x: 8, yValues: [ ((Requirments.shared().rationArrayFinal[9] / Requirments.shared().reqArrayFinal[9]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[9] / Requirments.shared().reqArrayFinal[9]) * 100) ,0])
             
             
             
             
             
-            let entry11 = BarChartDataEntry(x: 7, yValues: [ ((Requirments.shared().rationArrayFinal[10] / Requirments.shared().reqArrayFinal[10]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[10] / Requirments.shared().reqArrayFinal[10]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[10] / Requirments.shared().reqArrayFinal[10]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[10] / Requirments.shared().reqArrayFinal[10]) * 100),0])
+            let entry11 = BarChartDataEntry(x: 7, yValues: [ ((Requirments.shared().rationArrayFinal[10] / Requirments.shared().reqArrayFinal[10]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[10] / Requirments.shared().reqArrayFinal[10]) * 100) ,0])
             
             
             
             
             
-            let entry12 = BarChartDataEntry(x: 6, yValues: [ ((Requirments.shared().rationArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100)])
+            let entry12 = BarChartDataEntry(x: 6, yValues: [ ((Requirments.shared().rationArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[11] / Requirments.shared().reqArrayFinal[11]) * 100) ])
             
             
             
             
             
-            let entry13 = BarChartDataEntry(x: 5, yValues: [ ((Requirments.shared().rationArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100)])
+            let entry13 = BarChartDataEntry(x: 5, yValues: [ ((Requirments.shared().rationArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[12] / Requirments.shared().reqArrayFinal[12]) * 100) ])
             
             
             
             
             
-            let entry14 = BarChartDataEntry(x: 4, yValues: [ ((Requirments.shared().rationArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100)])
+            let entry14 = BarChartDataEntry(x: 4, yValues: [ ((Requirments.shared().rationArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[13] / Requirments.shared().reqArrayFinal[13]) * 100) ])
             
             
             
             
-            let entry15 = BarChartDataEntry(x: 3, yValues: [ ((Requirments.shared().rationArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100)])
+            let entry15 = BarChartDataEntry(x: 3, yValues: [ ((Requirments.shared().rationArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[14] / Requirments.shared().reqArrayFinal[14]) * 100) ])
             
             
             
             
             
-            let entry16 = BarChartDataEntry(x: 2, yValues: [ ((Requirments.shared().rationArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100)])
+            let entry16 = BarChartDataEntry(x: 2, yValues: [ ((Requirments.shared().rationArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[15] / Requirments.shared().reqArrayFinal[15]) * 100) ])
             
             
             
             
-            let entry17 = BarChartDataEntry(x: 1, yValues: [ ((Requirments.shared().rationArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100)])
+            let entry17 = BarChartDataEntry(x: 1, yValues: [ ((Requirments.shared().rationArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[16] / Requirments.shared().reqArrayFinal[16]) * 100) ])
             
             
             
             
             
-            let entry18 = BarChartDataEntry(x: 0, yValues: [ ((Requirments.shared().rationArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().rationArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100),
-                                                             ((Requirments.shared().primexArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().primexArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100),
-                                                             ((Requirments.shared().waterArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100) >= 150.0 ? 150.0: ((Requirments.shared().waterArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100)])
+            let entry18 = BarChartDataEntry(x: 0, yValues: [ ((Requirments.shared().rationArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100) ,
+                                                             ((Requirments.shared().primexArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100) ,
+                                                             ((Requirments.shared().waterArrayFinal[17] / Requirments.shared().reqArrayFinal[17]) * 100) ])
             
             let dataSet = BarChartDataSet(entries: [ entry1, entry2,entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13, entry14, entry15, entry16, entry17, entry18 ], label: nil)
             dataSet.colors = [UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0), UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0), UIColor(red: 28/255, green: 115/255.0, blue: 193/255.0, alpha: 1.0)]

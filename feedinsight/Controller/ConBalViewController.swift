@@ -115,144 +115,234 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 } else {
                     if(indexPath.row == 1) {
                         if(percent > 1107.7) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 2) {
                         if(percent > 169.2) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 3) {
                         if(percent > 135.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 4) {
                         if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 5) {
                         if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 6) {
                         if(percent > 909.1) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 7) {
                         if(percent > 3636.4) {
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 8) {
                         if(percent > 333.3) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 9) {
                         if(percent > 1470.6) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 10) {
                         if(percent > 7142.9) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 11) {
                         if(percent > 3333.3) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 12) {
                         if(percent > 436.4) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 13) {
                         if(percent > 255.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 14) {
                         if(percent > 1012.9) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 15) {
                         if(percent > 160.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 16) {
                         if(percent > 1153.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 17) {
                         if(percent > 400.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 18) {
                         if(percent > 200.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
@@ -293,144 +383,234 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 } else {
                     if(indexPath.row == 1) {
                         if(percent > 1107.7) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 2) {
                         if(percent > 169.2) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 3) {
                         if(percent > 135.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 4) {
                         if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 5) {
                         if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 6) {
                         if(percent > 909.1) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 7) {
                         if(percent > 3636.4) {
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 8) {
                         if(percent > 333.3) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 9) {
                         if(percent > 1470.6) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 10) {
                         if(percent > 7142.9) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 11) {
                         if(percent > 3333.3) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 12) {
                         if(percent > 436.4) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 13) {
                         if(percent > 255.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 14) {
                         if(percent > 1012.9) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 15) {
                         if(percent > 160.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 16) {
                         if(percent > 1153.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 17) {
                         if(percent > 400.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 18) {
                         if(percent > 200.0) {
-                            cell.nutrientTotal?.textColor = UIColor.systemRed
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd()) + " !"
+                            cell.nutrientTotal?.textColor = UIColor.black
+                            let mainString = String(percent.removeZerosFromEnd()) + " !"
+                            let stringToColor = "!"
+                            let range = (mainString as NSString).range(of: stringToColor)
+                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
+                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
