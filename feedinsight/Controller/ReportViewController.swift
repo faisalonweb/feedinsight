@@ -207,30 +207,42 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
 //        editAction.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
 
         let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
-            self.db.collection("pdfReports").document(self.userID!).collection("pdfReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
-                if error != nil {
-                    print(error!)
-                } else {
-                    for document in querySnapshot!.documents {
-                        document.reference.delete()
+            let alert = UIAlertController(title: "Delete Report", message: "Are you sure you want to delete this report?", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                self.db.collection("pdfReports").document(self.userID!).collection("pdfReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        for document in querySnapshot!.documents {
+                            document.reference.delete()
+                        }
                     }
                 }
-            }
-            self.companyNameList.remove(at: indexPath.section)
-            self.ruminantTypeList.remove(at: indexPath.section)
-            self.animalGroupList.remove(at: indexPath.section)
-            self.psychologicalList.remove(at: indexPath.section)
-            self.pdfDateList.remove(at: indexPath.section)
-            self.pdfReference.remove(at: indexPath.section)
-            self.preparedBy.remove(at: indexPath.section)
-            self.reportType.remove(at: indexPath.section)
-            self.DocumentIdList.remove(at: indexPath.section)
-            if(self.companyNameList.count == 0) {
-                self.tableView.alpha = 0
-                self.hiddenView.alpha = 1
-            } else {
-                tableView.reloadData()
-            }
+                self.companyNameList.remove(at: indexPath.section)
+                self.ruminantTypeList.remove(at: indexPath.section)
+                self.animalGroupList.remove(at: indexPath.section)
+                self.psychologicalList.remove(at: indexPath.section)
+                self.pdfDateList.remove(at: indexPath.section)
+                self.pdfReference.remove(at: indexPath.section)
+                self.preparedBy.remove(at: indexPath.section)
+                self.reportType.remove(at: indexPath.section)
+                self.DocumentIdList.remove(at: indexPath.section)
+                if(self.companyNameList.count == 0) {
+                    self.tableView.alpha = 0
+                    self.hiddenView.alpha = 1
+                } else {
+                    tableView.reloadData()
+                }
+            })
+            alert.addAction(ok)
+            let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                
+            })
+            alert.addAction(cancel)
+            DispatchQueue.main.async(execute: {
+                self.present(alert, animated: true)
+            })
         }
         deleteAction.backgroundColor = .red
         

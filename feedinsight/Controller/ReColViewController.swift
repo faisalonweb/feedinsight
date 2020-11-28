@@ -198,32 +198,45 @@ extension ReColViewController: UITableViewDelegate , UITableViewDataSource {
        editAction.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
 
         let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
-            self.db.collection("animalState").document(self.userID!).collection("animalState").whereField("DocId", isEqualTo: self.docIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
-                if error != nil {
-                    print(error!)
-                } else {
-                    for document in querySnapshot!.documents {
-                        document.reference.delete()
+            
+            let alert = UIAlertController(title: "Delete Animal Data", message: "Are you sure you want to delete this animal data?", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                self.db.collection("animalState").document(self.userID!).collection("animalState").whereField("DocId", isEqualTo: self.docIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        for document in querySnapshot!.documents {
+                            document.reference.delete()
+                        }
                     }
                 }
-            }
-            self.animalList.remove(at: indexPath.section)
-            self.reportNameList.remove(at: indexPath.section)
-            self.docIdList.remove(at: indexPath.section)
-            self.companynameList.remove(at: indexPath.section)
-            self.psystateList.remove(at: indexPath.section)
-            self.currentweightList.remove(at: indexPath.section)
-            self.targetweightList.remove(at: indexPath.section)
-            self.daysachieveList.remove(at: indexPath.section)
-            self.daysmilkList.remove(at: indexPath.section)
-            self.dayspregnantList.remove(at: indexPath.section)
-            self.milkproductionList.remove(at: indexPath.section)
-            self.dietstate.remove(at: indexPath.section)
-            self.disorderstate.remove(at: indexPath.section)
-            self.heatstate.remove(at: indexPath.section)
-            self.productionstate.remove(at: indexPath.section)
-            self.categoryList.remove(at: indexPath.section)
-            self.tblView.reloadData()
+                self.animalList.remove(at: indexPath.section)
+                self.reportNameList.remove(at: indexPath.section)
+                self.docIdList.remove(at: indexPath.section)
+                self.companynameList.remove(at: indexPath.section)
+                self.psystateList.remove(at: indexPath.section)
+                self.currentweightList.remove(at: indexPath.section)
+                self.targetweightList.remove(at: indexPath.section)
+                self.daysachieveList.remove(at: indexPath.section)
+                self.daysmilkList.remove(at: indexPath.section)
+                self.dayspregnantList.remove(at: indexPath.section)
+                self.milkproductionList.remove(at: indexPath.section)
+                self.dietstate.remove(at: indexPath.section)
+                self.disorderstate.remove(at: indexPath.section)
+                self.heatstate.remove(at: indexPath.section)
+                self.productionstate.remove(at: indexPath.section)
+                self.categoryList.remove(at: indexPath.section)
+                self.tblView.reloadData()
+            })
+            alert.addAction(ok)
+            let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                
+            })
+            alert.addAction(cancel)
+            DispatchQueue.main.async(execute: {
+                self.present(alert, animated: true)
+            })
         }
         deleteAction.backgroundColor = .red
 

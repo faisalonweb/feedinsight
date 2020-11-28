@@ -540,106 +540,139 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
 
         let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
             if(self.screenNAME == "ration") {
-                self.db.collection("rationReports").document(self.userID!).collection("rationReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
-                    if error != nil {
-                        print(error!)
-                    } else {
-                        for document in querySnapshot!.documents {
-                            document.reference.delete()
+                let alert = UIAlertController(title: "Delete Ration Data", message: "Are you sure you want to delete this ration data?", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                    self.db.collection("rationReports").document(self.userID!).collection("rationReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                        if error != nil {
+                            print(error!)
+                        } else {
+                            for document in querySnapshot!.documents {
+                                document.reference.delete()
+                            }
                         }
                     }
-                }
-                
-                self.reportNameList.remove(at: indexPath.section)
-                self.reportDateList.remove(at: indexPath.section)
-                self.copyArray.remove(at: indexPath.section)
-                //reportValueList.remove(at: indexPath.section)
-                self.DocumentIdList.remove(at: indexPath.section)
-                if(self.reportNameList.count == 0) {
-                    self.tblView.refreshControl?.endRefreshing()
-                    self.tblView.alpha = 0
-                    self.hiddenView.alpha = 1
-                } else {
-                    self.tblView.reloadData()
-                }
-                
-                
-                
-              
+                    
+                    self.reportNameList.remove(at: indexPath.section)
+                    self.reportDateList.remove(at: indexPath.section)
+                    self.copyArray.remove(at: indexPath.section)
+                    //reportValueList.remove(at: indexPath.section)
+                    self.DocumentIdList.remove(at: indexPath.section)
+                    if(self.reportNameList.count == 0) {
+                        self.tblView.refreshControl?.endRefreshing()
+                        self.tblView.alpha = 0
+                        self.hiddenView.alpha = 1
+                    } else {
+                        self.tblView.reloadData()
+                    }
+                })
+                alert.addAction(ok)
+                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                    
+                })
+                alert.addAction(cancel)
+                DispatchQueue.main.async(execute: {
+                    self.present(alert, animated: true)
+                })
             }
             else if (self.screenNAME == "water") {
-                self.db.collection("waterReports").document(self.userID!).collection("waterReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
-                    if error != nil {
-                        print(error!)
-                    } else {
-                        for document in querySnapshot!.documents {
-                            document.reference.delete()
+                let alert = UIAlertController(title: "Delete Water Data", message: "Are you sure you want to delete this water data?", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                    self.db.collection("waterReports").document(self.userID!).collection("waterReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                        if error != nil {
+                            print(error!)
+                        } else {
+                            for document in querySnapshot!.documents {
+                                document.reference.delete()
+                            }
                         }
                     }
-                }
-                self.PList.remove(at: indexPath.section)
-                self.CaList.remove(at: indexPath.section)
-                self.MgList.remove(at: indexPath.section)
-                self.KList.remove(at: indexPath.section)
-                self.NaList.remove(at: indexPath.section)
-                self.ClList.remove(at: indexPath.section)
-                self.SList.remove(at: indexPath.section)
-                self.reportNameList.remove(at: indexPath.section)
-                self.reportDateList.remove(at: indexPath.section)
-                self.DocumentIdList.remove(at: indexPath.section)
-                if(self.reportNameList.count == 0) {
-                    self.tblView.refreshControl?.endRefreshing()
-                    self.tblView.alpha = 0
-                    self.hiddenView.alpha = 1
-                } else {
-                    self.tblView.reloadData()
-                }
+                    self.PList.remove(at: indexPath.section)
+                    self.CaList.remove(at: indexPath.section)
+                    self.MgList.remove(at: indexPath.section)
+                    self.KList.remove(at: indexPath.section)
+                    self.NaList.remove(at: indexPath.section)
+                    self.ClList.remove(at: indexPath.section)
+                    self.SList.remove(at: indexPath.section)
+                    self.reportNameList.remove(at: indexPath.section)
+                    self.reportDateList.remove(at: indexPath.section)
+                    self.DocumentIdList.remove(at: indexPath.section)
+                    if(self.reportNameList.count == 0) {
+                        self.tblView.refreshControl?.endRefreshing()
+                        self.tblView.alpha = 0
+                        self.hiddenView.alpha = 1
+                    } else {
+                        self.tblView.reloadData()
+                    }
+                })
+                alert.addAction(ok)
+                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                    
+                })
+                alert.addAction(cancel)
+                DispatchQueue.main.async(execute: {
+                    self.present(alert, animated: true)
+                })
+                
             }
              
             else if (self.screenNAME == "premix") {
-                self.db.collection("premixReports").document(self.userID!).collection("premixReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
-                    if error != nil {
-                        print(error!)
-                    } else {
-                        for document in querySnapshot!.documents {
-                            document.reference.delete()
+                let alert = UIAlertController(title: "Delete Premix Data", message: "Are you sure you want to delete this premix data?", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                    self.db.collection("premixReports").document(self.userID!).collection("premixReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
+                        if error != nil {
+                            print(error!)
+                        } else {
+                            for document in querySnapshot!.documents {
+                                document.reference.delete()
+                            }
                         }
                     }
-                }
-                self.productNameList.remove(at: indexPath.section)
-                self.reportDateList.remove(at: indexPath.section)
-                self.productDoseList.remove(at: indexPath.section)
-                self.DocumentIdList.remove(at: indexPath.section)
-                self.reportNameList.remove(at: indexPath.section)
-                self.pMacroList.remove(at: indexPath.section)
-                self.caMacroList.remove(at: indexPath.section)
-                self.mgMacroList.remove(at: indexPath.section)
-                self.kMacroList.remove(at: indexPath.section)
-                self.naMacroList.remove(at: indexPath.section)
-                self.clMacroList.remove(at: indexPath.section)
-                self.sMacroList.remove(at: indexPath.section)
-                self.coMicroList.remove(at: indexPath.section)
-                self.iMicroList.remove(at: indexPath.section)
-                self.mnMicroList.remove(at: indexPath.section)
-                self.cuMicroList.remove(at: indexPath.section)
-                self.feMicroList.remove(at: indexPath.section)
-                self.cuOrganicMicroList.remove(at: indexPath.section)
-                self.seMicroList.remove(at: indexPath.section)
-                self.seOrganicMicroList.remove(at: indexPath.section)
-                self.znMicroList.remove(at: indexPath.section)
-                self.znOrganicMicroList.remove(at: indexPath.section)
-                self.aiuVitaminList.remove(at: indexPath.section)
-                self.diuVitaminList.remove(at: indexPath.section)
-                self.eiuVitaminList.remove(at: indexPath.section)
-                self.niacinVitaminList.remove(at: indexPath.section)
-                self.biotinVitaminList.remove(at: indexPath.section)
-                if(self.productNameList.count == 0) {
-                    self.tblView.refreshControl?.endRefreshing()
-                    self.tblView.alpha = 0
-                    self.hiddenView.alpha = 1
-                } else {
-                    self.tblView.reloadData()
-                }
+                    self.productNameList.remove(at: indexPath.section)
+                    self.reportDateList.remove(at: indexPath.section)
+                    self.productDoseList.remove(at: indexPath.section)
+                    self.DocumentIdList.remove(at: indexPath.section)
+                    self.reportNameList.remove(at: indexPath.section)
+                    self.pMacroList.remove(at: indexPath.section)
+                    self.caMacroList.remove(at: indexPath.section)
+                    self.mgMacroList.remove(at: indexPath.section)
+                    self.kMacroList.remove(at: indexPath.section)
+                    self.naMacroList.remove(at: indexPath.section)
+                    self.clMacroList.remove(at: indexPath.section)
+                    self.sMacroList.remove(at: indexPath.section)
+                    self.coMicroList.remove(at: indexPath.section)
+                    self.iMicroList.remove(at: indexPath.section)
+                    self.mnMicroList.remove(at: indexPath.section)
+                    self.cuMicroList.remove(at: indexPath.section)
+                    self.feMicroList.remove(at: indexPath.section)
+                    self.cuOrganicMicroList.remove(at: indexPath.section)
+                    self.seMicroList.remove(at: indexPath.section)
+                    self.seOrganicMicroList.remove(at: indexPath.section)
+                    self.znMicroList.remove(at: indexPath.section)
+                    self.znOrganicMicroList.remove(at: indexPath.section)
+                    self.aiuVitaminList.remove(at: indexPath.section)
+                    self.diuVitaminList.remove(at: indexPath.section)
+                    self.eiuVitaminList.remove(at: indexPath.section)
+                    self.niacinVitaminList.remove(at: indexPath.section)
+                    self.biotinVitaminList.remove(at: indexPath.section)
+                    if(self.productNameList.count == 0) {
+                        self.tblView.refreshControl?.endRefreshing()
+                        self.tblView.alpha = 0
+                        self.hiddenView.alpha = 1
+                    } else {
+                        self.tblView.reloadData()
+                    }
+                })
+                alert.addAction(ok)
+                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                    
+                })
+                alert.addAction(cancel)
+                DispatchQueue.main.async(execute: {
+                    self.present(alert, animated: true)
+                })
             }
            
         }
