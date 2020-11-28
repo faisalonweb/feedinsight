@@ -3,15 +3,20 @@
 import UIKit
 import Charts
 import QuartzCore
-
+import MessageUI
+import SwiftMessages
+import PDFKit
 var fromDatabase : String = ""
 var premixArray = [Double]()
 var waterArray = [Double]()
 var requiredArray = [Double]()
 var rationArray = [Double]()
 
-class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
+class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate{
     
+    @IBOutlet weak var n1: UIView!
+    @IBOutlet weak var n2: UIView!
+    @IBOutlet weak var scrillviewoutlet: UIScrollView!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet var buttonsOutlets: [UIButton]!
     @IBOutlet weak var review: UIView!
@@ -63,13 +68,15 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
     var reporttypestr7 : String = ""
     var pscistatestr8 : String = ""
     
+    var shareVariable : String = ""
+    
     
     let players = ["K","S","Cl","Na","Mg","P", "Ca","Co","I","Se","Cu","Mn","Zn","Niacin","Biotin","Vit. E","Vit. D3","Vit. A"]
 //    @objc func addNewGuageView(_ notification: Notification) {
 //        self.addGaugeView()
 //    }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         fromDatabase = ""
         premixArray.removeAll()
         waterArray.removeAll()
@@ -77,11 +84,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         rationArray.removeAll()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("21")
+    }
     override func viewDidLoad() {
-        footerView.layer.masksToBounds = true
-        footerView.roundCorners(corners: [.topRight,.topLeft], radius: 13)
         percentageArray.removeAll()
-        toxicLabel.text = "      * = Absorable Value"
+        
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -104,10 +112,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
         barchartview.drawGridBackgroundEnabled = true
         barchartview.chartDescription?.text = "Bar Chart View"
         if(fromDatabase == "yes") {
-            self.companyName.text = companystr1
-            self.ruminantType.text = ruminanttypestr5
-            self.animalGroup.text = animalgroupstr2
-            self.psciState.text = pscistatestr8
+            self.companyName.text = "Company : " + companystr1
+            self.ruminantType.text = "Ruminant Type : " + ruminanttypestr5
+            self.animalGroup.text = "Animal Group : " + animalgroupstr2
+            self.psciState.text = "Physiological State : " + pscistatestr8
             self.reportType.text = reporttypestr7
             self.dateLabel.text = datestr3
             self.referenceLabel.text = referncestr4
@@ -126,22 +134,214 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
             }
             setChart(dataPoints: players, values: Requirments.shared().rationArrayFinal.map { Double($0) })
         }
+        
     }
     
-    @IBAction func shareButton(_ sender: Any) {
-        let pdfData = NSMutableData()
-        UIGraphicsBeginPDFContextToData(pdfData, self.view.bounds, nil)
-        UIGraphicsBeginPDFPage()
-        let pdfContext = UIGraphicsGetCurrentContext()
-        if let pdfContext = pdfContext {
-            self.view.layer.render(in: pdfContext)
+    override func viewDidAppear(_ animated: Bool) {
+        if(shareVariable == "yes") {
+            sendMail()
         }
-        UIGraphicsEndPDFContext()
-        let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).map(\.path)
-        let documentDirectory = documentDirectories[0]
-        let documentDirectoryFilename = URL(fileURLWithPath: documentDirectory).appendingPathComponent("testingPdfCheck.pdf").path
-        NSData(data: pdfData as Data).write(toFile: documentDirectoryFilename, atomically: true)
+    }
+    
+    func getImageOfScrollView() -> UIImage {
+        var image = UIImage()
+        UIGraphicsBeginImageContextWithOptions(self.scrillviewoutlet.contentSize, false, UIScreen.main.scale)
+        let savedContentOffset = self.scrillviewoutlet.contentOffset
+        let savedFrame = self.scrillviewoutlet.frame
+        let savedBackgroundColor = self.scrillviewoutlet.backgroundColor
+        self.scrillviewoutlet.contentOffset = .zero
+        self.scrillviewoutlet.frame = CGRect(x: 0, y: 0, width: self.scrillviewoutlet.contentSize.width, height: self.scrillviewoutlet.contentSize.height)
+        self.scrillviewoutlet.backgroundColor = UIColor.clear
+        let tempView = UIView(frame: CGRect(x: 0, y: 0, width: self.scrillviewoutlet.contentSize.width, height: self.scrillviewoutlet.contentSize.height))
+        let tempSuperView = self.scrillviewoutlet.superview
+        self.scrillviewoutlet.removeFromSuperview()
+        tempView.addSubview(self.scrillviewoutlet)
+        tempView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        image = UIGraphicsGetImageFromCurrentImageContext()!
+        tempView.subviews[0].removeFromSuperview()
+        tempSuperView?.addSubview(self.scrillviewoutlet)
+        self.scrillviewoutlet.contentOffset = savedContentOffset
+        self.scrillviewoutlet.frame = savedFrame
+        self.scrillviewoutlet.backgroundColor = savedBackgroundColor
 
+        UIGraphicsEndImageContext()
+
+        return image
+    }
+    
+    func savePdf(){
+        self.n1.isHidden = true
+        self.n2.isHidden = true
+        review.alpha = 0
+        supview.alpha = 0
+        balview.alpha = 1
+        toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
+        self.view.layoutIfNeeded()
+        let screenShot = getImageOfScrollView()
+        let pdfDocument = PDFDocument()
+        let pdfPage = PDFPage(image: screenShot)
+        pdfDocument.insert(pdfPage!, at: 0)
+        let data = pdfDocument.dataRepresentation()
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("documento.pdf")
+        let pdfDoc = data //NSData(contentsOf:URL(string: documentPathToLoad)!)
+        fileManager.createFile(atPath: paths as String, contents: pdfDoc as Data?, attributes: nil)
+        loadPDFAndShare()
+    }
+    
+    func loadPDFAndShare(){
+        
+        let fileManager = FileManager.default
+        let documentoPath = (self.getDirectoryPath() as NSString).appendingPathComponent("documento.pdf")
+        
+        if fileManager.fileExists(atPath: documentoPath){
+            let documento = NSData(contentsOfFile: documentoPath)
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [documento!], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView=self.view
+            present(activityViewController, animated: true, completion: nil)
+            
+            activityViewController.completionWithItemsHandler = { (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
+                if completed {
+                    let view = MessageView.viewFromNib(layout: .cardView)
+                    view.configureTheme(.success)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Report Status", body:"Report shared with client." )
+                    SwiftMessages.show(view: view)
+                    if let navController = self.navigationController {
+                        navController.popViewController(animated: true)
+                    }
+                } else {
+                    let view = MessageView.viewFromNib(layout: .cardView)
+                    view.configureTheme(.error)
+                    view.configureDropShadow()
+                    view.configureContent(title: "Report Status", body:"Cancelled by user." )
+                    SwiftMessages.show(view: view)
+                    if let navController = self.navigationController {
+                        navController.popViewController(animated: true)
+                    }
+                }
+            }
+        }
+        else {
+            print("document was not found")
+        }
+    }
+    
+    func getDirectoryPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func sendMail() {
+        savePdf()
+//        self.n1.isHidden = true
+//        self.n2.isHidden = true
+//        review.alpha = 0
+//        supview.alpha = 0
+//        balview.alpha = 1
+//        toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
+//        self.view.layoutIfNeeded()
+//        let screenShot = getImageOfScrollView()
+//        let pdfDocument = PDFDocument()
+//        let pdfPage = PDFPage(image: screenShot)
+//        pdfDocument.insert(pdfPage!, at: 0)
+//        let data = pdfDocument.dataRepresentation()
+//        let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).map(\.path)
+//        let documentDirectory = documentDirectories[0]
+//        let documentDirectoryFilename = URL(fileURLWithPath: documentDirectory).appendingPathComponent("testingPdfCheck.pdf").path
+//        NSData(data: data! as Data).write(toFile: documentDirectoryFilename, atomically: true)
+//
+//
+//        let fileManager = FileManager.default
+//        let documentoPath = documentDirectoryFilename
+//
+//        if fileManager.fileExists(atPath: documentoPath){
+//            let documento = NSData(contentsOfFile: documentoPath)
+//            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [documento!], applicationActivities: nil)
+//            activityViewController.popoverPresentationController?.sourceView=self.view
+//            present(activityViewController, animated: true, completion: nil)
+//        }
+//        else {
+//            print("document was not found")
+//        }
+        
+//        if MFMailComposeViewController.canSendMail() {
+//            self.n1.isHidden = true
+//            self.n2.isHidden = true
+//            review.alpha = 0
+//            supview.alpha = 0
+//            balview.alpha = 1
+//            toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
+//            self.view.layoutIfNeeded()
+//            let screenShot = getImageOfScrollView()
+//            let composePicker = MFMailComposeViewController()
+//            composePicker.mailComposeDelegate = self
+//            composePicker.delegate = self
+//            composePicker.setToRecipients([])
+//            composePicker.setSubject(self.referenceLabel.text!)
+//            composePicker.setMessageBody("Prepared by " + self.preparedByLabel.text! , isHTML: false)
+//            let imageData: NSData = screenShot.pngData()! as NSData
+//            composePicker.addAttachmentData(imageData as Data, mimeType: "image/png", fileName: "report.png")
+//            self.present(composePicker, animated: true, completion: nil)
+//        } else {
+//            self .showErrorMessage()
+//        }
+    }
+//    func showErrorMessage() {
+//        let alertMessage = UIAlertController(title: "Could not sent email", message: "Check if your device have email support!", preferredStyle: UIAlertController.Style.alert)
+//        let action = UIAlertAction(title:"Okay", style: UIAlertAction.Style.default, handler: nil)
+//        alertMessage.addAction(action)
+//        self.present(alertMessage, animated: true, completion: nil)
+//    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .cancelled:
+            print("Mail cancelled")
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Report Status", body:"Cancelled by user." )
+            SwiftMessages.show(view: view)
+        case .saved:
+            print("Mail saved")
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.success)
+            view.configureDropShadow()
+            view.configureContent(title: "Report Status", body:"Report saved in draft." )
+            SwiftMessages.show(view: view)
+        case .sent:
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.success)
+            view.configureDropShadow()
+            view.configureContent(title: "Report Status", body:"Report shared with client." )
+            SwiftMessages.show(view: view)
+        case .failed:
+            print("Mail sent")
+            let view = MessageView.viewFromNib(layout: .cardView)
+            view.configureTheme(.error)
+            view.configureDropShadow()
+            view.configureContent(title: "Report Status", body:"Failed to share with user." )
+            SwiftMessages.show(view: view)
+        @unknown default:
+            print("Mail sent")
+        }
+        self.n1.isHidden = false
+        self.n2.isHidden = false
+        review.alpha = 1
+        supview.alpha = 0
+        balview.alpha = 0
+        toxicLabel.text = "      * - Absorable Value"
+        self.dismiss(animated: true, completion: {
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+            }
+        })
+    }
+    
+    
+    @IBAction func shareButton(_ sender: Any) {
+        sendMail()
     }
     @IBAction func buttonAction(_ sender: UIButton) {
         self.buttonsOutlets.forEach { (button) in
@@ -151,7 +351,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 review.alpha = 1
                 supview.alpha = 0
                 balview.alpha = 0
-                toxicLabel.text = "      * = Absorable Value"
+                toxicLabel.text = "      * - Absorable Value"
             }
             else if (sender.tag == 2) {
                 button.backgroundColor = (button === sender && sender.tag == 2) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -159,7 +359,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 review.alpha = 0
                 supview.alpha = 1
                 balview.alpha = 0
-                toxicLabel.text = "      * = Absorable Value"
+                toxicLabel.text = "      * - Absorable Value"
             }
             else if (sender.tag == 3) {
                 button.backgroundColor = (button === sender && sender.tag == 3) ? UIColor(red: 154/255, green: 9/255, blue: 87/255, alpha: 1) : UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -167,7 +367,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate{
                 review.alpha = 0
                 supview.alpha = 0
                 balview.alpha = 1
-                toxicLabel.text = "      ! = Toxic      < 100 = Deficient      * = Absorable Value"
+                toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
             }
         }
         

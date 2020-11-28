@@ -161,50 +161,50 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
-            //TODO: edit the row at indexPath here
-            let alertController = UIAlertController(title: "Edit Report Name", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Change", style: .default) { [self] (aciton) in
-               
-                self.view.isUserInteractionEnabled = false
-                let text = alertController.textFields!.first!.text!
-                //let db = Firestore.firestore()
-                let newDocument = db.collection("pdfReports").document(userID!).collection("pdfReports").document(self.DocumentIdList[indexPath.section])
-                newDocument.setData(["ReportName" : text, "DocId" : newDocument.documentID],merge: true){ err in
-                    if let err = err {
-                        print("Error adding document: \(err)")
-                        let view = MessageView.viewFromNib(layout: .cardView)
-                        view.configureTheme(.error)
-                        view.configureDropShadow()
-                        view.configureContent(title: "Error", body: "Request Failed!")
-                        SwiftMessages.show(view: view)
-                        self.view.isUserInteractionEnabled = true
-                    } else {
-                        pdfReference[indexPath.section] = text
-                        self.tableView.reloadData()
-                        print("Document added")
-                        let view = MessageView.viewFromNib(layout: .cardView)
-                        view.configureTheme(.success)
-                        view.configureDropShadow()
-                        view.configureContent(title: "Success", body: "Report name change successfully")
-                        SwiftMessages.show(view: view)
-                        self.view.isUserInteractionEnabled = true
-                        
-                    }
-                }
-               
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Report Name"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            alertController.textFields!.first!.text! = self.pdfReference[indexPath.section]
-            self.present(alertController, animated: true, completion: nil)
-        }
-        editAction.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
+//        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
+//            //TODO: edit the row at indexPath here
+//            let alertController = UIAlertController(title: "Edit Report Name", message: "", preferredStyle: .alert)
+//            let withdrawAction = UIAlertAction(title: "Change", style: .default) { [self] (aciton) in
+//
+//                self.view.isUserInteractionEnabled = false
+//                let text = alertController.textFields!.first!.text!
+//                //let db = Firestore.firestore()
+//                let newDocument = db.collection("pdfReports").document(userID!).collection("pdfReports").document(self.DocumentIdList[indexPath.section])
+//                newDocument.setData(["ReportName" : text, "DocId" : newDocument.documentID],merge: true){ err in
+//                    if let err = err {
+//                        print("Error adding document: \(err)")
+//                        let view = MessageView.viewFromNib(layout: .cardView)
+//                        view.configureTheme(.error)
+//                        view.configureDropShadow()
+//                        view.configureContent(title: "Error", body: "Request Failed!")
+//                        SwiftMessages.show(view: view)
+//                        self.view.isUserInteractionEnabled = true
+//                    } else {
+//                        pdfReference[indexPath.section] = text
+//                        self.tableView.reloadData()
+//                        print("Document added")
+//                        let view = MessageView.viewFromNib(layout: .cardView)
+//                        view.configureTheme(.success)
+//                        view.configureDropShadow()
+//                        view.configureContent(title: "Success", body: "Report name change successfully")
+//                        SwiftMessages.show(view: view)
+//                        self.view.isUserInteractionEnabled = true
+//
+//                    }
+//                }
+//
+//            }
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+//            }
+//            alertController.addTextField { (textField) in
+//                textField.placeholder = "Report Name"
+//            }
+//            alertController.addAction(withdrawAction)
+//            alertController.addAction(cancelAction)
+//            alertController.textFields!.first!.text! = self.pdfReference[indexPath.section]
+//            self.present(alertController, animated: true, completion: nil)
+//        }
+//        editAction.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
 
         let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
             self.db.collection("pdfReports").document(self.userID!).collection("pdfReports").whereField("DocId", isEqualTo: self.DocumentIdList[indexPath.section]).getDocuments { (querySnapshot, error) in
@@ -233,8 +233,28 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
             }
         }
         deleteAction.backgroundColor = .red
+        
+        let shareAction = UITableViewRowAction(style: .normal, title: "Share") { (rowAction, indexPath) in
+            let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
+            premixArray = self.copyArray[indexPath.section]["PremixVal"] as! [Double]
+            waterArray = self.copyArray[indexPath.section]["WaterVal"] as! [Double]
+            requiredArray = self.copyArray[indexPath.section]["RequirmentsVal"] as! [Double]
+            rationArray = self.copyArray[indexPath.section]["RationVal"] as! [Double]
+            vcone?.companystr1 = self.companyNameList[indexPath.section]
+            vcone?.animalgroupstr2 = self.animalGroupList[indexPath.section]
+            vcone?.datestr3 = self.pdfDateList[indexPath.section]
+            vcone?.referncestr4 = self.pdfReference[indexPath.section]
+            vcone?.ruminanttypestr5 = self.ruminantTypeList[indexPath.section]
+            vcone?.preparedbystr6 = self.preparedBy[indexPath.section]
+            vcone?.reporttypestr7 = self.reportType[indexPath.section]
+            vcone?.pscistatestr8 = self.psychologicalList[indexPath.section]
+            fromDatabase = "yes"
+            vcone?.shareVariable = "yes"
+            self.navigationController?.pushViewController(vcone!, animated: true)
+        }
+        shareAction.backgroundColor = UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0)
 
-        return [editAction,deleteAction]
+        return [shareAction,deleteAction]
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vcone = storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController

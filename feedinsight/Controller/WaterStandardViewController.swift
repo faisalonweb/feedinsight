@@ -36,13 +36,13 @@ class WaterStandardViewController: UIViewController {
     
     @IBAction func nextOnClick(_ sender: Any) {
         //let requirments = Requirments()
-        Requirments.shared().waterPVal = 0
-        Requirments.shared().waterKVal = 3
-        Requirments.shared().waterSVal = 50
-        Requirments.shared().waterCaVal = 10
-        Requirments.shared().waterClVal = 67
-        Requirments.shared().waterMgVal = 10
-        Requirments.shared().waterNaVal = 260
+        Requirments.shared().waterPVal = 0.07
+        Requirments.shared().waterKVal = 4.20
+        Requirments.shared().waterSVal = 18.90
+        Requirments.shared().waterCaVal = 30
+        Requirments.shared().waterClVal = 36
+        Requirments.shared().waterMgVal = 22
+        Requirments.shared().waterNaVal = 70
         Requirments.shared().waterCalculations()
         let vc = storyboard?.instantiateViewController(withIdentifier: "premixViewController") as? premixViewController
         self.navigationController?.pushViewController(vc!, animated: true)
