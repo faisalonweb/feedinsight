@@ -207,15 +207,18 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                     view.configureDropShadow()
                     view.configureContent(title: "Report Status", body:"Report shared with client." )
                     SwiftMessages.show(view: view)
+                    self.dismiss(animated: true, completion: nil)
                     if let navController = self.navigationController {
                         navController.popViewController(animated: true)
                     }
                 } else {
+                    
                     let view = MessageView.viewFromNib(layout: .cardView)
                     view.configureTheme(.error)
                     view.configureDropShadow()
                     view.configureContent(title: "Report Status", body:"Cancelled by user." )
                     SwiftMessages.show(view: view)
+                    self.dismiss(animated: true, completion: nil)
                     if let navController = self.navigationController {
                         navController.popViewController(animated: true)
                     }
