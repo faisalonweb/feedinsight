@@ -20,7 +20,7 @@ class AnimalSelectionViewController: UIViewController,UICollectionViewDataSource
     @IBOutlet weak var notificaitonViewA: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     let defaults = UserDefaults(suiteName:"User")
-    let textArr = ["Ruminants","Poultry","Aqua","Equines"]
+    let textArr = ["Ruminants","Aqua","Equines","Poultry"]
     let imageArr: [UIImage] = [
         UIImage(named: "ruminants")!,
         UIImage(named: "aqua")!,

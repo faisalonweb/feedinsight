@@ -25,7 +25,6 @@
 		046D6A672497412000F7E494 /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D6A662497412000F7E494 /* CustomPrintPageRenderer.swift */; };
 		047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF042454C83A0067237A /* ProfileLoadViewController.swift */; };
 		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
-		04973F9D243F51D2003CE2E6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 04973F9C243F51D2003CE2E6 /* Podfile */; };
 		04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBE55A246C3BED00B04F4A /* LocationManager.swift */; };
 		04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D11E6F246A7638002D5612 /* GoogleService-Info.plist */; };
 		04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D6A906246BFE3100B37859 /* MakeDropDown.swift */; };
@@ -98,7 +97,10 @@
 		C6113BE72534309B0062EA6B /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6113BE62534309B0062EA6B /* DatabaseViewController.swift */; };
 		C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */; };
 		C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */; };
+		C67E5768257FA48F00708379 /* terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C67E5767257FA48F00708379 /* terms.pdf */; };
 		C6873347253F14BA0069FCAC /* PentagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6873346253F14BA0069FCAC /* PentagonView.swift */; };
+		C6D275C9257EC4FC00A18EC1 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D275C8257EC4FC00A18EC1 /* SidebarView.swift */; };
+		C6D275CC257EC54A00A18EC1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D275CB257EC54A00A18EC1 /* EditProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,7 +123,6 @@
 		046D6A662497412000F7E494 /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
 		047ADF042454C83A0067237A /* ProfileLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadViewController.swift; sourceTree = "<group>"; };
 		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
-		04973F9C243F51D2003CE2E6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		04BBE55A246C3BED00B04F4A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		04D11E6F246A7638002D5612 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D6A906246BFE3100B37859 /* MakeDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDropDown.swift; sourceTree = "<group>"; };
@@ -197,7 +198,10 @@
 		C6113BE62534309B0062EA6B /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadDatabaseTableViewCell.swift; sourceTree = "<group>"; };
 		C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConvertorViewController.swift; sourceTree = "<group>"; };
+		C67E5767257FA48F00708379 /* terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = terms.pdf; sourceTree = "<group>"; };
 		C6873346253F14BA0069FCAC /* PentagonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PentagonView.swift; sourceTree = "<group>"; };
+		C6D275C8257EC4FC00A18EC1 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		C6D275CB257EC54A00A18EC1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedInsight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -270,6 +274,7 @@
 				1A2EBF4525519FF90040403F /* NoProfileViewController.swift */,
 				1A2EBF482551B7620040403F /* waterrationcombineController.swift */,
 				1A2EBF4B2551B7900040403F /* combineemptyController.swift */,
+				C6D275CB257EC54A00A18EC1 /* EditProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				04BBE55A246C3BED00B04F4A /* LocationManager.swift */,
 				04D6A906246BFE3100B37859 /* MakeDropDown.swift */,
 				1A2EBF1425507AF50040403F /* Reachability.swift */,
+				C6D275C8257EC4FC00A18EC1 /* SidebarView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 		1A7F1209243CE34F0008CFC0 = {
 			isa = PBXGroup;
 			children = (
+				C67E5767257FA48F00708379 /* terms.pdf */,
 				1AFE81D824FD25C800DFECC7 /* Athletes.json */,
 				1A7C264025415F4700CE867E /* Athletes1.json */,
 				C6068ABD252F043D004AE2A8 /* pdf1.pdf */,
@@ -302,7 +309,6 @@
 				1A34E5AB251A05610092C05F /* countries.json */,
 				04D6A908246C164600B37859 /* world-cities.txt */,
 				04D11E6F246A7638002D5612 /* GoogleService-Info.plist */,
-				04973F9C243F51D2003CE2E6 /* Podfile */,
 				1A7F1214243CE34F0008CFC0 /* feedinsight */,
 				1A7F1213243CE34F0008CFC0 /* Products */,
 				96996E73AC16B574FB66E8D2 /* Pods */,
@@ -484,10 +490,10 @@
 				04D6A909246C164700B37859 /* world-cities.txt in Resources */,
 				1A7F1222243CE3500008CFC0 /* LaunchScreen.storyboard in Resources */,
 				1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */,
+				C67E5768257FA48F00708379 /* terms.pdf in Resources */,
 				1A34E5AC251A05610092C05F /* countries.json in Resources */,
 				046D6A6124973FC300F7E494 /* last_item.html in Resources */,
 				04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */,
-				04973F9D243F51D2003CE2E6 /* Podfile in Resources */,
 				1AFE81D924FD25C800DFECC7 /* Athletes.json in Resources */,
 				045263FF2451BF23006D67AB /* Rubik-Medium.ttf in Resources */,
 				046A1B962455AAA00012F519 /* profileTitleTableViewCell.xib in Resources */,
@@ -588,6 +594,7 @@
 				0442AD1D248EA9A300A53BA1 /* Task.swift in Sources */,
 				1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */,
 				1AAAF51324B433350010F945 /* loadProfileAnimalsViewController.swift in Sources */,
+				C6D275CC257EC54A00A18EC1 /* EditProfileVC.swift in Sources */,
 				C6113BE72534309B0062EA6B /* DatabaseViewController.swift in Sources */,
 				1AE3587824EA78A600A7E0AA /* waterrationViewController.swift in Sources */,
 				1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */,
@@ -604,6 +611,7 @@
 				1AC88FC92466D4AF00694903 /* PaddingTextField.swift in Sources */,
 				1A4C526C251B3DD40047F2D7 /* ReportViewController.swift in Sources */,
 				1AB9EC892521E31A00072C1C /* PDFTableViewCell.swift in Sources */,
+				C6D275C9257EC4FC00A18EC1 /* SidebarView.swift in Sources */,
 				1A7F122A243E12610008CFC0 /* HomeViewController.swift in Sources */,
 				1A4A899125382D8700CEA4B4 /* ApiCalling.swift in Sources */,
 				1AB9ECB72522029B00072C1C /* PDFViewController.swift in Sources */,
@@ -776,7 +784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.19;
+				MARKETING_VERSION = 5.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -799,7 +807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.19;
+				MARKETING_VERSION = 5.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";

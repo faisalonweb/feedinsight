@@ -16,7 +16,7 @@ class NewRumiViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     
     let defaults = UserDefaults(suiteName:"User")
-    let textArr = ["Ruminants","Poultry","Aqua","Equines"]
+    let textArr = ["Ruminants","Aqua","Equines","Poultry"]
     let imageArr: [UIImage] = [
         UIImage(named: "ruminants")!,
         UIImage(named: "aqua")!,

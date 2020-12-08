@@ -222,6 +222,7 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         DispatchQueue.global().async {
             DispatchQueue.main.async {

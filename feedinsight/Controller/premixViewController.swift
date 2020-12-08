@@ -446,6 +446,32 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let pMacroText22 = Double(totalZn)
             let pMacroText25 = Double(totalMn)
             
+            Requirments.shared().pMacroText1 = String(pMacroText1)
+            Requirments.shared().caMacroText1 = String(pMacroText2)
+            Requirments.shared().mgMacroText1 = String(pMacroText3)
+            Requirments.shared().kMacroText1 = String(pMacroText4)
+            Requirments.shared().naMacroText1 = String(pMacroText5)
+            Requirments.shared().clMacroText1 = String(pMacroText6)
+            Requirments.shared().sMacroText1 = String(pMacroText7)
+            Requirments.shared().coMicroText1 = String(pMacroText8)
+            Requirments.shared().cuMicroText1 = String(pMacroText20)
+            Requirments.shared().seMicroText1 = String(pMacroText21)
+            Requirments.shared().znMicroText1 = String(pMacroText22)
+            Requirments.shared().aiuVitamin1 = String(pMacroText15)
+            Requirments.shared().diuVitamin1 = String(pMacroText16)
+            Requirments.shared().eiuVitamin1 = String(pMacroText17)
+            Requirments.shared().niacinVitamin1 = String(pMacroText18)
+            Requirments.shared().biotinVitamin1 = String(pMacroText19)
+            Requirments.shared().iMicroText1 = String(pMacroText23)
+            Requirments.shared().mnMicroText1 = String(pMacroText25)
+            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
+            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
+            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
+            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
+            
+            
+            
+            
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG
             Requirments.shared().mgMacroText = pMacroText3 * doseinKG

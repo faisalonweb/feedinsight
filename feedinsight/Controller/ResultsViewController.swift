@@ -519,6 +519,7 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
                   "0"]
   
     var nameArrayCopy: [[String]] = []
+    @IBOutlet weak var headerLbl: UILabel!
     
     var combinedArray: [[String]] = []
     
@@ -538,6 +539,26 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        if(pdfType == "pdf1") {
+            if let pdf = Bundle.main.url(forResource: "pdf1", withExtension: "pdf", subdirectory: nil, localization: nil)  {
+                let req = NSURLRequest(url: pdf)
+                webView.load(req as URLRequest)
+                samplepdfview.alpha = 0
+                searchField.alpha = 0
+                headerLbl.text = "Products"
+            }
+        } else if(pdfType == "pdf3") {
+            if let pdf = Bundle.main.url(forResource: "terms", withExtension: "pdf", subdirectory: nil, localization: nil)  {
+                let req = NSURLRequest(url: pdf)
+                webView.load(req as URLRequest)
+                samplepdfview.alpha = 0
+                searchField.alpha = 0
+                headerLbl.text = "Terms and Conditions"
+            }
+        } else if(pdfType == "pdf2") {
+            webView.isHidden =  true
+            headerLbl.text = "Products"
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -567,16 +588,6 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
                 self.profileImage.image = UIImage(data: data!)
             }
             }
-        }
-        if(pdfType == "pdf1") {
-            if let pdf = Bundle.main.url(forResource: "pdf1", withExtension: "pdf", subdirectory: nil, localization: nil)  {
-                let req = NSURLRequest(url: pdf)
-                webView.load(req as URLRequest)
-                samplepdfview.alpha = 0
-                searchField.alpha = 0
-            }
-        } else if(pdfType == "pdf2") {
-            webView.isHidden =  true
         }
     }
     @objc func textFieldDidChange(_ textField: UITextField) {

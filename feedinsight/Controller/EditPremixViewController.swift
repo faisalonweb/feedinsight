@@ -86,11 +86,11 @@ class EditPremixViewController: UIViewController {
             self.FeedType.text! = productList[currentIndex].Type1
             self.dryMatter.text! = productList[currentIndex].DryMatter
             self.caTextField.text! = productList[currentIndex].Ca
-            self.caAbsTextField.text! =  productList[currentIndex].CaAbs
+            //self.caAbsTextField.text! =  productList[currentIndex].CaAbs
             self.pTextField.text! =  productList[currentIndex].P
-            self.pAbsTextField.text! =  productList[currentIndex].PAbs
+            //self.pAbsTextField.text! =  productList[currentIndex].PAbs
             self.mgTextField.text! =  productList[currentIndex].Mg
-            self.mgAbsTextField.text! =  productList[currentIndex].MgAbs
+            //self.mgAbsTextField.text! =  productList[currentIndex].MgAbs
             self.kTextField.text! =  productList[currentIndex].K
             self.sTextField.text! =  productList[currentIndex].S
             self.naTextField.text! =  productList[currentIndex].Na
@@ -107,7 +107,7 @@ class EditPremixViewController: UIViewController {
             self.vitaminD3TextField.text! = productList[currentIndex].VitaminD3
             self.NiacinTextField.text! = productList[currentIndex].Niacin
             self.biotinTextField.text! = productList[currentIndex].Biotin
-            self.referTextField.text! = productList[currentIndex].Reference
+            //self.referTextField.text! = productList[currentIndex].Reference
         }
     }
     @objc func tapOnImageAction() {
@@ -126,11 +126,11 @@ class EditPremixViewController: UIViewController {
                 productList[currentIndex].Type1 = FeedType.text!
                 productList[currentIndex].DryMatter = self.dryMatter.text!
                 productList[currentIndex].Ca = self.caTextField.text!
-                productList[currentIndex].CaAbs = self.caTextField.text!
+                //productList[currentIndex].CaAbs = self.caTextField.text!
                 productList[currentIndex].P = self.pTextField.text!
-                productList[currentIndex].PAbs = self.pAbsTextField.text!
+                //productList[currentIndex].PAbs = self.pAbsTextField.text!
                 productList[currentIndex].Mg = self.mgTextField.text!
-                productList[currentIndex].MgAbs = self.mgAbsTextField.text!
+                //productList[currentIndex].MgAbs = self.mgAbsTextField.text!
                 productList[currentIndex].K = self.kTextField.text!
                 productList[currentIndex].S = self.sTextField.text!
                 productList[currentIndex].Na = self.naTextField.text!
@@ -147,7 +147,7 @@ class EditPremixViewController: UIViewController {
                 productList[currentIndex].VitaminD3 = self.vitaminD3TextField.text!
                 productList[currentIndex].Niacin = self.NiacinTextField.text!
                 productList[currentIndex].Biotin = self.biotinTextField.text!
-                productList[currentIndex].Reference = self.referTextField.text!
+                //productList[currentIndex].Reference = self.referTextField.text!
                 productList.append(contentsOf: addedDataList)
                 writeToFile(location: subUrl!)
                 print("this is the location\(String(describing: subUrl))")
@@ -177,11 +177,11 @@ class EditPremixViewController: UIViewController {
                     addedDataList[0].Type1 = FeedType.text!
                     addedDataList[0].DryMatter = self.dryMatter.text!
                     addedDataList[0].Ca = self.caTextField.text!
-                    addedDataList[0].CaAbs = self.caTextField.text!
+                    //addedDataList[0].CaAbs = self.caTextField.text!
                     addedDataList[0].P = self.pTextField.text!
-                    addedDataList[0].PAbs = self.pAbsTextField.text!
+                    //addedDataList[0].PAbs = self.pAbsTextField.text!
                     addedDataList[0].Mg = self.mgTextField.text!
-                    addedDataList[0].MgAbs = self.mgAbsTextField.text!
+                    //addedDataList[0].MgAbs = self.mgAbsTextField.text!
                     addedDataList[0].K = self.kTextField.text!
                     addedDataList[0].S = self.sTextField.text!
                     addedDataList[0].Na = self.naTextField.text!
@@ -198,7 +198,7 @@ class EditPremixViewController: UIViewController {
                     addedDataList[0].VitaminD3 = self.vitaminD3TextField.text!
                     addedDataList[0].Niacin = self.NiacinTextField.text!
                     addedDataList[0].Biotin = self.biotinTextField.text!
-                    addedDataList[0].Reference = self.referTextField.text!
+                    //addedDataList[0].Reference = self.referTextField.text!
                     productList.append(contentsOf: addedDataList)
                     writeToFile(location: subUrl!)
                     print("this is the location\(String(describing: subUrl))")

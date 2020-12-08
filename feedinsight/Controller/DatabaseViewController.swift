@@ -55,9 +55,11 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
             productList = try decoder.decode([Person].self, from: jsonData)
             let count = productList.count
             nameArray.removeAll()
-            for i in 0...count - 1 {
-                let name = productList[i].FeedName
-                nameArray.append(name)
+            if(count != 0) {
+                for i in 0...count - 1 {
+                    let name = productList[i].FeedName
+                    nameArray.append(name)
+                }
             }
         } catch {}
     }

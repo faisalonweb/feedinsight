@@ -47,6 +47,7 @@ class ReportViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userName.text = userName as? String
             print(userName)

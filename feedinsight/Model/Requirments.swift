@@ -81,6 +81,17 @@ class Requirments {
     var waterNaVal : Double = 0
     var waterClVal : Double = 0
     var waterSVal : Double = 0
+    
+    // Water Values 1
+    var waterPVal1 : String?
+    var waterCaVal1 : String?
+    var waterMgVal1 : String?
+    var waterKVal1 : String?
+    var waterNaVal1 : String?
+    var waterClVal1 : String?
+    var waterSVal1 : String?
+    
+    
     var waterArrayFinal = [Double]()
     // Premix Values
     var productName: String?
@@ -106,6 +117,34 @@ class Requirments {
     var eiuVitamin: Double = 0
     var niacinVitamin: Double = 0
     var biotinVitamin: Double = 0
+    
+    var pMacroText1: String?
+    var caMacroText1: String?
+    var mgMacroText1: String?
+    var kMacroText1: String?
+    var naMacroText1: String?
+    var clMacroText1: String?
+    var sMacroText1: String?
+    var coMicroText1: String?
+    var iMicroText1: String?
+    var mnMicroText1: String?
+    var mnOrganicMicroText1: String?
+    var cuMicroText1: String?
+    var cuOrganicMicroText1: String?
+    
+    
+    
+    var seMicroText1: String?
+    var seOrganicMicroText1: String?
+    var znMicroText1: String?
+    var znOrganicMicroText1: String?
+    var aiuVitamin1: String?
+    var diuVitamin1: String?
+    var eiuVitamin1: String?
+    var niacinVitamin1: String?
+    var biotinVitamin1: String?
+    
+    
     var primexArrayFinal = [Double]()
     
     
@@ -143,16 +182,16 @@ class Requirments {
         for i in 0..<finalDropdownfloatValue.count {
             let pVal = Double(finalProductList[i].P) ?? 0
             rationP = rationP + (valueAfterDryMatter[i] * pVal)
-            let pAbsVal = Double(finalProductList[i].PAbs) ?? 0
-            rationPAbs = rationPAbs + (valueAfterDryMatter[i] * pAbsVal)
+            //let pAbsVal = Double(finalProductList[i].PAbs) ?? 0
+            //rationPAbs = rationPAbs + (valueAfterDryMatter[i] * pAbsVal)
             let caVal = Double(finalProductList[i].Ca) ?? 0
             rationCa = rationCa + (valueAfterDryMatter[i] * caVal)
-            let caAbsVal = Double(finalProductList[i].CaAbs) ?? 0
-            rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * caAbsVal)
+            //let caAbsVal = Double(finalProductList[i].CaAbs) ?? 0
+            //rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * caAbsVal)
             let mgVal = Double(finalProductList[i].Mg) ?? 0
             rationMg = rationMg + (valueAfterDryMatter[i] * mgVal)
-            let mgAbsVal = Double(finalProductList[i].MgAbs) ?? 0
-            rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * mgAbsVal)
+            //let mgAbsVal = Double(finalProductList[i].MgAbs) ?? 0
+            //rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * mgAbsVal)
             let kVal = Double(finalProductList[i].K) ?? 0
             rationK = rationK + (valueAfterDryMatter[i] * kVal)
             let SVal = Double(finalProductList[i].S) ?? 0
@@ -240,6 +279,14 @@ class Requirments {
         primexArrayFinal.append(kMacroText)
     }
     func waterCalculations () {
+        // Water Values
+        waterPVal1 = String(waterPVal)
+        waterCaVal1 = String(waterCaVal)
+        waterMgVal1 = String(waterMgVal)
+        waterKVal1 = String(waterKVal)
+        waterNaVal1 = String(waterNaVal)
+        waterClVal1 = String(waterClVal)
+        waterSVal1 = String(waterSVal)
         let animalType = self.animalKind
         switch animalType {
         case "Dairy Cows" :

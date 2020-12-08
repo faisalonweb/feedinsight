@@ -13,11 +13,8 @@ struct Person : Codable {
     var FeedName: String
     var DryMatter: String
     var Ca:String
-    var CaAbs:String
     var P: String
-    var PAbs: String
     var Mg: String
-    var MgAbs: String
     var K: String
     var S: String
     var Na: String
@@ -34,5 +31,4 @@ struct Person : Codable {
     var VitaminE: String
     var Niacin: String
     var Biotin : String
-    var Reference: String
 }

@@ -12,6 +12,97 @@ var waterArray = [Double]()
 var requiredArray = [Double]()
 var rationArray = [Double]()
 
+
+var names = ["Company Name", "Animal Group", "Physiological State", "Current Body Weight (kg)", "Target Body Weight (kg)", "Days to achieve target body weight", "Days in milk", "Days Pregnant", "Milk Production (kg)","Animal Kind", "Heat Stress", "Metabolic Disorders", "Formulate Anionic Diet?", "Wool Production", "Water Values", "Ca*", "P*", "Mg*", "Na", "Cl", "S", "K", "Premix Value",
+             
+             "P MacroMineral",
+             "ca MacroMineral",
+             "mg MacroMineral",
+             "k MacroMineral",
+             "na MacroMineral",
+             "cl MacroMineral",
+             "s MacroMineral",
+             "I MicroMineral",
+             "co MicroMineral",
+             "cu(inorganic) MicroMineral",
+             "cu(organic) MicroMineral",
+             "Mn(inorganic) MicroMineral",
+             "Mn(organic) MicroMineral",
+             "se(inorganic) MicroMineral",
+             "se(organic) MicroMineral",
+             "zn(inorganic) MicroMineral",
+             "zn(organic) MicroMineral",
+             "Vitamin A",
+             "Vitamin D",
+             "Vitamin E",
+             "niacin",
+             "biotin",
+             "Ration Name"
+]
+
+var addresses = [Requirments.shared().companyName ?? "none" as String,
+                 Requirments.shared().animalGroup ?? "none" as String,
+                 Requirments.shared().physiologicalState ?? "none" as String,
+                 Requirments.shared().currentBodyWeight ?? "none" as String,
+                 Requirments.shared().targetBodyWeight ?? "none" as String,
+                 Requirments.shared().achieveTargetWeight ?? "none" as String,
+                 Requirments.shared().daysInMilk ?? "none" as String,
+                 Requirments.shared().daysPregnant ?? "none" as String,
+                 Requirments.shared().milkProduction ?? "none" as String,
+                 Requirments.shared().animalKind ?? "none" as String,
+                 Requirments.shared().heatStress?.description ?? "none",
+                 Requirments.shared().metaBolic?.description ?? "none",
+                 Requirments.shared().anionic?.description ?? "none",
+                 Requirments.shared().woolProduction?.description ?? "none",
+                 
+                 "Value",
+                 Requirments.shared().waterCaVal1 ?? "none" as String,
+                 Requirments.shared().waterPVal1 ?? "none" as String,
+                 Requirments.shared().waterMgVal1 ?? "none" as String,
+                 Requirments.shared().waterNaVal1 ?? "none" as String,
+                 Requirments.shared().waterClVal1 ?? "none" as String,
+                 Requirments.shared().waterSVal1 ?? "none" as String,
+                 Requirments.shared().waterKVal1 ?? "none" as String,
+                 
+                 "Value",
+                 Requirments.shared().pMacroText1 ?? "none" as String,
+                 Requirments.shared().caMacroText1 ?? "none" as String,
+                 Requirments.shared().mgMacroText1 ?? "none" as String,
+                 Requirments.shared().kMacroText1 ?? "none" as String,
+                 Requirments.shared().naMacroText1 ?? "none" as String,
+                 Requirments.shared().clMacroText1 ?? "none" as String,
+                 Requirments.shared().sMacroText1 ?? "none" as String,
+                 Requirments.shared().iMicroText1 ?? "none" as String,
+                 Requirments.shared().coMicroText1 ?? "none" as String,
+                 Requirments.shared().cuMicroText1 ?? "none" as String,
+                 Requirments.shared().cuOrganicMicroText1  ?? "none" as String,
+                 Requirments.shared().mnMicroText1 ?? "none" as String,
+                 Requirments.shared().mnOrganicMicroText1 ?? "none" as String,
+                 Requirments.shared().seMicroText1 ?? "none" as String,
+                 Requirments.shared().seOrganicMicroText1 ?? "none" as String,
+                 Requirments.shared().znMicroText1 ?? "none" as String,
+                 Requirments.shared().znOrganicMicroText1  ?? "none" as String,
+                 Requirments.shared().aiuVitamin1 ?? "none" as String,
+                 Requirments.shared().diuVitamin1 ?? "none" as String,
+                 Requirments.shared().eiuVitamin1 ?? "none" as String,
+                 Requirments.shared().niacinVitamin1 ?? "none" as String,
+                 Requirments.shared().biotinVitamin1 ?? "none" as String,
+                 
+                 "Value",
+                 
+
+] as [String]
+
+struct TableDataItem {
+    let name: String
+    let address: String
+
+    init(name: String, address: String) {
+        self.name = name
+        self.address = address
+    }
+}
+
 class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var n1: UIView!
@@ -55,7 +146,8 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
     @IBOutlet weak var toxicLabel: UILabel!
     
     // labels outlets
-
+    
+    var pdfView: PDFView!
     let defaults = UserDefaults(suiteName:"User")
     var reportName : String = ""
     var reportDate : String = ""
@@ -88,6 +180,8 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         print("21")
     }
     override func viewDidLoad() {
+        names.append(contentsOf: dropdownvalues)
+        addresses.append(contentsOf: dropdownfloatValue)
         percentageArray.removeAll()
         
         self.navigationController?.isNavigationBarHidden = true
@@ -184,9 +278,93 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         let data = pdfDocument.dataRepresentation()
         let fileManager = FileManager.default
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("documento.pdf")
-        let pdfDoc = data //NSData(contentsOf:URL(string: documentPathToLoad)!)
+        let pdfDoc = data
         fileManager.createFile(atPath: paths as String, contents: pdfDoc as Data?, attributes: nil)
         loadPDFAndShare()
+    }
+    
+    func createUI() {
+        pdfView = PDFView()
+        pdfView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pdfView)
+        pdfView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        pdfView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pdfView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pdfView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+    func createPDF() {
+        var tableDataItems = [TableDataItem]()
+        for itemIndex in 0..<names.count {
+            tableDataItems.append(TableDataItem(name: names[itemIndex], address: addresses[itemIndex]))
+        }
+        let tableDataHeaderTitles =  ["Name", "Value"]
+        let pdfCreator = PDFCreator(tableDataItems: tableDataItems, tableDataHeaderTitles: tableDataHeaderTitles)
+        
+        let data = pdfCreator.create()
+        pdfView.document = PDFDocument(data: data)
+        pdfView.autoScales = true
+        
+        let pdfDocument = PDFDocument(data: data)
+        let data1 = pdfDocument!.dataRepresentation()
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("documento1.pdf")
+        let pdfDoc = data1
+        fileManager.createFile(atPath: paths as String, contents: pdfDoc as Data?, attributes: nil)
+        
+        if MFMailComposeViewController.canSendMail() {
+            let fileManager = FileManager.default
+            let documentoPath = (self.getDirectoryPath() as NSString).appendingPathComponent("documento1.pdf")
+            
+            if fileManager.fileExists(atPath: documentoPath){
+                let documento1 = NSData(contentsOfFile: documentoPath)
+                self.n1.isHidden = true
+                self.n2.isHidden = true
+                self.review.alpha = 0
+                self.supview.alpha = 0
+                self.balview.alpha = 1
+                self.toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
+                self.view.layoutIfNeeded()
+                let screenShot = self.getImageOfScrollView()
+                let composePicker = MFMailComposeViewController()
+                composePicker.mailComposeDelegate = self
+                composePicker.delegate = self
+                composePicker.setToRecipients(["info@totalnutrition.pk"])
+                //composePicker.setToRecipients(["fareedrao7890@gmail.com"])
+                composePicker.setSubject(self.referenceLabel.text!)
+                composePicker.setMessageBody("Prepared by " + self.preparedByLabel.text! , isHTML: false)
+                
+                self.n1.isHidden = true
+                self.n2.isHidden = true
+                review.alpha = 0
+                supview.alpha = 0
+                balview.alpha = 1
+                toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
+                self.view.layoutIfNeeded()
+                let pdfDocument = PDFDocument()
+                let pdfPage = PDFPage(image: screenShot)
+                pdfDocument.insert(pdfPage!, at: 0)
+                let data = pdfDocument.dataRepresentation()
+                let fileManager = FileManager.default
+                let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("documento2.pdf")
+                let pdfDoc = data
+                fileManager.createFile(atPath: paths as String, contents: pdfDoc as Data?, attributes: nil)
+                
+                let documentoPath = (self.getDirectoryPath() as NSString).appendingPathComponent("documento2.pdf")
+                
+                if fileManager.fileExists(atPath: documentoPath){
+                    let documento2 = NSData(contentsOfFile: documentoPath)
+                    composePicker.addAttachmentData(documento1! as Data, mimeType: "application/pdf", fileName: "Animal Data.pdf")
+                    composePicker.addAttachmentData(documento2! as Data, mimeType: "application/pdf", fileName: "Complete Report.pdf")
+                    self.present(composePicker, animated: true, completion: nil)
+                }
+                
+            } else {
+                print("document was not found")
+            }
+        } else {
+            self.showErrorMessage()
+        }
     }
     
     func loadPDFAndShare(){
@@ -237,66 +415,33 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
     }
     
     func sendMail() {
-        savePdf()
-//        self.n1.isHidden = true
-//        self.n2.isHidden = true
-//        review.alpha = 0
-//        supview.alpha = 0
-//        balview.alpha = 1
-//        toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
-//        self.view.layoutIfNeeded()
-//        let screenShot = getImageOfScrollView()
-//        let pdfDocument = PDFDocument()
-//        let pdfPage = PDFPage(image: screenShot)
-//        pdfDocument.insert(pdfPage!, at: 0)
-//        let data = pdfDocument.dataRepresentation()
-//        let documentDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).map(\.path)
-//        let documentDirectory = documentDirectories[0]
-//        let documentDirectoryFilename = URL(fileURLWithPath: documentDirectory).appendingPathComponent("testingPdfCheck.pdf").path
-//        NSData(data: data! as Data).write(toFile: documentDirectoryFilename, atomically: true)
-//
-//
-//        let fileManager = FileManager.default
-//        let documentoPath = documentDirectoryFilename
-//
-//        if fileManager.fileExists(atPath: documentoPath){
-//            let documento = NSData(contentsOfFile: documentoPath)
-//            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [documento!], applicationActivities: nil)
-//            activityViewController.popoverPresentationController?.sourceView=self.view
-//            present(activityViewController, animated: true, completion: nil)
-//        }
-//        else {
-//            print("document was not found")
-//        }
         
-//        if MFMailComposeViewController.canSendMail() {
-//            self.n1.isHidden = true
-//            self.n2.isHidden = true
-//            review.alpha = 0
-//            supview.alpha = 0
-//            balview.alpha = 1
-//            toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
-//            self.view.layoutIfNeeded()
-//            let screenShot = getImageOfScrollView()
-//            let composePicker = MFMailComposeViewController()
-//            composePicker.mailComposeDelegate = self
-//            composePicker.delegate = self
-//            composePicker.setToRecipients([])
-//            composePicker.setSubject(self.referenceLabel.text!)
-//            composePicker.setMessageBody("Prepared by " + self.preparedByLabel.text! , isHTML: false)
-//            let imageData: NSData = screenShot.pngData()! as NSData
-//            composePicker.addAttachmentData(imageData as Data, mimeType: "image/png", fileName: "report.png")
-//            self.present(composePicker, animated: true, completion: nil)
-//        } else {
-//            self .showErrorMessage()
-//        }
+        let alert = UIAlertController(title: "Share Report", message: "Please Select an Option", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Share on Network", style: .default, handler: { (_) in
+            self.savePdf()
+            print("User click Approve button")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Get Recommendation ", style: .default, handler: { (_) in
+            print("User click Edit button")
+            self.createUI()
+            self.createPDF()
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
-//    func showErrorMessage() {
-//        let alertMessage = UIAlertController(title: "Could not sent email", message: "Check if your device have email support!", preferredStyle: UIAlertController.Style.alert)
-//        let action = UIAlertAction(title:"Okay", style: UIAlertAction.Style.default, handler: nil)
-//        alertMessage.addAction(action)
-//        self.present(alertMessage, animated: true, completion: nil)
-//    }
+    func showErrorMessage() {
+        let alertMessage = UIAlertController(title: "Could not sent email", message: "Check if your device have email support!", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title:"Okay", style: UIAlertAction.Style.default, handler: nil)
+        alertMessage.addAction(action)
+        self.present(alertMessage, animated: true, completion: nil)
+    }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result {
         case .cancelled:
@@ -403,6 +548,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         barchartview.rightAxis.axisMinimum = 0
         barchartview.minOffset = 0.0
         barchartview.legend.enabled = false
+        var _ : Bool = [1, 2, 3, 4, 5].allSatisfy { $0 < 10 }
         if(fromDatabase == "yes") {
             let entry1 = BarChartDataEntry(x: 17, yValues: [ ((rationArray[0] / requiredArray[0]) * 100),
                                                              ((premixArray[0] / requiredArray[0]) * 100),0])
@@ -607,6 +753,187 @@ extension UIView {
         let maskLayer = CAShapeLayer()
         maskLayer.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius)).cgPath
         self.layer.mask = maskLayer
+    }
+}
+
+extension Array {
+    func chunkedElements(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}
+
+class PDFCreator: NSObject {
+    let defaultOffset: CGFloat = 20
+    let tableDataHeaderTitles: [String]
+    let tableDataItems: [TableDataItem]
+
+    init(tableDataItems: [TableDataItem], tableDataHeaderTitles: [String]) {
+        self.tableDataItems = tableDataItems
+        self.tableDataHeaderTitles = tableDataHeaderTitles
+    }
+
+    func create() -> Data {
+        // default page format
+        let pageWidth = 8.5 * 72.0
+        let pageHeight = 11 * 72.0
+        let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: UIGraphicsPDFRendererFormat())
+
+        let numberOfElementsPerPage = calculateNumberOfElementsPerPage(with: pageRect)
+        let tableDataChunked: [[TableDataItem]] = tableDataItems.chunkedElements(into: numberOfElementsPerPage)
+
+        let data = renderer.pdfData { context in
+            for tableDataChunk in tableDataChunked {
+                context.beginPage()
+                let cgContext = context.cgContext
+                drawTableHeaderRect(drawContext: cgContext, pageRect: pageRect)
+                drawTableHeaderTitles(titles: tableDataHeaderTitles, drawContext: cgContext, pageRect: pageRect)
+                drawTableContentInnerBordersAndText(drawContext: cgContext, pageRect: pageRect, tableDataItems: tableDataChunk)
+            }
+        }
+        return data
+    }
+
+    func calculateNumberOfElementsPerPage(with pageRect: CGRect) -> Int {
+        let rowHeight = (defaultOffset * 2)
+        let number = Int((pageRect.height - rowHeight) / rowHeight)
+        return number
+    }
+}
+
+// Drawings
+extension PDFCreator {
+    func drawTableHeaderRect(drawContext: CGContext, pageRect: CGRect) {
+        drawContext.saveGState()
+        drawContext.setLineWidth(3.0)
+
+        // Draw header's 1 top horizontal line
+        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset))
+        drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: defaultOffset))
+        drawContext.strokePath()
+
+        // Draw header's 1 bottom horizontal line
+        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset * 2))
+        drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: defaultOffset * 2))
+        drawContext.strokePath()
+
+        // Draw header's 3 vertical lines
+        drawContext.setLineWidth(2.0)
+        drawContext.saveGState()
+        let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
+        for verticalLineIndex in 0..<4 {
+            let tabX = CGFloat(verticalLineIndex) * tabWidth
+            drawContext.move(to: CGPoint(x: tabX + defaultOffset, y: defaultOffset))
+            drawContext.addLine(to: CGPoint(x: tabX + defaultOffset, y: defaultOffset * 2))
+            drawContext.strokePath()
+        }
+
+        drawContext.restoreGState()
+    }
+
+    func drawTableHeaderTitles(titles: [String], drawContext: CGContext, pageRect: CGRect) {
+        // prepare title attributes
+        let textFont = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        let titleAttributes = [
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.font: textFont
+        ]
+
+        // draw titles
+        let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
+        for titleIndex in 0..<titles.count {
+            let attributedTitle = NSAttributedString(string: titles[titleIndex].capitalized, attributes: titleAttributes)
+            let tabX = CGFloat(titleIndex) * tabWidth
+            let textRect = CGRect(x: tabX + defaultOffset,
+                                  y: defaultOffset * 2 / 2,
+                                  width: tabWidth,
+                                  height: defaultOffset * 1)
+            attributedTitle.draw(in: textRect)
+        }
+    }
+
+    func drawTableContentInnerBordersAndText(drawContext: CGContext, pageRect: CGRect, tableDataItems: [TableDataItem]) {
+        drawContext.setLineWidth(1.0)
+        drawContext.saveGState()
+
+        let defaultStartY = defaultOffset * 2
+
+        for elementIndex in 0..<tableDataItems.count {
+            let yPosition = CGFloat(elementIndex) * defaultStartY + defaultStartY
+
+            // Draw content's elements texts
+            let textFont = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            paragraphStyle.lineBreakMode = .byWordWrapping
+            let textAttributes = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: textFont
+            ]
+            
+            let textFont1 = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+            let paragraphStyle1 = NSMutableParagraphStyle()
+            paragraphStyle1.alignment = .center
+            paragraphStyle1.lineBreakMode = .byWordWrapping
+            let textAttributes1 = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle1,
+                NSAttributedString.Key.font: textFont1
+            ]
+            
+            let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
+            for titleIndex in 0..<2 {
+                // 14,22,45
+                if(elementIndex == 14 || elementIndex == 22 || elementIndex == 45) {
+                    var attributedText = NSAttributedString(string: "", attributes: textAttributes1)
+                    switch titleIndex {
+                    case 0: attributedText = NSAttributedString(string: tableDataItems[elementIndex].name, attributes: textAttributes)
+                    case 1: attributedText = NSAttributedString(string: tableDataItems[elementIndex].address, attributes: textAttributes)
+                    default:
+                        break
+                    }
+                    let tabX = CGFloat(titleIndex) * tabWidth
+                    let textRect = CGRect(x: tabX + defaultOffset,
+                                          y: yPosition + defaultOffset,
+                                          width: tabWidth,
+                                          height: defaultOffset * 2)
+                    attributedText.draw(in: textRect)
+                } else {
+                    var attributedText = NSAttributedString(string: "", attributes: textAttributes)
+                    switch titleIndex {
+                    case 0: attributedText = NSAttributedString(string: tableDataItems[elementIndex].name, attributes: textAttributes)
+                    case 1: attributedText = NSAttributedString(string: tableDataItems[elementIndex].address, attributes: textAttributes)
+                    default:
+                        break
+                    }
+                    let tabX = CGFloat(titleIndex) * tabWidth
+                    let textRect = CGRect(x: tabX + defaultOffset,
+                                          y: yPosition + defaultOffset,
+                                          width: tabWidth,
+                                          height: defaultOffset * 2)
+                    attributedText.draw(in: textRect)
+                }
+                
+            }
+
+            // Draw content's 3 vertical lines
+            for verticalLineIndex in 0..<4 {
+                let tabX = CGFloat(verticalLineIndex) * tabWidth
+                drawContext.move(to: CGPoint(x: tabX + defaultOffset, y: yPosition))
+                drawContext.addLine(to: CGPoint(x: tabX + defaultOffset, y: yPosition + defaultStartY))
+                drawContext.strokePath()
+            }
+
+            // Draw content's element bottom horizontal line
+            drawContext.move(to: CGPoint(x: defaultOffset, y: yPosition + defaultStartY))
+            drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: yPosition + defaultStartY))
+            drawContext.strokePath()
+        }
+        drawContext.restoreGState()
     }
 }
 
