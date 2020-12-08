@@ -374,7 +374,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         
         if fileManager.fileExists(atPath: documentoPath){
             let documento = NSData(contentsOfFile: documentoPath)
-            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [documento!], applicationActivities: nil)
+            let url = URL(fileURLWithPath: NSTemporaryDirectory() + ("Complete Report.pdf"))
+            documento?.write(to: url, atomically: false)
+            
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView=self.view
             present(activityViewController, animated: true, completion: nil)
             

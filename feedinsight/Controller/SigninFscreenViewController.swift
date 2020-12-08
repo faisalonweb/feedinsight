@@ -12,6 +12,7 @@
         @IBOutlet weak var forgetpasswordLabel: UILabel!
         override func viewDidLoad() {
             super.viewDidLoad()
+            self.tabBarController?.tabBar.isHidden = true
             self.navigationController?.isNavigationBarHidden = true
             self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
