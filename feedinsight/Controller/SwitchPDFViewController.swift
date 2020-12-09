@@ -393,7 +393,6 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                         navController.popViewController(animated: true)
                     }
                 } else {
-                    
                     let view = MessageView.viewFromNib(layout: .cardView)
                     view.configureTheme(.error)
                     view.configureDropShadow()
