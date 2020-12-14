@@ -46,7 +46,7 @@ class Requirments {
     var DMI : Double!
     var reqArrayFinal = [Double]()
     // Ration Data Array
-    var finalProductList: [Person] = []
+    var finalProductList: [DatabaseModel] = []
     var finalDropdownfloatValue = [String]()
     var valueAfterDryMatter = [Double]()
     // Ration Values
@@ -93,6 +93,7 @@ class Requirments {
     
     
     var waterArrayFinal = [Double]()
+    var OriginalwaterArrayFinal = [String]()
     // Premix Values
     var productName: String?
     var productDose: Double = 0
@@ -146,7 +147,7 @@ class Requirments {
     
     
     var primexArrayFinal = [Double]()
-    
+    var OriginalprimexArrayFinal = [String]()
     
     func calculateRequirmentsData() {
         // multiple factor
@@ -257,7 +258,6 @@ class Requirments {
     }
     
     func appendPremixValues () {
-        // multiple factor
         primexArrayFinal.removeAll()
         primexArrayFinal.append(aiuVitamin)
         primexArrayFinal.append(diuVitamin)
@@ -278,6 +278,33 @@ class Requirments {
         primexArrayFinal.append(sMacroText)
         primexArrayFinal.append(kMacroText)
     }
+    
+    func appendOriginalPremixValues () {
+        OriginalprimexArrayFinal.removeAll()
+        OriginalprimexArrayFinal.append(pMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(caMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(mgMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(kMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(naMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(clMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(sMacroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(iMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(coMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(cuMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(cuOrganicMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(mnMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(mnOrganicMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(seMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(seOrganicMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(znMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(znOrganicMicroText1 ?? "0.0")
+        OriginalprimexArrayFinal.append(aiuVitamin1 ?? "0.0")
+        OriginalprimexArrayFinal.append(diuVitamin1 ?? "0.0")
+        OriginalprimexArrayFinal.append(eiuVitamin1 ?? "0.0")
+        OriginalprimexArrayFinal.append(niacinVitamin1 ?? "0.0")
+        OriginalprimexArrayFinal.append(biotinVitamin1 ?? "0.0")
+    }
+    
     func waterCalculations () {
         // Water Values
         waterPVal1 = String(waterPVal)
@@ -287,6 +314,15 @@ class Requirments {
         waterNaVal1 = String(waterNaVal)
         waterClVal1 = String(waterClVal)
         waterSVal1 = String(waterSVal)
+        OriginalwaterArrayFinal.removeAll()
+        OriginalwaterArrayFinal.append(waterCaVal1 ?? "0.0")
+        OriginalwaterArrayFinal.append(waterPVal1 ?? "0.0")
+        OriginalwaterArrayFinal.append(waterMgVal1 ?? "0.0")
+        OriginalwaterArrayFinal.append(waterNaVal1 ?? "0.0")
+        OriginalwaterArrayFinal.append(waterClVal1 ?? "0.0")
+        OriginalwaterArrayFinal.append(waterSVal1 ?? "0.0")
+        OriginalwaterArrayFinal.append(waterKVal1 ?? "0.0")
+        
         let animalType = self.animalKind
         switch animalType {
         case "Dairy Cows" :

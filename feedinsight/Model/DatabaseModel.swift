@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Person : Codable {
+struct DatabaseModel : Codable {
     var Type1: String
     var FeedName: String
     var DryMatter: String

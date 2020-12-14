@@ -454,23 +454,20 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().clMacroText1 = String(pMacroText6)
             Requirments.shared().sMacroText1 = String(pMacroText7)
             Requirments.shared().coMicroText1 = String(pMacroText8)
-            Requirments.shared().cuMicroText1 = String(pMacroText20)
-            Requirments.shared().seMicroText1 = String(pMacroText21)
-            Requirments.shared().znMicroText1 = String(pMacroText22)
+            Requirments.shared().cuMicroText1 = cuMicroText.text
+            Requirments.shared().seMicroText1 = seMicroText.text
+            Requirments.shared().znMicroText1 = znMicroText.text!
             Requirments.shared().aiuVitamin1 = String(pMacroText15)
             Requirments.shared().diuVitamin1 = String(pMacroText16)
             Requirments.shared().eiuVitamin1 = String(pMacroText17)
             Requirments.shared().niacinVitamin1 = String(pMacroText18)
             Requirments.shared().biotinVitamin1 = String(pMacroText19)
             Requirments.shared().iMicroText1 = String(pMacroText23)
-            Requirments.shared().mnMicroText1 = String(pMacroText25)
+            Requirments.shared().mnMicroText1 = mnMicroText.text!
             Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
             Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
             Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
             Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
-            
-            
-            
             
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -490,7 +487,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
             Requirments.shared().iMicroText = pMacroText23 * doseinKG
             Requirments.shared().mnMicroText = pMacroText25 * doseinKG
-            
+            Requirments.shared().appendOriginalPremixValues()
             Requirments.shared().appendPremixValues()
             
             /*
@@ -509,13 +506,38 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 self.view.isUserInteractionEnabled = false
                 let text = alertController.textFields!.first!.text!
                 let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
-                newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
+                newDocument.setData(["ReportName" : text,
+                                     "currentdatetime": datetimestamp,
+                                     "DocId": newDocument.documentID,
+                                     "CompanyName":Requirments.shared().companyName!,
                                      "ruminantType":Requirments.shared().animalKind!,
                                      "ruminantGroup":Requirments.shared().animalGroup!,
                                      "ruminantState":Requirments.shared().physiologicalState!,
                                      "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
-                                     "reportType":"Premix Check"
-                                     ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
+                                     "reportType":"Premix Check",
+                                     "RequirmentsVal": Requirments.shared().reqArrayFinal,
+                                     "RationVal": Requirments.shared().rationArrayFinal ,
+                                     "WaterVal" : Requirments.shared().waterArrayFinal,
+                                     "PremixVal": Requirments.shared().primexArrayFinal,
+                                     "originalWaterArray" : Requirments.shared().OriginalwaterArrayFinal,
+                                     "originalPremixArray" : Requirments.shared().OriginalprimexArrayFinal,
+                                     "originalDropDownvalues" : dropdownvalues,
+                                     "originalDropDownfloatvalues" : dropdownfloatValue,
+                                     "companyName1": Requirments.shared().companyName! as String,
+                                     "animalGroup1": Requirments.shared().animalGroup! as String,
+                                     "physiologicalState1": Requirments.shared().physiologicalState! as String,
+                                     "currentBodyWeight1": Requirments.shared().currentBodyWeight! as String,
+                                     "targetBodyWeight1": Requirments.shared().targetBodyWeight! as String,
+                                     "achieveTargetWeight1": Requirments.shared().achieveTargetWeight! as String,
+                                     "daysInMilk1": Requirments.shared().daysInMilk! as String,
+                                     "daysPregnant1": Requirments.shared().daysPregnant! as String,
+                                     "milkProduction1": Requirments.shared().milkProduction! as String,
+                                     "animalKind1": Requirments.shared().animalKind! as String,
+                                     "heatStress1": Requirments.shared().heatStress?.description ?? "none",
+                                     "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
+                                     "anionic1": Requirments.shared().anionic?.description ?? "none",
+                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none"
+                ]){ err in
                     if let err = err {
                         SVProgressHUD.showError(withStatus: "Error")
                         print("Error adding document: \(err)")
@@ -581,6 +603,29 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let pMacroText21 = Double(totalSe)
             let pMacroText22 = Double(totalZn)
             let pMacroText25 = Double(totalMn)
+            
+            Requirments.shared().pMacroText1 = String(pMacroText1)
+            Requirments.shared().caMacroText1 = String(pMacroText2)
+            Requirments.shared().mgMacroText1 = String(pMacroText3)
+            Requirments.shared().kMacroText1 = String(pMacroText4)
+            Requirments.shared().naMacroText1 = String(pMacroText5)
+            Requirments.shared().clMacroText1 = String(pMacroText6)
+            Requirments.shared().sMacroText1 = String(pMacroText7)
+            Requirments.shared().coMicroText1 = String(pMacroText8)
+            Requirments.shared().cuMicroText1 = cuMicroText.text
+            Requirments.shared().seMicroText1 = seMicroText.text
+            Requirments.shared().znMicroText1 = znMicroText.text!
+            Requirments.shared().aiuVitamin1 = String(pMacroText15)
+            Requirments.shared().diuVitamin1 = String(pMacroText16)
+            Requirments.shared().eiuVitamin1 = String(pMacroText17)
+            Requirments.shared().niacinVitamin1 = String(pMacroText18)
+            Requirments.shared().biotinVitamin1 = String(pMacroText19)
+            Requirments.shared().iMicroText1 = String(pMacroText23)
+            Requirments.shared().mnMicroText1 = mnMicroText.text!
+            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
+            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
+            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
+            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
             
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -654,6 +699,28 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let pMacroText22 = Double(totalZn)
             let pMacroText25 = Double(totalMn)
             
+            Requirments.shared().pMacroText1 = String(pMacroText1)
+            Requirments.shared().caMacroText1 = String(pMacroText2)
+            Requirments.shared().mgMacroText1 = String(pMacroText3)
+            Requirments.shared().kMacroText1 = String(pMacroText4)
+            Requirments.shared().naMacroText1 = String(pMacroText5)
+            Requirments.shared().clMacroText1 = String(pMacroText6)
+            Requirments.shared().sMacroText1 = String(pMacroText7)
+            Requirments.shared().coMicroText1 = String(pMacroText8)
+            Requirments.shared().cuMicroText1 = cuMicroText.text
+            Requirments.shared().seMicroText1 = seMicroText.text
+            Requirments.shared().znMicroText1 = znMicroText.text!
+            Requirments.shared().aiuVitamin1 = String(pMacroText15)
+            Requirments.shared().diuVitamin1 = String(pMacroText16)
+            Requirments.shared().eiuVitamin1 = String(pMacroText17)
+            Requirments.shared().niacinVitamin1 = String(pMacroText18)
+            Requirments.shared().biotinVitamin1 = String(pMacroText19)
+            Requirments.shared().iMicroText1 = String(pMacroText23)
+            Requirments.shared().mnMicroText1 = mnMicroText.text!
+            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
+            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
+            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
+            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
             
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -675,6 +742,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().mnMicroText = pMacroText25 * doseinKG
             
             Requirments.shared().appendPremixValues()
+            Requirments.shared().appendOriginalPremixValues()
+            
             let currentDateTime = Date()
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
@@ -687,13 +756,39 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 self.view.isUserInteractionEnabled = false
                 let text = alertController.textFields!.first!.text!
                 let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
-                newDocument.setData(["ReportName" : text,"currentdatetime": datetimestamp , "DocId": newDocument.documentID,"CompanyName":Requirments.shared().companyName!,
+                newDocument.setData(["ReportName" : text,
+                                     "currentdatetime": datetimestamp,
+                                     "DocId": newDocument.documentID,
+                                     "CompanyName":Requirments.shared().companyName!,
                                      "ruminantType":Requirments.shared().animalKind!,
                                      "ruminantGroup":Requirments.shared().animalGroup!,
                                      "ruminantState":Requirments.shared().physiologicalState!,
                                      "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
-                                     "reportType":"Premix Check"
-                                     ,"RequirmentsVal": Requirments.shared().reqArrayFinal,"RationVal": Requirments.shared().rationArrayFinal ,"WaterVal" : Requirments.shared().waterArrayFinal,"PremixVal": Requirments.shared().primexArrayFinal]){ err in
+                                     "reportType":"Premix Check",
+                                     "RequirmentsVal": Requirments.shared().reqArrayFinal,
+                                     "RationVal": Requirments.shared().rationArrayFinal ,
+                                     "WaterVal" : Requirments.shared().waterArrayFinal,
+                                     "PremixVal": Requirments.shared().primexArrayFinal,
+                                     "originalWaterArray" : Requirments.shared().OriginalwaterArrayFinal,
+                                     "originalPremixArray" : Requirments.shared().OriginalprimexArrayFinal,
+                                     "originalDropDownvalues" : dropdownvalues,
+                                     "originalDropDownfloatvalues" : dropdownfloatValue,
+                                     "companyName1": Requirments.shared().companyName! as String,
+                                     "animalGroup1": Requirments.shared().animalGroup! as String,
+                                     "physiologicalState1": Requirments.shared().physiologicalState! as String,
+                                     "currentBodyWeight1": Requirments.shared().currentBodyWeight! as String,
+                                     "targetBodyWeight1": Requirments.shared().targetBodyWeight! as String,
+                                     "achieveTargetWeight1": Requirments.shared().achieveTargetWeight! as String,
+                                     "daysInMilk1": Requirments.shared().daysInMilk! as String,
+                                     "daysPregnant1": Requirments.shared().daysPregnant! as String,
+                                     "milkProduction1": Requirments.shared().milkProduction! as String,
+                                     "animalKind1": Requirments.shared().animalKind! as String,
+                                     "heatStress1": Requirments.shared().heatStress?.description ?? "none",
+                                     "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
+                                     "anionic1": Requirments.shared().anionic?.description ?? "none",
+                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
+                                     
+                ]) { err in
                     if let err = err {
                         SVProgressHUD.showError(withStatus: "Error")
                         print("Error adding document: \(err)")
@@ -758,6 +853,28 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let pMacroText22 = Double(totalZn)
             let pMacroText25 = Double(totalMn)
             
+            Requirments.shared().pMacroText1 = String(pMacroText1)
+            Requirments.shared().caMacroText1 = String(pMacroText2)
+            Requirments.shared().mgMacroText1 = String(pMacroText3)
+            Requirments.shared().kMacroText1 = String(pMacroText4)
+            Requirments.shared().naMacroText1 = String(pMacroText5)
+            Requirments.shared().clMacroText1 = String(pMacroText6)
+            Requirments.shared().sMacroText1 = String(pMacroText7)
+            Requirments.shared().coMicroText1 = String(pMacroText8)
+            Requirments.shared().cuMicroText1 = cuMicroText.text
+            Requirments.shared().seMicroText1 = seMicroText.text
+            Requirments.shared().znMicroText1 = znMicroText.text!
+            Requirments.shared().aiuVitamin1 = String(pMacroText15)
+            Requirments.shared().diuVitamin1 = String(pMacroText16)
+            Requirments.shared().eiuVitamin1 = String(pMacroText17)
+            Requirments.shared().niacinVitamin1 = String(pMacroText18)
+            Requirments.shared().biotinVitamin1 = String(pMacroText19)
+            Requirments.shared().iMicroText1 = String(pMacroText23)
+            Requirments.shared().mnMicroText1 = mnMicroText.text!
+            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
+            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
+            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
+            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
             
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG

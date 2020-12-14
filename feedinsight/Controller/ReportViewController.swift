@@ -32,6 +32,41 @@ class ReportViewController: UIViewController {
     private var preparedStation = [String]()
     private var pdfReportTypeStation = [String]()
     private var documentIdStation = [String]()
+    
+    
+    private var companyName1Station = [String]()
+    private var animalGroup1Station = [String]()
+    private var physiologicalState1Station = [String]()
+    private var currentBodyWeight1Station = [String]()
+    private var targetBodyWeight1Station = [String]()
+    private var achieveTargetWeight1Station = [String]()
+    private var daysInMilk1Station = [String]()
+    private var daysPregnant1Station = [String]()
+    private var milkProduction1Station = [String]()
+    private var animalKind1Station = [String]()
+    private var heatStress1Station = [String]()
+    private var metaBolic1Station = [String]()
+    private var anionic1Station = [String]()
+    private var woolProduction1Station = [String]()
+    
+    
+    var companyName1List = [String]()
+    var animalGroup1List = [String]()
+    var physiologicalState1List = [String]()
+    var currentBodyWeight1List = [String]()
+    var targetBodyWeight1List = [String]()
+    var achieveTargetWeight1List = [String]()
+    var daysInMilk1List = [String]()
+    var daysPregnant1List = [String]()
+    var milkProduction1List = [String]()
+    var animalKind1List = [String]()
+    var heatStress1List = [String]()
+    var metaBolic1List = [String]()
+    var anionic1List = [String]()
+    var woolProduction1List = [String]()
+    
+    
+    
     let defaults = UserDefaults(suiteName:"User")
     var companyNameList = [String]()
     var ruminantTypeList = [String]()
@@ -104,9 +139,55 @@ class ReportViewController: UIViewController {
                         self.pdfReportTypeStation.insert(pdfReportType, at: i)
                         self.pdfDatestation.insert(timestamp, at: i)
                         self.documentIdStation.insert(documentiddata, at: i)
+                        
+                        let companyName1 = documentData["companyName1"] as? String ?? "Anonymous"
+                        let animalGroup1 = documentData["animalGroup1"] as? String ?? "Anonymous"
+                        let physiologicalState1 = documentData["physiologicalState1"] as? String ?? "Anonymous"
+                        let currentBodyWeight1 = documentData["currentBodyWeight1"] as? String ?? "Anonymous"
+                        let targetBodyWeight1 = documentData["targetBodyWeight1"] as? String ?? "Anonymous"
+                        let achieveTargetWeight1 = documentData["achieveTargetWeight1"] as? String ?? "Anonymous"
+                        let daysInMilk1 = documentData["daysInMilk1"] as? String ?? "Anonymous"
+                        let daysPregnant1 = documentData["daysPregnant1"] as? String ?? "Anonymous"
+                        let milkProduction1 = documentData["milkProduction1"] as? String ?? "Anonymous"
+                        let animalKind1 = documentData["animalKind1"] as? String ?? "Anonymous"
+                        let heatStress1 = documentData["heatStress1"] as? String ?? "Anonymous"
+                        let metaBolic1 = documentData["metaBolic1"] as? String ?? "Anonymous"
+                        let anionic1 = documentData["anionic1"] as? String ?? "Anonymous"
+                        let woolProduction1 = documentData["woolProduction1"] as? String ?? "Anonymous"
+                        
+                        self.companyName1Station.insert(companyName1, at: i)
+                        self.animalGroup1Station.insert(animalGroup1, at: i)
+                        self.physiologicalState1Station.insert(physiologicalState1, at: i)
+                        self.currentBodyWeight1Station.insert(currentBodyWeight1, at: i)
+                        self.targetBodyWeight1Station.insert(targetBodyWeight1, at: i)
+                        self.achieveTargetWeight1Station.insert(achieveTargetWeight1, at: i)
+                        self.daysInMilk1Station.insert(daysInMilk1, at: i)
+                        self.daysPregnant1Station.insert(daysPregnant1, at: i)
+                        self.milkProduction1Station.insert(milkProduction1, at: i)
+                        self.animalKind1Station.insert(animalKind1, at: i)
+                        self.heatStress1Station.insert(heatStress1, at: i)
+                        self.metaBolic1Station.insert(metaBolic1, at: i)
+                        self.anionic1Station.insert(anionic1, at: i)
+                        self.woolProduction1Station.insert(woolProduction1, at: i)
                         i = i + 1
                         self.copyArray.append(documentData as NSDictionary)
                     }
+                    
+                    self.companyName1List.append(contentsOf: self.companyName1Station)
+                    self.animalGroup1List.append(contentsOf: self.animalGroup1Station)
+                    self.physiologicalState1List.append(contentsOf: self.physiologicalState1Station)
+                    self.currentBodyWeight1List.append(contentsOf: self.currentBodyWeight1Station)
+                    self.targetBodyWeight1List.append(contentsOf: self.targetBodyWeight1Station)
+                    self.achieveTargetWeight1List.append(contentsOf: self.achieveTargetWeight1Station)
+                    self.daysInMilk1List.append(contentsOf: self.daysInMilk1Station)
+                    self.daysPregnant1List.append(contentsOf: self.daysPregnant1Station)
+                    self.milkProduction1List.append(contentsOf: self.milkProduction1Station)
+                    self.animalKind1List.append(contentsOf: self.animalKind1Station)
+                    self.heatStress1List.append(contentsOf: self.heatStress1Station)
+                    self.metaBolic1List.append(contentsOf: self.metaBolic1Station)
+                    self.anionic1List.append(contentsOf: self.anionic1Station)
+                    self.woolProduction1List.append(contentsOf: self.woolProduction1Station)
+                    
                     self.companyNameList.append(contentsOf: self.companyNameStation)
                     self.ruminantTypeList.append(contentsOf: self.ruminantTypeStation)
                     self.animalGroupList.append(contentsOf: self.animalGroupStation)
@@ -220,6 +301,21 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
                         }
                     }
                 }
+                
+                self.companyName1List.remove(at: indexPath.section)
+                self.animalGroup1List.remove(at: indexPath.section)
+                self.physiologicalState1List.remove(at: indexPath.section)
+                self.currentBodyWeight1List.remove(at: indexPath.section)
+                self.targetBodyWeight1List.remove(at: indexPath.section)
+                self.achieveTargetWeight1List.remove(at: indexPath.section)
+                self.daysInMilk1List.remove(at: indexPath.section)
+                self.daysPregnant1List.remove(at: indexPath.section)
+                self.milkProduction1List.remove(at: indexPath.section)
+                self.animalKind1List.remove(at: indexPath.section)
+                self.heatStress1List.remove(at: indexPath.section)
+                self.metaBolic1List.remove(at: indexPath.section)
+                self.anionic1List.remove(at: indexPath.section)
+                self.woolProduction1List.remove(at: indexPath.section)
                 self.companyNameList.remove(at: indexPath.section)
                 self.ruminantTypeList.remove(at: indexPath.section)
                 self.animalGroupList.remove(at: indexPath.section)
@@ -229,6 +325,7 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
                 self.preparedBy.remove(at: indexPath.section)
                 self.reportType.remove(at: indexPath.section)
                 self.DocumentIdList.remove(at: indexPath.section)
+                self.copyArray.remove(at: indexPath.section)
                 if(self.companyNameList.count == 0) {
                     self.tableView.alpha = 0
                     self.hiddenView.alpha = 1
@@ -253,6 +350,10 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
             waterArray = self.copyArray[indexPath.section]["WaterVal"] as! [Double]
             requiredArray = self.copyArray[indexPath.section]["RequirmentsVal"] as! [Double]
             rationArray = self.copyArray[indexPath.section]["RationVal"] as! [Double]
+            Originalwaterarray = self.copyArray[indexPath.section]["originalWaterArray"] as! [String]
+            Originalpremixarray = self.copyArray[indexPath.section]["originalPremixArray"] as! [String]
+            Originaldropdownvalues = self.copyArray[indexPath.section]["originalDropDownvalues"] as! [String]
+            OriginaldropdownfloatValue = self.copyArray[indexPath.section]["originalDropDownfloatvalues"] as! [String]
             vcone?.companystr1 = self.companyNameList[indexPath.section]
             vcone?.animalgroupstr2 = self.animalGroupList[indexPath.section]
             vcone?.datestr3 = self.pdfDateList[indexPath.section]
@@ -261,6 +362,20 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
             vcone?.preparedbystr6 = self.preparedBy[indexPath.section]
             vcone?.reporttypestr7 = self.reportType[indexPath.section]
             vcone?.pscistatestr8 = self.psychologicalList[indexPath.section]
+            vcone?.companyName1 = self.companyName1List[indexPath.section]
+            vcone?.animalGroup1 = self.animalGroup1List[indexPath.section]
+            vcone?.physiologicalState1 = self.physiologicalState1List[indexPath.section]
+            vcone?.currentBodyWeight1 = self.currentBodyWeight1List[indexPath.section]
+            vcone?.targetBodyWeight1 = self.targetBodyWeight1List[indexPath.section]
+            vcone?.achieveTargetWeight1 = self.achieveTargetWeight1List[indexPath.section]
+            vcone?.daysInMilk1  = self.daysInMilk1List[indexPath.section]
+            vcone?.daysPregnant1 = self.daysPregnant1List[indexPath.section]
+            vcone?.milkProduction1 = self.milkProduction1List[indexPath.section]
+            vcone?.animalKind1 = self.animalKind1List[indexPath.section]
+            vcone?.heatStress1 = self.heatStress1List[indexPath.section]
+            vcone?.metaBolic1 = self.metaBolic1List[indexPath.section]
+            vcone?.anionic1 = self.anionic1List[indexPath.section]
+            vcone?.woolProduction1 = self.woolProduction1List[indexPath.section]
             fromDatabase = "yes"
             vcone?.shareVariable = "yes"
             self.navigationController?.pushViewController(vcone!, animated: true)
@@ -275,6 +390,24 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
         waterArray = copyArray[indexPath.section]["WaterVal"] as! [Double]
         requiredArray = copyArray[indexPath.section]["RequirmentsVal"] as! [Double]
         rationArray = copyArray[indexPath.section]["RationVal"] as! [Double]
+        Originalwaterarray = copyArray[indexPath.section]["originalWaterArray"] as! [String]
+        Originalpremixarray = copyArray[indexPath.section]["originalPremixArray"] as! [String]
+        Originaldropdownvalues = copyArray[indexPath.section]["originalDropDownvalues"] as! [String]
+        OriginaldropdownfloatValue = copyArray[indexPath.section]["originalDropDownfloatvalues"] as! [String]
+        vcone?.companyName1 = self.companyName1List[indexPath.section]
+        vcone?.animalGroup1 = self.animalGroup1List[indexPath.section]
+        vcone?.physiologicalState1 = self.physiologicalState1List[indexPath.section]
+        vcone?.currentBodyWeight1 = self.currentBodyWeight1List[indexPath.section]
+        vcone?.targetBodyWeight1 = self.targetBodyWeight1List[indexPath.section]
+        vcone?.achieveTargetWeight1 = self.achieveTargetWeight1List[indexPath.section]
+        vcone?.daysInMilk1  = self.daysInMilk1List[indexPath.section]
+        vcone?.daysPregnant1 = self.daysPregnant1List[indexPath.section]
+        vcone?.milkProduction1 = self.milkProduction1List[indexPath.section]
+        vcone?.animalKind1 = self.animalKind1List[indexPath.section]
+        vcone?.heatStress1 = self.heatStress1List[indexPath.section]
+        vcone?.metaBolic1 = self.metaBolic1List[indexPath.section]
+        vcone?.anionic1 = self.anionic1List[indexPath.section]
+        vcone?.woolProduction1 = self.woolProduction1List[indexPath.section]
         vcone?.companystr1 = companyNameList[indexPath.section]
         vcone?.animalgroupstr2 = animalGroupList[indexPath.section]
         vcone?.datestr3 = pdfDateList[indexPath.section]

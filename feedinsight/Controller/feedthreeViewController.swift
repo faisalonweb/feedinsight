@@ -22,11 +22,11 @@ var fm = FileManager.default
 var fresult: Bool = false
 var mainUrl: URL? = Bundle.main.url(forResource: "Athletes", withExtension: "json")
 var mainUrl1: URL? = Bundle.main.url(forResource: "Athletes1", withExtension: "json")
-var productList: [Person] = []
+var productList: [DatabaseModel] = []
 var currentIndex = 0
 var dropdownvalues = [String]()
 var dropdownfloatValue = [String]()
-var selectedProductList: [Person] = []
+var selectedProductList: [DatabaseModel] = []
 
 class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableViewDataSource, feedthreeTableViewCellDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate {
     
@@ -79,7 +79,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             let jsonData = try Data(contentsOf: pathName)
             let decoder = JSONDecoder()
             productList.removeAll()
-            productList = try decoder.decode([Person].self, from: jsonData)
+            productList = try decoder.decode([DatabaseModel].self, from: jsonData)
             let count = productList.count
             nameArray.removeAll()
             if(count != 0) {

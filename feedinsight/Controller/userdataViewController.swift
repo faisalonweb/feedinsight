@@ -233,13 +233,10 @@ class userdataViewController: UIViewController , UICollectionViewDataSource , UI
             }
         }
         if let userName = defaults!.value(forKey: dKeys.keyusername){
-            
             self.username.text = userName as? String
             self.personName.text = userName as? String
-            print(userName)
         }
         if let userEmail = defaults!.value(forKey: dKeys.keyuseremail){
-            
             self.useremail.text = userEmail as? String
             print(userEmail)
         }

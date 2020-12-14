@@ -19,6 +19,7 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
     
     let animalNameArray: [String] = ["Ruminants","Poultry","Aqua","Equines"]
     @IBOutlet weak var pickani: UIButton!
+    @IBOutlet weak var termsLabel: ActiveLabel!
     @IBOutlet weak var collectionview: UICollectionView!
     @IBOutlet weak var pickanimal: DropDown!
     @IBOutlet weak var pickrole: UITextField!
@@ -105,7 +106,14 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         UIImage(named: "feedmanufacturing-selected")!
     ]
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    func termsSelection(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let OpenTermsOfUse = storyboard.instantiateViewController(withIdentifier: "OpenTermsOfUse") as! OpenTermsOfUse
+        self.navigationController?.pushViewController(OpenTermsOfUse, animated: true)
+    }
     private func setCurrentLocation() {
         guard let exposedLocation = self.locationManager.exposedLocation else {
             print("*** Error in \(#function): exposedLocation is nil")
@@ -251,9 +259,9 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
         layout.minimumLineSpacing = 10
         collectionview.collectionViewLayout = layout
         let customType = ActiveType.custom(pattern: "\\sSign\\sIn") //Looks for "are"
-        signinoutlet.enabledTypes.append(customType)
         self.pickrole.delegate = self
         self.userpassword.delegate = self
+        signinoutlet.enabledTypes.append(customType)
         signinoutlet.urlMaximumLength = 91
         signinoutlet.customize { label in
             signinoutlet.text = "Have an Account? Sign In"
@@ -271,6 +279,26 @@ class userSignupViewController: UIViewController , UICollectionViewDelegate , UI
                 return atts
             }
             label.handleCustomTap(for: customType) { _ in self.SignupSelection() }
+        }
+        let customType1 = ActiveType.custom(pattern: "\\sTerms\\sof\\sUse") // Terms of Use
+        termsLabel.enabledTypes.append(customType1)
+        termsLabel.urlMaximumLength = 91
+        termsLabel.customize { label in
+            termsLabel.text = "* By signing up you agree to our Terms of Use."
+            termsLabel.numberOfLines = 1
+            termsLabel.lineSpacing = 4
+            termsLabel.customColor[customType1] = UIColor(red: 81/255, green: 23/255, blue: 79/255, alpha: 1.0)
+            termsLabel.customSelectedColor[customType1] = UIColor.black
+            termsLabel.configureLinkAttribute = { (type, attributes, isSelected) in
+                var atts = attributes
+                switch type {
+                case customType1:
+                    atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 12) : UIFont.boldSystemFont(ofSize: 12)
+                default: ()
+                }
+                return atts
+            }
+            label.handleCustomTap(for: customType1) { _ in self.termsSelection() }
         }
     }
     func SignupSelection(){

@@ -47,7 +47,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.backgroundColor=UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
         self.clipsToBounds=true
         name = defaults!.value(forKey: "usernameStringKey") as! String
-        titleArr = [name, "Home", "Control Panel", "Terms and Condition", "Help", "Sign Out"]
+        titleArr = [name, "Home", "Control Panel", "Terms of Use", "Help", "Sign Out"]
         
         setupViews()
         

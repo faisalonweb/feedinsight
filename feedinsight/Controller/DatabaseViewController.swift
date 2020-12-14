@@ -18,7 +18,7 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchTextField: UITextField!
     var nameArray: [String] = []
     var nameArrayCopy: [String] = []
-    var productListOne: [Person] = []
+    var productListOne: [DatabaseModel] = []
     let defaults = UserDefaults(suiteName:"User")
     
     func getData(fileInput : String) {
@@ -52,7 +52,7 @@ class DatabaseViewController: UIViewController, UITableViewDelegate, UITableView
             let jsonData = try Data(contentsOf: pathName)
             let decoder = JSONDecoder()
             productList.removeAll()
-            productList = try decoder.decode([Person].self, from: jsonData)
+            productList = try decoder.decode([DatabaseModel].self, from: jsonData)
             let count = productList.count
             nameArray.removeAll()
             if(count != 0) {

@@ -18,11 +18,6 @@
 		045264002451BF23006D67AB /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 045263FD2451BF23006D67AB /* Rubik-Bold.ttf */; };
 		046A1B952455AAA00012F519 /* profileTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1B932455AAA00012F519 /* profileTitleTableViewCell.swift */; };
 		046A1B962455AAA00012F519 /* profileTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046A1B942455AAA00012F519 /* profileTitleTableViewCell.xib */; };
-		046D6A5F24973F8900F7E494 /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = 046D6A5E24973F8100F7E494 /* invoice.html */; };
-		046D6A6124973FC300F7E494 /* last_item.html in Resources */ = {isa = PBXBuildFile; fileRef = 046D6A6024973FC300F7E494 /* last_item.html */; };
-		046D6A632497403D00F7E494 /* single_item.html in Resources */ = {isa = PBXBuildFile; fileRef = 046D6A622497403D00F7E494 /* single_item.html */; };
-		046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D6A642497410000F7E494 /* InvoiceComposer.swift */; };
-		046D6A672497412000F7E494 /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D6A662497412000F7E494 /* CustomPrintPageRenderer.swift */; };
 		047ADF052454C83A0067237A /* ProfileLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF042454C83A0067237A /* ProfileLoadViewController.swift */; };
 		047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */; };
 		04BBE55B246C3BED00B04F4A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBE55A246C3BED00B04F4A /* LocationManager.swift */; };
@@ -88,7 +83,7 @@
 		1AFE559724AAD6FB0099DB12 /* wateroneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE559624AAD6FB0099DB12 /* wateroneViewController.swift */; };
 		1AFE70DE24C2CDD800C4E08F /* premixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE70DD24C2CDD800C4E08F /* premixViewController.swift */; };
 		1AFE81D924FD25C800DFECC7 /* Athletes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFE81D824FD25C800DFECC7 /* Athletes.json */; };
-		1AFE81DB24FD260B00DFECC7 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE81DA24FD260B00DFECC7 /* Person.swift */; };
+		1AFE81DB24FD260B00DFECC7 /* DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE81DA24FD260B00DFECC7 /* DatabaseModel.swift */; };
 		C3C5DD25E952937DFF8D3273 /* Pods_FeedInsight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */; };
 		C60248FE2501428D008E1C7A /* NALLabelsMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60248FD2501428D008E1C7A /* NALLabelsMatrix.swift */; };
 		C6062FD0250B8E93009A8443 /* AnimalSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6062FCF250B8E93009A8443 /* AnimalSelectionTableViewCell.swift */; };
@@ -100,7 +95,7 @@
 		C67E5768257FA48F00708379 /* terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C67E5767257FA48F00708379 /* terms.pdf */; };
 		C6873347253F14BA0069FCAC /* PentagonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6873346253F14BA0069FCAC /* PentagonView.swift */; };
 		C6D275C9257EC4FC00A18EC1 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D275C8257EC4FC00A18EC1 /* SidebarView.swift */; };
-		C6D275CC257EC54A00A18EC1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D275CB257EC54A00A18EC1 /* EditProfileVC.swift */; };
+		C6D275CC257EC54A00A18EC1 /* OpenTermsOfUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D275CB257EC54A00A18EC1 /* OpenTermsOfUse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,11 +111,6 @@
 		045263FD2451BF23006D67AB /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		046A1B932455AAA00012F519 /* profileTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileTitleTableViewCell.swift; sourceTree = "<group>"; };
 		046A1B942455AAA00012F519 /* profileTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = profileTitleTableViewCell.xib; sourceTree = "<group>"; };
-		046D6A5E24973F8100F7E494 /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
-		046D6A6024973FC300F7E494 /* last_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = last_item.html; sourceTree = "<group>"; };
-		046D6A622497403D00F7E494 /* single_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = single_item.html; sourceTree = "<group>"; };
-		046D6A642497410000F7E494 /* InvoiceComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceComposer.swift; sourceTree = "<group>"; };
-		046D6A662497412000F7E494 /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
 		047ADF042454C83A0067237A /* ProfileLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadViewController.swift; sourceTree = "<group>"; };
 		047ADF062454CE3E0067237A /* ProfileloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileloadTableViewCell.swift; sourceTree = "<group>"; };
 		04BBE55A246C3BED00B04F4A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -188,7 +178,7 @@
 		1AFE559624AAD6FB0099DB12 /* wateroneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wateroneViewController.swift; sourceTree = "<group>"; };
 		1AFE70DD24C2CDD800C4E08F /* premixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = premixViewController.swift; sourceTree = "<group>"; };
 		1AFE81D824FD25C800DFECC7 /* Athletes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Athletes.json; sourceTree = "<group>"; };
-		1AFE81DA24FD260B00DFECC7 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		1AFE81DA24FD260B00DFECC7 /* DatabaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseModel.swift; sourceTree = "<group>"; };
 		3C4FBA17D1F5CDE06596FA30 /* Pods-FeedInsight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.debug.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.debug.xcconfig"; sourceTree = "<group>"; };
 		90F9D5990DDCF52BFA5C25C0 /* Pods-FeedInsight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedInsight.release.xcconfig"; path = "Target Support Files/Pods-FeedInsight/Pods-FeedInsight.release.xcconfig"; sourceTree = "<group>"; };
 		C60248FD2501428D008E1C7A /* NALLabelsMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NALLabelsMatrix.swift; sourceTree = "<group>"; };
@@ -201,7 +191,7 @@
 		C67E5767257FA48F00708379 /* terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = terms.pdf; sourceTree = "<group>"; };
 		C6873346253F14BA0069FCAC /* PentagonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PentagonView.swift; sourceTree = "<group>"; };
 		C6D275C8257EC4FC00A18EC1 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		C6D275CB257EC54A00A18EC1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		C6D275CB257EC54A00A18EC1 /* OpenTermsOfUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTermsOfUse.swift; sourceTree = "<group>"; };
 		D672D6D6A794059D415D1A0A /* Pods_FeedInsight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedInsight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -274,7 +264,7 @@
 				1A2EBF4525519FF90040403F /* NoProfileViewController.swift */,
 				1A2EBF482551B7620040403F /* waterrationcombineController.swift */,
 				1A2EBF4B2551B7900040403F /* combineemptyController.swift */,
-				C6D275CB257EC54A00A18EC1 /* EditProfileVC.swift */,
+				C6D275CB257EC54A00A18EC1 /* OpenTermsOfUse.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,11 +272,6 @@
 		04E98D55246E3F6700D7AB67 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				046D6A662497412000F7E494 /* CustomPrintPageRenderer.swift */,
-				046D6A642497410000F7E494 /* InvoiceComposer.swift */,
-				046D6A622497403D00F7E494 /* single_item.html */,
-				046D6A6024973FC300F7E494 /* last_item.html */,
-				046D6A5E24973F8100F7E494 /* invoice.html */,
 				04E98D56246E3F8600D7AB67 /* Utilities.swift */,
 				04E98D58246E3FBB00D7AB67 /* Constants.swift */,
 				0442AD1C248EA9A300A53BA1 /* Task.swift */,
@@ -356,7 +341,7 @@
 		1AEEA0F524CB1B180077324A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1AFE81DA24FD260B00DFECC7 /* Person.swift */,
+				1AFE81DA24FD260B00DFECC7 /* DatabaseModel.swift */,
 				1AEEA0F824CB580B0077324A /* DataModel.swift */,
 				1A50F0E624EE6455007EC60C /* Requirments.swift */,
 				1A4A899025382D8700CEA4B4 /* ApiCalling.swift */,
@@ -492,7 +477,6 @@
 				1A7F121F243CE3500008CFC0 /* Assets.xcassets in Resources */,
 				C67E5768257FA48F00708379 /* terms.pdf in Resources */,
 				1A34E5AC251A05610092C05F /* countries.json in Resources */,
-				046D6A6124973FC300F7E494 /* last_item.html in Resources */,
 				04D11E70246A7638002D5612 /* GoogleService-Info.plist in Resources */,
 				1AFE81D924FD25C800DFECC7 /* Athletes.json in Resources */,
 				045263FF2451BF23006D67AB /* Rubik-Medium.ttf in Resources */,
@@ -502,9 +486,7 @@
 				045263FE2451BF23006D67AB /* Rubik-Regular.ttf in Resources */,
 				C6068ABF252F043D004AE2A8 /* pdf1.pdf in Resources */,
 				C6068ABE252F043D004AE2A8 /* pdf2.pdf in Resources */,
-				046D6A632497403D00F7E494 /* single_item.html in Resources */,
 				1A7F121D243CE34F0008CFC0 /* Main.storyboard in Resources */,
-				046D6A5F24973F8900F7E494 /* invoice.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +544,6 @@
 				1AD3E1B3254C4CE200AA5BB6 /* NewRumiViewController.swift in Sources */,
 				04D6A907246BFE3100B37859 /* MakeDropDown.swift in Sources */,
 				1A8DB04D2542B3F5004919D7 /* ForgotViewController.swift in Sources */,
-				046D6A652497410000F7E494 /* InvoiceComposer.swift in Sources */,
 				1A2EBF1525507AF50040403F /* Reachability.swift in Sources */,
 				1AE39C762500F7EA00C2E67E /* ResultsViewController.swift in Sources */,
 				1AE3587C24EA872300A7E0AA /* waterrationTableViewCell.swift in Sources */,
@@ -589,12 +570,11 @@
 				1A755701253466E8005A9C09 /* ConSupViewController.swift in Sources */,
 				1ABC8BA324D0C62E00BE7628 /* RuminantspickViewController.swift in Sources */,
 				1A1FD8622491112000F9A6AC /* userCollectionViewCell.swift in Sources */,
-				046D6A672497412000F7E494 /* CustomPrintPageRenderer.swift in Sources */,
 				047ADF072454CE3E0067237A /* ProfileloadTableViewCell.swift in Sources */,
 				0442AD1D248EA9A300A53BA1 /* Task.swift in Sources */,
 				1A3A558424E3F22D008BF672 /* WaterCustomViewController.swift in Sources */,
 				1AAAF51324B433350010F945 /* loadProfileAnimalsViewController.swift in Sources */,
-				C6D275CC257EC54A00A18EC1 /* EditProfileVC.swift in Sources */,
+				C6D275CC257EC54A00A18EC1 /* OpenTermsOfUse.swift in Sources */,
 				C6113BE72534309B0062EA6B /* DatabaseViewController.swift in Sources */,
 				1AE3587824EA78A600A7E0AA /* waterrationViewController.swift in Sources */,
 				1A4C5E722456CC620091DC87 /* premixCollectionViewCell.swift in Sources */,
@@ -603,7 +583,7 @@
 				1A63AA1B24F8E97400ADCAB0 /* EditPremixViewController.swift in Sources */,
 				1ADBC1A1249AA08D00D061B5 /* userSignupCollectionViewCell.swift in Sources */,
 				1AEEA0F924CB580B0077324A /* DataModel.swift in Sources */,
-				1AFE81DB24FD260B00DFECC7 /* Person.swift in Sources */,
+				1AFE81DB24FD260B00DFECC7 /* DatabaseModel.swift in Sources */,
 				C6062FD0250B8E93009A8443 /* AnimalSelectionTableViewCell.swift in Sources */,
 				1A1FD8602490D80500F9A6AC /* userdataViewController.swift in Sources */,
 				C60248FE2501428D008E1C7A /* NALLabelsMatrix.swift in Sources */,
@@ -784,7 +764,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.20;
+				MARKETING_VERSION = 5.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -807,7 +787,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.20;
+				MARKETING_VERSION = 5.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";

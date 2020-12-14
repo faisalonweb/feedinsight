@@ -553,7 +553,7 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
                 webView.load(req as URLRequest)
                 samplepdfview.alpha = 0
                 searchField.alpha = 0
-                headerLbl.text = "Terms and Conditions"
+                headerLbl.text = "Terms of Use"
             }
         } else if(pdfType == "pdf2") {
             webView.isHidden =  true
@@ -685,10 +685,6 @@ extension ResultsViewController: UITableViewDelegate , UITableViewDataSource{
             cell?.NDF.textColor = UIColor.black
             cell?.Search.textColor = UIColor.black
         }
-        
-        
-        
         return cell!
-    
-}
+    }
 }

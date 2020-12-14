@@ -42,7 +42,7 @@ class EditPremixViewController: UIViewController {
     let defaults = UserDefaults(suiteName:"User")
     var screenName : String = ""
     var screenType : String = ""
-    var addedDataList : [Person] = []
+    var addedDataList : [DatabaseModel] = []
     var itemDictionary : [String : Any] = [:]
     var saveName : String = ""
     override func viewWillAppear(_ animated: Bool) {

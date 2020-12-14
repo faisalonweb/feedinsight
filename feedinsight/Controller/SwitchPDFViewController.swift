@@ -11,87 +11,16 @@ var premixArray = [Double]()
 var waterArray = [Double]()
 var requiredArray = [Double]()
 var rationArray = [Double]()
+var Originalwaterarray = [String]()
+var Originalpremixarray = [String]()
+var Originaldropdownvalues = [String]()
+var OriginaldropdownfloatValue = [String]()
 
 
-var names = ["Company Name", "Animal Group", "Physiological State", "Current Body Weight (kg)", "Target Body Weight (kg)", "Days to achieve target body weight", "Days in milk", "Days Pregnant", "Milk Production (kg)","Animal Kind", "Heat Stress", "Metabolic Disorders", "Formulate Anionic Diet?", "Wool Production", "Water Values", "Ca*", "P*", "Mg*", "Na", "Cl", "S", "K", "Premix Value",
-             
-             "P MacroMineral",
-             "ca MacroMineral",
-             "mg MacroMineral",
-             "k MacroMineral",
-             "na MacroMineral",
-             "cl MacroMineral",
-             "s MacroMineral",
-             "I MicroMineral",
-             "co MicroMineral",
-             "cu(inorganic) MicroMineral",
-             "cu(organic) MicroMineral",
-             "Mn(inorganic) MicroMineral",
-             "Mn(organic) MicroMineral",
-             "se(inorganic) MicroMineral",
-             "se(organic) MicroMineral",
-             "zn(inorganic) MicroMineral",
-             "zn(organic) MicroMineral",
-             "Vitamin A",
-             "Vitamin D",
-             "Vitamin E",
-             "niacin",
-             "biotin",
-             "Ration Name"
-]
+var totalCellCreatedCount = 0
+var names = [] as [String]
 
-var addresses = [Requirments.shared().companyName ?? "none" as String,
-                 Requirments.shared().animalGroup ?? "none" as String,
-                 Requirments.shared().physiologicalState ?? "none" as String,
-                 Requirments.shared().currentBodyWeight ?? "none" as String,
-                 Requirments.shared().targetBodyWeight ?? "none" as String,
-                 Requirments.shared().achieveTargetWeight ?? "none" as String,
-                 Requirments.shared().daysInMilk ?? "none" as String,
-                 Requirments.shared().daysPregnant ?? "none" as String,
-                 Requirments.shared().milkProduction ?? "none" as String,
-                 Requirments.shared().animalKind ?? "none" as String,
-                 Requirments.shared().heatStress?.description ?? "none",
-                 Requirments.shared().metaBolic?.description ?? "none",
-                 Requirments.shared().anionic?.description ?? "none",
-                 Requirments.shared().woolProduction?.description ?? "none",
-                 
-                 "Value",
-                 Requirments.shared().waterCaVal1 ?? "none" as String,
-                 Requirments.shared().waterPVal1 ?? "none" as String,
-                 Requirments.shared().waterMgVal1 ?? "none" as String,
-                 Requirments.shared().waterNaVal1 ?? "none" as String,
-                 Requirments.shared().waterClVal1 ?? "none" as String,
-                 Requirments.shared().waterSVal1 ?? "none" as String,
-                 Requirments.shared().waterKVal1 ?? "none" as String,
-                 
-                 "Value",
-                 Requirments.shared().pMacroText1 ?? "none" as String,
-                 Requirments.shared().caMacroText1 ?? "none" as String,
-                 Requirments.shared().mgMacroText1 ?? "none" as String,
-                 Requirments.shared().kMacroText1 ?? "none" as String,
-                 Requirments.shared().naMacroText1 ?? "none" as String,
-                 Requirments.shared().clMacroText1 ?? "none" as String,
-                 Requirments.shared().sMacroText1 ?? "none" as String,
-                 Requirments.shared().iMicroText1 ?? "none" as String,
-                 Requirments.shared().coMicroText1 ?? "none" as String,
-                 Requirments.shared().cuMicroText1 ?? "none" as String,
-                 Requirments.shared().cuOrganicMicroText1  ?? "none" as String,
-                 Requirments.shared().mnMicroText1 ?? "none" as String,
-                 Requirments.shared().mnOrganicMicroText1 ?? "none" as String,
-                 Requirments.shared().seMicroText1 ?? "none" as String,
-                 Requirments.shared().seOrganicMicroText1 ?? "none" as String,
-                 Requirments.shared().znMicroText1 ?? "none" as String,
-                 Requirments.shared().znOrganicMicroText1  ?? "none" as String,
-                 Requirments.shared().aiuVitamin1 ?? "none" as String,
-                 Requirments.shared().diuVitamin1 ?? "none" as String,
-                 Requirments.shared().eiuVitamin1 ?? "none" as String,
-                 Requirments.shared().niacinVitamin1 ?? "none" as String,
-                 Requirments.shared().biotinVitamin1 ?? "none" as String,
-                 
-                 "Value",
-                 
-
-] as [String]
+var addresses = [] as [String]
 
 struct TableDataItem {
     let name: String
@@ -159,9 +88,22 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
     var preparedbystr6 : String = ""
     var reporttypestr7 : String = ""
     var pscistatestr8 : String = ""
-    
     var shareVariable : String = ""
     
+    var companyName1 : String = ""
+    var animalGroup1 : String = ""
+    var physiologicalState1 : String = ""
+    var currentBodyWeight1 : String = ""
+    var targetBodyWeight1 : String = ""
+    var achieveTargetWeight1 : String = ""
+    var daysInMilk1  : String = ""
+    var daysPregnant1 : String = ""
+    var milkProduction1 : String = ""
+    var animalKind1 : String = ""
+    var heatStress1 : String = ""
+    var metaBolic1 : String = ""
+    var anionic1 : String = ""
+    var woolProduction1 : String = ""
     
     let players = ["K","S","Cl","Na","Mg","P", "Ca","Co","I","Se","Cu","Mn","Zn","Niacin","Biotin","Vit. E","Vit. D3","Vit. A"]
 //    @objc func addNewGuageView(_ notification: Notification) {
@@ -174,16 +116,17 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         waterArray.removeAll()
         requiredArray.removeAll()
         rationArray.removeAll()
+        Originaldropdownvalues.removeAll()
+        OriginaldropdownfloatValue.removeAll()
+        Originalwaterarray.removeAll()
+        Originalpremixarray.removeAll()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("21")
     }
     override func viewDidLoad() {
-        names.append(contentsOf: dropdownvalues)
-        addresses.append(contentsOf: dropdownfloatValue)
         percentageArray.removeAll()
-        
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -205,7 +148,85 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         barchartview.doubleTapToZoomEnabled = false
         barchartview.drawGridBackgroundEnabled = true
         barchartview.chartDescription?.text = "Bar Chart View"
+        names.removeAll()
+        names = ["General Data",
+                 
+                 "Company Name",
+                 "Animal Group",
+                 "Physiological State",
+                 "Current Body Weight (kg)",
+                 "Target Body Weight (kg)",
+                 "Days to achieve target body weight",
+                 "Days in milk", "Days Pregnant",
+                 "Milk Production (kg)",
+                 "Animal Kind",
+                 "Heat Stress",
+                 "Metabolic Disorders",
+                 "Formulate Anionic Diet?",
+                 "Wool Production",
+                 
+                 "Water (mg/Lit)",
+                 
+                 "Ca*",
+                 "P*",
+                 "Mg*",
+                 "Na",
+                 "Cl",
+                 "S",
+                 "K",
+                 
+                 "Premix (kg)",
+                 
+                 "P* MacroMineral",
+                 "Ca* MacroMineral",
+                 "Mg* MacroMineral",
+                 "k MacroMineral",
+                 "na MacroMineral",
+                 "cl MacroMineral",
+                 "s MacroMineral",
+                 "I MicroMineral",
+                 "co MicroMineral",
+                 "cu(inorganic) MicroMineral",
+                 "cu(organic) MicroMineral",
+                 "Mn(inorganic) MicroMineral",
+                 "Mn(organic) MicroMineral",
+                 "se(inorganic) MicroMineral",
+                 "se(organic) MicroMineral",
+                 "zn(inorganic) MicroMineral",
+                 "zn(organic) MicroMineral",
+                 "Vitamin A",
+                 "Vitamin D",
+                 "Vitamin E",
+                 "niacin",
+                 "biotin",
+                 
+                 "Ration (kg)"
+        ]
         if(fromDatabase == "yes") {
+            addresses.removeAll()
+            names.append(contentsOf: Originaldropdownvalues)
+            addresses = [" ",
+                         companyName1,
+                         animalGroup1,
+                         physiologicalState1,
+                         currentBodyWeight1,
+                         targetBodyWeight1,
+                         achieveTargetWeight1 ,
+                         daysInMilk1,
+                         daysPregnant1,
+                         milkProduction1,
+                         animalKind1,
+                         heatStress1,
+                         metaBolic1,
+                         anionic1,
+                         woolProduction1,
+                        " ",
+            ] as [String]
+            addresses.append(contentsOf: Originalwaterarray)
+            addresses.append(" ")
+            addresses.append(contentsOf: Originalpremixarray)
+            addresses.append(" ")
+            addresses.append(contentsOf: OriginaldropdownfloatValue)
             self.companyName.text = "Company : " + companystr1
             self.ruminantType.text = "Ruminant Type : " + ruminanttypestr5
             self.animalGroup.text = "Animal Group : " + animalgroupstr2
@@ -216,6 +237,59 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
             self.preparedByLabel.text = preparedbystr6
             setChart(dataPoints: players, values: rationArray.map { Double($0) })
         } else {
+            names.append(contentsOf: dropdownvalues)
+            addresses.removeAll()
+            addresses = ["",Requirments.shared().companyName! as String,
+                         Requirments.shared().animalGroup! as String,
+                         Requirments.shared().physiologicalState! as String,
+                         Requirments.shared().currentBodyWeight! as String,
+                         Requirments.shared().targetBodyWeight! as String,
+                         Requirments.shared().achieveTargetWeight! as String,
+                         Requirments.shared().daysInMilk! as String,
+                         Requirments.shared().daysPregnant! as String,
+                         Requirments.shared().milkProduction! as String,
+                         Requirments.shared().animalKind! as String,
+                         Requirments.shared().heatStress?.description ?? "none",
+                         Requirments.shared().metaBolic?.description ?? "none",
+                         Requirments.shared().anionic?.description ?? "none",
+                         Requirments.shared().woolProduction?.description ?? "none",
+                         
+                         "",
+                         Requirments.shared().waterCaVal1 ?? "0.0" as String,
+                         Requirments.shared().waterPVal1 ?? "0.0" as String,
+                         Requirments.shared().waterMgVal1 ?? "0.0" as String,
+                         Requirments.shared().waterNaVal1 ?? "0.0" as String,
+                         Requirments.shared().waterClVal1 ?? "0.0" as String,
+                         Requirments.shared().waterSVal1 ?? "0.0" as String,
+                         Requirments.shared().waterKVal1 ?? "0.0" as String,
+                         
+                         " ",
+                         Requirments.shared().pMacroText1 ?? "none" as String,
+                         Requirments.shared().caMacroText1 ?? "none" as String,
+                         Requirments.shared().mgMacroText1 ?? "none" as String,
+                         Requirments.shared().kMacroText1 ?? "none" as String,
+                         Requirments.shared().naMacroText1 ?? "none" as String,
+                         Requirments.shared().clMacroText1 ?? "none" as String,
+                         Requirments.shared().sMacroText1 ?? "none" as String,
+                         Requirments.shared().iMicroText1 ?? "none" as String,
+                         Requirments.shared().coMicroText1 ?? "none" as String,
+                         Requirments.shared().cuMicroText1 ?? "none" as String,
+                         Requirments.shared().cuOrganicMicroText1  ?? "none" as String,
+                         Requirments.shared().mnMicroText1 ?? "none" as String,
+                         Requirments.shared().mnOrganicMicroText1 ?? "none" as String,
+                         Requirments.shared().seMicroText1 ?? "none" as String,
+                         Requirments.shared().seOrganicMicroText1 ?? "none" as String,
+                         Requirments.shared().znMicroText1 ?? "none" as String,
+                         Requirments.shared().znOrganicMicroText1  ?? "none" as String,
+                         Requirments.shared().aiuVitamin1 ?? "none" as String,
+                         Requirments.shared().diuVitamin1 ?? "none" as String,
+                         Requirments.shared().eiuVitamin1 ?? "none" as String,
+                         Requirments.shared().niacinVitamin1 ?? "none" as String,
+                         Requirments.shared().biotinVitamin1 ?? "none" as String,
+                         
+                         " ",
+            ] as [String]
+            addresses.append(contentsOf: dropdownfloatValue)
             self.companyName.text = Requirments.shared().companyName
             self.ruminantType.text = Requirments.shared().animalKind
             self.animalGroup.text = Requirments.shared().animalGroup
@@ -336,7 +410,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                 
                 self.n1.isHidden = true
                 self.n2.isHidden = true
-                review.alpha = 0
+                review.alpha = 0    
                 supview.alpha = 0
                 balview.alpha = 1
                 toxicLabel.text = "      ! - Toxic      < 100 - Deficient      * - Absorable Value"
@@ -440,8 +514,11 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
     }
     func showErrorMessage() {
         let alertMessage = UIAlertController(title: "Could not sent email", message: "Check if your device have email support!", preferredStyle: UIAlertController.Style.alert)
-        let action = UIAlertAction(title:"Okay", style: UIAlertAction.Style.default, handler: nil)
-        alertMessage.addAction(action)
+        alertMessage.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+            }
+        }))
         self.present(alertMessage, animated: true, completion: nil)
     }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -744,6 +821,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         waterArray.removeAll()
         requiredArray.removeAll()
         rationArray.removeAll()
+        Originaldropdownvalues.removeAll()
+        OriginaldropdownfloatValue.removeAll()
+        Originalwaterarray.removeAll()
+        Originalpremixarray.removeAll()
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }
@@ -790,8 +871,8 @@ class PDFCreator: NSObject {
             for tableDataChunk in tableDataChunked {
                 context.beginPage()
                 let cgContext = context.cgContext
-                drawTableHeaderRect(drawContext: cgContext, pageRect: pageRect)
-                drawTableHeaderTitles(titles: tableDataHeaderTitles, drawContext: cgContext, pageRect: pageRect)
+                //drawTableHeaderRect(drawContext: cgContext, pageRect: pageRect)
+                //drawTableHeaderTitles(titles: tableDataHeaderTitles, drawContext: cgContext, pageRect: pageRect)
                 drawTableContentInnerBordersAndText(drawContext: cgContext, pageRect: pageRect, tableDataItems: tableDataChunk)
             }
         }
@@ -807,80 +888,27 @@ class PDFCreator: NSObject {
 
 // Drawings
 extension PDFCreator {
-    func drawTableHeaderRect(drawContext: CGContext, pageRect: CGRect) {
-        drawContext.saveGState()
-        drawContext.setLineWidth(3.0)
-
-        // Draw header's 1 top horizontal line
-        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset))
-        drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: defaultOffset))
-        drawContext.strokePath()
-
-        // Draw header's 1 bottom horizontal line
-        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset * 2))
-        drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: defaultOffset * 2))
-        drawContext.strokePath()
-
-        // Draw header's 3 vertical lines
-        drawContext.setLineWidth(2.0)
-        drawContext.saveGState()
-        let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
-        for verticalLineIndex in 0..<4 {
-            let tabX = CGFloat(verticalLineIndex) * tabWidth
-            drawContext.move(to: CGPoint(x: tabX + defaultOffset, y: defaultOffset))
-            drawContext.addLine(to: CGPoint(x: tabX + defaultOffset, y: defaultOffset * 2))
-            drawContext.strokePath()
-        }
-
-        drawContext.restoreGState()
-    }
-
-    func drawTableHeaderTitles(titles: [String], drawContext: CGContext, pageRect: CGRect) {
-        // prepare title attributes
-        let textFont = UIFont.systemFont(ofSize: 16.0, weight: .medium)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        paragraphStyle.lineBreakMode = .byWordWrapping
-        let titleAttributes = [
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
-            NSAttributedString.Key.font: textFont
-        ]
-
-        // draw titles
-        let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
-        for titleIndex in 0..<titles.count {
-            let attributedTitle = NSAttributedString(string: titles[titleIndex].capitalized, attributes: titleAttributes)
-            let tabX = CGFloat(titleIndex) * tabWidth
-            let textRect = CGRect(x: tabX + defaultOffset,
-                                  y: defaultOffset * 2 / 2,
-                                  width: tabWidth,
-                                  height: defaultOffset * 1)
-            attributedTitle.draw(in: textRect)
-        }
-    }
-
     func drawTableContentInnerBordersAndText(drawContext: CGContext, pageRect: CGRect, tableDataItems: [TableDataItem]) {
-        drawContext.setLineWidth(1.0)
+        drawContext.setLineWidth(0.0)
         drawContext.saveGState()
 
         let defaultStartY = defaultOffset * 2
-
         for elementIndex in 0..<tableDataItems.count {
             let yPosition = CGFloat(elementIndex) * defaultStartY + defaultStartY
 
             // Draw content's elements texts
             let textFont = UIFont.systemFont(ofSize: 13.0, weight: .regular)
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
+            paragraphStyle.alignment = .left
             paragraphStyle.lineBreakMode = .byWordWrapping
             let textAttributes = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: textFont
             ]
             
-            let textFont1 = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+            let textFont1 = UIFont.systemFont(ofSize: 18.0, weight: .bold)
             let paragraphStyle1 = NSMutableParagraphStyle()
-            paragraphStyle1.alignment = .center
+            paragraphStyle1.alignment = .left
             paragraphStyle1.lineBreakMode = .byWordWrapping
             let textAttributes1 = [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle1,
@@ -890,11 +918,11 @@ extension PDFCreator {
             let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
             for titleIndex in 0..<2 {
                 // 14,22,45
-                if(elementIndex == 14 || elementIndex == 22 || elementIndex == 45) {
+                if(totalCellCreatedCount == 0 || totalCellCreatedCount == 15 || totalCellCreatedCount == 23 || totalCellCreatedCount == 46) {
                     var attributedText = NSAttributedString(string: "", attributes: textAttributes1)
                     switch titleIndex {
-                    case 0: attributedText = NSAttributedString(string: tableDataItems[elementIndex].name, attributes: textAttributes)
-                    case 1: attributedText = NSAttributedString(string: tableDataItems[elementIndex].address, attributes: textAttributes)
+                    case 0: attributedText = NSAttributedString(string: tableDataItems[elementIndex].name, attributes: textAttributes1)
+                    case 1: attributedText = NSAttributedString(string: tableDataItems[elementIndex].address, attributes: textAttributes1)
                     default:
                         break
                     }
@@ -922,6 +950,7 @@ extension PDFCreator {
                 
             }
 
+            totalCellCreatedCount = totalCellCreatedCount + 1
             // Draw content's 3 vertical lines
             for verticalLineIndex in 0..<4 {
                 let tabX = CGFloat(verticalLineIndex) * tabWidth
