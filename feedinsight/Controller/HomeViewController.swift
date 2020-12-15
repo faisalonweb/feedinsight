@@ -13,7 +13,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SidebarViewDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var advertismentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     ]
     
     let imageArrAds: [UIImage] = [
-        UIImage(named: "adImg1")!,
+        //UIImage(named: "adImg1")!,
         UIImage(named: "adImg2")!,
     ]
     let lablArr = ["Premix Check","Unit Converter","VMP Guide","Feed Profiles"]
@@ -51,23 +51,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let array = imageArrAds
         repeatAnimateImagesChanges(images: array as NSArray, imageView: self.adsImgView)
         
-        let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
-        btnMenu.tintColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
-        self.navigationItem.leftBarButtonItem = btnMenu
-        
-        sidebarView=SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate=self
-        sidebarView.layer.zPosition=100
-        self.view.isUserInteractionEnabled=true
-        self.navigationController?.view.addSubview(sidebarView)
-        
-        blackScreen=UIView(frame: self.view.bounds)
-        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
-        blackScreen.isHidden=true
-        self.navigationController?.view.addSubview(blackScreen)
-        blackScreen.layer.zPosition=99
-        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
-        blackScreen.addGestureRecognizer(tapGestRecognizer)
+//        let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
+//        btnMenu.tintColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
+//        self.navigationItem.leftBarButtonItem = btnMenu
+//
+//        sidebarView=SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
+//        sidebarView.delegate=self
+//        sidebarView.layer.zPosition=100
+//        self.view.isUserInteractionEnabled=true
+//        self.navigationController?.view.addSubview(sidebarView)
+//
+//        blackScreen=UIView(frame: self.view.bounds)
+//        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
+//        blackScreen.isHidden=true
+//        self.navigationController?.view.addSubview(blackScreen)
+//        blackScreen.layer.zPosition=99
+//        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
+//        blackScreen.addGestureRecognizer(tapGestRecognizer)
     }
     
     @objc func tapOnImageAction() {
@@ -78,77 +78,77 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    @objc func btnMenuAction() {
-        self.tabBarController?.tabBar.isHidden = true
-        blackScreen.isHidden=false
-        UIView.animate(withDuration: 0.3, animations: {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
-        }) { (complete) in
-            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
-        }
-    }
-    
-    @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
-        self.tabBarController?.tabBar.isHidden = false
-        blackScreen.isHidden=true
-        blackScreen.frame=self.view.bounds
-        UIView.animate(withDuration: 0.3) {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
-        }
-    }
+//    @objc func btnMenuAction() {
+//        self.tabBarController?.tabBar.isHidden = true
+//        blackScreen.isHidden=false
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
+//        }) { (complete) in
+//            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
+//        }
+//    }
+//
+//    @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
+//        self.tabBarController?.tabBar.isHidden = false
+//        blackScreen.isHidden=true
+//        blackScreen.frame=self.view.bounds
+//        UIView.animate(withDuration: 0.3) {
+//            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
+//        }
+//    }
 
-    func sidebarDidSelectRow(row: Row) {
-        blackScreen.isHidden=true
-        blackScreen.frame=self.view.bounds
-        self.tabBarController?.tabBar.isHidden = false
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        UIView.animate(withDuration: 0.3) {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
-        }
-        switch row {
-        case .editProfile:
-            self.tabBarController?.selectedIndex = 2
-        case .home:
-            print("Messages")
-        case .controlPanel:
-            print("Contact")
-        case .terms:
-            let ResultsViewController = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
-            ResultsViewController.pdfType = "pdf3"
-            self.navigationController?.pushViewController(ResultsViewController, animated: true)
-        case .help:
-            print("Help")
-        case .signOut:
-            print("Sign out")
-            logOutAccount()
-        case .none:
-            break
-        }
-    }
+//    func sidebarDidSelectRow(row: Row) {
+//        blackScreen.isHidden=true
+//        blackScreen.frame=self.view.bounds
+//        self.tabBarController?.tabBar.isHidden = false
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        UIView.animate(withDuration: 0.3) {
+//            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
+//        }
+//        switch row {
+//        case .editProfile:
+//            self.tabBarController?.selectedIndex = 2
+//        case .home:
+//            print("Messages")
+//        case .controlPanel:
+//            print("Contact")
+//        case .terms:
+//            let ResultsViewController = storyboard.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
+//            ResultsViewController.pdfType = "pdf3"
+//            self.navigationController?.pushViewController(ResultsViewController, animated: true)
+//        case .help:
+//            print("Help")
+//        case .signOut:
+//            print("Sign out")
+//            logOutAccount()
+//        case .none:
+//            break
+//        }
+//    }
     
-    func logOutAccount () {
-        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                let defaults = UserDefaults(suiteName:"User")
-                let dictionary = defaults!.dictionaryRepresentation()
-                dictionary.keys.forEach { key in
-                    defaults!.removeObject(forKey: key)
-                    self.defaults!.synchronize()
-                }
-                self.defaults!.synchronize()
-                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
-                self.navigationController?.pushViewController(vcone!, animated: true)
-                
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func logOutAccount () {
+//        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout from feedInsight?", preferredStyle: UIAlertController.Style.alert)
+//        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.destructive, handler: { action in
+//            let firebaseAuth = Auth.auth()
+//            do {
+//                try firebaseAuth.signOut()
+//                let defaults = UserDefaults(suiteName:"User")
+//                let dictionary = defaults!.dictionaryRepresentation()
+//                dictionary.keys.forEach { key in
+//                    defaults!.removeObject(forKey: key)
+//                    self.defaults!.synchronize()
+//                }
+//                self.defaults!.synchronize()
+//                let vcone = self.storyboard?.instantiateViewController(withIdentifier: "SignInID") as? SigninFscreenViewController;
+//                self.navigationController?.pushViewController(vcone!, animated: true)
+//
+//            } catch let signOutError as NSError {
+//                print ("Error signing out: %@", signOutError)
+//            }
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     func repeatAnimateImagesChanges(images:NSArray, imageView:UIImageView) {
         if(images.count == 0) {

@@ -82,6 +82,10 @@ class Requirments {
     var waterClVal : Double = 0
     var waterSVal : Double = 0
     
+    // DEB and DCAB Values
+    var deb: String?
+    var dcab: String?
+    
     // Water Values 1
     var waterPVal1 : String?
     var waterCaVal1 : String?

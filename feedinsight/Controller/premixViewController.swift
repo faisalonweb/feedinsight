@@ -500,6 +500,24 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             formatter.dateStyle = .long
             let datetimestamp = formatter.string(from: currentDateTime)
             let db = Firestore.firestore()
+            var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
+            var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
+            var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
+            var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
+            
+            na = (na / Requirments.shared().DMI) / 39.0
+            cl = (cl / Requirments.shared().DMI) / 23.0
+            s = (s / Requirments.shared().DMI) / 35.5
+            k = (k / Requirments.shared().DMI) / 16
+            
+            var deb = na + k - cl
+            var dcab = na + k - cl - s
+            
+            deb = deb * 1000
+            dcab = dcab * 1000
+            
+            Requirments.shared().deb = String(deb)
+            Requirments.shared().dcab = String(dcab)
             let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
             let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
                 SVProgressHUD.show(withStatus: "it's working ...")
@@ -536,7 +554,9 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                                      "heatStress1": Requirments.shared().heatStress?.description ?? "none",
                                      "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
                                      "anionic1": Requirments.shared().anionic?.description ?? "none",
-                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none"
+                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
+                                     "deb" : Requirments.shared().deb ?? "0.0",
+                                     "dcab" : Requirments.shared().dcab ?? "0.0"
                 ]){ err in
                     if let err = err {
                         SVProgressHUD.showError(withStatus: "Error")
@@ -646,6 +666,24 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().iMicroText = pMacroText23 * doseinKG
             Requirments.shared().mnMicroText = pMacroText25 * doseinKG
             Requirments.shared().appendPremixValues()
+            var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
+            var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
+            var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
+            var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
+            
+            na = (na / Requirments.shared().DMI) / 39.0
+            cl = (cl / Requirments.shared().DMI) / 23.0
+            s = (s / Requirments.shared().DMI) / 35.5
+            k = (k / Requirments.shared().DMI) / 16
+            
+            var deb = na + k - cl
+            var dcab = na + k - cl - s
+            
+            deb = deb * 1000
+            dcab = dcab * 1000
+            
+            Requirments.shared().deb = String(deb)
+            Requirments.shared().dcab = String(dcab)
             let currentDateTime = Date()
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
@@ -660,6 +698,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     }
     
     @IBAction func nextButton(_ sender: Any) {
+        
         let reachability = try! Reachability.init()
         if((reachability.connection) != .unavailable) {
             Requirments.shared().productName = productName.text!
@@ -748,6 +787,26 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
             formatter.dateStyle = .long
+            
+            var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
+            var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
+            var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
+            var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
+            
+            na = (na / Requirments.shared().DMI) / 39.0
+            cl = (cl / Requirments.shared().DMI) / 23.0
+            s = (s / Requirments.shared().DMI) / 35.5
+            k = (k / Requirments.shared().DMI) / 16
+            
+            var deb = na + k - cl
+            var dcab = na + k - cl - s
+            
+            deb = deb * 1000
+            dcab = dcab * 1000
+            
+            Requirments.shared().deb = String(deb)
+            Requirments.shared().dcab = String(dcab)
+            
             let datetimestamp = formatter.string(from: currentDateTime)
             let db = Firestore.firestore()
             let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
@@ -787,6 +846,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                                      "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
                                      "anionic1": Requirments.shared().anionic?.description ?? "none",
                                      "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
+                                     "deb" : Requirments.shared().deb ?? "0.0",
+                                     "dcab" : Requirments.shared().dcab ?? "0.0"
                                      
                 ]) { err in
                     if let err = err {
@@ -900,6 +961,24 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
             formatter.dateStyle = .long
+            var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
+            var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
+            var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
+            var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
+            
+            na = (na / Requirments.shared().DMI) / 39.0
+            cl = (cl / Requirments.shared().DMI) / 23.0
+            s = (s / Requirments.shared().DMI) / 35.5
+            k = (k / Requirments.shared().DMI) / 16
+            
+            var deb = na + k - cl
+            var dcab = na + k - cl - s
+            
+            deb = (deb * 1000).roundToDecimal(1)
+            dcab = (dcab * 1000).roundToDecimal(1)
+            
+            Requirments.shared().deb = String(deb)
+            Requirments.shared().dcab = String(dcab)
             let datetimestamp = formatter.string(from: currentDateTime)
             self.view.isUserInteractionEnabled = true
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController

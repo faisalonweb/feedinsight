@@ -104,7 +104,6 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 
                 var value5 : Double = value4 - value
                 value5 = value5.roundToDecimal(1)
-                cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                 var percent : Double = (value4/value) * 100
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
@@ -112,6 +111,8 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 if(percent < 100.0) {
                     cell.nutrientTotal?.textColor = UIColor.systemRed
                     cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                    cell.nutrientWater?.textColor = UIColor.systemRed
+                    cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                 } else {
                     if(indexPath.row == 1) {
                         if(percent > 1107.7) {
@@ -121,13 +122,20 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let range = (mainString as NSString).range(of: stringToColor)
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                             cell.nutrientTotal?.attributedText = mutableAttributedString
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 2) {
-                        if(percent > 169.2) {
+                        if(percent > 300.0) {
                             cell.nutrientTotal?.textColor = UIColor.black
                             let mainString = String(percent.removeZerosFromEnd()) + " !"
                             let stringToColor = "!"
@@ -135,9 +143,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 3) {
                         if(percent > 135.0) {
@@ -148,36 +163,28 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 4) {
-                        if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            let mainString = String(percent.removeZerosFromEnd()) + " !"
-                            let stringToColor = "!"
-                            let range = (mainString as NSString).range(of: stringToColor)
-                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
-                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
-                            cell.nutrientTotal?.attributedText = mutableAttributedString
-                        } else {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
-                        }
+                        cell.nutrientTotal?.textColor = UIColor.black
+                        cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        cell.nutrientWater?.textColor = UIColor.black
+                        cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
+
                     } else if(indexPath.row == 5) {
-                        if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            let mainString = String(percent.removeZerosFromEnd()) + " !"
-                            let stringToColor = "!"
-                            let range = (mainString as NSString).range(of: stringToColor)
-                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
-                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
-                            cell.nutrientTotal?.attributedText = mutableAttributedString
-                        } else {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
-                        }
+                        cell.nutrientTotal?.textColor = UIColor.black
+                        cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        cell.nutrientWater?.textColor = UIColor.black
+                        cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                     } else if(indexPath.row == 6) {
                         if(percent > 909.1) {
                             cell.nutrientTotal?.textColor = UIColor.black
@@ -187,9 +194,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 7) {
                         if(percent > 3636.4) {
@@ -200,9 +214,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 8) {
                         if(percent > 333.3) {
@@ -213,9 +234,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 9) {
                         if(percent > 1470.6) {
@@ -226,9 +254,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 10) {
                         if(percent > 7142.9) {
@@ -239,9 +274,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 11) {
                         if(percent > 3333.3) {
@@ -252,9 +294,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 12) {
                         if(percent > 436.4) {
@@ -265,9 +314,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 13) {
                         if(percent > 255.0) {
@@ -278,9 +334,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 14) {
                         if(percent > 1012.9) {
@@ -291,9 +354,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 15) {
                         if(percent > 160.0) {
@@ -304,9 +374,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 16) {
                         if(percent > 1153.0) {
@@ -317,9 +394,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 17) {
                         if(percent > 400.0) {
@@ -330,9 +414,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 18) {
                         if(percent > 200.0) {
@@ -343,18 +434,20 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     }
                 }
-                
-//                if(indexPath.row == 18) {
-//                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
-//                }
             } else {
-                
                 var value : Double = Requirments.shared().reqArrayFinal[indexPath.row - 1]
                 value = value.roundToDecimal(1)
                 let stringValue = String(value.removeZerosFromEnd())
@@ -373,13 +466,14 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                 var value5 : Double = value4 - value
                 value5 = value5.roundToDecimal(1)
                 
-                cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                 var percent : Double = (value4/value) * 100
                 percent = percent.roundToDecimal(1)
                 percentageArray.append(percent)
                 if(percent < 100.0) {
                     cell.nutrientTotal?.textColor = UIColor.systemRed
                     cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                    cell.nutrientWater?.textColor = UIColor.systemRed
+                    cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                 } else {
                     if(indexPath.row == 1) {
                         if(percent > 1107.7) {
@@ -390,12 +484,19 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 2) {
-                        if(percent > 169.2) {
+                        if(percent > 300.0) {
                             cell.nutrientTotal?.textColor = UIColor.black
                             let mainString = String(percent.removeZerosFromEnd()) + " !"
                             let stringToColor = "!"
@@ -403,9 +504,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 3) {
                         if(percent > 135.0) {
@@ -416,36 +524,27 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 4) {
-                        if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            let mainString = String(percent.removeZerosFromEnd()) + " !"
-                            let stringToColor = "!"
-                            let range = (mainString as NSString).range(of: stringToColor)
-                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
-                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
-                            cell.nutrientTotal?.attributedText = mutableAttributedString
-                        } else {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
-                        }
+                        cell.nutrientTotal?.textColor = UIColor.black
+                        cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        cell.nutrientWater?.textColor = UIColor.black
+                        cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                     } else if(indexPath.row == 5) {
-                        if(percent > 0.0) {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            let mainString = String(percent.removeZerosFromEnd()) + " !"
-                            let stringToColor = "!"
-                            let range = (mainString as NSString).range(of: stringToColor)
-                            let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
-                            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
-                            cell.nutrientTotal?.attributedText = mutableAttributedString
-                        } else {
-                            cell.nutrientTotal?.textColor = UIColor.black
-                            cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
-                        }
+                        cell.nutrientTotal?.textColor = UIColor.black
+                        cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                        cell.nutrientWater?.textColor = UIColor.black
+                        cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                     } else if(indexPath.row == 6) {
                         if(percent > 909.1) {
                             cell.nutrientTotal?.textColor = UIColor.black
@@ -455,9 +554,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 7) {
                         if(percent > 3636.4) {
@@ -468,9 +574,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 8) {
                         if(percent > 333.3) {
@@ -481,9 +594,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 9) {
                         if(percent > 1470.6) {
@@ -494,9 +614,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 10) {
                         if(percent > 7142.9) {
@@ -507,9 +634,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 11) {
                         if(percent > 3333.3) {
@@ -520,9 +654,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 12) {
                         if(percent > 436.4) {
@@ -533,9 +674,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 13) {
                         if(percent > 255.0) {
@@ -546,9 +694,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 14) {
                         if(percent > 1012.9) {
@@ -559,9 +714,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 15) {
                         if(percent > 160.0) {
@@ -572,9 +734,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 16) {
                         if(percent > 1153.0) {
@@ -585,9 +754,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 17) {
                         if(percent > 400.0) {
@@ -598,9 +774,16 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 18) {
                         if(percent > 200.0) {
@@ -611,16 +794,19 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
                             mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range)
                             cell.nutrientTotal?.attributedText = mutableAttributedString
+                            let mainStringBalance = String(value5.removeZerosFromEnd()) + " !"
+                            let range1 = (mainStringBalance as NSString).range(of: stringToColor)
+                            let mutableAttributedString1 = NSMutableAttributedString.init(string: mainStringBalance)
+                            mutableAttributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: range1)
+                            cell.nutrientWater?.attributedText = mutableAttributedString1
                         } else {
                             cell.nutrientTotal?.textColor = UIColor.black
                             cell.nutrientTotal?.text = String(percent.removeZerosFromEnd())
+                            cell.nutrientWater?.textColor = UIColor.black
+                            cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     }
                 }
-                
-//                if(indexPath.row == 18) {
-//                    NotificationCenter.default.post(name: Notification.Name(rawValue: "addGuageView"), object: nil)
-//                }
             }
             cell.layer.cornerRadius = 10
             return cell

@@ -48,7 +48,8 @@ class ReportViewController: UIViewController {
     private var metaBolic1Station = [String]()
     private var anionic1Station = [String]()
     private var woolProduction1Station = [String]()
-    
+    private var debStation = [String]()
+    private var dcabStation = [String]()
     
     var companyName1List = [String]()
     var animalGroup1List = [String]()
@@ -64,7 +65,8 @@ class ReportViewController: UIViewController {
     var metaBolic1List = [String]()
     var anionic1List = [String]()
     var woolProduction1List = [String]()
-    
+    var debList = [String]()
+    var dcabList = [String]()
     
     
     let defaults = UserDefaults(suiteName:"User")
@@ -155,6 +157,11 @@ class ReportViewController: UIViewController {
                         let anionic1 = documentData["anionic1"] as? String ?? "Anonymous"
                         let woolProduction1 = documentData["woolProduction1"] as? String ?? "Anonymous"
                         
+                        let deb = documentData["deb"] as? String ?? "0.0"
+                        let dcab = documentData["dcab"] as? String ?? "0.0"
+                        self.debStation.insert(deb, at: i)
+                        self.dcabStation.insert(dcab, at: i)
+                        
                         self.companyName1Station.insert(companyName1, at: i)
                         self.animalGroup1Station.insert(animalGroup1, at: i)
                         self.physiologicalState1Station.insert(physiologicalState1, at: i)
@@ -173,6 +180,8 @@ class ReportViewController: UIViewController {
                         self.copyArray.append(documentData as NSDictionary)
                     }
                     
+                    self.debList.append(contentsOf: self.debStation)
+                    self.dcabList.append(contentsOf: self.dcabStation)
                     self.companyName1List.append(contentsOf: self.companyName1Station)
                     self.animalGroup1List.append(contentsOf: self.animalGroup1Station)
                     self.physiologicalState1List.append(contentsOf: self.physiologicalState1Station)
@@ -325,6 +334,8 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
                 self.preparedBy.remove(at: indexPath.section)
                 self.reportType.remove(at: indexPath.section)
                 self.DocumentIdList.remove(at: indexPath.section)
+                self.debList.remove(at: indexPath.section)
+                self.dcabList.remove(at: indexPath.section)
                 self.copyArray.remove(at: indexPath.section)
                 if(self.companyNameList.count == 0) {
                     self.tableView.alpha = 0
@@ -378,6 +389,8 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
             vcone?.woolProduction1 = self.woolProduction1List[indexPath.section]
             fromDatabase = "yes"
             vcone?.shareVariable = "yes"
+            Requirments.shared().deb = self.debList[indexPath.section]
+            Requirments.shared().dcab = self.dcabList[indexPath.section]
             self.navigationController?.pushViewController(vcone!, animated: true)
         }
         shareAction.backgroundColor = UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0)
@@ -417,6 +430,8 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
         vcone?.reporttypestr7 = reportType[indexPath.section]
         vcone?.pscistatestr8 = psychologicalList[indexPath.section]
         fromDatabase = "yes"
+        Requirments.shared().deb = self.debList[indexPath.section]
+        Requirments.shared().dcab = self.dcabList[indexPath.section]
         self.navigationController?.pushViewController(vcone!, animated: true)
     }
 }

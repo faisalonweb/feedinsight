@@ -18,7 +18,7 @@ class OpenTermsOfUse: UIViewController, UIGestureRecognizerDelegate {
         self.title = "Terms of Use"
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.view.backgroundColor = UIColor.white
-        let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "BackArrowImage"), style: .plain, target: self, action: #selector(btnMenuAction))
+        let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "backBtn"), style: .plain, target: self, action: #selector(btnMenuAction))
         self.navigationItem.leftBarButtonItem = btnMenu
         if let pdf = Bundle.main.url(forResource: "terms", withExtension: "pdf", subdirectory: nil, localization: nil)  {
             let req = NSURLRequest(url: pdf)

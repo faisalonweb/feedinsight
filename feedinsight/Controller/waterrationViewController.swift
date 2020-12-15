@@ -25,6 +25,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     var reportNameList = [String]()
     var reportDateList = [String]()
     var DocumentIdList = [String]()
+    var docIdArray = [String]()
     var reportProductList = [String]()
     var reportValueList = [String]()
     var CaList = [String]()
@@ -119,14 +120,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.docIdArray.removeAll()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-//        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
-//        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
-//          let gestureRecognizer = UIPanGestureRecognizer()
-//          gestureRecognizer.setValue(targets, forKey: "targets")
-//          self.view.addGestureRecognizer(gestureRecognizer)
-//        }
-       
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.userNameLabel.text = userName as? String
             print(userName)
@@ -312,11 +307,68 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                         
                         
                     }
+                    let productNameArray = ["TotalVit Max", "TotalVit Pro", "TotalVit Super", "TotalVit Plus", "TotalVit Grow", "TotalVit DCAD*"]
+                    let productDateArray = ["Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix"]
+                    self.docIdArray = ["0", "1", "2", "3", "4", "5"]
+                    
+                    self.reportNameList.append(contentsOf: productNameArray)
+                    self.reportDateList.append(contentsOf: productDateArray)
+                    self.DocumentIdList.append(contentsOf: self.docIdArray)
+                    
+                    
                     self.reportNameList.append(contentsOf: self.datastation)
                     self.reportDateList.append(contentsOf: self.dataonestation)
                     self.DocumentIdList.append(contentsOf: self.documentIdStation)
                     
-                    // Macro
+                    let productDoseArray = ["100", "100", "100", "100", "100", "350"]
+                    let vitAArray = ["1000000", "1250000", "1250000", "750000", "500000", "357000"]
+                    let vitDArray = ["250000", "250000", "250000", "200000", "150000", "71400"]
+                    let vitEArray = ["8000", "10000", "10000", "5000", "5000", "4285"]
+                    let niacinArray = ["20000", "20000", "20000", "0", "0", "5715"]
+                    let biotinArray = ["100", "100", "100", "0", "80", "28.5"]
+                    let coArray = ["100","100","100","100","60","28.57"]
+                    let cuArray = ["3000","1500","1500","2000","1000","857"]
+                    let cuOrganicArray = ["0","1500","1500","0","500","0"]
+                    let seArray = ["60","0","0","60","20","17"]
+                    let seOrganicArray = ["0","60","60","0","20","11.5"]
+                    let znArray = ["10000","5000","5000","6000","2000","2850"]
+                    let znOrganicArray = ["0","5000","5000","0","1000","0"]
+                    let mnArray = ["10000","5000","5000","6000","2000","2850"]
+                    let mnOrganicArray = ["0","5000","5000","0","1000","0"]
+                    let iArray = ["200","200","200","200","80","0"]
+                    let pArray = ["60","60","60","0","30","17"]
+                    let clArray = ["100","100","100","100","100","140"]
+                    let mgArray = ["10","10","10","20","10","10"]
+                    let naArray = ["75","75","75","65","65","15"]
+                    let sArray = ["6","6","6","0","0","108"]
+                    let kArray = ["0","0","0","0","0","0"]
+                    let caArray = ["190","170","170","260","250","185"]
+                    
+                    self.productNameList.append(contentsOf: productNameArray)
+                    self.productDoseList.append(contentsOf: productDoseArray)
+                    self.pMacroList.append(contentsOf: pArray)
+                    self.caMacroList.append(contentsOf: caArray)
+                    self.mgMacroList.append(contentsOf: mgArray)
+                    self.kMacroList.append(contentsOf: kArray)
+                    self.naMacroList.append(contentsOf: naArray)
+                    self.clMacroList.append(contentsOf: clArray)
+                    self.sMacroList.append(contentsOf: sArray)
+                    self.coMicroList.append(contentsOf: coArray)
+                    self.iMicroList.append(contentsOf: iArray)
+                    self.mnMicroList.append(contentsOf: mnArray)
+                    self.cuMicroList.append(contentsOf: cuArray)
+                    self.feMicroList.append(contentsOf: mnOrganicArray)
+                    self.cuOrganicMicroList.append(contentsOf: cuOrganicArray)
+                    self.znMicroList.append(contentsOf: znArray)
+                    self.znOrganicMicroList.append(contentsOf: znOrganicArray)
+                    self.seMicroList.append(contentsOf: seArray)
+                    self.seOrganicMicroList.append(contentsOf: seOrganicArray)
+                    self.aiuVitaminList.append(contentsOf: vitAArray)
+                    self.diuVitaminList.append(contentsOf: vitDArray)
+                    self.eiuVitaminList.append(contentsOf: vitEArray)
+                    self.niacinVitaminList.append(contentsOf: niacinArray)
+                    self.biotinVitaminList.append(contentsOf: biotinArray)
+                    
                     self.productNameList.append(contentsOf: self.productNameStation)
                     self.productDoseList.append(contentsOf: self.productDoseStation)
                     self.pMacroList.append(contentsOf: self.pMacroStation)
@@ -326,7 +378,6 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.naMacroList.append(contentsOf: self.naMacroStation)
                     self.clMacroList.append(contentsOf: self.clMacrostation)
                     self.sMacroList.append(contentsOf: self.sMacroStation)
-                    // Micro
                     self.coMicroList.append(contentsOf: self.coMicroStation)
                     self.iMicroList.append(contentsOf: self.iMicroStation)
                     self.mnMicroList.append(contentsOf: self.mnMicroStation)
@@ -337,25 +388,80 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.znOrganicMicroList.append(contentsOf: self.znOrganicMicroStation)
                     self.seMicroList.append(contentsOf: self.seMicroStation)
                     self.seOrganicMicroList.append(contentsOf: self.seOrganicMicroStation)
-                    
-                    
-                    // Vitamin
                     self.aiuVitaminList.append(contentsOf: self.aiuVitaminStation)
                     self.diuVitaminList.append(contentsOf: self.diuVitaminStation)
                     self.eiuVitaminList.append(contentsOf: self.eiuVitaminStation)
                     self.niacinVitaminList.append(contentsOf: self.niacinVitaminStation)
                     self.biotinVitaminList.append(contentsOf: self.biotinVitaminStation)
+                    
+                    
                     self.tblView.reloadData()
                     print("product name is \(self.productNameList)")
                     print("zn inorganic  Data is \(self.znOrganicMicroList)")
                     
                     self.tblView.refreshControl?.endRefreshing()
-                }
-                else {
+                } else {
+                    let productNameArray = ["TotalVit Max", "TotalVit Pro", "TotalVit Super", "TotalVit Plus", "TotalVit Grow", "TotalVit DCAD*"]
+                    let productDateArray = ["TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes"]
+                    self.docIdArray = ["0", "1", "2", "3", "4", "5"]
+                    
+                    self.reportNameList.append(contentsOf: productNameArray)
+                    self.reportDateList.append(contentsOf: productDateArray)
+                    self.DocumentIdList.append(contentsOf: self.docIdArray)
+                    let productDoseArray = ["100", "100", "100", "100", "100", "350"]
+                    let vitAArray = ["1000000", "1250000", "1250000", "750000", "500000", "357000"]
+                    let vitDArray = ["250000", "250000", "250000", "200000", "150000", "71400"]
+                    let vitEArray = ["8000", "10000", "10000", "5000", "5000", "4285"]
+                    let niacinArray = ["20000", "20000", "20000", "0", "0", "5715"]
+                    let biotinArray = ["100", "100", "100", "0", "80", "28.5"]
+                    let coArray = ["100","100","100","100","60","28.57"]
+                    let cuArray = ["3000","1500","1500","2000","1000","857"]
+                    let cuOrganicArray = ["0","1500","1500","0","500","0"]
+                    let seArray = ["60","0","0","60","20","17"]
+                    let seOrganicArray = ["0","60","60","0","20","11.5"]
+                    let znArray = ["10000","5000","5000","6000","2000","2850"]
+                    let znOrganicArray = ["0","5000","5000","0","1000","0"]
+                    let mnArray = ["10000","5000","5000","6000","2000","2850"]
+                    let mnOrganicArray = ["0","5000","5000","0","1000","0"]
+                    let iArray = ["200","200","200","200","80","0"]
+                    let pArray = ["60","60","60","0","30","17"]
+                    let clArray = ["100","100","100","100","100","140"]
+                    let mgArray = ["10","10","10","20","10","10"]
+                    let naArray = ["75","75","75","65","65","15"]
+                    let sArray = ["6","6","6","0","0","108"]
+                    let kArray = ["0","0","0","0","0","0"]
+                    let caArray = ["190","170","170","260","250","185"]
+                    
+                    self.productNameList.append(contentsOf: productNameArray)
+                    self.productDoseList.append(contentsOf: productDoseArray)
+                    self.pMacroList.append(contentsOf: pArray)
+                    self.caMacroList.append(contentsOf: caArray)
+                    self.mgMacroList.append(contentsOf: mgArray)
+                    self.kMacroList.append(contentsOf: kArray)
+                    self.naMacroList.append(contentsOf: naArray)
+                    self.clMacroList.append(contentsOf: clArray)
+                    self.sMacroList.append(contentsOf: sArray)
+                    self.coMicroList.append(contentsOf: coArray)
+                    self.iMicroList.append(contentsOf: iArray)
+                    self.mnMicroList.append(contentsOf: mnArray)
+                    self.cuMicroList.append(contentsOf: cuArray)
+                    self.feMicroList.append(contentsOf: mnOrganicArray)
+                    self.cuOrganicMicroList.append(contentsOf: cuOrganicArray)
+                    self.znMicroList.append(contentsOf: znArray)
+                    self.znOrganicMicroList.append(contentsOf: znOrganicArray)
+                    self.seMicroList.append(contentsOf: seArray)
+                    self.seOrganicMicroList.append(contentsOf: seOrganicArray)
+                    self.aiuVitaminList.append(contentsOf: vitAArray)
+                    self.diuVitaminList.append(contentsOf: vitDArray)
+                    self.eiuVitaminList.append(contentsOf: vitEArray)
+                    self.niacinVitaminList.append(contentsOf: niacinArray)
+                    self.biotinVitaminList.append(contentsOf: biotinArray)
+                    
                     self.tblView.refreshControl?.endRefreshing()
+                    self.tblView.reloadData()
                     print("pakis")
-                    self.tblView.alpha = 0
-                    self.hiddenView.alpha = 1
+                    //self.tblView.alpha = 0
+                    //self.hiddenView.alpha = 1
                 }
             }
         }
@@ -393,14 +499,43 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! waterrationTableViewCell
-        
+        if(self.docIdArray.count > 0) {
+            if (indexPath.section < 6){
+                //cell.backgroundColor = UIColor(red: 81/255, green: 23/255.0, blue: 79/255.0, alpha: 1.0)
+                cell.backgroundColor = UIColor(red: 154/255, green: 9/255.0, blue: 87/255.0, alpha: 1.0)
+                cell.label.textColor = UIColor.white
+                cell.date.textColor = UIColor.white
+            } else {
+                cell.backgroundColor = UIColor(red: 237/255, green: 237/255.0, blue: 237/255.0, alpha: 1.0)
+                cell.label.textColor = UIColor.black
+                cell.date.textColor = UIColor.black
+            }
+        } else {
+            cell.backgroundColor = UIColor(red: 237/255, green: 237/255.0, blue: 237/255.0, alpha: 1.0)
+            cell.label.textColor = UIColor.black
+            cell.date.textColor = UIColor.black
+        }
         cell.label?.text = reportNameList[indexPath.section]
         cell.date?.text = reportDateList[indexPath.section]
+        
         cell.layer.cornerRadius = 10
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if(self.docIdArray.count > 0) {
+            if (indexPath.section < 6){
+                return false
+            } else {
+                return true
+            }
+        } else {
+            return true
+        }
+        
     }
  
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

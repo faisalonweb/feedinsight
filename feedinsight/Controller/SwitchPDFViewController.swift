@@ -34,6 +34,8 @@ struct TableDataItem {
 
 class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate{
     
+    @IBOutlet weak var debLabel: UILabel!
+    @IBOutlet weak var dcabLabel: UILabel!
     @IBOutlet weak var n1: UIView!
     @IBOutlet weak var n2: UIView!
     @IBOutlet weak var scrillviewoutlet: UIScrollView!
@@ -73,6 +75,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
     @IBOutlet weak var znCurrentRatio: UILabel!
     @IBOutlet weak var znRecomRatio: UILabel!
     @IBOutlet weak var toxicLabel: UILabel!
+    @IBOutlet weak var milkProductionTargetLabel: UILabel!
     
     // labels outlets
     
@@ -142,10 +145,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         balview.alpha = 0
         // Set Data
         barchartview.animate(yAxisDuration: 1.0)
-        barchartview.pinchZoomEnabled = false
+        barchartview.pinchZoomEnabled = true
         barchartview.drawBarShadowEnabled = false
         barchartview.drawBordersEnabled = false
-        barchartview.doubleTapToZoomEnabled = false
+        barchartview.doubleTapToZoomEnabled = true
         barchartview.drawGridBackgroundEnabled = true
         barchartview.chartDescription?.text = "Bar Chart View"
         names.removeAll()
@@ -202,7 +205,16 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                  
                  "Ration (kg)"
         ]
+        toxicLabel.text = "      * - Absorable Value"
+        self.debLabel.text = Requirments.shared().deb ?? "0.0"
+        self.dcabLabel.text = Requirments.shared().dcab ?? "0.0"
         if(fromDatabase == "yes") {
+            let milkProduction = Double(milkProduction1) ?? 0.0
+            if(milkProduction <= 0.0) {
+                self.milkProductionTargetLabel.text = "Target"
+            } else {
+                self.milkProductionTargetLabel.text = "\(milkProduction1) Kg Target"
+            }
             addresses.removeAll()
             names.append(contentsOf: Originaldropdownvalues)
             addresses = [" ",
@@ -237,6 +249,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
             self.preparedByLabel.text = preparedbystr6
             setChart(dataPoints: players, values: rationArray.map { Double($0) })
         } else {
+            let milkProduction = Double(Requirments.shared().milkProduction ?? "0.0") ?? 0.0
+            if(milkProduction <= 0.0) {
+                self.milkProductionTargetLabel.text = "Target"
+            } else {
+                self.milkProductionTargetLabel.text = "\(milkProduction) Kg Target"
+            }
             names.append(contentsOf: dropdownvalues)
             addresses.removeAll()
             addresses = ["",Requirments.shared().companyName! as String,
@@ -437,8 +455,34 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                 print("document was not found")
             }
         } else {
-            self.showErrorMessage()
+            if let emailUrl = createEmailUrl(to: "info@totalnutrition.pk", subject: self.referenceLabel.text!, body: "Prepared by " + self.preparedByLabel.text!) {
+                UIApplication.shared.open(emailUrl)
+            }
+            //self.showErrorMessage()
         }
+    }
+    
+    private func createEmailUrl(to: String, subject: String, body: String) -> URL? {
+        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
+        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        
+        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
+            return gmailUrl
+        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
+            return outlookUrl
+        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
+            return yahooMail
+        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
+            return sparkUrl
+        }
+        
+        return defaultUrl
     }
     
     func loadPDFAndShare(){
@@ -460,7 +504,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                     let view = MessageView.viewFromNib(layout: .cardView)
                     view.configureTheme(.success)
                     view.configureDropShadow()
-                    view.configureContent(title: "Report Status", body:"Report shared with client." )
+                    view.configureContent(title: "Report Status", body:"Shared successfully." )
                     SwiftMessages.show(view: view)
                     self.dismiss(animated: true, completion: nil)
                     if let navController = self.navigationController {
@@ -470,7 +514,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                     let view = MessageView.viewFromNib(layout: .cardView)
                     view.configureTheme(.error)
                     view.configureDropShadow()
-                    view.configureContent(title: "Report Status", body:"Cancelled by user." )
+                    view.configureContent(title: "Report Status", body:"Cancelled." )
                     SwiftMessages.show(view: view)
                     self.dismiss(animated: true, completion: nil)
                     if let navController = self.navigationController {
@@ -541,14 +585,14 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
             let view = MessageView.viewFromNib(layout: .cardView)
             view.configureTheme(.success)
             view.configureDropShadow()
-            view.configureContent(title: "Report Status", body:"Report shared with client." )
+            view.configureContent(title: "Report Status", body:"Shared successfully." )
             SwiftMessages.show(view: view)
         case .failed:
             print("Mail sent")
             let view = MessageView.viewFromNib(layout: .cardView)
             view.configureTheme(.error)
             view.configureDropShadow()
-            view.configureContent(title: "Report Status", body:"Failed to share with user." )
+            view.configureContent(title: "Report Status", body:"Failed to share." )
             SwiftMessages.show(view: view)
         @unknown default:
             print("Mail sent")
