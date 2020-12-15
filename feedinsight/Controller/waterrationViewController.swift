@@ -402,7 +402,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                     self.tblView.refreshControl?.endRefreshing()
                 } else {
                     let productNameArray = ["TotalVit Max", "TotalVit Pro", "TotalVit Super", "TotalVit Plus", "TotalVit Grow", "TotalVit DCAD*"]
-                    let productDateArray = ["TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes", "TotalVit Premixes"]
+                    let productDateArray = ["Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix", "Standard TotalVit Premix"]
                     self.docIdArray = ["0", "1", "2", "3", "4", "5"]
                     
                     self.reportNameList.append(contentsOf: productNameArray)
@@ -505,15 +505,18 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
                 cell.backgroundColor = UIColor(red: 154/255, green: 9/255.0, blue: 87/255.0, alpha: 1.0)
                 cell.label.textColor = UIColor.white
                 cell.date.textColor = UIColor.white
+                cell.date.isHidden = true
             } else {
                 cell.backgroundColor = UIColor(red: 237/255, green: 237/255.0, blue: 237/255.0, alpha: 1.0)
                 cell.label.textColor = UIColor.black
                 cell.date.textColor = UIColor.black
+                cell.date.isHidden = false
             }
         } else {
             cell.backgroundColor = UIColor(red: 237/255, green: 237/255.0, blue: 237/255.0, alpha: 1.0)
             cell.label.textColor = UIColor.black
             cell.date.textColor = UIColor.black
+            cell.date.isHidden = false
         }
         cell.label?.text = reportNameList[indexPath.section]
         cell.date?.text = reportDateList[indexPath.section]
