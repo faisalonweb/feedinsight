@@ -407,39 +407,39 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
     @IBAction func skipButton(_ sender: Any) {
         let reachability = try! Reachability.init()
         if((reachability.connection) != .unavailable) {
+            var doseinKG : Double = Double(productDose.text!) ?? 0
             Requirments.shared().productName = productName.text!
             Requirments.shared().productDose = Double(productDose.text!) ?? 0
-            var doseinKG : Double = Double(productDose.text!) ?? 0
             doseinKG = doseinKG / 1000
-            let pMacroText1 = Double(pMacroText.text!) ?? 0
-            let pMacroText2 = Double(caMacroText.text!) ?? 0
-            let pMacroText3 = Double(mgMacroText.text!) ?? 0
-            let pMacroText4 = Double(kMacroText.text!) ?? 0
-            let pMacroText5 = Double(naMacroText.text!) ?? 0
-            let pMacroText6 = Double(clMacroText.text!) ?? 0
-            let pMacroText7 = Double(sMacroText.text!) ?? 0
-            let pMacroText8 = Double(coMicroText.text!) ?? 0
+            let pMacroText1 = 0.0
+            let pMacroText2 = 0.0
+            let pMacroText3 = 0.0
+            let pMacroText4 = 0.0
+            let pMacroText5 = 0.0
+            let pMacroText6 = 0.0
+            let pMacroText7 = 0.0
+            let pMacroText8 = 0.0
             
-            let cu1 = Double(cuMicroText.text!) ?? 0
-            let cu2 = Double(cuOrganicMicroText.text!) ?? 0
-            let se1 = Double(seMicroText.text!) ?? 0
-            let se2 = Double(seOrganicMicroText.text!) ?? 0
-            let zn1 = Double(znMicroText.text!) ?? 0
-            let zn2 = Double(znOrganicMicroText.text!) ?? 0
-            let mn1 = Double(mnMicroText.text!) ?? 0
-            let mn2 = Double(feMicroText.text!) ?? 0
+            let cu1 = 0.0
+            let cu2 = 0.0
+            let se1 = 0.0
+            let se2 = 0.0
+            let zn1 = 0.0
+            let zn2 = 0.0
+            let mn1 = 0.0
+            let mn2 = 0.0
             
             let totalCu = cu1 + cu2
             let totalSe = se1 + se2
             let totalZn = zn1 + zn2
             let totalMn = mn1 + mn2
             
-            let pMacroText23 = Double(iMicroText.text!) ?? 0
-            let pMacroText15 = Double(aiuVitamin.text!) ?? 0
-            let pMacroText16 = Double(diuVitamin.text!) ?? 0
-            let pMacroText17 = Double(eiuVitamin.text!) ?? 0
-            let pMacroText18 = Double(niacinVitamin.text!) ?? 0
-            let pMacroText19 = Double(biotinVitamin.text!) ?? 0
+            let pMacroText23 = 0.0
+            let pMacroText15 = 0.0
+            let pMacroText16 = 0.0
+            let pMacroText17 = 0.0
+            let pMacroText18 = 0.0
+            let pMacroText19 = 0.0
             
             let pMacroText20 = Double(totalCu)
             let pMacroText21 = Double(totalSe)
@@ -454,20 +454,20 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().clMacroText1 = String(pMacroText6)
             Requirments.shared().sMacroText1 = String(pMacroText7)
             Requirments.shared().coMicroText1 = String(pMacroText8)
-            Requirments.shared().cuMicroText1 = cuMicroText.text
-            Requirments.shared().seMicroText1 = seMicroText.text
-            Requirments.shared().znMicroText1 = znMicroText.text!
+            Requirments.shared().cuMicroText1 = "0.0"
+            Requirments.shared().seMicroText1 = "0.0"
+            Requirments.shared().znMicroText1 = "0.0"
             Requirments.shared().aiuVitamin1 = String(pMacroText15)
             Requirments.shared().diuVitamin1 = String(pMacroText16)
             Requirments.shared().eiuVitamin1 = String(pMacroText17)
             Requirments.shared().niacinVitamin1 = String(pMacroText18)
             Requirments.shared().biotinVitamin1 = String(pMacroText19)
             Requirments.shared().iMicroText1 = String(pMacroText23)
-            Requirments.shared().mnMicroText1 = mnMicroText.text!
-            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
-            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
-            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
-            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
+            Requirments.shared().mnMicroText1 = "0.0"
+            Requirments.shared().mnOrganicMicroText1 = "0.0"
+            Requirments.shared().cuOrganicMicroText1 = "0.0"
+            Requirments.shared().seOrganicMicroText1 = "0.0"
+            Requirments.shared().znOrganicMicroText1 = "0.0"
             
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -487,19 +487,7 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
             Requirments.shared().iMicroText = pMacroText23 * doseinKG
             Requirments.shared().mnMicroText = pMacroText25 * doseinKG
-            Requirments.shared().appendOriginalPremixValues()
             Requirments.shared().appendPremixValues()
-            
-            /*
-             Save Report code start
-             */
-            
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
             var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
             var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
             var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
@@ -519,106 +507,52 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             dcab = dcab.roundToDecimal(1)
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)
-            let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                self.view.isUserInteractionEnabled = false
-                let text = alertController.textFields!.first!.text!
-                let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
-                newDocument.setData(["ReportName" : text,
-                                     "currentdatetime": datetimestamp,
-                                     "DocId": newDocument.documentID,
-                                     "CompanyName":Requirments.shared().companyName!,
-                                     "ruminantType":Requirments.shared().animalKind!,
-                                     "ruminantGroup":Requirments.shared().animalGroup!,
-                                     "ruminantState":Requirments.shared().physiologicalState!,
-                                     "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
-                                     "reportType":"Premix Check",
-                                     "RequirmentsVal": Requirments.shared().reqArrayFinal,
-                                     "RationVal": Requirments.shared().rationArrayFinal ,
-                                     "WaterVal" : Requirments.shared().waterArrayFinal,
-                                     "PremixVal": Requirments.shared().primexArrayFinal,
-                                     "originalWaterArray" : Requirments.shared().OriginalwaterArrayFinal,
-                                     "originalPremixArray" : Requirments.shared().OriginalprimexArrayFinal,
-                                     "originalDropDownvalues" : dropdownvalues,
-                                     "originalDropDownfloatvalues" : dropdownfloatValue,
-                                     "companyName1": Requirments.shared().companyName! as String,
-                                     "animalGroup1": Requirments.shared().animalGroup! as String,
-                                     "physiologicalState1": Requirments.shared().physiologicalState! as String,
-                                     "currentBodyWeight1": Requirments.shared().currentBodyWeight! as String,
-                                     "targetBodyWeight1": Requirments.shared().targetBodyWeight! as String,
-                                     "achieveTargetWeight1": Requirments.shared().achieveTargetWeight! as String,
-                                     "daysInMilk1": Requirments.shared().daysInMilk! as String,
-                                     "daysPregnant1": Requirments.shared().daysPregnant! as String,
-                                     "milkProduction1": Requirments.shared().milkProduction! as String,
-                                     "animalKind1": Requirments.shared().animalKind! as String,
-                                     "heatStress1": Requirments.shared().heatStress?.description ?? "none",
-                                     "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
-                                     "anionic1": Requirments.shared().anionic?.description ?? "none",
-                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
-                                     "deb" : Requirments.shared().deb ?? "0.0",
-                                     "dcab" : Requirments.shared().dcab ?? "0.0"
-                ]){ err in
-                    if let err = err {
-                        SVProgressHUD.showError(withStatus: "Error")
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                        self.view.isUserInteractionEnabled = true
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                        self.view.isUserInteractionEnabled = true
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
-                        vc?.reportName = text
-                        vc?.reportDate = datetimestamp
-                        self.navigationController?.pushViewController(vc!, animated: true)
-                    }
-                }
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Pdf Report"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
-            self.present(alertController, animated: true, completion: nil)
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .long
+            let datetimestamp = formatter.string(from: currentDateTime)
+            self.view.isUserInteractionEnabled = true
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
+            vc?.reportName = "Testing Report"
+            vc?.reportDate = datetimestamp
+            self.navigationController?.pushViewController(vc!, animated: true)
+            
         } else {
+            var doseinKG : Double = Double(productDose.text!) ?? 0
             Requirments.shared().productName = productName.text!
             Requirments.shared().productDose = Double(productDose.text!) ?? 0
-            var doseinKG : Double = Double(productDose.text!) ?? 0
-            doseinKG = doseinKG / 1000
-            let pMacroText1 = Double(pMacroText.text!) ?? 0
-            let pMacroText2 = Double(caMacroText.text!) ?? 0
-            let pMacroText3 = Double(mgMacroText.text!) ?? 0
-            let pMacroText4 = Double(kMacroText.text!) ?? 0
-            let pMacroText5 = Double(naMacroText.text!) ?? 0
-            let pMacroText6 = Double(clMacroText.text!) ?? 0
-            let pMacroText7 = Double(sMacroText.text!) ?? 0
-            let pMacroText8 = Double(coMicroText.text!) ?? 0
             
-            let cu1 = Double(cuMicroText.text!) ?? 0
-            let cu2 = Double(cuOrganicMicroText.text!) ?? 0
-            let se1 = Double(seMicroText.text!) ?? 0
-            let se2 = Double(seOrganicMicroText.text!) ?? 0
-            let zn1 = Double(znMicroText.text!) ?? 0
-            let zn2 = Double(znOrganicMicroText.text!) ?? 0
-            let mn1 = Double(mnMicroText.text!) ?? 0
-            let mn2 = Double(feMicroText.text!) ?? 0
+            doseinKG = doseinKG / 1000
+            let pMacroText1 = 0.0
+            let pMacroText2 = 0.0
+            let pMacroText3 = 0.0
+            let pMacroText4 = 0.0
+            let pMacroText5 = 0.0
+            let pMacroText6 = 0.0
+            let pMacroText7 = 0.0
+            let pMacroText8 = 0.0
+            
+            let cu1 = 0.0
+            let cu2 = 0.0
+            let se1 = 0.0
+            let se2 = 0.0
+            let zn1 = 0.0
+            let zn2 = 0.0
+            let mn1 = 0.0
+            let mn2 = 0.0
             
             let totalCu = cu1 + cu2
             let totalSe = se1 + se2
             let totalZn = zn1 + zn2
             let totalMn = mn1 + mn2
             
-            let pMacroText23 = Double(iMicroText.text!) ?? 0
-            let pMacroText15 = Double(aiuVitamin.text!) ?? 0
-            let pMacroText16 = Double(diuVitamin.text!) ?? 0
-            let pMacroText17 = Double(eiuVitamin.text!) ?? 0
-            let pMacroText18 = Double(niacinVitamin.text!) ?? 0
-            let pMacroText19 = Double(biotinVitamin.text!) ?? 0
+            let pMacroText23 = 0.0
+            let pMacroText15 = 0.0
+            let pMacroText16 = 0.0
+            let pMacroText17 = 0.0
+            let pMacroText18 = 0.0
+            let pMacroText19 = 0.0
             
             let pMacroText20 = Double(totalCu)
             let pMacroText21 = Double(totalSe)
@@ -633,20 +567,20 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().clMacroText1 = String(pMacroText6)
             Requirments.shared().sMacroText1 = String(pMacroText7)
             Requirments.shared().coMicroText1 = String(pMacroText8)
-            Requirments.shared().cuMicroText1 = cuMicroText.text
-            Requirments.shared().seMicroText1 = seMicroText.text
-            Requirments.shared().znMicroText1 = znMicroText.text!
+            Requirments.shared().cuMicroText1 = "0.0"
+            Requirments.shared().seMicroText1 = "0.0"
+            Requirments.shared().znMicroText1 = "0.0"
             Requirments.shared().aiuVitamin1 = String(pMacroText15)
             Requirments.shared().diuVitamin1 = String(pMacroText16)
             Requirments.shared().eiuVitamin1 = String(pMacroText17)
             Requirments.shared().niacinVitamin1 = String(pMacroText18)
             Requirments.shared().biotinVitamin1 = String(pMacroText19)
             Requirments.shared().iMicroText1 = String(pMacroText23)
-            Requirments.shared().mnMicroText1 = mnMicroText.text!
-            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
-            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
-            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
-            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
+            Requirments.shared().mnMicroText1 = "0.0"
+            Requirments.shared().mnOrganicMicroText1 = "0.0"
+            Requirments.shared().cuOrganicMicroText1 = "0.0"
+            Requirments.shared().seOrganicMicroText1 = "0.0"
+            Requirments.shared().znOrganicMicroText1 = "0.0"
             
             Requirments.shared().pMacroText = pMacroText1 * doseinKG
             Requirments.shared().caMacroText = pMacroText2 * doseinKG
@@ -703,294 +637,313 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
         
         let reachability = try! Reachability.init()
         if((reachability.connection) != .unavailable) {
-            Requirments.shared().productName = productName.text!
-            Requirments.shared().productDose = Double(productDose.text!) ?? 0
             var doseinKG : Double = Double(productDose.text!) ?? 0
-            doseinKG = doseinKG / 1000
-            let pMacroText1 = Double(pMacroText.text!) ?? 0
-            let pMacroText2 = Double(caMacroText.text!) ?? 0
-            let pMacroText3 = Double(mgMacroText.text!) ?? 0
-            let pMacroText4 = Double(kMacroText.text!) ?? 0
-            let pMacroText5 = Double(naMacroText.text!) ?? 0
-            let pMacroText6 = Double(clMacroText.text!) ?? 0
-            let pMacroText7 = Double(sMacroText.text!) ?? 0
-            let pMacroText8 = Double(coMicroText.text!) ?? 0
-            
-            let cu1 = Double(cuMicroText.text!) ?? 0
-            let cu2 = Double(cuOrganicMicroText.text!) ?? 0
-            let se1 = Double(seMicroText.text!) ?? 0
-            let se2 = Double(seOrganicMicroText.text!) ?? 0
-            let zn1 = Double(znMicroText.text!) ?? 0
-            let zn2 = Double(znOrganicMicroText.text!) ?? 0
-            let mn1 = Double(mnMicroText.text!) ?? 0
-            let mn2 = Double(feMicroText.text!) ?? 0
-            let totalCu = cu1 + cu2
-            let totalSe = se1 + se2
-            let totalZn = zn1 + zn2
-            let totalMn = mn1 + mn2
-            let pMacroText23 = Double(iMicroText.text!) ?? 0
-            let pMacroText15 = Double(aiuVitamin.text!) ?? 0
-            let pMacroText16 = Double(diuVitamin.text!) ?? 0
-            let pMacroText17 = Double(eiuVitamin.text!) ?? 0
-            let pMacroText18 = Double(niacinVitamin.text!) ?? 0
-            let pMacroText19 = Double(biotinVitamin.text!) ?? 0
-            
-            let pMacroText20 = Double(totalCu)
-            let pMacroText21 = Double(totalSe)
-            let pMacroText22 = Double(totalZn)
-            let pMacroText25 = Double(totalMn)
-            
-            Requirments.shared().pMacroText1 = String(pMacroText1)
-            Requirments.shared().caMacroText1 = String(pMacroText2)
-            Requirments.shared().mgMacroText1 = String(pMacroText3)
-            Requirments.shared().kMacroText1 = String(pMacroText4)
-            Requirments.shared().naMacroText1 = String(pMacroText5)
-            Requirments.shared().clMacroText1 = String(pMacroText6)
-            Requirments.shared().sMacroText1 = String(pMacroText7)
-            Requirments.shared().coMicroText1 = String(pMacroText8)
-            Requirments.shared().cuMicroText1 = cuMicroText.text
-            Requirments.shared().seMicroText1 = seMicroText.text
-            Requirments.shared().znMicroText1 = znMicroText.text!
-            Requirments.shared().aiuVitamin1 = String(pMacroText15)
-            Requirments.shared().diuVitamin1 = String(pMacroText16)
-            Requirments.shared().eiuVitamin1 = String(pMacroText17)
-            Requirments.shared().niacinVitamin1 = String(pMacroText18)
-            Requirments.shared().biotinVitamin1 = String(pMacroText19)
-            Requirments.shared().iMicroText1 = String(pMacroText23)
-            Requirments.shared().mnMicroText1 = mnMicroText.text!
-            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
-            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
-            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
-            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
-            
-            Requirments.shared().pMacroText = pMacroText1 * doseinKG
-            Requirments.shared().caMacroText = pMacroText2 * doseinKG
-            Requirments.shared().mgMacroText = pMacroText3 * doseinKG
-            Requirments.shared().kMacroText = pMacroText4 * doseinKG
-            Requirments.shared().naMacroText = pMacroText5 * doseinKG
-            Requirments.shared().clMacroText = pMacroText6 * doseinKG
-            Requirments.shared().sMacroText = pMacroText7 * doseinKG
-            Requirments.shared().coMicroText = pMacroText8 * doseinKG
-            Requirments.shared().cuMicroText = pMacroText20 * doseinKG
-            Requirments.shared().seMicroText = pMacroText21 * doseinKG
-            Requirments.shared().znMicroText = pMacroText22 * doseinKG
-            Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
-            Requirments.shared().diuVitamin = pMacroText16 * doseinKG
-            Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
-            Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
-            Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
-            Requirments.shared().iMicroText = pMacroText23 * doseinKG
-            Requirments.shared().mnMicroText = pMacroText25 * doseinKG
-            
-            Requirments.shared().appendPremixValues()
-            Requirments.shared().appendOriginalPremixValues()
-            
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            
-            var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
-            var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
-            var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
-            var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
-            
-            na = (na / Requirments.shared().DMI) / 23.0
-            cl = (cl / Requirments.shared().DMI) / 35.5
-            s = (s / Requirments.shared().DMI) / 16.0
-            k = (k / Requirments.shared().DMI) / 39.0
-            
-            var deb = na + k - cl
-            var dcab = na + k - cl - s
-            
-            deb = deb * 1000
-            dcab = dcab * 1000
-            deb = deb.roundToDecimal(1)
-            dcab = dcab.roundToDecimal(1)
-            Requirments.shared().deb = String(deb)
-            Requirments.shared().dcab = String(dcab)
-            
-            let datetimestamp = formatter.string(from: currentDateTime)
-            let db = Firestore.firestore()
-            let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
-            let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
-                SVProgressHUD.show(withStatus: "it's working ...")
-                self.view.isUserInteractionEnabled = false
-                let text = alertController.textFields!.first!.text!
-                let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
-                newDocument.setData(["ReportName" : text,
-                                     "currentdatetime": datetimestamp,
-                                     "DocId": newDocument.documentID,
-                                     "CompanyName":Requirments.shared().companyName!,
-                                     "ruminantType":Requirments.shared().animalKind!,
-                                     "ruminantGroup":Requirments.shared().animalGroup!,
-                                     "ruminantState":Requirments.shared().physiologicalState!,
-                                     "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
-                                     "reportType":"Premix Check",
-                                     "RequirmentsVal": Requirments.shared().reqArrayFinal,
-                                     "RationVal": Requirments.shared().rationArrayFinal ,
-                                     "WaterVal" : Requirments.shared().waterArrayFinal,
-                                     "PremixVal": Requirments.shared().primexArrayFinal,
-                                     "originalWaterArray" : Requirments.shared().OriginalwaterArrayFinal,
-                                     "originalPremixArray" : Requirments.shared().OriginalprimexArrayFinal,
-                                     "originalDropDownvalues" : dropdownvalues,
-                                     "originalDropDownfloatvalues" : dropdownfloatValue,
-                                     "companyName1": Requirments.shared().companyName! as String,
-                                     "animalGroup1": Requirments.shared().animalGroup! as String,
-                                     "physiologicalState1": Requirments.shared().physiologicalState! as String,
-                                     "currentBodyWeight1": Requirments.shared().currentBodyWeight! as String,
-                                     "targetBodyWeight1": Requirments.shared().targetBodyWeight! as String,
-                                     "achieveTargetWeight1": Requirments.shared().achieveTargetWeight! as String,
-                                     "daysInMilk1": Requirments.shared().daysInMilk! as String,
-                                     "daysPregnant1": Requirments.shared().daysPregnant! as String,
-                                     "milkProduction1": Requirments.shared().milkProduction! as String,
-                                     "animalKind1": Requirments.shared().animalKind! as String,
-                                     "heatStress1": Requirments.shared().heatStress?.description ?? "none",
-                                     "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
-                                     "anionic1": Requirments.shared().anionic?.description ?? "none",
-                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
-                                     "deb" : Requirments.shared().deb ?? "0.0",
-                                     "dcab" : Requirments.shared().dcab ?? "0.0"
-                                     
-                ]) { err in
-                    if let err = err {
-                        SVProgressHUD.showError(withStatus: "Error")
-                        print("Error adding document: \(err)")
-                        SVProgressHUD.dismiss()
-                        self.view.isUserInteractionEnabled = true
-                    } else {
-                        SVProgressHUD.showSuccess(withStatus: "Sucess")
-                        print("Document added")
-                        SVProgressHUD.dismiss()
-                        self.view.isUserInteractionEnabled = true
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
-                        vc?.reportName = text
-                        vc?.reportDate = datetimestamp
-                        self.navigationController?.pushViewController(vc!, animated: true)
+            if(doseinKG == 0) {
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "Error", body: "Dosage value must be greater than Zero.")
+                SwiftMessages.show(view: view)
+            } else {
+                Requirments.shared().productName = productName.text!
+                Requirments.shared().productDose = Double(productDose.text!) ?? 0
+                
+                doseinKG = doseinKG / 1000
+                let pMacroText1 = Double(pMacroText.text!) ?? 0
+                let pMacroText2 = Double(caMacroText.text!) ?? 0
+                let pMacroText3 = Double(mgMacroText.text!) ?? 0
+                let pMacroText4 = Double(kMacroText.text!) ?? 0
+                let pMacroText5 = Double(naMacroText.text!) ?? 0
+                let pMacroText6 = Double(clMacroText.text!) ?? 0
+                let pMacroText7 = Double(sMacroText.text!) ?? 0
+                let pMacroText8 = Double(coMicroText.text!) ?? 0
+                
+                let cu1 = Double(cuMicroText.text!) ?? 0
+                let cu2 = Double(cuOrganicMicroText.text!) ?? 0
+                let se1 = Double(seMicroText.text!) ?? 0
+                let se2 = Double(seOrganicMicroText.text!) ?? 0
+                let zn1 = Double(znMicroText.text!) ?? 0
+                let zn2 = Double(znOrganicMicroText.text!) ?? 0
+                let mn1 = Double(mnMicroText.text!) ?? 0
+                let mn2 = Double(feMicroText.text!) ?? 0
+                let totalCu = cu1 + cu2
+                let totalSe = se1 + se2
+                let totalZn = zn1 + zn2
+                let totalMn = mn1 + mn2
+                let pMacroText23 = Double(iMicroText.text!) ?? 0
+                let pMacroText15 = Double(aiuVitamin.text!) ?? 0
+                let pMacroText16 = Double(diuVitamin.text!) ?? 0
+                let pMacroText17 = Double(eiuVitamin.text!) ?? 0
+                let pMacroText18 = Double(niacinVitamin.text!) ?? 0
+                let pMacroText19 = Double(biotinVitamin.text!) ?? 0
+                
+                let pMacroText20 = Double(totalCu)
+                let pMacroText21 = Double(totalSe)
+                let pMacroText22 = Double(totalZn)
+                let pMacroText25 = Double(totalMn)
+                
+                Requirments.shared().pMacroText1 = String(pMacroText1)
+                Requirments.shared().caMacroText1 = String(pMacroText2)
+                Requirments.shared().mgMacroText1 = String(pMacroText3)
+                Requirments.shared().kMacroText1 = String(pMacroText4)
+                Requirments.shared().naMacroText1 = String(pMacroText5)
+                Requirments.shared().clMacroText1 = String(pMacroText6)
+                Requirments.shared().sMacroText1 = String(pMacroText7)
+                Requirments.shared().coMicroText1 = String(pMacroText8)
+                Requirments.shared().cuMicroText1 = cuMicroText.text
+                Requirments.shared().seMicroText1 = seMicroText.text
+                Requirments.shared().znMicroText1 = znMicroText.text!
+                Requirments.shared().aiuVitamin1 = String(pMacroText15)
+                Requirments.shared().diuVitamin1 = String(pMacroText16)
+                Requirments.shared().eiuVitamin1 = String(pMacroText17)
+                Requirments.shared().niacinVitamin1 = String(pMacroText18)
+                Requirments.shared().biotinVitamin1 = String(pMacroText19)
+                Requirments.shared().iMicroText1 = String(pMacroText23)
+                Requirments.shared().mnMicroText1 = mnMicroText.text!
+                Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
+                Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
+                Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
+                Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
+                
+                Requirments.shared().pMacroText = pMacroText1 * doseinKG
+                Requirments.shared().caMacroText = pMacroText2 * doseinKG
+                Requirments.shared().mgMacroText = pMacroText3 * doseinKG
+                Requirments.shared().kMacroText = pMacroText4 * doseinKG
+                Requirments.shared().naMacroText = pMacroText5 * doseinKG
+                Requirments.shared().clMacroText = pMacroText6 * doseinKG
+                Requirments.shared().sMacroText = pMacroText7 * doseinKG
+                Requirments.shared().coMicroText = pMacroText8 * doseinKG
+                Requirments.shared().cuMicroText = pMacroText20 * doseinKG
+                Requirments.shared().seMicroText = pMacroText21 * doseinKG
+                Requirments.shared().znMicroText = pMacroText22 * doseinKG
+                Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
+                Requirments.shared().diuVitamin = pMacroText16 * doseinKG
+                Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
+                Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
+                Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
+                Requirments.shared().iMicroText = pMacroText23 * doseinKG
+                Requirments.shared().mnMicroText = pMacroText25 * doseinKG
+                
+                Requirments.shared().appendPremixValues()
+                Requirments.shared().appendOriginalPremixValues()
+                
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                
+                var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
+                var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
+                var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
+                var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
+                
+                na = (na / Requirments.shared().DMI) / 23.0
+                cl = (cl / Requirments.shared().DMI) / 35.5
+                s = (s / Requirments.shared().DMI) / 16.0
+                k = (k / Requirments.shared().DMI) / 39.0
+                
+                var deb = na + k - cl
+                var dcab = na + k - cl - s
+                
+                deb = deb * 1000
+                dcab = dcab * 1000
+                deb = deb.roundToDecimal(1)
+                dcab = dcab.roundToDecimal(1)
+                Requirments.shared().deb = String(deb)
+                Requirments.shared().dcab = String(dcab)
+                
+                let datetimestamp = formatter.string(from: currentDateTime)
+                let db = Firestore.firestore()
+                let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
+                let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
+                    SVProgressHUD.show(withStatus: "it's working ...")
+                    self.view.isUserInteractionEnabled = false
+                    let text = alertController.textFields!.first!.text!
+                    let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
+                    newDocument.setData(["ReportName" : text,
+                                         "currentdatetime": datetimestamp,
+                                         "DocId": newDocument.documentID,
+                                         "CompanyName":Requirments.shared().companyName!,
+                                         "ruminantType":Requirments.shared().animalKind!,
+                                         "ruminantGroup":Requirments.shared().animalGroup!,
+                                         "ruminantState":Requirments.shared().physiologicalState!,
+                                         "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
+                                         "reportType":"Premix Check",
+                                         "RequirmentsVal": Requirments.shared().reqArrayFinal,
+                                         "RationVal": Requirments.shared().rationArrayFinal ,
+                                         "WaterVal" : Requirments.shared().waterArrayFinal,
+                                         "PremixVal": Requirments.shared().primexArrayFinal,
+                                         "originalWaterArray" : Requirments.shared().OriginalwaterArrayFinal,
+                                         "originalPremixArray" : Requirments.shared().OriginalprimexArrayFinal,
+                                         "originalDropDownvalues" : dropdownvalues,
+                                         "originalDropDownfloatvalues" : dropdownfloatValue,
+                                         "companyName1": Requirments.shared().companyName! as String,
+                                         "animalGroup1": Requirments.shared().animalGroup! as String,
+                                         "physiologicalState1": Requirments.shared().physiologicalState! as String,
+                                         "currentBodyWeight1": Requirments.shared().currentBodyWeight! as String,
+                                         "targetBodyWeight1": Requirments.shared().targetBodyWeight! as String,
+                                         "achieveTargetWeight1": Requirments.shared().achieveTargetWeight! as String,
+                                         "daysInMilk1": Requirments.shared().daysInMilk! as String,
+                                         "daysPregnant1": Requirments.shared().daysPregnant! as String,
+                                         "milkProduction1": Requirments.shared().milkProduction! as String,
+                                         "animalKind1": Requirments.shared().animalKind! as String,
+                                         "heatStress1": Requirments.shared().heatStress?.description ?? "none",
+                                         "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
+                                         "anionic1": Requirments.shared().anionic?.description ?? "none",
+                                         "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
+                                         "deb" : Requirments.shared().deb ?? "0.0",
+                                         "dcab" : Requirments.shared().dcab ?? "0.0"
+                                         
+                    ]) { err in
+                        if let err = err {
+                            SVProgressHUD.showError(withStatus: "Error")
+                            print("Error adding document: \(err)")
+                            SVProgressHUD.dismiss()
+                            self.view.isUserInteractionEnabled = true
+                        } else {
+                            SVProgressHUD.showSuccess(withStatus: "Sucess")
+                            print("Document added")
+                            SVProgressHUD.dismiss()
+                            self.view.isUserInteractionEnabled = true
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
+                            vc?.reportName = text
+                            vc?.reportDate = datetimestamp
+                            self.navigationController?.pushViewController(vc!, animated: true)
+                        }
                     }
                 }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+                }
+                alertController.addTextField { (textField) in
+                    textField.placeholder = "Pdf Report"
+                }
+                alertController.addAction(withdrawAction)
+                alertController.addAction(cancelAction)
+                alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
+                self.present(alertController, animated: true, completion: nil)
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
-            }
-            alertController.addTextField { (textField) in
-                textField.placeholder = "Pdf Report"
-            }
-            alertController.addAction(withdrawAction)
-            alertController.addAction(cancelAction)
-            alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
-            self.present(alertController, animated: true, completion: nil)
+            
+            
         } else {
-            Requirments.shared().productName = productName.text!
-            Requirments.shared().productDose = Double(productDose.text!) ?? 0
             var doseinKG : Double = Double(productDose.text!) ?? 0
-            doseinKG = doseinKG / 1000
-            let pMacroText1 = Double(pMacroText.text!) ?? 0
-            let pMacroText2 = Double(caMacroText.text!) ?? 0
-            let pMacroText3 = Double(mgMacroText.text!) ?? 0
-            let pMacroText4 = Double(kMacroText.text!) ?? 0
-            let pMacroText5 = Double(naMacroText.text!) ?? 0
-            let pMacroText6 = Double(clMacroText.text!) ?? 0
-            let pMacroText7 = Double(sMacroText.text!) ?? 0
-            let pMacroText8 = Double(coMicroText.text!) ?? 0
-            
-            let cu1 = Double(cuMicroText.text!) ?? 0
-            let cu2 = Double(cuOrganicMicroText.text!) ?? 0
-            let se1 = Double(seMicroText.text!) ?? 0
-            let se2 = Double(seOrganicMicroText.text!) ?? 0
-            let zn1 = Double(znMicroText.text!) ?? 0
-            let zn2 = Double(znOrganicMicroText.text!) ?? 0
-            let mn1 = Double(mnMicroText.text!) ?? 0
-            let mn2 = Double(feMicroText.text!) ?? 0
-            let totalCu = cu1 + cu2
-            let totalSe = se1 + se2
-            let totalZn = zn1 + zn2
-            let totalMn = mn1 + mn2
-            let pMacroText23 = Double(iMicroText.text!) ?? 0
-            let pMacroText15 = Double(aiuVitamin.text!) ?? 0
-            let pMacroText16 = Double(diuVitamin.text!) ?? 0
-            let pMacroText17 = Double(eiuVitamin.text!) ?? 0
-            let pMacroText18 = Double(niacinVitamin.text!) ?? 0
-            let pMacroText19 = Double(biotinVitamin.text!) ?? 0
-            
-            let pMacroText20 = Double(totalCu)
-            let pMacroText21 = Double(totalSe)
-            let pMacroText22 = Double(totalZn)
-            let pMacroText25 = Double(totalMn)
-            
-            Requirments.shared().pMacroText1 = String(pMacroText1)
-            Requirments.shared().caMacroText1 = String(pMacroText2)
-            Requirments.shared().mgMacroText1 = String(pMacroText3)
-            Requirments.shared().kMacroText1 = String(pMacroText4)
-            Requirments.shared().naMacroText1 = String(pMacroText5)
-            Requirments.shared().clMacroText1 = String(pMacroText6)
-            Requirments.shared().sMacroText1 = String(pMacroText7)
-            Requirments.shared().coMicroText1 = String(pMacroText8)
-            Requirments.shared().cuMicroText1 = cuMicroText.text
-            Requirments.shared().seMicroText1 = seMicroText.text
-            Requirments.shared().znMicroText1 = znMicroText.text!
-            Requirments.shared().aiuVitamin1 = String(pMacroText15)
-            Requirments.shared().diuVitamin1 = String(pMacroText16)
-            Requirments.shared().eiuVitamin1 = String(pMacroText17)
-            Requirments.shared().niacinVitamin1 = String(pMacroText18)
-            Requirments.shared().biotinVitamin1 = String(pMacroText19)
-            Requirments.shared().iMicroText1 = String(pMacroText23)
-            Requirments.shared().mnMicroText1 = mnMicroText.text!
-            Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
-            Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
-            Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
-            Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
-            
-            Requirments.shared().pMacroText = pMacroText1 * doseinKG
-            Requirments.shared().caMacroText = pMacroText2 * doseinKG
-            Requirments.shared().mgMacroText = pMacroText3 * doseinKG
-            Requirments.shared().kMacroText = pMacroText4 * doseinKG
-            Requirments.shared().naMacroText = pMacroText5 * doseinKG
-            Requirments.shared().clMacroText = pMacroText6 * doseinKG
-            Requirments.shared().sMacroText = pMacroText7 * doseinKG
-            Requirments.shared().coMicroText = pMacroText8 * doseinKG
-            Requirments.shared().cuMicroText = pMacroText20 * doseinKG
-            Requirments.shared().seMicroText = pMacroText21 * doseinKG
-            Requirments.shared().znMicroText = pMacroText22 * doseinKG
-            Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
-            Requirments.shared().diuVitamin = pMacroText16 * doseinKG
-            Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
-            Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
-            Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
-            Requirments.shared().iMicroText = pMacroText23 * doseinKG
-            Requirments.shared().mnMicroText = pMacroText25 * doseinKG
-            
-            Requirments.shared().appendPremixValues()
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
-            var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
-            var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
-            var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
-            var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
-            
-            na = (na / Requirments.shared().DMI) / 23.0
-            cl = (cl / Requirments.shared().DMI) / 35.5
-            s = (s / Requirments.shared().DMI) / 16.0
-            k = (k / Requirments.shared().DMI) / 39.0
-            
-            var deb = na + k - cl
-            var dcab = na + k - cl - s
-            
-            deb = deb * 1000
-            dcab = dcab * 1000
-            
-            deb = deb.roundToDecimal(1)
-            dcab = dcab.roundToDecimal(1)
-            
-            Requirments.shared().deb = String(deb)
-            Requirments.shared().dcab = String(dcab)
-            let datetimestamp = formatter.string(from: currentDateTime)
-            self.view.isUserInteractionEnabled = true
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
-            vc?.reportName = "Testing Report"
-            vc?.reportDate = datetimestamp
-            self.navigationController?.pushViewController(vc!, animated: true)
+            if(doseinKG == 0) {
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureTheme(.error)
+                view.configureDropShadow()
+                view.configureContent(title: "Error", body: "Dosage value must be greater than Zero.")
+                SwiftMessages.show(view: view)
+            } else {
+                Requirments.shared().productName = productName.text!
+                Requirments.shared().productDose = Double(productDose.text!) ?? 0
+                doseinKG = doseinKG / 1000
+                let pMacroText1 = Double(pMacroText.text!) ?? 0
+                let pMacroText2 = Double(caMacroText.text!) ?? 0
+                let pMacroText3 = Double(mgMacroText.text!) ?? 0
+                let pMacroText4 = Double(kMacroText.text!) ?? 0
+                let pMacroText5 = Double(naMacroText.text!) ?? 0
+                let pMacroText6 = Double(clMacroText.text!) ?? 0
+                let pMacroText7 = Double(sMacroText.text!) ?? 0
+                let pMacroText8 = Double(coMicroText.text!) ?? 0
+                
+                let cu1 = Double(cuMicroText.text!) ?? 0
+                let cu2 = Double(cuOrganicMicroText.text!) ?? 0
+                let se1 = Double(seMicroText.text!) ?? 0
+                let se2 = Double(seOrganicMicroText.text!) ?? 0
+                let zn1 = Double(znMicroText.text!) ?? 0
+                let zn2 = Double(znOrganicMicroText.text!) ?? 0
+                let mn1 = Double(mnMicroText.text!) ?? 0
+                let mn2 = Double(feMicroText.text!) ?? 0
+                let totalCu = cu1 + cu2
+                let totalSe = se1 + se2
+                let totalZn = zn1 + zn2
+                let totalMn = mn1 + mn2
+                let pMacroText23 = Double(iMicroText.text!) ?? 0
+                let pMacroText15 = Double(aiuVitamin.text!) ?? 0
+                let pMacroText16 = Double(diuVitamin.text!) ?? 0
+                let pMacroText17 = Double(eiuVitamin.text!) ?? 0
+                let pMacroText18 = Double(niacinVitamin.text!) ?? 0
+                let pMacroText19 = Double(biotinVitamin.text!) ?? 0
+                
+                let pMacroText20 = Double(totalCu)
+                let pMacroText21 = Double(totalSe)
+                let pMacroText22 = Double(totalZn)
+                let pMacroText25 = Double(totalMn)
+                
+                Requirments.shared().pMacroText1 = String(pMacroText1)
+                Requirments.shared().caMacroText1 = String(pMacroText2)
+                Requirments.shared().mgMacroText1 = String(pMacroText3)
+                Requirments.shared().kMacroText1 = String(pMacroText4)
+                Requirments.shared().naMacroText1 = String(pMacroText5)
+                Requirments.shared().clMacroText1 = String(pMacroText6)
+                Requirments.shared().sMacroText1 = String(pMacroText7)
+                Requirments.shared().coMicroText1 = String(pMacroText8)
+                Requirments.shared().cuMicroText1 = cuMicroText.text
+                Requirments.shared().seMicroText1 = seMicroText.text
+                Requirments.shared().znMicroText1 = znMicroText.text!
+                Requirments.shared().aiuVitamin1 = String(pMacroText15)
+                Requirments.shared().diuVitamin1 = String(pMacroText16)
+                Requirments.shared().eiuVitamin1 = String(pMacroText17)
+                Requirments.shared().niacinVitamin1 = String(pMacroText18)
+                Requirments.shared().biotinVitamin1 = String(pMacroText19)
+                Requirments.shared().iMicroText1 = String(pMacroText23)
+                Requirments.shared().mnMicroText1 = mnMicroText.text!
+                Requirments.shared().mnOrganicMicroText1 = self.feMicroText.text
+                Requirments.shared().cuOrganicMicroText1 = self.cuOrganicMicroText.text
+                Requirments.shared().seOrganicMicroText1 = self.seOrganicMicroText.text
+                Requirments.shared().znOrganicMicroText1 = self.znOrganicMicroText.text
+                
+                Requirments.shared().pMacroText = pMacroText1 * doseinKG
+                Requirments.shared().caMacroText = pMacroText2 * doseinKG
+                Requirments.shared().mgMacroText = pMacroText3 * doseinKG
+                Requirments.shared().kMacroText = pMacroText4 * doseinKG
+                Requirments.shared().naMacroText = pMacroText5 * doseinKG
+                Requirments.shared().clMacroText = pMacroText6 * doseinKG
+                Requirments.shared().sMacroText = pMacroText7 * doseinKG
+                Requirments.shared().coMicroText = pMacroText8 * doseinKG
+                Requirments.shared().cuMicroText = pMacroText20 * doseinKG
+                Requirments.shared().seMicroText = pMacroText21 * doseinKG
+                Requirments.shared().znMicroText = pMacroText22 * doseinKG
+                Requirments.shared().aiuVitamin = pMacroText15 * doseinKG
+                Requirments.shared().diuVitamin = pMacroText16 * doseinKG
+                Requirments.shared().eiuVitamin = pMacroText17 * doseinKG
+                Requirments.shared().niacinVitamin = pMacroText18 * doseinKG
+                Requirments.shared().biotinVitamin = pMacroText19 * doseinKG
+                Requirments.shared().iMicroText = pMacroText23 * doseinKG
+                Requirments.shared().mnMicroText = pMacroText25 * doseinKG
+                
+                Requirments.shared().appendPremixValues()
+                let currentDateTime = Date()
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .long
+                var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
+                var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
+                var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
+                var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
+                
+                na = (na / Requirments.shared().DMI) / 23.0
+                cl = (cl / Requirments.shared().DMI) / 35.5
+                s = (s / Requirments.shared().DMI) / 16.0
+                k = (k / Requirments.shared().DMI) / 39.0
+                
+                var deb = na + k - cl
+                var dcab = na + k - cl - s
+                
+                deb = deb * 1000
+                dcab = dcab * 1000
+                
+                deb = deb.roundToDecimal(1)
+                dcab = dcab.roundToDecimal(1)
+                
+                Requirments.shared().deb = String(deb)
+                Requirments.shared().dcab = String(dcab)
+                let datetimestamp = formatter.string(from: currentDateTime)
+                self.view.isUserInteractionEnabled = true
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
+                vc?.reportName = "Testing Report"
+                vc?.reportDate = datetimestamp
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
         }
         
     }

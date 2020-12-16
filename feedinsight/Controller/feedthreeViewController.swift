@@ -167,11 +167,13 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
             dropdownfloatValue.removeAll()
             selectedProductList.removeAll()
         } else {
+            selectedProductList.removeAll()
             for i in 0..<dropdownvalues.count {
                 for item in productList {
                     let name = item.FeedName
                     if(dropdownvalues[i] == name) {
                         selectedProductList.append(item)
+                        break
                     }
                 }
             }
@@ -220,6 +222,14 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         calculateFloatArray()
         dropdownvalues.remove(at: cellIndex)
         dropdownfloatValue.remove(at: cellIndex)
+        selectedProductList.remove(at: cellIndex)
+        if(dropdownvalues.count < 3) {
+            let bounds = UIScreen.main.bounds
+            let height = bounds.size.height
+            self.viewHeight.constant = height - 290 - 90 - 110
+        } else {
+            self.viewHeight.constant = CGFloat(dropdownvalues.count * 70)
+        }
         tblView.reloadData()
     }
     @IBAction func backBtn(_ sender: Any) {

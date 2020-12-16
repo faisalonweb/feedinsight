@@ -455,34 +455,8 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                 print("document was not found")
             }
         } else {
-            if let emailUrl = createEmailUrl(to: "info@totalnutrition.pk", subject: self.referenceLabel.text!, body: "Prepared by " + self.preparedByLabel.text!) {
-                UIApplication.shared.open(emailUrl)
-            }
-            //self.showErrorMessage()
+            self.showErrorMessage()
         }
-    }
-    
-    private func createEmailUrl(to: String, subject: String, body: String) -> URL? {
-        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        
-        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
-        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
-        
-        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
-            return gmailUrl
-        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
-            return outlookUrl
-        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
-            return yahooMail
-        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
-            return sparkUrl
-        }
-        
-        return defaultUrl
     }
     
     func loadPDFAndShare(){
@@ -557,7 +531,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
         })
     }
     func showErrorMessage() {
-        let alertMessage = UIAlertController(title: "Could not sent email", message: "Check if your device have email support!", preferredStyle: UIAlertController.Style.alert)
+        let alertMessage = UIAlertController(title: "Could not sent email", message: "Check if your device have email support. Hint: Tap Settings > [your name] > iCloud and turn on Mail on your iPhone, iPad, or iPod touch.", preferredStyle: UIAlertController.Style.alert)
         alertMessage.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
             if let navController = self.navigationController {
                 navController.popViewController(animated: true)

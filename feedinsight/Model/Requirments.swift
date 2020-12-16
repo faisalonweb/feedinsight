@@ -176,6 +176,7 @@ class Requirments {
         self.Potassium()
     }
     func calculateRationData () {
+        valueAfterDryMatter.removeAll()
         for i in 0..<finalDropdownfloatValue.count {
             var value = Double(finalDropdownfloatValue[i])! * Double(finalProductList[i].DryMatter)!
             value = value / 100.0
@@ -184,6 +185,29 @@ class Requirments {
         calculateRationDataParameters()
     }
     func calculateRationDataParameters() {
+        rationArrayFinal.removeAll()
+        rationCa = 0
+        rationCaAbs = 0
+        rationP = 0
+        rationPAbs = 0
+        rationMg = 0
+        rationMgAbs = 0
+        rationK = 0
+        rationS = 0
+        rationNa = 0
+        rationCl = 0
+        rationFe = 0
+        rationZn = 0
+        rationCu = 0
+        rationMn = 0
+        rationSe = 0
+        rationCo = 0
+        rationI = 0
+        rationVitaminA = 0
+        rationVitaminD3 = 0
+        rationVitaminE = 0
+        rationNiacin = 0
+        rationBiotin = 0
         for i in 0..<finalDropdownfloatValue.count {
             let pVal = Double(finalProductList[i].P) ?? 0
             rationP = rationP + (valueAfterDryMatter[i] * pVal)
@@ -234,7 +258,6 @@ class Requirments {
         rationS = rationS * 10.0
         rationNa = rationNa * 10.0
         rationCl = rationCl * 10.0
-        rationArrayFinal.removeAll()
         rationArrayFinal.append(rationVitaminA)
         rationArrayFinal.append(rationVitaminD3)
         rationArrayFinal.append(rationVitaminE)
@@ -578,7 +601,13 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
+            
             let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
             final = final + final1
             // Last Trimester        // calculte 1GPRO
@@ -608,7 +637,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (1.2 + (3.19 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28)) * g
             final = final + final1
             // Last Trimester // calculte 1GPRO
@@ -637,7 +671,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
             final = final + final1
             // Last Trimester // calculte GPRO
@@ -669,7 +708,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -702,7 +746,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (1.2 + (3.19 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28)) * g
             final = final + final1
             // Last Trimester // calculte GPRO
@@ -731,7 +780,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (1.2 + (4.66 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22)) * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -788,7 +842,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -838,7 +897,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (6.75 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28) * g
             final = final + final1
             // Last Trimester // calculte GPRO
@@ -885,7 +949,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
             final = final + final1
             // Last Trimester // calculte GPRO
@@ -936,7 +1005,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -985,7 +1059,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (6.75 * bwt1 ^^ 0.28 * mycurrentweight ^^ -0.28) * g
             final = final + final1
             // Last Trimester // calculte GPRO
@@ -1031,7 +1110,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = (9.83 * bwt1 ^^ 0.22 * mycurrentweight ^^ -0.22) * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1072,7 +1156,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1101,7 +1190,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1129,7 +1223,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1158,7 +1257,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1187,7 +1291,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1216,7 +1325,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1265,7 +1379,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.6 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1305,7 +1424,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.8 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1345,7 +1469,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.6 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1384,7 +1513,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.6 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1423,7 +1557,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.8 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1462,7 +1601,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.6 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1515,7 +1659,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1555,7 +1704,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.9 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1595,7 +1749,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1635,7 +1794,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1674,7 +1838,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.2 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1713,7 +1882,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1.4 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1769,7 +1943,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1808,7 +1987,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 0.7 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1849,7 +2033,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1889,7 +2078,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1928,7 +2122,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
@@ -1967,7 +2166,12 @@ class Requirments {
             let bwt1 = Double(bwt!) ?? 0
             let dc = self.achieveTargetWeight
             let dc1 = Double(dc!) ?? 0
-            let g = (bwt1 - mycurrentweight) / dc1
+            var g : Double = 0
+            if(dc1 == 0) {
+                g = (bwt1 - mycurrentweight) / 1
+            } else {
+                g = (bwt1 - mycurrentweight) / dc1
+            }
             let final1 = 1 * g
             final = final + final1
             // Last Trimester        // calculte GPRO
