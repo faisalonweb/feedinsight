@@ -505,17 +505,18 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
             var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
             
-            na = (na / Requirments.shared().DMI) / 39.0
-            cl = (cl / Requirments.shared().DMI) / 23.0
-            s = (s / Requirments.shared().DMI) / 35.5
-            k = (k / Requirments.shared().DMI) / 16
+            na = (na / Requirments.shared().DMI) / 23.0
+            cl = (cl / Requirments.shared().DMI) / 35.5
+            s = (s / Requirments.shared().DMI) / 16.0
+            k = (k / Requirments.shared().DMI) / 39.0
             
             var deb = na + k - cl
             var dcab = na + k - cl - s
             
             deb = deb * 1000
             dcab = dcab * 1000
-            
+            deb = deb.roundToDecimal(1)
+            dcab = dcab.roundToDecimal(1)
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)
             let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
@@ -671,17 +672,18 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
             var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
             
-            na = (na / Requirments.shared().DMI) / 39.0
-            cl = (cl / Requirments.shared().DMI) / 23.0
-            s = (s / Requirments.shared().DMI) / 35.5
-            k = (k / Requirments.shared().DMI) / 16
+            na = (na / Requirments.shared().DMI) / 23.0
+            cl = (cl / Requirments.shared().DMI) / 35.5
+            s = (s / Requirments.shared().DMI) / 16.0
+            k = (k / Requirments.shared().DMI) / 39.0
             
             var deb = na + k - cl
             var dcab = na + k - cl - s
             
             deb = deb * 1000
             dcab = dcab * 1000
-            
+            deb = deb.roundToDecimal(1)
+            dcab = dcab.roundToDecimal(1)
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)
             let currentDateTime = Date()
@@ -793,17 +795,18 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
             var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
             
-            na = (na / Requirments.shared().DMI) / 39.0
-            cl = (cl / Requirments.shared().DMI) / 23.0
-            s = (s / Requirments.shared().DMI) / 35.5
-            k = (k / Requirments.shared().DMI) / 16
+            na = (na / Requirments.shared().DMI) / 23.0
+            cl = (cl / Requirments.shared().DMI) / 35.5
+            s = (s / Requirments.shared().DMI) / 16.0
+            k = (k / Requirments.shared().DMI) / 39.0
             
             var deb = na + k - cl
             var dcab = na + k - cl - s
             
             deb = deb * 1000
             dcab = dcab * 1000
-            
+            deb = deb.roundToDecimal(1)
+            dcab = dcab.roundToDecimal(1)
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)
             
@@ -966,16 +969,19 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
             var k = Requirments.shared().rationArrayFinal[17]+Requirments.shared().primexArrayFinal[17]+Requirments.shared().waterArrayFinal[17]
             
-            na = (na / Requirments.shared().DMI) / 39.0
-            cl = (cl / Requirments.shared().DMI) / 23.0
-            s = (s / Requirments.shared().DMI) / 35.5
-            k = (k / Requirments.shared().DMI) / 16
+            na = (na / Requirments.shared().DMI) / 23.0
+            cl = (cl / Requirments.shared().DMI) / 35.5
+            s = (s / Requirments.shared().DMI) / 16.0
+            k = (k / Requirments.shared().DMI) / 39.0
             
             var deb = na + k - cl
             var dcab = na + k - cl - s
             
-            deb = (deb * 1000).roundToDecimal(1)
-            dcab = (dcab * 1000).roundToDecimal(1)
+            deb = deb * 1000
+            dcab = dcab * 1000
+            
+            deb = deb.roundToDecimal(1)
+            dcab = dcab.roundToDecimal(1)
             
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)

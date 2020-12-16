@@ -308,10 +308,10 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                          " ",
             ] as [String]
             addresses.append(contentsOf: dropdownfloatValue)
-            self.companyName.text = Requirments.shared().companyName
-            self.ruminantType.text = Requirments.shared().animalKind
-            self.animalGroup.text = Requirments.shared().animalGroup
-            self.psciState.text = Requirments.shared().physiologicalState
+            self.companyName.text = "Company : " + Requirments.shared().companyName!
+            self.ruminantType.text = "Ruminant Type : " + Requirments.shared().animalKind!
+            self.animalGroup.text = "Animal Group : " + Requirments.shared().animalGroup!
+            self.psciState.text = "Physiological State : " + Requirments.shared().physiologicalState!
             self.reportType.text = "Premix Check"
             self.dateLabel.text = self.reportDate
             self.referenceLabel.text = self.reportName

@@ -187,16 +187,10 @@ class Requirments {
         for i in 0..<finalDropdownfloatValue.count {
             let pVal = Double(finalProductList[i].P) ?? 0
             rationP = rationP + (valueAfterDryMatter[i] * pVal)
-            //let pAbsVal = Double(finalProductList[i].PAbs) ?? 0
-            //rationPAbs = rationPAbs + (valueAfterDryMatter[i] * pAbsVal)
             let caVal = Double(finalProductList[i].Ca) ?? 0
             rationCa = rationCa + (valueAfterDryMatter[i] * caVal)
-            //let caAbsVal = Double(finalProductList[i].CaAbs) ?? 0
-            //rationCaAbs = rationCaAbs + (valueAfterDryMatter[i] * caAbsVal)
             let mgVal = Double(finalProductList[i].Mg) ?? 0
             rationMg = rationMg + (valueAfterDryMatter[i] * mgVal)
-            //let mgAbsVal = Double(finalProductList[i].MgAbs) ?? 0
-            //rationMgAbs = rationMgAbs + (valueAfterDryMatter[i] * mgAbsVal)
             let kVal = Double(finalProductList[i].K) ?? 0
             rationK = rationK + (valueAfterDryMatter[i] * kVal)
             let SVal = Double(finalProductList[i].S) ?? 0
