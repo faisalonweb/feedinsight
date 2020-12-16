@@ -48,6 +48,8 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
     
     let defaults = UserDefaults(suiteName:"User")
     var checkStatus : Bool = false
+    var tableDataServer : Bool = false
+    var valueArrayCount = 0
     var currentTappedTextField : UITextField?
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     var nameArray: [String] = []
@@ -223,6 +225,7 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         dropdownvalues.remove(at: cellIndex)
         dropdownfloatValue.remove(at: cellIndex)
         selectedProductList.remove(at: cellIndex)
+        calculateFloatArray()
         if(dropdownvalues.count < 3) {
             let bounds = UIScreen.main.bounds
             let height = bounds.size.height
@@ -557,9 +560,24 @@ class feedthreeViewController: UIViewController ,UITableViewDelegate , UITableVi
         let stringValue = dropdownfloatValue[indexPath.section]
         if( stringValue == "none") {
             cell.productValue?.text = ""
+            dropdownfloatValue[indexPath.section] = "none1"
         } else {
-            cell.productValue?.text = stringValue
+            if(stringValue != "none1") {
+                cell.productValue?.text = stringValue
+            }            
         }
+        if(tableDataServer == true) {
+            if( stringValue == "none") {
+                cell.productValue?.text = ""
+            } else {
+                cell.productValue?.text = stringValue
+            }
+            valueArrayCount = valueArrayCount - 1
+            if(valueArrayCount == 0) {
+                tableDataServer = false
+            }
+        }
+        
         cell.delegate = self
         cell.cellIndex = indexPath.section
         return cell

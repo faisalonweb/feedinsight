@@ -826,6 +826,8 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
             vcone?.documentID = DocumentIdList[indexPath.section]
             vcone?.ReportName = reportNameList[indexPath.section]
             vcone?.checkStatus = true
+            vcone?.tableDataServer = true
+            vcone?.valueArrayCount = dropdownfloatValue.count
             self.navigationController?.pushViewController(vcone!, animated: true)
         }
         else if (screenNAME == "water") {
