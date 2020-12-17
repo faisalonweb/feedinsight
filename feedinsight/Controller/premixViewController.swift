@@ -488,6 +488,13 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             Requirments.shared().iMicroText = pMacroText23 * doseinKG
             Requirments.shared().mnMicroText = pMacroText25 * doseinKG
             Requirments.shared().appendPremixValues()
+            Requirments.shared().appendOriginalPremixValues()
+            
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .long
+            
             var na = Requirments.shared().rationArrayFinal[14]+Requirments.shared().primexArrayFinal[14]+Requirments.shared().waterArrayFinal[14]
             var cl = Requirments.shared().rationArrayFinal[15]+Requirments.shared().primexArrayFinal[15]+Requirments.shared().waterArrayFinal[15]
             var s = Requirments.shared().rationArrayFinal[16]+Requirments.shared().primexArrayFinal[16]+Requirments.shared().waterArrayFinal[16]
@@ -507,16 +514,79 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             dcab = dcab.roundToDecimal(1)
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)
-            let currentDateTime = Date()
-            let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .long
+            Requirments.shared().dmiFromDatabase = String(Requirments.shared().DMI)
+            Requirments.shared().dosageFromDatabase = productDose.text
             let datetimestamp = formatter.string(from: currentDateTime)
-            self.view.isUserInteractionEnabled = true
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
-            vc?.reportName = "Testing Report"
-            vc?.reportDate = datetimestamp
-            self.navigationController?.pushViewController(vc!, animated: true)
+            let db = Firestore.firestore()
+            let alertController = UIAlertController(title: "Pdf Report", message: "", preferredStyle: .alert)
+            let withdrawAction = UIAlertAction(title: "Generate", style: .default) { [self] (aciton) in
+                SVProgressHUD.show(withStatus: "it's working ...")
+                self.view.isUserInteractionEnabled = false
+                let text = alertController.textFields!.first!.text!
+                let newDocument =  db.collection("pdfReports").document(self.userID!).collection("pdfReports").document()
+                newDocument.setData(["ReportName" : text,
+                                     "currentdatetime": datetimestamp,
+                                     "DocId": newDocument.documentID,
+                                     "CompanyName":Requirments.shared().companyName!,
+                                     "ruminantType":Requirments.shared().animalKind!,
+                                     "ruminantGroup":Requirments.shared().animalGroup!,
+                                     "ruminantState":Requirments.shared().physiologicalState!,
+                                     "preparedBy":self.defaults!.value(forKey: "usernameStringKey")!,
+                                     "reportType":"Premix Check",
+                                     "RequirmentsVal": Requirments.shared().reqArrayFinal,
+                                     "RationVal": Requirments.shared().rationArrayFinal ,
+                                     "WaterVal" : Requirments.shared().waterArrayFinal,
+                                     "PremixVal": Requirments.shared().primexArrayFinal,
+                                     "originalWaterArray" : Requirments.shared().OriginalwaterArrayFinal,
+                                     "originalPremixArray" : Requirments.shared().OriginalprimexArrayFinal,
+                                     "originalDropDownvalues" : dropdownvalues,
+                                     "originalDropDownfloatvalues" : dropdownfloatValue,
+                                     "companyName1": Requirments.shared().companyName! as String,
+                                     "animalGroup1": Requirments.shared().animalGroup! as String,
+                                     "physiologicalState1": Requirments.shared().physiologicalState! as String,
+                                     "currentBodyWeight1": Requirments.shared().currentBodyWeight! as String,
+                                     "targetBodyWeight1": Requirments.shared().targetBodyWeight! as String,
+                                     "achieveTargetWeight1": Requirments.shared().achieveTargetWeight! as String,
+                                     "daysInMilk1": Requirments.shared().daysInMilk! as String,
+                                     "daysPregnant1": Requirments.shared().daysPregnant! as String,
+                                     "milkProduction1": Requirments.shared().milkProduction! as String,
+                                     "animalKind1": Requirments.shared().animalKind! as String,
+                                     "heatStress1": Requirments.shared().heatStress?.description ?? "none",
+                                     "metaBolic1": Requirments.shared().metaBolic?.description ?? "none",
+                                     "anionic1": Requirments.shared().anionic?.description ?? "none",
+                                     "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
+                                     "deb" : Requirments.shared().deb ?? "0.0",
+                                     "dcab" : Requirments.shared().dcab ?? "0.0",
+                                     "dmi" : Requirments.shared().dmiFromDatabase ?? "0.0",
+                                     "dosage" : productDose.text ?? "0.0"
+                                     
+                ]) { err in
+                    if let err = err {
+                        SVProgressHUD.showError(withStatus: "Error")
+                        print("Error adding document: \(err)")
+                        SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
+                    } else {
+                        SVProgressHUD.showSuccess(withStatus: "Sucess")
+                        print("Document added")
+                        SVProgressHUD.dismiss()
+                        self.view.isUserInteractionEnabled = true
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController
+                        vc?.reportName = text
+                        vc?.reportDate = datetimestamp
+                        self.navigationController?.pushViewController(vc!, animated: true)
+                    }
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            }
+            alertController.addTextField { (textField) in
+                textField.placeholder = "Pdf Report"
+            }
+            alertController.addAction(withdrawAction)
+            alertController.addAction(cancelAction)
+            alertController.textFields!.first!.text! = Requirments.shared().animalKind! + " " + Requirments.shared().animalGroup! + " " + Requirments.shared().physiologicalState!
+            self.present(alertController, animated: true, completion: nil)
             
         } else {
             var doseinKG : Double = Double(productDose.text!) ?? 0
@@ -620,6 +690,11 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
             dcab = dcab.roundToDecimal(1)
             Requirments.shared().deb = String(deb)
             Requirments.shared().dcab = String(dcab)
+            
+            Requirments.shared().dmiFromDatabase = String(Requirments.shared().DMI)
+            Requirments.shared().dosageFromDatabase = productDose.text
+            
+            
             let currentDateTime = Date()
             let formatter = DateFormatter()
             formatter.timeStyle = .medium
@@ -751,6 +826,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 dcab = dcab.roundToDecimal(1)
                 Requirments.shared().deb = String(deb)
                 Requirments.shared().dcab = String(dcab)
+                Requirments.shared().dmiFromDatabase = String(Requirments.shared().DMI)
+                Requirments.shared().dosageFromDatabase = productDose.text
                 
                 let datetimestamp = formatter.string(from: currentDateTime)
                 let db = Firestore.firestore()
@@ -792,7 +869,9 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                                          "anionic1": Requirments.shared().anionic?.description ?? "none",
                                          "woolProduction1": Requirments.shared().woolProduction?.description ?? "none",
                                          "deb" : Requirments.shared().deb ?? "0.0",
-                                         "dcab" : Requirments.shared().dcab ?? "0.0"
+                                         "dcab" : Requirments.shared().dcab ?? "0.0",
+                                         "dmi" : Requirments.shared().dmiFromDatabase ?? "0.0",
+                                         "dosage" : productDose.text ?? "0.0"
                                          
                     ]) { err in
                         if let err = err {
@@ -937,6 +1016,8 @@ class premixViewController: UIViewController , UIGestureRecognizerDelegate{
                 
                 Requirments.shared().deb = String(deb)
                 Requirments.shared().dcab = String(dcab)
+                Requirments.shared().dmiFromDatabase = String(Requirments.shared().DMI)
+                Requirments.shared().dosageFromDatabase = productDose.text
                 let datetimestamp = formatter.string(from: currentDateTime)
                 self.view.isUserInteractionEnabled = true
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "SwitchPDFViewController") as? SwitchPDFViewController

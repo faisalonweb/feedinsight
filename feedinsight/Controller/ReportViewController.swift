@@ -51,6 +51,9 @@ class ReportViewController: UIViewController {
     private var debStation = [String]()
     private var dcabStation = [String]()
     
+    private var dmiStation = [String]()
+    private var dosageStation = [String]()
+    
     var companyName1List = [String]()
     var animalGroup1List = [String]()
     var physiologicalState1List = [String]()
@@ -67,6 +70,8 @@ class ReportViewController: UIViewController {
     var woolProduction1List = [String]()
     var debList = [String]()
     var dcabList = [String]()
+    var dmiList = [String]()
+    var dosageList = [String]()
     
     
     let defaults = UserDefaults(suiteName:"User")
@@ -162,6 +167,11 @@ class ReportViewController: UIViewController {
                         self.debStation.insert(deb, at: i)
                         self.dcabStation.insert(dcab, at: i)
                         
+                        let dmi = documentData["dmi"] as? String ?? "0.0"
+                        let dosage = documentData["dosage"] as? String ?? "0.0"
+                        self.dmiStation.insert(dmi, at: i)
+                        self.dosageStation.insert(dosage, at: i)
+                        
                         self.companyName1Station.insert(companyName1, at: i)
                         self.animalGroup1Station.insert(animalGroup1, at: i)
                         self.physiologicalState1Station.insert(physiologicalState1, at: i)
@@ -182,6 +192,8 @@ class ReportViewController: UIViewController {
                     
                     self.debList.append(contentsOf: self.debStation)
                     self.dcabList.append(contentsOf: self.dcabStation)
+                    self.dmiList.append(contentsOf: self.dmiStation)
+                    self.dosageList.append(contentsOf: self.dosageStation)
                     self.companyName1List.append(contentsOf: self.companyName1Station)
                     self.animalGroup1List.append(contentsOf: self.animalGroup1Station)
                     self.physiologicalState1List.append(contentsOf: self.physiologicalState1Station)
@@ -336,6 +348,8 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
                 self.DocumentIdList.remove(at: indexPath.section)
                 self.debList.remove(at: indexPath.section)
                 self.dcabList.remove(at: indexPath.section)
+                self.dmiList.remove(at: indexPath.section)
+                self.dosageList.remove(at: indexPath.section)
                 self.copyArray.remove(at: indexPath.section)
                 if(self.companyNameList.count == 0) {
                     self.tableView.alpha = 0
@@ -391,6 +405,8 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
             vcone?.shareVariable = "yes"
             Requirments.shared().deb = self.debList[indexPath.section]
             Requirments.shared().dcab = self.dcabList[indexPath.section]
+            Requirments.shared().dmiFromDatabase = self.dmiList[indexPath.section]
+            Requirments.shared().dosageFromDatabase = self.dosageList[indexPath.section]
             self.navigationController?.pushViewController(vcone!, animated: true)
         }
         shareAction.backgroundColor = UIColor(red: 169/255, green: 11/255.0, blue: 114/255.0, alpha: 1.0)
@@ -432,6 +448,8 @@ extension ReportViewController: UITableViewDelegate , UITableViewDataSource{
         fromDatabase = "yes"
         Requirments.shared().deb = self.debList[indexPath.section]
         Requirments.shared().dcab = self.dcabList[indexPath.section]
+        Requirments.shared().dmiFromDatabase = self.dmiList[indexPath.section]
+        Requirments.shared().dosageFromDatabase = self.dosageList[indexPath.section]
         self.navigationController?.pushViewController(vcone!, animated: true)
     }
 }

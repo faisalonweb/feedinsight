@@ -86,6 +86,9 @@ class Requirments {
     var deb: String?
     var dcab: String?
     
+    var dmiFromDatabase: String?
+    var dosageFromDatabase: String?
+    
     // Water Values 1
     var waterPVal1 : String?
     var waterCaVal1 : String?

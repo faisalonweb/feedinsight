@@ -155,7 +155,7 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 3) {
-                        if(percent > 135.0) {
+                        if(percent > 300.0) {
                             cell.nutrientTotal?.textColor = UIColor.black
                             let mainString = String(percent.removeZerosFromEnd()) + " !"
                             let stringToColor = "!"
@@ -516,7 +516,7 @@ extension ConBalViewController: UITableViewDelegate , UITableViewDataSource{
                             cell.nutrientWater?.text = String(value5.removeZerosFromEnd())
                         }
                     } else if(indexPath.row == 3) {
-                        if(percent > 135.0) {
+                        if(percent > 300.0) {
                             cell.nutrientTotal?.textColor = UIColor.black
                             let mainString = String(percent.removeZerosFromEnd()) + " !"
                             let stringToColor = "!"

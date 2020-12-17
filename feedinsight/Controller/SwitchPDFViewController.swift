@@ -179,31 +179,32 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                  "K",
                  
                  "Premix (kg)",
-                 
-                 "P* MacroMineral",
-                 "Ca* MacroMineral",
-                 "Mg* MacroMineral",
-                 "k MacroMineral",
-                 "na MacroMineral",
-                 "cl MacroMineral",
-                 "s MacroMineral",
-                 "I MicroMineral",
-                 "co MicroMineral",
-                 "cu(inorganic) MicroMineral",
-                 "cu(organic) MicroMineral",
-                 "Mn(inorganic) MicroMineral",
-                 "Mn(organic) MicroMineral",
-                 "se(inorganic) MicroMineral",
-                 "se(organic) MicroMineral",
-                 "zn(inorganic) MicroMineral",
-                 "zn(organic) MicroMineral",
+                 "Dosage",
+                 "P*",
+                 "Ca*",
+                 "Mg*",
+                 "K",
+                 "Na",
+                 "Cl",
+                 "S",
+                 "I",
+                 "Co",
+                 "Cu (Inorganic)",
+                 "Cu (Organic)",
+                 "Mn (Inorganic)",
+                 "Mn (Organic)",
+                 "Se (Inorganic)",
+                 "Se (Organic)",
+                 "Zn (Inorganic)",
+                 "Zn (Organic)",
                  "Vitamin A",
                  "Vitamin D",
                  "Vitamin E",
-                 "niacin",
-                 "biotin",
+                 "Niacin",
+                 "Biotin",
                  
-                 "Ration (kg)"
+                 "Ration (kg)",
+                 "DMI",
         ]
         toxicLabel.text = "      * - Absorable Value"
         self.debLabel.text = Requirments.shared().deb ?? "0.0"
@@ -236,12 +237,14 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
             ] as [String]
             addresses.append(contentsOf: Originalwaterarray)
             addresses.append(" ")
+            addresses.append(Requirments.shared().dosageFromDatabase ?? "0.0")
             addresses.append(contentsOf: Originalpremixarray)
             addresses.append(" ")
+            addresses.append(Requirments.shared().dmiFromDatabase ?? "0.0")
             addresses.append(contentsOf: OriginaldropdownfloatValue)
             self.companyName.text = "Company : " + companystr1
-            self.ruminantType.text = "Ruminant Type : " + ruminanttypestr5
-            self.animalGroup.text = "Animal Group : " + animalgroupstr2
+            self.ruminantType.text = "Type : " + ruminanttypestr5
+            self.animalGroup.text = "Group : " + animalgroupstr2
             self.psciState.text = "Physiological State : " + pscistatestr8
             self.reportType.text = reporttypestr7
             self.dateLabel.text = datestr3
@@ -282,6 +285,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                          Requirments.shared().waterKVal1 ?? "0.0" as String,
                          
                          " ",
+                         Requirments.shared().dosageFromDatabase ?? "0.0",
                          Requirments.shared().pMacroText1 ?? "none" as String,
                          Requirments.shared().caMacroText1 ?? "none" as String,
                          Requirments.shared().mgMacroText1 ?? "none" as String,
@@ -306,11 +310,12 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
                          Requirments.shared().biotinVitamin1 ?? "none" as String,
                          
                          " ",
+                         Requirments.shared().dmiFromDatabase ?? "0.0",
             ] as [String]
             addresses.append(contentsOf: dropdownfloatValue)
             self.companyName.text = "Company : " + Requirments.shared().companyName!
-            self.ruminantType.text = "Ruminant Type : " + Requirments.shared().animalKind!
-            self.animalGroup.text = "Animal Group : " + Requirments.shared().animalGroup!
+            self.ruminantType.text = "Type : " + Requirments.shared().animalKind!
+            self.animalGroup.text = "Group : " + Requirments.shared().animalGroup!
             self.psciState.text = "Physiological State : " + Requirments.shared().physiologicalState!
             self.reportType.text = "Premix Check"
             self.dateLabel.text = self.reportDate
@@ -866,7 +871,7 @@ extension Array {
 }
 
 class PDFCreator: NSObject {
-    let defaultOffset: CGFloat = 20
+    let defaultOffset: CGFloat = 10
     let tableDataHeaderTitles: [String]
     let tableDataItems: [TableDataItem]
 
@@ -924,7 +929,7 @@ extension PDFCreator {
                 NSAttributedString.Key.font: textFont
             ]
             
-            let textFont1 = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+            let textFont1 = UIFont.systemFont(ofSize: 16.0, weight: .bold)
             let paragraphStyle1 = NSMutableParagraphStyle()
             paragraphStyle1.alignment = .left
             paragraphStyle1.lineBreakMode = .byWordWrapping
@@ -936,7 +941,7 @@ extension PDFCreator {
             let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(2)
             for titleIndex in 0..<2 {
                 // 14,22,45
-                if(totalCellCreatedCount == 0 || totalCellCreatedCount == 15 || totalCellCreatedCount == 23 || totalCellCreatedCount == 46) {
+                if(totalCellCreatedCount == 0 || totalCellCreatedCount == 15 || totalCellCreatedCount == 23 || totalCellCreatedCount == 47) {
                     var attributedText = NSAttributedString(string: "", attributes: textAttributes1)
                     switch titleIndex {
                     case 0: attributedText = NSAttributedString(string: tableDataItems[elementIndex].name, attributes: textAttributes1)
