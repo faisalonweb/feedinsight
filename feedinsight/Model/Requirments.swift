@@ -28,6 +28,12 @@ class Requirments {
     private init(){
         
     }
+    // Poultry Variables
+    var poultryType : String?
+    var poultryStrain : String?
+    var poultryPsychlogyState : String?
+    
+    
     
     var companyName : String?
     var animalGroup : String?

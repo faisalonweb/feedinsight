@@ -238,11 +238,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         sizee = screenWidth
     }
     
-//    @IBAction func clickOnSeeAll(_ sender: Any) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let animalViewController = storyboard.instantiateViewController(withIdentifier: "AnimalSelectionViewController") as! AnimalSelectionViewController
-//        self.navigationController?.pushViewController(animalViewController, animated: true)
-//    }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if UIDevice.current.orientation.isLandscape {

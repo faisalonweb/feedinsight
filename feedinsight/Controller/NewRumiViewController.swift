@@ -16,20 +16,20 @@ class NewRumiViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     
     let defaults = UserDefaults(suiteName:"User")
-    let textArr = ["Ruminants","Aqua","Equines","Poultry"]
+    let textArr = ["Ruminants","Poultry","Aqua","Equines"]
     let imageArr: [UIImage] = [
         UIImage(named: "ruminants")!,
+        UIImage(named: "chicken")!,
         UIImage(named: "aqua")!,
         UIImage(named: "equines")!,
-        UIImage(named: "chicken")!,
-        UIImage(named: "equines")!,
-        UIImage(named: "ruminants")!,
+        
     ]
     var animalData = [AnimalCollectionCell]()
     var portait:CGFloat=0
     var landscap:CGFloat=0
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.personname.text = userName as? String
             print(userName)
@@ -198,7 +198,7 @@ class NewRumiViewController: UIViewController,UICollectionViewDataSource,UIColle
         
         cell.rumiimage.image = imageArr[indexPath.row]
         cell.rumilabel.text = textArr[indexPath.row]
-        if(indexPath.row > 0) {
+        if(indexPath.row > 1) {
             cell.contentView.layer.opacity = 0.3;
             cell.isUserInteractionEnabled = false
         }
@@ -207,10 +207,18 @@ class NewRumiViewController: UIViewController,UICollectionViewDataSource,UIColle
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "RuminantspickViewController") as? RuminantspickViewController
-        vc?.titlename = textArr[indexPath.row]
-        vc?.titleImage = imageArr[indexPath.row]
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if(indexPath.row == 0) {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "RuminantspickViewController") as? RuminantspickViewController
+            vc?.titlename = textArr[indexPath.row]
+            vc?.titleImage = imageArr[indexPath.row]
+            self.navigationController?.pushViewController(vc!, animated: true)
+            
+        } else if(indexPath.row == 1) {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "PoultryStateViewController") as? PoultryStateViewController
+            self.navigationController?.pushViewController(vc!, animated: true)
+        } else {
+            print("nothing....")
+        }
     }
 }
 

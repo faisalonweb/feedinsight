@@ -19,12 +19,14 @@ import SwiftMessages
 
 class StateViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     let defaults = UserDefaults(suiteName:"User")
-    @IBOutlet weak var headLabel: UILabel!
-    @IBOutlet weak var woolHairLabel: UILabel!
+    
     @IBOutlet weak var proimage: UIImageView!
     @IBOutlet weak var notificationimage: UIImageView!
     @IBOutlet weak var PsychField: DropDown!
     @IBOutlet weak var nameField: UITextField!
+    
+    @IBOutlet weak var woolHairLabel: UILabel!
+    @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var animalField: UITextField!
     var stateStatus : Bool = false
     var documentId : String = ""
