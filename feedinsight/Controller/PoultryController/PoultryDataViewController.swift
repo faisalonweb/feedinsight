@@ -33,33 +33,60 @@ class PoultryDataViewController: UIViewController {
                          "Iron",
     ]
     
-    let nutrientValues = [10,
-                          12000,
-                          5000,
-                          80,
-                          3.2,
-                          3.2,
-                          8.6,
-                          65,
-                          20,
-                          4.3,
-                          0.22,
-                          2.2,
-                          0.017,
-                          110,
-                          120,
-                          16,
-                          1.25,
-                          0.3,
-                          0,
-                          20]
+    var nutrientValues = ["10",
+                          Requirments.shared().poultryVitaminA,
+                          Requirments.shared().poultryVitaminD3,
+                          Requirments.shared().poultryVitaminE,
+                          Requirments.shared().poultryVitaminK,
+                          Requirments.shared().poultryVitaminB1,
+                          Requirments.shared().poultryVitaminB2,
+                          Requirments.shared().poultryVitaminB3,
+                          Requirments.shared().poultryVitaminB5,
+                          Requirments.shared().poultryVitaminB6,
+                          Requirments.shared().poultryVitaminB7,
+                          Requirments.shared().poultryVitaminB9,
+                          Requirments.shared().poultryVitaminB12,
+                          Requirments.shared().poultryZInc,
+                          Requirments.shared().poultryManganese,
+                          Requirments.shared().poultryCopper,
+                          Requirments.shared().poultryIodine,
+                          Requirments.shared().poultrySelenium,
+                          Requirments.shared().poultryCobalt,
+                          Requirments.shared().poultryIron,]
     
     let nutrientUnits = ["Unit","IU","IU","IU/mg","mg","mg","mg","mg","mg","mg","mg","mg","mg","mg","mg","mg","mg","mg","mg", "mg"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTable),
+                                               name: NSNotification.Name(rawValue: "updateTableData"),
+                                               object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func updateTable(notification: NSNotification) {
+        nutrientValues = ["Values",
+                          Requirments.shared().poultryVitaminA,
+                          Requirments.shared().poultryVitaminD3,
+                          Requirments.shared().poultryVitaminE,
+                          Requirments.shared().poultryVitaminK,
+                          Requirments.shared().poultryVitaminB1,
+                          Requirments.shared().poultryVitaminB2,
+                          Requirments.shared().poultryVitaminB3,
+                          Requirments.shared().poultryVitaminB5,
+                          Requirments.shared().poultryVitaminB6,
+                          Requirments.shared().poultryVitaminB7,
+                          Requirments.shared().poultryVitaminB9,
+                          Requirments.shared().poultryVitaminB12,
+                          Requirments.shared().poultryZInc,
+                          Requirments.shared().poultryManganese,
+                          Requirments.shared().poultryCopper,
+                          Requirments.shared().poultryIodine,
+                          Requirments.shared().poultrySelenium,
+                          Requirments.shared().poultryCobalt,
+                          Requirments.shared().poultryIron]
+        self.reqtblview.reloadData()
     }
     
 
@@ -104,11 +131,7 @@ extension PoultryDataViewController: UITableViewDelegate , UITableViewDataSource
             }
             cell.nutrientName?.text = nutrientNames[indexPath.row]
             cell.nutrientUnit?.text = nutrientUnits[indexPath.row]
-            var value : Double = Double(nutrientValues[indexPath.row])
-            value = value.roundToDecimal(1)
-            var stringValue = String(value)
-            stringValue = value.removeZerosFromEnd()
-            cell.nutrientValue?.text = stringValue
+            cell.nutrientValue?.text = nutrientValues[indexPath.row] ?? "0"
             cell.layer.cornerRadius = 10
             return cell
         }

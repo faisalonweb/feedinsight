@@ -521,7 +521,7 @@ class SwitchPDFViewController: UIViewController, UIGestureRecognizerDelegate, MF
             print("User click Approve button")
         }))
 
-        alert.addAction(UIAlertAction(title: "Get Recommendation ", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Get Quote", style: .default, handler: { (_) in
             print("User click Edit button")
             self.createUI()
             self.createPDF()

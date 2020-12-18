@@ -32,16 +32,17 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
             self.preparedByLabel.text = userName as? String
             print(userName)
         }
-        if let busines = defaults!.value(forKey: "userbussinessStringKey"){
-            self.companyName.text = "Company : \(busines as! String)"
-            print(busines)
-        }
+        self.companyName.text = "Company : " + Requirments.shared().poultryCompanyName!
         self.ruminantType.text = "Type : " + Requirments.shared().poultryType!
         self.animalGroup.text = "Group : " + Requirments.shared().poultryStrain!
         self.psciState.text = "Physiological State : " + Requirments.shared().poultryPsychlogyState!
-        self.reportType.text = "Premix Check"
+        self.reportType.text = "Poultry Premix"
         //self.dateLabel.text = "datestr3"
         self.referenceLabel.text = "Poultry Report"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateTableData"), object: nil)
     }
     
     @IBAction func shareButton(_ sender: Any) {
@@ -62,9 +63,9 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
             print("User click Approve button")
         }))
 
-        alert.addAction(UIAlertAction(title: "Get Recommendation ", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Get Quote", style: .default, handler: { (_) in
             print("User click Edit button")
-            self.loadPDFAndShareToGetRecommendation()
+            self.openAlertForChangeValue()
         }))
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
@@ -163,6 +164,18 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
         let pdfDoc = data
         fileManager.createFile(atPath: paths as String, contents: pdfDoc as Data?, attributes: nil)
         loadPDFAndShare()
+    }
+    
+    func openAlertForChangeValue() {
+        let alert = UIAlertController(title: "Note", message: "Do you want to edit Premix Values?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: { action in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditPoultryValuesViewController") as? EditPoultryValuesViewController
+            self.navigationController?.pushViewController(vc!, animated: true)            
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+            self.loadPDFAndShareToGetRecommendation()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func loadPDFAndShareToGetRecommendation(){

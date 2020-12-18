@@ -23,12 +23,60 @@ class PoultryStateViewController: UIViewController, UIGestureRecognizerDelegate 
     @IBOutlet weak var typeField: DropDown!
     @IBOutlet weak var strainField: DropDown!
     @IBOutlet weak var PsychField: DropDown!
+    @IBOutlet weak var companyName: UITextField!
     let typeArray = ["Broiler", "Broiler Breeder", "Layer", "Layer Breeder"]
     let broiler_breeder_TypeArray = ["Ross", "Cobb", "Hubbard", "Other"]
     let layer_breeder_TypeArray = ["Bovan", "NickChick", "LSL", "Hyline", "Novogen", "Other"]
-    
-    let psych1Array = ["Starter", "Growing", "Finisher"]
+    let psych1Array = ["Starter", "Grower", "Finisher"]
     let psych2Array = ["Starter/Grower", "Production"]
+    
+    var broiler_ross: [[Any]] = [
+        [12000,5000,80,3.2,3.2,8.6,65,20,4.3,0.22,2.2,0.017,110,120,16,1.25,0.3,0,20],
+        [10000,4500,65,3,2.5,6.5,60,18,3.2,0.18,1.9,0.017,110,120,16,1.25,0.3,0,20],
+        [9000,4000,55,2.2,2.2,5.4,45,15,2.2,0.15,1.6,0.011,110,120,16,1.25,0.3,0,20]
+    ]
+    
+    var broiler_cobb: [[Any]] = [
+        [13000,5000,80,3,3,9,60,15,4,0.15,2,0.02,100,100,15,1,0.35,0,40],
+        [10000,5000,50,3,2,8,50,12,3,0.12,2,0.015,100,100,15,1,0.35,0,40],
+        [10000,5000,50,3,2,6,50,10,3,0.12,1.5,0.015,100,100,15,1,0.35,0,40]
+    ]
+    
+    var broiler_hubbard: [[Any]] = [
+        [15000,3000,75,3,3,8,60,15,4,0.2,1.5,0.02,80,80,10,1,0.2,0,60],
+        [12500,2500,70,2,2,6,40,10,3,0.1,1,0.01,80,80,10,1,0.2,0,60],
+        [10000,2000,70,2,2,6,40,10,3,0.1,1,0.01,80,80,10,1,0.2,0,60]
+    ]
+    
+    var broiler_other: [[Any]] = [
+        [14000,4500,90,3,3.5,8,65,18,4.5,0.2,2,0.025,100,110,15,1.3,0.3,0,65],
+        [11000,4200,80,2.8,3,7.5,55,15,3.5,0.15,1.8,0.015,105,105,13,1.4,0.28,0,55],
+        [10500,4000,70,2.5,2.5,7,50,12,3,0.12,1.5,0.012,100,100,12,1.2,0.2,0,60]
+    ]
+    
+    var broiler_breeder_ross: [[Any]] = [
+        [10000,3500,100,3,3,6,35,15,3,0.15,1.5,0.02,110,120,16,1.25,0.3,0,40],
+        [11000,3500,100,5,3,12,55,15,4,0.25,2,0.03,110,120,10,2,0.3,0,50]
+    ]
+    
+    var broiler_breeder_cobb: [[Any]] = [
+        [11000,3500,100,3,2.75,8,40,15,3,0.25,2,0.025,100,100,"10-15.0",1.5,0.3,0,"20-50"],
+        [13000,3500,100,6,3,13,50,20,6,0.3,3,0.035,110,120,"10-15.0",2,0.3,0,"40-55"]
+    ]
+    
+    var broiler_breeder_hubbard: [[Any]] = [
+        [10000,3500,100,3,3,6,35,15,3,0.15,1.5,0.02,105,90,14,1.25,0.3,0,40],
+        [13000,3200,75,5,3.5,12,60,16,5,0.25,2.5,0.035,100,100,10,2,0.35,0,60]
+    ]
+    
+    var broiler_breeder_other: [[Double]] = [
+        [10500,3500,110,3.5,3,7,35,15,3.5,0.15,2,0.025,105,130,17,1.3,0.35,0,45],
+        [12000,3600,110,6,4,15,55,16,7,0.3,3,0.3,100,110,14,2,0.35,0,45]
+    ]
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -38,6 +86,9 @@ class PoultryStateViewController: UIViewController, UIGestureRecognizerDelegate 
           let gestureRecognizer = UIPanGestureRecognizer()
           gestureRecognizer.setValue(targets, forKey: "targets")
           self.view.addGestureRecognizer(gestureRecognizer)
+        }
+        if let busines = defaults!.value(forKey: "userbussinessStringKey"){
+            self.companyName.text = busines as? String
         }
         let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
         self.proimage.addGestureRecognizer(tapOnImage)
@@ -153,6 +204,12 @@ class PoultryStateViewController: UIViewController, UIGestureRecognizerDelegate 
     @objc func tapOnImageAction() {
         self.tabBarController?.selectedIndex = 2
     }
+    
+    @IBAction func loadPremixBtn(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoadPoultryPremixesViewController") as? LoadPoultryPremixesViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
     @IBAction func backBtnTap(_ sender: UIButton) {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
@@ -163,6 +220,26 @@ class PoultryStateViewController: UIViewController, UIGestureRecognizerDelegate 
             Requirments.shared().poultryType = self.typeField.text!
             Requirments.shared().poultryStrain = self.strainField.text!
             Requirments.shared().poultryPsychlogyState = self.PsychField.text!
+            Requirments.shared().poultryCompanyName = self.companyName.text ?? "None"
+            Requirments.shared().poultryVitaminA = "10"
+            Requirments.shared().poultryVitaminD3 = "10"
+            Requirments.shared().poultryVitaminE = "10"
+            Requirments.shared().poultryVitaminK = "10"
+            Requirments.shared().poultryVitaminB1 = "10"
+            Requirments.shared().poultryVitaminB2 = "10"
+            Requirments.shared().poultryVitaminB3 = "10"
+            Requirments.shared().poultryVitaminB5 = "10"
+            Requirments.shared().poultryVitaminB6 = "10"
+            Requirments.shared().poultryVitaminB7 = "10"
+            Requirments.shared().poultryVitaminB9 = "10"
+            Requirments.shared().poultryVitaminB12 = "10"
+            Requirments.shared().poultryZInc = "10"
+            Requirments.shared().poultryManganese = "10"
+            Requirments.shared().poultryCopper = "10"
+            Requirments.shared().poultryIodine = "10"
+            Requirments.shared().poultrySelenium = "10"
+            Requirments.shared().poultryCobalt = "10"
+            Requirments.shared().poultryIron = "10"
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "PoultryPDFViewController") as? PoultryPDFViewController
             self.navigationController?.pushViewController(vc!, animated: true)
         } else {

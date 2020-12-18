@@ -32,8 +32,29 @@ class Requirments {
     var poultryType : String?
     var poultryStrain : String?
     var poultryPsychlogyState : String?
+    var poultryCompanyName : String?
     
+    var poultryVitaminA : String?
+    var poultryVitaminD3 : String?
+    var poultryVitaminE : String?
+    var poultryVitaminK : String?
+    var poultryVitaminB1 : String?
+    var poultryVitaminB2 : String?
+    var poultryVitaminB3 : String?
+    var poultryVitaminB5 : String?
+    var poultryVitaminB6 : String?
+    var poultryVitaminB7 : String?
+    var poultryVitaminB9 : String?
+    var poultryVitaminB12 : String?
+    var poultryZInc : String?
+    var poultryManganese : String?
+    var poultryCopper : String?
+    var poultryIodine : String?
+    var poultrySelenium : String?
+    var poultryCobalt : String?
+    var poultryIron : String?
     
+    // Ruminants Variables
     
     var companyName : String?
     var animalGroup : String?
