@@ -16,8 +16,8 @@ class DataAppend {
         arrData = [
             PremixCollectionCell(img: UIImage(named: "premix")!, titleStr: "Premix Check"),
             PremixCollectionCell(img: UIImage(named: "calculator")!, titleStr: "Unit Converter"),
-            PremixCollectionCell(img: UIImage(named: "pdfIcon")!, titleStr: "VMP Guide"),
-            PremixCollectionCell(img: UIImage(named: "pdfIcon")!, titleStr: "Feed Profiles")
+            PremixCollectionCell(img: UIImage(named: "pdfIcon")!, titleStr: "Ruminant Vitamin Mineral Guidelines"),
+            PremixCollectionCell(img: UIImage(named: "pdfIcon")!, titleStr: "Local Feed Profiles")
         ]
         return arrData
     }

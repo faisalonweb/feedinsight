@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         //UIImage(named: "adImg1")!,
         UIImage(named: "adImg2")!,
     ]
-    let lablArr = ["Premix Check","Unit Converter","VMP Guide","Feed Profiles"]
+    let lablArr = ["Premix Check","Unit Converter","Ruminant Vitamin Mineral Guidelines","Local Feed Profiles"]
     var screenWidth:CGFloat=0
     var screenHeight:CGFloat=0
     var sizee:CGFloat=0

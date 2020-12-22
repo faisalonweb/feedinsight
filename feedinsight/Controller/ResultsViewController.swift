@@ -632,7 +632,12 @@ class ResultsViewController: UIViewController, UIGestureRecognizerDelegate,UITex
 extension ResultsViewController: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 32
+        if (indexPath.row == 0) {
+            return 60
+        } else {
+            return 40
+        }
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.nameArrayCopy.count + 1

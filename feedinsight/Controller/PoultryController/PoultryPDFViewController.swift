@@ -12,7 +12,7 @@ import MessageUI
 import SwiftMessages
 import PDFKit
 
-class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
+class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var n1: UIView!
     @IBOutlet weak var scrillviewoutlet: UIScrollView!
@@ -25,20 +25,39 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var referenceLabel: UILabel!
     @IBOutlet weak var preparedByLabel: UILabel!
     @IBOutlet weak var reportType: UILabel!
+    @IBOutlet weak var simpleContainerView: UIView!
+    @IBOutlet weak var comparisonContainerView: UIView!
     let defaults = UserDefaults(suiteName:"User")
+    
+    var checkPoultryStatus = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         if let userName = defaults!.value(forKey: "usernameStringKey"){
             self.preparedByLabel.text = userName as? String
             print(userName)
         }
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        let popGestureRecognizer = self.navigationController!.interactivePopGestureRecognizer!
+        if let targets = popGestureRecognizer.value(forKey: "targets") as? NSMutableArray {
+          let gestureRecognizer = UIPanGestureRecognizer()
+          gestureRecognizer.setValue(targets, forKey: "targets")
+          self.view.addGestureRecognizer(gestureRecognizer)
+        }
+        
+        if(checkPoultryStatus == "StateScreen") {
+            self.comparisonContainerView.isHidden = true
+            self.simpleContainerView.isHidden = false
+        } else {
+            self.comparisonContainerView.isHidden = false
+            self.simpleContainerView.isHidden = true
+        }
         self.companyName.text = "Company : " + Requirments.shared().poultryCompanyName!
         self.ruminantType.text = "Type : " + Requirments.shared().poultryType!
         self.animalGroup.text = "Group : " + Requirments.shared().poultryStrain!
         self.psciState.text = "Physiological State : " + Requirments.shared().poultryPsychlogyState!
         self.reportType.text = "Poultry Premix"
-        //self.dateLabel.text = "datestr3"
         self.referenceLabel.text = "Poultry Report"
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,15 +186,20 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
     }
     
     func openAlertForChangeValue() {
-        let alert = UIAlertController(title: "Note", message: "Do you want to edit Premix Values?", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: { action in
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditPoultryValuesViewController") as? EditPoultryValuesViewController
-            self.navigationController?.pushViewController(vc!, animated: true)            
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+        if(checkPoultryStatus == "StateScreen") {
+            let alert = UIAlertController(title: "Note", message: "Do you want to edit Premix Values?", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: { action in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditPoultryValuesViewController") as? EditPoultryValuesViewController
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+                self.loadPDFAndShareToGetRecommendation()
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
             self.loadPDFAndShareToGetRecommendation()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     func loadPDFAndShareToGetRecommendation(){

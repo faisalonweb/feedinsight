@@ -71,30 +71,35 @@ class LoadPoultryPremixesViewController: UIViewController, UIGestureRecognizerDe
  
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Requirments.shared().poultryType = totalVitAllArray[indexPath.section]
-        Requirments.shared().poultryStrain = ".........."
-        Requirments.shared().poultryPsychlogyState = ".........."
+        Requirments.shared().poultryStrain = "Standard"
+        Requirments.shared().poultryPsychlogyState = "Standard"
         Requirments.shared().poultryCompanyName = defaults!.value(forKey: "userbussinessStringKey") as? String
-        Requirments.shared().poultryVitaminA = "100"
-        Requirments.shared().poultryVitaminD3 = "100"
-        Requirments.shared().poultryVitaminE = "100"
-        Requirments.shared().poultryVitaminK = "100"
-        Requirments.shared().poultryVitaminB1 = "100"
-        Requirments.shared().poultryVitaminB2 = "100"
-        Requirments.shared().poultryVitaminB3 = "100"
-        Requirments.shared().poultryVitaminB5 = "100"
-        Requirments.shared().poultryVitaminB6 = "100"
-        Requirments.shared().poultryVitaminB7 = "100"
-        Requirments.shared().poultryVitaminB9 = "100"
-        Requirments.shared().poultryVitaminB12 = "100"
-        Requirments.shared().poultryZInc = "100"
-        Requirments.shared().poultryManganese = "100"
-        Requirments.shared().poultryCopper = "100"
-        Requirments.shared().poultryIodine = "100"
-        Requirments.shared().poultrySelenium = "100"
-        Requirments.shared().poultryCobalt = "100"
-        Requirments.shared().poultryIron = "100"
+        Requirments.shared().poultryVitaminA = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][0])
+        Requirments.shared().poultryVitaminD3 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][1])
+        Requirments.shared().poultryVitaminE = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][2])
+        Requirments.shared().poultryVitaminK = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][3])
+        Requirments.shared().poultryVitaminB1 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][4])
+        Requirments.shared().poultryVitaminB2 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][5])
+        Requirments.shared().poultryVitaminB3 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][6])
+        Requirments.shared().poultryVitaminB5 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][7])
+        Requirments.shared().poultryVitaminB6 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][8])
+        Requirments.shared().poultryVitaminB7 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][9])
+        Requirments.shared().poultryVitaminB9 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][10])
+        Requirments.shared().poultryVitaminB12 = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][11])
+        Requirments.shared().poultryZInc = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][12])
+        Requirments.shared().poultryManganese = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][13])
+        Requirments.shared().poultryCopper = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][14])
+        Requirments.shared().poultryIodine = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][15])
+        Requirments.shared().poultrySelenium = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][16])
+        Requirments.shared().poultryCobalt = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][17])
+        Requirments.shared().poultryIron = toString(Requirments.shared().totalVitAllArrayValues[indexPath.section][18])
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PoultryPDFViewController") as? PoultryPDFViewController
+        vc?.checkPoultryStatus = "StateScreen"
         self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func toString(_ value: Any?) -> String {
+      return String(describing: value ?? "0.0")
     }
 
 }
