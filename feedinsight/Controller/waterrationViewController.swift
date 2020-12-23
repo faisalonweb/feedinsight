@@ -118,6 +118,10 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         }
     }
     
+    @objc func refresh(_ sender: AnyObject) {
+        self.tblView.refreshControl?.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.docIdArray.removeAll()
@@ -131,6 +135,7 @@ class waterrationViewController: UIViewController , UITableViewDataSource , UITa
         self.profileimage.isUserInteractionEnabled = true
         self.tblView.refreshControl = UIRefreshControl()
         self.tblView.refreshControl?.beginRefreshing()
+        self.tblView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         if(self.screenNAME == "water") {
             changeableLabel.text = "Water Reports"
             

@@ -27,6 +27,11 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var reportType: UILabel!
     @IBOutlet weak var simpleContainerView: UIView!
     @IBOutlet weak var comparisonContainerView: UIView!
+    @IBOutlet weak var twoCellContainerView: UIView!
+    @IBOutlet weak var threeCellContainerView: UIView!
+    
+    
+    
     let defaults = UserDefaults(suiteName:"User")
     
     var checkPoultryStatus = ""
@@ -46,10 +51,51 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
         
         if(checkPoultryStatus == "StateScreen") {
             self.comparisonContainerView.isHidden = true
+            self.comparisonContainerView.alpha = 0
             self.simpleContainerView.isHidden = false
+            self.simpleContainerView.alpha = 1
+            self.threeCellContainerView.isHidden = true
+            self.threeCellContainerView.alpha = 0
+            self.twoCellContainerView.isHidden = true
+            self.twoCellContainerView.alpha = 0
+        } else if(checkPoultryStatus == "comparisonScreen") {
+            if(Requirments.shared().selectedPoultryArrayValues.count == 2) {
+                self.comparisonContainerView.isHidden = true
+                self.comparisonContainerView.alpha = 0
+                self.simpleContainerView.isHidden = true
+                self.simpleContainerView.alpha = 0
+                self.threeCellContainerView.isHidden = true
+                self.threeCellContainerView.alpha = 0
+                self.twoCellContainerView.isHidden = false
+                self.twoCellContainerView.alpha = 1
+            } else if(Requirments.shared().selectedPoultryArrayValues.count == 3) {
+                self.comparisonContainerView.isHidden = true
+                self.comparisonContainerView.alpha = 0
+                self.simpleContainerView.isHidden = true
+                self.simpleContainerView.alpha = 0
+                self.threeCellContainerView.isHidden = false
+                self.threeCellContainerView.alpha = 1
+                self.twoCellContainerView.isHidden = true
+                self.twoCellContainerView.alpha = 0
+            } else if(Requirments.shared().selectedPoultryArrayValues.count == 4) {
+                self.comparisonContainerView.isHidden = false
+                self.comparisonContainerView.alpha = 1
+                self.simpleContainerView.isHidden = true
+                self.simpleContainerView.alpha = 0
+                self.threeCellContainerView.isHidden = true
+                self.threeCellContainerView.alpha = 0
+                self.twoCellContainerView.isHidden = true
+                self.twoCellContainerView.alpha = 0
+            }
         } else {
-            self.comparisonContainerView.isHidden = false
-            self.simpleContainerView.isHidden = true
+            self.comparisonContainerView.isHidden = true
+            self.comparisonContainerView.alpha = 0
+            self.simpleContainerView.isHidden = false
+            self.simpleContainerView.alpha = 1
+            self.threeCellContainerView.isHidden = true
+            self.threeCellContainerView.alpha = 0
+            self.twoCellContainerView.isHidden = true
+            self.twoCellContainerView.alpha = 0
         }
         self.companyName.text = "Company : " + Requirments.shared().poultryCompanyName!
         self.ruminantType.text = "Type : " + Requirments.shared().poultryType!
@@ -190,6 +236,13 @@ class PoultryPDFViewController: UIViewController, MFMailComposeViewControllerDel
             let alert = UIAlertController(title: "Note", message: "Do you want to edit Premix Values?", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "YES", style: UIAlertAction.Style.default, handler: { action in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditPoultryValuesViewController") as? EditPoultryValuesViewController
+                
+                self.psciState.text = "Physiological State : " + Requirments.shared().poultryPsychlogyState!
+                if(Requirments.shared().poultryStrain! == "Standard") {
+                    vc?.productName = Requirments.shared().poultryType!
+                } else {
+                    vc?.productName = Requirments.shared().poultryStrain! + Requirments.shared().poultryType! + Requirments.shared().poultryPsychlogyState!
+                }
                 self.navigationController?.pushViewController(vc!, animated: true)
             }))
             alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in

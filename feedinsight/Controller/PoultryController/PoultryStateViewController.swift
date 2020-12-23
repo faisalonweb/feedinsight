@@ -1073,6 +1073,8 @@ class PoultryStateViewController: UIViewController, UIGestureRecognizerDelegate 
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "PoultryPDFViewController") as? PoultryPDFViewController
             vc?.checkPoultryStatus = "StateScreen"
+            Requirments.shared().selectedPoultryArray.removeAll()
+            Requirments.shared().selectedPoultryArrayValues.removeAll()
             self.navigationController?.pushViewController(vc!, animated: true)
         } else {
             let view = MessageView.viewFromNib(layout: .cardView)

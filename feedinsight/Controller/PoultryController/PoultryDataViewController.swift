@@ -135,13 +135,22 @@ extension PoultryDataViewController: UITableViewDelegate , UITableViewDataSource
             }
             cell.nutrientName?.text = nutrientNames[indexPath.row]
             cell.nutrientUnit?.text = nutrientUnits[indexPath.row]
-            cell.nutrientValue?.text = nutrientValues[indexPath.row] ?? "0"
+            if(nutrientValues[indexPath.row] == "") {
+                cell.nutrientValue?.text = "0"
+            } else {
+                cell.nutrientValue?.text = toString(nutrientValues[indexPath.row])
+            }
+            
             cell.layer.cornerRadius = 10
             return cell
         }
         
         return UITableViewCell()
         
+    }
+    
+    func toString(_ value: Any?) -> String {
+      return String(describing: value ?? "0.0")
     }
 
 }

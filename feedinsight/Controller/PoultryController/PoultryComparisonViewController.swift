@@ -15,6 +15,11 @@ class PoultryComparisonViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     var selectedArray: [String] = []
+    var docIDNewList = ["0", "1", "2", "3", "4", "5", "6"]
+    private var datastation = [String]()
+    private var documentIdStation = [String]()
+    var copyArray = [NSDictionary]()
+    var totalNumberOfCells = 0
     var nameArray: [String] = ["Totalvit Vitall/Minerall Broiler",
                                "Totalvit Vitall/Minerall Layer",
                                "Totalvit Vitall/Minerall Breeder",
@@ -92,6 +97,52 @@ class PoultryComparisonViewController: UIViewController, UITableViewDelegate, UI
         self.userImage.addGestureRecognizer(tapOnImage)
         self.userImage.isUserInteractionEnabled = true
         Requirments.shared().selectedPoultryArrayValues.removeAll()
+        self.databaseTableView.refreshControl = UIRefreshControl()
+        self.databaseTableView.refreshControl?.beginRefreshing()
+        self.databaseTableView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.hitApi()
+    }
+    
+    func hitApi() {
+        self.datastation.removeAll()
+        self.documentIdStation.removeAll()
+        self.copyArray.removeAll()
+        self.nameArray = Requirments.shared().nameArray
+        
+        self.nameArrayCopy = Requirments.shared().nameArray
+        Requirments.shared().totalVitAllArray = Requirments.shared().totalVitAllArrayForSave
+        self.docIDNewList.removeAll()
+        Requirments.shared().totalVitAllArrayValues = Requirments.shared().totalVitAllArrayValuesForSave
+        let script =  ApiCalling()
+        script.customPoultryData() { (result) -> () in
+            if result.count > 0 {
+                var i = 0
+                for documentData in result {
+                    let ReportName = documentData["customName"] as? String ?? "Anonymous"
+                    let documentiddata = documentData["DocId"] as? String ?? "20/20/20"
+                    self.datastation.insert(ReportName, at: i)
+                    self.documentIdStation.insert(documentiddata, at: i)
+                    self.copyArray.append(documentData as NSDictionary)
+                    Requirments.shared().totalPoultryValuesArray.append(self.copyArray[i]["customDataValues"] as! [String])
+                    i = i + 1
+                }
+                self.nameArray.append(contentsOf: self.datastation)
+                self.nameArrayCopy.append(contentsOf: self.datastation)
+                self.docIDNewList.append(contentsOf: self.documentIdStation)
+                self.totalNumberOfCells = self.nameArrayCopy.count
+                self.databaseTableView.reloadData()
+                self.databaseTableView.refreshControl?.endRefreshing()
+            } else {
+                self.totalNumberOfCells = self.nameArrayCopy.count
+                self.databaseTableView.refreshControl?.endRefreshing()
+                self.databaseTableView.reloadData()
+                print("pakis")
+            }
+        }
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        self.hitApi()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,26 +200,8 @@ class PoultryComparisonViewController: UIViewController, UITableViewDelegate, UI
         cell.productName?.text = nameArrayCopy[indexPath.section]
         if selectedArray.contains(where: { ($0) == cell.productName?.text }) {
             cell.checkImage.image = UIImage(named: "animalcheck")
-//            if(indexPath.section < 3) {
-//                let indexPath = IndexPath(row: 0, section: indexPath.section + 3)
-//                let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                cell1.checkImage.image = UIImage(named: "animalcheck")
-//            } else if(indexPath.section > 2 && indexPath.section < 6) {
-//                let indexPath = IndexPath(row: 0, section: indexPath.section - 3)
-//                let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                cell1.checkImage.image = UIImage(named: "animalcheck")
-//            }
         } else {
             cell.checkImage.image = UIImage(named: "animaluncheck")
-//            if(indexPath.section < 3) {
-//                let indexPath = IndexPath(row: 0, section: indexPath.section + 3)
-//                let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                cell1.checkImage.image = UIImage(named: "animaluncheck")
-//            } else if(indexPath.section > 2 && indexPath.section < 6) {
-//                let indexPath = IndexPath(row: 0, section: indexPath.section - 3)
-//                let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                cell1.checkImage.image = UIImage(named: "animaluncheck")
-//            }
         }
         return cell
     }
@@ -185,15 +218,6 @@ class PoultryComparisonViewController: UIViewController, UITableViewDelegate, UI
         let cell = tableView.cellForRow(at: indexPath) as! loadDatabaseTableViewCell
         if selectedArray.contains(cell.productName.text!) {
             cell.checkImage.image = UIImage(named: "animaluncheck")
-//            if(indexPath.section < 3) {
-//                let indexPath = IndexPath(row: 0, section: indexPath.section + 3)
-//                let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                cell1.checkImage.image = UIImage(named: "animaluncheck")
-//            } else if(indexPath.section > 2 && indexPath.section < 6) {
-//                let indexPath = IndexPath(row: 0, section: indexPath.section - 3)
-//                let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                cell1.checkImage.image = UIImage(named: "animaluncheck")
-//            }
             for i in 0 ..< selectedArray.count {
                 if(selectedArray[i] == cell.productName.text) {
                     selectedArray.remove(at: i)
@@ -204,15 +228,6 @@ class PoultryComparisonViewController: UIViewController, UITableViewDelegate, UI
         } else {
             if(selectedArray.count < 4) {
                 cell.checkImage.image = UIImage(named: "animalcheck")
-//                if(indexPath.section < 3) {
-//                    let indexPath = IndexPath(row: 0, section: indexPath.section + 3)
-//                    let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                    cell1.checkImage.image = UIImage(named: "animalcheck")
-//                } else if(indexPath.section > 2 && indexPath.section < 6) {
-//                    let indexPath = IndexPath(row: 0, section: indexPath.section - 3)
-//                    let cell1 = tableView.cellForRow(at: indexPath)  as! loadDatabaseTableViewCell
-//                    cell1.checkImage.image = UIImage(named: "animalcheck")
-//                }
                 selectedArray.append(cell.productName.text ?? "none")
                 Requirments.shared().selectedPoultryArrayValues.append(Requirments.shared().totalPoultryValuesArray[indexPath.section])
             }else {
@@ -226,7 +241,7 @@ class PoultryComparisonViewController: UIViewController, UITableViewDelegate, UI
         return UITableView.automaticDimension
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.nameArrayCopy.count
+        return totalNumberOfCells
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

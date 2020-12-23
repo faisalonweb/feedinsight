@@ -108,18 +108,63 @@ class ReportViewController: UIViewController {
         self.tabBarController?.selectedIndex = 2
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
-        profileImage?.clipsToBounds = true
-        profileImage?.layer.borderWidth = 3.0
-        profileImage?.layer.borderColor = UIColor.white.cgColor
-        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
-        self.profileImage.addGestureRecognizer(tapOnImage)
-        self.profileImage.isUserInteractionEnabled = true
-        self.tableView.refreshControl = UIRefreshControl()
-        self.tableView.refreshControl?.beginRefreshing()
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    func hitApi() {
+        self.debList.removeAll()
+        self.dcabList.removeAll()
+        self.dmiList.removeAll()
+        self.dosageList.removeAll()
+        self.companyName1List.removeAll()
+        self.animalGroup1List.removeAll()
+        self.physiologicalState1List.removeAll()
+        self.currentBodyWeight1List.removeAll()
+        self.targetBodyWeight1List.removeAll()
+        self.achieveTargetWeight1List.removeAll()
+        self.daysInMilk1List.removeAll()
+        self.daysPregnant1List.removeAll()
+        self.milkProduction1List.removeAll()
+        self.animalKind1List.removeAll()
+        self.heatStress1List.removeAll()
+        self.metaBolic1List.removeAll()
+        self.anionic1List.removeAll()
+        self.woolProduction1List.removeAll()
+        self.companyNameList.removeAll()
+        self.ruminantTypeList.removeAll()
+        self.animalGroupList.removeAll()
+        self.psychologicalList.removeAll()
+        self.pdfDateList.removeAll()
+        self.pdfReference.removeAll()
+        self.preparedBy.removeAll()
+        self.reportType.removeAll()
+        self.DocumentIdList.removeAll()
+        self.companyNameStation.removeAll()
+        self.ruminantTypeStation.removeAll()
+        self.animalGroupStation.removeAll()
+        self.psyStateStation.removeAll()
+        self.referenceStation.removeAll()
+        self.preparedStation.removeAll()
+        self.pdfReportTypeStation.removeAll()
+        self.pdfDatestation.removeAll()
+        self.documentIdStation.removeAll()
+        self.debStation.removeAll()
+        self.dcabStation.removeAll()
+        self.dmiStation.removeAll()
+        self.dosageStation.removeAll()
+        self.companyName1Station.removeAll()
+        self.animalGroup1Station.removeAll()
+        self.physiologicalState1Station.removeAll()
+        self.currentBodyWeight1Station.removeAll()
+        self.targetBodyWeight1Station.removeAll()
+        self.achieveTargetWeight1Station.removeAll()
+        self.daysInMilk1Station.removeAll()
+        self.daysPregnant1Station.removeAll()
+        self.milkProduction1Station.removeAll()
+        self.animalKind1Station.removeAll()
+        self.heatStress1Station.removeAll()
+        self.metaBolic1Station.removeAll()
+        self.anionic1Station.removeAll()
+        self.woolProduction1Station.removeAll()
+        self.copyArray.removeAll()
+        
         Firestore.firestore().collection("pdfReports").document(Auth.auth().currentUser?.uid ?? "").collection("pdfReports").getDocuments{(snapshot,error) in
             
             if error == nil && snapshot != nil {
@@ -231,6 +276,26 @@ class ReportViewController: UIViewController {
                 
             }
         }
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        self.hitApi()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        profileImage?.layer.cornerRadius = (profileImage?.frame.size.width ?? 0.0) / 2
+        profileImage?.clipsToBounds = true
+        profileImage?.layer.borderWidth = 3.0
+        profileImage?.layer.borderColor = UIColor.white.cgColor
+        let tapOnImage = UITapGestureRecognizer.init(target: self, action: #selector(tapOnImageAction))
+        self.profileImage.addGestureRecognizer(tapOnImage)
+        self.profileImage.isUserInteractionEnabled = true
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.beginRefreshing()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.hitApi()
     }
 
 }

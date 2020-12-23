@@ -218,8 +218,54 @@ class Requirments {
         [12500,2500,60,2,2,6,40,10,3,0.1,1,0.01,80,80,10,1,0.2,0.5,60],
         [11000,3500,25,3.5,2.5,6.5,40,10,4.5,0.1,1,0.025,85,90,10,1.5,0.25,0,50],
         [11000,3500,100,5,3.5,12,60,15,5,0.3,2,0.035,110,120,12,2,0.3,0,50],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     ]
     
+    var totalVitAllArrayValuesForSave: [[Any]] = [
+        [12500,2500,60,2,2,6,40,10,3,0.1,1,0.01,80,80,10,1,0.2,0.5,60],
+        [11000,3500,25,3.5,2.5,6.5,40,10,4.5,0.1,1,0.025,85,90,10,1.5,0.25,0,50],
+        [11000,3500,100,5,3.5,12,60,15,5,0.3,2,0.035,110,120,12,2,0.3,0,50],
+        [12500,2500,60,2,2,6,40,10,3,0.1,1,0.01,80,80,10,1,0.2,0.5,60],
+        [11000,3500,25,3.5,2.5,6.5,40,10,4.5,0.1,1,0.025,85,90,10,1.5,0.25,0,50],
+        [11000,3500,100,5,3.5,12,60,15,5,0.3,2,0.035,110,120,12,2,0.3,0,50],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    ]
+    
+    var totalVitAllArray = ["Totalvit Vitall Broiler", "Totalvit Vitall Layer", "Totalvit Vitall Breeder", "Totalvit Minerall Broiler", "Totalvit Minerall Layer", "Totalvit Minerall Breeder", "+ Add Custom Premix"]
+    
+    var totalVitAllArrayForSave = ["Totalvit Vitall Broiler", "Totalvit Vitall Layer", "Totalvit Vitall Breeder", "Totalvit Minerall Broiler", "Totalvit Minerall Layer", "Totalvit Minerall Breeder", "+ Add Custom Premix"]
+    
+    var nameArray: [String] = ["Totalvit Vitall/Minerall Broiler",
+                               "Totalvit Vitall/Minerall Layer",
+                               "Totalvit Vitall/Minerall Breeder",
+                               //"Totalvit Minerall Broiler",
+                               //"Totalvit Minerall Layer",
+                               //"Totalvit Minerall Breeder",
+                               
+                               "Ross Broiler Starter", "Ross Broiler Grower", "Ross Broiler Finisher",
+                               "Cobb Broiler Starter", "Cobb Broiler Grower", "Cobb Broiler Finisher",
+                               "Hubbard Broiler Starter", "Hubbard Broiler Grower", "Hubbard Broiler Finisher",
+                               //"Broiler Other Starter", "Broiler Other Grower", "Broiler Other Finisher",
+                               
+                               "Ross Broiler Breeder Starter/Grower", "Ross Broiler Breeder Production",
+                               "Cobb Broiler Breeder Starter/Grower", "Cobb Broiler Breeder Production",
+                               "Hubbard Broiler Breeder Starter/Grower", "Hubbard Broiler Breeder Production",
+                               //"Broiler Breeder Other Starter/Grower", "Broiler Breeder Other Production",
+                               
+                               "Bovan Layer Starter/Grower", "Bovan Layer Production",
+                               "NickChick Layer Starter/Grower", "NickChick Layer Production",
+                               "LSL Layer Starter/Grower", "LSL Layer Production",
+                               "Hyline Layer Starter/Grower", "Hyline Layer Production",
+                               "Novogen Layer Starter/Grower", "Novogen Layer Production",
+                               //"Layer Other Starter/Grower", "Layer Other Production",
+                               
+                               "Bovan Layer Breeder Starter/Grower", "Bovan Layer Breeder Production",
+                               "NickChick Layer Breeder Starter/Grower", "NickChick Layer Breeder Production",
+                               "LSL Layer Breeder Starter/Grower", "LSL Layer Breeder Production",
+                               "Hyline Layer Breeder Starter/Grower", "Hyline Layer Breeder Production",
+                               "Novogen Layer Breeder Starter/Grower", "Novogen Layer Breeder Production",
+                               //"Layer Breeder Other Starter/Grower", "Layer Breeder Other Production"
+    ]
     
     // Poultry Variables
     var poultryType : String?

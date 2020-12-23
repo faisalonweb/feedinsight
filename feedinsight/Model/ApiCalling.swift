@@ -16,6 +16,7 @@ class ApiCalling {
     var animalList = [NSDictionary]()
     var waterList = [NSDictionary]()
     var rationList = [NSDictionary]()
+    var customPoultryData = [NSDictionary]()
     var premixList = [NSDictionary]()
     var loginList = [NSDictionary]()
     func LoadProfile(completion: @escaping ([NSDictionary]) -> ()) {
@@ -67,6 +68,26 @@ class ApiCalling {
             }
         }
     }
+    
+    func customPoultryData(completion: @escaping ([NSDictionary])-> ()) {
+        Firestore.firestore().collection("poultryCustomData").document(Auth.auth().currentUser?.uid ?? "").collection("poultryCustomData").getDocuments{(snapshot,error) in
+            if error == nil && snapshot != nil {
+                guard let snap = snapshot else {return}
+                for document in snap.documents {
+                    let documentData = document.data()
+                    print (documentData)
+                    self.customPoultryData.append(documentData as NSDictionary)
+                    
+                }
+                completion(self.customPoultryData)
+            }
+            else {
+                print("Error In Ration")
+            }
+        }
+    }
+    
+    
     func PremixData(completion: @escaping ([NSDictionary])-> ()) {
         Firestore.firestore().collection("premixReports").document(Auth.auth().currentUser?.uid ?? "").collection("premixReports").getDocuments{(snapshot,error) in
             if error == nil && snapshot != nil {

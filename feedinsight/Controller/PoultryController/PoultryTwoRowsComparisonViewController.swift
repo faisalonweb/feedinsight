@@ -1,15 +1,14 @@
 //
-//  PoultryDataComparisonViewController.swift
+//  PoultryTwoRowsComparisonViewController.swift
 //  FeedInsight
 //
-//  Created by Hamza Iqbal on 21/12/2020.
+//  Created by Hamza Iqbal on 23/12/2020.
 //  Copyright © 2020 faisal. All rights reserved.
 //
 
 import UIKit
 
-class PoultryDataComparisonViewController: UIViewController {
-    
+class PoultryTwoRowsComparisonViewController: UIViewController {
     @IBOutlet weak var suptblview: UITableView!
     let nutrientNames = ["Nutrients",
                          "Vitamin A",
@@ -32,10 +31,6 @@ class PoultryDataComparisonViewController: UIViewController {
                          "Cobalt",
                          "Iron",
     ]
-    
-    @IBOutlet weak var p1Constraint: NSLayoutConstraint!
-    @IBOutlet weak var p2Constraint: NSLayoutConstraint!
-    @IBOutlet weak var p3Constraint: NSLayoutConstraint!
     
     var nutrientValues = ["Values",
                           Requirments.shared().poultryVitaminA,
@@ -66,7 +61,7 @@ class PoultryDataComparisonViewController: UIViewController {
     }
 }
 
-extension PoultryDataComparisonViewController: UITableViewDelegate , UITableViewDataSource{
+extension PoultryTwoRowsComparisonViewController: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0) {
@@ -158,4 +153,3 @@ extension PoultryDataComparisonViewController: UITableViewDelegate , UITableView
       return String(describing: value ?? "0.0")
     }
 }
-

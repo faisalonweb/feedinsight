@@ -91,6 +91,8 @@
 		C6113BE72534309B0062EA6B /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6113BE62534309B0062EA6B /* DatabaseViewController.swift */; };
 		C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */; };
 		C63D59E025233D8800CFE439 /* UnitConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */; };
+		C6623E3025931B47007A8DE9 /* PoultryTwoRowsComparisonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6623E2F25931B47007A8DE9 /* PoultryTwoRowsComparisonViewController.swift */; };
+		C6623E3325931B56007A8DE9 /* PoultryThreeRowsComparisonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6623E3225931B56007A8DE9 /* PoultryThreeRowsComparisonViewController.swift */; };
 		C67248012590A92900767ECA /* PoultryComparisonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67248002590A92900767ECA /* PoultryComparisonViewController.swift */; };
 		C67248042590BDDE00767ECA /* PoultryDataComparisonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67248032590BDDE00767ECA /* PoultryDataComparisonViewController.swift */; };
 		C67442E4258B829D00864261 /* PoultryDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67442E3258B829D00864261 /* PoultryDataViewController.swift */; };
@@ -193,6 +195,8 @@
 		C6113BE62534309B0062EA6B /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		C6113BE9253434060062EA6B /* loadDatabaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadDatabaseTableViewCell.swift; sourceTree = "<group>"; };
 		C63D59DF25233D8800CFE439 /* UnitConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConvertorViewController.swift; sourceTree = "<group>"; };
+		C6623E2F25931B47007A8DE9 /* PoultryTwoRowsComparisonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoultryTwoRowsComparisonViewController.swift; sourceTree = "<group>"; };
+		C6623E3225931B56007A8DE9 /* PoultryThreeRowsComparisonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoultryThreeRowsComparisonViewController.swift; sourceTree = "<group>"; };
 		C67248002590A92900767ECA /* PoultryComparisonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoultryComparisonViewController.swift; sourceTree = "<group>"; };
 		C67248032590BDDE00767ECA /* PoultryDataComparisonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoultryDataComparisonViewController.swift; sourceTree = "<group>"; };
 		C67442E3258B829D00864261 /* PoultryDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoultryDataViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +439,8 @@
 				C67442EA258C9A6300864261 /* EditPoultryValuesViewController.swift */,
 				C67248002590A92900767ECA /* PoultryComparisonViewController.swift */,
 				C67248032590BDDE00767ECA /* PoultryDataComparisonViewController.swift */,
+				C6623E2F25931B47007A8DE9 /* PoultryTwoRowsComparisonViewController.swift */,
+				C6623E3225931B56007A8DE9 /* PoultryThreeRowsComparisonViewController.swift */,
 			);
 			path = PoultryController;
 			sourceTree = "<group>";
@@ -642,7 +648,9 @@
 				1A277B9D24C6FC4700FDA1DD /* feedthreeViewController.swift in Sources */,
 				1ACCDCC9250F9C3200BC13EE /* animalTypeTableViewCell.swift in Sources */,
 				1A7F1218243CE34F0008CFC0 /* SceneDelegate.swift in Sources */,
+				C6623E3325931B56007A8DE9 /* PoultryThreeRowsComparisonViewController.swift in Sources */,
 				C67442EB258C9A6300864261 /* EditPoultryValuesViewController.swift in Sources */,
+				C6623E3025931B47007A8DE9 /* PoultryTwoRowsComparisonViewController.swift in Sources */,
 				1AED4025248A751300BE5108 /* gatewayViewController.swift in Sources */,
 				C67248042590BDDE00767ECA /* PoultryDataComparisonViewController.swift in Sources */,
 				C6113BEA253434060062EA6B /* loadDatabaseTableViewCell.swift in Sources */,
@@ -804,7 +812,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.27;
+				MARKETING_VERSION = 5.31;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -827,7 +835,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.27;
+				MARKETING_VERSION = 5.31;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayetech.feedinsight;
 				PRODUCT_NAME = FeedInsight;
 				PROVISIONING_PROFILE_SPECIFIER = "";
